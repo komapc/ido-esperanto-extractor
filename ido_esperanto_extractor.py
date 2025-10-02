@@ -14,6 +14,7 @@ import bz2
 import json
 import os
 import re
+import stat
 import sys
 import tempfile
 import urllib.request
@@ -203,8 +204,8 @@ class ImprovedDumpParserV2:
                     parsed_morfologio = self.parse_morfologio(morfologio_text)
                     if parsed_morfologio:
                         metadata['morfologio'] = parsed_morfologio
-                    break
-        
+                break
+                
         return metadata
     
     def parse_morfologio(self, morfologio_text: str) -> List[str]:
@@ -505,13 +506,13 @@ class ImprovedDumpParserV2:
                 # Special case: if the line just contains the word itself, it's self-translating
                 if re.search(rf'\*\s*{re.escape(title)}\s*$', esperanto_section, re.IGNORECASE):
                     all_meanings.append([title])
-                    continue
+                continue
                 
                 # Special case: if the word appears in a compound phrase, treat as self-translating
                 # Example: "* dika kaj longa - grosa." -> dika translates to dika
                 if re.search(rf'\*\s*{re.escape(title)}\s+kaj', esperanto_section, re.IGNORECASE):
                     all_meanings.append([title])
-                    continue
+                continue
                 
                 for trans_pattern in translation_patterns:
                     trans_matches = re.findall(trans_pattern, esperanto_section, re.IGNORECASE)
@@ -617,8 +618,8 @@ class ImprovedDumpParserV2:
         # Check if title is valid
         if not self.is_valid_title(title):
             self.stats['skipped_by_title'] += 1
-            return None
-        
+        return None
+    
         # Check for excluded categories
         if self.has_excluded_categories(wikitext):
             self.stats['skipped_by_category'] += 1
@@ -672,8 +673,8 @@ class ImprovedDumpParserV2:
                 failed_item['esperanto_content'] = raw_esperanto_content
             
             self.failed_links.append(failed_item)
-            return None
-        
+        return None
+    
         self.stats['valid_entries_found'] += 1
         
         # Count multiple meanings
@@ -794,6 +795,37 @@ class ImprovedDumpParserV2:
             print(f"Error downloading dump: {e}")
             raise
     
+    def get_dump_metadata(self) -> Dict[str, any]:
+        """Get metadata about the dump file."""
+        dump_metadata = {}
+        
+        if hasattr(self, 'dump_file') and self.dump_file and os.path.exists(self.dump_file):
+            try:
+                stat_info = os.stat(self.dump_file)
+                dump_metadata = {
+                    'dump_filename': os.path.basename(self.dump_file),
+                    'dump_path': os.path.abspath(self.dump_file),
+                    'dump_size_bytes': stat_info.st_size,
+                    'dump_size_mb': round(stat_info.st_size / (1024 * 1024), 2),
+                    'dump_modified': datetime.fromtimestamp(stat_info.st_mtime).isoformat(),
+                    'dump_created': datetime.fromtimestamp(stat_info.st_ctime).isoformat()
+                }
+                
+                # Try to extract version info from filename
+                filename = os.path.basename(self.dump_file)
+                if 'latest' in filename:
+                    dump_metadata['dump_version'] = 'latest'
+                else:
+                    # Try to extract date from filename
+                    date_match = re.search(r'(\d{8})', filename)
+                    if date_match:
+                        dump_metadata['dump_date'] = date_match.group(1)
+                
+            except Exception as e:
+                dump_metadata['dump_error'] = str(e)
+        
+        return dump_metadata
+
     def extract_dictionary(self, limit: Optional[int] = None, base_output_name: str = 'ido_esperanto_v2') -> None:
         """Extract Ido-Esperanto dictionary from dump."""
         print("Starting improved Ido-Esperanto dictionary extraction v2...")
@@ -831,13 +863,17 @@ class ImprovedDumpParserV2:
             print(f"Error during extraction: {e}")
             raise
         
+        # Get dump metadata
+        dump_metadata = self.get_dump_metadata()
+        
         # Create successful entries result
         successful_result = {
             'metadata': {
                 'extraction_date': datetime.now().isoformat(),
                 'total_words': len(entries),
                 'script_version': 'v2.0',
-                'stats': self.stats.copy()
+                'stats': self.stats.copy(),
+                'source_dump': dump_metadata
             },
             'words': entries
         }
@@ -848,7 +884,8 @@ class ImprovedDumpParserV2:
                 'extraction_date': datetime.now().isoformat(),
                 'total_failed': len(self.failed_links),
                 'script_version': 'v2.0',
-                'stats': self.stats.copy()
+                'stats': self.stats.copy(),
+                'source_dump': dump_metadata
             },
             'failed_links': self.failed_links
         }

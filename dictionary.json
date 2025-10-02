@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "extraction_date": "2025-10-02T22:49:16.726065",
+    "extraction_date": "2025-10-02T23:00:20.539918",
     "total_words": 12161,
     "script_version": "v2.0",
     "stats": {
@@ -13,6 +13,15 @@
       "entries_with_pos": 0,
       "entries_with_multiple_meanings": 257,
       "entries_with_metadata": 12056
+    },
+    "source_dump": {
+      "dump_filename": "iowiktionary-latest-pages-articles.xml.bz2",
+      "dump_path": "/home/mark/apertium-dev/ido-esperanto-extractor/data/iowiktionary-latest-pages-articles.xml.bz2",
+      "dump_size_bytes": 31289759,
+      "dump_size_mb": 29.84,
+      "dump_modified": "2025-10-02T07:56:20",
+      "dump_created": "2025-10-02T22:32:14.509507",
+      "dump_version": "latest"
     }
   },
   "words": [
