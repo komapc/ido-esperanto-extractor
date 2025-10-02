@@ -44,10 +44,10 @@ IDO_SECTION_PATTERNS = [
 
 # Translation patterns
 TRANSLATION_PATTERNS = [
-    # Pattern 1: *{{eo}}: translation (captures non-empty content until next * or end, excluding malformed templates)
-    re.compile(r'\*\s*\{\{eo\}\}\s*:\s*([^\*\n\}]+?)(?=\s*\n\s*\*|\s*$)', re.IGNORECASE | re.DOTALL),
-    # Pattern 2: *Esperanto: translation (captures non-empty content until next * or end, excluding malformed templates)
-    re.compile(r'\*\s*(?:Esperanto|esperanto|eo)\s*[:\-]\s*([^\*\n\}]+?)(?=\s*\n\s*\*|\s*$)', re.IGNORECASE | re.DOTALL),
+    # Pattern 1: *{{eo}}: translation (captures content until end of line, next * on new line, or HTML table break)
+    re.compile(r'\*\s*\{\{eo\}\}\s*:\s*(.+?)(?=\s*\n\s*\*|\s*\n\s*\|}|\s*$)', re.IGNORECASE | re.DOTALL),
+    # Pattern 2: *Esperanto: translation (captures content until end of line, next * on new line, or HTML table break)
+    re.compile(r'\*\s*(?:Esperanto|esperanto|eo)\s*[:\-]\s*(.+?)(?=\s*\n\s*\*|\s*\n\s*\|}|\s*$)', re.IGNORECASE | re.DOTALL),
     # Pattern 3: Template patterns
     re.compile(r'{{t\+?\|eo\|([^}|]+)}}', re.IGNORECASE),
     re.compile(r'{{l\|eo\|([^}|]+)}}', re.IGNORECASE),
@@ -267,8 +267,8 @@ class ImprovedDumpParserV2:
         if esperanto_mentions:
             translation_patterns_found.append(f'{len(esperanto_mentions)}_esperanto_mentions')
         
-        # Check for empty or malformed content
-        if '{{eo}}:}}' in ido_section or '{{eo}}:' in ido_section:
+        # Check for empty or malformed content - only catch truly malformed patterns
+        if '{{eo}}:}}' in ido_section:
             return 'eo_template_empty_or_malformed'
         
         # Check for empty Esperanto templates followed by other language templates
