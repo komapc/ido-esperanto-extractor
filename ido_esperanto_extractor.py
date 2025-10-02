@@ -658,11 +658,16 @@ class ImprovedDumpParserV2:
         if not translations:
             self.stats['skipped_no_translations'] += 1
             
-            # Try to extract any raw Esperanto content for failed items
-            raw_esperanto_content = self.extract_raw_esperanto_content(ido_section)
-            
             # Analyze why no translations were found for better categorization
             reason = self.analyze_translation_failure(ido_section)
+            
+            # Skip cases where Esperanto template is empty followed by other languages
+            # These are legitimate "no translation" cases, not parsing failures
+            if reason == 'eo_template_empty_followed_by_other_language':
+                return None
+            
+            # Try to extract any raw Esperanto content for failed items
+            raw_esperanto_content = self.extract_raw_esperanto_content(ido_section)
             
             # Track failed parsing - pages with Ido sections but no valid translations
             failed_item = {
