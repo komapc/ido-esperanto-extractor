@@ -137,8 +137,18 @@ def extract_from_wikitext(title: str, wikitext: str) -> Optional[dict]:
         return {
             'ido_word': title,
             'esperanto_translations': translations,
-            'definitions': []
         }
+
+
+def _extract_categories_from_wikitext(wikitext: str) -> List[str]:
+    """Return a list of category titles found in the page wikitext.
+
+    Handles both English 'Category' and local-language 'Kategorio' prefixes.
+    """
+    cats = []
+    for m in re.findall(r'\[\[(?:Category|Kategorio):\s*([^\]|]+)', wikitext, re.IGNORECASE):
+        cats.append(m.strip())
+    return cats
 
 
 def main():
@@ -160,9 +170,18 @@ def main():
     count = 0
     candidates = 0
     parsed = 0
+    skipped_by_category = 0
     for title, text in stream_pages_from_dump(args.dump):
         if args.limit and count >= args.limit:
             break
+        # Basic category filter: skip pages whose categories suggest suffixes/radicals
+        cats = _extract_categories_from_wikitext(text)
+        cat_text = ' '.join(cats).lower()
+        if re.search(r'sufix|sufixo|radik|radiki|io-rad', cat_text):
+            skipped_by_category += 1
+            count += 1
+            continue
+
         res = extract_from_wikitext(title, text)
         if res:
             candidates += 1
@@ -181,7 +200,8 @@ def main():
             'pages_processed': count,
             'candidates_examined': candidates,
             'parsed_entries': parsed,
-            'parsed_pct': (parsed / candidates * 100) if candidates else 0.0
+            'parsed_pct': (parsed / candidates * 100) if candidates else 0.0,
+            'skipped_by_category': skipped_by_category
         },
         'words': out
     }
