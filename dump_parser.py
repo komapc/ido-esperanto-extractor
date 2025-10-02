@@ -19,7 +19,7 @@ import sys
 import tempfile
 import urllib.request
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List
 
 try:
     import mwparserfromhell as mwp
