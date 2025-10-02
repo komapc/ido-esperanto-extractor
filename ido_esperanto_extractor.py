@@ -427,7 +427,12 @@ class IdoEsperantoExtractor:
                         continue
                     revs = pinfo.get('revisions', [])
                     if revs:
-                        out[title] = revs[0].get('*', '')
+                        rev = revs[0]
+                        # Support both legacy '*' key and the slots.main['*'] pattern
+                        if 'slots' in rev and isinstance(rev['slots'], dict) and 'main' in rev['slots']:
+                            out[title] = rev['slots']['main'].get('*', '')
+                        else:
+                            out[title] = rev.get('*', '')
                     else:
                         out[title] = None
             except requests.RequestException as e:
