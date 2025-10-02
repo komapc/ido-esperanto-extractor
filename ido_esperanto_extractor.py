@@ -43,8 +43,11 @@ IDO_SECTION_PATTERNS = [
 
 # Translation patterns
 TRANSLATION_PATTERNS = [
-    re.compile(r'\*\s*\{\{eo\}\}\s*:\s*(.+?)(?:\n|$)', re.IGNORECASE),
-    re.compile(r'\*\s*(?:Esperanto|esperanto|eo)\s*[:\-]\s*(.+?)(?:\n|$)', re.IGNORECASE),
+    # Pattern 1: *{{eo}}: translation (captures non-empty content until next * or end, excluding malformed templates)
+    re.compile(r'\*\s*\{\{eo\}\}\s*:\s*([^\*\n\}]+?)(?=\s*\n\s*\*|\s*$)', re.IGNORECASE | re.DOTALL),
+    # Pattern 2: *Esperanto: translation (captures non-empty content until next * or end, excluding malformed templates)
+    re.compile(r'\*\s*(?:Esperanto|esperanto|eo)\s*[:\-]\s*([^\*\n\}]+?)(?=\s*\n\s*\*|\s*$)', re.IGNORECASE | re.DOTALL),
+    # Pattern 3: Template patterns
     re.compile(r'{{t\+?\|eo\|([^}|]+)}}', re.IGNORECASE),
     re.compile(r'{{l\|eo\|([^}|]+)}}', re.IGNORECASE),
     re.compile(r'{{ux\|io\|([^}|]+)\|([^}]+)}}', re.IGNORECASE),
@@ -267,10 +270,20 @@ class ImprovedDumpParserV2:
         if '{{eo}}:}}' in ido_section or '{{eo}}:' in ido_section:
             return 'eo_template_empty_or_malformed'
         
+        # Check for empty Esperanto templates followed by other language templates
+        empty_eo_followed_by_lang = re.search(r'\*\s*\{\{eo\}\}\s*:\s*\n\s*\*\{\{[^}]+\}\}', ido_section, re.IGNORECASE | re.MULTILINE)
+        if empty_eo_followed_by_lang:
+            return 'eo_template_empty_followed_by_other_language'
+        
         # Check for only whitespace after eo templates
         eo_whitespace_only = re.search(r'\{\{eo\}\}:?\s*$', ido_section, re.IGNORECASE | re.MULTILINE)
         if eo_whitespace_only:
             return 'eo_template_whitespace_only'
+        
+        # Check for empty eo templates with just whitespace before next language
+        empty_eo_pattern = re.search(r'\*\s*\{\{eo\}\}\s*:\s*\s*\n\s*\*', ido_section, re.IGNORECASE | re.MULTILINE)
+        if empty_eo_pattern:
+            return 'eo_template_empty_before_next_language'
         
         # Check for brackets that suggest incomplete parsing
         if '[[' in ido_section and ']]' not in ido_section:
@@ -410,7 +423,16 @@ class ImprovedDumpParserV2:
                 else:
                     translation = match.strip()
                 
-                if translation:
+                # Check if translation is truly empty or contains only whitespace/newlines
+                if translation and translation.strip() and len(translation.strip()) > 1:
+                    # Skip translations that are just template markers or malformed
+                    if (translation.strip() in ['}}', '{{', '}', '{'] or 
+                        translation.strip().startswith('}}') or
+                        translation.strip().endswith('{{') or
+                        '{{' in translation.strip() or
+                        translation.strip().startswith('*{{')):
+                        continue
+                    
                     # Parse multiple meanings
                     parsed_meanings = self.parse_multiple_translations(translation)
                     
@@ -423,7 +445,12 @@ class ImprovedDumpParserV2:
                             if (trans and len(trans) > 1 and 
                                 not trans.startswith('[[') and 
                                 not trans.endswith(']]') and
-                                trans != '[[' and trans != ']]'):
+                                trans != '[[' and trans != ']]' and
+                                not trans.strip().startswith('{{') and  # Skip template markers
+                                not trans.strip().startswith('*{{') and  # Skip next language markers
+                                trans.strip() not in ['}}', '{{', '}', '{'] and  # Skip template fragments
+                                not trans.strip().startswith('}}') and
+                                not trans.strip().endswith('{{')):
                                 valid_translations.append(trans)
                         
                         if valid_translations:  # Only add if we have valid translations
