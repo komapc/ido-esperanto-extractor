@@ -368,21 +368,84 @@ class IdoEsperantoExtractor:
             return out
 
         def _from_html(htmlstr: str) -> List[str]:
+            # 1) Try list items (common)
             parser = _SimpleHtmlListParser()
             try:
                 parser.feed(htmlstr)
             except Exception:
                 pass
-            translations: Set[str] = set()
+
+            translations: List[str] = []
+            seen: Set[str] = set()
+
             for item in parser.items:
                 m = re.match(r'^(?:\s*(?:Esperanto|esperanto|eo)[:\-\s]+)(.+)$', item, re.IGNORECASE)
                 if m:
-                    translations.add(self._clean_extracted_text(m.group(1)))
-                else:
-                    # look for templates inside item
-                    for tm in re.findall(r'{{t\+?\|eo\|([^}]+)}}', item, re.IGNORECASE):
-                        translations.add(self._clean_extracted_text(tm))
-            return list(dict.fromkeys([t for t in translations if t]))
+                    val = self._clean_extracted_text(m.group(1))
+                    if val and val not in seen:
+                        seen.add(val)
+                        translations.append(val)
+                    continue
+                # look for templates inside item
+                for tm in re.findall(r'{{t\+?\|eo\|([^}]+)}}', item, re.IGNORECASE):
+                    val = self._clean_extracted_text(tm)
+                    if val and val not in seen:
+                        seen.add(val)
+                        translations.append(val)
+
+            # 2) Try to parse simple HTML tables where a cell label is 'Esperanto' and the next cell contains the translation
+            class _SimpleTableParser(HTMLParser):
+                def __init__(self):
+                    super().__init__()
+                    self.in_td = False
+                    self.in_th = False
+                    self.current = ''
+                    self.cells: List[str] = []
+
+                def handle_starttag(self, tag, attrs):
+                    if tag.lower() in ('td', 'th'):
+                        self.current = ''
+                        if tag.lower() == 'td':
+                            self.in_td = True
+                        else:
+                            self.in_th = True
+
+                def handle_endtag(self, tag):
+                    if tag.lower() in ('td', 'th'):
+                        self.cells.append(self.current.strip())
+                        self.current = ''
+                        self.in_td = False
+                        self.in_th = False
+
+                def handle_data(self, data):
+                    if self.in_td or self.in_th:
+                        self.current += data
+
+            tparser = _SimpleTableParser()
+            try:
+                tparser.feed(htmlstr)
+            except Exception:
+                pass
+
+            # cells is a flat list of header/data cells in encountered order; look for 'Esperanto' labels
+            for idx, cell in enumerate(tparser.cells):
+                if re.search(r'\b(?:Esperanto|eo)\b', cell, re.IGNORECASE):
+                    # pick next cell if present
+                    if idx + 1 < len(tparser.cells):
+                        val = self._clean_extracted_text(tparser.cells[idx + 1])
+                        if val and val not in seen:
+                            seen.add(val)
+                            translations.append(val)
+
+            # 3) Fallback: strip HTML and look for inline 'Esperanto: ...' in plain text
+            text_only = re.sub(r'<[^>]+>', '\n', htmlstr)
+            for m in re.findall(r'(?:\b(?:Esperanto|eo)[:\-\s]+)([^\n<]+)', text_only, re.IGNORECASE):
+                val = self._clean_extracted_text(m)
+                if val and val not in seen:
+                    seen.add(val)
+                    translations.append(val)
+
+            return translations
 
         # Now dispatch based on types/availability
         # If passed a mwparserfromhell object
