@@ -605,6 +605,15 @@ class IdoEsperantoExtractor:
         # Remove pipes left and collapse whitespace
         text = text.replace('|', ' ')
         text = re.sub(r'\s+', ' ', text)
+
+        # Remove common CSS declarations that may leak from HTML attributes
+        try:
+            text = re.sub(r'\b(?:width|height|border|margin|padding|color|background|bgcolor)\s*:\s*[^;\n\r]+;?', '', text, flags=re.IGNORECASE)
+            # Remove hex color tokens like '#aabbcc' or bare 'aabbcc'
+            text = re.sub(r'#?[0-9a-fA-F]{6}\b', '', text)
+        except Exception:
+            pass
+
         return text.strip(' \t\n\r\f\v:;,-')
 
     def _filter_and_clean_definitions(self, defs: List[str]) -> List[str]:
@@ -623,6 +632,17 @@ class IdoEsperantoExtractor:
             # Reject obvious HTML/table fragments
             low = s.lower()
             if '<' in s or '>' in s or 'valign' in low or 'width=' in low or 'f9f9f9' in low:
+                continue
+            # Reject CSS-like fragments (e.g. 'width: 35%; border: 3px solid')
+            if re.search(r'\b(?:width|height|border|margin|padding|color|background|bgcolor)\s*:', s, re.IGNORECASE):
+                continue
+            if re.search(r'\b(?:px|em|rem|%)\b', s):
+                # likely a style declaration if it contains CSS units without alphabetic context
+                # but allow cases with letters too; check for shortness indicating artifact
+                if len(s) < 40 or not re.search(r'[A-Za-z]{3,}', s):
+                    continue
+            # Reject bare hex color tokens like 'aabbcc' possibly from bgcolor without '#'
+            if re.search(r'\b[0-9a-fA-F]{6}\b', s):
                 continue
             # Require at least one alphabetic character
             if not any(ch.isalpha() for ch in s):
