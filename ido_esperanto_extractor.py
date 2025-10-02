@@ -36,7 +36,9 @@ DUMP_FILE = 'iowiktionary-latest-pages-articles.xml.bz2'
 # Patterns for filtering
 IDO_SECTION_PATTERNS = [
     re.compile(r'==\s*\{\{io\}\}\s*==', re.IGNORECASE),
-    re.compile(r'==\s*Ido\s*==', re.IGNORECASE)
+    re.compile(r'==\s*Ido\s*==', re.IGNORECASE),
+    re.compile(r'\{\{-ido-\}\}', re.IGNORECASE),
+    re.compile(r'\{\{-adj-\}\}', re.IGNORECASE)
 ]
 
 # Translation patterns
@@ -135,14 +137,21 @@ class ImprovedDumpParserV2:
         for pattern in IDO_SECTION_PATTERNS:
             match = re.search(pattern, wikitext)
             if match:
-                # Find the end of the Ido section (next == header or end of text)
+                # Find the end of the Ido section
                 start_pos = match.start()
                 section_content = wikitext[start_pos:]
                 
-                # Find the end of the section
-                next_section = re.search(r'\n==[^=]', section_content)
-                if next_section:
-                    section_content = section_content[:next_section.start()]
+                # For template-based sections ({{-ido-}}, {{-adj-}}), look for next section differently
+                if pattern.pattern in [r'\{\{-ido-\}\}', r'\{\{-adj-\}\}']:
+                    # Look for next major section (## or == headers)
+                    next_section = re.search(r'\n##|\n==[^=]', section_content)
+                    if next_section:
+                        section_content = section_content[:next_section.start()]
+                else:
+                    # For traditional sections, look for next == header
+                    next_section = re.search(r'\n==[^=]', section_content)
+                    if next_section:
+                        section_content = section_content[:next_section.start()]
                 
                 return section_content
         return None
@@ -408,6 +417,72 @@ class ImprovedDumpParserV2:
         
         return unique_meanings
     
+    def extract_esperanto_section_translations(self, wikitext: str, title: str) -> List[List[str]]:
+        """Extract translations from standalone Esperanto sections (fallback method)."""
+        all_meanings = []
+        
+        if not wikitext or not title:
+            return all_meanings
+        
+        # Look for Esperanto sections with various patterns
+        esperanto_section_patterns = [
+            r'## Esperanto\s*\n(.*?)(?=\n##|\Z)',
+            r'=== Esperanto ===\s*\n(.*?)(?=\n===|\Z)',
+            r'== Esperanto ==\s*\n(.*?)(?=\n==|\Z)'
+        ]
+        
+        for pattern in esperanto_section_patterns:
+            matches = re.findall(pattern, wikitext, re.DOTALL | re.IGNORECASE)
+            for match in matches:
+                esperanto_section = match.strip()
+                
+                # Look for translation patterns in Esperanto section
+                # Pattern: * word - translation
+                translation_patterns = [
+                    # Direct translation: * word - translation
+                    rf'\*\s*{re.escape(title)}\s*[-–]\s*([^-\n]+)',
+                    # Handle cases where the word appears without explicit translation (same word)
+                    rf'\*\s*{re.escape(title)}\s+kaj[^-]*[-–]\s*([^-\n]+)',
+                    # Direct translation with period
+                    rf'\*\s*{re.escape(title)}\s*[-–]\s*([^-\n]*?)\s*\.',
+                    # Fallback pattern
+                    rf'\*\s*{re.escape(title)}\s*[-–]\s*([^-\n]+)'
+                ]
+                
+                # Special case: if the line just contains the word itself, it's self-translating
+                if re.search(rf'\*\s*{re.escape(title)}\s*$', esperanto_section, re.IGNORECASE):
+                    all_meanings.append([title])
+                    continue
+                
+                # Special case: if the word appears in a compound phrase, treat as self-translating
+                # Example: "* dika kaj longa - grosa." -> dika translates to dika
+                if re.search(rf'\*\s*{re.escape(title)}\s+kaj', esperanto_section, re.IGNORECASE):
+                    all_meanings.append([title])
+                    continue
+                
+                for trans_pattern in translation_patterns:
+                    trans_matches = re.findall(trans_pattern, esperanto_section, re.IGNORECASE)
+                    for trans_match in trans_matches:
+                        translation = trans_match.strip()
+                        if translation and len(translation) > 1:
+                            # Check if the translation is just the same word (like dika -> dika)
+                            if translation.lower() == title.lower():
+                                all_meanings.append([title])
+                            else:
+                                parsed_meanings = self.parse_multiple_translations(translation)
+                                all_meanings.extend(parsed_meanings)
+        
+        # Remove duplicate meanings while preserving order
+        seen_meanings = set()
+        unique_meanings = []
+        for meaning_list in all_meanings:
+            meaning_key = tuple(sorted(meaning_list))
+            if meaning_key not in seen_meanings:
+                seen_meanings.add(meaning_key)
+                unique_meanings.append(meaning_list)
+        
+        return unique_meanings
+    
     def clean_translation(self, translation: str) -> str:
         """Clean and normalize a translation string."""
         if not translation:
@@ -480,6 +555,11 @@ class ImprovedDumpParserV2:
         
         # Extract translations
         translations = self.extract_translations(ido_section)
+        
+        # If no translations found in Ido section, try standalone Esperanto sections as fallback
+        if not translations:
+            translations = self.extract_esperanto_section_translations(wikitext, title)
+        
         if not translations:
             self.stats['skipped_no_translations'] += 1
             
