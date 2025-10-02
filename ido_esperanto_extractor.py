@@ -542,14 +542,13 @@ class ImprovedDumpParserV2:
         if not ido_section:
             return None
         
-        # Look for any Esperanto-related content
+        # Look for any Esperanto-related content - be very specific to avoid false matches
         esperanto_patterns = [
-            r'\*\s*\{\{eo\}\}\s*:\s*([^\n\|]+)',
-            r'\*\s*(?:Esperanto|esperanto|eo)\s*[:\-]\s*([^\n\|]+)',
-            r'{{t\+?\|eo\|([^}|]+)}}',
-            r'{{l\|eo\|([^}|]+)}}',
-            r'Esperanto\s*[:\-]\s*([^\n]+)',
-            r'eo\s*[:\-]\s*([^\n]+)'
+            r'\*\s*\{\{eo\}\}\s*:\s*([^\n\|*]+)',  # *{{eo}}: content (stop at next *)
+            r'\*\s*(?:Esperanto|esperanto)\s*[:\-]\s*([^\n\|*]+)',  # *Esperanto: content (stop at next *)
+            r'{{t\+?\|eo\|([^}|]+)}}',  # {{t|eo|content}}
+            r'{{l\|eo\|([^}|]+)}}',  # {{l|eo|content}}
+            r'Esperanto\s*[:\-]\s*([^\n*]+)'  # Esperanto: content (stop at next *)
         ]
         
         for pattern in esperanto_patterns:
@@ -562,7 +561,11 @@ class ImprovedDumpParserV2:
                     else:
                         content = match.strip()
                     
-                    if content and len(content) > 1:
+                    # Skip if content is just a language template marker (like {{et}}:)
+                    if (content and len(content) > 1 and 
+                        not content.startswith('{{') and 
+                        not content.endswith('}}') and
+                        content not in ['{{et}}:', '{{en}}:', '{{fr}}:', '{{de}}:', '{{es}}:', '{{it}}:', '{{pt}}:', '{{ru}}:', '{{ja}}:', '{{zh}}:']):
                         return content
         
         return None
