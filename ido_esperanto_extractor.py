@@ -90,6 +90,7 @@ class ImprovedDumpParserV2:
             'skipped_no_translations': 0,
             'entries_with_pos': 0,
             'entries_with_multiple_meanings': 0,
+            'entries_with_metadata': 0,
         }
         self.failed_links = []  # Track links that failed to parse
     
@@ -166,12 +167,54 @@ class ImprovedDumpParserV2:
         
         return None
     
-    def parse_multiple_translations(self, translation_text: str) -> List[str]:
-        """Parse a translation string that may contain multiple meanings."""
+    def extract_metadata(self, ido_section: str) -> Dict[str, str]:
+        """Extract additional metadata from Ido section like Semantiko and Morfologio."""
+        metadata = {}
+        
+        if not ido_section:
+            return metadata
+        
+        # Extract Semantiko (semantics)
+        semantiko_patterns = [
+            r'Semantiko:\s*([^\n]+)',
+            r'Semantiko\s*:\s*([^\n]+)',
+            r'Semantiko\s+([^\n]+)'
+        ]
+        for pattern in semantiko_patterns:
+            match = re.search(pattern, ido_section, re.IGNORECASE)
+            if match:
+                semantiko = match.group(1).strip()
+                # Clean up common artifacts
+                semantiko = re.sub(r'^\s*[:\-]\s*', '', semantiko)
+                if semantiko and len(semantiko) > 1:
+                    metadata['semantiko'] = semantiko
+                    break
+        
+        # Extract Morfologio (morphology)
+        morfologio_patterns = [
+            r'Morfologio:\s*([^\n]+)',
+            r'Morfologio\s*:\s*([^\n]+)',
+            r'Morfologio\s+([^\n]+)'
+        ]
+        for pattern in morfologio_patterns:
+            match = re.search(pattern, ido_section, re.IGNORECASE)
+            if match:
+                morfologio = match.group(1).strip()
+                # Clean up common artifacts
+                morfologio = re.sub(r'^\s*[:\-]\s*', '', morfologio)
+                if morfologio and len(morfologio) > 1:
+                    metadata['morfologio'] = morfologio
+                    break
+        
+        return metadata
+    
+    def parse_multiple_translations(self, translation_text: str) -> List[List[str]]:
+        """Parse a translation string that may contain multiple meanings.
+        Returns a list of lists, where each inner list represents one meaning with its synonyms."""
         if not translation_text:
             return []
         
-        translations = []
+        meanings = []
         
         # Clean the text first
         text = self.clean_translation(translation_text)
@@ -189,17 +232,23 @@ class ImprovedDumpParserV2:
             for num, meaning in numbered_matches:
                 clean_meaning = meaning.strip()
                 if clean_meaning and len(clean_meaning) > 1:
-                    translations.append(clean_meaning)
-            return translations
+                    # Split by commas for synonyms within each meaning
+                    synonyms = [s.strip() for s in clean_meaning.split(',') if s.strip()]
+                    if synonyms:
+                        meanings.append(synonyms)
+            return meanings
         
-        # Handle semicolon-separated meanings like "kanti; ĉirpi"
+        # Handle semicolon-separated meanings like "kanti; ĉirpi" or "malkaŝi; riveli, revelacii"
         if ';' in text:
             parts = text.split(';')
             for part in parts:
                 clean_part = part.strip()
                 if clean_part and len(clean_part) > 1:
-                    translations.append(clean_part)
-            return translations
+                    # Split by commas for synonyms within each meaning
+                    synonyms = [s.strip() for s in clean_part.split(',') if s.strip()]
+                    if synonyms:
+                        meanings.append(synonyms)
+            return meanings
         
         # Handle comma-separated meanings (but be careful with commas in definitions)
         if ',' in text and len(text) > 10:  # Only split if it's a longer text
@@ -207,21 +256,21 @@ class ImprovedDumpParserV2:
             # If it looks like a list of short words, split on commas
             parts = [p.strip() for p in text.split(',')]
             if all(len(p) < 20 for p in parts):  # All parts are reasonably short
-                translations.extend(parts)
-                return translations
+                meanings.append(parts)
+                return meanings
         
         # Single translation
         if text and len(text) > 1:
-            translations.append(text)
+            meanings.append([text])
         
-        return translations
+        return meanings
     
-    def extract_translations(self, ido_section: str) -> List[str]:
+    def extract_translations(self, ido_section: str) -> List[List[str]]:
         """Extract Esperanto translations from Ido section."""
-        translations = []
+        all_meanings = []
         
         if not ido_section:
-            return translations
+            return all_meanings
         
         # Extract using patterns
         for pattern in TRANSLATION_PATTERNS:
@@ -235,18 +284,20 @@ class ImprovedDumpParserV2:
                 
                 if translation:
                     # Parse multiple meanings
-                    parsed_translations = self.parse_multiple_translations(translation)
-                    translations.extend(parsed_translations)
+                    parsed_meanings = self.parse_multiple_translations(translation)
+                    all_meanings.extend(parsed_meanings)
         
-        # Remove duplicates while preserving order
-        seen = set()
-        unique_translations = []
-        for trans in translations:
-            if trans not in seen and len(trans) > 1:
-                seen.add(trans)
-                unique_translations.append(trans)
+        # Remove duplicate meanings while preserving order
+        seen_meanings = set()
+        unique_meanings = []
+        for meaning_list in all_meanings:
+            # Create a key from the sorted synonyms to detect duplicates
+            meaning_key = tuple(sorted(meaning_list))
+            if meaning_key not in seen_meanings:
+                seen_meanings.add(meaning_key)
+                unique_meanings.append(meaning_list)
         
-        return unique_translations
+        return unique_meanings
     
     def clean_translation(self, translation: str) -> str:
         """Clean and normalize a translation string."""
@@ -304,6 +355,7 @@ class ImprovedDumpParserV2:
             if any(pattern.search(wikitext) for pattern in IDO_SECTION_PATTERNS):
                 self.failed_links.append({
                     'title': title,
+                    'url': f'https://io.wiktionary.org/wiki/{title.replace(" ", "_")}',
                     'reason': 'ido_section_found_but_extraction_failed'
                 })
             return None
@@ -322,15 +374,19 @@ class ImprovedDumpParserV2:
             # Track failed parsing - pages with Ido sections but no valid translations
             self.failed_links.append({
                 'title': title,
+                'url': f'https://io.wiktionary.org/wiki/{title.replace(" ", "_")}',
                 'reason': 'no_valid_translations_found'
             })
             return None
         
         self.stats['valid_entries_found'] += 1
         
-        # Check if we have multiple meanings
+        # Count multiple meanings
         if len(translations) > 1:
             self.stats['entries_with_multiple_meanings'] += 1
+        
+        # Extract additional metadata
+        metadata = self.extract_metadata(ido_section)
         
         # Build entry dictionary
         entry = {
@@ -341,6 +397,11 @@ class ImprovedDumpParserV2:
         # Only add part_of_speech if it's not empty
         if pos:
             entry['part_of_speech'] = pos
+        
+        # Add metadata if available
+        if metadata:
+            entry.update(metadata)
+            self.stats['entries_with_metadata'] += 1
         
         return entry
     
@@ -453,7 +514,17 @@ class ImprovedDumpParserV2:
                 entry = self.extract_from_wikitext(title, wikitext)
                 if entry:
                     entries.append(entry)
-                    translations_str = ', '.join(entry['esperanto_translations'][:2])
+                    # Format translations for display
+                    if entry['esperanto_translations']:
+                        first_meaning = entry['esperanto_translations'][0]
+                        if isinstance(first_meaning, list):
+                            translations_str = ', '.join(first_meaning[:2])
+                        else:
+                            translations_str = first_meaning
+                        if len(entry['esperanto_translations']) > 1:
+                            translations_str += f" (+{len(entry['esperanto_translations'])-1} more)"
+                    else:
+                        translations_str = ""
                     pos_info = f" ({entry['part_of_speech']})" if entry.get('part_of_speech') else ""
                     print(f"✓ Found: {entry['ido_word']}{pos_info} -> [{translations_str}]")
                 
@@ -487,6 +558,7 @@ class ImprovedDumpParserV2:
         print(f"Valid entries found: {self.stats['valid_entries_found']}")
         print(f"Entries with part of speech: {self.stats['entries_with_pos']}")
         print(f"Entries with multiple meanings: {self.stats['entries_with_multiple_meanings']}")
+        print(f"Entries with metadata: {self.stats['entries_with_metadata']}")
         print(f"Skipped by category: {self.stats['skipped_by_category']}")
         print(f"Skipped by title: {self.stats['skipped_by_title']}")
         print(f"Skipped no translations: {self.stats['skipped_no_translations']}")
