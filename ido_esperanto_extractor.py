@@ -575,10 +575,14 @@ class ImprovedDumpParserV2:
         if not translation:
             return ""
         
+        # Decode HTML entities first (including numeric entities like &#265; for ĉ)
+        import html
+        translation = html.unescape(translation)
+        
         # Remove templates
         translation = re.sub(r'{{[^}]*}}', '', translation)
         
-        # Remove wiki links but keep the text
+        # Remove wiki links but keep the text (handle piped links like [[ĉarmo|ĉeko]])
         translation = re.sub(r'\[\[([^\]|]*\|)?([^\]]+)\]\]', r'\2', translation)
         
         # Remove category links completely
@@ -591,12 +595,6 @@ class ImprovedDumpParserV2:
         
         # Remove HTML tags
         translation = re.sub(r'<[^>]+>', '', translation)
-        
-        # Decode HTML entities
-        translation = translation.replace('&nbsp;', ' ')
-        translation = translation.replace('&amp;', '&')
-        translation = translation.replace('&lt;', '<')
-        translation = translation.replace('&gt;', '>')
         
         # Remove common artifacts
         translation = re.sub(r'\*', '', translation)  # Remove asterisks
