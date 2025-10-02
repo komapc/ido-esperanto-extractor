@@ -499,7 +499,7 @@ class ImprovedDumpParserV2:
             print(f"Error downloading dump: {e}")
             raise
     
-    def extract_dictionary(self, limit: Optional[int] = None, output_file: str = 'ido_esperanto_v2.json') -> None:
+    def extract_dictionary(self, limit: Optional[int] = None, base_output_name: str = 'ido_esperanto_v2') -> None:
         """Extract Ido-Esperanto dictionary from dump."""
         print("Starting improved Ido-Esperanto dictionary extraction v2...")
         
@@ -536,21 +536,39 @@ class ImprovedDumpParserV2:
             print(f"Error during extraction: {e}")
             raise
         
-        # Create result
-        result = {
+        # Create successful entries result
+        successful_result = {
             'metadata': {
                 'extraction_date': datetime.now().isoformat(),
                 'total_words': len(entries),
                 'script_version': 'v2.0',
                 'stats': self.stats.copy()
             },
-            'words': entries,
+            'words': entries
+        }
+        
+        # Create failed entries result
+        failed_result = {
+            'metadata': {
+                'extraction_date': datetime.now().isoformat(),
+                'total_failed': len(self.failed_links),
+                'script_version': 'v2.0',
+                'stats': self.stats.copy()
+            },
             'failed_links': self.failed_links
         }
         
-        # Save to file
-        with open(output_file, 'w', encoding='utf-8') as f:
-            json.dump(result, f, ensure_ascii=False, indent=2)
+        # Generate output filenames
+        successful_file = f"{base_output_name}_successful.json"
+        failed_file = f"{base_output_name}_failed.json"
+        
+        # Save successful entries
+        with open(successful_file, 'w', encoding='utf-8') as f:
+            json.dump(successful_result, f, ensure_ascii=False, indent=2)
+        
+        # Save failed entries
+        with open(failed_file, 'w', encoding='utf-8') as f:
+            json.dump(failed_result, f, ensure_ascii=False, indent=2)
         
         print(f"\nExtraction complete!")
         print(f"Total pages processed: {self.stats['pages_processed']}")
@@ -563,7 +581,8 @@ class ImprovedDumpParserV2:
         print(f"Skipped by title: {self.stats['skipped_by_title']}")
         print(f"Skipped no translations: {self.stats['skipped_no_translations']}")
         print(f"Failed parsing links: {len(self.failed_links)}")
-        print(f"Results saved to: {output_file}")
+        print(f"Successful entries saved to: {successful_file}")
+        print(f"Failed entries saved to: {failed_file}")
 
 
 def main():
@@ -571,7 +590,7 @@ def main():
     parser.add_argument('--dump', default=DUMP_FILE, help='Path to dump file')
     parser.add_argument('--download', action='store_true', help='Download dump file')
     parser.add_argument('--force-download', action='store_true', help='Force re-download of dump file')
-    parser.add_argument('--output', '-o', default='ido_esperanto_v2.json', help='Output JSON file')
+    parser.add_argument('--output', '-o', default='ido_esperanto_v2', help='Base name for output files (will create _successful.json and _failed.json)')
     parser.add_argument('--limit', type=int, help='Limit number of pages to process (for testing)')
     
     args = parser.parse_args()
@@ -582,7 +601,7 @@ def main():
         if args.download or args.force_download:
             extractor.download_dump(force=args.force_download)
         
-        extractor.extract_dictionary(limit=args.limit, output_file=args.output)
+        extractor.extract_dictionary(limit=args.limit, base_output_name=args.output)
     
     except Exception as e:
         print(f"Error: {e}")
