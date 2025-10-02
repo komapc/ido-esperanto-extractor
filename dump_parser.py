@@ -110,10 +110,10 @@ def extract_from_wikitext(title: str, wikitext: str) -> Optional[dict]:
                     translations.append(m.group(1).strip())
         if not translations:
             return None
+        # keep only base word forms: filter titles with suffix-like patterns (rudimentary)
         return {
             'ido_word': title,
             'esperanto_translations': translations,
-            'definitions': []
         }
     else:
         # Without mwparserfromhell, do a simpler regex extraction
@@ -144,12 +144,16 @@ def main():
 
     out = []
     count = 0
+    candidates = 0
+    parsed = 0
     for title, text in stream_pages_from_dump(args.dump):
         if args.limit and count >= args.limit:
             break
         res = extract_from_wikitext(title, text)
         if res:
+            candidates += 1
             out.append(res)
+            parsed += 1
         count += 1
         if count % 1000 == 0:
             print(f'Processed {count} pages, collected {len(out)} entries')
@@ -160,7 +164,10 @@ def main():
             'source': 'iowiktionary dump',
             'total_words': len(out),
             'script_version': 'dump-parser-0.1',
-            'pages_processed': count
+            'pages_processed': count,
+            'candidates_examined': candidates,
+            'parsed_entries': parsed,
+            'parsed_pct': (parsed / candidates * 100) if candidates else 0.0
         },
         'words': out
     }

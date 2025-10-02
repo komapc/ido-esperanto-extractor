@@ -505,6 +505,39 @@ class IdoEsperantoExtractor:
             time.sleep(0.1)
         return out
 
+    def _batch_fetch_categories(self, titles: List[str]) -> Dict[str, List[str]]:
+        """Batch fetch categories for up to 50 titles per API call. Returns mapping title->list of category titles."""
+        out: Dict[str, List[str]] = {}
+        if not titles:
+            return out
+        base = self.base_url
+        for i in range(0, len(titles), 50):
+            chunk = titles[i:i+50]
+            params = {
+                'action': 'query',
+                'titles': '|'.join(chunk),
+                'prop': 'categories',
+                'cllimit': 500,
+                'format': 'json'
+            }
+            try:
+                resp = self.session.get(base, params=params)
+                resp.raise_for_status()
+                data = resp.json()
+                pages = data.get('query', {}).get('pages', {})
+                for pid, pinfo in pages.items():
+                    title = pinfo.get('title')
+                    if not title:
+                        continue
+                    cats = pinfo.get('categories', [])
+                    out[title] = [c.get('title', '') for c in cats if c.get('title')]
+            except requests.RequestException as e:
+                print(f"Category fetch error: {e}")
+                for t in chunk:
+                    out[t] = []
+            time.sleep(0.1)
+        return out
+
     def search_candidates(self, query: str = '"=={{io}}=="|"==Ido=="', limit: Optional[int] = None) -> List[str]:
         """Use the search API to find candidate pages likely to have Ido sections.
 
@@ -553,28 +586,29 @@ class IdoEsperantoExtractor:
         contents = self._batch_fetch_pages(candidates)
 
         extracted = []
+        total_candidates = 0
+        parsed_count = 0
         for title, content in contents.items():
             if not content:
                 continue
+            total_candidates += 1
             # Skip dot-prefixed
             if title.startswith('.') or not re.match(r'^[A-Za-z0-9]', title):
                 continue
             entry = self.parse_ido_entry(title, content)
             if not entry:
+                # record unparsed
                 continue
-            defs = entry.get('definitions') or []
-            defs = self._filter_and_clean_definitions(defs)
-            if not defs:
-                # try to accept translation-only entries for search mode
-                translations = entry.get('esperanto_translations') or []
-                if not translations:
-                    continue
-                entry['definitions'] = []
-            else:
-                entry['definitions'] = defs
-            entry.pop('source_url', None)
-            entry.pop('raw_content', None)
-            extracted.append(entry)
+            # Keep only translations (user requested). Skip if translations empty
+            translations = entry.get('esperanto_translations') or []
+            if not translations:
+                continue
+            entry_out = {
+                'ido_word': entry['ido_word'],
+                'esperanto_translations': translations
+            }
+            extracted.append(entry_out)
+            parsed_count += 1
 
         result = {
             'metadata': {
@@ -582,7 +616,10 @@ class IdoEsperantoExtractor:
                 'source': 'io.wiktionary.org',
                 'total_words': len(extracted),
                 'script_version': '1.0',
-                'pages_processed': len(candidates)
+                'pages_processed': len(candidates),
+                'candidates_examined': total_candidates,
+                'parsed_entries': parsed_count,
+                'parsed_pct': (parsed_count / total_candidates * 100) if total_candidates else 0.0
             },
             'words': extracted
         }
