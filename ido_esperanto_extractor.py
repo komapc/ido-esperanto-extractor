@@ -91,6 +91,7 @@ class ImprovedDumpParserV2:
             'entries_with_pos': 0,
             'entries_with_multiple_meanings': 0,
         }
+        self.failed_links = []  # Track links that failed to parse
     
     def is_valid_title(self, title: str) -> bool:
         """Check if title represents a valid word entry."""
@@ -299,6 +300,12 @@ class ImprovedDumpParserV2:
         # Extract Ido section
         ido_section = self.extract_ido_section(wikitext)
         if not ido_section:
+            # Track failed parsing - pages that have Ido sections but failed to extract
+            if any(pattern.search(wikitext) for pattern in IDO_SECTION_PATTERNS):
+                self.failed_links.append({
+                    'title': title,
+                    'reason': 'ido_section_found_but_extraction_failed'
+                })
             return None
         
         self.stats['pages_with_ido_section'] += 1
@@ -312,6 +319,11 @@ class ImprovedDumpParserV2:
         translations = self.extract_translations(ido_section)
         if not translations:
             self.stats['skipped_no_translations'] += 1
+            # Track failed parsing - pages with Ido sections but no valid translations
+            self.failed_links.append({
+                'title': title,
+                'reason': 'no_valid_translations_found'
+            })
             return None
         
         self.stats['valid_entries_found'] += 1
@@ -320,11 +332,17 @@ class ImprovedDumpParserV2:
         if len(translations) > 1:
             self.stats['entries_with_multiple_meanings'] += 1
         
-        return {
+        # Build entry dictionary
+        entry = {
             'ido_word': title,
-            'esperanto_translations': translations,
-            'part_of_speech': pos
+            'esperanto_translations': translations
         }
+        
+        # Only add part_of_speech if it's not empty
+        if pos:
+            entry['part_of_speech'] = pos
+        
+        return entry
     
     def stream_pages_from_dump(self) -> Iterator[Tuple[str, str]]:
         """Stream pages from the dump file using robust line-by-line parsing."""
@@ -436,7 +454,7 @@ class ImprovedDumpParserV2:
                 if entry:
                     entries.append(entry)
                     translations_str = ', '.join(entry['esperanto_translations'][:2])
-                    pos_info = f" ({entry['part_of_speech']})" if entry['part_of_speech'] else ""
+                    pos_info = f" ({entry['part_of_speech']})" if entry.get('part_of_speech') else ""
                     print(f"✓ Found: {entry['ido_word']}{pos_info} -> [{translations_str}]")
                 
                 processed += 1
@@ -455,7 +473,8 @@ class ImprovedDumpParserV2:
                 'script_version': 'v2.0',
                 'stats': self.stats.copy()
             },
-            'words': entries
+            'words': entries,
+            'failed_links': self.failed_links
         }
         
         # Save to file
@@ -471,6 +490,7 @@ class ImprovedDumpParserV2:
         print(f"Skipped by category: {self.stats['skipped_by_category']}")
         print(f"Skipped by title: {self.stats['skipped_by_title']}")
         print(f"Skipped no translations: {self.stats['skipped_no_translations']}")
+        print(f"Failed parsing links: {len(self.failed_links)}")
         print(f"Results saved to: {output_file}")
 
 
