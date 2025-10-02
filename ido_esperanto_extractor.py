@@ -43,8 +43,8 @@ IDO_SECTION_PATTERNS = [
 
 # Translation patterns
 TRANSLATION_PATTERNS = [
-    re.compile(r'\*\s*\{\{eo\}\}\s*:\s*([^\n\|]+)', re.IGNORECASE),
-    re.compile(r'\*\s*(?:Esperanto|esperanto|eo)\s*[:\-]\s*([^\n\|]+)', re.IGNORECASE),
+    re.compile(r'\*\s*\{\{eo\}\}\s*:\s*(.+?)(?:\n|$)', re.IGNORECASE),
+    re.compile(r'\*\s*(?:Esperanto|esperanto|eo)\s*[:\-]\s*(.+?)(?:\n|$)', re.IGNORECASE),
     re.compile(r'{{t\+?\|eo\|([^}|]+)}}', re.IGNORECASE),
     re.compile(r'{{l\|eo\|([^}|]+)}}', re.IGNORECASE),
     re.compile(r'{{ux\|io\|([^}|]+)\|([^}]+)}}', re.IGNORECASE),
@@ -333,6 +333,16 @@ class ImprovedDumpParserV2:
             return []
         
         meanings = []
+        
+        # Special handling for [[#Esperanto|translation]] pattern
+        esperanto_link_match = re.search(r'\[\[#Esperanto\|([^\]]+)\]\]', translation_text)
+        if esperanto_link_match:
+            translation = esperanto_link_match.group(1).strip()
+            # Clean up any trailing symbols like ↓
+            translation = re.sub(r'\s+↓\s*$', '', translation)
+            if translation and len(translation) > 1:
+                meanings.append([translation])
+                return meanings
         
         # Clean the text first
         text = self.clean_translation(translation_text)
