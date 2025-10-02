@@ -618,7 +618,7 @@ class ImprovedDumpParserV2:
         # Check if title is valid
         if not self.is_valid_title(title):
             self.stats['skipped_by_title'] += 1
-        return None
+            return None
     
         # Check for excluded categories
         if self.has_excluded_categories(wikitext):
@@ -673,7 +673,7 @@ class ImprovedDumpParserV2:
                 failed_item['esperanto_content'] = raw_esperanto_content
             
             self.failed_links.append(failed_item)
-        return None
+            return None
     
         self.stats['valid_entries_found'] += 1
         
