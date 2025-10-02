@@ -906,7 +906,7 @@ class ImprovedDumpParserV2:
                     break
                 
                 entry = self.extract_from_wikitext(title, wikitext)
-            if entry:
+                if entry:
                     entries.append(entry)
                     # Format translations for display
                     if entry['esperanto_translations']:
