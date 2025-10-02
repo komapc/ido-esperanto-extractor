@@ -661,9 +661,13 @@ class ImprovedDumpParserV2:
             # Analyze why no translations were found for better categorization
             reason = self.analyze_translation_failure(ido_section)
             
-            # Skip cases where Esperanto template is empty followed by other languages
-            # These are legitimate "no translation" cases, not parsing failures
-            if reason == 'eo_template_empty_followed_by_other_language':
+            # Skip legitimate "no translation" cases - these are not parsing failures
+            no_translation_reasons = [
+                'eo_template_empty_followed_by_other_language',
+                'section_exists_no_translation_content',
+                'no_translation_patterns_found'
+            ]
+            if reason in no_translation_reasons:
                 return None
             
             # Try to extract any raw Esperanto content for failed items
