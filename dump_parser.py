@@ -166,12 +166,16 @@ def main():
         print('Dump not found. Use --download or provide dump path.')
         sys.exit(1)
 
+    print(f"Starting dump parse: dump={args.dump!r} limit={args.limit}")
     out = []
     count = 0
     candidates = 0
     parsed = 0
     skipped_by_category = 0
     for title, text in stream_pages_from_dump(args.dump):
+        # debug small-run print
+        if args.limit and count < 10:
+            print(f"Page[{count}]: {title}")
         if args.limit and count >= args.limit:
             break
         # Basic category filter: skip pages whose categories suggest suffixes/radicals
@@ -179,6 +183,8 @@ def main():
         cat_text = ' '.join(cats).lower()
         if re.search(r'sufix|sufixo|radik|radiki|io-rad', cat_text):
             skipped_by_category += 1
+            if args.limit and count < 10:
+                print(f"  skipped by category: {cats}")
             count += 1
             continue
 
@@ -187,6 +193,8 @@ def main():
             candidates += 1
             out.append(res)
             parsed += 1
+            if args.limit and count < 10:
+                print(f"  parsed: {res['ido_word']} -> {res.get('esperanto_translations')[:2]}")
         count += 1
         if count % 1000 == 0:
             print(f'Processed {count} pages, collected {len(out)} entries')
@@ -210,3 +218,4 @@ def main():
         json.dump(result, f, ensure_ascii=False, indent=2)
 
     print(f'Dump parse complete: {len(out)} entries written to {args.out}')
+    print('metadata:', result['metadata'])
