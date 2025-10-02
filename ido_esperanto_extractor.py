@@ -403,7 +403,23 @@ class ImprovedDumpParserV2:
                 if translation:
                     # Parse multiple meanings
                     parsed_meanings = self.parse_multiple_translations(translation)
-                    all_meanings.extend(parsed_meanings)
+                    
+                    # Filter out malformed meanings
+                    valid_meanings = []
+                    for meaning_list in parsed_meanings:
+                        valid_translations = []
+                        for trans in meaning_list:
+                            # Skip empty, too short, or malformed translations
+                            if (trans and len(trans) > 1 and 
+                                not trans.startswith('[[') and 
+                                not trans.endswith(']]') and
+                                trans != '[[' and trans != ']]'):
+                                valid_translations.append(trans)
+                        
+                        if valid_translations:  # Only add if we have valid translations
+                            valid_meanings.append(valid_translations)
+                    
+                    all_meanings.extend(valid_meanings)
         
         # Remove duplicate meanings while preserving order
         seen_meanings = set()
@@ -483,6 +499,36 @@ class ImprovedDumpParserV2:
         
         return unique_meanings
     
+    def extract_raw_esperanto_content(self, ido_section: str) -> Optional[str]:
+        """Extract raw Esperanto content from Ido section for failed items."""
+        if not ido_section:
+            return None
+        
+        # Look for any Esperanto-related content
+        esperanto_patterns = [
+            r'\*\s*\{\{eo\}\}\s*:\s*([^\n\|]+)',
+            r'\*\s*(?:Esperanto|esperanto|eo)\s*[:\-]\s*([^\n\|]+)',
+            r'{{t\+?\|eo\|([^}|]+)}}',
+            r'{{l\|eo\|([^}|]+)}}',
+            r'Esperanto\s*[:\-]\s*([^\n]+)',
+            r'eo\s*[:\-]\s*([^\n]+)'
+        ]
+        
+        for pattern in esperanto_patterns:
+            matches = re.findall(pattern, ido_section, re.IGNORECASE)
+            if matches:
+                # Return the first non-empty match
+                for match in matches:
+                    if isinstance(match, tuple):
+                        content = match[0].strip()
+                    else:
+                        content = match.strip()
+                    
+                    if content and len(content) > 1:
+                        return content
+        
+        return None
+    
     def clean_translation(self, translation: str) -> str:
         """Clean and normalize a translation string."""
         if not translation:
@@ -514,6 +560,14 @@ class ImprovedDumpParserV2:
         # Remove common artifacts
         translation = re.sub(r'\*', '', translation)  # Remove asterisks
         translation = re.sub(r'#.*$', '', translation)  # Remove everything after #
+        
+        # Remove incomplete wiki links (like "[[")
+        translation = re.sub(r'\[\[[^\]]*$', '', translation)  # Remove incomplete [[ at end
+        translation = re.sub(r'^[^\[]*\]\]', '', translation)  # Remove incomplete ]] at start
+        
+        # Remove standalone incomplete brackets
+        translation = re.sub(r'^\[\[$', '', translation)  # Remove just "[["
+        translation = re.sub(r'^\]\]$', '', translation)  # Remove just "]]"
         
         # Clean whitespace and punctuation
         translation = re.sub(r'\s+', ' ', translation)
@@ -563,15 +617,24 @@ class ImprovedDumpParserV2:
         if not translations:
             self.stats['skipped_no_translations'] += 1
             
+            # Try to extract any raw Esperanto content for failed items
+            raw_esperanto_content = self.extract_raw_esperanto_content(ido_section)
+            
             # Analyze why no translations were found for better categorization
             reason = self.analyze_translation_failure(ido_section)
             
             # Track failed parsing - pages with Ido sections but no valid translations
-            self.failed_links.append({
+            failed_item = {
                 'title': title,
                 'url': f'https://io.wiktionary.org/wiki/{title.replace(" ", "_")}',
                 'reason': reason
-            })
+            }
+            
+            # Add raw Esperanto content if found
+            if raw_esperanto_content:
+                failed_item['esperanto_content'] = raw_esperanto_content
+            
+            self.failed_links.append(failed_item)
             return None
         
         self.stats['valid_entries_found'] += 1
@@ -672,7 +735,7 @@ class ImprovedDumpParserV2:
                     page_buffer.append(line)
                 
                 # Stop after processing enough pages for testing
-                if self.stats['pages_processed'] > 10000:  # Reasonable limit
+                if self.stats['pages_processed'] > 500000:  # High limit for large dumps
                     break
         
         finally:
@@ -753,9 +816,9 @@ class ImprovedDumpParserV2:
             'failed_links': self.failed_links
         }
         
-        # Generate output filenames
-        successful_file = f"{base_output_name}_successful.json"
-        failed_file = f"{base_output_name}_failed.json"
+        # Generate output filenames - simplified names
+        successful_file = "dictionary.json"
+        failed_file = "failed_items.json"
         
         # Save successful entries
         with open(successful_file, 'w', encoding='utf-8') as f:
@@ -776,8 +839,8 @@ class ImprovedDumpParserV2:
         print(f"Skipped by title: {self.stats['skipped_by_title']}")
         print(f"Skipped no translations: {self.stats['skipped_no_translations']}")
         print(f"Failed parsing links: {len(self.failed_links)}")
-        print(f"Successful entries saved to: {successful_file}")
-        print(f"Failed entries saved to: {failed_file}")
+        print(f"Dictionary saved to: {successful_file}")
+        print(f"Failed items saved to: {failed_file}")
 
 
 def main():
