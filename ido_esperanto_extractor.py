@@ -421,7 +421,7 @@ class ImprovedDumpParserV2:
                 if isinstance(match, tuple):
                     # Handle templates with multiple parameters
                     translation = match[0].strip()
-                else:
+                        else:
                     translation = match.strip()
                 
                 # Check if translation is truly empty or contains only whitespace/newlines
@@ -593,8 +593,9 @@ class ImprovedDumpParserV2:
         translation = re.sub(r'\s+[A-Z]{1,3}\s*$', '', translation)
         translation = re.sub(r'\s*\[\[Kategorio:[^\]]+\]\]', '', translation)  # Remove [[Kategorio:...]]
         
-        # Remove HTML tags
+        # Remove HTML tags and table fragments
         translation = re.sub(r'<[^>]+>', '', translation)
+        translation = re.sub(r'\|\s*\}.*$', '', translation)  # Remove table fragments like "|} |bgcolor=..."
         
         # Remove common artifacts
         translation = re.sub(r'\*', '', translation)  # Remove asterisks
@@ -608,6 +609,13 @@ class ImprovedDumpParserV2:
         translation = re.sub(r'^\[\[$', '', translation)  # Remove just "[["
         translation = re.sub(r'^\]\]$', '', translation)  # Remove just "]]"
         
+        # Remove arrow symbols and other Unicode symbols that aren't words
+        translation = re.sub(r'[↓↑→←]', '', translation)
+        
+        # Remove standalone symbols that aren't words
+        if len(translation.strip()) == 1 and translation.strip() in '↓↑→←':
+            return ""
+        
         # Clean whitespace and punctuation
         translation = re.sub(r'\s+', ' ', translation)
         translation = translation.strip(' \t\n\r\f\v:;,.-')
@@ -619,7 +627,7 @@ class ImprovedDumpParserV2:
         # Check if title is valid
         if not self.is_valid_title(title):
             self.stats['skipped_by_title'] += 1
-            return None
+        return None
     
         # Check for excluded categories
         if self.has_excluded_categories(wikitext):
@@ -849,7 +857,7 @@ class ImprovedDumpParserV2:
                     break
                 
                 entry = self.extract_from_wikitext(title, wikitext)
-                if entry:
+            if entry:
                     entries.append(entry)
                     # Format translations for display
                     if entry['esperanto_translations']:
