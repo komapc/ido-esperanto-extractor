@@ -1,18 +1,18 @@
 {
   "metadata": {
-    "extraction_date": "2025-10-02T23:56:29.061241",
-    "total_words": 7539,
+    "extraction_date": "2025-10-03T00:27:06.760890",
+    "total_words": 7549,
     "script_version": "v2.0",
     "stats": {
       "pages_processed": 364685,
       "pages_with_ido_section": 43310,
-      "valid_entries_found": 7539,
+      "valid_entries_found": 7549,
       "skipped_by_category": 11154,
       "skipped_by_title": 33839,
-      "skipped_no_translations": 35771,
+      "skipped_no_translations": 35761,
       "entries_with_pos": 0,
       "entries_with_multiple_meanings": 182,
-      "entries_with_metadata": 7453
+      "entries_with_metadata": 7461
     },
     "source_dump": {
       "dump_filename": "iowiktionary-latest-pages-articles.xml.bz2",
@@ -5374,6 +5374,18 @@
       ]
     },
     {
+      "ido_word": "autobuso",
+      "esperanto_translations": [
+        [
+          "aŭtobuso"
+        ]
+      ],
+      "morfologio": [
+        "autobus",
+        ".o"
+      ]
+    },
+    {
       "ido_word": "butro",
       "esperanto_translations": [
         [
@@ -5626,6 +5638,18 @@
       ]
     },
     {
+      "ido_word": "charmo",
+      "esperanto_translations": [
+        [
+          "ĉarmo"
+        ]
+      ],
+      "morfologio": [
+        "charm",
+        ".o"
+      ]
+    },
+    {
       "ido_word": "chipa",
       "esperanto_translations": [
         [
@@ -5658,6 +5682,18 @@
       ],
       "morfologio": [
         "fromaj",
+        ".o"
+      ]
+    },
+    {
+      "ido_word": "cheko",
+      "esperanto_translations": [
+        [
+          "ĉeko"
+        ]
+      ],
+      "morfologio": [
+        "chek",
         ".o"
       ]
     },
@@ -8693,6 +8729,14 @@
       ]
     },
     {
+      "ido_word": "che",
+      "esperanto_translations": [
+        [
+          "ĉe"
+        ]
+      ]
+    },
+    {
       "ido_word": "koncernar",
       "esperanto_translations": [
         [
@@ -9700,7 +9744,7 @@
       "ido_word": "hiere",
       "esperanto_translations": [
         [
-          "hiera&"
+          "hieraǔ"
         ]
       ],
       "morfologio": [
@@ -10737,7 +10781,7 @@
       "ido_word": "adavane",
       "esperanto_translations": [
         [
-          "anta&"
+          "antaǔen"
         ]
       ],
       "morfologio": [
@@ -11930,7 +11974,7 @@
       "esperanto_translations": [
         [
           "alkemio",
-          "al&"
+          "alĥemio"
         ]
       ],
       "morfologio": [
@@ -16991,7 +17035,7 @@
       "ido_word": "boko",
       "esperanto_translations": [
         [
-          "bu&"
+          "buŝo"
         ]
       ],
       "morfologio": [
@@ -18101,7 +18145,7 @@
       "ido_word": "bushelo",
       "esperanto_translations": [
         [
-          "bu&"
+          "buŝelo"
         ]
       ],
       "morfologio": [
@@ -18782,6 +18826,18 @@
       ]
     },
     {
+      "ido_word": "chambelano",
+      "esperanto_translations": [
+        [
+          "ĉambelano"
+        ]
+      ],
+      "morfologio": [
+        "chambelan",
+        ".o"
+      ]
+    },
+    {
       "ido_word": "champanio",
       "esperanto_translations": [
         [
@@ -18914,6 +18970,30 @@
       ]
     },
     {
+      "ido_word": "chasta",
+      "esperanto_translations": [
+        [
+          "ĉasta"
+        ]
+      ],
+      "morfologio": [
+        "chast",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "chefo",
+      "esperanto_translations": [
+        [
+          "ĉefo"
+        ]
+      ],
+      "morfologio": [
+        "chef",
+        ".o"
+      ]
+    },
+    {
       "ido_word": "chefa",
       "esperanto_translations": [
         [
@@ -18947,6 +19027,18 @@
       "morfologio": [
         "chef",
         ".ul.o"
+      ]
+    },
+    {
+      "ido_word": "cherpar",
+      "esperanto_translations": [
+        [
+          "ĉerpi"
+        ]
+      ],
+      "morfologio": [
+        "cherp",
+        ".ar"
       ]
     },
     {
@@ -18994,6 +19086,18 @@
       ],
       "morfologio": [
         "chimpanze",
+        ".o"
+      ]
+    },
+    {
+      "ido_word": "chinchilo",
+      "esperanto_translations": [
+        [
+          "ĉinĉilo"
+        ]
+      ],
+      "morfologio": [
+        "chinchil",
         ".o"
       ]
     },
@@ -19857,7 +19961,7 @@
       "ido_word": "danjero",
       "esperanto_translations": [
         [
-          "dan&"
+          "danĝero"
         ]
       ],
       "morfologio": [
@@ -20115,7 +20219,7 @@
       "ido_word": "dechifrar",
       "esperanto_translations": [
         [
-          "de&"
+          "deĉifri"
         ]
       ],
       "morfologio": [
@@ -21353,7 +21457,7 @@
       "ido_word": "depesho",
       "esperanto_translations": [
         [
-          "depe&"
+          "depeŝo"
         ]
       ],
       "morfologio": [
@@ -22190,7 +22294,7 @@
       "ido_word": "diafana",
       "esperanto_translations": [
         [
-          "travidebla ↓"
+          "travidebla"
         ]
       ],
       "morfologio": [
@@ -23865,7 +23969,7 @@
       "ido_word": "dojo",
       "esperanto_translations": [
         [
-          "do&"
+          "doĝo"
         ]
       ],
       "morfologio": [
@@ -51879,7 +51983,7 @@
       "ido_word": "necesa",
       "esperanto_translations": [
         [
-          "necesa (↓)"
+          "necesa ()"
         ]
       ],
       "morfologio": [
@@ -62234,7 +62338,7 @@
       "ido_word": "saliko",
       "esperanto_translations": [
         [
-          "saliko (↓)"
+          "saliko ()"
         ]
       ],
       "morfologio": [
@@ -76566,6 +76670,14 @@
       "morfologio": [
         "ecel",
         ".o"
+      ]
+    },
+    {
+      "ido_word": "Ido",
+      "esperanto_translations": [
+        [
+          "{{tradukar"
+        ]
       ]
     },
     {

@@ -1,18 +1,18 @@
 {
   "metadata": {
-    "extraction_date": "2025-10-02T23:56:29.061246",
-    "total_failed": 11,
+    "extraction_date": "2025-10-03T00:27:06.760893",
+    "total_failed": 1,
     "script_version": "v2.0",
     "stats": {
       "pages_processed": 364685,
       "pages_with_ido_section": 43310,
-      "valid_entries_found": 7539,
+      "valid_entries_found": 7549,
       "skipped_by_category": 11154,
       "skipped_by_title": 33839,
-      "skipped_no_translations": 35771,
+      "skipped_no_translations": 35761,
       "entries_with_pos": 0,
       "entries_with_multiple_meanings": 182,
-      "entries_with_metadata": 7453
+      "entries_with_metadata": 7461
     },
     "source_dump": {
       "dump_filename": "iowiktionary-latest-pages-articles.xml.bz2",
@@ -26,66 +26,8 @@
   },
   "failed_links": [
     {
-      "title": "autobuso",
-      "url": "https://io.wiktionary.org/wiki/autobuso",
-      "reason": "parsing_failed_despite_patterns: 1_eo_templates, 1_eo_colon_patterns"
-    },
-    {
-      "title": "charmo",
-      "url": "https://io.wiktionary.org/wiki/charmo",
-      "reason": "parsing_failed_despite_patterns: 1_eo_templates, 1_eo_colon_patterns",
-      "esperanto_content": "[[&#265;armo]]"
-    },
-    {
-      "title": "cheko",
-      "url": "https://io.wiktionary.org/wiki/cheko",
-      "reason": "parsing_failed_despite_patterns: 1_eo_templates, 1_eo_colon_patterns",
-      "esperanto_content": "[[&#265;eko]]"
-    },
-    {
       "title": "sequar",
       "url": "https://io.wiktionary.org/wiki/sequar",
-      "reason": "parsing_failed_despite_patterns: 1_eo_templates, 1_eo_colon_patterns"
-    },
-    {
-      "title": "che",
-      "url": "https://io.wiktionary.org/wiki/che",
-      "reason": "parsing_failed_despite_patterns: 1_eo_templates, 1_eo_colon_patterns",
-      "esperanto_content": "[[&#265;e]]"
-    },
-    {
-      "title": "chambelano",
-      "url": "https://io.wiktionary.org/wiki/chambelano",
-      "reason": "parsing_failed_despite_patterns: 1_eo_templates, 1_eo_colon_patterns",
-      "esperanto_content": "[[&#265;ambelano]]"
-    },
-    {
-      "title": "chasta",
-      "url": "https://io.wiktionary.org/wiki/chasta",
-      "reason": "parsing_failed_despite_patterns: 1_eo_templates, 1_eo_colon_patterns",
-      "esperanto_content": "[[&#265;asta]]"
-    },
-    {
-      "title": "chefo",
-      "url": "https://io.wiktionary.org/wiki/chefo",
-      "reason": "parsing_failed_despite_patterns: 1_eo_templates, 1_eo_colon_patterns",
-      "esperanto_content": "[[&#265;efo]]"
-    },
-    {
-      "title": "cherpar",
-      "url": "https://io.wiktionary.org/wiki/cherpar",
-      "reason": "parsing_failed_despite_patterns: 1_eo_templates, 1_eo_colon_patterns",
-      "esperanto_content": "[[&#265;erpi]]"
-    },
-    {
-      "title": "chinchilo",
-      "url": "https://io.wiktionary.org/wiki/chinchilo",
-      "reason": "parsing_failed_despite_patterns: 1_eo_templates, 1_eo_colon_patterns",
-      "esperanto_content": "[[&#265;in&#265;ilo]]"
-    },
-    {
-      "title": "Ido",
-      "url": "https://io.wiktionary.org/wiki/Ido",
       "reason": "parsing_failed_despite_patterns: 1_eo_templates, 1_eo_colon_patterns"
     }
   ]
