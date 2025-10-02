@@ -421,7 +421,7 @@ class ImprovedDumpParserV2:
                 if isinstance(match, tuple):
                     # Handle templates with multiple parameters
                     translation = match[0].strip()
-                        else:
+                else:
                     translation = match.strip()
                 
                 # Check if translation is truly empty or contains only whitespace/newlines
@@ -478,7 +478,56 @@ class ImprovedDumpParserV2:
         if not wikitext or not title:
             return all_meanings
         
-        # Look for Esperanto sections with various patterns
+        # Look for Esperanto translations in language sections (A-lingui, B-lingui, etc.)
+        language_section_patterns = [
+            r'{{A-lingui}}.*?(?={{B-lingui}}|{{C-lingui}}|{{D-lingui}}|{{E-lingui}}|{{F-lingui}}|{{G-lingui}}|{{H-lingui}}|{{I-lingui}}|{{J-lingui}}|{{K-lingui}}|{{L-lingui}}|{{M-lingui}}|{{N-lingui}}|{{O-lingui}}|{{P-lingui}}|{{Q-lingui}}|{{R-lingui}}|{{S-lingui}}|{{T-lingui}}|{{U-lingui}}|{{V-lingui}}|{{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{B-lingui}}.*?(?={{C-lingui}}|{{D-lingui}}|{{E-lingui}}|{{F-lingui}}|{{G-lingui}}|{{H-lingui}}|{{I-lingui}}|{{J-lingui}}|{{K-lingui}}|{{L-lingui}}|{{M-lingui}}|{{N-lingui}}|{{O-lingui}}|{{P-lingui}}|{{Q-lingui}}|{{R-lingui}}|{{S-lingui}}|{{T-lingui}}|{{U-lingui}}|{{V-lingui}}|{{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{C-lingui}}.*?(?={{D-lingui}}|{{E-lingui}}|{{F-lingui}}|{{G-lingui}}|{{H-lingui}}|{{I-lingui}}|{{J-lingui}}|{{K-lingui}}|{{L-lingui}}|{{M-lingui}}|{{N-lingui}}|{{O-lingui}}|{{P-lingui}}|{{Q-lingui}}|{{R-lingui}}|{{S-lingui}}|{{T-lingui}}|{{U-lingui}}|{{V-lingui}}|{{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{D-lingui}}.*?(?={{E-lingui}}|{{F-lingui}}|{{G-lingui}}|{{H-lingui}}|{{I-lingui}}|{{J-lingui}}|{{K-lingui}}|{{L-lingui}}|{{M-lingui}}|{{N-lingui}}|{{O-lingui}}|{{P-lingui}}|{{Q-lingui}}|{{R-lingui}}|{{S-lingui}}|{{T-lingui}}|{{U-lingui}}|{{V-lingui}}|{{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{E-lingui}}.*?(?={{F-lingui}}|{{G-lingui}}|{{H-lingui}}|{{I-lingui}}|{{J-lingui}}|{{K-lingui}}|{{L-lingui}}|{{M-lingui}}|{{N-lingui}}|{{O-lingui}}|{{P-lingui}}|{{Q-lingui}}|{{R-lingui}}|{{S-lingui}}|{{T-lingui}}|{{U-lingui}}|{{V-lingui}}|{{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{F-lingui}}.*?(?={{G-lingui}}|{{H-lingui}}|{{I-lingui}}|{{J-lingui}}|{{K-lingui}}|{{L-lingui}}|{{M-lingui}}|{{N-lingui}}|{{O-lingui}}|{{P-lingui}}|{{Q-lingui}}|{{R-lingui}}|{{S-lingui}}|{{T-lingui}}|{{U-lingui}}|{{V-lingui}}|{{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{G-lingui}}.*?(?={{H-lingui}}|{{I-lingui}}|{{J-lingui}}|{{K-lingui}}|{{L-lingui}}|{{M-lingui}}|{{N-lingui}}|{{O-lingui}}|{{P-lingui}}|{{Q-lingui}}|{{R-lingui}}|{{S-lingui}}|{{T-lingui}}|{{U-lingui}}|{{V-lingui}}|{{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{H-lingui}}.*?(?={{I-lingui}}|{{J-lingui}}|{{K-lingui}}|{{L-lingui}}|{{M-lingui}}|{{N-lingui}}|{{O-lingui}}|{{P-lingui}}|{{Q-lingui}}|{{R-lingui}}|{{S-lingui}}|{{T-lingui}}|{{U-lingui}}|{{V-lingui}}|{{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{I-lingui}}.*?(?={{J-lingui}}|{{K-lingui}}|{{L-lingui}}|{{M-lingui}}|{{N-lingui}}|{{O-lingui}}|{{P-lingui}}|{{Q-lingui}}|{{R-lingui}}|{{S-lingui}}|{{T-lingui}}|{{U-lingui}}|{{V-lingui}}|{{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{J-lingui}}.*?(?={{K-lingui}}|{{L-lingui}}|{{M-lingui}}|{{N-lingui}}|{{O-lingui}}|{{P-lingui}}|{{Q-lingui}}|{{R-lingui}}|{{S-lingui}}|{{T-lingui}}|{{U-lingui}}|{{V-lingui}}|{{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{K-lingui}}.*?(?={{L-lingui}}|{{M-lingui}}|{{N-lingui}}|{{O-lingui}}|{{P-lingui}}|{{Q-lingui}}|{{R-lingui}}|{{S-lingui}}|{{T-lingui}}|{{U-lingui}}|{{V-lingui}}|{{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{L-lingui}}.*?(?={{M-lingui}}|{{N-lingui}}|{{O-lingui}}|{{P-lingui}}|{{Q-lingui}}|{{R-lingui}}|{{S-lingui}}|{{T-lingui}}|{{U-lingui}}|{{V-lingui}}|{{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{M-lingui}}.*?(?={{N-lingui}}|{{O-lingui}}|{{P-lingui}}|{{Q-lingui}}|{{R-lingui}}|{{S-lingui}}|{{T-lingui}}|{{U-lingui}}|{{V-lingui}}|{{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{N-lingui}}.*?(?={{O-lingui}}|{{P-lingui}}|{{Q-lingui}}|{{R-lingui}}|{{S-lingui}}|{{T-lingui}}|{{U-lingui}}|{{V-lingui}}|{{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{O-lingui}}.*?(?={{P-lingui}}|{{Q-lingui}}|{{R-lingui}}|{{S-lingui}}|{{T-lingui}}|{{U-lingui}}|{{V-lingui}}|{{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{P-lingui}}.*?(?={{Q-lingui}}|{{R-lingui}}|{{S-lingui}}|{{T-lingui}}|{{U-lingui}}|{{V-lingui}}|{{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{Q-lingui}}.*?(?={{R-lingui}}|{{S-lingui}}|{{T-lingui}}|{{U-lingui}}|{{V-lingui}}|{{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{R-lingui}}.*?(?={{S-lingui}}|{{T-lingui}}|{{U-lingui}}|{{V-lingui}}|{{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{S-lingui}}.*?(?={{T-lingui}}|{{U-lingui}}|{{V-lingui}}|{{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{T-lingui}}.*?(?={{U-lingui}}|{{V-lingui}}|{{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{U-lingui}}.*?(?={{V-lingui}}|{{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{V-lingui}}.*?(?={{W-lingui}}|{{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{W-lingui}}.*?(?={{X-lingui}}|{{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{X-lingui}}.*?(?={{Y-lingui}}|{{Z-lingui}}|\Z)',
+            r'{{Y-lingui}}.*?(?={{Z-lingui}}|\Z)',
+            r'{{Z-lingui}}.*?(?=\Z)'
+        ]
+        
+        for pattern in language_section_patterns:
+            matches = re.findall(pattern, wikitext, re.DOTALL | re.IGNORECASE)
+            for match in matches:
+                # Look for Esperanto translations in this language section
+                esperanto_patterns = [
+                    r'\*\{\{eo\}\}\.\s*\[\[([^\]]+)\]\]',  # *{{eo}}. [[word]]
+                    r'\*\{\{eo\}\}:\s*\[\[([^\]]+)\]\]',   # *{{eo}}: [[word]]
+                    r'\*\{\{eo\}\}\.\s*([^|\n\*]+)',       # *{{eo}}. word
+                    r'\*\{\{eo\}\}:\s*([^|\n\*]+)'         # *{{eo}}: word
+                ]
+                
+                for eo_pattern in esperanto_patterns:
+                    eo_matches = re.findall(eo_pattern, match, re.IGNORECASE)
+                    for eo_match in eo_matches:
+                        translation = eo_match.strip()
+                        if translation and len(translation) > 1:
+                            parsed_meanings = self.parse_multiple_translations(translation)
+                            all_meanings.extend(parsed_meanings)
+        
+        # Also look for traditional Esperanto sections with various patterns
         esperanto_section_patterns = [
             r'## Esperanto\s*\n(.*?)(?=\n##|\Z)',
             r'=== Esperanto ===\s*\n(.*?)(?=\n===|\Z)',
@@ -627,7 +676,7 @@ class ImprovedDumpParserV2:
         # Check if title is valid
         if not self.is_valid_title(title):
             self.stats['skipped_by_title'] += 1
-        return None
+            return None
     
         # Check for excluded categories
         if self.has_excluded_categories(wikitext):
@@ -873,7 +922,7 @@ class ImprovedDumpParserV2:
                     pos_info = f" ({entry['part_of_speech']})" if entry.get('part_of_speech') else ""
                     print(f"✓ Found: {entry['ido_word']}{pos_info} -> [{translations_str}]")
                 
-                processed += 1
+            processed += 1
             
         except KeyboardInterrupt:
             print("\nExtraction interrupted by user.")
