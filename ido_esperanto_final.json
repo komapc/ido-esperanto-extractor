@@ -1,0 +1,3515 @@
+{
+  "metadata": {
+    "extraction_date": "2025-10-02T09:55:17.944612",
+    "total_words": 489,
+    "script_version": "v2.0",
+    "stats": {
+      "pages_processed": 10001,
+      "pages_with_ido_section": 630,
+      "valid_entries_found": 489,
+      "skipped_by_category": 726,
+      "skipped_by_title": 168,
+      "skipped_no_translations": 141,
+      "entries_with_pos": 0,
+      "entries_with_multiple_meanings": 62
+    }
+  },
+  "words": [
+    {
+      "ido_word": "banko",
+      "esperanto_translations": [
+        "banko"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kavalo",
+      "esperanto_translations": [
+        "ĉevalo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "facar",
+      "esperanto_translations": [
+        "fari"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "organismo",
+      "esperanto_translations": [
+        "organismo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "organo",
+      "esperanto_translations": [
+        "organo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "celulo",
+      "esperanto_translations": [
+        "ĉelo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "karcero",
+      "esperanto_translations": [
+        "karcero"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "pekunio",
+      "esperanto_translations": [
+        "mono"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "chambro",
+      "esperanto_translations": [
+        "ĉambro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kontar",
+      "esperanto_translations": [
+        "kalkuli"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "dimensiono",
+      "esperanto_translations": [
+        "dimensio"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "tabelo",
+      "esperanto_translations": [
+        "tabelo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "studiar",
+      "esperanto_translations": [
+        "studi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "finar",
+      "esperanto_translations": [
+        "finiĝi",
+        "fini"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "pano",
+      "esperanto_translations": [
+        "pano"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "cerealo",
+      "esperanto_translations": [
+        "cerealo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "herbo",
+      "esperanto_translations": [
+        "herbo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "familio",
+      "esperanto_translations": [
+        "familio"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "pasto",
+      "esperanto_translations": [
+        "pasto"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "dina",
+      "esperanto_translations": [
+        "maldika"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "jenar",
+      "esperanto_translations": [
+        "ĝeni"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "abdomino",
+      "esperanto_translations": [
+        "abdomeno"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "buxo",
+      "esperanto_translations": [
+        "kesto"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "rektangulo",
+      "esperanto_translations": [
+        "rektangulo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "aprilo",
+      "esperanto_translations": [
+        "aprilo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "januaro",
+      "esperanto_translations": [
+        "januaro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "februaro",
+      "esperanto_translations": [
+        "februaro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "marto",
+      "esperanto_translations": [
+        "marto"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "mayo",
+      "esperanto_translations": [
+        "majo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "junio",
+      "esperanto_translations": [
+        "junio"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "julio",
+      "esperanto_translations": [
+        "julio"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "agosto",
+      "esperanto_translations": [
+        "aŭgusto"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "septembro",
+      "esperanto_translations": [
+        "septembro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "oktobro",
+      "esperanto_translations": [
+        "oktobro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "novembro",
+      "esperanto_translations": [
+        "novembro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "decembro",
+      "esperanto_translations": [
+        "decembro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "yaro",
+      "esperanto_translations": [
+        "jaro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "semano",
+      "esperanto_translations": [
+        "semajno"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "surprizar",
+      "esperanto_translations": [
+        "surprizi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "apertar",
+      "esperanto_translations": [
+        "malfermi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "bezonar",
+      "esperanto_translations": [
+        "bezoni"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "dicar",
+      "esperanto_translations": [
+        "diri"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "pronuncar",
+      "esperanto_translations": [
+        "prononci",
+        "elparoli"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "dormar",
+      "esperanto_translations": [
+        "dormi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "drinkar",
+      "esperanto_translations": [
+        "trinki"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "ingestar",
+      "esperanto_translations": [
+        "neelama"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kantar",
+      "esperanto_translations": [
+        "kanti",
+        "ĉirpi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "klamar",
+      "esperanto_translations": [
+        "klami",
+        "kriegaĉi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "klozar",
+      "esperanto_translations": [
+        "fermi",
+        "ŝtopi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "komencar",
+      "esperanto_translations": [
+        "komenciĝi",
+        "komenci"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "komprar",
+      "esperanto_translations": [
+        "aĉeti"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "komprenar",
+      "esperanto_translations": [
+        "kompreni"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kredar",
+      "esperanto_translations": [
+        "kredi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "lektar",
+      "esperanto_translations": [
+        "legi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "ludar",
+      "esperanto_translations": [
+        "ludi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "montrar",
+      "esperanto_translations": [
+        "montri"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "parolar",
+      "esperanto_translations": [
+        "paroli"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "pendar",
+      "esperanto_translations": [
+        "pendi",
+        "pendigi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "pensar",
+      "esperanto_translations": [
+        "pensi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "portar",
+      "esperanto_translations": [
+        "porti"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "pozar",
+      "esperanto_translations": [
+        "meti"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "prenar",
+      "esperanto_translations": [
+        "preni"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "questionar",
+      "esperanto_translations": [
+        "demandi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "serchar",
+      "esperanto_translations": [
+        "serĉi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "vundar",
+      "esperanto_translations": [
+        "vundi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "savar",
+      "esperanto_translations": [
+        "scii"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "sidar",
+      "esperanto_translations": [
+        "sidi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "indikar",
+      "esperanto_translations": [
+        "indiki"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "veneno",
+      "esperanto_translations": [
+        "veneno"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "trovar",
+      "esperanto_translations": [
+        "leidma"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "venar",
+      "esperanto_translations": [
+        "veni"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "irar",
+      "esperanto_translations": [
+        "iri"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "vendar",
+      "esperanto_translations": [
+        "vendi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "aceptar",
+      "esperanto_translations": [
+        "akcepti"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "recevar",
+      "esperanto_translations": [
+        "ricevi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "obtenar",
+      "esperanto_translations": [
+        "havigi",
+        "obteni"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "atingar",
+      "esperanto_translations": [
+        "atingi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "tushar",
+      "esperanto_translations": [
+        "puutuma"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "afliktar",
+      "esperanto_translations": [
+        "aflikti"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "emoco",
+      "esperanto_translations": [
+        "tunne"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "vidar",
+      "esperanto_translations": [
+        "vidi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "okulo",
+      "esperanto_translations": [
+        "okulo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "cerebro",
+      "esperanto_translations": [
+        "cerbo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "vivar",
+      "esperanto_translations": [
+        "vivi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "volar",
+      "esperanto_translations": [
+        "voli"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "shuo",
+      "esperanto_translations": [
+        "ŝuo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "protektar",
+      "esperanto_translations": [
+        "protekti"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "prezervar",
+      "esperanto_translations": [
+        "prezervi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "gardar",
+      "esperanto_translations": [
+        "gardi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "amiko",
+      "esperanto_translations": [
+        "amiko"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "batelo",
+      "esperanto_translations": [
+        "ŝipo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "flotacar",
+      "esperanto_translations": [
+        "floti"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "hundo",
+      "esperanto_translations": [
+        "hundo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "blua",
+      "esperanto_translations": [
+        "blua"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "reda",
+      "esperanto_translations": [
+        "ruĝa"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "verda",
+      "esperanto_translations": [
+        "verda"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "floro",
+      "esperanto_translations": [
+        "floro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "planto",
+      "esperanto_translations": [
+        "planto"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "porko",
+      "esperanto_translations": [
+        "porko"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "mamifero",
+      "esperanto_translations": [
+        "mamulo",
+        "mambesto"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "sango",
+      "esperanto_translations": [
+        "sango"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "flava",
+      "esperanto_translations": [
+        "flava"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "matino",
+      "esperanto_translations": [
+        "mateno"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kozo",
+      "esperanto_translations": [
+        "aĵo, afero"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "pomo",
+      "esperanto_translations": [
+        "pomo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "frukto",
+      "esperanto_translations": [
+        "frukto"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "arboro",
+      "esperanto_translations": [
+        "arbo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "shinko",
+      "esperanto_translations": [
+        "ŝinko"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kruro",
+      "esperanto_translations": [
+        "kruro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "hakilo",
+      "esperanto_translations": [
+        "kirves"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "ve",
+      "esperanto_translations": [
+        "ve"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "cifro",
+      "esperanto_translations": [
+        "cifero"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "duktar",
+      "esperanto_translations": [
+        "konduki"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "lasto",
+      "esperanto_translations": [
+        "viimane"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "vera",
+      "esperanto_translations": [
+        "vera"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "donar",
+      "esperanto_translations": [
+        "doni"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "apene",
+      "esperanto_translations": [
+        "apenaǔ"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "havar",
+      "esperanto_translations": [
+        "havi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "posedar",
+      "esperanto_translations": [
+        "posedi",
+        "havi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kontrabando",
+      "esperanto_translations": [
+        "kontrabando"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "adulto",
+      "esperanto_translations": [
+        "adolto",
+        "adoltino",
+        "plenkreskulo",
+        "plenkreskulino"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "mikra",
+      "esperanto_translations": [
+        "malgranda",
+        "eta"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "ma",
+      "esperanto_translations": [
+        "sed"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "granda",
+      "esperanto_translations": [
+        "granda"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "amansar",
+      "esperanto_translations": [
+        "kodustama",
+        "taltsutama",
+        "talitsema"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "ibe",
+      "esperanto_translations": [
+        "tie"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "hike",
+      "esperanto_translations": [
+        "tie ĉi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "asimptoto",
+      "esperanto_translations": [
+        "asimptoto"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "dubitar",
+      "esperanto_translations": [
+        "dubi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "timar",
+      "esperanto_translations": [
+        "timi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "pavorar",
+      "esperanto_translations": [
+        "timi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "loko",
+      "esperanto_translations": [
+        "loko"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "tre",
+      "esperanto_translations": [
+        "tre"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "augmentar",
+      "esperanto_translations": [
+        "lisama, suurendama",
+        "lisanduma, suurenema, kasvama"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kriar",
+      "esperanto_translations": [
+        "krii"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "Germaniana",
+      "esperanto_translations": [
+        "germana"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "Angliana",
+      "esperanto_translations": [
+        "Angla"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "Hispaniana",
+      "esperanto_translations": [
+        "hispana (= la hispana lingvo)"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "Franciana",
+      "esperanto_translations": [
+        "franca"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "Italiana",
+      "esperanto_translations": [
+        "itaalia keel"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "vizitar",
+      "esperanto_translations": [
+        "viziti"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "sejornar",
+      "esperanto_translations": [
+        "olesklema",
+        "viibima"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "vortico",
+      "esperanto_translations": [
+        "keeris",
+        "pööris"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "mekaniko",
+      "esperanto_translations": [
+        "mekaniko"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "zono",
+      "esperanto_translations": [
+        "zono"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "algebro",
+      "esperanto_translations": [
+        "algebro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "vaxo",
+      "esperanto_translations": [
+        "vakso"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "abelo",
+      "esperanto_translations": [
+        "abelo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "plear",
+      "esperanto_translations": [
+        "ludi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "irga",
+      "esperanto_translations": [
+        "iu ajn",
+        "io ajn"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "prizar",
+      "esperanto_translations": [
+        "altetaksi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "inter",
+      "esperanto_translations": [
+        "inter"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "quale",
+      "esperanto_translations": [
+        "kiel"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "pedo",
+      "esperanto_translations": [
+        "piedo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "insekto",
+      "esperanto_translations": [
+        "insekto"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "ucelo",
+      "esperanto_translations": [
+        "birdo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "koloro",
+      "esperanto_translations": [
+        "koloro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "muso",
+      "esperanto_translations": [
+        "muso"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "nigra",
+      "esperanto_translations": [
+        "nigra"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "blanka",
+      "esperanto_translations": [
+        "blanka"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "anatomio",
+      "esperanto_translations": [
+        "anatomio"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "predikato",
+      "esperanto_translations": [
+        "predikato"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "osto",
+      "esperanto_translations": [
+        "osto"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "premio",
+      "esperanto_translations": [
+        "premio"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "preco",
+      "esperanto_translations": [
+        "prezo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "akuzar",
+      "esperanto_translations": [
+        "akuzi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "segun",
+      "esperanto_translations": [
+        "laŭ"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "griza",
+      "esperanto_translations": [
+        "griza"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "arjenta",
+      "esperanto_translations": [
+        "hõbe"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "fore",
+      "esperanto_translations": [
+        "kaugel"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "anakoluto",
+      "esperanto_translations": [
+        "anakoluut"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "ovo",
+      "esperanto_translations": [
+        "ovo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "sonjar",
+      "esperanto_translations": [
+        "sonĝi",
+        "revi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "biologio",
+      "esperanto_translations": [
+        "biologio"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "ye",
+      "esperanto_translations": [
+        "je"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "mortar",
+      "esperanto_translations": [
+        "morti"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "aquo",
+      "esperanto_translations": [
+        "akvo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "anke",
+      "esperanto_translations": [
+        "ankaŭ"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "hodie",
+      "esperanto_translations": [
+        "hodiaŭ"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "posibla",
+      "esperanto_translations": [
+        "ebla"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "tekniko",
+      "esperanto_translations": [
+        "tehnika"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "arkitekturo",
+      "esperanto_translations": [
+        "arkitekturo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "aeroplano",
+      "esperanto_translations": [
+        "aviadilo",
+        "avio",
+        "aeroplano"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "fingro",
+      "esperanto_translations": [
+        "fingro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "vivo",
+      "esperanto_translations": [
+        "vivo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "morto",
+      "esperanto_translations": [
+        "surm"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "manjar",
+      "esperanto_translations": [
+        "manĝi",
+        "konsumi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "glutar",
+      "esperanto_translations": [
+        "gluti"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kapo",
+      "esperanto_translations": [
+        "kapo",
+        "ĉefo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "falsa",
+      "esperanto_translations": [
+        "falsa"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "iraco",
+      "esperanto_translations": [
+        "viha",
+        "ärritus"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "dio",
+      "esperanto_translations": [
+        "tago",
+        "diurno"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "noktomezo",
+      "esperanto_translations": [
+        "kesköö"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "onklo",
+      "esperanto_translations": [
+        "onu, lell",
+        "tädi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "pluvar",
+      "esperanto_translations": [
+        "pluvi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "nubo",
+      "esperanto_translations": [
+        "nubo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "korpo",
+      "esperanto_translations": [
+        "korpo",
+        "korpuso"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "axiomo",
+      "esperanto_translations": [
+        "aksiomo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "ondo",
+      "esperanto_translations": [
+        "ondo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "aritmetiko",
+      "esperanto_translations": [
+        "aritmetiko"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "geometrio",
+      "esperanto_translations": [
+        "geometrio"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kalkulo",
+      "esperanto_translations": [
+        "arvutamine",
+        "arvutus",
+        "kalkulatsioon"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "nombro",
+      "esperanto_translations": [
+        "nombro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "matematiko",
+      "esperanto_translations": [
+        "matematiko"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "universo",
+      "esperanto_translations": [
+        "universo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kosmologio",
+      "esperanto_translations": [
+        "kosmoloogia"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "galaxio",
+      "esperanto_translations": [
+        "galaktika"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "plunjar",
+      "esperanto_translations": [
+        "plunĝi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "skrubo",
+      "esperanto_translations": [
+        "ŝraŭbo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "atomo",
+      "esperanto_translations": [
+        "atomo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "koquadar",
+      "esperanto_translations": [
+        "keetma"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "qua",
+      "esperanto_translations": [
+        "kiu"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "quo",
+      "esperanto_translations": [
+        "kio"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "se",
+      "esperanto_translations": [
+        "se"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "Wikivortaro",
+      "esperanto_translations": [
+        "Vikivortaro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "chapelo",
+      "esperanto_translations": [
+        "ĉapelo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "sen",
+      "esperanto_translations": [
+        "sen"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "funciono",
+      "esperanto_translations": [
+        "funkcio"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "komunikar",
+      "esperanto_translations": [
+        "komuniki"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "frago",
+      "esperanto_translations": [
+        "frago"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "anado",
+      "esperanto_translations": [
+        "anaso"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "chamo",
+      "esperanto_translations": [
+        "ĉamo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "olivo",
+      "esperanto_translations": [
+        "olivo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "komo",
+      "esperanto_translations": [
+        "komo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "po",
+      "esperanto_translations": [
+        "en prezo de",
+        "en",
+        "por",
+        "je"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "axelo",
+      "esperanto_translations": [
+        "akselo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "shultro",
+      "esperanto_translations": [
+        "ŝultro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "balde",
+      "esperanto_translations": [
+        "baldaŭ"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "tamen",
+      "esperanto_translations": [
+        "tamen"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "vakua",
+      "esperanto_translations": [
+        "malplena",
+        "vakua"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "varma",
+      "esperanto_translations": [
+        "varma"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "sempre",
+      "esperanto_translations": [
+        "ĉiam"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "linguo",
+      "esperanto_translations": [
+        "lingvo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "lango",
+      "esperanto_translations": [
+        "lango"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kin",
+      "esperanto_translations": [
+        "kvin"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "sudo",
+      "esperanto_translations": [
+        "sudo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "morge",
+      "esperanto_translations": [
+        "morgaŭ"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "ja",
+      "esperanto_translations": [
+        "jam"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "vartar",
+      "esperanto_translations": [
+        "atendi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "fero",
+      "esperanto_translations": [
+        "fero"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "matro",
+      "esperanto_translations": [
+        "patrino"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "oleo",
+      "esperanto_translations": [
+        "oleo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "remar",
+      "esperanto_translations": [
+        "remi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "westo",
+      "esperanto_translations": [
+        "okcidento"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "zero",
+      "esperanto_translations": [
+        "nulo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "hanino",
+      "esperanto_translations": [
+        "kokino"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "xilofono",
+      "esperanto_translations": [
+        "ksilofono"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "hemo",
+      "esperanto_translations": [
+        "hejmo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "skolo",
+      "esperanto_translations": [
+        "lernejo",
+        "skolo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "lago",
+      "esperanto_translations": [
+        "lago"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "ita",
+      "esperanto_translations": [
+        "tiu"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "portuo",
+      "esperanto_translations": [
+        "haveno"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "porto",
+      "esperanto_translations": [
+        "haveno"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "fino",
+      "esperanto_translations": [
+        "fino"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kolda",
+      "esperanto_translations": [
+        "malvarma"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "koldeso",
+      "esperanto_translations": [
+        "külmus"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "longa",
+      "esperanto_translations": [
+        "longa"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "monto",
+      "esperanto_translations": [
+        "monto"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "veino",
+      "esperanto_translations": [
+        "vejno"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "sundio",
+      "esperanto_translations": [
+        "dimanĉo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kordio",
+      "esperanto_translations": [
+        "koro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "autuno",
+      "esperanto_translations": [
+        "aŭtuno"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "somero",
+      "esperanto_translations": [
+        "somero"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kajo",
+      "esperanto_translations": [
+        "kaĝo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kakao",
+      "esperanto_translations": [
+        "kakao"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "klukar",
+      "esperanto_translations": [
+        "kluki"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kavalacho",
+      "esperanto_translations": [
+        "kronu",
+        "hobusekronu",
+        "setukas"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kaulo",
+      "esperanto_translations": [
+        "brasiko"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "napo",
+      "esperanto_translations": [
+        "rapo, napo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kaoso",
+      "esperanto_translations": [
+        "ĥaoso",
+        "kaoso"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kaptar",
+      "esperanto_translations": [
+        "kapti"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "uzurpar",
+      "esperanto_translations": [
+        "uzurpi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kablo",
+      "esperanto_translations": [
+        "kablo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "skrapar",
+      "esperanto_translations": [
+        "skrapi",
+        "forskrapi",
+        "grati"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "skrachar",
+      "esperanto_translations": [
+        "grati"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kurva",
+      "esperanto_translations": [
+        "kurba"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "arko",
+      "esperanto_translations": [
+        "arko"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "arkado",
+      "esperanto_translations": [
+        "arkado"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kortico",
+      "esperanto_translations": [
+        "kortiko",
+        "arbŝelo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "shelo",
+      "esperanto_translations": [
+        "ŝelo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "sinuo",
+      "esperanto_translations": [
+        "sinuo",
+        "sinueco"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "guardo",
+      "esperanto_translations": [
+        "gvardio"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "gaso",
+      "esperanto_translations": [
+        "gaso"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "metano",
+      "esperanto_translations": [
+        "metano"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "fluida",
+      "esperanto_translations": [
+        "fluida"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kazo",
+      "esperanto_translations": [
+        "kazo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "karburatoro",
+      "esperanto_translations": [
+        "karburaator"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "acelerar",
+      "esperanto_translations": [
+        "akceli"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "automobilo",
+      "esperanto_translations": [
+        "aŭtomobilo",
+        "aŭto"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "renversar",
+      "esperanto_translations": [
+        "renversi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "varsar",
+      "esperanto_translations": [
+        "verŝi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "likar",
+      "esperanto_translations": [
+        "liki",
+        "likigi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "falchar",
+      "esperanto_translations": [
+        "falĉi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "sternar",
+      "esperanto_translations": [
+        "sterni"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "abatar",
+      "esperanto_translations": [
+        "dehaki"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "subversar",
+      "esperanto_translations": [
+        "renversi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "eviero",
+      "esperanto_translations": [
+        "lavopelvo, pelvo, defluejo (kiel en kuirejo)"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "falar",
+      "esperanto_translations": [
+        "fali"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "formulo",
+      "esperanto_translations": [
+        "formulo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "shablono",
+      "esperanto_translations": [
+        "ŝablono"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "modlar",
+      "esperanto_translations": [
+        "modli"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "formulario",
+      "esperanto_translations": [
+        "aliĝilo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "formala",
+      "esperanto_translations": [
+        "formala"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "diagramo",
+      "esperanto_translations": [
+        "diagramo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "envidiar",
+      "esperanto_translations": [
+        "envii"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kadeto",
+      "esperanto_translations": [
+        "kadett"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "desaparar",
+      "esperanto_translations": [
+        "malaperi",
+        "sveni"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "perdar",
+      "esperanto_translations": [
+        "perdi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kaftano",
+      "esperanto_translations": [
+        "kaftan"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kalvo",
+      "esperanto_translations": [
+        "kiilaspea"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "haneyo",
+      "esperanto_translations": [
+        "kanala"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kuniklo",
+      "esperanto_translations": [
+        "kuniklo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "cinamo",
+      "esperanto_translations": [
+        "cinamo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kandidato",
+      "esperanto_translations": [
+        "kandidato"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "mirajo",
+      "esperanto_translations": [
+        "miraĝo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "brave",
+      "esperanto_translations": [
+        "brave"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "definitive",
+      "esperanto_translations": [
+        "definitive"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "dense",
+      "esperanto_translations": [
+        "tihedalt",
+        "tihedasti"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "armoro",
+      "esperanto_translations": [
+        "ŝranko"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kafeo",
+      "esperanto_translations": [
+        "kafo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "omna",
+      "esperanto_translations": [
+        "ĉiu"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "omnaloke",
+      "esperanto_translations": [
+        "ĉie"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "ensemble",
+      "esperanto_translations": [
+        "ühes, koos"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "exkavar",
+      "esperanto_translations": [
+        "elkavigi, elfosi",
+        "elbori"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "mineyo",
+      "esperanto_translations": [
+        "kaevandus",
+        "karjäär"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kuko",
+      "esperanto_translations": [
+        "kuko"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "duopla",
+      "esperanto_translations": [
+        "duopla"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "fisho",
+      "esperanto_translations": [
+        "fiŝo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "fortune",
+      "esperanto_translations": [
+        "bonŝance"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "fungo",
+      "esperanto_translations": [
+        "fungo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kanto",
+      "esperanto_translations": [
+        "kanto",
+        "kanzono"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "peskar",
+      "esperanto_translations": [
+        "fiŝi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "roko",
+      "esperanto_translations": [
+        "roko"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "chera",
+      "esperanto_translations": [
+        "väärtuslik",
+        "kallis"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "pala",
+      "esperanto_translations": [
+        "pala"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "stofo",
+      "esperanto_translations": [
+        "ŝtofo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "internaciona",
+      "esperanto_translations": [
+        "internacia"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "naciono",
+      "esperanto_translations": [
+        "nacio"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "he",
+      "esperanto_translations": [
+        "hei!"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "talono",
+      "esperanto_translations": [
+        "jalakand"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "ideo",
+      "esperanto_translations": [
+        "ideo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "inverse",
+      "esperanto_translations": [
+        "inverse"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "hanulo",
+      "esperanto_translations": [
+        "virkoko"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "watt",
+      "esperanto_translations": [
+        "ŭato"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "klimato",
+      "esperanto_translations": [
+        "klimato"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "klimar",
+      "esperanto_translations": [
+        "grimpi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "klefo",
+      "esperanto_translations": [
+        "ŝlosilo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kateno",
+      "esperanto_translations": [
+        "ĉeno",
+        "kateno"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "streta",
+      "esperanto_translations": [
+        "mallarĝa",
+        "streta"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kapitano",
+      "esperanto_translations": [
+        "kapitano"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "mapo",
+      "esperanto_translations": [
+        "landkarto",
+        "mapo",
+        "atlaso"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "sauco",
+      "esperanto_translations": [
+        "saŭco"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kolektar",
+      "esperanto_translations": [
+        "kolekti"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kato",
+      "esperanto_translations": [
+        "kato"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "mine",
+      "esperanto_translations": [
+        "malpli"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "negro",
+      "esperanto_translations": [
+        "negro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "no",
+      "esperanto_translations": [
+        "ne"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kreskar",
+      "esperanto_translations": [
+        "kreski",
+        "grandiĝi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "facio",
+      "esperanto_translations": [
+        "facio",
+        "fronta faco"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kreveto",
+      "esperanto_translations": [
+        "salikoko"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "bitra",
+      "esperanto_translations": [
+        "amara"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "katolika",
+      "esperanto_translations": [
+        "katolika"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "bone",
+      "esperanto_translations": [
+        "hästi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "spektar",
+      "esperanto_translations": [
+        "spekti"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "marmito",
+      "esperanto_translations": [
+        "pada, pott"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "tekto",
+      "esperanto_translations": [
+        "katus"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kapabla",
+      "esperanto_translations": [
+        "kapabla"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "acidento",
+      "esperanto_translations": [
+        "akcidento"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "akuta",
+      "esperanto_translations": [
+        "akuta"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "adicionar",
+      "esperanto_translations": [
+        "adicii"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "adreso",
+      "esperanto_translations": [
+        "adreso"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "admirar",
+      "esperanto_translations": [
+        "admiri"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "avantajo",
+      "esperanto_translations": [
+        "avantaĝo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "evo",
+      "esperanto_translations": [
+        "aĝo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "bela",
+      "esperanto_translations": [
+        "bela"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "beligar",
+      "esperanto_translations": [
+        "ilustama",
+        "kaunistama"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "strado",
+      "esperanto_translations": [
+        "strato"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kolo",
+      "esperanto_translations": [
+        "kolo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "koliaro",
+      "esperanto_translations": [
+        "koliero",
+        "kolringo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kolumo",
+      "esperanto_translations": [
+        "kolumo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "komerco",
+      "esperanto_translations": [
+        "komerco"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "urbo",
+      "esperanto_translations": [
+        "urbo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "posdimezo",
+      "esperanto_translations": [
+        "õhtupoolik"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "konkordar",
+      "esperanto_translations": [
+        "konkordi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "aero",
+      "esperanto_translations": [
+        "aero"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "alkoholo",
+      "esperanto_translations": [
+        "alkoholo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "preske",
+      "esperanto_translations": [
+        "preskaŭ"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "rare",
+      "esperanto_translations": [
+        "harva"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "sapono",
+      "esperanto_translations": [
+        "sapo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "lord",
+      "esperanto_translations": [
+        "lord"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "unope",
+      "esperanto_translations": [
+        "üksi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "alonge",
+      "esperanto_translations": [
+        "piki"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "altitudo",
+      "esperanto_translations": [
+        "altitudo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "apendico",
+      "esperanto_translations": [
+        "apendico"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "apreciar",
+      "esperanto_translations": [
+        "aprezi",
+        "apreci"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "brakio",
+      "esperanto_translations": [
+        "brako"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "armeo",
+      "esperanto_translations": [
+        "armeo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "aranjar",
+      "esperanto_translations": [
+        "aranĝi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "arto",
+      "esperanto_translations": [
+        "arto"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "artificala",
+      "esperanto_translations": [
+        "kunstlik",
+        "ebaloomulik"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "sugar",
+      "esperanto_translations": [
+        "suĉi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "potato",
+      "esperanto_translations": [
+        "terpomo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "atakar",
+      "esperanto_translations": [
+        "ataki"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "audienco",
+      "esperanto_translations": [
+        "aŭdienco"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "onklino",
+      "esperanto_translations": [
+        "onklino"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "autoro",
+      "esperanto_translations": [
+        "aŭtoro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "evitar",
+      "esperanto_translations": [
+        "eviti"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "dorso",
+      "esperanto_translations": [
+        "dorso"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "lardo",
+      "esperanto_translations": [
+        "lardo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "albino",
+      "esperanto_translations": [
+        "albiino"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kesto",
+      "esperanto_translations": [
+        "kesto"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "developar",
+      "esperanto_translations": [
+        "disvolvi",
+        "evoluigi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "revelar",
+      "esperanto_translations": [
+        "malkaŝi",
+        "riveli, revelacii"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "framo",
+      "esperanto_translations": [
+        "framo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "koqueyo",
+      "esperanto_translations": [
+        "kuirejo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "supo",
+      "esperanto_translations": [
+        "supo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "koquar",
+      "esperanto_translations": [
+        "kuiri"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "bisquito",
+      "esperanto_translations": [
+        "biskvito"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kelero",
+      "esperanto_translations": [
+        "kelo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "horlojo",
+      "esperanto_translations": [
+        "horloĝo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "cirajo",
+      "esperanto_translations": [
+        "ciro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "feldo",
+      "esperanto_translations": [
+        "kampo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "mendikero",
+      "esperanto_translations": [
+        "kerjus"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kremo",
+      "esperanto_translations": [
+        "kremo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "etajo",
+      "esperanto_translations": [
+        "etaĝo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "foyo",
+      "esperanto_translations": [
+        "fojo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "rakontar",
+      "esperanto_translations": [
+        "rakonti (ion fikcian)"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "merkurdio",
+      "esperanto_translations": [
+        "merkredo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "centro",
+      "esperanto_translations": [
+        "centro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "konversar",
+      "esperanto_translations": [
+        "konversacii",
+        "konversi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "diskutar",
+      "esperanto_translations": [
+        "diskuti"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "konfero",
+      "esperanto_translations": [
+        "nõupidamine"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "durar",
+      "esperanto_translations": [
+        "daŭri"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "pulmono",
+      "esperanto_translations": [
+        "pulmo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "printempo",
+      "esperanto_translations": [
+        "printempo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "mala",
+      "esperanto_translations": [
+        "malbona"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "sako",
+      "esperanto_translations": [
+        "sako"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "bayo",
+      "esperanto_translations": [
+        "laht"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "plajo",
+      "esperanto_translations": [
+        "marbordo",
+        "plaĝo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "fabo",
+      "esperanto_translations": [
+        "fabo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "barbo",
+      "esperanto_translations": [
+        "barbo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "nam",
+      "esperanto_translations": [
+        "ĉar"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "divenar",
+      "esperanto_translations": [
+        "fariĝi",
+        "iĝi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "lito",
+      "esperanto_translations": [
+        "lito"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "biro",
+      "esperanto_translations": [
+        "biero"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kondutar",
+      "esperanto_translations": [
+        "konduti"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kimono",
+      "esperanto_translations": [
+        "kimono"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "benko",
+      "esperanto_translations": [
+        "benko"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "biciklo",
+      "esperanto_translations": [
+        "biciklo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "fakturo",
+      "esperanto_translations": [
+        "fakturo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "binoklo",
+      "esperanto_translations": [
+        "okulvitroj"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "naskodio",
+      "esperanto_translations": [
+        "sünnipäev"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "mordar",
+      "esperanto_translations": [
+        "mordi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "blinda",
+      "esperanto_translations": [
+        "blinda"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kamizo",
+      "esperanto_translations": [
+        "ĉemizo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "stroko",
+      "esperanto_translations": [
+        "movo",
+        "atako",
+        "bato"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "boliar",
+      "esperanto_translations": [
+        "boli"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "libro",
+      "esperanto_translations": [
+        "libro"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "pruntar",
+      "esperanto_translations": [
+        "laenama"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "amba",
+      "esperanto_translations": [
+        "ambaŭ"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "botelo",
+      "esperanto_translations": [
+        "botelo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "bolo",
+      "esperanto_translations": [
+        "kauss",
+        "liud"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "latuno",
+      "esperanto_translations": [
+        "latuno"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "brava",
+      "esperanto_translations": [
+        "brava"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "ruptar",
+      "esperanto_translations": [
+        "rompi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "mamo",
+      "esperanto_translations": [
+        "mamo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "respirar",
+      "esperanto_translations": [
+        "spiri"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "ponto",
+      "esperanto_translations": [
+        "ponto"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "adportar",
+      "esperanto_translations": [
+        "tootma"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "larja",
+      "esperanto_translations": [
+        "larĝa"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "balayilo",
+      "esperanto_translations": [
+        "balailo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "fratulo",
+      "esperanto_translations": [
+        "frato",
+        "ino fratino"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "bruna",
+      "esperanto_translations": [
+        "bruna"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "brosilo",
+      "esperanto_translations": [
+        "broso"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "brular",
+      "esperanto_translations": [
+        "bruli.",
+        "bruligi"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "butro",
+      "esperanto_translations": [
+        "butero"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "butono",
+      "esperanto_translations": [
+        "butono"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kabino",
+      "esperanto_translations": [
+        "kajuto"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "telefonar",
+      "esperanto_translations": [
+        "helistama"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kancero",
+      "esperanto_translations": [
+        "kancero"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "kandelo",
+      "esperanto_translations": [
+        "kandelo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "solida",
+      "esperanto_translations": [
+        "solida"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "urjanta",
+      "esperanto_translations": [
+        "kiire",
+        "rutuline"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "hastar",
+      "esperanto_translations": [
+        "hasti"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "gratitudoza",
+      "esperanto_translations": [
+        "tänulik"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "dankar",
+      "esperanto_translations": [
+        "danki"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "konkurso",
+      "esperanto_translations": [
+        "võistlus",
+        "konkurents"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "tortugo",
+      "esperanto_translations": [
+        "testudo"
+      ],
+      "part_of_speech": null
+    },
+    {
+      "ido_word": "flamingo",
+      "esperanto_translations": [
+        "fenikoptero"
+      ],
+      "part_of_speech": null
+    }
+  ]
+}

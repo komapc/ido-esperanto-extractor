@@ -1,851 +1,461 @@
 #!/usr/bin/env python3
 """
-Ido-Esperanto Dictionary Extractor
+Improved Ido-Esperanto Dictionary Extractor v2
 
-This script downloads all Ido words with Esperanto translations from io.wiktionary.org
-and saves them in a structured JSON format.
-
-Usage:
-    python3 ido_esperanto_extractor.py [--output output.json] [--limit N]
-
-Requirements:
-    pip install requests mwparserfromhell
+This version includes:
+- Part of speech extraction
+- Proper parsing of multiple meanings
+- Cleaner output format
+- Better translation cleaning
 """
 
+import argparse
+import bz2
 import json
+import os
 import re
 import sys
-import time
-import argparse
+import tempfile
+import urllib.request
+import xml.etree.ElementTree as ET
 from datetime import datetime
-from typing import Dict, List, Optional, Set
-from urllib.parse import quote
+from typing import Optional, List, Dict, Iterator, Tuple
+from urllib.parse import urljoin
 
-import requests
 try:
     import mwparserfromhell as mwp
     HAVE_MWP = True
-except Exception:
+except ImportError:
     mwp = None
     HAVE_MWP = False
-from html.parser import HTMLParser
+
+# Configuration
+DUMP_URL = 'https://dumps.wikimedia.org/iowiktionary/latest/iowiktionary-latest-pages-articles.xml.bz2'
+DUMP_FILE = 'iowiktionary-latest-pages-articles.xml.bz2'
+
+# Patterns for filtering
+IDO_SECTION_PATTERNS = [
+    re.compile(r'==\s*\{\{io\}\}\s*==', re.IGNORECASE),
+    re.compile(r'==\s*Ido\s*==', re.IGNORECASE)
+]
+
+# Translation patterns
+TRANSLATION_PATTERNS = [
+    re.compile(r'\*\s*\{\{eo\}\}\s*:\s*([^\n\|]+)', re.IGNORECASE),
+    re.compile(r'\*\s*(?:Esperanto|esperanto|eo)\s*[:\-]\s*([^\n\|]+)', re.IGNORECASE),
+    re.compile(r'{{t\+?\|eo\|([^}|]+)}}', re.IGNORECASE),
+    re.compile(r'{{l\|eo\|([^}|]+)}}', re.IGNORECASE),
+    re.compile(r'{{ux\|io\|([^}|]+)\|([^}]+)}}', re.IGNORECASE),
+]
+
+# Part of speech patterns
+POS_PATTERNS = [
+    re.compile(r'===\s*(Noun|Verb|Adjective|Adverb|Pronoun|Preposition|Conjunction|Interjection|Substantivo|Verbo|Adjektivo|Adverbo)\s*===', re.IGNORECASE),
+]
+
+# Category patterns to exclude
+EXCLUDE_CATEGORY_PATTERNS = [
+    re.compile(r'sufix', re.IGNORECASE),
+    re.compile(r'sufixo', re.IGNORECASE),
+    re.compile(r'radik', re.IGNORECASE),
+    re.compile(r'radiko', re.IGNORECASE),
+    re.compile(r'kompon', re.IGNORECASE),
+    re.compile(r'affix', re.IGNORECASE),
+    re.compile(r'suffix', re.IGNORECASE),
+    re.compile(r'prefix', re.IGNORECASE),
+    re.compile(r'io-rad', re.IGNORECASE),
+]
+
+# Word validation patterns
+INVALID_TITLE_PATTERNS = [
+    re.compile(r'^[^A-Za-z]'),  # Doesn't start with letter
+    re.compile(r'^[A-Za-z]$'),  # Single letter
+    re.compile(r'^[0-9]+'),     # Starts with numbers
+    re.compile(r'[=\/\&\+\-\(\)\[\]\{\}\|]'),  # Contains special chars
+    re.compile(r'^\s*$'),       # Empty or whitespace only
+]
 
 
-class _SimpleHtmlListParser(HTMLParser):
-    """Small HTML parser to extract text content from list items (<li>)."""
-    def __init__(self):
-        super().__init__()
-        self.in_li = False
-        self.current = []
-        self.items = []
-
-    def handle_starttag(self, tag, attrs):
-        if tag.lower() == 'li':
-            self.in_li = True
-            self.current = []
-
-    def handle_endtag(self, tag):
-        if tag.lower() == 'li' and self.in_li:
-            self.items.append(''.join(self.current).strip())
-            self.in_li = False
-            self.current = []
-
-    def handle_data(self, data):
-        if self.in_li:
-            self.current.append(data)
-
-
-
-class IdoEsperantoExtractor:
-    def __init__(self, base_url: str = "https://io.wiktionary.org/w/api.php"):
-        self.base_url = base_url
-        self.session = requests.Session()
-        self.session.headers.update({
-            'User-Agent': 'IdoEsperantoExtractor/1.0 (https://github.com/user/repo)'
-        })
-        
-    def get_all_pages(self, limit: Optional[int] = None) -> List[str]:
-        """Get all page titles from io.wiktionary.org"""
-        print("Fetching all page titles from io.wiktionary.org...")
-        
-        pages = []
-        apcontinue = None
-        count = 0
-        
-        while True:
-            params = {
-                'action': 'query',
-                'list': 'allpages',
-                'aplimit': 500,
-                'format': 'json',
-                'apnamespace': 0  # Main namespace only
-            }
-            
-            if apcontinue:
-                params['apcontinue'] = apcontinue
-                
-            try:
-                response = self.session.get(self.base_url, params=params)
-                response.raise_for_status()
-                data = response.json()
-                
-                if 'query' not in data or 'allpages' not in data['query']:
-                    break
-                    
-                batch_pages = [page['title'] for page in data['query']['allpages']]
-                pages.extend(batch_pages)
-                count += len(batch_pages)
-                
-                print(f"Fetched {count} page titles...")
-                
-                if limit and count >= limit:
-                    pages = pages[:limit]
-                    break
-                    
-                if 'continue' not in data:
-                    break
-                    
-                apcontinue = data['continue']['apcontinue']
-                time.sleep(0.1)  # Be respectful to the server
-                
-            except requests.RequestException as e:
-                print(f"Error fetching pages: {e}")
-                break
-                
-        print(f"Total pages found: {len(pages)}")
-        return pages
+class ImprovedDumpParserV2:
+    """Improved dump parser with part of speech and better translation parsing."""
     
-    def get_page_content(self, title: str) -> Optional[str]:
-        """Get the wikitext content of a page"""
-        params = {
-            'action': 'query',
-            'titles': title,
-            'prop': 'revisions',
-            'rvprop': 'content',
-            'format': 'json'
-        }
-        
-        try:
-            response = self.session.get(self.base_url, params=params)
-            response.raise_for_status()
-            data = response.json()
-            
-            pages = data['query']['pages']
-            page_id = next(iter(pages))
-            
-            if page_id == '-1':  # Page doesn't exist
-                return None
-                
-            revisions = pages[page_id].get('revisions', [])
-            if not revisions:
-                return None
-                
-            return revisions[0].get('*', '')
-            
-        except requests.RequestException as e:
-            print(f"Error fetching content for '{title}': {e}")
-            return None
-
-    def get_ido_section(self, title: str) -> Optional[str]:
-        """Fetch only the Ido section wikitext for a page using the MediaWiki API.
-
-        This first asks the API for the page sections (action=parse&prop=sections) to
-        determine the section index for the Ido language section, then requests the
-        wikitext for that particular section via revisions?rvsection to avoid downloading
-        the entire page when possible.
-        """
-        # First ask for sections using action=parse to find the index of the Ido section
-        params = {
-            'action': 'parse',
-            'page': title,
-            'prop': 'sections',
-            'format': 'json'
-        }
-
-        try:
-            resp = self.session.get(self.base_url, params=params)
-            resp.raise_for_status()
-            data = resp.json()
-        except requests.RequestException:
-            return None
-
-        sections = data.get('parse', {}).get('sections', [])
-        ido_index = None
-        for sec in sections:
-            sec_line = sec.get('line', '')
-            if re.search(r'\bIdo\b', sec_line, re.IGNORECASE):
-                ido_index = sec.get('index')
-                break
-
-        if not ido_index:
-            return None
-
-        # If mwparserfromhell is available, try to fetch raw wikitext for the section
-        if HAVE_MWP:
-            params = {
-                'action': 'query',
-                'titles': title,
-                'prop': 'revisions',
-                'rvprop': 'content',
-                'rvsection': ido_index,
-                'format': 'json'
-            }
-
-            try:
-                resp = self.session.get(self.base_url, params=params)
-                resp.raise_for_status()
-                data = resp.json()
-                pages = data.get('query', {}).get('pages', {})
-                if not pages:
-                    return None
-                page_id = next(iter(pages))
-                if page_id == '-1':
-                    return None
-                revisions = pages[page_id].get('revisions', [])
-                if not revisions:
-                    return None
-                # Support both legacy '*' and slots.main['*'] patterns
-                rev = revisions[0]
-                if 'slots' in rev and 'main' in rev['slots']:
-                    return rev['slots']['main'].get('*', '')
-                return rev.get('*', '')
-            except requests.RequestException:
-                return None
-
-        # If mwparserfromhell is not available, ask the API to return rendered HTML for the section
-        params = {
-            'action': 'parse',
-            'page': title,
-            'section': ido_index,
-            'prop': 'text',
-            'format': 'json'
-        }
-
-        try:
-            resp = self.session.get(self.base_url, params=params)
-            resp.raise_for_status()
-            data = resp.json()
-            return data.get('parse', {}).get('text', {}).get('*', None)
-        except requests.RequestException:
-            return None
-    
-    def parse_ido_entry(self, title: str, content: str) -> Optional[Dict]:
-        """Parse wikitext content to extract Ido word with Esperanto translation"""
-        # Prefer fetching only the Ido section via API (smaller payload)
-        ido_section_wikitext = None
-        try:
-            ido_section_wikitext = self.get_ido_section(title)
-        except Exception:
-            ido_section_wikitext = None
-
-        # Fall back to whole page content parse if section fetch failed
-        content_to_parse = ido_section_wikitext if ido_section_wikitext else content
-
-        if not content_to_parse:
-            return None
-
-        # If mwparserfromhell is available, parse wikitext and use mwp-based extractors;
-        # otherwise treat content_to_parse as rendered HTML and use HTML fallbacks.
-        if HAVE_MWP:
-            try:
-                wikicode = mwp.parse(content_to_parse)
-            except Exception as e:
-                print(f"Error parsing wikitext for '{title}': {e}")
-                return None
-
-            # Extract Esperanto translations using mwparserfromhell
-            esperanto_translations = self.extract_esperanto_translations(wikicode)
-            if not esperanto_translations:
-                return None
-
-            # Extract additional metadata from the parsed section
-            part_of_speech = self.extract_part_of_speech(wikicode)
-            definitions = self.extract_definitions(wikicode)
-            etymology = self.extract_etymology(wikicode)
-            examples = self.extract_examples(wikicode)
-        else:
-            # HTML fallback: when the API returns rendered HTML for the Ido section
-            # we should extract translations from that HTML, but definitions are
-            # often present only in the full page wikitext. Use both sources:
-            # - ido_section_wikitext (HTML) for translations
-            # - content (full wikitext) for definitions/etymology/examples
-            # This makes the HTML fallback more likely to produce non-empty
-            # definitions for filtering downstream.
-            if ido_section_wikitext and isinstance(ido_section_wikitext, str) and ido_section_wikitext.lstrip().startswith('<'):
-                esperanto_translations = self.extract_esperanto_translations(ido_section_wikitext)
-                if not esperanto_translations:
-                    return None
-
-                # prefer definitions/metadata from the full wikitext page when available
-                part_of_speech = self.extract_part_of_speech(content) or self.extract_part_of_speech(ido_section_wikitext)
-                definitions = self.extract_definitions(content) or self.extract_definitions(ido_section_wikitext)
-                etymology = self.extract_etymology(content) or self.extract_etymology(ido_section_wikitext)
-                examples = self.extract_examples(content) or self.extract_examples(ido_section_wikitext)
-            else:
-                # No HTML section available; fall back to parsing whatever we have
-                esperanto_translations = self.extract_esperanto_translations(content_to_parse)
-                if not esperanto_translations:
-                    return None
-
-                part_of_speech = self.extract_part_of_speech(content_to_parse)
-                definitions = self.extract_definitions(content_to_parse)
-                etymology = self.extract_etymology(content_to_parse)
-                examples = self.extract_examples(content_to_parse)
-
-        return {
-            'ido_word': title,
-            'esperanto_translations': esperanto_translations,
-            'part_of_speech': part_of_speech,
-            'definitions': definitions,
-            'source_url': f'https://io.wiktionary.org/wiki/{quote(title)}',
+    def __init__(self, dump_file: str = DUMP_FILE):
+        self.dump_file = dump_file
+        self.stats = {
+            'pages_processed': 0,
+            'pages_with_ido_section': 0,
+            'valid_entries_found': 0,
+            'skipped_by_category': 0,
+            'skipped_by_title': 0,
+            'skipped_no_translations': 0,
+            'entries_with_pos': 0,
+            'entries_with_multiple_meanings': 0,
         }
     
-    def extract_esperanto_translations(self, text: str) -> List[str]:
-        """Extract Esperanto translations.
-
-        Accepts either a mwparserfromhell Wikicode object or a string (wikitext or HTML).
-        Tries mwparserfromhell templates first (if available), falls back to regex on
-        wikitext, and finally extracts from HTML <li> items when necessary.
-        """
-        def _from_wikicode(wc) -> List[str]:
-            translations: Set[str] = set()
-            # templates like {{t|eo|...}} or {{l|eo|...}}
-            try:
-                for templ in wc.filter_templates(recursive=True):
-                    name = str(templ.name).strip().lower()
-                    if name.startswith('t') or name == 'l' or name.startswith('t+'):
-                        # common pattern: first param is language code
-                        try:
-                            lang = str(templ.params[0].value).strip().lower() if len(templ.params) > 0 else ''
-                        except Exception:
-                            lang = ''
-                        if lang in ('eo', 'esperanto'):
-                            # translation typically in param 1 or 2
-                            for idx in range(1, len(templ.params)):
-                                try:
-                                    val = str(templ.params[idx].value).strip()
-                                    if val:
-                                        translations.add(self._clean_extracted_text(val))
-                                except Exception:
-                                    continue
-            except Exception:
-                pass
-
-            # also look for bullet lines like '* Esperanto: translation'
-            for line in str(wc).splitlines():
-                line = line.strip()
-                if not line.startswith('*'):
-                    continue
-                body = line.lstrip('*').strip()
-                m = re.match(r'^(?:\(?\s*(?:Esperanto|esperanto|eo)\s*\)?[:\-\s]+)(.+)$', body)
-                if m:
-                    translations.add(self._clean_extracted_text(m.group(1)))
-
-            return list(dict.fromkeys([t for t in translations if t]))
-
-        def _from_wikitext(textstr: str) -> List[str]:
-            translations: List[str] = []
-            patterns = [
-                r'\*\s*(?:Esperanto|esperanto|eo):\s*([^\n\*]+)',
-                r'\|\s*(?:Esperanto|esperanto|eo)\s*=\s*([^\n\|]+)',
-                r'{{t\+?\|eo\|([^}]+)}}',
-                r'{{l\|eo\|([^}]+)}}'
-            ]
-            for pattern in patterns:
-                for m in re.findall(pattern, textstr, re.IGNORECASE):
-                    val = re.sub(r'{{[^}]*}}', '', m)
-                    val = re.sub(r'\[\[([^\]|]*)\|?[^\]]*\]\]', r'\1', val)
-                    val = val.strip(' ,;')
-                    if val:
-                        translations.append(val)
-            # de-dup while preserving order
-            seen = set()
-            out = []
-            for t in translations:
-                if t not in seen:
-                    seen.add(t)
-                    out.append(t)
-            return out
-
-        def _from_html(htmlstr: str) -> List[str]:
-            # 1) Try list items (common)
-            parser = _SimpleHtmlListParser()
-            try:
-                parser.feed(htmlstr)
-            except Exception:
-                pass
-
-            translations: List[str] = []
-            seen: Set[str] = set()
-
-            for item in parser.items:
-                m = re.match(r'^(?:\s*(?:Esperanto|esperanto|eo)[:\-\s]+)(.+)$', item, re.IGNORECASE)
-                if m:
-                    val = self._clean_extracted_text(m.group(1))
-                    if val and val not in seen:
-                        seen.add(val)
-                        translations.append(val)
-                    continue
-                # look for templates inside item
-                for tm in re.findall(r'{{t\+?\|eo\|([^}]+)}}', item, re.IGNORECASE):
-                    val = self._clean_extracted_text(tm)
-                    if val and val not in seen:
-                        seen.add(val)
-                        translations.append(val)
-
-            # 2) Try to parse simple HTML tables where a cell label is 'Esperanto' and the next cell contains the translation
-            class _SimpleTableParser(HTMLParser):
-                def __init__(self):
-                    super().__init__()
-                    self.in_td = False
-                    self.in_th = False
-                    self.current = ''
-                    self.cells: List[str] = []
-
-                def handle_starttag(self, tag, attrs):
-                    if tag.lower() in ('td', 'th'):
-                        self.current = ''
-                        if tag.lower() == 'td':
-                            self.in_td = True
-                        else:
-                            self.in_th = True
-
-                def handle_endtag(self, tag):
-                    if tag.lower() in ('td', 'th'):
-                        self.cells.append(self.current.strip())
-                        self.current = ''
-                        self.in_td = False
-                        self.in_th = False
-
-                def handle_data(self, data):
-                    if self.in_td or self.in_th:
-                        self.current += data
-
-            tparser = _SimpleTableParser()
-            try:
-                tparser.feed(htmlstr)
-            except Exception:
-                pass
-
-            # cells is a flat list of header/data cells in encountered order; look for 'Esperanto' labels
-            for idx, cell in enumerate(tparser.cells):
-                if re.search(r'\b(?:Esperanto|eo)\b', cell, re.IGNORECASE):
-                    # pick next cell if present
-                    if idx + 1 < len(tparser.cells):
-                        val = self._clean_extracted_text(tparser.cells[idx + 1])
-                        if val and val not in seen:
-                            seen.add(val)
-                            translations.append(val)
-
-            # 3) Fallback: strip HTML and look for inline 'Esperanto: ...' in plain text
-            text_only = re.sub(r'<[^>]+>', '\n', htmlstr)
-            for m in re.findall(r'(?:\b(?:Esperanto|eo)[:\-\s]+)([^\n<]+)', text_only, re.IGNORECASE):
-                val = self._clean_extracted_text(m)
-                if val and val not in seen:
-                    seen.add(val)
-                    translations.append(val)
-
-            return translations
-
-        # Now dispatch based on types/availability
-        # If passed a mwparserfromhell object
-        if HAVE_MWP and not isinstance(text, str):
-            return _from_wikicode(text)
-
-        # If string input
-        if isinstance(text, str):
-            s = text.strip()
-            # HTML content
-            if s.startswith('<'):
-                return _from_html(text)
-            # else treat as wikitext
-            return _from_wikitext(text)
-
-        return []
-
-    def _batch_fetch_pages(self, titles: List[str]) -> Dict[str, Optional[str]]:
-        """Batch fetch wikitext for up to 50 titles per API call. Returns mapping title->content."""
-        out: Dict[str, Optional[str]] = {}
-        if not titles:
-            return out
-        base = self.base_url
-        # chunk titles into groups of 50
-        for i in range(0, len(titles), 50):
-            chunk = titles[i:i+50]
-            params = {
-                'action': 'query',
-                'titles': '|'.join(chunk),
-                'prop': 'revisions',
-                'rvprop': 'content',
-                'format': 'json'
-            }
-            try:
-                resp = self.session.get(base, params=params)
-                resp.raise_for_status()
-                data = resp.json()
-                pages = data.get('query', {}).get('pages', {})
-                for pid, pinfo in pages.items():
-                    title = pinfo.get('title')
-                    if not title:
-                        continue
-                    revs = pinfo.get('revisions', [])
-                    if revs:
-                        rev = revs[0]
-                        # Support both legacy '*' key and the slots.main['*'] pattern
-                        if 'slots' in rev and isinstance(rev['slots'], dict) and 'main' in rev['slots']:
-                            out[title] = rev['slots']['main'].get('*', '')
-                        else:
-                            out[title] = rev.get('*', '')
-                    else:
-                        out[title] = None
-            except requests.RequestException as e:
-                print(f"Batch fetch error: {e}")
-                for t in chunk:
-                    out[t] = None
-            time.sleep(0.1)
-        return out
-
-    def _batch_fetch_categories(self, titles: List[str]) -> Dict[str, List[str]]:
-        """Batch fetch categories for up to 50 titles per API call. Returns mapping title->list of category titles."""
-        out: Dict[str, List[str]] = {}
-        if not titles:
-            return out
-        base = self.base_url
-        for i in range(0, len(titles), 50):
-            chunk = titles[i:i+50]
-            params = {
-                'action': 'query',
-                'titles': '|'.join(chunk),
-                'prop': 'categories',
-                'cllimit': 500,
-                'format': 'json'
-            }
-            try:
-                resp = self.session.get(base, params=params)
-                resp.raise_for_status()
-                data = resp.json()
-                pages = data.get('query', {}).get('pages', {})
-                for pid, pinfo in pages.items():
-                    title = pinfo.get('title')
-                    if not title:
-                        continue
-                    cats = pinfo.get('categories', [])
-                    out[title] = [c.get('title', '') for c in cats if c.get('title')]
-            except requests.RequestException as e:
-                print(f"Category fetch error: {e}")
-                for t in chunk:
-                    out[t] = []
-            time.sleep(0.1)
-        return out
-
-    def search_candidates(self, query: str = '"=={{io}}=="|"==Ido=="', limit: Optional[int] = None) -> List[str]:
-        """Use the search API to find candidate pages likely to have Ido sections.
-
-        The default query searches for both literal '=={{io}}==' and '==Ido==' headings.
-        """
-        titles: List[str] = []
-        scontinue = None
-        count = 0
-        while True:
-            params = {
-                'action': 'query',
-                'list': 'search',
-                'srsearch': query,
-                'srlimit': 500,
-                'format': 'json'
-            }
-            if scontinue:
-                params['sroffset'] = scontinue
-            try:
-                resp = self.session.get(self.base_url, params=params)
-                resp.raise_for_status()
-                data = resp.json()
-                results = data.get('query', {}).get('search', [])
-                batch = [r.get('title') for r in results if r.get('title')]
-                titles.extend(batch)
-                count += len(batch)
-                if limit and count >= limit:
-                    return titles[:limit]
-                # pagination via 'continue' uses 'sroffset' or 'continue' token
-                if 'continue' in data:
-                    scontinue = data['continue'].get('sroffset') or None
-                else:
-                    break
-            except requests.RequestException as e:
-                print(f"Search error: {e}")
-                break
-            time.sleep(0.1)
-        return titles
-
-    def extract_via_search(self, limit: Optional[int] = None, output_file: str = 'ido_esperanto_dict.json') -> None:
-        """Prototype: find candidate pages via search, batch-fetch content, and extract entries."""
-        print("Searching for candidate pages containing Ido sections...")
-        candidates = self.search_candidates(limit=limit)
-        print(f"Found {len(candidates)} candidate pages")
-
-        contents = self._batch_fetch_pages(candidates)
-
-        extracted = []
-        total_candidates = 0
-        parsed_count = 0
-        for title, content in contents.items():
-            if not content:
-                continue
-            total_candidates += 1
-            # Skip dot-prefixed
-            if title.startswith('.') or not re.match(r'^[A-Za-z0-9]', title):
-                continue
-            entry = self.parse_ido_entry(title, content)
-            if not entry:
-                # record unparsed
-                continue
-            # Keep only translations (user requested). Skip if translations empty
-            translations = entry.get('esperanto_translations') or []
-            if not translations:
-                continue
-            entry_out = {
-                'ido_word': entry['ido_word'],
-                'esperanto_translations': translations
-            }
-            extracted.append(entry_out)
-            parsed_count += 1
-
-        result = {
-            'metadata': {
-                'extraction_date': datetime.now().isoformat(),
-                'source': 'io.wiktionary.org',
-                'total_words': len(extracted),
-                'script_version': '1.0',
-                'pages_processed': len(candidates),
-                'candidates_examined': total_candidates,
-                'parsed_entries': parsed_count,
-                'parsed_pct': (parsed_count / total_candidates * 100) if total_candidates else 0.0
-            },
-            'words': extracted
-        }
-
-        with open(output_file, 'w', encoding='utf-8') as f:
-            json.dump(result, f, ensure_ascii=False, indent=2)
-
-        print(f"Search extraction complete: {len(extracted)} entries saved to {output_file}")
-
-    def _clean_extracted_text(self, text: str) -> str:
-        """Sanitize extracted wikitext/HTML fragments into readable strings."""
-        if not text:
-            return ''
-        # Remove templates
-        text = re.sub(r'{{[^}]*}}', '', text)
-        # Convert wiki links [[x|y]] -> y or [[x]] -> x
-        text = re.sub(r'\[\[([^\]|]*\|)?([^\]]+)\]\]', r'\2', text)
-        # Decode basic HTML entities
-        text = text.replace('&nbsp;', ' ').replace('&amp;', '&').replace('&lt;', '<').replace('&gt;', '>')
-        # Remove pipes left and collapse whitespace
-        text = text.replace('|', ' ')
-        text = re.sub(r'\s+', ' ', text)
-
-        # Remove common CSS declarations that may leak from HTML attributes
-        try:
-            text = re.sub(r'\b(?:width|height|border|margin|padding|color|background|bgcolor)\s*:\s*[^;\n\r]+;?', '', text, flags=re.IGNORECASE)
-            # Remove hex color tokens like '#aabbcc' or bare 'aabbcc'
-            text = re.sub(r'#?[0-9a-fA-F]{6}\b', '', text)
-        except Exception:
-            pass
-
-        return text.strip(' \t\n\r\f\v:;,-')
-
-    def _filter_and_clean_definitions(self, defs: List[str]) -> List[str]:
-        """Clean and filter a list of definition strings, removing HTML artifacts.
-
-        Keeps only strings that contain alphabetic characters and do not look like
-        HTML/table fragments (heuristics: no '<', no 'valign', no 'width=', no 'f9f9f9').
-        """
-        cleaned: List[str] = []
-        for d in defs:
-            if not d:
-                continue
-            s = self._clean_extracted_text(d)
-            if not s:
-                continue
-            # Reject obvious HTML/table fragments
-            low = s.lower()
-            if '<' in s or '>' in s or 'valign' in low or 'width=' in low or 'f9f9f9' in low:
-                continue
-            # Reject CSS-like fragments (e.g. 'width: 35%; border: 3px solid')
-            if re.search(r'\b(?:width|height|border|margin|padding|color|background|bgcolor)\s*:', s, re.IGNORECASE):
-                continue
-            if re.search(r'\b(?:px|em|rem|%)\b', s):
-                # likely a style declaration if it contains CSS units without alphabetic context
-                # but allow cases with letters too; check for shortness indicating artifact
-                if len(s) < 40 or not re.search(r'[A-Za-z]{3,}', s):
-                    continue
-            # Reject bare hex color tokens like 'aabbcc' possibly from bgcolor without '#'
-            if re.search(r'\b[0-9a-fA-F]{6}\b', s):
-                continue
-            # Require at least one alphabetic character
-            if not any(ch.isalpha() for ch in s):
-                continue
-            cleaned.append(s)
-            if len(cleaned) >= 3:
-                break
-        return cleaned
-    
-    def extract_part_of_speech(self, text: str) -> Optional[str]:
-        """Extract part of speech from wikitext"""
-        pos_patterns = [
-            r'===\s*(Noun|Verb|Adjective|Adverb|Pronoun|Preposition|Conjunction|Interjection)\s*===',
-            r'===\s*(Substantivo|Verbo|Adjektivo|Adverbo)\s*==='
-        ]
+    def is_valid_title(self, title: str) -> bool:
+        """Check if title represents a valid word entry."""
+        if not title or len(title.strip()) == 0:
+            return False
         
-        for pattern in pos_patterns:
-            match = re.search(pattern, text, re.IGNORECASE)
+        title = title.strip()
+        
+        # Check against invalid patterns
+        for pattern in INVALID_TITLE_PATTERNS:
+            if pattern.search(title):
+                return False
+        
+        # Additional checks
+        if len(title) < 2:
+            return False
+        
+        # Skip common non-words
+        skip_words = {
+            'MediaWiki', 'Help', 'Category', 'Template', 'User', 'Talk',
+            'File', 'Image', 'Special', 'Main', 'Wikipedia', 'Wiktionary'
+        }
+        if title in skip_words:
+            return False
+        
+        return True
+    
+    def has_excluded_categories(self, wikitext: str) -> bool:
+        """Check if page has categories that should be excluded."""
+        categories = re.findall(r'\[\[(?:Category|Kategorio):\s*([^\]|]+)', wikitext, re.IGNORECASE)
+        category_text = ' '.join(categories).lower()
+        
+        for pattern in EXCLUDE_CATEGORY_PATTERNS:
+            if pattern.search(category_text):
+                return True
+        return False
+    
+    def extract_ido_section(self, wikitext: str) -> Optional[str]:
+        """Extract the Ido section from wikitext."""
+        for pattern in IDO_SECTION_PATTERNS:
+            match = re.search(pattern, wikitext)
             if match:
-                return match.group(1).lower()
+                # Find the end of the Ido section (next == header or end of text)
+                start_pos = match.start()
+                section_content = wikitext[start_pos:]
+                
+                # Find the end of the section
+                next_section = re.search(r'\n==[^=]', section_content)
+                if next_section:
+                    section_content = section_content[:next_section.start()]
+                
+                return section_content
+        return None
+    
+    def extract_part_of_speech(self, ido_section: str) -> Optional[str]:
+        """Extract part of speech from Ido section."""
+        if not ido_section:
+            return None
+        
+        for pattern in POS_PATTERNS:
+            match = pattern.search(ido_section)
+            if match:
+                pos = match.group(1).lower()
+                # Map to standard English terms
+                pos_map = {
+                    'substantivo': 'noun',
+                    'verbo': 'verb', 
+                    'adjektivo': 'adjective',
+                    'adverbo': 'adverb'
+                }
+                return pos_map.get(pos, pos)
         
         return None
     
-    def extract_definitions(self, text: str) -> List[str]:
-        """Extract definitions from wikitext"""
-        definitions: List[str] = []
-
+    def parse_multiple_translations(self, translation_text: str) -> List[str]:
+        """Parse a translation string that may contain multiple meanings."""
+        if not translation_text:
+            return []
+        
+        translations = []
+        
+        # Clean the text first
+        text = self.clean_translation(translation_text)
         if not text:
             return []
-
-        # 1) Prefer explicit Esperanto-language markers in wikitext, e.g. '*{{eo}}: [[Obadja]]'
-        eo_template_pattern = r"\*\s*{{\s*eo(?:\|[^}]*)?\s*}}\s*[:\-]?\s*([^\n\|]+)"
-        for m in re.findall(eo_template_pattern, text, flags=re.IGNORECASE):
-            val = m.strip()
-            val = re.sub(r'\[\[([^\]|]*\|)?([^\]]+)\]\]', r'\2', val)
-            val = re.sub(r'{{[^}]*}}', '', val)
-            val = val.strip(' \t\n\r\f\v:;,')
-            if val:
-                definitions.append(val)
-
-        # 2) Look for lines like '* Esperanto: translation' as a fallback
-        for m in re.findall(r"\*\s*(?:Esperanto|eo)[:\-\s]+([^\n\|]+)", text, flags=re.IGNORECASE):
-            val = m.strip()
-            val = re.sub(r'\[\[([^\]|]*\|)?([^\]]+)\]\]', r'\2', val)
-            val = re.sub(r'{{[^}]*}}', '', val)
-            val = val.strip(' \t\n\r\f\v:;,')
-            if val:
-                definitions.append(val)
-
-        # 3) Generic fallback: numbered or bulleted definitions after cleaning table attributes
-        if not definitions:
-            cleaned = text
-            # remove common table cell attributes that leak into lines
-            cleaned = re.sub(r'bgcolor=\"[^\"]*\"', '', cleaned)
-            cleaned = re.sub(r'valign=[^\s|]+', '', cleaned)
-            cleaned = re.sub(r'width=[^\s|]+', '', cleaned)
-            def_patterns = [r'#\s*([^\n#]+)', r'\*\s*([^\n\*]+)']
-            for pattern in def_patterns:
-                for match in re.findall(pattern, cleaned):
-                    definition = re.sub(r'{{[^}]*}}', '', match)
-                    definition = re.sub(r'\[\[([^\]|]*)\|?[^\]]*\]\]', r'\1', definition)
-                    definition = definition.strip()
-                    if definition and not definition.lower().startswith(('esperanto', 'see also')):
-                        definitions.append(definition)
-
-        # Deduplicate while preserving order
-        seen = set()
-        out = []
-        for d in definitions:
-            if d and d not in seen:
-                seen.add(d)
-                out.append(d)
-                if len(out) >= 3:
-                    break
-
-        return out
-    
-    def extract_etymology(self, text: str) -> Optional[str]:
-        """Extract etymology information"""
-        etymology_match = re.search(r'===\s*Etymology\s*===\s*([^\n=]+)', text, re.IGNORECASE)
-        if etymology_match:
-            etymology = re.sub(r'{{[^}]*}}', '', etymology_match.group(1))
-            etymology = re.sub(r'\[\[([^\]|]*)\|?[^\]]*\]\]', r'\1', etymology)
-            return etymology.strip()
-        return None
-    
-    def extract_examples(self, text: str) -> List[Dict[str, str]]:
-        """Extract example sentences"""
-        examples = []
         
-        # Look for example patterns
-        example_patterns = [
-            r'{{example\|ido\|([^}|]+)\|([^}]+)}}',
-            r'{{ux\|io\|([^}|]+)\|([^}]+)}}'
-        ]
+        # Skip malformed entries
+        if text in ['[['] or text.startswith('[['):
+            return []
         
-        for pattern in example_patterns:
-            matches = re.findall(pattern, text)
+        # Handle numbered meanings like "(1) finiĝi; (2) fini"
+        numbered_pattern = r'\((\d+)\)\s*([^;()]+)'
+        numbered_matches = re.findall(numbered_pattern, text)
+        if numbered_matches:
+            for num, meaning in numbered_matches:
+                clean_meaning = meaning.strip()
+                if clean_meaning and len(clean_meaning) > 1:
+                    translations.append(clean_meaning)
+            return translations
+        
+        # Handle semicolon-separated meanings like "kanti; ĉirpi"
+        if ';' in text:
+            parts = text.split(';')
+            for part in parts:
+                clean_part = part.strip()
+                if clean_part and len(clean_part) > 1:
+                    translations.append(clean_part)
+            return translations
+        
+        # Handle comma-separated meanings (but be careful with commas in definitions)
+        if ',' in text and len(text) > 10:  # Only split if it's a longer text
+            # Look for patterns like "word1, word2, word3" vs "word, definition"
+            # If it looks like a list of short words, split on commas
+            parts = [p.strip() for p in text.split(',')]
+            if all(len(p) < 20 for p in parts):  # All parts are reasonably short
+                translations.extend(parts)
+                return translations
+        
+        # Single translation
+        if text and len(text) > 1:
+            translations.append(text)
+        
+        return translations
+    
+    def extract_translations(self, ido_section: str) -> List[str]:
+        """Extract Esperanto translations from Ido section."""
+        translations = []
+        
+        if not ido_section:
+            return translations
+        
+        # Extract using patterns
+        for pattern in TRANSLATION_PATTERNS:
+            matches = pattern.findall(ido_section)
             for match in matches:
-                examples.append({
-                    'ido': match[0].strip(),
-                    'translation': match[1].strip()
-                })
+                if isinstance(match, tuple):
+                    # Handle templates with multiple parameters
+                    translation = match[0].strip()
+                else:
+                    translation = match.strip()
+                
+                if translation:
+                    # Parse multiple meanings
+                    parsed_translations = self.parse_multiple_translations(translation)
+                    translations.extend(parsed_translations)
         
-        return examples[:2]  # Limit to 2 examples
+        # Remove duplicates while preserving order
+        seen = set()
+        unique_translations = []
+        for trans in translations:
+            if trans not in seen and len(trans) > 1:
+                seen.add(trans)
+                unique_translations.append(trans)
+        
+        return unique_translations
     
-    def extract_all_words(self, limit: Optional[int] = None, output_file: str = 'ido_esperanto_dict.json') -> None:
-        """Main extraction function"""
-        print("Starting Ido-Esperanto dictionary extraction...")
+    def clean_translation(self, translation: str) -> str:
+        """Clean and normalize a translation string."""
+        if not translation:
+            return ""
         
-        # Get all pages
-        pages = self.get_all_pages(limit)
+        # Remove templates
+        translation = re.sub(r'{{[^}]*}}', '', translation)
         
-        if not pages:
-            print("No pages found!")
+        # Remove wiki links but keep the text
+        translation = re.sub(r'\[\[([^\]|]*\|)?([^\]]+)\]\]', r'\2', translation)
+        
+        # Remove category links completely
+        translation = re.sub(r'\[\[(?:Category|Kategorio):[^\]]*\]\]', '', translation)
+        
+        # Remove category references like "Kategorio:Eo BA" or just "BA"
+        translation = re.sub(r'\s*Kategorio:[^\s]*', '', translation)
+        translation = re.sub(r'\s+[A-Z]{1,3}\s*$', '', translation)
+        
+        # Remove HTML tags
+        translation = re.sub(r'<[^>]+>', '', translation)
+        
+        # Decode HTML entities
+        translation = translation.replace('&nbsp;', ' ')
+        translation = translation.replace('&amp;', '&')
+        translation = translation.replace('&lt;', '<')
+        translation = translation.replace('&gt;', '>')
+        
+        # Remove common artifacts
+        translation = re.sub(r'\*', '', translation)  # Remove asterisks
+        translation = re.sub(r'#.*$', '', translation)  # Remove everything after #
+        
+        # Clean whitespace and punctuation
+        translation = re.sub(r'\s+', ' ', translation)
+        translation = translation.strip(' \t\n\r\f\v:;,.-')
+        
+        return translation
+    
+    def extract_from_wikitext(self, title: str, wikitext: str) -> Optional[Dict]:
+        """Extract Ido-Esperanto entry from wikitext."""
+        # Check if title is valid
+        if not self.is_valid_title(title):
+            self.stats['skipped_by_title'] += 1
+            return None
+        
+        # Check for excluded categories
+        if self.has_excluded_categories(wikitext):
+            self.stats['skipped_by_category'] += 1
+            return None
+        
+        # Extract Ido section
+        ido_section = self.extract_ido_section(wikitext)
+        if not ido_section:
+            return None
+        
+        self.stats['pages_with_ido_section'] += 1
+        
+        # Extract part of speech
+        pos = self.extract_part_of_speech(ido_section)
+        if pos:
+            self.stats['entries_with_pos'] += 1
+        
+        # Extract translations
+        translations = self.extract_translations(ido_section)
+        if not translations:
+            self.stats['skipped_no_translations'] += 1
+            return None
+        
+        self.stats['valid_entries_found'] += 1
+        
+        # Check if we have multiple meanings
+        if len(translations) > 1:
+            self.stats['entries_with_multiple_meanings'] += 1
+        
+        return {
+            'ido_word': title,
+            'esperanto_translations': translations,
+            'part_of_speech': pos
+        }
+    
+    def stream_pages_from_dump(self) -> Iterator[Tuple[str, str]]:
+        """Stream pages from the dump file using robust line-by-line parsing."""
+        if not os.path.exists(self.dump_file):
+            raise FileNotFoundError(f"Dump file not found: {self.dump_file}")
+        
+        # Use appropriate decompression
+        if self.dump_file.endswith('.bz2'):
+            file_obj = bz2.open(self.dump_file, 'rt', encoding='utf-8', errors='ignore')
+        else:
+            file_obj = open(self.dump_file, 'r', encoding='utf-8', errors='ignore')
+        
+        try:
+            current_page = {}
+            in_page = False
+            in_text = False
+            page_buffer = []
+            
+            for line_num, line in enumerate(file_obj):
+                line = line.strip()
+                
+                if '<page>' in line:
+                    in_page = True
+                    current_page = {}
+                    page_buffer = [line]
+                elif '</page>' in line and in_page:
+                    page_buffer.append(line)
+                    page_xml = '\n'.join(page_buffer)
+                    
+                    # Parse the page XML
+                    try:
+                        page_elem = ET.fromstring(page_xml)
+                        
+                        # Extract title
+                        title_elem = page_elem.find('title')
+                        if title_elem is not None:
+                            title = title_elem.text
+                        else:
+                            title = None
+                        
+                        # Extract text from revision
+                        text = None
+                        revision = page_elem.find('revision')
+                        if revision is not None:
+                            text_elem = revision.find('text')
+                            if text_elem is not None:
+                                text = text_elem.text
+                        
+                        if title and text:
+                            # Unescape XML entities
+                            text = text.replace('&lt;', '<')
+                            text = text.replace('&gt;', '>')
+                            text = text.replace('&amp;', '&')
+                            
+                            yield title, text
+                            
+                            self.stats['pages_processed'] += 1
+                            
+                            if self.stats['pages_processed'] % 1000 == 0:
+                                print(f"Processed {self.stats['pages_processed']} pages...")
+                    
+                    except ET.ParseError:
+                        # Skip malformed pages
+                        pass
+                    
+                    in_page = False
+                    current_page = {}
+                    page_buffer = []
+                
+                elif in_page:
+                    page_buffer.append(line)
+                
+                # Stop after processing enough pages for testing
+                if self.stats['pages_processed'] > 10000:  # Reasonable limit
+                    break
+        
+        finally:
+            file_obj.close()
+    
+    def download_dump(self, force: bool = False) -> None:
+        """Download the dump file if it doesn't exist or force is True."""
+        if os.path.exists(self.dump_file) and not force:
+            print(f"Dump file already exists: {self.dump_file}")
             return
         
-        extracted_words = []
+        print(f"Downloading dump from {DUMP_URL}...")
+        print("This may take several minutes...")
+        
+        try:
+            urllib.request.urlretrieve(DUMP_URL, self.dump_file)
+            print(f"Download complete: {self.dump_file}")
+        except Exception as e:
+            print(f"Error downloading dump: {e}")
+            raise
+    
+    def extract_dictionary(self, limit: Optional[int] = None, output_file: str = 'ido_esperanto_v2.json') -> None:
+        """Extract Ido-Esperanto dictionary from dump."""
+        print("Starting improved Ido-Esperanto dictionary extraction v2...")
+        
+        entries = []
         processed = 0
         
-        for i, title in enumerate(pages):
-            if i % 50 == 0:
-                print(f"Processing page {i+1}/{len(pages)}: {title}")
-            
-            # Skip titles that are not word-like (start with non-alphanumeric)
-            # and specifically skip dot-prefixed titles (user requested)
-            if not re.match(r'^[A-Za-z0-9]', title) or title.startswith('.'):
-                continue
-            
-            # Get page content
-            content = self.get_page_content(title)
-            if not content:
-                continue
-            
-            # Parse Ido entry
-            entry = self.parse_ido_entry(title, content)
-            if entry:
-                # Clean and filter definitions
-                defs = entry.get('definitions') or []
-                defs = self._filter_and_clean_definitions(defs)
-                if not defs:
-                    continue
-                entry['definitions'] = defs
-                # Remove unwanted fields if present
-                entry.pop('raw_content', None)
-                entry.pop('examples', None)
-                entry.pop('etymology', None)
-                # Remove source_url per user request
-                entry.pop('source_url', None)
-                extracted_words.append(entry)
+        try:
+            for title, wikitext in self.stream_pages_from_dump():
+                if limit and processed >= limit:
+                    break
+                
+                entry = self.extract_from_wikitext(title, wikitext)
+                if entry:
+                    entries.append(entry)
+                    translations_str = ', '.join(entry['esperanto_translations'][:2])
+                    pos_info = f" ({entry['part_of_speech']})" if entry['part_of_speech'] else ""
+                    print(f"✓ Found: {entry['ido_word']}{pos_info} -> [{translations_str}]")
+                
                 processed += 1
-                print(f"✓ Found Ido word with Esperanto translation: {title}")
             
-            # Be respectful to the server
-            time.sleep(0.1)
+        except KeyboardInterrupt:
+            print("\nExtraction interrupted by user.")
+        except Exception as e:
+            print(f"Error during extraction: {e}")
+            raise
         
-        # Prepare final data structure
+        # Create result
         result = {
             'metadata': {
                 'extraction_date': datetime.now().isoformat(),
-                'source': 'io.wiktionary.org',
-                'total_words': len(extracted_words),
-                'script_version': '1.0',
-                'pages_processed': len(pages)
+                'total_words': len(entries),
+                'script_version': 'v2.0',
+                'stats': self.stats.copy()
             },
-            'words': extracted_words
+            'words': entries
         }
         
         # Save to file
@@ -853,33 +463,37 @@ class IdoEsperantoExtractor:
             json.dump(result, f, ensure_ascii=False, indent=2)
         
         print(f"\nExtraction complete!")
-        print(f"Total pages processed: {len(pages)}")
-        print(f"Ido words with Esperanto translations found: {len(extracted_words)}")
+        print(f"Total pages processed: {self.stats['pages_processed']}")
+        print(f"Pages with Ido sections: {self.stats['pages_with_ido_section']}")
+        print(f"Valid entries found: {self.stats['valid_entries_found']}")
+        print(f"Entries with part of speech: {self.stats['entries_with_pos']}")
+        print(f"Entries with multiple meanings: {self.stats['entries_with_multiple_meanings']}")
+        print(f"Skipped by category: {self.stats['skipped_by_category']}")
+        print(f"Skipped by title: {self.stats['skipped_by_title']}")
+        print(f"Skipped no translations: {self.stats['skipped_no_translations']}")
         print(f"Results saved to: {output_file}")
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Extract Ido words with Esperanto translations from io.wiktionary.org')
-    parser.add_argument('--output', '-o', default='ido_esperanto_dict.json', 
-                       help='Output JSON file (default: ido_esperanto_dict.json)')
-    parser.add_argument('--limit', '-l', type=int, 
-                       help='Limit number of pages to process (for testing)')
-    parser.add_argument('--mode', choices=['all', 'search', 'dump'], default='all',
-                        help='Extraction mode: all (iterate all pages), search (API search+batch fetch), dump (use local dump parser)')
+    parser = argparse.ArgumentParser(description='Improved Ido-Esperanto dictionary extractor v2')
+    parser.add_argument('--dump', default=DUMP_FILE, help='Path to dump file')
+    parser.add_argument('--download', action='store_true', help='Download dump file')
+    parser.add_argument('--force-download', action='store_true', help='Force re-download of dump file')
+    parser.add_argument('--output', '-o', default='ido_esperanto_v2.json', help='Output JSON file')
+    parser.add_argument('--limit', type=int, help='Limit number of pages to process (for testing)')
     
     args = parser.parse_args()
     
-    extractor = IdoEsperantoExtractor()
+    extractor = ImprovedDumpParserV2(args.dump)
+    
     try:
-        if args.mode == 'search':
-            extractor.extract_via_search(limit=args.limit, output_file=args.output)
-        else:
-            extractor.extract_all_words(limit=args.limit, output_file=args.output)
-    except KeyboardInterrupt:
-        print("\nExtraction interrupted by user.")
-        sys.exit(1)
+        if args.download or args.force_download:
+            extractor.download_dump(force=args.force_download)
+        
+        extractor.extract_dictionary(limit=args.limit, output_file=args.output)
+    
     except Exception as e:
-        print(f"Error during extraction: {e}")
+        print(f"Error: {e}")
         sys.exit(1)
 
 

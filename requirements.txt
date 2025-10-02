@@ -1,2 +1,7 @@
-requests>=2.25.1
+# Optional dependency for enhanced template parsing
+# Install with: pip install mwparserfromhell
 mwparserfromhell>=0.6.4
+
+# Note: The extractor works without external dependencies
+# using only Python standard library, but mwparserfromhell
+# provides better template parsing if available.
