@@ -167,30 +167,14 @@ class ImprovedDumpParserV2:
         
         return None
     
-    def extract_metadata(self, ido_section: str) -> Dict[str, str]:
-        """Extract additional metadata from Ido section like Semantiko and Morfologio."""
+    def extract_metadata(self, ido_section: str) -> Dict[str, any]:
+        """Extract additional metadata from Ido section like Morfologio."""
         metadata = {}
         
         if not ido_section:
             return metadata
         
-        # Extract Semantiko (semantics)
-        semantiko_patterns = [
-            r'Semantiko:\s*([^\n]+)',
-            r'Semantiko\s*:\s*([^\n]+)',
-            r'Semantiko\s+([^\n]+)'
-        ]
-        for pattern in semantiko_patterns:
-            match = re.search(pattern, ido_section, re.IGNORECASE)
-            if match:
-                semantiko = match.group(1).strip()
-                # Clean up common artifacts
-                semantiko = re.sub(r'^\s*[:\-]\s*', '', semantiko)
-                if semantiko and len(semantiko) > 1:
-                    metadata['semantiko'] = semantiko
-                    break
-        
-        # Extract Morfologio (morphology)
+        # Extract Morfologio (morphology) and parse into meaningful list
         morfologio_patterns = [
             r'Morfologio:\s*([^\n]+)',
             r'Morfologio\s*:\s*([^\n]+)',
@@ -199,14 +183,48 @@ class ImprovedDumpParserV2:
         for pattern in morfologio_patterns:
             match = re.search(pattern, ido_section, re.IGNORECASE)
             if match:
-                morfologio = match.group(1).strip()
+                morfologio_text = match.group(1).strip()
                 # Clean up common artifacts
-                morfologio = re.sub(r'^\s*[:\-]\s*', '', morfologio)
-                if morfologio and len(morfologio) > 1:
-                    metadata['morfologio'] = morfologio
+                morfologio_text = re.sub(r'^\s*[:\-]\s*', '', morfologio_text)
+                if morfologio_text and len(morfologio_text) > 1:
+                    # Parse morfologio into meaningful components
+                    parsed_morfologio = self.parse_morfologio(morfologio_text)
+                    if parsed_morfologio:
+                        metadata['morfologio'] = parsed_morfologio
                     break
         
         return metadata
+    
+    def parse_morfologio(self, morfologio_text: str) -> List[str]:
+        """Parse morfologio text into meaningful components.
+        Example: "[[fac]][[.ar]] [[Kategorio:Io FA]]" -> ["fac", ".ar"]"""
+        if not morfologio_text:
+            return []
+        
+        components = []
+        
+        # Remove category references (Kategorio:)
+        text = re.sub(r'\s*\[\[Kategorio:[^\]]+\]\]', '', morfologio_text)
+        
+        # Extract components from [[word]] patterns
+        # Pattern matches: [[fac]], [[.ar]], [[word]], etc.
+        matches = re.findall(r'\[\[([^\]]+)\]\]', text)
+        
+        for match in matches:
+            # Skip empty matches
+            if not match.strip():
+                continue
+            
+            # Clean up the match
+            clean_match = match.strip()
+            
+            # Skip category codes that might still be there
+            if re.match(r'^[A-Z]{1,3}$', clean_match):
+                continue
+            
+            components.append(clean_match)
+        
+        return components
     
     def parse_multiple_translations(self, translation_text: str) -> List[List[str]]:
         """Parse a translation string that may contain multiple meanings.
@@ -316,6 +334,7 @@ class ImprovedDumpParserV2:
         # Remove category references like "Kategorio:Eo BA" or just "BA"
         translation = re.sub(r'\s*Kategorio:[^\s]*', '', translation)
         translation = re.sub(r'\s+[A-Z]{1,3}\s*$', '', translation)
+        translation = re.sub(r'\s*\[\[Kategorio:[^\]]+\]\]', '', translation)  # Remove [[Kategorio:...]]
         
         # Remove HTML tags
         translation = re.sub(r'<[^>]+>', '', translation)
