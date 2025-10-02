@@ -80,6 +80,16 @@ def extract_from_wikitext(title: str, wikitext: str) -> Optional[dict]:
     if not sec_match:
         return None
     ido_section = sec_match.group(1)
+    # Extract categories from the whole page wikitext (support English and local 'Kategorio')
+    cats = re.findall(r'\[\[(?:Category|Kategorio):([^\]|]+)', wikitext, re.IGNORECASE)
+    # conservative suffix/compound indicators to filter out non-base forms
+    suffix_indicators = ('suf', 'sufix', 'sufixo', 'radik', 'radiko', 'komp', 'kompon', 'affix', 'suffix')
+    for c in cats:
+        low = c.lower()
+        for ind in suffix_indicators:
+            if ind in low:
+                # skip pages whose categories indicate suffixes/roots/compounds
+                return None
     # try to extract Esperanto translations within that section
     if mwp:
         try:
@@ -110,7 +120,11 @@ def extract_from_wikitext(title: str, wikitext: str) -> Optional[dict]:
                     translations.append(m.group(1).strip())
         if not translations:
             return None
-        # keep only base word forms: filter titles with suffix-like patterns (rudimentary)
+        # keep only base word forms: also skip titles that look like affix/suffix forms (rudimentary)
+        t_low = title.lower()
+        for ind in suffix_indicators:
+            if ind in t_low:
+                return None
         return {
             'ido_word': title,
             'esperanto_translations': translations,
