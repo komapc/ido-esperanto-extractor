@@ -239,107 +239,6 @@ class ImprovedDumpParserV2:
         
         return components
     
-    def analyze_translation_failure(self, ido_section: str) -> str:
-        """Analyze why translation extraction failed and provide detailed reason."""
-        if not ido_section:
-            return 'ido_section_empty'
-        
-        # Check for different types of translation patterns
-        translation_patterns_found = []
-        
-        # Check for {{eo}} templates
-        eo_templates = re.findall(r'\{\{eo[^}]*\}\}', ido_section, re.IGNORECASE)
-        if eo_templates:
-            translation_patterns_found.append(f'{len(eo_templates)}_eo_templates')
-        
-        # Check for {{eo|}} patterns
-        eo_pipe_patterns = re.findall(r'\{\{eo\|[^}]*\}\}', ido_section, re.IGNORECASE)
-        if eo_pipe_patterns:
-            translation_patterns_found.append(f'{len(eo_pipe_patterns)}_eo_pipe_templates')
-        
-        # Check for *{{eo}}: patterns
-        eo_colon_patterns = re.findall(r'\*\s*\{\{eo\}\}:?\s*', ido_section, re.IGNORECASE)
-        if eo_colon_patterns:
-            translation_patterns_found.append(f'{len(eo_colon_patterns)}_eo_colon_patterns')
-        
-        # Check for any Esperanto-related text
-        esperanto_mentions = re.findall(r'(?:esperanto|eo)\s*[:=]', ido_section, re.IGNORECASE)
-        if esperanto_mentions:
-            translation_patterns_found.append(f'{len(esperanto_mentions)}_esperanto_mentions')
-        
-        # Check for empty or malformed content - only catch truly malformed patterns
-        if '{{eo}}:}}' in ido_section:
-            return 'eo_template_empty_or_malformed'
-        
-        # Check for empty Esperanto templates followed by other language templates
-        empty_eo_followed_by_lang = re.search(r'\*\s*\{\{eo\}\}\s*:\s*\n\s*\*\{\{[^}]+\}\}', ido_section, re.IGNORECASE | re.MULTILINE)
-        if empty_eo_followed_by_lang:
-            return 'eo_template_empty_followed_by_other_language'
-        
-        # Check for only whitespace after eo templates
-        eo_whitespace_only = re.search(r'\{\{eo\}\}:?\s*$', ido_section, re.IGNORECASE | re.MULTILINE)
-        if eo_whitespace_only:
-            return 'eo_template_whitespace_only'
-        
-        # Check for empty eo templates with just whitespace before next language
-        empty_eo_pattern = re.search(r'\*\s*\{\{eo\}\}\s*:\s*\s*\n\s*\*', ido_section, re.IGNORECASE | re.MULTILINE)
-        if empty_eo_pattern:
-            return 'eo_template_empty_before_next_language'
-        
-        # Check for brackets that suggest incomplete parsing
-        if '[[' in ido_section and ']]' not in ido_section:
-            return 'incomplete_wiki_links'
-        
-        if '{{' in ido_section and '}}' not in ido_section:
-            return 'incomplete_templates'
-        
-        # If we found patterns but still failed, it's a parsing issue
-        if translation_patterns_found:
-            return f'parsing_failed_despite_patterns: {", ".join(translation_patterns_found)}'
-        
-        # Check if section exists but has no translation content
-        if '===' in ido_section or '== ' in ido_section:
-            return 'section_exists_no_translation_content'
-        
-        return 'no_translation_patterns_found'
-    
-    def analyze_ido_section_extraction_failure(self, wikitext: str) -> str:
-        """Analyze why Ido section extraction failed despite finding Ido patterns."""
-        if not wikitext:
-            return 'wikitext_empty'
-        
-        # Check which Ido section patterns were found
-        patterns_found = []
-        for pattern in IDO_SECTION_PATTERNS:
-            if pattern.search(wikitext):
-                patterns_found.append(pattern.pattern)
-        
-        if not patterns_found:
-            return 'no_ido_patterns_detected'
-        
-        # Check for malformed section headers
-        malformed_headers = re.findall(r'===\s*[^=]*\s*$', wikitext, re.MULTILINE)
-        if malformed_headers:
-            return f'ido_section_malformed_headers: {len(malformed_headers)}_found'
-        
-        # Check for incomplete section boundaries
-        open_sections = wikitext.count('==')
-        if open_sections % 2 != 0:
-            return f'ido_section_incomplete_boundaries: {open_sections}_markers'
-        
-        # Check for very short sections that might be malformed
-        ido_sections = re.findall(r'===.*Ido.*===(.*?)(?===|$)', wikitext, re.DOTALL | re.IGNORECASE)
-        if ido_sections:
-            for i, section in enumerate(ido_sections):
-                if len(section.strip()) < 10:
-                    return f'ido_section_too_short: {len(section.strip())}_chars'
-        
-        # Check for encoding or character issues
-        if '\\x' in repr(wikitext) or '\\u' in repr(wikitext):
-            return 'ido_section_encoding_issues'
-        
-        return f'ido_section_extraction_failed_patterns_found: {", ".join(patterns_found[:2])}'
-    
     def parse_multiple_translations(self, translation_text: str) -> List[List[str]]:
         """Parse a translation string that may contain multiple meanings.
         Returns a list of lists, where each inner list represents one meaning with its synonyms."""
@@ -586,39 +485,6 @@ class ImprovedDumpParserV2:
         
         return unique_meanings
     
-    def extract_raw_esperanto_content(self, ido_section: str) -> Optional[str]:
-        """Extract raw Esperanto content from Ido section for failed items."""
-        if not ido_section:
-            return None
-        
-        # Look for any Esperanto-related content - be very specific to avoid false matches
-        esperanto_patterns = [
-            r'\*\s*\{\{eo\}\}\s*:\s*([^\n\|*]+)',  # *{{eo}}: content (stop at next *)
-            r'\*\s*(?:Esperanto|esperanto)\s*[:\-]\s*([^\n\|*]+)',  # *Esperanto: content (stop at next *)
-            r'{{t\+?\|eo\|([^}|]+)}}',  # {{t|eo|content}}
-            r'{{l\|eo\|([^}|]+)}}',  # {{l|eo|content}}
-            r'Esperanto\s*[:\-]\s*([^\n*]+)'  # Esperanto: content (stop at next *)
-        ]
-        
-        for pattern in esperanto_patterns:
-            matches = re.findall(pattern, ido_section, re.IGNORECASE)
-            if matches:
-                # Return the first non-empty match
-                for match in matches:
-                    if isinstance(match, tuple):
-                        content = match[0].strip()
-                    else:
-                        content = match.strip()
-                    
-                    # Skip if content is just a language template marker (like {{et}}:)
-                    if (content and len(content) > 1 and 
-                        not content.startswith('{{') and 
-                        not content.endswith('}}') and
-                        content not in ['{{et}}:', '{{en}}:', '{{fr}}:', '{{de}}:', '{{es}}:', '{{it}}:', '{{pt}}:', '{{ru}}:', '{{ja}}:', '{{zh}}:']):
-                        return content
-        
-        return None
-    
     def clean_translation(self, translation: str) -> str:
         """Clean and normalize a translation string."""
         if not translation:
@@ -688,11 +554,9 @@ class ImprovedDumpParserV2:
         if not ido_section:
             # Track failed parsing - pages that have Ido sections but failed to extract
             if any(pattern.search(wikitext) for pattern in IDO_SECTION_PATTERNS):
-                reason = self.analyze_ido_section_extraction_failure(wikitext)
                 self.failed_links.append({
                     'title': title,
-                    'url': f'https://io.wiktionary.org/wiki/{title.replace(" ", "_")}',
-                    'reason': reason
+                    'url': f'https://io.wiktionary.org/wiki/{title.replace(" ", "_")}'
                 })
             return None
         
@@ -713,33 +577,11 @@ class ImprovedDumpParserV2:
         if not translations:
             self.stats['skipped_no_translations'] += 1
             
-            # Analyze why no translations were found for better categorization
-            reason = self.analyze_translation_failure(ido_section)
-            
-            # Skip legitimate "no translation" cases - these are not parsing failures
-            no_translation_reasons = [
-                'eo_template_empty_followed_by_other_language',
-                'section_exists_no_translation_content',
-                'no_translation_patterns_found'
-            ]
-            if reason in no_translation_reasons:
-                return None
-            
-            # Try to extract any raw Esperanto content for failed items
-            raw_esperanto_content = self.extract_raw_esperanto_content(ido_section)
-            
             # Track failed parsing - pages with Ido sections but no valid translations
-            failed_item = {
+            self.failed_links.append({
                 'title': title,
-                'url': f'https://io.wiktionary.org/wiki/{title.replace(" ", "_")}',
-                'reason': reason
-            }
-            
-            # Add raw Esperanto content if found
-            if raw_esperanto_content:
-                failed_item['esperanto_content'] = raw_esperanto_content
-            
-            self.failed_links.append(failed_item)
+                'url': f'https://io.wiktionary.org/wiki/{title.replace(" ", "_")}'
+            })
             return None
     
         self.stats['valid_entries_found'] += 1
