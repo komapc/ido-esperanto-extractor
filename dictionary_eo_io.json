@@ -1,0 +1,366 @@
+{
+  "metadata": {
+    "extraction_date": "2025-10-03T12:30:54.593400",
+    "total_words": 37,
+    "script_version": "v2.0",
+    "stats": {
+      "pages_processed": 141113,
+      "pages_with_esperanto_section": 719,
+      "valid_entries_found": 37,
+      "skipped_by_category": 640,
+      "skipped_by_title": 25468,
+      "skipped_no_translations": 682,
+      "entries_with_pos": 601,
+      "entries_with_multiple_meanings": 4,
+      "entries_with_metadata": 0
+    },
+    "source_dump": {
+      "dump_filename": "eowiktionary-latest-pages-articles.xml.bz2",
+      "dump_path": "/home/mark/apertium-dev/ido-esperanto-extractor/eowiktionary-latest-pages-articles.xml.bz2",
+      "dump_size_bytes": 20336040,
+      "dump_size_mb": 19.39,
+      "dump_modified": "2025-10-03T12:21:03.534668",
+      "dump_created": "2025-10-03T12:21:03.534668",
+      "dump_version": "latest"
+    }
+  },
+  "words": [
+    {
+      "esperanto_word": "Esperanto",
+      "ido_translations": [
+        [
+          "Esperanto"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "Afriko",
+      "ido_translations": [
+        [
+          "Afrika"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "esti",
+      "ido_translations": [
+        [
+          "esar"
+        ]
+      ],
+      "part_of_speech": "verb"
+    },
+    {
+      "esperanto_word": "vorto",
+      "ido_translations": [
+        [
+          "vorto"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "vortaro",
+      "ido_translations": [
+        [
+          "dicionario"
+        ],
+        [
+          "vortolibro"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "lando",
+      "ido_translations": [
+        [
+          "lando"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "lingvo",
+      "ido_translations": [
+        [
+          "linguo"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "hundo",
+      "ido_translations": [
+        [
+          "hundo"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "kvin",
+      "ido_translations": [
+        [
+          "kin"
+        ]
+      ]
+    },
+    {
+      "esperanto_word": "ruĝa",
+      "ido_translations": [
+        [
+          "reda"
+        ]
+      ],
+      "part_of_speech": "adjective"
+    },
+    {
+      "esperanto_word": "smeraldo",
+      "ido_translations": [
+        [
+          "smeraldo"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "acero",
+      "ido_translations": [
+        [
+          "acero"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "dua",
+      "ido_translations": [
+        [
+          "duesma"
+        ]
+      ]
+    },
+    {
+      "esperanto_word": "tria",
+      "ido_translations": [
+        [
+          "triesma"
+        ]
+      ]
+    },
+    {
+      "esperanto_word": "kvara",
+      "ido_translations": [
+        [
+          "quaresma"
+        ]
+      ]
+    },
+    {
+      "esperanto_word": "muskedisto",
+      "ido_translations": [
+        [
+          "musketiero"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "poŝto",
+      "ido_translations": [
+        [
+          "posto"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "Germanlando",
+      "ido_translations": [
+        [
+          "Germania"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "neniam",
+      "ido_translations": [
+        [
+          "nultempe"
+        ]
+      ]
+    },
+    {
+      "esperanto_word": "Filipinoj",
+      "ido_translations": [
+        [
+          "Filipini"
+        ]
+      ]
+    },
+    {
+      "esperanto_word": "klingona lingvo",
+      "ido_translations": [
+        [
+          "Klingona linguo"
+        ]
+      ]
+    },
+    {
+      "esperanto_word": "hundido",
+      "ido_translations": [
+        [
+          "hundyuno"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "manĝaĵo",
+      "ido_translations": [
+        [
+          "manjajo"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "Ruslando",
+      "ido_translations": [
+        [
+          "Rusia"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "rinocero",
+      "ido_translations": [
+        [
+          "rinocero"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "kamelo",
+      "ido_translations": [
+        [
+          "kamelo"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "muelŝtono",
+      "ido_translations": [
+        [
+          "muelodisko"
+        ],
+        [
+          "muelopetro"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "muelejo",
+      "ido_translations": [
+        [
+          "muelilo"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "fridujo",
+      "ido_translations": [
+        [
+          "frigorizilo"
+        ],
+        [
+          "frigorizivo"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "submarŝipo",
+      "ido_translations": [
+        [
+          "submersonavo"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "patrujo",
+      "ido_translations": [
+        [
+          "patria"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "lavmaŝino",
+      "ido_translations": [
+        [
+          "lavomashino"
+        ],
+        [
+          "vesto-lavilo"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "mopso",
+      "ido_translations": [
+        [
+          "mopso"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "nigra truo",
+      "ido_translations": [
+        [
+          "nigra truo"
+        ]
+      ]
+    },
+    {
+      "esperanto_word": "galaksio",
+      "ido_translations": [
+        [
+          "galaxio"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "idisto",
+      "ido_translations": [
+        [
+          "idisto"
+        ]
+      ],
+      "part_of_speech": "noun"
+    },
+    {
+      "esperanto_word": "struto",
+      "ido_translations": [
+        [
+          "strucho"
+        ]
+      ],
+      "part_of_speech": "noun"
+    }
+  ]
+}

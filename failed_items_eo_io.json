@@ -1,0 +1,2757 @@
+{
+  "metadata": {
+    "extraction_date": "2025-10-03T12:30:54.593409",
+    "total_failed": 682,
+    "script_version": "v2.0",
+    "stats": {
+      "pages_processed": 141113,
+      "pages_with_esperanto_section": 719,
+      "valid_entries_found": 37,
+      "skipped_by_category": 640,
+      "skipped_by_title": 25468,
+      "skipped_no_translations": 682,
+      "entries_with_pos": 601,
+      "entries_with_multiple_meanings": 4,
+      "entries_with_metadata": 0
+    },
+    "source_dump": {
+      "dump_filename": "eowiktionary-latest-pages-articles.xml.bz2",
+      "dump_path": "/home/mark/apertium-dev/ido-esperanto-extractor/eowiktionary-latest-pages-articles.xml.bz2",
+      "dump_size_bytes": 20336040,
+      "dump_size_mb": 19.39,
+      "dump_modified": "2025-10-03T12:21:03.534668",
+      "dump_created": "2025-10-03T12:21:03.534668",
+      "dump_version": "latest"
+    }
+  },
+  "failed_links": [
+    {
+      "title": "citrono",
+      "url": "https://eo.wiktionary.org/wiki/citrono"
+    },
+    {
+      "title": "hodiaŭ",
+      "url": "https://eo.wiktionary.org/wiki/hodiaŭ"
+    },
+    {
+      "title": "komputilo",
+      "url": "https://eo.wiktionary.org/wiki/komputilo"
+    },
+    {
+      "title": "spamo",
+      "url": "https://eo.wiktionary.org/wiki/spamo"
+    },
+    {
+      "title": "sunsistemo",
+      "url": "https://eo.wiktionary.org/wiki/sunsistemo"
+    },
+    {
+      "title": "skribi",
+      "url": "https://eo.wiktionary.org/wiki/skribi"
+    },
+    {
+      "title": "malnova",
+      "url": "https://eo.wiktionary.org/wiki/malnova"
+    },
+    {
+      "title": "nova",
+      "url": "https://eo.wiktionary.org/wiki/nova"
+    },
+    {
+      "title": "scii",
+      "url": "https://eo.wiktionary.org/wiki/scii"
+    },
+    {
+      "title": "tre",
+      "url": "https://eo.wiktionary.org/wiki/tre"
+    },
+    {
+      "title": "kudromaŝino",
+      "url": "https://eo.wiktionary.org/wiki/kudromaŝino"
+    },
+    {
+      "title": "fiŝo",
+      "url": "https://eo.wiktionary.org/wiki/fiŝo"
+    },
+    {
+      "title": "urbo",
+      "url": "https://eo.wiktionary.org/wiki/urbo"
+    },
+    {
+      "title": "uzo",
+      "url": "https://eo.wiktionary.org/wiki/uzo"
+    },
+    {
+      "title": "du",
+      "url": "https://eo.wiktionary.org/wiki/du"
+    },
+    {
+      "title": "uzi",
+      "url": "https://eo.wiktionary.org/wiki/uzi"
+    },
+    {
+      "title": "laŭ",
+      "url": "https://eo.wiktionary.org/wiki/laŭ"
+    },
+    {
+      "title": "simpla",
+      "url": "https://eo.wiktionary.org/wiki/simpla"
+    },
+    {
+      "title": "rikoltaĵo",
+      "url": "https://eo.wiktionary.org/wiki/rikoltaĵo"
+    },
+    {
+      "title": "albana",
+      "url": "https://eo.wiktionary.org/wiki/albana"
+    },
+    {
+      "title": "kato",
+      "url": "https://eo.wiktionary.org/wiki/kato"
+    },
+    {
+      "title": "mojosa",
+      "url": "https://eo.wiktionary.org/wiki/mojosa"
+    },
+    {
+      "title": "manĝi",
+      "url": "https://eo.wiktionary.org/wiki/manĝi"
+    },
+    {
+      "title": "libereco",
+      "url": "https://eo.wiktionary.org/wiki/libereco"
+    },
+    {
+      "title": "medicino",
+      "url": "https://eo.wiktionary.org/wiki/medicino"
+    },
+    {
+      "title": "vivo",
+      "url": "https://eo.wiktionary.org/wiki/vivo"
+    },
+    {
+      "title": "vivresumo",
+      "url": "https://eo.wiktionary.org/wiki/vivresumo"
+    },
+    {
+      "title": "aŭdo",
+      "url": "https://eo.wiktionary.org/wiki/aŭdo"
+    },
+    {
+      "title": "eldoni",
+      "url": "https://eo.wiktionary.org/wiki/eldoni"
+    },
+    {
+      "title": "aŭtentikeco",
+      "url": "https://eo.wiktionary.org/wiki/aŭtentikeco"
+    },
+    {
+      "title": "substantivo",
+      "url": "https://eo.wiktionary.org/wiki/substantivo"
+    },
+    {
+      "title": "servilo",
+      "url": "https://eo.wiktionary.org/wiki/servilo"
+    },
+    {
+      "title": "kuracilo",
+      "url": "https://eo.wiktionary.org/wiki/kuracilo"
+    },
+    {
+      "title": "sapo",
+      "url": "https://eo.wiktionary.org/wiki/sapo"
+    },
+    {
+      "title": "Ido",
+      "url": "https://eo.wiktionary.org/wiki/Ido"
+    },
+    {
+      "title": "do",
+      "url": "https://eo.wiktionary.org/wiki/do"
+    },
+    {
+      "title": "sveda",
+      "url": "https://eo.wiktionary.org/wiki/sveda"
+    },
+    {
+      "title": "japana",
+      "url": "https://eo.wiktionary.org/wiki/japana"
+    },
+    {
+      "title": "abelujo",
+      "url": "https://eo.wiktionary.org/wiki/abelujo"
+    },
+    {
+      "title": "eterna",
+      "url": "https://eo.wiktionary.org/wiki/eterna"
+    },
+    {
+      "title": "al",
+      "url": "https://eo.wiktionary.org/wiki/al"
+    },
+    {
+      "title": "bona",
+      "url": "https://eo.wiktionary.org/wiki/bona"
+    },
+    {
+      "title": "naŭ",
+      "url": "https://eo.wiktionary.org/wiki/naŭ"
+    },
+    {
+      "title": "esperanto",
+      "url": "https://eo.wiktionary.org/wiki/esperanto"
+    },
+    {
+      "title": "akvo",
+      "url": "https://eo.wiktionary.org/wiki/akvo"
+    },
+    {
+      "title": "vinbero",
+      "url": "https://eo.wiktionary.org/wiki/vinbero"
+    },
+    {
+      "title": "arbo",
+      "url": "https://eo.wiktionary.org/wiki/arbo"
+    },
+    {
+      "title": "respondeci",
+      "url": "https://eo.wiktionary.org/wiki/respondeci"
+    },
+    {
+      "title": "respondecigi",
+      "url": "https://eo.wiktionary.org/wiki/respondecigi"
+    },
+    {
+      "title": "zumi",
+      "url": "https://eo.wiktionary.org/wiki/zumi"
+    },
+    {
+      "title": "troabundeco",
+      "url": "https://eo.wiktionary.org/wiki/troabundeco"
+    },
+    {
+      "title": "malabunda",
+      "url": "https://eo.wiktionary.org/wiki/malabunda"
+    },
+    {
+      "title": "superabundeco",
+      "url": "https://eo.wiktionary.org/wiki/superabundeco"
+    },
+    {
+      "title": "deŝovi",
+      "url": "https://eo.wiktionary.org/wiki/deŝovi"
+    },
+    {
+      "title": "enŝovi",
+      "url": "https://eo.wiktionary.org/wiki/enŝovi"
+    },
+    {
+      "title": "forŝovi",
+      "url": "https://eo.wiktionary.org/wiki/forŝovi"
+    },
+    {
+      "title": "kunŝovi",
+      "url": "https://eo.wiktionary.org/wiki/kunŝovi"
+    },
+    {
+      "title": "pomo",
+      "url": "https://eo.wiktionary.org/wiki/pomo"
+    },
+    {
+      "title": "pomujo",
+      "url": "https://eo.wiktionary.org/wiki/pomujo"
+    },
+    {
+      "title": "pomsuko",
+      "url": "https://eo.wiktionary.org/wiki/pomsuko"
+    },
+    {
+      "title": "Japanujo",
+      "url": "https://eo.wiktionary.org/wiki/Japanujo"
+    },
+    {
+      "title": "ununombro",
+      "url": "https://eo.wiktionary.org/wiki/ununombro"
+    },
+    {
+      "title": "ununombra",
+      "url": "https://eo.wiktionary.org/wiki/ununombra"
+    },
+    {
+      "title": "antaŭnomo",
+      "url": "https://eo.wiktionary.org/wiki/antaŭnomo"
+    },
+    {
+      "title": "fulmofermilo",
+      "url": "https://eo.wiktionary.org/wiki/fulmofermilo"
+    },
+    {
+      "title": "leporo",
+      "url": "https://eo.wiktionary.org/wiki/leporo"
+    },
+    {
+      "title": "oceano",
+      "url": "https://eo.wiktionary.org/wiki/oceano"
+    },
+    {
+      "title": "apartamento",
+      "url": "https://eo.wiktionary.org/wiki/apartamento"
+    },
+    {
+      "title": "aboni",
+      "url": "https://eo.wiktionary.org/wiki/aboni"
+    },
+    {
+      "title": "tempo",
+      "url": "https://eo.wiktionary.org/wiki/tempo"
+    },
+    {
+      "title": "kivo",
+      "url": "https://eo.wiktionary.org/wiki/kivo"
+    },
+    {
+      "title": "piĉo",
+      "url": "https://eo.wiktionary.org/wiki/piĉo"
+    },
+    {
+      "title": "frakto",
+      "url": "https://eo.wiktionary.org/wiki/frakto"
+    },
+    {
+      "title": "aidoso",
+      "url": "https://eo.wiktionary.org/wiki/aidoso"
+    },
+    {
+      "title": "algoritmo",
+      "url": "https://eo.wiktionary.org/wiki/algoritmo"
+    },
+    {
+      "title": "mangujo",
+      "url": "https://eo.wiktionary.org/wiki/mangujo"
+    },
+    {
+      "title": "genro",
+      "url": "https://eo.wiktionary.org/wiki/genro"
+    },
+    {
+      "title": "verŝajne",
+      "url": "https://eo.wiktionary.org/wiki/verŝajne"
+    },
+    {
+      "title": "tridek",
+      "url": "https://eo.wiktionary.org/wiki/tridek"
+    },
+    {
+      "title": "folio",
+      "url": "https://eo.wiktionary.org/wiki/folio"
+    },
+    {
+      "title": "tergaso",
+      "url": "https://eo.wiktionary.org/wiki/tergaso"
+    },
+    {
+      "title": "oro",
+      "url": "https://eo.wiktionary.org/wiki/oro"
+    },
+    {
+      "title": "rubusbero",
+      "url": "https://eo.wiktionary.org/wiki/rubusbero"
+    },
+    {
+      "title": "biologio",
+      "url": "https://eo.wiktionary.org/wiki/biologio"
+    },
+    {
+      "title": "biologiisto",
+      "url": "https://eo.wiktionary.org/wiki/biologiisto"
+    },
+    {
+      "title": "bronzo",
+      "url": "https://eo.wiktionary.org/wiki/bronzo"
+    },
+    {
+      "title": "hidrargo",
+      "url": "https://eo.wiktionary.org/wiki/hidrargo"
+    },
+    {
+      "title": "fero",
+      "url": "https://eo.wiktionary.org/wiki/fero"
+    },
+    {
+      "title": "kupro",
+      "url": "https://eo.wiktionary.org/wiki/kupro"
+    },
+    {
+      "title": "antero",
+      "url": "https://eo.wiktionary.org/wiki/antero"
+    },
+    {
+      "title": "hidrogeno",
+      "url": "https://eo.wiktionary.org/wiki/hidrogeno"
+    },
+    {
+      "title": "terkarbo",
+      "url": "https://eo.wiktionary.org/wiki/terkarbo"
+    },
+    {
+      "title": "kaco",
+      "url": "https://eo.wiktionary.org/wiki/kaco"
+    },
+    {
+      "title": "klaso",
+      "url": "https://eo.wiktionary.org/wiki/klaso"
+    },
+    {
+      "title": "suno",
+      "url": "https://eo.wiktionary.org/wiki/suno"
+    },
+    {
+      "title": "kataluna",
+      "url": "https://eo.wiktionary.org/wiki/kataluna"
+    },
+    {
+      "title": "posta",
+      "url": "https://eo.wiktionary.org/wiki/posta"
+    },
+    {
+      "title": "geologo",
+      "url": "https://eo.wiktionary.org/wiki/geologo"
+    },
+    {
+      "title": "golo",
+      "url": "https://eo.wiktionary.org/wiki/golo"
+    },
+    {
+      "title": "Mi amas vin.",
+      "url": "https://eo.wiktionary.org/wiki/Mi_amas_vin."
+    },
+    {
+      "title": "energio",
+      "url": "https://eo.wiktionary.org/wiki/energio"
+    },
+    {
+      "title": "geologio",
+      "url": "https://eo.wiktionary.org/wiki/geologio"
+    },
+    {
+      "title": "plori",
+      "url": "https://eo.wiktionary.org/wiki/plori"
+    },
+    {
+      "title": "dek",
+      "url": "https://eo.wiktionary.org/wiki/dek"
+    },
+    {
+      "title": "herbo",
+      "url": "https://eo.wiktionary.org/wiki/herbo"
+    },
+    {
+      "title": "sufiĉa",
+      "url": "https://eo.wiktionary.org/wiki/sufiĉa"
+    },
+    {
+      "title": "prepozicio",
+      "url": "https://eo.wiktionary.org/wiki/prepozicio"
+    },
+    {
+      "title": "komputi",
+      "url": "https://eo.wiktionary.org/wiki/komputi"
+    },
+    {
+      "title": "silicio",
+      "url": "https://eo.wiktionary.org/wiki/silicio"
+    },
+    {
+      "title": "pordo",
+      "url": "https://eo.wiktionary.org/wiki/pordo"
+    },
+    {
+      "title": "malespero",
+      "url": "https://eo.wiktionary.org/wiki/malespero"
+    },
+    {
+      "title": "senesperiĝo",
+      "url": "https://eo.wiktionary.org/wiki/senesperiĝo"
+    },
+    {
+      "title": "senesperigo",
+      "url": "https://eo.wiktionary.org/wiki/senesperigo"
+    },
+    {
+      "title": "geografo",
+      "url": "https://eo.wiktionary.org/wiki/geografo"
+    },
+    {
+      "title": "geografiisto",
+      "url": "https://eo.wiktionary.org/wiki/geografiisto"
+    },
+    {
+      "title": "dudek",
+      "url": "https://eo.wiktionary.org/wiki/dudek"
+    },
+    {
+      "title": "okcitana",
+      "url": "https://eo.wiktionary.org/wiki/okcitana"
+    },
+    {
+      "title": "hieraŭ",
+      "url": "https://eo.wiktionary.org/wiki/hieraŭ"
+    },
+    {
+      "title": "suneklipso",
+      "url": "https://eo.wiktionary.org/wiki/suneklipso"
+    },
+    {
+      "title": "reĝo de bestoj",
+      "url": "https://eo.wiktionary.org/wiki/reĝo_de_bestoj"
+    },
+    {
+      "title": "unua",
+      "url": "https://eo.wiktionary.org/wiki/unua"
+    },
+    {
+      "title": "oka",
+      "url": "https://eo.wiktionary.org/wiki/oka"
+    },
+    {
+      "title": "fi",
+      "url": "https://eo.wiktionary.org/wiki/fi"
+    },
+    {
+      "title": "naskiĝtago",
+      "url": "https://eo.wiktionary.org/wiki/naskiĝtago"
+    },
+    {
+      "title": "naskotago",
+      "url": "https://eo.wiktionary.org/wiki/naskotago"
+    },
+    {
+      "title": "maro",
+      "url": "https://eo.wiktionary.org/wiki/maro"
+    },
+    {
+      "title": "Morta Maro",
+      "url": "https://eo.wiktionary.org/wiki/Morta_Maro"
+    },
+    {
+      "title": "oranĝarbo",
+      "url": "https://eo.wiktionary.org/wiki/oranĝarbo"
+    },
+    {
+      "title": "kafo",
+      "url": "https://eo.wiktionary.org/wiki/kafo"
+    },
+    {
+      "title": "heliko",
+      "url": "https://eo.wiktionary.org/wiki/heliko"
+    },
+    {
+      "title": "portisto",
+      "url": "https://eo.wiktionary.org/wiki/portisto"
+    },
+    {
+      "title": "araneo",
+      "url": "https://eo.wiktionary.org/wiki/araneo"
+    },
+    {
+      "title": "fungo",
+      "url": "https://eo.wiktionary.org/wiki/fungo"
+    },
+    {
+      "title": "granito",
+      "url": "https://eo.wiktionary.org/wiki/granito"
+    },
+    {
+      "title": "martelo",
+      "url": "https://eo.wiktionary.org/wiki/martelo"
+    },
+    {
+      "title": "medicina",
+      "url": "https://eo.wiktionary.org/wiki/medicina"
+    },
+    {
+      "title": "sono",
+      "url": "https://eo.wiktionary.org/wiki/sono"
+    },
+    {
+      "title": "Elbo",
+      "url": "https://eo.wiktionary.org/wiki/Elbo"
+    },
+    {
+      "title": "romantismo",
+      "url": "https://eo.wiktionary.org/wiki/romantismo"
+    },
+    {
+      "title": "salmo",
+      "url": "https://eo.wiktionary.org/wiki/salmo"
+    },
+    {
+      "title": "samideano",
+      "url": "https://eo.wiktionary.org/wiki/samideano"
+    },
+    {
+      "title": "fosi",
+      "url": "https://eo.wiktionary.org/wiki/fosi"
+    },
+    {
+      "title": "uzurpi",
+      "url": "https://eo.wiktionary.org/wiki/uzurpi"
+    },
+    {
+      "title": "vulpo",
+      "url": "https://eo.wiktionary.org/wiki/vulpo"
+    },
+    {
+      "title": "monero",
+      "url": "https://eo.wiktionary.org/wiki/monero"
+    },
+    {
+      "title": "ornamaĵo",
+      "url": "https://eo.wiktionary.org/wiki/ornamaĵo"
+    },
+    {
+      "title": "glacio",
+      "url": "https://eo.wiktionary.org/wiki/glacio"
+    },
+    {
+      "title": "pasero",
+      "url": "https://eo.wiktionary.org/wiki/pasero"
+    },
+    {
+      "title": "soldato",
+      "url": "https://eo.wiktionary.org/wiki/soldato"
+    },
+    {
+      "title": "inteligenta",
+      "url": "https://eo.wiktionary.org/wiki/inteligenta"
+    },
+    {
+      "title": "okupi",
+      "url": "https://eo.wiktionary.org/wiki/okupi"
+    },
+    {
+      "title": "ludolibro",
+      "url": "https://eo.wiktionary.org/wiki/ludolibro"
+    },
+    {
+      "title": "solludanta aventuro",
+      "url": "https://eo.wiktionary.org/wiki/solludanta_aventuro"
+    },
+    {
+      "title": "Abelujon ne incitu, amason ne spitu.",
+      "url": "https://eo.wiktionary.org/wiki/Abelujon_ne_incitu,_amason_ne_spitu."
+    },
+    {
+      "title": "maljam",
+      "url": "https://eo.wiktionary.org/wiki/maljam"
+    },
+    {
+      "title": "speco",
+      "url": "https://eo.wiktionary.org/wiki/speco"
+    },
+    {
+      "title": "persa",
+      "url": "https://eo.wiktionary.org/wiki/persa"
+    },
+    {
+      "title": "esti por oni volapukaĵo",
+      "url": "https://eo.wiktionary.org/wiki/esti_por_oni_volapukaĵo"
+    },
+    {
+      "title": "dormi kiel ŝtono",
+      "url": "https://eo.wiktionary.org/wiki/dormi_kiel_ŝtono"
+    },
+    {
+      "title": "Pasero kaptita estas pli bona ol aglo kaptota.",
+      "url": "https://eo.wiktionary.org/wiki/Pasero_kaptita_estas_pli_bona_ol_aglo_kaptota."
+    },
+    {
+      "title": "retumilo",
+      "url": "https://eo.wiktionary.org/wiki/retumilo"
+    },
+    {
+      "title": "rulŝtuparo",
+      "url": "https://eo.wiktionary.org/wiki/rulŝtuparo"
+    },
+    {
+      "title": "aldoni",
+      "url": "https://eo.wiktionary.org/wiki/aldoni"
+    },
+    {
+      "title": "ekkrii",
+      "url": "https://eo.wiktionary.org/wiki/ekkrii"
+    },
+    {
+      "title": "renasko",
+      "url": "https://eo.wiktionary.org/wiki/renasko"
+    },
+    {
+      "title": "ekkrio",
+      "url": "https://eo.wiktionary.org/wiki/ekkrio"
+    },
+    {
+      "title": "multenombro",
+      "url": "https://eo.wiktionary.org/wiki/multenombro"
+    },
+    {
+      "title": "malnovaltgermana",
+      "url": "https://eo.wiktionary.org/wiki/malnovaltgermana"
+    },
+    {
+      "title": "esperanta",
+      "url": "https://eo.wiktionary.org/wiki/esperanta"
+    },
+    {
+      "title": "Esperanta",
+      "url": "https://eo.wiktionary.org/wiki/Esperanta"
+    },
+    {
+      "title": "hejmen",
+      "url": "https://eo.wiktionary.org/wiki/hejmen"
+    },
+    {
+      "title": "laŭprioritatigi",
+      "url": "https://eo.wiktionary.org/wiki/laŭprioritatigi"
+    },
+    {
+      "title": "esperante",
+      "url": "https://eo.wiktionary.org/wiki/esperante"
+    },
+    {
+      "title": "tertestudo",
+      "url": "https://eo.wiktionary.org/wiki/tertestudo"
+    },
+    {
+      "title": "martestudo",
+      "url": "https://eo.wiktionary.org/wiki/martestudo"
+    },
+    {
+      "title": "en",
+      "url": "https://eo.wiktionary.org/wiki/en"
+    },
+    {
+      "title": "kien",
+      "url": "https://eo.wiktionary.org/wiki/kien"
+    },
+    {
+      "title": "kolumo",
+      "url": "https://eo.wiktionary.org/wiki/kolumo"
+    },
+    {
+      "title": "Latino",
+      "url": "https://eo.wiktionary.org/wiki/Latino"
+    },
+    {
+      "title": "novalo",
+      "url": "https://eo.wiktionary.org/wiki/novalo"
+    },
+    {
+      "title": "trafi du celojn per unu ŝtono",
+      "url": "https://eo.wiktionary.org/wiki/trafi_du_celojn_per_unu_ŝtono"
+    },
+    {
+      "title": "Lernolibron oni ne devas tralegi sed tralerni.",
+      "url": "https://eo.wiktionary.org/wiki/Lernolibron_oni_ne_devas_tralegi_sed_tralerni."
+    },
+    {
+      "title": "flava",
+      "url": "https://eo.wiktionary.org/wiki/flava"
+    },
+    {
+      "title": "Kiu kaptas tro vaste, konservas malmulte.",
+      "url": "https://eo.wiktionary.org/wiki/Kiu_kaptas_tro_vaste,_konservas_malmulte."
+    },
+    {
+      "title": "Pollando",
+      "url": "https://eo.wiktionary.org/wiki/Pollando"
+    },
+    {
+      "title": "Kiu volas panon, ne dorlotu la manon.",
+      "url": "https://eo.wiktionary.org/wiki/Kiu_volas_panon,_ne_dorlotu_la_manon."
+    },
+    {
+      "title": "malsuprafrankonia",
+      "url": "https://eo.wiktionary.org/wiki/malsuprafrankonia"
+    },
+    {
+      "title": "Germana Demokratia Respubliko",
+      "url": "https://eo.wiktionary.org/wiki/Germana_Demokratia_Respubliko"
+    },
+    {
+      "title": "Ne gutas mielo el la ĉielo.",
+      "url": "https://eo.wiktionary.org/wiki/Ne_gutas_mielo_el_la_ĉielo."
+    },
+    {
+      "title": "Pri ies riĉo kaj bono, ne kredu eĉ la duonon.",
+      "url": "https://eo.wiktionary.org/wiki/Pri_ies_riĉo_kaj_bono,_ne_kredu_eĉ_la_duonon."
+    },
+    {
+      "title": "Mi sentas malvarmon.",
+      "url": "https://eo.wiktionary.org/wiki/Mi_sentas_malvarmon."
+    },
+    {
+      "title": "malnoviĝinta",
+      "url": "https://eo.wiktionary.org/wiki/malnoviĝinta"
+    },
+    {
+      "title": "pedofilio",
+      "url": "https://eo.wiktionary.org/wiki/pedofilio"
+    },
+    {
+      "title": "lingvoscienco",
+      "url": "https://eo.wiktionary.org/wiki/lingvoscienco"
+    },
+    {
+      "title": "nordsamea",
+      "url": "https://eo.wiktionary.org/wiki/nordsamea"
+    },
+    {
+      "title": "kria",
+      "url": "https://eo.wiktionary.org/wiki/kria"
+    },
+    {
+      "title": "Svedujo",
+      "url": "https://eo.wiktionary.org/wiki/Svedujo"
+    },
+    {
+      "title": "dento",
+      "url": "https://eo.wiktionary.org/wiki/dento"
+    },
+    {
+      "title": "korbo",
+      "url": "https://eo.wiktionary.org/wiki/korbo"
+    },
+    {
+      "title": "fajro",
+      "url": "https://eo.wiktionary.org/wiki/fajro"
+    },
+    {
+      "title": "nubo",
+      "url": "https://eo.wiktionary.org/wiki/nubo"
+    },
+    {
+      "title": "nazo",
+      "url": "https://eo.wiktionary.org/wiki/nazo"
+    },
+    {
+      "title": "arto",
+      "url": "https://eo.wiktionary.org/wiki/arto"
+    },
+    {
+      "title": "rajdi sur la tigro kaj ne esti manĝita de ĝi",
+      "url": "https://eo.wiktionary.org/wiki/rajdi_sur_la_tigro_kaj_ne_esti_manĝita_de_ĝi"
+    },
+    {
+      "title": "Malfeliĉo venas are, ne ere.",
+      "url": "https://eo.wiktionary.org/wiki/Malfeliĉo_venas_are,_ne_ere."
+    },
+    {
+      "title": "Rajdi sur ĉevalo oni ne lernas sen falo.",
+      "url": "https://eo.wiktionary.org/wiki/Rajdi_sur_ĉevalo_oni_ne_lernas_sen_falo."
+    },
+    {
+      "title": "Ne ŝovu vian nazon en fremdan vazon.",
+      "url": "https://eo.wiktionary.org/wiki/Ne_ŝovu_vian_nazon_en_fremdan_vazon."
+    },
+    {
+      "title": "kvazaŭ",
+      "url": "https://eo.wiktionary.org/wiki/kvazaŭ"
+    },
+    {
+      "title": "post",
+      "url": "https://eo.wiktionary.org/wiki/post"
+    },
+    {
+      "title": "pro",
+      "url": "https://eo.wiktionary.org/wiki/pro"
+    },
+    {
+      "title": "sen",
+      "url": "https://eo.wiktionary.org/wiki/sen"
+    },
+    {
+      "title": "tro",
+      "url": "https://eo.wiktionary.org/wiki/tro"
+    },
+    {
+      "title": "vegetarismo",
+      "url": "https://eo.wiktionary.org/wiki/vegetarismo"
+    },
+    {
+      "title": "Amu domon novan kaj amikon malnovan.",
+      "url": "https://eo.wiktionary.org/wiki/Amu_domon_novan_kaj_amikon_malnovan."
+    },
+    {
+      "title": "Se vi pri ĉio informiĝos, vi baldaŭ maljuniĝos.",
+      "url": "https://eo.wiktionary.org/wiki/Se_vi_pri_ĉio_informiĝos,_vi_baldaŭ_maljuniĝos."
+    },
+    {
+      "title": "tie kaj tie",
+      "url": "https://eo.wiktionary.org/wiki/tie_kaj_tie"
+    },
+    {
+      "title": "korsaĵo",
+      "url": "https://eo.wiktionary.org/wiki/korsaĵo"
+    },
+    {
+      "title": "malnovsaksa",
+      "url": "https://eo.wiktionary.org/wiki/malnovsaksa"
+    },
+    {
+      "title": "povi",
+      "url": "https://eo.wiktionary.org/wiki/povi"
+    },
+    {
+      "title": "etendigilo",
+      "url": "https://eo.wiktionary.org/wiki/etendigilo"
+    },
+    {
+      "title": "GLAT",
+      "url": "https://eo.wiktionary.org/wiki/GLAT"
+    },
+    {
+      "title": "fia",
+      "url": "https://eo.wiktionary.org/wiki/fia"
+    },
+    {
+      "title": "pseŭdosufikso",
+      "url": "https://eo.wiktionary.org/wiki/pseŭdosufikso"
+    },
+    {
+      "title": "pseŭdopatriotismo",
+      "url": "https://eo.wiktionary.org/wiki/pseŭdopatriotismo"
+    },
+    {
+      "title": "patriotismo",
+      "url": "https://eo.wiktionary.org/wiki/patriotismo"
+    },
+    {
+      "title": "komencanto",
+      "url": "https://eo.wiktionary.org/wiki/komencanto"
+    },
+    {
+      "title": "komenci",
+      "url": "https://eo.wiktionary.org/wiki/komenci"
+    },
+    {
+      "title": "ekfari",
+      "url": "https://eo.wiktionary.org/wiki/ekfari"
+    },
+    {
+      "title": "triaseksa",
+      "url": "https://eo.wiktionary.org/wiki/triaseksa"
+    },
+    {
+      "title": "maŝino",
+      "url": "https://eo.wiktionary.org/wiki/maŝino"
+    },
+    {
+      "title": "movi ĉielon kaj teron",
+      "url": "https://eo.wiktionary.org/wiki/movi_ĉielon_kaj_teron"
+    },
+    {
+      "title": "atomo",
+      "url": "https://eo.wiktionary.org/wiki/atomo"
+    },
+    {
+      "title": "sonorilo",
+      "url": "https://eo.wiktionary.org/wiki/sonorilo"
+    },
+    {
+      "title": "invento",
+      "url": "https://eo.wiktionary.org/wiki/invento"
+    },
+    {
+      "title": "neŭroza",
+      "url": "https://eo.wiktionary.org/wiki/neŭroza"
+    },
+    {
+      "title": "kurdo",
+      "url": "https://eo.wiktionary.org/wiki/kurdo"
+    },
+    {
+      "title": "idiomaĵo",
+      "url": "https://eo.wiktionary.org/wiki/idiomaĵo"
+    },
+    {
+      "title": "Singapuro",
+      "url": "https://eo.wiktionary.org/wiki/Singapuro"
+    },
+    {
+      "title": "esperantumi",
+      "url": "https://eo.wiktionary.org/wiki/esperantumi"
+    },
+    {
+      "title": "lasi fadenon iri antaŭ kudrilo",
+      "url": "https://eo.wiktionary.org/wiki/lasi_fadenon_iri_antaŭ_kudrilo"
+    },
+    {
+      "title": "abelejo",
+      "url": "https://eo.wiktionary.org/wiki/abelejo"
+    },
+    {
+      "title": "acideco",
+      "url": "https://eo.wiktionary.org/wiki/acideco"
+    },
+    {
+      "title": "piedartiko",
+      "url": "https://eo.wiktionary.org/wiki/piedartiko"
+    },
+    {
+      "title": "piedfingro",
+      "url": "https://eo.wiktionary.org/wiki/piedfingro"
+    },
+    {
+      "title": "ringofingro",
+      "url": "https://eo.wiktionary.org/wiki/ringofingro"
+    },
+    {
+      "title": "Kubo",
+      "url": "https://eo.wiktionary.org/wiki/Kubo"
+    },
+    {
+      "title": "Vanuatuo",
+      "url": "https://eo.wiktionary.org/wiki/Vanuatuo"
+    },
+    {
+      "title": "Bonaero",
+      "url": "https://eo.wiktionary.org/wiki/Bonaero"
+    },
+    {
+      "title": "Romo",
+      "url": "https://eo.wiktionary.org/wiki/Romo"
+    },
+    {
+      "title": "eŭro",
+      "url": "https://eo.wiktionary.org/wiki/eŭro"
+    },
+    {
+      "title": "plumbo",
+      "url": "https://eo.wiktionary.org/wiki/plumbo"
+    },
+    {
+      "title": "ununseptio",
+      "url": "https://eo.wiktionary.org/wiki/ununseptio"
+    },
+    {
+      "title": "ununoktio",
+      "url": "https://eo.wiktionary.org/wiki/ununoktio"
+    },
+    {
+      "title": "plus",
+      "url": "https://eo.wiktionary.org/wiki/plus"
+    },
+    {
+      "title": "policisto",
+      "url": "https://eo.wiktionary.org/wiki/policisto"
+    },
+    {
+      "title": "jaro",
+      "url": "https://eo.wiktionary.org/wiki/jaro"
+    },
+    {
+      "title": "korpo",
+      "url": "https://eo.wiktionary.org/wiki/korpo"
+    },
+    {
+      "title": "observatorio",
+      "url": "https://eo.wiktionary.org/wiki/observatorio"
+    },
+    {
+      "title": "raketo",
+      "url": "https://eo.wiktionary.org/wiki/raketo"
+    },
+    {
+      "title": "ramo",
+      "url": "https://eo.wiktionary.org/wiki/ramo"
+    },
+    {
+      "title": "salmono",
+      "url": "https://eo.wiktionary.org/wiki/salmono"
+    },
+    {
+      "title": "kulo",
+      "url": "https://eo.wiktionary.org/wiki/kulo"
+    },
+    {
+      "title": "misa",
+      "url": "https://eo.wiktionary.org/wiki/misa"
+    },
+    {
+      "title": "nodo",
+      "url": "https://eo.wiktionary.org/wiki/nodo"
+    },
+    {
+      "title": "pesado",
+      "url": "https://eo.wiktionary.org/wiki/pesado"
+    },
+    {
+      "title": "peso",
+      "url": "https://eo.wiktionary.org/wiki/peso"
+    },
+    {
+      "title": "kofrovorto",
+      "url": "https://eo.wiktionary.org/wiki/kofrovorto"
+    },
+    {
+      "title": "fekejo",
+      "url": "https://eo.wiktionary.org/wiki/fekejo"
+    },
+    {
+      "title": "biero",
+      "url": "https://eo.wiktionary.org/wiki/biero"
+    },
+    {
+      "title": "acido",
+      "url": "https://eo.wiktionary.org/wiki/acido"
+    },
+    {
+      "title": "regno",
+      "url": "https://eo.wiktionary.org/wiki/regno"
+    },
+    {
+      "title": "tien",
+      "url": "https://eo.wiktionary.org/wiki/tien"
+    },
+    {
+      "title": "alt",
+      "url": "https://eo.wiktionary.org/wiki/alt"
+    },
+    {
+      "title": "dis",
+      "url": "https://eo.wiktionary.org/wiki/dis"
+    },
+    {
+      "title": "perse",
+      "url": "https://eo.wiktionary.org/wiki/perse"
+    },
+    {
+      "title": "ofte",
+      "url": "https://eo.wiktionary.org/wiki/ofte"
+    },
+    {
+      "title": "ilo",
+      "url": "https://eo.wiktionary.org/wiki/ilo"
+    },
+    {
+      "title": "mato",
+      "url": "https://eo.wiktionary.org/wiki/mato"
+    },
+    {
+      "title": "bufo",
+      "url": "https://eo.wiktionary.org/wiki/bufo"
+    },
+    {
+      "title": "kvardek",
+      "url": "https://eo.wiktionary.org/wiki/kvardek"
+    },
+    {
+      "title": "antaŭhieraŭ",
+      "url": "https://eo.wiktionary.org/wiki/antaŭhieraŭ"
+    },
+    {
+      "title": "terpomo",
+      "url": "https://eo.wiktionary.org/wiki/terpomo"
+    },
+    {
+      "title": "pupo",
+      "url": "https://eo.wiktionary.org/wiki/pupo"
+    },
+    {
+      "title": "elŝteliĝi",
+      "url": "https://eo.wiktionary.org/wiki/elŝteliĝi"
+    },
+    {
+      "title": "ekde",
+      "url": "https://eo.wiktionary.org/wiki/ekde"
+    },
+    {
+      "title": "suĉi",
+      "url": "https://eo.wiktionary.org/wiki/suĉi"
+    },
+    {
+      "title": "polvosuĉilo",
+      "url": "https://eo.wiktionary.org/wiki/polvosuĉilo"
+    },
+    {
+      "title": "cirklo",
+      "url": "https://eo.wiktionary.org/wiki/cirklo"
+    },
+    {
+      "title": "elektra ŝargilo",
+      "url": "https://eo.wiktionary.org/wiki/elektra_ŝargilo"
+    },
+    {
+      "title": "cerbo",
+      "url": "https://eo.wiktionary.org/wiki/cerbo"
+    },
+    {
+      "title": "indonezia",
+      "url": "https://eo.wiktionary.org/wiki/indonezia"
+    },
+    {
+      "title": "porkejo",
+      "url": "https://eo.wiktionary.org/wiki/porkejo"
+    },
+    {
+      "title": "katido",
+      "url": "https://eo.wiktionary.org/wiki/katido"
+    },
+    {
+      "title": "ribo",
+      "url": "https://eo.wiktionary.org/wiki/ribo"
+    },
+    {
+      "title": "esperantisto",
+      "url": "https://eo.wiktionary.org/wiki/esperantisto"
+    },
+    {
+      "title": "kapitalismo",
+      "url": "https://eo.wiktionary.org/wiki/kapitalismo"
+    },
+    {
+      "title": "instrui",
+      "url": "https://eo.wiktionary.org/wiki/instrui"
+    },
+    {
+      "title": "urologo",
+      "url": "https://eo.wiktionary.org/wiki/urologo"
+    },
+    {
+      "title": "Pro kapo malsaĝa suferas la kruroj.",
+      "url": "https://eo.wiktionary.org/wiki/Pro_kapo_malsaĝa_suferas_la_kruroj."
+    },
+    {
+      "title": "programara disvolvado",
+      "url": "https://eo.wiktionary.org/wiki/programara_disvolvado"
+    },
+    {
+      "title": "biasa",
+      "url": "https://eo.wiktionary.org/wiki/biasa"
+    },
+    {
+      "title": "certe",
+      "url": "https://eo.wiktionary.org/wiki/certe"
+    },
+    {
+      "title": "gluti",
+      "url": "https://eo.wiktionary.org/wiki/gluti"
+    },
+    {
+      "title": "maljunulo",
+      "url": "https://eo.wiktionary.org/wiki/maljunulo"
+    },
+    {
+      "title": "stultulo",
+      "url": "https://eo.wiktionary.org/wiki/stultulo"
+    },
+    {
+      "title": "fiulo",
+      "url": "https://eo.wiktionary.org/wiki/fiulo"
+    },
+    {
+      "title": "fervojo",
+      "url": "https://eo.wiktionary.org/wiki/fervojo"
+    },
+    {
+      "title": "alpreni",
+      "url": "https://eo.wiktionary.org/wiki/alpreni"
+    },
+    {
+      "title": "Kie estas necesejo?",
+      "url": "https://eo.wiktionary.org/wiki/Kie_estas_necesejo?"
+    },
+    {
+      "title": "Vi estas belega.",
+      "url": "https://eo.wiktionary.org/wiki/Vi_estas_belega."
+    },
+    {
+      "title": "eksplodaĵo",
+      "url": "https://eo.wiktionary.org/wiki/eksplodaĵo"
+    },
+    {
+      "title": "tero",
+      "url": "https://eo.wiktionary.org/wiki/tero"
+    },
+    {
+      "title": "volvita a",
+      "url": "https://eo.wiktionary.org/wiki/volvita_a"
+    },
+    {
+      "title": "kaculo",
+      "url": "https://eo.wiktionary.org/wiki/kaculo"
+    },
+    {
+      "title": "rolvorteto",
+      "url": "https://eo.wiktionary.org/wiki/rolvorteto"
+    },
+    {
+      "title": "vindotuko",
+      "url": "https://eo.wiktionary.org/wiki/vindotuko"
+    },
+    {
+      "title": "rumo",
+      "url": "https://eo.wiktionary.org/wiki/rumo"
+    },
+    {
+      "title": "dankon",
+      "url": "https://eo.wiktionary.org/wiki/dankon"
+    },
+    {
+      "title": "malgranda",
+      "url": "https://eo.wiktionary.org/wiki/malgranda"
+    },
+    {
+      "title": "arbaro",
+      "url": "https://eo.wiktionary.org/wiki/arbaro"
+    },
+    {
+      "title": "pluvegi kvazaŭ el sitelo",
+      "url": "https://eo.wiktionary.org/wiki/pluvegi_kvazaŭ_el_sitelo"
+    },
+    {
+      "title": "arumana",
+      "url": "https://eo.wiktionary.org/wiki/arumana"
+    },
+    {
+      "title": "garbejo",
+      "url": "https://eo.wiktionary.org/wiki/garbejo"
+    },
+    {
+      "title": "demandi",
+      "url": "https://eo.wiktionary.org/wiki/demandi"
+    },
+    {
+      "title": "foto",
+      "url": "https://eo.wiktionary.org/wiki/foto"
+    },
+    {
+      "title": "tekvondo",
+      "url": "https://eo.wiktionary.org/wiki/tekvondo"
+    },
+    {
+      "title": "okulvitroj",
+      "url": "https://eo.wiktionary.org/wiki/okulvitroj"
+    },
+    {
+      "title": "Helgolando",
+      "url": "https://eo.wiktionary.org/wiki/Helgolando"
+    },
+    {
+      "title": "duko",
+      "url": "https://eo.wiktionary.org/wiki/duko"
+    },
+    {
+      "title": "muskedo",
+      "url": "https://eo.wiktionary.org/wiki/muskedo"
+    },
+    {
+      "title": "miza",
+      "url": "https://eo.wiktionary.org/wiki/miza"
+    },
+    {
+      "title": "trufo",
+      "url": "https://eo.wiktionary.org/wiki/trufo"
+    },
+    {
+      "title": "kribrilo",
+      "url": "https://eo.wiktionary.org/wiki/kribrilo"
+    },
+    {
+      "title": "Bonvolu paroli pli malrapide.",
+      "url": "https://eo.wiktionary.org/wiki/Bonvolu_paroli_pli_malrapide."
+    },
+    {
+      "title": "enlasi la lupon en la ŝafejon",
+      "url": "https://eo.wiktionary.org/wiki/enlasi_la_lupon_en_la_ŝafejon"
+    },
+    {
+      "title": "kerno",
+      "url": "https://eo.wiktionary.org/wiki/kerno"
+    },
+    {
+      "title": "Tea Partio",
+      "url": "https://eo.wiktionary.org/wiki/Tea_Partio"
+    },
+    {
+      "title": "Aldono:Superrigardo",
+      "url": "https://eo.wiktionary.org/wiki/Aldono:Superrigardo"
+    },
+    {
+      "title": "lernejo",
+      "url": "https://eo.wiktionary.org/wiki/lernejo"
+    },
+    {
+      "title": "batalo",
+      "url": "https://eo.wiktionary.org/wiki/batalo"
+    },
+    {
+      "title": "artikolo",
+      "url": "https://eo.wiktionary.org/wiki/artikolo"
+    },
+    {
+      "title": "korea",
+      "url": "https://eo.wiktionary.org/wiki/korea"
+    },
+    {
+      "title": "pafilo",
+      "url": "https://eo.wiktionary.org/wiki/pafilo"
+    },
+    {
+      "title": "voli",
+      "url": "https://eo.wiktionary.org/wiki/voli"
+    },
+    {
+      "title": "tenso",
+      "url": "https://eo.wiktionary.org/wiki/tenso"
+    },
+    {
+      "title": "el",
+      "url": "https://eo.wiktionary.org/wiki/el"
+    },
+    {
+      "title": "skribilo",
+      "url": "https://eo.wiktionary.org/wiki/skribilo"
+    },
+    {
+      "title": "trakforko",
+      "url": "https://eo.wiktionary.org/wiki/trakforko"
+    },
+    {
+      "title": "tunelo",
+      "url": "https://eo.wiktionary.org/wiki/tunelo"
+    },
+    {
+      "title": "alta",
+      "url": "https://eo.wiktionary.org/wiki/alta"
+    },
+    {
+      "title": "Suno",
+      "url": "https://eo.wiktionary.org/wiki/Suno"
+    },
+    {
+      "title": "paroli",
+      "url": "https://eo.wiktionary.org/wiki/paroli"
+    },
+    {
+      "title": "senpaperulo",
+      "url": "https://eo.wiktionary.org/wiki/senpaperulo"
+    },
+    {
+      "title": "ek",
+      "url": "https://eo.wiktionary.org/wiki/ek"
+    },
+    {
+      "title": "pralingvo",
+      "url": "https://eo.wiktionary.org/wiki/pralingvo"
+    },
+    {
+      "title": "praulo",
+      "url": "https://eo.wiktionary.org/wiki/praulo"
+    },
+    {
+      "title": "misfamiga",
+      "url": "https://eo.wiktionary.org/wiki/misfamiga"
+    },
+    {
+      "title": "misloki",
+      "url": "https://eo.wiktionary.org/wiki/misloki"
+    },
+    {
+      "title": "mispaŝi",
+      "url": "https://eo.wiktionary.org/wiki/mispaŝi"
+    },
+    {
+      "title": "re kaj re",
+      "url": "https://eo.wiktionary.org/wiki/re_kaj_re"
+    },
+    {
+      "title": "ree",
+      "url": "https://eo.wiktionary.org/wiki/ree"
+    },
+    {
+      "title": "reen",
+      "url": "https://eo.wiktionary.org/wiki/reen"
+    },
+    {
+      "title": "rebrili",
+      "url": "https://eo.wiktionary.org/wiki/rebrili"
+    },
+    {
+      "title": "misaĵo",
+      "url": "https://eo.wiktionary.org/wiki/misaĵo"
+    },
+    {
+      "title": "disigi",
+      "url": "https://eo.wiktionary.org/wiki/disigi"
+    },
+    {
+      "title": "ekami",
+      "url": "https://eo.wiktionary.org/wiki/ekami"
+    },
+    {
+      "title": "kuirejo",
+      "url": "https://eo.wiktionary.org/wiki/kuirejo"
+    },
+    {
+      "title": "multekosta",
+      "url": "https://eo.wiktionary.org/wiki/multekosta"
+    },
+    {
+      "title": "araneedo",
+      "url": "https://eo.wiktionary.org/wiki/araneedo"
+    },
+    {
+      "title": "salmonedo",
+      "url": "https://eo.wiktionary.org/wiki/salmonedo"
+    },
+    {
+      "title": "viperedo",
+      "url": "https://eo.wiktionary.org/wiki/viperedo"
+    },
+    {
+      "title": "onomatopeo",
+      "url": "https://eo.wiktionary.org/wiki/onomatopeo"
+    },
+    {
+      "title": "ien",
+      "url": "https://eo.wiktionary.org/wiki/ien"
+    },
+    {
+      "title": "nenien",
+      "url": "https://eo.wiktionary.org/wiki/nenien"
+    },
+    {
+      "title": "duuma",
+      "url": "https://eo.wiktionary.org/wiki/duuma"
+    },
+    {
+      "title": "beto",
+      "url": "https://eo.wiktionary.org/wiki/beto"
+    },
+    {
+      "title": "sablero",
+      "url": "https://eo.wiktionary.org/wiki/sablero"
+    },
+    {
+      "title": "pendumi",
+      "url": "https://eo.wiktionary.org/wiki/pendumi"
+    },
+    {
+      "title": "plandumo",
+      "url": "https://eo.wiktionary.org/wiki/plandumo"
+    },
+    {
+      "title": "krado",
+      "url": "https://eo.wiktionary.org/wiki/krado"
+    },
+    {
+      "title": "rapidumo",
+      "url": "https://eo.wiktionary.org/wiki/rapidumo"
+    },
+    {
+      "title": "butikumi",
+      "url": "https://eo.wiktionary.org/wiki/butikumi"
+    },
+    {
+      "title": "ringfingro",
+      "url": "https://eo.wiktionary.org/wiki/ringfingro"
+    },
+    {
+      "title": "ekzemplo",
+      "url": "https://eo.wiktionary.org/wiki/ekzemplo"
+    },
+    {
+      "title": "narciso",
+      "url": "https://eo.wiktionary.org/wiki/narciso"
+    },
+    {
+      "title": "dua mondmilito",
+      "url": "https://eo.wiktionary.org/wiki/dua_mondmilito"
+    },
+    {
+      "title": "Svedlando",
+      "url": "https://eo.wiktionary.org/wiki/Svedlando"
+    },
+    {
+      "title": "Svedio",
+      "url": "https://eo.wiktionary.org/wiki/Svedio"
+    },
+    {
+      "title": "kemia armilo",
+      "url": "https://eo.wiktionary.org/wiki/kemia_armilo"
+    },
+    {
+      "title": "nuklea armilo",
+      "url": "https://eo.wiktionary.org/wiki/nuklea_armilo"
+    },
+    {
+      "title": "subkomprenata",
+      "url": "https://eo.wiktionary.org/wiki/subkomprenata"
+    },
+    {
+      "title": "sama",
+      "url": "https://eo.wiktionary.org/wiki/sama"
+    },
+    {
+      "title": "milito",
+      "url": "https://eo.wiktionary.org/wiki/milito"
+    },
+    {
+      "title": "tineo",
+      "url": "https://eo.wiktionary.org/wiki/tineo"
+    },
+    {
+      "title": "Javo",
+      "url": "https://eo.wiktionary.org/wiki/Javo"
+    },
+    {
+      "title": "Norda Kabo",
+      "url": "https://eo.wiktionary.org/wiki/Norda_Kabo"
+    },
+    {
+      "title": "formiko",
+      "url": "https://eo.wiktionary.org/wiki/formiko"
+    },
+    {
+      "title": "malvenki",
+      "url": "https://eo.wiktionary.org/wiki/malvenki"
+    },
+    {
+      "title": "reĝo de birdoj",
+      "url": "https://eo.wiktionary.org/wiki/reĝo_de_birdoj"
+    },
+    {
+      "title": "lumjaro",
+      "url": "https://eo.wiktionary.org/wiki/lumjaro"
+    },
+    {
+      "title": "muzikilo",
+      "url": "https://eo.wiktionary.org/wiki/muzikilo"
+    },
+    {
+      "title": "taksonomia rango",
+      "url": "https://eo.wiktionary.org/wiki/taksonomia_rango"
+    },
+    {
+      "title": "Atlantika Oceano",
+      "url": "https://eo.wiktionary.org/wiki/Atlantika_Oceano"
+    },
+    {
+      "title": "malplena aro",
+      "url": "https://eo.wiktionary.org/wiki/malplena_aro"
+    },
+    {
+      "title": "Mi malsatas.",
+      "url": "https://eo.wiktionary.org/wiki/Mi_malsatas."
+    },
+    {
+      "title": "Mi ne komprenas.",
+      "url": "https://eo.wiktionary.org/wiki/Mi_ne_komprenas."
+    },
+    {
+      "title": "Kiel malproksime estas tio?",
+      "url": "https://eo.wiktionary.org/wiki/Kiel_malproksime_estas_tio?"
+    },
+    {
+      "title": "vojo",
+      "url": "https://eo.wiktionary.org/wiki/vojo"
+    },
+    {
+      "title": "Arkta Oceano",
+      "url": "https://eo.wiktionary.org/wiki/Arkta_Oceano"
+    },
+    {
+      "title": "tutmonda varmiĝo",
+      "url": "https://eo.wiktionary.org/wiki/tutmonda_varmiĝo"
+    },
+    {
+      "title": "tempomaŝino",
+      "url": "https://eo.wiktionary.org/wiki/tempomaŝino"
+    },
+    {
+      "title": "trigonometria funkcio",
+      "url": "https://eo.wiktionary.org/wiki/trigonometria_funkcio"
+    },
+    {
+      "title": "morsoklavo",
+      "url": "https://eo.wiktionary.org/wiki/morsoklavo"
+    },
+    {
+      "title": "poŝtaĵo",
+      "url": "https://eo.wiktionary.org/wiki/poŝtaĵo"
+    },
+    {
+      "title": "poŝtkodo",
+      "url": "https://eo.wiktionary.org/wiki/poŝtkodo"
+    },
+    {
+      "title": "poŝtoficejo",
+      "url": "https://eo.wiktionary.org/wiki/poŝtoficejo"
+    },
+    {
+      "title": "poŝtejo",
+      "url": "https://eo.wiktionary.org/wiki/poŝtejo"
+    },
+    {
+      "title": "poŝtkarto",
+      "url": "https://eo.wiktionary.org/wiki/poŝtkarto"
+    },
+    {
+      "title": "senfina",
+      "url": "https://eo.wiktionary.org/wiki/senfina"
+    },
+    {
+      "title": "poŝtisto",
+      "url": "https://eo.wiktionary.org/wiki/poŝtisto"
+    },
+    {
+      "title": "malavantaĝo",
+      "url": "https://eo.wiktionary.org/wiki/malavantaĝo"
+    },
+    {
+      "title": "avokado",
+      "url": "https://eo.wiktionary.org/wiki/avokado"
+    },
+    {
+      "title": "avokadoj",
+      "url": "https://eo.wiktionary.org/wiki/avokadoj"
+    },
+    {
+      "title": "vipero",
+      "url": "https://eo.wiktionary.org/wiki/vipero"
+    },
+    {
+      "title": "malmulte",
+      "url": "https://eo.wiktionary.org/wiki/malmulte"
+    },
+    {
+      "title": "kuracarto",
+      "url": "https://eo.wiktionary.org/wiki/kuracarto"
+    },
+    {
+      "title": "troigi",
+      "url": "https://eo.wiktionary.org/wiki/troigi"
+    },
+    {
+      "title": "glano",
+      "url": "https://eo.wiktionary.org/wiki/glano"
+    },
+    {
+      "title": "senĉesa",
+      "url": "https://eo.wiktionary.org/wiki/senĉesa"
+    },
+    {
+      "title": "bero",
+      "url": "https://eo.wiktionary.org/wiki/bero"
+    },
+    {
+      "title": "simiovosto",
+      "url": "https://eo.wiktionary.org/wiki/simiovosto"
+    },
+    {
+      "title": "a volvita",
+      "url": "https://eo.wiktionary.org/wiki/a_volvita"
+    },
+    {
+      "title": "ekstertero",
+      "url": "https://eo.wiktionary.org/wiki/ekstertero"
+    },
+    {
+      "title": "lernolibro",
+      "url": "https://eo.wiktionary.org/wiki/lernolibro"
+    },
+    {
+      "title": "librovendejo",
+      "url": "https://eo.wiktionary.org/wiki/librovendejo"
+    },
+    {
+      "title": "librejo",
+      "url": "https://eo.wiktionary.org/wiki/librejo"
+    },
+    {
+      "title": "mallumo",
+      "url": "https://eo.wiktionary.org/wiki/mallumo"
+    },
+    {
+      "title": "blinkilo",
+      "url": "https://eo.wiktionary.org/wiki/blinkilo"
+    },
+    {
+      "title": "valizvorto",
+      "url": "https://eo.wiktionary.org/wiki/valizvorto"
+    },
+    {
+      "title": "vortokunfando",
+      "url": "https://eo.wiktionary.org/wiki/vortokunfando"
+    },
+    {
+      "title": "nuklea",
+      "url": "https://eo.wiktionary.org/wiki/nuklea"
+    },
+    {
+      "title": "nuklea energio",
+      "url": "https://eo.wiktionary.org/wiki/nuklea_energio"
+    },
+    {
+      "title": "konsterni",
+      "url": "https://eo.wiktionary.org/wiki/konsterni"
+    },
+    {
+      "title": "forĵetakvo",
+      "url": "https://eo.wiktionary.org/wiki/forĵetakvo"
+    },
+    {
+      "title": "forĵetakvopurigejo",
+      "url": "https://eo.wiktionary.org/wiki/forĵetakvopurigejo"
+    },
+    {
+      "title": "sekundo",
+      "url": "https://eo.wiktionary.org/wiki/sekundo"
+    },
+    {
+      "title": "aranĝaĵo",
+      "url": "https://eo.wiktionary.org/wiki/aranĝaĵo"
+    },
+    {
+      "title": "tuta",
+      "url": "https://eo.wiktionary.org/wiki/tuta"
+    },
+    {
+      "title": "nefrologo",
+      "url": "https://eo.wiktionary.org/wiki/nefrologo"
+    },
+    {
+      "title": "nefrologio",
+      "url": "https://eo.wiktionary.org/wiki/nefrologio"
+    },
+    {
+      "title": "nefrektomio",
+      "url": "https://eo.wiktionary.org/wiki/nefrektomio"
+    },
+    {
+      "title": "penektomio",
+      "url": "https://eo.wiktionary.org/wiki/penektomio"
+    },
+    {
+      "title": "arkeologio",
+      "url": "https://eo.wiktionary.org/wiki/arkeologio"
+    },
+    {
+      "title": "polenujaro",
+      "url": "https://eo.wiktionary.org/wiki/polenujaro"
+    },
+    {
+      "title": "fidindeco",
+      "url": "https://eo.wiktionary.org/wiki/fidindeco"
+    },
+    {
+      "title": "supren",
+      "url": "https://eo.wiktionary.org/wiki/supren"
+    },
+    {
+      "title": "suben",
+      "url": "https://eo.wiktionary.org/wiki/suben"
+    },
+    {
+      "title": "malsupren",
+      "url": "https://eo.wiktionary.org/wiki/malsupren"
+    },
+    {
+      "title": "senespere",
+      "url": "https://eo.wiktionary.org/wiki/senespere"
+    },
+    {
+      "title": "senespera",
+      "url": "https://eo.wiktionary.org/wiki/senespera"
+    },
+    {
+      "title": "rajdi",
+      "url": "https://eo.wiktionary.org/wiki/rajdi"
+    },
+    {
+      "title": "Kie estas malrestoracio?",
+      "url": "https://eo.wiktionary.org/wiki/Kie_estas_malrestoracio?"
+    },
+    {
+      "title": "Atlantika salmo",
+      "url": "https://eo.wiktionary.org/wiki/Atlantika_salmo"
+    },
+    {
+      "title": "atlantika salmo",
+      "url": "https://eo.wiktionary.org/wiki/atlantika_salmo"
+    },
+    {
+      "title": "Suda Oceano",
+      "url": "https://eo.wiktionary.org/wiki/Suda_Oceano"
+    },
+    {
+      "title": "Antarkta Oceano",
+      "url": "https://eo.wiktionary.org/wiki/Antarkta_Oceano"
+    },
+    {
+      "title": "faŝismo",
+      "url": "https://eo.wiktionary.org/wiki/faŝismo"
+    },
+    {
+      "title": "betonmiksilo",
+      "url": "https://eo.wiktionary.org/wiki/betonmiksilo"
+    },
+    {
+      "title": "vindaĵo",
+      "url": "https://eo.wiktionary.org/wiki/vindaĵo"
+    },
+    {
+      "title": "familio",
+      "url": "https://eo.wiktionary.org/wiki/familio"
+    },
+    {
+      "title": "uzanto",
+      "url": "https://eo.wiktionary.org/wiki/uzanto"
+    },
+    {
+      "title": "uzantonomo",
+      "url": "https://eo.wiktionary.org/wiki/uzantonomo"
+    },
+    {
+      "title": "uzantnomo",
+      "url": "https://eo.wiktionary.org/wiki/uzantnomo"
+    },
+    {
+      "title": "aranereto",
+      "url": "https://eo.wiktionary.org/wiki/aranereto"
+    },
+    {
+      "title": "araneaĵo",
+      "url": "https://eo.wiktionary.org/wiki/araneaĵo"
+    },
+    {
+      "title": "gasodukto",
+      "url": "https://eo.wiktionary.org/wiki/gasodukto"
+    },
+    {
+      "title": "gaso",
+      "url": "https://eo.wiktionary.org/wiki/gaso"
+    },
+    {
+      "title": "preterito",
+      "url": "https://eo.wiktionary.org/wiki/preterito"
+    },
+    {
+      "title": "senĝene",
+      "url": "https://eo.wiktionary.org/wiki/senĝene"
+    },
+    {
+      "title": "GSRD",
+      "url": "https://eo.wiktionary.org/wiki/GSRD"
+    },
+    {
+      "title": "malliberejo",
+      "url": "https://eo.wiktionary.org/wiki/malliberejo"
+    },
+    {
+      "title": "nekrofilio",
+      "url": "https://eo.wiktionary.org/wiki/nekrofilio"
+    },
+    {
+      "title": "Germanio",
+      "url": "https://eo.wiktionary.org/wiki/Germanio"
+    },
+    {
+      "title": "Rusio",
+      "url": "https://eo.wiktionary.org/wiki/Rusio"
+    },
+    {
+      "title": "Rusujo",
+      "url": "https://eo.wiktionary.org/wiki/Rusujo"
+    },
+    {
+      "title": "Germanujo",
+      "url": "https://eo.wiktionary.org/wiki/Germanujo"
+    },
+    {
+      "title": "vivpriskribo",
+      "url": "https://eo.wiktionary.org/wiki/vivpriskribo"
+    },
+    {
+      "title": "kariertabelo",
+      "url": "https://eo.wiktionary.org/wiki/kariertabelo"
+    },
+    {
+      "title": "vivciklo",
+      "url": "https://eo.wiktionary.org/wiki/vivciklo"
+    },
+    {
+      "title": "meti ĉiujn ovojn en saman korbon",
+      "url": "https://eo.wiktionary.org/wiki/meti_ĉiujn_ovojn_en_saman_korbon"
+    },
+    {
+      "title": "rekremento",
+      "url": "https://eo.wiktionary.org/wiki/rekremento"
+    },
+    {
+      "title": "proparolanto",
+      "url": "https://eo.wiktionary.org/wiki/proparolanto"
+    },
+    {
+      "title": "glaciaĵo",
+      "url": "https://eo.wiktionary.org/wiki/glaciaĵo"
+    },
+    {
+      "title": "porparolanto",
+      "url": "https://eo.wiktionary.org/wiki/porparolanto"
+    },
+    {
+      "title": "pesilo",
+      "url": "https://eo.wiktionary.org/wiki/pesilo"
+    },
+    {
+      "title": "Kie fumo leviĝas, tie fajro troviĝas.",
+      "url": "https://eo.wiktionary.org/wiki/Kie_fumo_leviĝas,_tie_fajro_troviĝas."
+    },
+    {
+      "title": "Fajrovulpo",
+      "url": "https://eo.wiktionary.org/wiki/Fajrovulpo"
+    },
+    {
+      "title": "Esperante",
+      "url": "https://eo.wiktionary.org/wiki/Esperante"
+    },
+    {
+      "title": "Lakta Vojo",
+      "url": "https://eo.wiktionary.org/wiki/Lakta_Vojo"
+    },
+    {
+      "title": "biologo",
+      "url": "https://eo.wiktionary.org/wiki/biologo"
+    },
+    {
+      "title": "vapormaŝino",
+      "url": "https://eo.wiktionary.org/wiki/vapormaŝino"
+    },
+    {
+      "title": "polpo",
+      "url": "https://eo.wiktionary.org/wiki/polpo"
+    },
+    {
+      "title": "Malviva maro",
+      "url": "https://eo.wiktionary.org/wiki/Malviva_maro"
+    },
+    {
+      "title": "Morta maro",
+      "url": "https://eo.wiktionary.org/wiki/Morta_maro"
+    },
+    {
+      "title": "Malviva Maro",
+      "url": "https://eo.wiktionary.org/wiki/Malviva_Maro"
+    },
+    {
+      "title": "maristo",
+      "url": "https://eo.wiktionary.org/wiki/maristo"
+    },
+    {
+      "title": "kosma polvo",
+      "url": "https://eo.wiktionary.org/wiki/kosma_polvo"
+    },
+    {
+      "title": "bongusta",
+      "url": "https://eo.wiktionary.org/wiki/bongusta"
+    },
+    {
+      "title": "tilio",
+      "url": "https://eo.wiktionary.org/wiki/tilio"
+    },
+    {
+      "title": "betulo",
+      "url": "https://eo.wiktionary.org/wiki/betulo"
+    },
+    {
+      "title": "Pli bone malfrue ol neniam.",
+      "url": "https://eo.wiktionary.org/wiki/Pli_bone_malfrue_ol_neniam."
+    },
+    {
+      "title": "kazo",
+      "url": "https://eo.wiktionary.org/wiki/kazo"
+    },
+    {
+      "title": "deklinacio",
+      "url": "https://eo.wiktionary.org/wiki/deklinacio"
+    },
+    {
+      "title": "flegisto",
+      "url": "https://eo.wiktionary.org/wiki/flegisto"
+    },
+    {
+      "title": "moskito",
+      "url": "https://eo.wiktionary.org/wiki/moskito"
+    },
+    {
+      "title": "suna eklipso",
+      "url": "https://eo.wiktionary.org/wiki/suna_eklipso"
+    },
+    {
+      "title": "arkta urso",
+      "url": "https://eo.wiktionary.org/wiki/arkta_urso"
+    },
+    {
+      "title": "blanka urso",
+      "url": "https://eo.wiktionary.org/wiki/blanka_urso"
+    },
+    {
+      "title": "arkta vulpo",
+      "url": "https://eo.wiktionary.org/wiki/arkta_vulpo"
+    },
+    {
+      "title": "arkta",
+      "url": "https://eo.wiktionary.org/wiki/arkta"
+    },
+    {
+      "title": "antarkta",
+      "url": "https://eo.wiktionary.org/wiki/antarkta"
+    },
+    {
+      "title": "berilo",
+      "url": "https://eo.wiktionary.org/wiki/berilo"
+    },
+    {
+      "title": "ruĝa vulpo",
+      "url": "https://eo.wiktionary.org/wiki/ruĝa_vulpo"
+    },
+    {
+      "title": "Eĉ guto malgranda, konstante frapante, traboras la monton granitan.",
+      "url": "https://eo.wiktionary.org/wiki/Eĉ_guto_malgranda,_konstante_frapante,_traboras_la_monton_granitan."
+    },
+    {
+      "title": "De guto post guto disfalas granito.",
+      "url": "https://eo.wiktionary.org/wiki/De_guto_post_guto_disfalas_granito."
+    },
+    {
+      "title": "Guto malgranda, sed ŝtonon ĝi boras.",
+      "url": "https://eo.wiktionary.org/wiki/Guto_malgranda,_sed_ŝtonon_ĝi_boras."
+    },
+    {
+      "title": "Senĉesa guto eĉ ŝtonon traboras.",
+      "url": "https://eo.wiktionary.org/wiki/Senĉesa_guto_eĉ_ŝtonon_traboras."
+    },
+    {
+      "title": "familia nomo",
+      "url": "https://eo.wiktionary.org/wiki/familia_nomo"
+    },
+    {
+      "title": "Fejsbuko",
+      "url": "https://eo.wiktionary.org/wiki/Fejsbuko"
+    },
+    {
+      "title": "cimo",
+      "url": "https://eo.wiktionary.org/wiki/cimo"
+    },
+    {
+      "title": "mangarbo",
+      "url": "https://eo.wiktionary.org/wiki/mangarbo"
+    },
+    {
+      "title": "inkubsonĝo",
+      "url": "https://eo.wiktionary.org/wiki/inkubsonĝo"
+    },
+    {
+      "title": "premsonĝo",
+      "url": "https://eo.wiktionary.org/wiki/premsonĝo"
+    },
+    {
+      "title": "publika transporto",
+      "url": "https://eo.wiktionary.org/wiki/publika_transporto"
+    },
+    {
+      "title": "pirarbo",
+      "url": "https://eo.wiktionary.org/wiki/pirarbo"
+    },
+    {
+      "title": "elektronvolto",
+      "url": "https://eo.wiktionary.org/wiki/elektronvolto"
+    },
+    {
+      "title": "pipo",
+      "url": "https://eo.wiktionary.org/wiki/pipo"
+    },
+    {
+      "title": "obei",
+      "url": "https://eo.wiktionary.org/wiki/obei"
+    },
+    {
+      "title": "glaciejo",
+      "url": "https://eo.wiktionary.org/wiki/glaciejo"
+    },
+    {
+      "title": "tutmonda",
+      "url": "https://eo.wiktionary.org/wiki/tutmonda"
+    },
+    {
+      "title": "murdo",
+      "url": "https://eo.wiktionary.org/wiki/murdo"
+    },
+    {
+      "title": "murdi",
+      "url": "https://eo.wiktionary.org/wiki/murdi"
+    },
+    {
+      "title": "prizono",
+      "url": "https://eo.wiktionary.org/wiki/prizono"
+    },
+    {
+      "title": "Kiu fosas sub alia, falos mem en la foson.",
+      "url": "https://eo.wiktionary.org/wiki/Kiu_fosas_sub_alia,_falos_mem_en_la_foson."
+    },
+    {
+      "title": "rajto",
+      "url": "https://eo.wiktionary.org/wiki/rajto"
+    },
+    {
+      "title": "rajti",
+      "url": "https://eo.wiktionary.org/wiki/rajti"
+    },
+    {
+      "title": "fonto",
+      "url": "https://eo.wiktionary.org/wiki/fonto"
+    },
+    {
+      "title": "acida pluvo",
+      "url": "https://eo.wiktionary.org/wiki/acida_pluvo"
+    },
+    {
+      "title": "vazo",
+      "url": "https://eo.wiktionary.org/wiki/vazo"
+    },
+    {
+      "title": "glacikonuso",
+      "url": "https://eo.wiktionary.org/wiki/glacikonuso"
+    },
+    {
+      "title": "pendoglacio",
+      "url": "https://eo.wiktionary.org/wiki/pendoglacio"
+    },
+    {
+      "title": "pendglacio",
+      "url": "https://eo.wiktionary.org/wiki/pendglacio"
+    },
+    {
+      "title": "nifologo",
+      "url": "https://eo.wiktionary.org/wiki/nifologo"
+    },
+    {
+      "title": "koncentriteco",
+      "url": "https://eo.wiktionary.org/wiki/koncentriteco"
+    },
+    {
+      "title": "koncentreco",
+      "url": "https://eo.wiktionary.org/wiki/koncentreco"
+    },
+    {
+      "title": "faŝisto",
+      "url": "https://eo.wiktionary.org/wiki/faŝisto"
+    },
+    {
+      "title": "banĉambro",
+      "url": "https://eo.wiktionary.org/wiki/banĉambro"
+    },
+    {
+      "title": "altforno",
+      "url": "https://eo.wiktionary.org/wiki/altforno"
+    },
+    {
+      "title": "Mi ne parolas la anglan.",
+      "url": "https://eo.wiktionary.org/wiki/Mi_ne_parolas_la_anglan."
+    },
+    {
+      "title": "mondmilito",
+      "url": "https://eo.wiktionary.org/wiki/mondmilito"
+    },
+    {
+      "title": "mondomilito",
+      "url": "https://eo.wiktionary.org/wiki/mondomilito"
+    },
+    {
+      "title": "unua mondmilito",
+      "url": "https://eo.wiktionary.org/wiki/unua_mondmilito"
+    },
+    {
+      "title": "tria mondmilito",
+      "url": "https://eo.wiktionary.org/wiki/tria_mondmilito"
+    },
+    {
+      "title": "energivora",
+      "url": "https://eo.wiktionary.org/wiki/energivora"
+    },
+    {
+      "title": "vori",
+      "url": "https://eo.wiktionary.org/wiki/vori"
+    },
+    {
+      "title": "militkaptito",
+      "url": "https://eo.wiktionary.org/wiki/militkaptito"
+    },
+    {
+      "title": "rebuso",
+      "url": "https://eo.wiktionary.org/wiki/rebuso"
+    },
+    {
+      "title": "honto",
+      "url": "https://eo.wiktionary.org/wiki/honto"
+    },
+    {
+      "title": "formo",
+      "url": "https://eo.wiktionary.org/wiki/formo"
+    },
+    {
+      "title": "senhejmulo",
+      "url": "https://eo.wiktionary.org/wiki/senhejmulo"
+    },
+    {
+      "title": "senlaborulo",
+      "url": "https://eo.wiktionary.org/wiki/senlaborulo"
+    },
+    {
+      "title": "Novialo",
+      "url": "https://eo.wiktionary.org/wiki/Novialo"
+    },
+    {
+      "title": "forto",
+      "url": "https://eo.wiktionary.org/wiki/forto"
+    },
+    {
+      "title": "levoforto",
+      "url": "https://eo.wiktionary.org/wiki/levoforto"
+    },
+    {
+      "title": "azolo",
+      "url": "https://eo.wiktionary.org/wiki/azolo"
+    },
+    {
+      "title": "sekretario",
+      "url": "https://eo.wiktionary.org/wiki/sekretario"
+    },
+    {
+      "title": "rifuĝinto",
+      "url": "https://eo.wiktionary.org/wiki/rifuĝinto"
+    },
+    {
+      "title": "Laadano",
+      "url": "https://eo.wiktionary.org/wiki/Laadano"
+    },
+    {
+      "title": "laadana lingvo",
+      "url": "https://eo.wiktionary.org/wiki/laadana_lingvo"
+    },
+    {
+      "title": "lingvistiko",
+      "url": "https://eo.wiktionary.org/wiki/lingvistiko"
+    },
+    {
+      "title": "bojkoto",
+      "url": "https://eo.wiktionary.org/wiki/bojkoto"
+    },
+    {
+      "title": "islamo",
+      "url": "https://eo.wiktionary.org/wiki/islamo"
+    },
+    {
+      "title": "Islamo",
+      "url": "https://eo.wiktionary.org/wiki/Islamo"
+    },
+    {
+      "title": "instruisto",
+      "url": "https://eo.wiktionary.org/wiki/instruisto"
+    },
+    {
+      "title": "gluti la maldolĉan pilolon",
+      "url": "https://eo.wiktionary.org/wiki/gluti_la_maldolĉan_pilolon"
+    },
+    {
+      "title": "acidiĝo",
+      "url": "https://eo.wiktionary.org/wiki/acidiĝo"
+    },
+    {
+      "title": "malsano de bova freneziĝo",
+      "url": "https://eo.wiktionary.org/wiki/malsano_de_bova_freneziĝo"
+    },
+    {
+      "title": "nuda",
+      "url": "https://eo.wiktionary.org/wiki/nuda"
+    },
+    {
+      "title": "Kiu rabi eliras, ofte nuda revenas.",
+      "url": "https://eo.wiktionary.org/wiki/Kiu_rabi_eliras,_ofte_nuda_revenas."
+    },
+    {
+      "title": "demando",
+      "url": "https://eo.wiktionary.org/wiki/demando"
+    },
+    {
+      "title": "rabio",
+      "url": "https://eo.wiktionary.org/wiki/rabio"
+    },
+    {
+      "title": "varmopumpilo",
+      "url": "https://eo.wiktionary.org/wiki/varmopumpilo"
+    },
+    {
+      "title": "bombo",
+      "url": "https://eo.wiktionary.org/wiki/bombo"
+    },
+    {
+      "title": "redoni",
+      "url": "https://eo.wiktionary.org/wiki/redoni"
+    },
+    {
+      "title": "porĉiama",
+      "url": "https://eo.wiktionary.org/wiki/porĉiama"
+    },
+    {
+      "title": "veni",
+      "url": "https://eo.wiktionary.org/wiki/veni"
+    },
+    {
+      "title": "kaldrono",
+      "url": "https://eo.wiktionary.org/wiki/kaldrono"
+    },
+    {
+      "title": "fervojstacio",
+      "url": "https://eo.wiktionary.org/wiki/fervojstacio"
+    },
+    {
+      "title": "fervojisto",
+      "url": "https://eo.wiktionary.org/wiki/fervojisto"
+    },
+    {
+      "title": "lunaro",
+      "url": "https://eo.wiktionary.org/wiki/lunaro"
+    },
+    {
+      "title": "generado",
+      "url": "https://eo.wiktionary.org/wiki/generado"
+    },
+    {
+      "title": "facila",
+      "url": "https://eo.wiktionary.org/wiki/facila"
+    },
+    {
+      "title": "kalvulo",
+      "url": "https://eo.wiktionary.org/wiki/kalvulo"
+    },
+    {
+      "title": "kelo",
+      "url": "https://eo.wiktionary.org/wiki/kelo"
+    },
+    {
+      "title": "abelmanĝulo",
+      "url": "https://eo.wiktionary.org/wiki/abelmanĝulo"
+    },
+    {
+      "title": "murdisto",
+      "url": "https://eo.wiktionary.org/wiki/murdisto"
+    },
+    {
+      "title": "sufokmato",
+      "url": "https://eo.wiktionary.org/wiki/sufokmato"
+    },
+    {
+      "title": "peono",
+      "url": "https://eo.wiktionary.org/wiki/peono"
+    },
+    {
+      "title": "stultula mato",
+      "url": "https://eo.wiktionary.org/wiki/stultula_mato"
+    },
+    {
+      "title": "reĝisoro",
+      "url": "https://eo.wiktionary.org/wiki/reĝisoro"
+    },
+    {
+      "title": "resurso",
+      "url": "https://eo.wiktionary.org/wiki/resurso"
+    },
+    {
+      "title": "mispaŝo",
+      "url": "https://eo.wiktionary.org/wiki/mispaŝo"
+    },
+    {
+      "title": "nobelo",
+      "url": "https://eo.wiktionary.org/wiki/nobelo"
+    },
+    {
+      "title": "jarkunveno",
+      "url": "https://eo.wiktionary.org/wiki/jarkunveno"
+    },
+    {
+      "title": "kribrilo de Eratosteno",
+      "url": "https://eo.wiktionary.org/wiki/kribrilo_de_Eratosteno"
+    },
+    {
+      "title": "latuno",
+      "url": "https://eo.wiktionary.org/wiki/latuno"
+    },
+    {
+      "title": "spegulumo",
+      "url": "https://eo.wiktionary.org/wiki/spegulumo"
+    },
+    {
+      "title": "kvanta numeralo",
+      "url": "https://eo.wiktionary.org/wiki/kvanta_numeralo"
+    },
+    {
+      "title": "kvanta nombrovorto",
+      "url": "https://eo.wiktionary.org/wiki/kvanta_nombrovorto"
+    },
+    {
+      "title": "ronĝulo",
+      "url": "https://eo.wiktionary.org/wiki/ronĝulo"
+    },
+    {
+      "title": "mamulo",
+      "url": "https://eo.wiktionary.org/wiki/mamulo"
+    },
+    {
+      "title": "krokodilo",
+      "url": "https://eo.wiktionary.org/wiki/krokodilo"
+    },
+    {
+      "title": "mueli",
+      "url": "https://eo.wiktionary.org/wiki/mueli"
+    },
+    {
+      "title": "kalviĝi",
+      "url": "https://eo.wiktionary.org/wiki/kalviĝi"
+    },
+    {
+      "title": "kalva",
+      "url": "https://eo.wiktionary.org/wiki/kalva"
+    },
+    {
+      "title": "kalvo",
+      "url": "https://eo.wiktionary.org/wiki/kalvo"
+    },
+    {
+      "title": "finnlandiĝo",
+      "url": "https://eo.wiktionary.org/wiki/finnlandiĝo"
+    },
+    {
+      "title": "kastoro",
+      "url": "https://eo.wiktionary.org/wiki/kastoro"
+    },
+    {
+      "title": "umamo",
+      "url": "https://eo.wiktionary.org/wiki/umamo"
+    },
+    {
+      "title": "bongusteco",
+      "url": "https://eo.wiktionary.org/wiki/bongusteco"
+    },
+    {
+      "title": "forgesema",
+      "url": "https://eo.wiktionary.org/wiki/forgesema"
+    },
+    {
+      "title": "gejŝo",
+      "url": "https://eo.wiktionary.org/wiki/gejŝo"
+    },
+    {
+      "title": "eŭklazo",
+      "url": "https://eo.wiktionary.org/wiki/eŭklazo"
+    },
+    {
+      "title": "geologiisto",
+      "url": "https://eo.wiktionary.org/wiki/geologiisto"
+    },
+    {
+      "title": "magneta deklinacio",
+      "url": "https://eo.wiktionary.org/wiki/magneta_deklinacio"
+    },
+    {
+      "title": "magneta kampo",
+      "url": "https://eo.wiktionary.org/wiki/magneta_kampo"
+    },
+    {
+      "title": "magneta",
+      "url": "https://eo.wiktionary.org/wiki/magneta"
+    },
+    {
+      "title": "kanelonoj",
+      "url": "https://eo.wiktionary.org/wiki/kanelonoj"
+    },
+    {
+      "title": "kanelonioj",
+      "url": "https://eo.wiktionary.org/wiki/kanelonioj"
+    },
+    {
+      "title": "skribmaŝino",
+      "url": "https://eo.wiktionary.org/wiki/skribmaŝino"
+    },
+    {
+      "title": "tajpilo",
+      "url": "https://eo.wiktionary.org/wiki/tajpilo"
+    },
+    {
+      "title": "molusko",
+      "url": "https://eo.wiktionary.org/wiki/molusko"
+    },
+    {
+      "title": "Svir",
+      "url": "https://eo.wiktionary.org/wiki/Svir"
+    },
+    {
+      "title": "arĉo",
+      "url": "https://eo.wiktionary.org/wiki/arĉo"
+    },
+    {
+      "title": "kakatuo",
+      "url": "https://eo.wiktionary.org/wiki/kakatuo"
+    },
+    {
+      "title": "romantiko",
+      "url": "https://eo.wiktionary.org/wiki/romantiko"
+    },
+    {
+      "title": "romantikismo",
+      "url": "https://eo.wiktionary.org/wiki/romantikismo"
+    },
+    {
+      "title": "Nordio",
+      "url": "https://eo.wiktionary.org/wiki/Nordio"
+    },
+    {
+      "title": "elektrona truo",
+      "url": "https://eo.wiktionary.org/wiki/elektrona_truo"
+    },
+    {
+      "title": "truo",
+      "url": "https://eo.wiktionary.org/wiki/truo"
+    },
+    {
+      "title": "pakto",
+      "url": "https://eo.wiktionary.org/wiki/pakto"
+    },
+    {
+      "title": "uremio",
+      "url": "https://eo.wiktionary.org/wiki/uremio"
+    },
+    {
+      "title": "ureo",
+      "url": "https://eo.wiktionary.org/wiki/ureo"
+    },
+    {
+      "title": "lestadianismo",
+      "url": "https://eo.wiktionary.org/wiki/lestadianismo"
+    },
+    {
+      "title": "malplena",
+      "url": "https://eo.wiktionary.org/wiki/malplena"
+    },
+    {
+      "title": "salo",
+      "url": "https://eo.wiktionary.org/wiki/salo"
+    },
+    {
+      "title": "melki",
+      "url": "https://eo.wiktionary.org/wiki/melki"
+    },
+    {
+      "title": "inkao",
+      "url": "https://eo.wiktionary.org/wiki/inkao"
+    },
+    {
+      "title": "misaŭdo",
+      "url": "https://eo.wiktionary.org/wiki/misaŭdo"
+    },
+    {
+      "title": "misaŭdi",
+      "url": "https://eo.wiktionary.org/wiki/misaŭdi"
+    },
+    {
+      "title": "prahistorio",
+      "url": "https://eo.wiktionary.org/wiki/prahistorio"
+    },
+    {
+      "title": "dismeti",
+      "url": "https://eo.wiktionary.org/wiki/dismeti"
+    },
+    {
+      "title": "aĉetumi",
+      "url": "https://eo.wiktionary.org/wiki/aĉetumi"
+    },
+    {
+      "title": "pendumo",
+      "url": "https://eo.wiktionary.org/wiki/pendumo"
+    },
+    {
+      "title": "alporti",
+      "url": "https://eo.wiktionary.org/wiki/alporti"
+    },
+    {
+      "title": "kankro",
+      "url": "https://eo.wiktionary.org/wiki/kankro"
+    },
+    {
+      "title": "neŭrozo",
+      "url": "https://eo.wiktionary.org/wiki/neŭrozo"
+    },
+    {
+      "title": "lavi",
+      "url": "https://eo.wiktionary.org/wiki/lavi"
+    },
+    {
+      "title": "sukcena",
+      "url": "https://eo.wiktionary.org/wiki/sukcena"
+    },
+    {
+      "title": "sukceno",
+      "url": "https://eo.wiktionary.org/wiki/sukceno"
+    },
+    {
+      "title": "novzelanda",
+      "url": "https://eo.wiktionary.org/wiki/novzelanda"
+    },
+    {
+      "title": "granda pando",
+      "url": "https://eo.wiktionary.org/wiki/granda_pando"
+    },
+    {
+      "title": "ruĝa pando",
+      "url": "https://eo.wiktionary.org/wiki/ruĝa_pando"
+    },
+    {
+      "title": "malgranda pando",
+      "url": "https://eo.wiktionary.org/wiki/malgranda_pando"
+    },
+    {
+      "title": "muzikinstrumento",
+      "url": "https://eo.wiktionary.org/wiki/muzikinstrumento"
+    },
+    {
+      "title": "muzika instrumento",
+      "url": "https://eo.wiktionary.org/wiki/muzika_instrumento"
+    },
+    {
+      "title": "nehijaŭa",
+      "url": "https://eo.wiktionary.org/wiki/nehijaŭa"
+    },
+    {
+      "title": "krei",
+      "url": "https://eo.wiktionary.org/wiki/krei"
+    },
+    {
+      "title": "lampo",
+      "url": "https://eo.wiktionary.org/wiki/lampo"
+    },
+    {
+      "title": "filipinano",
+      "url": "https://eo.wiktionary.org/wiki/filipinano"
+    },
+    {
+      "title": "filipina",
+      "url": "https://eo.wiktionary.org/wiki/filipina"
+    },
+    {
+      "title": "sekigilo",
+      "url": "https://eo.wiktionary.org/wiki/sekigilo"
+    }
+  ]
+}

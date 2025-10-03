@@ -863,9 +863,11 @@ class BidirectionalDictionaryExtractor:
             'failed_links': self.failed_links
         }
         
-        # Generate output filenames - simplified names
-        successful_file = "dictionary.json"
-        failed_file = "failed_items.json"
+        # Generate output filenames with language codes
+        source_code = self.config['source_code']
+        target_code = self.config['target_code']
+        successful_file = f"dictionary_{source_code}_{target_code}.json"
+        failed_file = f"failed_items_{source_code}_{target_code}.json"
         
         # Save successful entries
         with open(successful_file, 'w', encoding='utf-8') as f:
