@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 """
-Improved Ido-Esperanto Dictionary Extractor v2
+Bidirectional Dictionary Extractor v3
 
-This version includes:
+Supports extraction between Ido and Esperanto in both directions:
+- Ido → Esperanto (from io.wiktionary.org)
+- Esperanto → Ido (from eo.wiktionary.org)
+
+Features:
 - Part of speech extraction
 - Proper parsing of multiple meanings
 - Cleaner output format
 - Better translation cleaning
+- Bidirectional language support
 """
 
 import argparse
@@ -30,29 +35,67 @@ except ImportError:
     mwp = None
     HAVE_MWP = False
 
-# Configuration
-DUMP_URL = 'https://dumps.wikimedia.org/iowiktionary/latest/iowiktionary-latest-pages-articles.xml.bz2'
-DUMP_FILE = 'iowiktionary-latest-pages-articles.xml.bz2'
+# Configuration for different language pairs
+DUMP_CONFIGS = {
+    'ido-esperanto': {
+        'dump_url': 'https://dumps.wikimedia.org/iowiktionary/latest/iowiktionary-latest-pages-articles.xml.bz2',
+        'dump_file': 'iowiktionary-latest-pages-articles.xml.bz2',
+        'source_lang': 'ido',
+        'target_lang': 'esperanto',
+        'source_code': 'io',
+        'target_code': 'eo',
+        'wiktionary_domain': 'io.wiktionary.org'
+    },
+    'esperanto-ido': {
+        'dump_url': 'https://dumps.wikimedia.org/eowiktionary/latest/eowiktionary-latest-pages-articles.xml.bz2',
+        'dump_file': 'eowiktionary-latest-pages-articles.xml.bz2',
+        'source_lang': 'esperanto',
+        'target_lang': 'ido',
+        'source_code': 'eo',
+        'target_code': 'io',
+        'wiktionary_domain': 'eo.wiktionary.org'
+    }
+}
 
-# Patterns for filtering
-IDO_SECTION_PATTERNS = [
-    re.compile(r'==\s*\{\{io\}\}\s*==', re.IGNORECASE),
-    re.compile(r'==\s*Ido\s*==', re.IGNORECASE),
-    re.compile(r'\{\{-ido-\}\}', re.IGNORECASE),
-    re.compile(r'\{\{-adj-\}\}', re.IGNORECASE)
-]
+# Patterns for different language sections
+SECTION_PATTERNS = {
+    'ido': [
+        re.compile(r'==\s*\{\{io\}\}\s*==', re.IGNORECASE),
+        re.compile(r'==\s*Ido\s*==', re.IGNORECASE),
+        re.compile(r'\{\{-ido-\}\}', re.IGNORECASE),
+        re.compile(r'\{\{-adj-\}\}', re.IGNORECASE)
+    ],
+    'esperanto': [
+        re.compile(r'==\s*\{\{eo\}\}\s*==', re.IGNORECASE),
+        re.compile(r'==\s*Esperanto\s*==', re.IGNORECASE),
+        re.compile(r'\{\{-eo-\}\}', re.IGNORECASE),
+        re.compile(r'\{\{-adj-\}\}', re.IGNORECASE)
+    ]
+}
 
-# Translation patterns
-TRANSLATION_PATTERNS = [
-    # Pattern 1: *{{eo}}: translation (captures content until end of line, next * on new line, or HTML table break)
-    re.compile(r'\*\s*\{\{eo\}\}\s*:\s*(.+?)(?=\s*\n\s*\*|\s*\n\s*\|}|\s*$)', re.IGNORECASE | re.DOTALL),
-    # Pattern 2: *Esperanto: translation (captures content until end of line, next * on new line, or HTML table break)
-    re.compile(r'\*\s*(?:Esperanto|esperanto|eo)\s*[:\-]\s*(.+?)(?=\s*\n\s*\*|\s*\n\s*\|}|\s*$)', re.IGNORECASE | re.DOTALL),
-    # Pattern 3: Template patterns
-    re.compile(r'{{t\+?\|eo\|([^}|]+)}}', re.IGNORECASE),
-    re.compile(r'{{l\|eo\|([^}|]+)}}', re.IGNORECASE),
-    re.compile(r'{{ux\|io\|([^}|]+)\|([^}]+)}}', re.IGNORECASE),
-]
+# Translation patterns for different target languages
+TRANSLATION_PATTERNS = {
+    'esperanto': [
+        # Pattern 1: *{{eo}}: translation
+        re.compile(r'\*\s*\{\{eo\}\}\s*:\s*(.+?)(?=\s*\n\s*\*|\s*\n\s*\|}|\s*$)', re.IGNORECASE | re.DOTALL),
+        # Pattern 2: *Esperanto: translation
+        re.compile(r'\*\s*(?:Esperanto|esperanto|eo)\s*[:\-]\s*(.+?)(?=\s*\n\s*\*|\s*\n\s*\|}|\s*$)', re.IGNORECASE | re.DOTALL),
+        # Pattern 3: Template patterns
+        re.compile(r'{{t\+?\|eo\|([^}|]+)}}', re.IGNORECASE),
+        re.compile(r'{{l\|eo\|([^}|]+)}}', re.IGNORECASE),
+        re.compile(r'{{ux\|io\|([^}|]+)\|([^}]+)}}', re.IGNORECASE),
+    ],
+    'ido': [
+        # Pattern 1: *{{io}}: translation
+        re.compile(r'\*\s*\{\{io\}\}\s*:\s*(.+?)(?=\s*\n\s*\*|\s*\n\s*\|}|\s*$)', re.IGNORECASE | re.DOTALL),
+        # Pattern 2: *Ido: translation
+        re.compile(r'\*\s*(?:Ido|ido|io)\s*[:\-]\s*(.+?)(?=\s*\n\s*\*|\s*\n\s*\|}|\s*$)', re.IGNORECASE | re.DOTALL),
+        # Pattern 3: Template patterns
+        re.compile(r'{{t\+?\|io\|([^}|]+)}}', re.IGNORECASE),
+        re.compile(r'{{l\|io\|([^}|]+)}}', re.IGNORECASE),
+        re.compile(r'{{ux\|eo\|([^}|]+)\|([^}]+)}}', re.IGNORECASE),
+    ]
+}
 
 # Part of speech patterns
 POS_PATTERNS = [
@@ -82,14 +125,31 @@ INVALID_TITLE_PATTERNS = [
 ]
 
 
-class ImprovedDumpParserV2:
-    """Improved dump parser with part of speech and better translation parsing."""
+class BidirectionalDictionaryExtractor:
+    """Bidirectional dictionary extractor supporting Ido↔Esperanto extraction."""
     
-    def __init__(self, dump_file: str = DUMP_FILE):
-        self.dump_file = dump_file
+    def __init__(self, language_pair: str = 'ido-esperanto', dump_file: str = None):
+        """
+        Initialize the extractor for a specific language pair.
+        
+        Args:
+            language_pair: Either 'ido-esperanto' or 'esperanto-ido'
+            dump_file: Override the default dump file path
+        """
+        if language_pair not in DUMP_CONFIGS:
+            raise ValueError(f"Unsupported language pair: {language_pair}. Supported pairs: {list(DUMP_CONFIGS.keys())}")
+        
+        self.config = DUMP_CONFIGS[language_pair]
+        self.language_pair = language_pair
+        self.dump_file = dump_file or self.config['dump_file']
+        
+        # Get language-specific patterns
+        self.source_section_patterns = SECTION_PATTERNS[self.config['source_lang']]
+        self.target_translation_patterns = TRANSLATION_PATTERNS[self.config['target_lang']]
+        
         self.stats = {
             'pages_processed': 0,
-            'pages_with_ido_section': 0,
+            f'pages_with_{self.config["source_lang"]}_section': 0,
             'valid_entries_found': 0,
             'skipped_by_category': 0,
             'skipped_by_title': 0,
@@ -136,9 +196,9 @@ class ImprovedDumpParserV2:
                 return True
         return False
     
-    def extract_ido_section(self, wikitext: str) -> Optional[str]:
-        """Extract the Ido section from wikitext."""
-        for pattern in IDO_SECTION_PATTERNS:
+    def extract_source_section(self, wikitext: str) -> Optional[str]:
+        """Extract the source language section from wikitext."""
+        for pattern in self.source_section_patterns:
             match = re.search(pattern, wikitext)
             if match:
                 # Find the end of the Ido section
@@ -158,13 +218,13 @@ class ImprovedDumpParserV2:
                         section_content = section_content[:next_section.start()]
                 
                 return section_content
-        return None
-    
+                return None
+                
     def extract_part_of_speech(self, ido_section: str) -> Optional[str]:
         """Extract part of speech from Ido section."""
         if not ido_section:
-            return None
-        
+                return None
+                
         for pattern in POS_PATTERNS:
             match = pattern.search(ido_section)
             if match:
@@ -178,8 +238,8 @@ class ImprovedDumpParserV2:
                 }
                 return pos_map.get(pos, pos)
         
-        return None
-    
+            return None
+
     def extract_metadata(self, ido_section: str) -> Dict[str, any]:
         """Extract additional metadata from Ido section like Morfologio."""
         metadata = {}
@@ -205,7 +265,7 @@ class ImprovedDumpParserV2:
                     if parsed_morfologio:
                         metadata['morfologio'] = parsed_morfologio
                 break
-                
+
         return metadata
     
     def parse_morfologio(self, morfologio_text: str) -> List[str]:
@@ -306,16 +366,16 @@ class ImprovedDumpParserV2:
         
         return meanings
     
-    def extract_translations(self, ido_section: str) -> List[List[str]]:
-        """Extract Esperanto translations from Ido section."""
+    def extract_translations(self, source_section: str) -> List[List[str]]:
+        """Extract target language translations from source language section."""
         all_meanings = []
         
-        if not ido_section:
+        if not source_section:
             return all_meanings
         
         # Extract using patterns
-        for pattern in TRANSLATION_PATTERNS:
-            matches = pattern.findall(ido_section)
+        for pattern in self.target_translation_patterns:
+            matches = pattern.findall(source_section)
             for match in matches:
                 if isinstance(match, tuple):
                     # Handle templates with multiple parameters
@@ -370,7 +430,7 @@ class ImprovedDumpParserV2:
         
         return unique_meanings
     
-    def extract_esperanto_section_translations(self, wikitext: str, title: str) -> List[List[str]]:
+    def extract_target_language_section_translations(self, wikitext: str, title: str) -> List[List[str]]:
         """Extract translations from standalone Esperanto sections (fallback method)."""
         all_meanings = []
         
@@ -454,7 +514,7 @@ class ImprovedDumpParserV2:
                 # Special case: if the line just contains the word itself, it's self-translating
                 if re.search(rf'\*\s*{re.escape(title)}\s*$', esperanto_section, re.IGNORECASE):
                     all_meanings.append([title])
-                continue
+                    continue
                 
                 # Special case: if the word appears in a compound phrase, treat as self-translating
                 # Example: "* dika kaj longa - grosa." -> dika translates to dika
@@ -470,7 +530,7 @@ class ImprovedDumpParserV2:
                             # Check if the translation is just the same word (like dika -> dika)
                             if translation.lower() == title.lower():
                                 all_meanings.append([title])
-                            else:
+                        else:
                                 parsed_meanings = self.parse_multiple_translations(translation)
                                 all_meanings.extend(parsed_meanings)
         
@@ -538,7 +598,7 @@ class ImprovedDumpParserV2:
         return translation
     
     def extract_from_wikitext(self, title: str, wikitext: str) -> Optional[Dict]:
-        """Extract Ido-Esperanto entry from wikitext."""
+        """Extract dictionary entry from wikitext."""
         # Check if title is valid
         if not self.is_valid_title(title):
             self.stats['skipped_by_title'] += 1
@@ -549,38 +609,38 @@ class ImprovedDumpParserV2:
             self.stats['skipped_by_category'] += 1
             return None
         
-        # Extract Ido section
-        ido_section = self.extract_ido_section(wikitext)
-        if not ido_section:
-            # Track failed parsing - pages that have Ido sections but failed to extract
-            if any(pattern.search(wikitext) for pattern in IDO_SECTION_PATTERNS):
+        # Extract source language section
+        source_section = self.extract_source_section(wikitext)
+        if not source_section:
+            # Track failed parsing - pages that have source language sections but failed to extract
+            if any(pattern.search(wikitext) for pattern in self.source_section_patterns):
                 self.failed_links.append({
                     'title': title,
-                    'url': f'https://io.wiktionary.org/wiki/{title.replace(" ", "_")}'
+                    'url': f'https://{self.config["wiktionary_domain"]}/wiki/{title.replace(" ", "_")}'
                 })
             return None
         
-        self.stats['pages_with_ido_section'] += 1
+        self.stats[f'pages_with_{self.config["source_lang"]}_section'] += 1
         
         # Extract part of speech
-        pos = self.extract_part_of_speech(ido_section)
+        pos = self.extract_part_of_speech(source_section)
         if pos:
             self.stats['entries_with_pos'] += 1
         
         # Extract translations
-        translations = self.extract_translations(ido_section)
+        translations = self.extract_translations(source_section)
         
-        # If no translations found in Ido section, try standalone Esperanto sections as fallback
+        # If no translations found in source section, try standalone target language sections as fallback
         if not translations:
-            translations = self.extract_esperanto_section_translations(wikitext, title)
+            translations = self.extract_target_language_section_translations(wikitext, title)
         
         if not translations:
             self.stats['skipped_no_translations'] += 1
             
-            # Track failed parsing - pages with Ido sections but no valid translations
+            # Track failed parsing - pages with source language sections but no valid translations
             self.failed_links.append({
                 'title': title,
-                'url': f'https://io.wiktionary.org/wiki/{title.replace(" ", "_")}'
+                'url': f'https://{self.config["wiktionary_domain"]}/wiki/{title.replace(" ", "_")}'
             })
             return None
     
@@ -591,12 +651,12 @@ class ImprovedDumpParserV2:
             self.stats['entries_with_multiple_meanings'] += 1
         
         # Extract additional metadata
-        metadata = self.extract_metadata(ido_section)
+        metadata = self.extract_metadata(source_section)
         
         # Build entry dictionary
         entry = {
-            'ido_word': title,
-            'esperanto_translations': translations
+            f'{self.config["source_lang"]}_word': title,
+            f'{self.config["target_lang"]}_translations': translations
         }
         
         # Only add part_of_speech if it's not empty
@@ -684,7 +744,7 @@ class ImprovedDumpParserV2:
                 # Stop after processing enough pages for testing
                 if self.stats['pages_processed'] > 500000:  # High limit for large dumps
                     break
-        
+
         finally:
             file_obj.close()
     
@@ -694,11 +754,12 @@ class ImprovedDumpParserV2:
             print(f"Dump file already exists: {self.dump_file}")
             return
         
-        print(f"Downloading dump from {DUMP_URL}...")
+        dump_url = self.config['dump_url']
+        print(f"Downloading {self.config['source_lang']} dump from {dump_url}...")
         print("This may take several minutes...")
         
         try:
-            urllib.request.urlretrieve(DUMP_URL, self.dump_file)
+            urllib.request.urlretrieve(dump_url, self.dump_file)
             print(f"Download complete: {self.dump_file}")
         except Exception as e:
             print(f"Error downloading dump: {e}")
@@ -737,7 +798,7 @@ class ImprovedDumpParserV2:
 
     def extract_dictionary(self, limit: Optional[int] = None, base_output_name: str = 'ido_esperanto_v2') -> None:
         """Extract Ido-Esperanto dictionary from dump."""
-        print("Starting improved Ido-Esperanto dictionary extraction v2...")
+        print(f"Starting bidirectional dictionary extraction v3 ({self.config['source_lang']} → {self.config['target_lang']})...")
         
         entries = []
         processed = 0
@@ -751,20 +812,23 @@ class ImprovedDumpParserV2:
                 if entry:
                     entries.append(entry)
                     # Format translations for display
-                    if entry['esperanto_translations']:
-                        first_meaning = entry['esperanto_translations'][0]
+                    target_translations_key = f'{self.config["target_lang"]}_translations'
+                    source_word_key = f'{self.config["source_lang"]}_word'
+                    
+                    if entry[target_translations_key]:
+                        first_meaning = entry[target_translations_key][0]
                         if isinstance(first_meaning, list):
                             translations_str = ', '.join(first_meaning[:2])
                         else:
                             translations_str = first_meaning
-                        if len(entry['esperanto_translations']) > 1:
-                            translations_str += f" (+{len(entry['esperanto_translations'])-1} more)"
+                        if len(entry[target_translations_key]) > 1:
+                            translations_str += f" (+{len(entry[target_translations_key])-1} more)"
                     else:
                         translations_str = ""
                     pos_info = f" ({entry['part_of_speech']})" if entry.get('part_of_speech') else ""
-                    print(f"✓ Found: {entry['ido_word']}{pos_info} -> [{translations_str}]")
+                    print(f"✓ Found: {entry[source_word_key]}{pos_info} -> [{translations_str}]")
                 
-            processed += 1
+                processed += 1
             
         except KeyboardInterrupt:
             print("\nExtraction interrupted by user.")
@@ -813,7 +877,7 @@ class ImprovedDumpParserV2:
         
         print(f"\nExtraction complete!")
         print(f"Total pages processed: {self.stats['pages_processed']}")
-        print(f"Pages with Ido sections: {self.stats['pages_with_ido_section']}")
+        print(f"Pages with {self.config['source_lang']} sections: {self.stats[f'pages_with_{self.config['source_lang']}_section']}")
         print(f"Valid entries found: {self.stats['valid_entries_found']}")
         print(f"Entries with part of speech: {self.stats['entries_with_pos']}")
         print(f"Entries with multiple meanings: {self.stats['entries_with_multiple_meanings']}")
@@ -827,16 +891,25 @@ class ImprovedDumpParserV2:
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Improved Ido-Esperanto dictionary extractor v2')
-    parser.add_argument('--dump', default=DUMP_FILE, help='Path to dump file')
+    parser = argparse.ArgumentParser(description='Bidirectional Dictionary Extractor v3 - Ido↔Esperanto')
+    parser.add_argument('--language-pair', choices=['ido-esperanto', 'esperanto-ido'], 
+                       default='ido-esperanto', help='Language pair to extract (default: ido-esperanto)')
+    parser.add_argument('--dump', help='Path to dump file (overrides default for language pair)')
     parser.add_argument('--download', action='store_true', help='Download dump file')
     parser.add_argument('--force-download', action='store_true', help='Force re-download of dump file')
-    parser.add_argument('--output', '-o', default='ido_esperanto_v2', help='Base name for output files (will create _successful.json and _failed.json)')
+    parser.add_argument('--output', '-o', help='Base name for output files (default: based on language pair)')
     parser.add_argument('--limit', type=int, help='Limit number of pages to process (for testing)')
     
     args = parser.parse_args()
     
-    extractor = ImprovedDumpParserV2(args.dump)
+    # Set default output name based on language pair
+    if not args.output:
+        args.output = args.language_pair
+    
+    # Get dump file path
+    dump_file = args.dump or DUMP_CONFIGS[args.language_pair]['dump_file']
+    
+    extractor = BidirectionalDictionaryExtractor(args.language_pair, dump_file)
     
     try:
         if args.download or args.force_download:
