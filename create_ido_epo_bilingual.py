@@ -118,6 +118,41 @@ class IdoEsperantoBilingualConverter:
         
         return root, pos
     
+    def infer_pos_from_word(self, word):
+        """
+        Infer POS for words without morfologio based on patterns and endings.
+        Same logic as monolingual converter for consistency.
+        """
+        word_lower = word.lower()
+        
+        # Common Ido function word patterns
+        common_prepositions = ['a', 'de', 'da', 'di', 'en', 'sur', 'sub', 'ante', 'pos', 
+                               'inter', 'trans', 'ultra', 'infra', 'cis', 'tra', 'kontre',
+                               'pro', 'por', 'sen', 'kun', 'dum', 'malgre', 'segun']
+        common_conjunctions = ['e', 'ed', 'ma', 'o', 'ka', 'ke', 'se', 'kam', 'nur', 'mem']
+        common_adverbs_end = ['e', 'am', 'un', 'en']
+        
+        # Check if it's a known function word type
+        if word_lower in common_prepositions:
+            return 'pr'
+        if word_lower in common_conjunctions:
+            # Distinguish coordinating vs subordinating
+            if word_lower in ['e', 'ed', 'ma', 'o', 'nek']:
+                return 'cnjcoo'
+            else:
+                return 'cnjsub'
+        
+        # Check endings
+        if any(word_lower.endswith(end) for end in common_adverbs_end):
+            return 'adv'
+        
+        # Very short words (1-2 letters) are likely particles/prepositions
+        if len(word_lower) <= 2:
+            return 'pr'
+        
+        # Default to adverb for invariable words
+        return 'adv'
+    
     def get_esperanto_root(self, esperanto_word, pos):
         """
         Extract Esperanto root from full word based on POS
@@ -239,13 +274,6 @@ class IdoEsperantoBilingualConverter:
                 self.stats['skipped_no_translation'] += 1
                 continue
             
-            # Get Ido root and POS
-            ido_root, pos = self.analyze_morfologio(morfologio)
-            
-            if not ido_root or not pos:
-                self.stats['skipped_invalid'] += 1
-                continue
-            
             # Get first Esperanto translation
             epo_word = esperanto_words[0] if esperanto_words else ''
             epo_word = self.clean_esperanto_translation(epo_word)
@@ -259,6 +287,18 @@ class IdoEsperantoBilingualConverter:
             epo_lemma = epo_word.strip()
             
             if not epo_lemma:
+                self.stats['skipped_invalid'] += 1
+                continue
+            
+            # Get Ido root and POS - try morfologio first, then infer
+            if morfologio and len(morfologio) >= 2:
+                ido_root, pos = self.analyze_morfologio(morfologio)
+            else:
+                # No morfologio - treat as invariable word
+                ido_root = ido_word  # Use full word as root for invariable words
+                pos = self.infer_pos_from_word(ido_word)
+            
+            if not ido_root or not pos:
                 self.stats['skipped_invalid'] += 1
                 continue
             
