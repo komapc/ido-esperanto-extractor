@@ -31,6 +31,9 @@ class IdoMonolingualConverter:
         'ni': 'prn',        # we
         'vi': 'prn',        # you (plural)
         'li': 'prn',        # they
+        'qua': 'prn',       # who/which (relative)
+        # Determiners
+        'la': 'det',        # the (definite article)
         # Adverbs
         'ne': 'adv',        # not
         'yes': 'adv',       # yes
@@ -38,6 +41,7 @@ class IdoMonolingualConverter:
         'ka': 'cnjsub',     # that (conjunction)
         'ke': 'cnjsub',     # that
         'e': 'cnjcoo',      # and
+        'ed': 'cnjcoo',     # and (alternative form)
         'ma': 'cnjcoo',     # but
         'o': 'cnjcoo',      # or
         # Prepositions
@@ -47,6 +51,9 @@ class IdoMonolingualConverter:
         'a': 'pr',          # to/at
         'de': 'pr',         # from
         'por': 'pr',        # for
+        'inter': 'pr',      # between
+        'pro': 'pr',        # because of/for
+        'malgre': 'pr',     # despite
     }
     
     # Ido suffix to Apertium paradigm mapping
@@ -349,9 +356,10 @@ class IdoMonolingualConverter:
         # Add essential function words that may not be in extraction
         essential_words = [
             ('me', 'prn'), ('tu', 'prn'), ('il', 'prn'), ('el', 'prn'),
-            ('ol', 'prn'), ('lu', 'prn'), ('ni', 'prn'), ('vi', 'prn'), ('li', 'prn'),
-            ('e', 'cnjcoo'), ('ma', 'cnjcoo'), ('o', 'cnjcoo'),
-            ('a', 'pr'), ('di', 'pr'), ('de', 'pr'), ('por', 'pr'),
+            ('ol', 'prn'), ('lu', 'prn'), ('ni', 'prn'), ('vi', 'prn'), ('li', 'prn'), ('qua', 'prn'),
+            ('la', 'det'),
+            ('e', 'cnjcoo'), ('ed', 'cnjcoo'), ('ma', 'cnjcoo'), ('o', 'cnjcoo'),
+            ('a', 'pr'), ('di', 'pr'), ('de', 'pr'), ('por', 'pr'), ('inter', 'pr'), ('pro', 'pr'), ('malgre', 'pr'),
         ]
         
         # Merge extracted function words with essential ones
