@@ -18,6 +18,37 @@ from datetime import datetime
 class IdoMonolingualConverter:
     """Convert Ido dictionary with morphology to Apertium .dix format"""
     
+    # Manual list of function words without standard morfologio
+    # Format: (word, pos_tag)
+    FUNCTION_WORDS = {
+        # Pronouns
+        'me': 'prn',        # I/me
+        'tu': 'prn',        # you (singular)
+        'il': 'prn',        # he
+        'el': 'prn',        # she  
+        'ol': 'prn',        # it (neuter)
+        'lu': 'prn',        # he/she (generic)
+        'ni': 'prn',        # we
+        'vi': 'prn',        # you (plural)
+        'li': 'prn',        # they
+        # Adverbs
+        'ne': 'adv',        # not
+        'yes': 'adv',       # yes
+        # Conjunctions
+        'ka': 'cnjsub',     # that (conjunction)
+        'ke': 'cnjsub',     # that
+        'e': 'cnjcoo',      # and
+        'ma': 'cnjcoo',     # but
+        'o': 'cnjcoo',      # or
+        # Prepositions
+        'en': 'pr',         # in
+        'da': 'pr',         # of/from
+        'di': 'pr',         # of
+        'a': 'pr',          # to/at
+        'de': 'pr',         # from
+        'por': 'pr',        # for
+    }
+    
     # Ido suffix to Apertium paradigm mapping
     SUFFIX_PARADIGMS = {
         '.o': 'o__n',           # noun
@@ -73,10 +104,12 @@ class IdoMonolingualConverter:
         suffixes = ''.join(morfologio[1:])
         
         # Determine paradigm and POS from suffix
+        # Sort by length descending to match longer patterns first (e.g., .ar before .a)
         paradigm = None
         pos = None
         
-        for suffix_pattern, paradigm_name in self.SUFFIX_PARADIGMS.items():
+        sorted_patterns = sorted(self.SUFFIX_PARADIGMS.items(), key=lambda x: -len(x[0]))
+        for suffix_pattern, paradigm_name in sorted_patterns:
             if suffixes.startswith(suffix_pattern):
                 paradigm = paradigm_name
                 pos = self.SUFFIX_TO_POS.get(suffix_pattern)
@@ -276,6 +309,7 @@ class IdoMonolingualConverter:
         
         # Process each entry
         entries_by_pos = defaultdict(list)
+        function_words_entries = []
         
         for word_entry in self.data['words']:
             ido_word = word_entry.get('ido_word', '')
@@ -300,7 +334,50 @@ class IdoMonolingualConverter:
                 else:
                     self.stats['without_morfologio'] += 1
             else:
-                self.stats['without_morfologio'] += 1
+                # Check if it's a known function word
+                if ido_word in self.FUNCTION_WORDS:
+                    pos = self.FUNCTION_WORDS[ido_word]
+                    self.stats['with_morfologio'] += 1  # Count as processed
+                    self.stats['by_pos'][pos] += 1
+                    function_words_entries.append({
+                        'lemma': ido_word,
+                        'pos': pos
+                    })
+                else:
+                    self.stats['without_morfologio'] += 1
+        
+        # Add essential function words that may not be in extraction
+        essential_words = [
+            ('me', 'prn'), ('tu', 'prn'), ('il', 'prn'), ('el', 'prn'),
+            ('ol', 'prn'), ('lu', 'prn'), ('ni', 'prn'), ('vi', 'prn'), ('li', 'prn'),
+            ('e', 'cnjcoo'), ('ma', 'cnjcoo'), ('o', 'cnjcoo'),
+            ('a', 'pr'), ('di', 'pr'), ('de', 'pr'), ('por', 'pr'),
+        ]
+        
+        # Merge extracted function words with essential ones
+        all_function_words = {}
+        for word, pos in essential_words:
+            all_function_words[word] = pos
+        for entry in function_words_entries:
+            all_function_words[entry['lemma']] = entry['pos']
+        
+        # Add all function words
+        if all_function_words:
+            comment = ET.Comment(f' Function Words ({len(all_function_words)} entries) ')
+            section.append(comment)
+            
+            for word in sorted(all_function_words.keys()):
+                pos = all_function_words[word]
+                e = ET.SubElement(section, 'e', lm=word)
+                p = ET.SubElement(e, 'p')
+                l = ET.SubElement(p, 'l')
+                l.text = word
+                r = ET.SubElement(p, 'r')
+                r.text = word
+                ET.SubElement(r, 's', n=pos)
+                # Update stats for essential words added
+                if word not in [e['lemma'] for e in function_words_entries]:
+                    self.stats['by_pos'][pos] = self.stats['by_pos'].get(pos, 0) + 1
         
         # Add entries grouped by POS
         pos_names = {'n': 'Nouns', 'adj': 'Adjectives', 'adv': 'Adverbs', 'vblex': 'Verbs'}
