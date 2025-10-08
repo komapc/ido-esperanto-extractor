@@ -70378,10 +70378,7 @@
       "esperanto_words": [
         "Svedio"
       ],
-      "morfologio": [
-        "Suedi",
-        ".a"
-      ]
+      "part_of_speech": "proper_noun"
     },
     {
       "ido_word": "Suediana",
@@ -70389,8 +70386,8 @@
         "sveda"
       ],
       "morfologio": [
-        "Suedi",
-        ".an.a"
+        "Suedian",
+        ".a"
       ]
     },
     {
@@ -70399,8 +70396,8 @@
         "svedo"
       ],
       "morfologio": [
-        "Suedi",
-        ".an.o"
+        "Suedian",
+        ".o"
       ]
     },
     {
@@ -76043,8 +76040,8 @@
         "jarcento"
       ],
       "morfologio": [
-        "yaro|yar(.o)",
-        "cento|cent.o"
+        "yarcent",
+        ".o"
       ]
     },
     {
@@ -76701,6 +76698,244 @@
         "Novjorko"
       ],
       "part_of_speech": "proper_noun"
+    },
+    {
+      "ido_word": "cheflando",
+      "esperanto_words": [
+        "ĉefurbo"
+      ],
+      "morfologio": [
+        "chefland",
+        ".o"
+      ]
+    },
+    {
+      "ido_word": "habitanto",
+      "esperanto_words": [
+        "loĝanto"
+      ],
+      "morfologio": [
+        "habitant",
+        ".o"
+      ]
+    },
+    {
+      "ido_word": "kreiar",
+      "esperanto_words": [
+        "krei"
+      ],
+      "morfologio": [
+        "krei",
+        ".ar"
+      ]
+    },
+    {
+      "ido_word": "decentar",
+      "esperanto_words": [
+        "deveni"
+      ],
+      "morfologio": [
+        "decent",
+        ".ar"
+      ]
+    },
+    {
+      "ido_word": "situita",
+      "esperanto_words": [
+        "situata"
+      ]
+    },
+    {
+      "ido_word": "orienta",
+      "esperanto_words": [
+        "orienta"
+      ],
+      "morfologio": [
+        "orient",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "ekonomiala",
+      "esperanto_words": [
+        "ekonomia"
+      ],
+      "morfologio": [
+        "ekonomial",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "politikala",
+      "esperanto_words": [
+        "politika"
+      ],
+      "morfologio": [
+        "politikal",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "turista",
+      "esperanto_words": [
+        "turista"
+      ],
+      "morfologio": [
+        "turist",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "maritima",
+      "esperanto_words": [
+        "maristrana"
+      ],
+      "morfologio": [
+        "maritim",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "cirke",
+      "esperanto_words": [
+        "ĉirkaŭ"
+      ]
+    },
+    {
+      "ido_word": "kun",
+      "esperanto_words": [
+        "kun"
+      ]
+    },
+    {
+      "ido_word": "Svediana",
+      "esperanto_words": [
+        "Svedia"
+      ]
+    },
+    {
+      "ido_word": "vorti",
+      "esperanto_words": [
+        "vortoj"
+      ],
+      "morfologio": [
+        "vort",
+        ".i"
+      ]
+    },
+    {
+      "ido_word": "du",
+      "esperanto_words": [
+        "du"
+      ]
+    },
+    {
+      "ido_word": "kreiesis",
+      "esperanto_words": [
+        "kreiĝis"
+      ]
+    },
+    {
+      "ido_word": "esis",
+      "esperanto_words": [
+        "estis"
+      ]
+    },
+    {
+      "ido_word": "havis",
+      "esperanto_words": [
+        "havis"
+      ]
+    },
+    {
+      "ido_word": "vizitis",
+      "esperanto_words": [
+        "vizitis"
+      ]
+    },
+    {
+      "ido_word": "sociala",
+      "esperanto_words": [
+        "sociala"
+      ],
+      "morfologio": [
+        "social",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "kulturala",
+      "esperanto_words": [
+        "kultura"
+      ],
+      "morfologio": [
+        "kultural",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "lokala",
+      "esperanto_words": [
+        "loka"
+      ],
+      "morfologio": [
+        "lokal",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "nasionala",
+      "esperanto_words": [
+        "nacia"
+      ],
+      "morfologio": [
+        "nasional",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "internasionala",
+      "esperanto_words": [
+        "internacia"
+      ],
+      "morfologio": [
+        "internasional",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "Amerikana",
+      "esperanto_words": [
+        "Amer ika"
+      ]
+    },
+    {
+      "ido_word": "Europana",
+      "esperanto_words": [
+        "Eŭropa"
+      ]
+    },
+    {
+      "ido_word": "Italiana",
+      "esperanto_words": [
+        "Itala"
+      ]
+    },
+    {
+      "ido_word": "aquoza",
+      "esperanto_words": [
+        "akva"
+      ],
+      "morfologio": [
+        "aquoz",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "habitanti",
+      "esperanto_words": [
+        "loĝantoj"
+      ]
     }
   ]
 }
