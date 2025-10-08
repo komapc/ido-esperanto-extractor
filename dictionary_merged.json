@@ -76394,6 +76394,313 @@
         "zum",
         ".ar"
       ]
+    },
+    {
+      "ido_word": "1ma",
+      "esperanto_words": [
+        "unua"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "2ma",
+      "esperanto_words": [
+        "dua"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "3ma",
+      "esperanto_words": [
+        "tria"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "4ma",
+      "esperanto_words": [
+        "kvara"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "5ma",
+      "esperanto_words": [
+        "kvina"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "6ma",
+      "esperanto_words": [
+        "sesa"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "7ma",
+      "esperanto_words": [
+        "sepa"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "8ma",
+      "esperanto_words": [
+        "oka"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "9ma",
+      "esperanto_words": [
+        "naŭa"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "10ma",
+      "esperanto_words": [
+        "deka"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "11ma",
+      "esperanto_words": [
+        "dek-unua"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "12ma",
+      "esperanto_words": [
+        "dek-dua"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "13ma",
+      "esperanto_words": [
+        "dek-tria"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "14ma",
+      "esperanto_words": [
+        "dek-kvara"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "15ma",
+      "esperanto_words": [
+        "dek-kvina"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "16ma",
+      "esperanto_words": [
+        "dek-sesa"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "17ma",
+      "esperanto_words": [
+        "dek-sepa"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "18ma",
+      "esperanto_words": [
+        "dek-oka"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "19ma",
+      "esperanto_words": [
+        "dek-naŭa"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "20ma",
+      "esperanto_words": [
+        "dudeka"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "21ma",
+      "esperanto_words": [
+        "dudek-unua"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "22ma",
+      "esperanto_words": [
+        "dudek-dua"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "23ma",
+      "esperanto_words": [
+        "dudek-tria"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "24ma",
+      "esperanto_words": [
+        "dudek-kvara"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "25ma",
+      "esperanto_words": [
+        "dudek-kvina"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "26ma",
+      "esperanto_words": [
+        "dudek-sesa"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "27ma",
+      "esperanto_words": [
+        "dudek-sepa"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "28ma",
+      "esperanto_words": [
+        "dudek-oka"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "29ma",
+      "esperanto_words": [
+        "dudek-naŭa"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "30ma",
+      "esperanto_words": [
+        "trideka"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "31ma",
+      "esperanto_words": [
+        "tridek-unua"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "100ma",
+      "esperanto_words": [
+        "centa"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "1000ma",
+      "esperanto_words": [
+        "mila"
+      ],
+      "part_of_speech": "ordinal"
+    },
+    {
+      "ido_word": "mortodio",
+      "esperanto_words": [
+        "mortotago"
+      ],
+      "morfologio": [
+        "mortodi",
+        ".o"
+      ]
+    },
+    {
+      "ido_word": "fonduro",
+      "esperanto_words": [
+        "fondaĵo"
+      ],
+      "morfologio": [
+        "fondur",
+        ".o"
+      ]
+    },
+    {
+      "ido_word": "Nobel",
+      "esperanto_words": [
+        "Nobel"
+      ],
+      "part_of_speech": "proper_noun"
+    },
+    {
+      "ido_word": "Alfred",
+      "esperanto_words": [
+        "Alfredo"
+      ],
+      "part_of_speech": "proper_noun"
+    },
+    {
+      "ido_word": "Stockholm",
+      "esperanto_words": [
+        "Stokholmo"
+      ],
+      "part_of_speech": "proper_noun"
+    },
+    {
+      "ido_word": "Oslo",
+      "esperanto_words": [
+        "Oslo"
+      ],
+      "part_of_speech": "proper_noun"
+    },
+    {
+      "ido_word": "Paris",
+      "esperanto_words": [
+        "Parizo"
+      ],
+      "part_of_speech": "proper_noun"
+    },
+    {
+      "ido_word": "London",
+      "esperanto_words": [
+        "Londono"
+      ],
+      "part_of_speech": "proper_noun"
+    },
+    {
+      "ido_word": "Berlin",
+      "esperanto_words": [
+        "Berlino"
+      ],
+      "part_of_speech": "proper_noun"
+    },
+    {
+      "ido_word": "New York",
+      "esperanto_words": [
+        "Novjorko"
+      ],
+      "part_of_speech": "proper_noun"
     }
   ]
 }
