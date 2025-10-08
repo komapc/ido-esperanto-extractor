@@ -18,6 +18,36 @@ from datetime import datetime
 class IdoEsperantoBilingualConverter:
     """Convert Ido-Esperanto dictionary to Apertium bilingual .dix format"""
     
+    # Function word mappings (Ido → Esperanto)
+    FUNCTION_WORD_TRANSLATIONS = {
+        # Pronouns
+        ('me', 'prn'): ('mi', 'prn'),
+        ('tu', 'prn'): ('vi', 'prn'),
+        ('il', 'prn'): ('li', 'prn'),
+        ('el', 'prn'): ('ŝi', 'prn'),
+        ('ol', 'prn'): ('ĝi', 'prn'),
+        ('lu', 'prn'): ('li', 'prn'),  # or ŝi
+        ('ni', 'prn'): ('ni', 'prn'),
+        ('vi', 'prn'): ('vi', 'prn'),
+        ('li', 'prn'): ('ili', 'prn'),
+        # Adverbs
+        ('ne', 'adv'): ('ne', 'adv'),
+        ('yes', 'adv'): ('jes', 'adv'),
+        # Conjunctions  
+        ('ka', 'cnjsub'): ('ke', 'cnjsub'),
+        ('ke', 'cnjsub'): ('ke', 'cnjsub'),
+        ('e', 'cnjcoo'): ('kaj', 'cnjcoo'),
+        ('ma', 'cnjcoo'): ('sed', 'cnjcoo'),
+        ('o', 'cnjcoo'): ('aŭ', 'cnjcoo'),
+        # Prepositions
+        ('en', 'pr'): ('en', 'pr'),
+        ('da', 'pr'): ('de', 'pr'),
+        ('di', 'pr'): ('de', 'pr'),
+        ('a', 'pr'): ('al', 'pr'),
+        ('de', 'pr'): ('de', 'pr'),
+        ('por', 'pr'): ('por', 'pr'),
+    }
+    
     # Ido suffix to POS mapping
     SUFFIX_TO_POS = {
         '.o': 'n',
@@ -60,8 +90,10 @@ class IdoEsperantoBilingualConverter:
         suffixes = ''.join(morfologio[1:])
         
         # Determine POS from suffix
+        # Sort by length descending to match longer patterns first (e.g., .ar before .a)
         pos = None
-        for suffix_pattern, pos_tag in self.SUFFIX_TO_POS.items():
+        sorted_patterns = sorted(self.SUFFIX_TO_POS.items(), key=lambda x: -len(x[0]))
+        for suffix_pattern, pos_tag in sorted_patterns:
             if suffixes.startswith(suffix_pattern):
                 pos = pos_tag
                 break
@@ -232,6 +264,34 @@ class IdoEsperantoBilingualConverter:
                 'epo_root': epo_lemma,  # Use full lemma, not root
                 'pos': pos
             })
+        
+        # Add function words first
+        if self.FUNCTION_WORD_TRANSLATIONS:
+            function_words_by_pos = defaultdict(list)
+            for (ido_word, ido_pos), (epo_word, epo_pos) in self.FUNCTION_WORD_TRANSLATIONS.items():
+                function_words_by_pos[ido_pos].append({
+                    'ido_word': ido_word,
+                    'epo_word': epo_word,
+                    'pos': ido_pos
+                })
+            
+            comment = ET.Comment(f' Function Words ({len(self.FUNCTION_WORD_TRANSLATIONS)} entries) ')
+            section.append(comment)
+            
+            for pos_tag in sorted(function_words_by_pos.keys()):
+                for entry in sorted(function_words_by_pos[pos_tag], key=lambda x: x['ido_word']):
+                    e = ET.SubElement(section, 'e')
+                    p = ET.SubElement(e, 'p')
+                    
+                    # Left side (Ido)
+                    l = ET.SubElement(p, 'l')
+                    l.text = entry['ido_word']
+                    ET.SubElement(l, 's', n=entry['pos'])
+                    
+                    # Right side (Esperanto)
+                    r = ET.SubElement(p, 'r')
+                    r.text = entry['epo_word']
+                    ET.SubElement(r, 's', n=entry['pos'])
         
         # Add entries grouped by POS
         pos_names = {
