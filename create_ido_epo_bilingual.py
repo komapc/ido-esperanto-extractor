@@ -251,6 +251,7 @@ class IdoEsperantoBilingualConverter:
             ('pr', 'Preposition'),
             ('prn', 'Pronoun'),
             ('det', 'Determiner'),
+            ('np', 'Proper noun'),
             ('num', 'Numeral'),
             ('cnjcoo', 'Coordinating conjunction'),
             ('cnjsub', 'Subordinating conjunction'),
@@ -312,7 +313,33 @@ class IdoEsperantoBilingualConverter:
                 'pos': pos
             })
         
-        # Add function words first
+        # Add proper nouns first
+        proper_noun_translations = {
+            'Suedia': 'Svedio',
+            'Stockholm': 'Stokholmo',  
+            'Nobel': 'Nobel',
+            'Alfred': 'Alfredo',
+            'Oslo': 'Oslo',
+            'Paris': 'Parizo',
+            'London': 'Londono',
+            'Berlin': 'Berlino',
+        }
+        
+        if proper_noun_translations:
+            comment = ET.Comment(f' Proper Nouns ({len(proper_noun_translations)} entries) ')
+            section.append(comment)
+            
+            for ido_name, epo_name in sorted(proper_noun_translations.items()):
+                e = ET.SubElement(section, 'e')
+                p = ET.SubElement(e, 'p')
+                l = ET.SubElement(p, 'l')
+                l.text = ido_name
+                ET.SubElement(l, 's', n='np')
+                r = ET.SubElement(p, 'r')
+                r.text = epo_name
+                ET.SubElement(r, 's', n='np')
+        
+        # Add function words
         if self.FUNCTION_WORD_TRANSLATIONS:
             function_words_by_pos = defaultdict(list)
             for (ido_word, ido_pos), (epo_word, epo_pos) in self.FUNCTION_WORD_TRANSLATIONS.items():

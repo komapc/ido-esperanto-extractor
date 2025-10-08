@@ -401,12 +401,27 @@ class IdoMonolingualConverter:
             ('a', 'pr'), ('di', 'pr'), ('de', 'pr'), ('por', 'pr'), ('inter', 'pr'), ('pro', 'pr'), ('malgre', 'pr'),
         ]
         
+        # Add proper nouns (countries, cities) - treat as nouns
+        proper_nouns = [
+            'Suedia', 'Stockholm', 'Nobel', 'Alfred', 'Oslo', 'Paris', 'London', 'Berlin',
+        ]
+        
         # Merge extracted function words with essential ones
         all_function_words = {}
         for word, pos in essential_words:
             all_function_words[word] = pos
         for entry in function_words_entries:
-            all_function_words[entry['lemma']] = entry['pos']
+            # Don't add if it's a proper noun (those are handled separately)
+            if entry['lemma'] not in proper_nouns:
+                all_function_words[entry['lemma']] = entry['pos']
+        
+        # Add proper nouns as fixed noun entries (no paradigm)
+        proper_noun_entries = []
+        for pn in proper_nouns:
+            proper_noun_entries.append({
+                'lemma': pn,
+                'pos': 'np'  # proper noun
+            })
         
         # Add all function words
         if all_function_words:
@@ -442,6 +457,20 @@ class IdoMonolingualConverter:
                     i = ET.SubElement(e, 'i')
                     i.text = entry['root']
                     ET.SubElement(e, 'par', n=entry['paradigm'])
+        
+        # Add proper nouns section
+        if proper_noun_entries:
+            comment = ET.Comment(f' Proper Nouns ({len(proper_noun_entries)} entries) ')
+            section.append(comment)
+            
+            for entry in sorted(proper_noun_entries, key=lambda x: x['lemma']):
+                e = ET.SubElement(section, 'e', lm=entry['lemma'])
+                p = ET.SubElement(e, 'p')
+                l = ET.SubElement(p, 'l')
+                l.text = entry['lemma']
+                r = ET.SubElement(p, 'r')
+                r.text = entry['lemma']
+                ET.SubElement(r, 's', n=entry['pos'])
         
         # Write to file
         self._write_pretty_xml(dictionary, output_file)
