@@ -30,6 +30,9 @@ class IdoEsperantoBilingualConverter:
         ('ni', 'prn'): ('ni', 'prn'),
         ('vi', 'prn'): ('vi', 'prn'),
         ('li', 'prn'): ('ili', 'prn'),
+        ('qua', 'prn'): ('kiu', 'prn'),  # relative pronoun
+        # Determiners
+        ('la', 'det'): ('la', 'det'),
         # Adverbs
         ('ne', 'adv'): ('ne', 'adv'),
         ('yes', 'adv'): ('jes', 'adv'),
@@ -37,6 +40,7 @@ class IdoEsperantoBilingualConverter:
         ('ka', 'cnjsub'): ('ke', 'cnjsub'),
         ('ke', 'cnjsub'): ('ke', 'cnjsub'),
         ('e', 'cnjcoo'): ('kaj', 'cnjcoo'),
+        ('ed', 'cnjcoo'): ('kaj', 'cnjcoo'),  # alternative form of "and"
         ('ma', 'cnjcoo'): ('sed', 'cnjcoo'),
         ('o', 'cnjcoo'): ('aŭ', 'cnjcoo'),
         # Prepositions
@@ -46,6 +50,9 @@ class IdoEsperantoBilingualConverter:
         ('a', 'pr'): ('al', 'pr'),
         ('de', 'pr'): ('de', 'pr'),
         ('por', 'pr'): ('por', 'pr'),
+        ('inter', 'pr'): ('inter', 'pr'),
+        ('pro', 'pr'): ('pro', 'pr'),
+        ('malgre', 'pr'): ('malgraŭ', 'pr'),
     }
     
     # Ido suffix to POS mapping
