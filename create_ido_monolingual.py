@@ -138,6 +138,41 @@ class IdoMonolingualConverter:
         
         return root, paradigm, pos
     
+    def infer_pos_from_word(self, word):
+        """
+        Infer POS for words without morfologio based on patterns and endings.
+        Used for invariable words (prepositions, conjunctions, adverbs, etc.)
+        """
+        word_lower = word.lower()
+        
+        # Common Ido function word patterns
+        common_prepositions = ['a', 'de', 'da', 'di', 'en', 'sur', 'sub', 'ante', 'pos', 
+                               'inter', 'trans', 'ultra', 'infra', 'cis', 'tra', 'kontre',
+                               'pro', 'por', 'sen', 'kun', 'dum', 'malgre', 'segun']
+        common_conjunctions = ['e', 'ed', 'ma', 'o', 'ka', 'ke', 'se', 'kam', 'nur', 'mem']
+        common_adverbs_end = ['e', 'am', 'un', 'en']
+        
+        # Check if it's a known function word type
+        if word_lower in common_prepositions:
+            return 'pr'
+        if word_lower in common_conjunctions:
+            # Distinguish coordinating vs subordinating
+            if word_lower in ['e', 'ed', 'ma', 'o', 'nek']:
+                return 'cnjcoo'
+            else:
+                return 'cnjsub'
+        
+        # Check endings
+        if any(word_lower.endswith(end) for end in common_adverbs_end):
+            return 'adv'
+        
+        # Very short words (1-2 letters) are likely particles/prepositions
+        if len(word_lower) <= 2:
+            return 'pr'
+        
+        # Default to adverb for invariable words
+        return 'adv'
+    
     def create_paradigms(self, pardefs):
         """Add Ido inflection paradigms to pardefs element"""
         
@@ -326,6 +361,7 @@ class IdoMonolingualConverter:
                 continue
             
             if morfologio and len(morfologio) >= 2:
+                # Words with morfologio - process normally
                 root, paradigm, pos = self.analyze_morfologio(morfologio)
                 
                 if root and paradigm and pos:
@@ -341,17 +377,20 @@ class IdoMonolingualConverter:
                 else:
                     self.stats['without_morfologio'] += 1
             else:
-                # Check if it's a known function word
+                # Words WITHOUT morfologio - include as invariable words
+                # First check if it's in our manual function words list
                 if ido_word in self.FUNCTION_WORDS:
                     pos = self.FUNCTION_WORDS[ido_word]
-                    self.stats['with_morfologio'] += 1  # Count as processed
-                    self.stats['by_pos'][pos] += 1
-                    function_words_entries.append({
-                        'lemma': ido_word,
-                        'pos': pos
-                    })
                 else:
-                    self.stats['without_morfologio'] += 1
+                    # Infer POS from word patterns
+                    pos = self.infer_pos_from_word(ido_word)
+                
+                self.stats['without_morfologio'] += 1
+                self.stats['by_pos'][pos] += 1
+                function_words_entries.append({
+                    'lemma': ido_word,
+                    'pos': pos
+                })
         
         # Add essential function words that may not be in extraction
         essential_words = [
