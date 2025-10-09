@@ -36,7 +36,13 @@
       "total_unique_words": 7555
     },
     "total_unique_ido_words": 7555,
-    "total_words": 7720
+    "total_words": 7756,
+    "last_supplement": {
+      "date": "2025-10-09T06:59:09.230177",
+      "source": "idolinguo",
+      "added": 8,
+      "updated": 3
+    }
   },
   "words": [
     {
@@ -13863,7 +13869,7 @@
     {
       "ido_word": "demokrata",
       "esperanto_words": [
-        "demokrata"
+        "demokratia"
       ],
       "morfologio": [
         "demokrat",
@@ -13876,8 +13882,8 @@
         "demokratio"
       ],
       "morfologio": [
-        "demokrati",
-        ".o"
+        "demokrat",
+        ".i.o"
       ]
     },
     {
@@ -23081,8 +23087,7 @@
     {
       "ido_word": "Finlando",
       "esperanto_words": [
-        "Finnlando",
-        "Suomio"
+        "Finnlando"
       ],
       "morfologio": [
         "Finland",
@@ -34914,7 +34919,7 @@
     {
       "ido_word": "kelka",
       "esperanto_words": [
-        "kelka"
+        "kelkaj"
       ],
       "morfologio": [
         "kelk",
@@ -47034,7 +47039,7 @@
     {
       "ido_word": "monarkio",
       "esperanto_words": [
-        "monarkio"
+        "monarĥio"
       ],
       "morfologio": [
         "monark",
@@ -47671,7 +47676,7 @@
     {
       "ido_word": "multa",
       "esperanto_words": [
-        "multa"
+        "multaj"
       ],
       "morfologio": [
         "mult",
@@ -47911,7 +47916,7 @@
     {
       "ido_word": "mutuala",
       "esperanto_words": [
-        "mutuala"
+        "reciproka"
       ],
       "morfologio": [
         "mutual",
@@ -55766,7 +55771,7 @@
     {
       "ido_word": "poka",
       "esperanto_words": [
-        "malmulta"
+        "malmultaj"
       ],
       "morfologio": [
         "pok",
@@ -56675,7 +56680,7 @@
     {
       "ido_word": "precipua",
       "esperanto_words": [
-        "precipa"
+        "ĉefa"
       ],
       "morfologio": [
         "precipu",
@@ -58969,7 +58974,8 @@
       "morfologio": [
         "qual",
         ".e"
-      ]
+      ],
+      "note": "CORRECTION: was 'kia', should be 'kiel' (how)"
     },
     {
       "ido_word": "quale tu standas",
@@ -59194,7 +59200,7 @@
     {
       "ido_word": "qui",
       "esperanto_words": [
-        "kiuj"
+        "kiu"
       ],
       "morfologio": [
         "qu",
@@ -60427,7 +60433,6 @@
     {
       "ido_word": "regnar",
       "esperanto_words": [
-        "regi",
         "reĝi"
       ],
       "morfologio": [
@@ -72694,7 +72699,7 @@
     {
       "ido_word": "ube",
       "esperanto_words": [
-        "kie, kien"
+        "kie"
       ]
     },
     {
@@ -77322,7 +77327,7 @@
     {
       "ido_word": "tota",
       "esperanto_words": [
-        "ĉiuj"
+        "tuta"
       ],
       "morfologio": [
         "tot",
@@ -77519,13 +77524,15 @@
       "ido_word": "olia",
       "esperanto_words": [
         "ilia"
-      ]
+      ],
+      "note": "CORRECTION: their (neuter possessive)"
     },
     {
       "ido_word": "ilia",
       "esperanto_words": [
         "lia"
-      ]
+      ],
+      "note": "CORRECTION: his (masculine possessive)"
     },
     {
       "ido_word": "elia",
@@ -77628,6 +77635,331 @@
       "esperanto_words": [
         "multe"
       ]
+    },
+    {
+      "ido_word": "elektesar",
+      "esperanto_words": [
+        "elektiĝi"
+      ],
+      "morfologio": [
+        "elektes",
+        ".ar"
+      ]
+    },
+    {
+      "ido_word": "legislar",
+      "esperanto_words": [
+        "leĝdoni"
+      ],
+      "morfologio": [
+        "legis",
+        ".ar"
+      ]
+    },
+    {
+      "ido_word": "servir",
+      "esperanto_words": [
+        "servi"
+      ],
+      "morfologio": [
+        "serv",
+        ".ir"
+      ]
+    },
+    {
+      "ido_word": "vetizar",
+      "esperanto_words": [
+        "vetoi"
+      ],
+      "morfologio": [
+        "vetiz",
+        ".ar"
+      ]
+    },
+    {
+      "ido_word": "separo",
+      "esperanto_words": [
+        "apartigo"
+      ],
+      "morfologio": [
+        "separ",
+        ".o"
+      ]
+    },
+    {
+      "ido_word": "kontrolo",
+      "esperanto_words": [
+        "kontrolo"
+      ],
+      "morfologio": [
+        "kontrol",
+        ".o"
+      ]
+    },
+    {
+      "ido_word": "tri",
+      "esperanto_words": [
+        "tri"
+      ]
+    },
+    {
+      "ido_word": "quar",
+      "esperanto_words": [
+        "kvar"
+      ]
+    },
+    {
+      "ido_word": "sis",
+      "esperanto_words": [
+        "ses"
+      ]
+    },
+    {
+      "ido_word": "sep",
+      "esperanto_words": [
+        "sep"
+      ]
+    },
+    {
+      "ido_word": "ok",
+      "esperanto_words": [
+        "ok"
+      ]
+    },
+    {
+      "ido_word": "non",
+      "esperanto_words": [
+        "naŭ"
+      ]
+    },
+    {
+      "ido_word": "dek",
+      "esperanto_words": [
+        "dek"
+      ]
+    },
+    {
+      "ido_word": "cent",
+      "esperanto_words": [
+        "cent"
+      ]
+    },
+    {
+      "ido_word": "mil",
+      "esperanto_words": [
+        "mil"
+      ]
+    },
+    {
+      "ido_word": "iluminismo",
+      "esperanto_words": [
+        "klerismo"
+      ],
+      "morfologio": [
+        "iluminis",
+        "m.o"
+      ]
+    },
+    {
+      "ido_word": "Iluminismo",
+      "esperanto_words": [
+        "Klerismo"
+      ]
+    },
+    {
+      "ido_word": "Usono",
+      "esperanto_words": [
+        "Usono"
+      ]
+    },
+    {
+      "ido_word": "Finnlando",
+      "esperanto_words": [
+        "Finnlando"
+      ]
+    },
+    {
+      "ido_word": "Franco",
+      "esperanto_words": [
+        "Francio"
+      ]
+    },
+    {
+      "ido_word": "quan",
+      "esperanto_words": [
+        "kiom"
+      ]
+    },
+    {
+      "ido_word": "o",
+      "esperanto_words": [
+        "aŭ"
+      ]
+    },
+    {
+      "ido_word": "ed",
+      "esperanto_words": [
+        "kaj"
+      ]
+    },
+    {
+      "ido_word": "sed",
+      "esperanto_words": [
+        "sed"
+      ]
+    },
+    {
+      "ido_word": "La",
+      "esperanto_words": [
+        "La"
+      ]
+    },
+    {
+      "ido_word": "tala",
+      "esperanto_words": [
+        "tia"
+      ]
+    },
+    {
+      "ido_word": "Se",
+      "esperanto_words": [
+        "Se"
+      ]
+    },
+    {
+      "ido_word": "E",
+      "esperanto_words": [
+        "Kaj"
+      ]
+    },
+    {
+      "ido_word": "Ma",
+      "esperanto_words": [
+        "Sed"
+      ]
+    },
+    {
+      "ido_word": "O",
+      "esperanto_words": [
+        "Aŭ"
+      ]
+    },
+    {
+      "ido_word": "Nam",
+      "esperanto_words": [
+        "Ĉar"
+      ]
+    },
+    {
+      "ido_word": "4",
+      "esperanto_words": [
+        "4"
+      ]
+    },
+    {
+      "ido_word": "5",
+      "esperanto_words": [
+        "5"
+      ]
+    },
+    {
+      "ido_word": "6",
+      "esperanto_words": [
+        "6"
+      ]
+    },
+    {
+      "ido_word": "1776",
+      "esperanto_words": [
+        "1776"
+      ]
+    },
+    {
+      "ido_word": "2009",
+      "esperanto_words": [
+        "2009"
+      ]
+    },
+    {
+      "ido_word": "per",
+      "esperanto_words": [
+        "per"
+      ],
+      "morfologio": null,
+      "source": "idolinguo"
+    },
+    {
+      "ido_word": "od",
+      "esperanto_words": [
+        "aŭ"
+      ],
+      "morfologio": null,
+      "source": "idolinguo",
+      "note": "exclusive or"
+    },
+    {
+      "ido_word": "vu",
+      "esperanto_words": [
+        "vi"
+      ],
+      "morfologio": null,
+      "source": "idolinguo",
+      "note": "formal singular you"
+    },
+    {
+      "ido_word": "abandonar",
+      "esperanto_words": [
+        "forlasi"
+      ],
+      "morfologio": [
+        "abandon",
+        ".ar"
+      ],
+      "source": "idolinguo"
+    },
+    {
+      "ido_word": "abasar",
+      "esperanto_words": [
+        "malaltigi"
+      ],
+      "morfologio": [
+        "abas",
+        ".ar"
+      ],
+      "source": "idolinguo"
+    },
+    {
+      "ido_word": "abjurar",
+      "esperanto_words": [
+        "forĵuri"
+      ],
+      "morfologio": [
+        "abjur",
+        ".ar"
+      ],
+      "source": "idolinguo"
+    },
+    {
+      "ido_word": "ablaktar",
+      "esperanto_words": [
+        "demamigi"
+      ],
+      "morfologio": [
+        "ablakt",
+        ".ar"
+      ],
+      "source": "idolinguo"
+    },
+    {
+      "ido_word": "aboyar",
+      "esperanto_words": [
+        "boji"
+      ],
+      "morfologio": [
+        "aboy",
+        ".ar"
+      ],
+      "source": "idolinguo"
     }
   ]
 }
