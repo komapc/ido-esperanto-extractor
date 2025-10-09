@@ -114,6 +114,8 @@ class DixConverter:
         elif word.lower() in function_words:
             return function_words[word.lower()]
         
+        # IMPORTANT: Return here if found in function_words to avoid override below
+        
         # If Esperanto translation is provided, check its ending
         if esperanto_translation:
             epo = esperanto_translation.lower()
