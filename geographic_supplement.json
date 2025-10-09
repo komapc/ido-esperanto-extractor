@@ -1,0 +1,130 @@
+{
+  "metadata": {
+    "source": "Kazakhstan article translation analysis",
+    "date": "2025-10-09",
+    "purpose": "Geographic and political vocabulary supplement",
+    "note": "Essential words for translating geographic/political content"
+  },
+  "words": [
+    {
+      "ido_word": "Kazakstan",
+      "esperanto_words": ["Kazaĥstano"],
+      "morfologio": null,
+      "source": "geographic",
+      "note": "Country name"
+    },
+    {
+      "ido_word": "Astana",
+      "esperanto_words": ["Astano"],
+      "morfologio": null,
+      "source": "geographic",
+      "note": "Capital of Kazakhstan"
+    },
+    {
+      "ido_word": "Almatı",
+      "esperanto_words": ["Almato"],
+      "morfologio": null,
+      "source": "geographic",
+      "note": "Largest city of Kazakhstan"
+    },
+    {
+      "ido_word": "Chinia",
+      "esperanto_words": ["Ĉinio"],
+      "morfologio": null,
+      "source": "geographic",
+      "note": "Country name - China"
+    },
+    {
+      "ido_word": "Kirgizistan",
+      "esperanto_words": ["Kirgizio"],
+      "morfologio": null,
+      "source": "geographic",
+      "note": "Country name - Kyrgyzstan"
+    },
+    {
+      "ido_word": "Uzbekistan",
+      "esperanto_words": ["Uzbekio"],
+      "morfologio": null,
+      "source": "geographic",
+      "note": "Country name"
+    },
+    {
+      "ido_word": "Turkmenistan",
+      "esperanto_words": ["Turkmenio"],
+      "morfologio": null,
+      "source": "geographic",
+      "note": "Country name"
+    },
+    {
+      "ido_word": "chefurbo",
+      "esperanto_words": ["ĉefurbo"],
+      "morfologio": ["chef", "urb", ".o"],
+      "source": "geographic",
+      "note": "capital city (compound: chief + city)"
+    },
+    {
+      "ido_word": "populaco",
+      "esperanto_words": ["loĝantaro"],
+      "morfologio": ["popul", "ac", ".o"],
+      "source": "geographic",
+      "note": "population"
+    },
+    {
+      "ido_word": "sirke",
+      "esperanto_words": ["ĉirkaŭ"],
+      "morfologio": null,
+      "source": "geographic",
+      "note": "approximately, around"
+    },
+    {
+      "ido_word": "oficiala",
+      "esperanto_words": ["oficiala"],
+      "morfologio": ["oficial", ".a"],
+      "source": "geographic",
+      "note": "official (adjective)"
+    },
+    {
+      "ido_word": "linguo",
+      "esperanto_words": ["lingvo"],
+      "morfologio": ["lingu", ".o"],
+      "source": "geographic",
+      "note": "language"
+    },
+    {
+      "ido_word": "aceso",
+      "esperanto_words": ["aliro"],
+      "morfologio": ["aces", ".o"],
+      "source": "geographic",
+      "note": "access"
+    },
+    {
+      "ido_word": "maxim",
+      "esperanto_words": ["plej"],
+      "morfologio": null,
+      "source": "geographic",
+      "note": "most, superlative marker"
+    },
+    {
+      "ido_word": "kazaka",
+      "esperanto_words": ["kazaĥa"],
+      "morfologio": ["kazak", ".a"],
+      "source": "geographic",
+      "note": "Kazakh (adjective)"
+    },
+    {
+      "ido_word": "Central-Azia",
+      "esperanto_words": ["Centr-Azio"],
+      "morfologio": null,
+      "source": "geographic",
+      "note": "Central Asia (compound)"
+    },
+    {
+      "ido_word": "Rusia",
+      "esperanto_words": ["Rusio"],
+      "morfologio": null,
+      "source": "geographic",
+      "note": "Russia (country name)"
+    }
+  ]
+}
+
