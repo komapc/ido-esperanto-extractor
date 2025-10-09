@@ -28591,15 +28591,13 @@
       ]
     },
     {
-      "ido_word": "hodie",
+      "ido_word": "Hodie",
       "esperanto_words": [
-        "hodiaŭ"
+        "Hodiaŭ"
       ],
-      "morfologio": [
-        "ho.",
-        "di",
-        ".e"
-      ]
+      "morfologio": null,
+      "source": "Berlin article",
+      "note": "today (adverb)"
     },
     {
       "ido_word": "hokeo",
@@ -46319,14 +46317,16 @@
       ]
     },
     {
-      "ido_word": "milito",
+      "ido_word": "Milito",
       "esperanto_words": [
-        "milito"
+        "Milito"
       ],
       "morfologio": [
-        "milit",
+        "Milit",
         ".o"
-      ]
+      ],
+      "source": "Berlin article",
+      "note": "War (noun)"
     },
     {
       "ido_word": "miluno",
@@ -77622,7 +77622,9 @@
       "ido_word": "la",
       "esperanto_words": [
         "la"
-      ]
+      ],
+      "morfologio": null,
+      "pos_override": "det"
     },
     {
       "ido_word": "un",
@@ -77812,7 +77814,9 @@
       "ido_word": "La",
       "esperanto_words": [
         "La"
-      ]
+      ],
+      "morfologio": null,
+      "pos_override": "det"
     },
     {
       "ido_word": "tala",
@@ -78112,6 +78116,196 @@
       "morfologio": null,
       "source": "geographic",
       "note": "Central Asia (compound)"
+    },
+    {
+      "ido_word": "importanta",
+      "esperanto_words": [
+        "grava"
+      ],
+      "morfologio": [
+        "important",
+        ".a"
+      ],
+      "source": "Berlin article",
+      "note": "important (adjective)"
+    },
+    {
+      "ido_word": "fama",
+      "esperanto_words": [
+        "fama"
+      ],
+      "morfologio": [
+        "fam",
+        ".a"
+      ],
+      "source": "Einstein article",
+      "note": "famous (adjective)"
+    },
+    {
+      "ido_word": "teorio",
+      "esperanto_words": [
+        "teorio"
+      ],
+      "morfologio": [
+        "teori",
+        ".o"
+      ],
+      "source": "Einstein article",
+      "note": "theory (noun)"
+    },
+    {
+      "ido_word": "relativeso",
+      "esperanto_words": [
+        "relativeco"
+      ],
+      "morfologio": [
+        "relativ",
+        "es",
+        ".o"
+      ],
+      "source": "Einstein article",
+      "note": "relativity (noun)"
+    },
+    {
+      "ido_word": "oficejo",
+      "esperanto_words": [
+        "oficejo"
+      ],
+      "morfologio": [
+        "ofic",
+        "ej",
+        ".o"
+      ],
+      "source": "Einstein article",
+      "note": "office (noun)"
+    },
+    {
+      "ido_word": "nazii",
+      "esperanto_words": [
+        "nazioj"
+      ],
+      "morfologio": [
+        "nazi",
+        ".i"
+      ],
+      "source": "Einstein article",
+      "note": "Nazis (plural noun)"
+    },
+    {
+      "ido_word": "loĝanto",
+      "esperanto_words": [
+        "loĝanto"
+      ],
+      "morfologio": [
+        "loĝ",
+        "ant",
+        ".o"
+      ],
+      "source": "Berlin article",
+      "note": "inhabitant (noun)"
+    },
+    {
+      "ido_word": "distriko",
+      "esperanto_words": [
+        "distrikto"
+      ],
+      "morfologio": [
+        "distrikt",
+        ".o"
+      ],
+      "source": "Berlin article",
+      "note": "district (noun)"
+    },
+    {
+      "ido_word": "lokalizesar",
+      "esperanto_words": [
+        "situi"
+      ],
+      "morfologio": [
+        "lokaliz",
+        "es",
+        ".ar"
+      ],
+      "source": "Berlin article",
+      "note": "to be located (verb)"
+    },
+    {
+      "ido_word": "konstruktesar",
+      "esperanto_words": [
+        "konstruiĝi"
+      ],
+      "morfologio": [
+        "konstrukt",
+        "es",
+        ".ar"
+      ],
+      "source": "Berlin article",
+      "note": "to be constructed (passive verb)"
+    },
+    {
+      "ido_word": "Mondala",
+      "esperanto_words": [
+        "Monda"
+      ],
+      "morfologio": [
+        "Mond",
+        "al",
+        ".a"
+      ],
+      "source": "Berlin article",
+      "note": "World (adjective) - as in World War"
+    },
+    {
+      "ido_word": "viveskar",
+      "esperanto_words": [
+        "vivi"
+      ],
+      "morfologio": [
+        "iv",
+        "esk",
+        ".ar"
+      ],
+      "source": "Einstein article",
+      "note": "to have lived (verb)"
+    },
+    {
+      "ido_word": "publikig",
+      "esperanto_words": [
+        "publikigi"
+      ],
+      "morfologio": [
+        "publik",
+        "ig"
+      ],
+      "source": "Einstein article",
+      "note": "to publish (causative verb root)"
+    },
+    {
+      "ido_word": "Bern",
+      "esperanto_words": [
+        "Berno"
+      ],
+      "morfologio": null,
+      "source": "Einstein article",
+      "note": "Bern (city name)"
+    },
+    {
+      "ido_word": "Ulm",
+      "esperanto_words": [
+        "Ulm"
+      ],
+      "morfologio": null,
+      "source": "Einstein article",
+      "note": "Ulm (city name)"
+    },
+    {
+      "ido_word": "e",
+      "esperanto_words": [
+        "kaj"
+      ],
+      "morfologio": null,
+      "source": "fix_conjunction",
+      "note": "and (conjunction - lowercase)"
     }
   ]
 }
