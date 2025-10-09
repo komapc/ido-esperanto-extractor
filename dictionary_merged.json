@@ -36,7 +36,7 @@
       "total_unique_words": 7555
     },
     "total_unique_ido_words": 7555,
-    "total_words": 7679
+    "total_words": 7720
   },
   "words": [
     {
@@ -20414,7 +20414,6 @@
     {
       "ido_word": "eventar",
       "esperanto_words": [
-        "eventi",
         "okazi"
       ],
       "morfologio": [
@@ -29245,7 +29244,7 @@
     {
       "ido_word": "ili",
       "esperanto_words": [
-        "liaro"
+        "ili"
       ],
       "morfologio": [
         "il",
@@ -43230,7 +43229,7 @@
     {
       "ido_word": "lua",
       "esperanto_words": [
-        "|} |bgcolor=\"#f9f9f9\" valign=top width=48%| {|"
+        "sia"
       ],
       "morfologio": [
         "lu",
@@ -45218,7 +45217,7 @@
     {
       "ido_word": "mea",
       "esperanto_words": [
-        "|} |bgcolor=\"#f9f9f9\" valign=top width=48%| {|"
+        "mia"
       ],
       "morfologio": [
         "me",
@@ -50018,7 +50017,7 @@
     {
       "ido_word": "nula",
       "esperanto_words": [
-        "nenia"
+        "neniu"
       ],
       "morfologio": [
         "nul",
@@ -50918,7 +50917,7 @@
     {
       "ido_word": "oli",
       "esperanto_words": [
-        "ĝiaro"
+        "ili"
       ],
       "morfologio": [
         "ol",
@@ -51009,7 +51008,7 @@
     {
       "ido_word": "omna",
       "esperanto_words": [
-        "ĉiu"
+        "ĉiuj"
       ],
       "morfologio": [
         "omn",
@@ -55666,8 +55665,7 @@
     {
       "ido_word": "pluse",
       "esperanto_words": [
-        "plie",
-        "plus"
+        "pli"
       ],
       "morfologio": [
         "plus",
@@ -56188,7 +56186,6 @@
     {
       "ido_word": "populo",
       "esperanto_words": [
-        "popolnombro",
         "popolo"
       ],
       "morfologio": [
@@ -77372,6 +77369,264 @@
       "ido_word": "Aristoteles",
       "esperanto_words": [
         "Aristotelo"
+      ]
+    },
+    {
+      "ido_word": "maxim-multa-kaze",
+      "esperanto_words": [
+        "plej-multe-kaze"
+      ]
+    },
+    {
+      "ido_word": "maxim-multa",
+      "esperanto_words": [
+        "plej-multe"
+      ]
+    },
+    {
+      "ido_word": "maxim-bona",
+      "esperanto_words": [
+        "plej-bona"
+      ],
+      "morfologio": [
+        "maxim-bon",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "maxim-granda",
+      "esperanto_words": [
+        "plej-granda"
+      ],
+      "morfologio": [
+        "maxim-grand",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "maxim-mikra",
+      "esperanto_words": [
+        "plej-mikra"
+      ],
+      "morfologio": [
+        "maxim-mikr",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "pluri-kaze",
+      "esperanto_words": [
+        "plur-kaze"
+      ]
+    },
+    {
+      "ido_word": "dal",
+      "esperanto_words": [
+        "de la"
+      ]
+    },
+    {
+      "ido_word": "al",
+      "esperanto_words": [
+        "al la"
+      ]
+    },
+    {
+      "ido_word": "pol",
+      "esperanto_words": [
+        "por la"
+      ]
+    },
+    {
+      "ido_word": "sul",
+      "esperanto_words": [
+        "sur la"
+      ]
+    },
+    {
+      "ido_word": "di",
+      "esperanto_words": [
+        "de"
+      ]
+    },
+    {
+      "ido_word": "a",
+      "esperanto_words": [
+        "al"
+      ]
+    },
+    {
+      "ido_word": "sur",
+      "esperanto_words": [
+        "sur"
+      ]
+    },
+    {
+      "ido_word": "sub",
+      "esperanto_words": [
+        "sub"
+      ]
+    },
+    {
+      "ido_word": "ante",
+      "esperanto_words": [
+        "antaŭ"
+      ]
+    },
+    {
+      "ido_word": "apud",
+      "esperanto_words": [
+        "apud"
+      ]
+    },
+    {
+      "ido_word": "kontre",
+      "esperanto_words": [
+        "kontraŭ"
+      ]
+    },
+    {
+      "ido_word": "tra",
+      "esperanto_words": [
+        "tra"
+      ]
+    },
+    {
+      "ido_word": "ultre",
+      "esperanto_words": [
+        "trans"
+      ]
+    },
+    {
+      "ido_word": "tua",
+      "esperanto_words": [
+        "via"
+      ]
+    },
+    {
+      "ido_word": "nia",
+      "esperanto_words": [
+        "nia"
+      ]
+    },
+    {
+      "ido_word": "via",
+      "esperanto_words": [
+        "via"
+      ]
+    },
+    {
+      "ido_word": "olia",
+      "esperanto_words": [
+        "ilia"
+      ]
+    },
+    {
+      "ido_word": "ilia",
+      "esperanto_words": [
+        "lia"
+      ]
+    },
+    {
+      "ido_word": "elia",
+      "esperanto_words": [
+        "ŝia"
+      ]
+    },
+    {
+      "ido_word": "me",
+      "esperanto_words": [
+        "mi"
+      ]
+    },
+    {
+      "ido_word": "tu",
+      "esperanto_words": [
+        "vi"
+      ]
+    },
+    {
+      "ido_word": "il",
+      "esperanto_words": [
+        "li"
+      ]
+    },
+    {
+      "ido_word": "el",
+      "esperanto_words": [
+        "ŝi"
+      ]
+    },
+    {
+      "ido_word": "ela",
+      "esperanto_words": [
+        "ŝi"
+      ]
+    },
+    {
+      "ido_word": "lu",
+      "esperanto_words": [
+        "li"
+      ]
+    },
+    {
+      "ido_word": "ol",
+      "esperanto_words": [
+        "ĝi"
+      ]
+    },
+    {
+      "ido_word": "ni",
+      "esperanto_words": [
+        "ni"
+      ]
+    },
+    {
+      "ido_word": "vi",
+      "esperanto_words": [
+        "vi"
+      ]
+    },
+    {
+      "ido_word": "li",
+      "esperanto_words": [
+        "ili"
+      ]
+    },
+    {
+      "ido_word": "eli",
+      "esperanto_words": [
+        "ili"
+      ]
+    },
+    {
+      "ido_word": "ka",
+      "esperanto_words": [
+        "ĉu"
+      ]
+    },
+    {
+      "ido_word": "havas",
+      "esperanto_words": [
+        "havas"
+      ]
+    },
+    {
+      "ido_word": "la",
+      "esperanto_words": [
+        "la"
+      ]
+    },
+    {
+      "ido_word": "un",
+      "esperanto_words": [
+        "unu"
+      ]
+    },
+    {
+      "ido_word": "multe",
+      "esperanto_words": [
+        "multe"
       ]
     }
   ]
