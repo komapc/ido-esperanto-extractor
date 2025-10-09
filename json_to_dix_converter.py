@@ -79,13 +79,20 @@ class DixConverter:
             # Conjunctions
             'e': 'cnjcoo', 'o': 'cnjcoo', 'ma': 'cnjcoo', 'sed': 'cnjcoo', 
             'nam': 'cnjcoo', 'ka': 'cnjcoo',
+            'E': 'cnjcoo', 'O': 'cnjcoo', 'Ma': 'cnjcoo', 'Sed': 'cnjcoo',
+            'Nam': 'cnjcoo',
             'se': 'cnjsub', 'kande': 'cnjsub', 'dum': 'cnjsub', 'quale': 'cnjsub', 
             'quankam': 'cnjsub', 'pro': 'cnjsub',
+            'Se': 'cnjsub',
             # Prepositions  
             'de': 'pr', 'da': 'pr', 'en': 'pr', 'ad': 'pr', 'sur': 'pr', 
             'sub': 'pr', 'ante': 'pr', 'pos': 'pr', 'inter': 'pr', 
             'kontre': 'pr', 'til': 'pr', 'tra': 'pr', 'ultra': 'pr', 
-            'cis': 'pr', 'per': 'pr', 'por': 'pr',
+            'cis': 'pr', 'per': 'pr', 'por': 'pr', 'di': 'pr', 'a': 'pr',
+            'ye': 'pr', 'pri': 'pr', 'kun': 'pr', 'sen': 'pr',
+            # Determiners
+            'la': 'det', 'La': 'det', 'un': 'det', 'omna': 'det', 'ula': 'det',
+            'nula': 'det', 'kelka': 'det', 'multa': 'det', 'tota': 'det',
             # Adverbs
             'anke': 'adv', 'tre': 'adv', 'nur': 'adv', 'yes': 'adv', 'no': 'adv', 
             'forsan': 'adv', 'anche': 'adv', 'ja': 'adv', 'ne': 'adv',
@@ -94,9 +101,17 @@ class DixConverter:
             'me': 'prn', 'tu': 'prn', 'il': 'prn', 'ela': 'prn', 'ol': 'prn', 
             'lu': 'prn', 'ni': 'prn', 'vi': 'prn', 'li': 'prn', 'eli': 'prn',
             'olu': 'prn', 'elu': 'prn', 'nia': 'prn', 'via': 'prn', 'lia': 'prn',
+            'lua': 'prn', 'mea': 'prn', 'tua': 'prn', 'olia': 'prn',
+            'qua': 'prn', 'qui': 'prn', 'quo': 'prn',
+            # Numbers
+            '4': 'num', '5': 'num', '6': 'num', '1776': 'num', '2009': 'num',
         }
         
-        if word.lower() in function_words:
+        # Check exact match first (for capitalized words)
+        if word in function_words:
+            return function_words[word]
+        # Then check lowercase
+        elif word.lower() in function_words:
             return function_words[word.lower()]
         
         # If Esperanto translation is provided, check its ending
@@ -535,6 +550,22 @@ class DixConverter:
         ET.SubElement(p, 'l').text = ''
         r = ET.SubElement(p, 'r')
         ET.SubElement(r, 's', n='vblex')
+        
+        # Invariable determiner
+        pardef = ET.SubElement(pardefs, 'pardef', n='__det')
+        e = ET.SubElement(pardef, 'e')
+        p = ET.SubElement(e, 'p')
+        ET.SubElement(p, 'l').text = ''
+        r = ET.SubElement(p, 'r')
+        ET.SubElement(r, 's', n='det')
+        
+        # Invariable number
+        pardef = ET.SubElement(pardefs, 'pardef', n='__num')
+        e = ET.SubElement(pardef, 'e')
+        p = ET.SubElement(e, 'p')
+        ET.SubElement(p, 'l').text = ''
+        r = ET.SubElement(p, 'r')
+        ET.SubElement(r, 's', n='num')
     
     def _get_paradigm_name(self, suffixes, pos_tag):
         """Determine appropriate paradigm based on suffix and POS"""
