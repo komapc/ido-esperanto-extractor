@@ -76936,6 +76936,60 @@
       "esperanto_words": [
         "loĝantoj"
       ]
+    },
+    {
+      "ido_word": "Reykjavik",
+      "esperanto_words": [
+        "Rejkjaviko"
+      ]
+    },
+    {
+      "ido_word": "Atlantiko",
+      "esperanto_words": [
+        "Atlantiko"
+      ]
+    },
+    {
+      "ido_word": "peshado",
+      "esperanto_words": [
+        "fiŝkaptado"
+      ],
+      "morfologio": [
+        "peshad",
+        ".o"
+      ]
+    },
+    {
+      "ido_word": "demokratiala",
+      "esperanto_words": [
+        "demokratia"
+      ],
+      "morfologio": [
+        "demokratial",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "Islandana",
+      "esperanto_words": [
+        "Islanda"
+      ]
+    },
+    {
+      "ido_word": "Polare",
+      "esperanto_words": [
+        "Polusa"
+      ]
+    },
+    {
+      "ido_word": "bazar",
+      "esperanto_words": [
+        "bazi"
+      ],
+      "morfologio": [
+        "baz",
+        ".ar"
+      ]
     }
   ]
 }

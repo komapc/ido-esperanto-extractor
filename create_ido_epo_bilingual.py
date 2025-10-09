@@ -248,14 +248,34 @@ class IdoEsperantoBilingualConverter:
             ('adj', 'Adjective'),
             ('adv', 'Adverb'),
             ('vblex', 'Verb'),
+            ('vbtr', 'Transitive verb'),
             ('pr', 'Preposition'),
             ('prn', 'Pronoun'),
+            ('prpers', 'Personal pronoun'),
             ('det', 'Determiner'),
             ('np', 'Proper noun'),
             ('num', 'Numeral'),
             ('cnjcoo', 'Coordinating conjunction'),
             ('cnjsub', 'Subordinating conjunction'),
             ('ij', 'Interjection'),
+            ('p1', 'First person'),
+            ('p2', 'Second person'),
+            ('p3', 'Third person'),
+            ('m', 'Masculine'),
+            ('f', 'Feminine'),
+            ('mf', 'Masculine/Feminine'),
+            ('nt', 'Neuter'),
+            ('sg', 'Singular'),
+            ('pl', 'Plural'),
+            ('nom', 'Nominative'),
+            ('acc', 'Accusative'),
+            ('subj', 'Subject'),
+            ('obj', 'Object'),
+            ('pres', 'Present'),
+            ('past', 'Past'),
+            ('inf', 'Infinitive'),
+            ('pri', 'Present indicative'),
+            ('pii', 'Past indicative'),
         ]
         for symbol, comment_text in symbols:
             ET.SubElement(sdefs, 'sdef', n=symbol, c=comment_text)
@@ -338,6 +358,35 @@ class IdoEsperantoBilingualConverter:
                 r = ET.SubElement(p, 'r')
                 r.text = epo_name
                 ET.SubElement(r, 's', n='np')
+        
+        # Add Esperanto-specific pronoun tag mappings for reverse direction
+        # apertium-epo produces detailed tags that need to map to simple Ido pronouns
+        esperanto_pronoun_mappings = [
+            # Esperanto detailed tags → Ido simple tags
+            ('mi', ['prpers', 'prn', 'p1', 'sg'], 'me', ['prn']),
+            ('vi', ['prpers', 'prn', 'p2', 'sg'], 'tu', ['prn']),
+            ('li', ['prpers', 'prn', 'p3', 'm', 'sg'], 'il', ['prn']),
+            ('ŝi', ['prpers', 'prn', 'p3', 'f', 'sg'], 'el', ['prn']),
+            ('ĝi', ['prpers', 'prn', 'p3', 'nt', 'sg'], 'ol', ['prn']),
+            ('ni', ['prpers', 'prn', 'p1', 'pl'], 'ni', ['prn']),
+            ('vi', ['prpers', 'prn', 'p2', 'pl'], 'vi', ['prn']),
+            ('ili', ['prpers', 'prn', 'p3', 'mf', 'pl'], 'li', ['prn']),
+        ]
+        
+        comment = ET.Comment(' Esperanto Pronoun Tag Variants (for reverse direction) ')
+        section.append(comment)
+        
+        for epo_word, epo_tags, ido_word, ido_tags in esperanto_pronoun_mappings:
+            e = ET.SubElement(section, 'e')
+            p = ET.SubElement(e, 'p')
+            l = ET.SubElement(p, 'l')
+            l.text = ido_word
+            for tag in ido_tags:
+                ET.SubElement(l, 's', n=tag)
+            r = ET.SubElement(p, 'r')
+            r.text = epo_word
+            for tag in epo_tags:
+                ET.SubElement(r, 's', n=tag)
         
         # Add function words
         if self.FUNCTION_WORD_TRANSLATIONS:
