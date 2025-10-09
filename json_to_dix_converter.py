@@ -54,6 +54,66 @@ class DixConverter:
         
         return root, pos_tag, suffixes
     
+    def guess_pos_from_word(self, word, esperanto_translation):
+        """
+        Guess POS from word ending when morfologio is unavailable.
+        Returns: pos_tag (or None if cannot determine)
+        """
+        if not word:
+            return None
+        
+        # Common Ido word endings
+        if word.endswith('o'):
+            return 'n'  # noun
+        elif word.endswith('a'):
+            return 'adj'  # adjective
+        elif word.endswith('e'):
+            return 'adv'  # adverb
+        elif word.endswith('ar') or word.endswith('ir'):
+            return 'vblex'  # verb
+        elif word.endswith('as') or word.endswith('is') or word.endswith('os'):
+            return 'vblex'  # conjugated verb
+        
+        # Check common function words
+        function_words = {
+            # Conjunctions
+            'e': 'cnjcoo', 'o': 'cnjcoo', 'ma': 'cnjcoo', 'sed': 'cnjcoo', 
+            'nam': 'cnjcoo', 'ka': 'cnjcoo',
+            'se': 'cnjsub', 'kande': 'cnjsub', 'dum': 'cnjsub', 'quale': 'cnjsub', 
+            'quankam': 'cnjsub', 'pro': 'cnjsub',
+            # Prepositions  
+            'de': 'pr', 'da': 'pr', 'en': 'pr', 'ad': 'pr', 'sur': 'pr', 
+            'sub': 'pr', 'ante': 'pr', 'pos': 'pr', 'inter': 'pr', 
+            'kontre': 'pr', 'til': 'pr', 'tra': 'pr', 'ultra': 'pr', 
+            'cis': 'pr', 'per': 'pr', 'por': 'pr',
+            # Adverbs
+            'anke': 'adv', 'tre': 'adv', 'nur': 'adv', 'yes': 'adv', 'no': 'adv', 
+            'forsan': 'adv', 'anche': 'adv', 'ja': 'adv', 'ne': 'adv',
+            'hike': 'adv', 'ibe': 'adv', 'ube': 'adv', 'ulaloke': 'adv',
+            # Pronouns
+            'me': 'prn', 'tu': 'prn', 'il': 'prn', 'ela': 'prn', 'ol': 'prn', 
+            'lu': 'prn', 'ni': 'prn', 'vi': 'prn', 'li': 'prn', 'eli': 'prn',
+            'olu': 'prn', 'elu': 'prn', 'nia': 'prn', 'via': 'prn', 'lia': 'prn',
+        }
+        
+        if word.lower() in function_words:
+            return function_words[word.lower()]
+        
+        # If Esperanto translation is provided, check its ending
+        if esperanto_translation:
+            epo = esperanto_translation.lower()
+            if epo.endswith('o'):
+                return 'n'
+            elif epo.endswith('a'):
+                return 'adj'
+            elif epo.endswith('e'):
+                return 'adv'
+            elif epo.endswith('i'):
+                return 'vblex'
+        
+        # Default to adverb for unrecognized words (many function words are adverbs)
+        return 'adv'
+    
     def create_ido_monolingual_dix(self, output_file):
         """Create Ido monolingual morphological dictionary"""
         
@@ -88,10 +148,12 @@ class DixConverter:
         
         # Process each entry
         entries_by_pos = defaultdict(list)
+        fixed_entries_by_pos = defaultdict(list)  # For words without paradigms
         
         for word_entry in self.data['words']:
             ido_word = word_entry.get('ido_word', '')
             morfologio = word_entry.get('morfologio', [])
+            esperanto_words = word_entry.get('esperanto_words', [])
             
             if not ido_word:
                 continue
@@ -113,13 +175,31 @@ class DixConverter:
                     })
                 else:
                     self.stats['without_morfologio'] += 1
+                    # Try fallback for words without standard morfologio
+                    epo_word = esperanto_words[0] if esperanto_words else ''
+                    pos_tag = self.guess_pos_from_word(ido_word, epo_word)
+                    if pos_tag:
+                        self.stats['by_pos'][pos_tag] += 1
+                        fixed_entries_by_pos[pos_tag].append({
+                            'lemma': ido_word,
+                            'pos': pos_tag
+                        })
             else:
                 self.stats['without_morfologio'] += 1
+                # Try fallback for words without morfologio
+                epo_word = esperanto_words[0] if esperanto_words else ''
+                pos_tag = self.guess_pos_from_word(ido_word, epo_word)
+                if pos_tag:
+                    self.stats['by_pos'][pos_tag] += 1
+                    fixed_entries_by_pos[pos_tag].append({
+                        'lemma': ido_word,
+                        'pos': pos_tag
+                    })
         
-        # Add entries grouped by POS
+        # Add entries with paradigms grouped by POS
         for pos_tag, entries in sorted(entries_by_pos.items()):
             # Add comment
-            comment = ET.Comment(f' {pos_tag} entries ({len(entries)}) ')
+            comment = ET.Comment(f' {pos_tag} entries with paradigms ({len(entries)}) ')
             section.append(comment)
             
             for entry in sorted(entries, key=lambda x: x['lemma']):
@@ -127,6 +207,19 @@ class DixConverter:
                 i = ET.SubElement(e, 'i')
                 i.text = entry['root']
                 ET.SubElement(e, 'par', n=entry['paradigm'])
+        
+        # Add fixed entries (invariable words) grouped by POS
+        for pos_tag, entries in sorted(fixed_entries_by_pos.items()):
+            # Add comment
+            comment = ET.Comment(f' {pos_tag} invariable entries ({len(entries)}) ')
+            section.append(comment)
+            
+            for entry in sorted(entries, key=lambda x: x['lemma']):
+                e = ET.SubElement(section, 'e', lm=entry['lemma'])
+                i = ET.SubElement(e, 'i')
+                i.text = entry['lemma']
+                # Use invariable paradigm
+                ET.SubElement(e, 'par', n=f"__{pos_tag}")
         
         # Write to file
         self._write_pretty_xml(dictionary, output_file)
@@ -153,6 +246,8 @@ class DixConverter:
         section = ET.SubElement(dictionary, 'section', id='main', type='standard')
         
         bilingual_count = 0
+        skipped_count = 0
+        fallback_count = 0
         
         for word_entry in self.data['words']:
             ido_word = word_entry.get('ido_word', '')
@@ -167,13 +262,21 @@ class DixConverter:
             
             # Clean up any formatting artifacts
             if '|' in epo_word or '{' in epo_word:
+                skipped_count += 1
                 continue
             
             if not epo_word:
+                skipped_count += 1
                 continue
             
             # Analyze morphology to get POS
             root, pos_tag, suffixes = self.analyze_morfologio(morfologio)
+            
+            # If no POS from morfologio, try to guess it
+            if not pos_tag:
+                pos_tag = self.guess_pos_from_word(ido_word, epo_word)
+                if pos_tag:
+                    fallback_count += 1
             
             if pos_tag:
                 # Create bilingual entry
@@ -191,12 +294,16 @@ class DixConverter:
                 ET.SubElement(r, 's', n=pos_tag)
                 
                 bilingual_count += 1
+            else:
+                skipped_count += 1
         
         # Write to file
         self._write_pretty_xml(dictionary, output_file)
         
         return {
             'bilingual_entries': bilingual_count,
+            'fallback_guessed': fallback_count,
+            'skipped': skipped_count,
             'source': 'Ido',
             'target': 'Esperanto'
         }
@@ -257,6 +364,71 @@ class DixConverter:
         r.text = 'ar'
         ET.SubElement(r, 's', n='vblex')
         ET.SubElement(r, 's', n='pri')
+        
+        # Invariable paradigms for function words
+        # Invariable adverb
+        pardef = ET.SubElement(pardefs, 'pardef', n='__adv')
+        e = ET.SubElement(pardef, 'e')
+        p = ET.SubElement(e, 'p')
+        ET.SubElement(p, 'l').text = ''
+        r = ET.SubElement(p, 'r')
+        ET.SubElement(r, 's', n='adv')
+        
+        # Invariable preposition
+        pardef = ET.SubElement(pardefs, 'pardef', n='__pr')
+        e = ET.SubElement(pardef, 'e')
+        p = ET.SubElement(e, 'p')
+        ET.SubElement(p, 'l').text = ''
+        r = ET.SubElement(p, 'r')
+        ET.SubElement(r, 's', n='pr')
+        
+        # Invariable coordinating conjunction
+        pardef = ET.SubElement(pardefs, 'pardef', n='__cnjcoo')
+        e = ET.SubElement(pardef, 'e')
+        p = ET.SubElement(e, 'p')
+        ET.SubElement(p, 'l').text = ''
+        r = ET.SubElement(p, 'r')
+        ET.SubElement(r, 's', n='cnjcoo')
+        
+        # Invariable subordinating conjunction
+        pardef = ET.SubElement(pardefs, 'pardef', n='__cnjsub')
+        e = ET.SubElement(pardef, 'e')
+        p = ET.SubElement(e, 'p')
+        ET.SubElement(p, 'l').text = ''
+        r = ET.SubElement(p, 'r')
+        ET.SubElement(r, 's', n='cnjsub')
+        
+        # Invariable pronoun
+        pardef = ET.SubElement(pardefs, 'pardef', n='__prn')
+        e = ET.SubElement(pardef, 'e')
+        p = ET.SubElement(e, 'p')
+        ET.SubElement(p, 'l').text = ''
+        r = ET.SubElement(p, 'r')
+        ET.SubElement(r, 's', n='prn')
+        
+        # Invariable noun
+        pardef = ET.SubElement(pardefs, 'pardef', n='__n')
+        e = ET.SubElement(pardef, 'e')
+        p = ET.SubElement(e, 'p')
+        ET.SubElement(p, 'l').text = ''
+        r = ET.SubElement(p, 'r')
+        ET.SubElement(r, 's', n='n')
+        
+        # Invariable adjective
+        pardef = ET.SubElement(pardefs, 'pardef', n='__adj')
+        e = ET.SubElement(pardef, 'e')
+        p = ET.SubElement(e, 'p')
+        ET.SubElement(p, 'l').text = ''
+        r = ET.SubElement(p, 'r')
+        ET.SubElement(r, 's', n='adj')
+        
+        # Invariable verb
+        pardef = ET.SubElement(pardefs, 'pardef', n='__vblex')
+        e = ET.SubElement(pardef, 'e')
+        p = ET.SubElement(e, 'p')
+        ET.SubElement(p, 'l').text = ''
+        r = ET.SubElement(p, 'r')
+        ET.SubElement(r, 's', n='vblex')
     
     def _get_paradigm_name(self, suffixes, pos_tag):
         """Determine appropriate paradigm based on suffix and POS"""
@@ -313,6 +485,8 @@ def main():
     
     print(f"\n✅ Bilingual Dictionary Statistics:")
     print(f"   - Bilingual entries: {bil_stats['bilingual_entries']}")
+    print(f"   - POS guessed (fallback): {bil_stats['fallback_guessed']}")
+    print(f"   - Skipped entries: {bil_stats['skipped']}")
     print(f"   - Direction: {bil_stats['source']} → {bil_stats['target']}")
     
     print("\n✨ Conversion complete!")

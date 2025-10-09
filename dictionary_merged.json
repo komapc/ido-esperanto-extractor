@@ -35,7 +35,8 @@
       "bidirectional_entries": 23,
       "total_unique_words": 7555
     },
-    "total_unique_ido_words": 7555
+    "total_unique_ido_words": 7555,
+    "total_words": 7679
   },
   "words": [
     {
@@ -12663,8 +12664,8 @@
         "civitano"
       ],
       "morfologio": [
-        "civit",
-        ".an.o"
+        "civitan",
+        ".o"
       ]
     },
     {
@@ -76989,6 +76990,388 @@
       "morfologio": [
         "baz",
         ".ar"
+      ]
+    },
+    {
+      "ido_word": "nur",
+      "esperanto_words": [
+        "nur"
+      ]
+    },
+    {
+      "ido_word": "til",
+      "esperanto_words": [
+        "ĝis"
+      ]
+    },
+    {
+      "ido_word": "pos",
+      "esperanto_words": [
+        "post"
+      ]
+    },
+    {
+      "ido_word": "dum",
+      "esperanto_words": [
+        "dum"
+      ]
+    },
+    {
+      "ido_word": "kom",
+      "esperanto_words": [
+        "kiel"
+      ]
+    },
+    {
+      "ido_word": "prezidanto",
+      "esperanto_words": [
+        "prezidanto"
+      ],
+      "morfologio": [
+        "prezidant",
+        ".o"
+      ]
+    },
+    {
+      "ido_word": "titulo",
+      "esperanto_words": [
+        "titolo"
+      ],
+      "morfologio": [
+        "titul",
+        ".o"
+      ]
+    },
+    {
+      "ido_word": "guvernerio",
+      "esperanto_words": [
+        "registaro"
+      ],
+      "morfologio": [
+        "guverneri",
+        ".o"
+      ]
+    },
+    {
+      "ido_word": "povo",
+      "esperanto_words": [
+        "povo"
+      ],
+      "morfologio": [
+        "pov",
+        ".o"
+      ]
+    },
+    {
+      "ido_word": "konstituco",
+      "esperanto_words": [
+        "konstitucio"
+      ],
+      "morfologio": [
+        "konstituc",
+        ".o"
+      ]
+    },
+    {
+      "ido_word": "deputato",
+      "esperanto_words": [
+        "deputito"
+      ],
+      "morfologio": [
+        "deputat",
+        ".o"
+      ]
+    },
+    {
+      "ido_word": "koalisuro",
+      "esperanto_words": [
+        "koalicio"
+      ],
+      "morfologio": [
+        "koalisur",
+        ".o"
+      ]
+    },
+    {
+      "ido_word": "partopreno",
+      "esperanto_words": [
+        "partopreno"
+      ],
+      "morfologio": [
+        "partopren",
+        ".o"
+      ]
+    },
+    {
+      "ido_word": "reprezento",
+      "esperanto_words": [
+        "reprezento"
+      ],
+      "morfologio": [
+        "reprezent",
+        ".o"
+      ]
+    },
+    {
+      "ido_word": "institucuro",
+      "esperanto_words": [
+        "institucio"
+      ],
+      "morfologio": [
+        "institucar",
+        ".o"
+      ]
+    },
+    {
+      "ido_word": "prepondoro",
+      "esperanto_words": [
+        "prepondereco"
+      ],
+      "morfologio": [
+        "prepondor",
+        ".o"
+      ]
+    },
+    {
+      "ido_word": "konceptajo",
+      "esperanto_words": [
+        "koncepto"
+      ],
+      "morfologio": [
+        "koncept",
+        ".aj.o"
+      ]
+    },
+    {
+      "ido_word": "rielekto",
+      "esperanto_words": [
+        "reelekto"
+      ],
+      "morfologio": [
+        "rielekt",
+        ".o"
+      ]
+    },
+    {
+      "ido_word": "transmisar",
+      "esperanto_words": [
+        "transdoni"
+      ],
+      "morfologio": [
+        "transmis",
+        ".ar"
+      ]
+    },
+    {
+      "ido_word": "nominesar",
+      "esperanto_words": [
+        "nomiĝi"
+      ],
+      "morfologio": [
+        "nomines",
+        ".ar"
+      ]
+    },
+    {
+      "ido_word": "limitizar",
+      "esperanto_words": [
+        "limiti"
+      ],
+      "morfologio": [
+        "limitiz",
+        ".ar"
+      ]
+    },
+    {
+      "ido_word": "aparisar",
+      "esperanto_words": [
+        "aperi"
+      ],
+      "morfologio": [
+        "aparis",
+        ".ar"
+      ]
+    },
+    {
+      "ido_word": "divenisar",
+      "esperanto_words": [
+        "fariĝi"
+      ],
+      "morfologio": [
+        "divenis",
+        ".ar"
+      ]
+    },
+    {
+      "ido_word": "adoptisar",
+      "esperanto_words": [
+        "adopti"
+      ],
+      "morfologio": [
+        "adoptis",
+        ".ar"
+      ]
+    },
+    {
+      "ido_word": "rielektesar",
+      "esperanto_words": [
+        "reelektiĝi"
+      ],
+      "morfologio": [
+        "rielektes",
+        ".ar"
+      ]
+    },
+    {
+      "ido_word": "selektesar",
+      "esperanto_words": [
+        "elektiĝi"
+      ],
+      "morfologio": [
+        "selektes",
+        ".ar"
+      ]
+    },
+    {
+      "ido_word": "nedependanta",
+      "esperanto_words": [
+        "sendependa"
+      ],
+      "morfologio": [
+        "nedependant",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "fundamentala",
+      "esperanto_words": [
+        "fundamenta"
+      ],
+      "morfologio": [
+        "fundamental",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "guvernala",
+      "esperanto_words": [
+        "registara"
+      ],
+      "morfologio": [
+        "guvernal",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "prezidantala",
+      "esperanto_words": [
+        "prezidanta"
+      ],
+      "morfologio": [
+        "prezidantal",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "parlamentala",
+      "esperanto_words": [
+        "parlamenta"
+      ],
+      "morfologio": [
+        "parlamental",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "prezidantal",
+      "esperanto_words": [
+        "prezidanta"
+      ],
+      "morfologio": [
+        "prezidantal",
+        ""
+      ]
+    },
+    {
+      "ido_word": "exemple",
+      "esperanto_words": [
+        "ekzemple"
+      ]
+    },
+    {
+      "ido_word": "heredale",
+      "esperanto_words": [
+        "heredale"
+      ]
+    },
+    {
+      "ido_word": "absolute",
+      "esperanto_words": [
+        "absolute"
+      ]
+    },
+    {
+      "ido_word": "unfoye",
+      "esperanto_words": [
+        "unufoje"
+      ]
+    },
+    {
+      "ido_word": "sequante",
+      "esperanto_words": [
+        "sinsekve"
+      ]
+    },
+    {
+      "ido_word": "tota",
+      "esperanto_words": [
+        "ĉiuj"
+      ],
+      "morfologio": [
+        "tot",
+        ".a"
+      ]
+    },
+    {
+      "ido_word": "Roma",
+      "esperanto_words": [
+        "Romo"
+      ]
+    },
+    {
+      "ido_word": "Brazilia",
+      "esperanto_words": [
+        "Brazilo"
+      ]
+    },
+    {
+      "ido_word": "Arjentinia",
+      "esperanto_words": [
+        "Argentino"
+      ]
+    },
+    {
+      "ido_word": "Uruguay",
+      "esperanto_words": [
+        "Urugvajo"
+      ]
+    },
+    {
+      "ido_word": "Chili",
+      "esperanto_words": [
+        "Ĉilio"
+      ]
+    },
+    {
+      "ido_word": "Portugal",
+      "esperanto_words": [
+        "Portugalio"
+      ]
+    },
+    {
+      "ido_word": "Aristoteles",
+      "esperanto_words": [
+        "Aristotelo"
       ]
     }
   ]
