@@ -198,11 +198,20 @@ class DixConverter:
             ido_word = word_entry.get('ido_word', '')
             morfologio = word_entry.get('morfologio', [])
             esperanto_words = word_entry.get('esperanto_words', [])
+            pos_override = word_entry.get('pos_override', None)
             
             if not ido_word:
                 continue
             
-            if morfologio and len(morfologio) >= 2:
+            # Check for explicit POS override first
+            if pos_override:
+                self.stats['without_morfologio'] += 1
+                self.stats['by_pos'][pos_override] += 1
+                fixed_entries_by_pos[pos_override].append({
+                    'lemma': ido_word,
+                    'pos': pos_override
+                })
+            elif morfologio and len(morfologio) >= 2:
                 root, pos_tag, suffixes = self.analyze_morfologio(morfologio)
                 
                 if root and pos_tag:
@@ -313,14 +322,20 @@ class DixConverter:
                 skipped_count += 1
                 continue
             
-            # Analyze morphology to get POS
-            root, pos_tag, suffixes = self.analyze_morfologio(morfologio)
+            # Check for explicit POS override first
+            pos_override = word_entry.get('pos_override', None)
             
-            # If no POS from morfologio, try to guess it
-            if not pos_tag:
-                pos_tag = self.guess_pos_from_word(ido_word, epo_word)
-                if pos_tag:
-                    fallback_count += 1
+            if pos_override:
+                pos_tag = pos_override
+            else:
+                # Analyze morphology to get POS
+                root, pos_tag, suffixes = self.analyze_morfologio(morfologio)
+                
+                # If no POS from morfologio, try to guess it
+                if not pos_tag:
+                    pos_tag = self.guess_pos_from_word(ido_word, epo_word)
+                    if pos_tag:
+                        fallback_count += 1
             
             if pos_tag:
                 # Create bilingual entry

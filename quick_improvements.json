@@ -1,0 +1,20 @@
+{
+  "words": [
+    {"ido_word": "amar", "esperanto_words": ["ami"], "morfologio": ["am", ".ar"]},
+    {"ido_word": "konar", "esperanto_words": ["koni"], "morfologio": ["kon", ".ar"]},
+    {"ido_word": "studar", "esperanto_words": ["studi"], "morfologio": ["stud", ".ar"]},
+    {"ido_word": "kurar", "esperanto_words": ["kuri"], "morfologio": ["kur", ".ar"]},
+    {"ido_word": "instruar", "esperanto_words": ["instrui"], "morfologio": ["instru", ".ar"]},
+    {"ido_word": "elu", "esperanto_words": ["ŝi"], "morfologio": null},
+    {"ido_word": "naturala", "esperanto_words": ["natura"], "morfologio": ["natur", ".ala"]},
+    {"ido_word": "celestala", "esperanto_words": ["ĉiela"], "morfologio": ["celest", ".ala"]},
+    {"ido_word": "sunala", "esperanto_words": ["suna"], "morfologio": ["sun", ".ala"]},
+    {"ido_word": "akvo", "esperanto_words": ["akvo"], "morfologio": ["akv", ".o"]},
+    {"ido_word": "buliar", "esperanto_words": ["boli"], "morfologio": ["bul", ".iar"]},
+    {"ido_word": "linguajo", "esperanto_words": ["lingvaĵo"], "morfologio": ["lingu", ".ajo"]},
+    {"ido_word": "domestikigita", "esperanto_words": ["hejmigita"], "morfologio": null},
+    {"ido_word": "apartenas", "esperanto_words": ["apartenas"], "morfologio": null},
+    {"ido_word": "konektita", "esperanto_words": ["konektita"], "morfologio": null},
+    {"ido_word": "parlata", "esperanto_words": ["parolata"], "morfologio": null}
+  ]
+}
