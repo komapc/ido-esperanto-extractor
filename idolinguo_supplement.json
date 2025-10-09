@@ -1,0 +1,82 @@
+{
+  "metadata": {
+    "source": "Idolinguo dictionary (https://idolinguo.org.uk/idoesp2.htm)",
+    "date": "2025-10-09",
+    "purpose": "Supplement and corrections from Idolinguo Ido-Esperanto dictionary",
+    "note": "Contains missing words and corrected translations"
+  },
+  "words": [
+    {
+      "ido_word": "per",
+      "esperanto_words": ["per"],
+      "morfologio": null,
+      "source": "idolinguo"
+    },
+    {
+      "ido_word": "od",
+      "esperanto_words": ["aŭ"],
+      "morfologio": null,
+      "source": "idolinguo",
+      "note": "exclusive or"
+    },
+    {
+      "ido_word": "vu",
+      "esperanto_words": ["vi"],
+      "morfologio": null,
+      "source": "idolinguo",
+      "note": "formal singular you"
+    },
+    {
+      "ido_word": "quale",
+      "esperanto_words": ["kiel"],
+      "morfologio": null,
+      "source": "idolinguo_correction",
+      "note": "CORRECTION: was 'kia', should be 'kiel' (how)"
+    },
+    {
+      "ido_word": "ilia",
+      "esperanto_words": ["lia"],
+      "morfologio": null,
+      "source": "idolinguo_correction",
+      "note": "CORRECTION: his (masculine possessive)"
+    },
+    {
+      "ido_word": "olia",
+      "esperanto_words": ["ilia"],
+      "morfologio": null,
+      "source": "idolinguo_correction",
+      "note": "CORRECTION: their (neuter possessive)"
+    },
+    {
+      "ido_word": "abandonar",
+      "esperanto_words": ["forlasi"],
+      "morfologio": ["abandon", ".ar"],
+      "source": "idolinguo"
+    },
+    {
+      "ido_word": "abasar",
+      "esperanto_words": ["malaltigi"],
+      "morfologio": ["abas", ".ar"],
+      "source": "idolinguo"
+    },
+    {
+      "ido_word": "abjurar",
+      "esperanto_words": ["forĵuri"],
+      "morfologio": ["abjur", ".ar"],
+      "source": "idolinguo"
+    },
+    {
+      "ido_word": "ablaktar",
+      "esperanto_words": ["demamigi"],
+      "morfologio": ["ablakt", ".ar"],
+      "source": "idolinguo"
+    },
+    {
+      "ido_word": "aboyar",
+      "esperanto_words": ["boji"],
+      "morfologio": ["aboy", ".ar"],
+      "source": "idolinguo"
+    }
+  ]
+}
+
