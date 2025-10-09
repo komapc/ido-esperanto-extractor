@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "extraction_date": "2025-10-03T12:30:54.593409",
+    "extraction_date": "2025-10-09T06:23:06.724134",
     "total_failed": 682,
     "script_version": "v2.0",
     "stats": {
@@ -19,8 +19,8 @@
       "dump_path": "/home/mark/apertium-dev/ido-esperanto-extractor/eowiktionary-latest-pages-articles.xml.bz2",
       "dump_size_bytes": 20336040,
       "dump_size_mb": 19.39,
-      "dump_modified": "2025-10-03T12:21:03.534668",
-      "dump_created": "2025-10-03T12:21:03.534668",
+      "dump_modified": "2025-10-03T13:21:03.534668",
+      "dump_created": "2025-10-03T13:21:03.534668",
       "dump_version": "latest"
     }
   },
