@@ -114,6 +114,33 @@ class DixConverter:
         # Default to adverb for unrecognized words (many function words are adverbs)
         return 'adv'
     
+    def _extract_esperanto_root(self, word, pos_tag):
+        """
+        Extract the root from an Esperanto word based on POS.
+        Returns: root (stem without grammatical ending)
+        """
+        if not word:
+            return word
+        
+        # For nouns, remove -o
+        if pos_tag == 'n' and word.endswith('o'):
+            return word[:-1]
+        
+        # For adjectives, remove -a
+        if pos_tag == 'adj' and word.endswith('a'):
+            return word[:-1]
+        
+        # For adverbs, remove -e
+        if pos_tag == 'adv' and word.endswith('e'):
+            return word[:-1]
+        
+        # For verbs, remove -i
+        if pos_tag == 'vblex' and word.endswith('i'):
+            return word[:-1]
+        
+        # For function words and others, return as-is
+        return word
+    
     def create_ido_monolingual_dix(self, output_file):
         """Create Ido monolingual morphological dictionary"""
         
@@ -283,12 +310,12 @@ class DixConverter:
                 e = ET.SubElement(section, 'e')
                 p = ET.SubElement(e, 'p')
                 
-                # Left side (Ido)
+                # Left side (Ido) - use lemma (full form), not root
                 l = ET.SubElement(p, 'l')
                 l.text = ido_word
                 ET.SubElement(l, 's', n=pos_tag)
                 
-                # Right side (Esperanto)
+                # Right side (Esperanto) - use lemma (full form), not root  
                 r = ET.SubElement(p, 'r')
                 r.text = epo_word
                 ET.SubElement(r, 's', n=pos_tag)
@@ -316,25 +343,68 @@ class DixConverter:
         # Singular nominative
         e = ET.SubElement(pardef, 'e')
         p = ET.SubElement(e, 'p')
-        ET.SubElement(p, 'l').text = 'o'
-        r = ET.SubElement(p, 'r').text = 'o<s n="n"/><s n="sg"/><s n="nom"/>'
+        l = ET.SubElement(p, 'l')
+        l.text = 'o'
+        r = ET.SubElement(p, 'r')
+        r.text = 'o'
+        ET.SubElement(r, 's', n='n')
+        ET.SubElement(r, 's', n='sg')
+        ET.SubElement(r, 's', n='nom')
         
         # Plural nominative  
         e = ET.SubElement(pardef, 'e')
         p = ET.SubElement(e, 'p')
-        ET.SubElement(p, 'l').text = 'i'
-        r = ET.SubElement(p, 'r').text = 'o<s n="n"/><s n="pl"/><s n="nom"/>'
+        l = ET.SubElement(p, 'l')
+        l.text = 'i'
+        r = ET.SubElement(p, 'r')
+        r.text = 'o'
+        ET.SubElement(r, 's', n='n')
+        ET.SubElement(r, 's', n='pl')
+        ET.SubElement(r, 's', n='nom')
+        
+        # Singular accusative
+        e = ET.SubElement(pardef, 'e')
+        p = ET.SubElement(e, 'p')
+        l = ET.SubElement(p, 'l')
+        l.text = 'on'
+        r = ET.SubElement(p, 'r')
+        r.text = 'o'
+        ET.SubElement(r, 's', n='n')
+        ET.SubElement(r, 's', n='sg')
+        ET.SubElement(r, 's', n='acc')
+        
+        # Plural accusative
+        e = ET.SubElement(pardef, 'e')
+        p = ET.SubElement(e, 'p')
+        l = ET.SubElement(p, 'l')
+        l.text = 'in'
+        r = ET.SubElement(p, 'r')
+        r.text = 'o'
+        ET.SubElement(r, 's', n='n')
+        ET.SubElement(r, 's', n='pl')
+        ET.SubElement(r, 's', n='acc')
         
         # Adjective paradigm (a__adj)
         pardef = ET.SubElement(pardefs, 'pardef', n='a__adj')
         # Singular
         e = ET.SubElement(pardef, 'e')
         p = ET.SubElement(e, 'p')
-        ET.SubElement(p, 'l').text = 'a'
+        l = ET.SubElement(p, 'l')
+        l.text = 'a'
         r = ET.SubElement(p, 'r')
         r.text = 'a'
         ET.SubElement(r, 's', n='adj')
         ET.SubElement(r, 's', n='sg')
+        
+        # Plural
+        e = ET.SubElement(pardef, 'e')
+        p = ET.SubElement(e, 'p')
+        l = ET.SubElement(p, 'l')
+        l.text = 'i'
+        r = ET.SubElement(p, 'r')
+        r.text = 'a'
+        ET.SubElement(r, 's', n='adj')
+        ET.SubElement(r, 's', n='pl')
         
         # Adverb paradigm (e__adv)
         pardef = ET.SubElement(pardefs, 'pardef', n='e__adv')
@@ -356,7 +426,7 @@ class DixConverter:
         ET.SubElement(r, 's', n='vblex')
         ET.SubElement(r, 's', n='inf')
         
-        # Present
+        # Present tense (-as)
         e = ET.SubElement(pardef, 'e')
         p = ET.SubElement(e, 'p')
         ET.SubElement(p, 'l').text = 'as'
@@ -364,6 +434,42 @@ class DixConverter:
         r.text = 'ar'
         ET.SubElement(r, 's', n='vblex')
         ET.SubElement(r, 's', n='pri')
+        
+        # Past tense (-is)
+        e = ET.SubElement(pardef, 'e')
+        p = ET.SubElement(e, 'p')
+        ET.SubElement(p, 'l').text = 'is'
+        r = ET.SubElement(p, 'r')
+        r.text = 'ar'
+        ET.SubElement(r, 's', n='vblex')
+        ET.SubElement(r, 's', n='pii')
+        
+        # Future tense (-os)
+        e = ET.SubElement(pardef, 'e')
+        p = ET.SubElement(e, 'p')
+        ET.SubElement(p, 'l').text = 'os'
+        r = ET.SubElement(p, 'r')
+        r.text = 'ar'
+        ET.SubElement(r, 's', n='vblex')
+        ET.SubElement(r, 's', n='fti')
+        
+        # Conditional (-us)
+        e = ET.SubElement(pardef, 'e')
+        p = ET.SubElement(e, 'p')
+        ET.SubElement(p, 'l').text = 'us'
+        r = ET.SubElement(p, 'r')
+        r.text = 'ar'
+        ET.SubElement(r, 's', n='vblex')
+        ET.SubElement(r, 's', n='cni')
+        
+        # Imperative (-ez)
+        e = ET.SubElement(pardef, 'e')
+        p = ET.SubElement(e, 'p')
+        ET.SubElement(p, 'l').text = 'ez'
+        r = ET.SubElement(p, 'r')
+        r.text = 'ar'
+        ET.SubElement(r, 's', n='vblex')
+        ET.SubElement(r, 's', n='imp')
         
         # Invariable paradigms for function words
         # Invariable adverb
@@ -445,16 +551,15 @@ class DixConverter:
     
     def _write_pretty_xml(self, element, filename):
         """Write XML with pretty formatting"""
+        # Convert to string without pretty printing
+        # Apertium tools are sensitive to whitespace in certain contexts
         rough_string = ET.tostring(element, encoding='utf-8')
-        reparsed = minidom.parseString(rough_string)
-        pretty_xml = reparsed.toprettyxml(indent='  ', encoding='utf-8')
         
         with open(filename, 'wb') as f:
-            # Add XML declaration and DOCTYPE if needed
+            # Add XML declaration
             f.write(b'<?xml version="1.0" encoding="UTF-8"?>\n')
-            # Skip the first line (xml declaration from minidom)
-            lines = pretty_xml.split(b'\n')[1:]
-            f.write(b'\n'.join(lines))
+            f.write(rough_string)
+            f.write(b'\n')
         
         print(f"✅ Written to: {filename}")
 
