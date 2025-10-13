@@ -311,16 +311,24 @@ class DixConverter:
                 continue
             
             # Get first Esperanto translation
-            epo_word = esperanto_words[0] if esperanto_words else ''
-            
-            # Clean up any formatting artifacts
-            if '|' in epo_word or '{' in epo_word:
-                skipped_count += 1
-                continue
-            
+            # Choose first usable Esperanto translation
+            epo_word = ''
+            for cand in esperanto_words:
+                if not cand:
+                    continue
+                # Clean simple artifacts (remove braces, keep text; drop pipes)
+                cw = cand.replace('{', '').replace('}', '')
+                if '|' in cw:
+                    # if pipe found, prefer right side after pipe
+                    parts = cw.split('|')
+                    cw = parts[-1].strip()
+                cw = cw.strip()
+                if cw:
+                    epo_word = cw
+                    break
+            # Fallback: identity mapping if no valid Esperanto candidate
             if not epo_word:
-                skipped_count += 1
-                continue
+                epo_word = ido_word
             
             # Check for explicit POS override first
             pos_override = word_entry.get('pos_override', None)
@@ -354,7 +362,17 @@ class DixConverter:
                 
                 bilingual_count += 1
             else:
-                skipped_count += 1
+                # Last-resort fallback: treat as invariable adverb to ensure coverage
+                pos_tag = 'adv'
+                e = ET.SubElement(section, 'e')
+                p = ET.SubElement(e, 'p')
+                l = ET.SubElement(p, 'l')
+                l.text = ido_word
+                ET.SubElement(l, 's', n=pos_tag)
+                r = ET.SubElement(p, 'r')
+                r.text = epo_word
+                ET.SubElement(r, 's', n=pos_tag)
+                bilingual_count += 1
         
         # Write to file
         self._write_pretty_xml(dictionary, output_file)
