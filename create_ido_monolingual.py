@@ -287,6 +287,26 @@ class IdoMonolingualConverter:
         r = ET.SubElement(p, 'r')
         ET.SubElement(r, 's', n='vblex')
         ET.SubElement(r, 's', n='cni')
+        
+        # Passive verb paradigm (ir__vblex) - same as ar__vblex
+        pardef = ET.SubElement(pardefs, 'pardef', n='ir__vblex')
+        # Infinitive
+        e = ET.SubElement(pardef, 'e')
+        p = ET.SubElement(e, 'p')
+        ET.SubElement(p, 'l').text = 'ir'
+        r = ET.SubElement(p, 'r')
+        ET.SubElement(r, 's', n='vblex')
+        ET.SubElement(r, 's', n='inf')
+        
+        # Future verb paradigm (or__vblex) - same as ar__vblex
+        pardef = ET.SubElement(pardefs, 'pardef', n='or__vblex')
+        # Infinitive
+        e = ET.SubElement(pardef, 'e')
+        p = ET.SubElement(e, 'p')
+        ET.SubElement(p, 'l').text = 'or'
+        r = ET.SubElement(p, 'r')
+        ET.SubElement(r, 's', n='vblex')
+        ET.SubElement(r, 's', n='inf')
     
     def create_apertium_dix(self, output_file):
         """Create Apertium monolingual dictionary"""
