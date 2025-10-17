@@ -1,0 +1,10 @@
+work/
+reports/
+dist/
+data/raw/
+*.xml.bz2
+*.sql.gz
+*.bin
+*.automorf.bin
+*.autobil.bin
+*.dix~

@@ -5,3 +5,6 @@ mwparserfromhell>=0.6.4
 # Note: The extractor works without external dependencies
 # using only Python standard library, but mwparserfromhell
 # provides better template parsing if available.
+
+# YAML support for reading/writing dictionaries
+pyyaml>=6.0.1
