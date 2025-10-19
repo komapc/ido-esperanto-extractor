@@ -15,6 +15,7 @@
 6. Consolidate and normalize (`scripts/normalize_entries.py`)
 7. Filter and QA (`scripts/filter_and_validate.py`, `scripts/report_coverage.py`)
 8. Build ONE BIG BIDIX (EO-only, multi-provenance) (`scripts/build_one_big_bidix_json.py`) and conflicts report (`scripts/report_conflicts.py`)
+   - Include EO→IO flipped items: EO Wiktionary pages with IO translations produce IO-centered entries carrying `{wikt_eo}` at translation level
 9. Export Apertium dictionaries (monodix + bidix) (`scripts/export_apertium.py`)
 9. Report, version, and open PR (no commit to Apertium repo in this step)
 

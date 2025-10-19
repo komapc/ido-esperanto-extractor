@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Tuple
 
 from _common import read_json, write_json, configure_logging
+import re
 
 
 def build_big_bidix(entries_path: Path) -> List[Dict[str, Any]]:
@@ -20,6 +21,26 @@ def build_big_bidix(entries_path: Path) -> List[Dict[str, Any]]:
                 if s:
                     out.append(s)
         return out
+
+    EO_ALLOWED_RE = re.compile(r"^[A-Za-zĈĜĤĴŜŬĉĝĥĵŝŭ\-]+$")
+
+    def clean_term(term: str) -> str:
+        t = (term or '').strip()
+        if not t:
+            return ''
+        # Drop table/template artifacts and categories
+        if any(x in t for x in ['|', '{', '}', 'bgcolor']):
+            return ''
+        t = re.sub(r"\s*Kategorio:[^\s]+.*$", "", t)
+        t = re.sub(r"\s+", " ", t).strip()
+        # Drop bullet/star artifacts
+        if '*' in t:
+            return ''
+        # Enforce Esperanto orthography (letters + hyphen); remove spaces for test
+        test = t.replace(' ', '')
+        if not EO_ALLOWED_RE.match(test):
+            return ''
+        return t
 
     for e in entries:
         if (e.get('language') or '') != 'io':
@@ -47,7 +68,8 @@ def build_big_bidix(entries_path: Path) -> List[Dict[str, Any]]:
         for s in e.get('senses', []) or []:
             for tr in s.get('translations', []) or []:
                 lang = tr.get('lang')
-                term = (tr.get('term') or '').strip()
+                raw = (tr.get('term') or '')
+                term = clean_term(raw)
                 if lang != 'eo' or not term:
                     continue
                 src = str(tr.get('source') or '')

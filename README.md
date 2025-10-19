@@ -67,10 +67,15 @@ Previous ad-hoc scripts (e.g., `ido_esperanto_extractor.py`, `create_ido_monolin
 - Content: EO-only translations for IO lemmas with full provenance (multi-source), no confidence
 - Used by: bidix export, statistics, conflicts report, and future online dictionary
 
+Notes:
+- EO Wiktionary evidence is incorporated by flipping EO→IO pages that have IO translations into IO-centered items (marked `{wikt_eo}` at translation level), then flowing through normalize→morph→filter before BIG BIDIX build.
+
 ## Current Statistics (latest run)
-- Final entries (work/final_vocabulary.json): 48,878
+- Final entries (work/final_vocabulary.json): 49,906
 - Monolingual Ido (dist/ido_dictionary.json): 48,878
 - Final by source: io_wiktionary 44,965; io_wikipedia 3,913; eo_wiktionary 0; whitelist 0
 - Wiktionary translations found: IO→EO 46,885; EO→IO 328
 - Wikipedia additions: any 3,913; only 3,913; Wikidata 0
-- ONE BIG BIDIX size: 122,792 entries
+- ONE BIG BIDIX size: 122,871 entries
+- BIG BIDIX per source (entry-level): wiki 77,808; wikt_io 45,093; wikt_eo 983; pivot_en 692; pivot_fr 110
+- BIG BIDIX translation sources (entries with any): wikt_io 9,303; wikt_eo 257; pivot_en 726; pivot_fr 114
