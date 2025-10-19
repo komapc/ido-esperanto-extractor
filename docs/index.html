@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ido ↔ Esperanto Dictionary</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.5.10/css/pico.min.css" />
+  </head>
+  <body>
+    <main class="container">
+      <hgroup>
+        <h1>Ido ↔ Esperanto Dictionary</h1>
+        <p>Client-side search powered by FlexSearch. Type to search Ido lemmas.</p>
+      </hgroup>
+      <input id="q" type="search" placeholder="Search Ido lemma (e.g., homo, bona, venar)" aria-label="Search" />
+      <details>
+        <summary>Filters</summary>
+        <label><input id="f-noun" type="checkbox" /> noun</label>
+        <label><input id="f-verb" type="checkbox" /> verb</label>
+        <label><input id="f-adj" type="checkbox" /> adjective</label>
+        <label><input id="f-adv" type="checkbox" /> adverb</label>
+      </details>
+      <article>
+        <div id="results"></div>
+      </article>
+    </main>
+    <script src="https://unpkg.com/flexsearch@0.7.43/dist/flexsearch.bundle.js"></script>
+    <script src="app.js"></script>
+  </body>
+  </html>
+
+
