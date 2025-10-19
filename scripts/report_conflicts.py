@@ -5,28 +5,73 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Set, Tuple
 
 from _common import read_json, save_text, configure_logging
+import re
 
 
-def find_conflicts(entries: List[Dict[str, Any]]) -> List[Tuple[str, str, List[str]]]:
-    # Map lemma -> set of EO terms
-    eo_by_lemma: Dict[str, Set[str]] = {}
+def find_conflicts(entries: List[Dict[str, Any]]) -> List[Tuple[str, List[str]]]:
+    # Map lemma -> term -> set(short sources)
+    by_lemma_terms: Dict[str, Dict[str, Set[str]]] = {}
+    EO_ALLOWED_RE = re.compile(r"^[A-Za-zĈĜĤĴŜŬĉĝĥĵŝŭ\-]+$")
+
+    def clean(term: str) -> str:
+        t = (term or '').strip()
+        if not t:
+            return ''
+        if any(x in t for x in ['|','{','}','bgcolor']):
+            return ''
+        t = re.sub(r"\s*Kategorio:[^\s]+.*$", "", t)
+        t = re.sub(r"\s+", " ", t).strip()
+        if '*' in t:
+            return ''
+        test = t.replace(' ', '')
+        if not EO_ALLOWED_RE.match(test):
+            return ''
+        return t
+    def short(src: str) -> str:
+        s = src or ''
+        if 'io_wiktionary' in s:
+            return 'wikt_io'
+        if 'eo_wiktionary' in s:
+            return 'wikt_eo'
+        if 'wikipedia' in s:
+            return 'wiki'
+        if 'pivot_en' in s:
+            return 'pivot_en'
+        if 'pivot_fr' in s:
+            return 'pivot_fr'
+        if 'langlinks' in s:
+            return 'll'
+        return s
     for e in entries:
         if (e.get('language') or '') != 'io':
             continue
         lemma = (e.get('lemma') or '').strip()
         if not lemma:
             continue
-        terms: Set[str] = eo_by_lemma.setdefault(lemma, set())
+        tmap: Dict[str, Set[str]] = by_lemma_terms.setdefault(lemma, {})
         for s in e.get('senses', []) or []:
             for tr in s.get('translations', []) or []:
-                if tr.get('lang') == 'eo':
-                    term = (tr.get('term') or '').strip()
-                    if term:
-                        terms.add(term)
-    conflicts: List[Tuple[str, str, List[str]]] = []
-    for lemma, terms in eo_by_lemma.items():
-        if len(terms) > 1:
-            conflicts.append((lemma, 'eo', sorted(terms)))
+                if tr.get('lang') != 'eo':
+                    continue
+                term = clean(tr.get('term') or '')
+                if not term:
+                    continue
+                srcs = tr.get('sources') or []
+                bucket = tmap.setdefault(term, set())
+                for src in srcs:
+                    bucket.add(short(str(src)))
+    conflicts: List[Tuple[str, List[str]]] = []
+    for lemma, tmap in by_lemma_terms.items():
+        # Only a conflict if at least two distinct EO terms and from at least two distinct sources
+        if len(tmap) <= 1:
+            continue
+        all_srcs = set()
+        for srcs in tmap.values():
+            all_srcs.update(srcs)
+        if len(all_srcs) <= 1:
+            continue
+        formatted = [f"{t}{{{','.join(sorted(srcs))}}}" if srcs else t for t, srcs in sorted(tmap.items())]
+        conflicts.append((lemma, formatted))
     conflicts.sort(key=lambda x: x[0])
     return conflicts
 
@@ -45,7 +90,7 @@ def main(argv: Iterable[str]) -> int:
     a = lines.append
     a('# IO→EO Conflicts (multiple EO terms per IO lemma)')
     a(f'- Total conflicts: {len(conflicts)}\n')
-    for lemma, lang, terms in conflicts[:10000]:
+    for lemma, terms in conflicts[:10000]:
         a(f'- {lemma}: {", ".join(terms)}')
     save_text(args.out, '\n'.join(lines) + '\n')
     logging.info('Wrote %s', args.out)

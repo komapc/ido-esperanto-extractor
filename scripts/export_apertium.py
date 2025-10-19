@@ -111,7 +111,26 @@ def build_bidix(entries):
                 if tr.get("lang") == "eo":
                     term = tr.get("term")
                     if term:
-                        eo_terms.append(str(term))
+                        # Append sources indicator in braces if available (short codes)
+                        sources = []
+                        srcs = tr.get("sources") or []
+                        for sname in srcs:
+                            if "io_wiktionary" in sname:
+                                sources.append("wikt_io")
+                            elif "eo_wiktionary" in sname:
+                                sources.append("wikt_eo")
+                            elif "wikipedia" in sname:
+                                sources.append("wiki_io")
+                            elif "pivot_en" in sname:
+                                sources.append("pivot_en")
+                            elif "pivot_fr" in sname:
+                                sources.append("pivot_fr")
+                            elif "langlinks" in sname:
+                                sources.append("ll")
+                        label = f"{term}"
+                        if sources:
+                            label = f"{term}{{{','.join(sorted(set(sources)))}}}"
+                        eo_terms.append(label)
         if not eo_terms:
             continue
         # Use first translation as primary

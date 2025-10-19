@@ -5,7 +5,7 @@ WORK=work
 DIST=dist
 REPORTS=reports
 
-.PHONY: all regenerate clean freq wikt_io wikt_eo wikt_en wiki align align_pivot normalize morph mono filter report export stats dump_coverage big_bidix conflicts
+.PHONY: all regenerate clean freq wikt_io wikt_eo wikt_en wiki align align_pivot normalize morph mono filter report export stats dump_coverage big_bidix conflicts big_bidix_stats
 
 all: regenerate
 
@@ -30,6 +30,7 @@ regenerate:
 	$(PY) scripts/report_stats.py
 	$(PY) scripts/report_io_dump_coverage.py
 	$(PY) scripts/report_conflicts.py
+	$(PY) scripts/report_big_bidix_stats.py
 
 freq:
 	$(PY) scripts/build_frequency_io_wiki.py
@@ -77,6 +78,9 @@ big_bidix:
 
 conflicts:
 	$(PY) scripts/report_conflicts.py
+
+big_bidix_stats:
+	$(PY) scripts/report_big_bidix_stats.py
 
 stats:
 	$(PY) scripts/report_stats.py
