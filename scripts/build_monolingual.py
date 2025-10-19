@@ -19,7 +19,7 @@ def build_monolingual(entries: List[Dict[str, Any]], language: str) -> List[Dict
 
 def main(argv: Iterable[str]) -> int:
     ap = argparse.ArgumentParser(description="Build monolingual dictionaries from bilingual entries")
-    ap.add_argument("--input", type=Path, default=Path(__file__).resolve().parents[1] / "work/bilingual_with_morph.json")
+    ap.add_argument("--input", type=Path, default=Path(__file__).resolve().parents[1] / "work/final_vocabulary.json")
     ap.add_argument("--out-io", type=Path, default=Path(__file__).resolve().parents[1] / "dist/ido_dictionary.json")
     ap.add_argument("--out-eo", type=Path, default=Path(__file__).resolve().parents[1] / "dist/esperanto_dictionary.json")
     ap.add_argument("-v", "--verbose", action="count", default=0)
@@ -39,5 +39,7 @@ def main(argv: Iterable[str]) -> int:
 if __name__ == "__main__":
     import sys
     raise SystemExit(main(sys.argv[1:]))
+
+
 
 

@@ -1,0 +1,21 @@
+{
+  "metadata": {
+    "extraction_date": "2025-10-16",
+    "source": "Ido Wikipedia (langlinks)",
+    "total_entries": 0,
+    "stats": {
+      "total": 5031,
+      "found_morphology": 5031,
+      "failed_morphology": 0,
+      "by_pos": {
+        "vblex": 281,
+        "n": 3922,
+        "adj": 619,
+        "adv": 209
+      }
+    },
+    "category": "ambiguous",
+    "filtered_date": "2025-10-16"
+  },
+  "words": []
+}

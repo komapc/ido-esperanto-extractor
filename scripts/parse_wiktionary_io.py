@@ -20,16 +20,19 @@ def main(argv):
         default=Path(__file__).resolve().parents[1] / "work/io_wikt_io_eo.json",
     )
     ap.add_argument("--limit", type=int)
+    ap.add_argument("--progress-every", type=int, default=1000)
     ap.add_argument("-v", "--verbose", action="count", default=0)
     args = ap.parse_args(list(argv))
 
     configure_logging(args.verbose)
     cfg = ParserConfig(source_code="io", target_code="eo")
-    parse_wiktionary(args.input, cfg, args.out, args.limit)
+    parse_wiktionary(args.input, cfg, args.out, args.limit, progress_every=args.progress_every)
     return 0
 
 
 if __name__ == "__main__":
     raise SystemExit(main(sys.argv[1:]))
+
+
 
 

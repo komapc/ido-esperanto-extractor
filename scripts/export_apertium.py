@@ -34,14 +34,42 @@ def build_monodix(entries):
     add_paradigm("a__adj", "a", ["adj"])  # minimal
     add_paradigm("e__adv", "e", ["adv"])  # minimal
     add_paradigm("ar__vblex", "ar", ["vblex", "inf"])  # minimal
+    # Invariable paradigms for function words
+    for iv in ["__pr", "__det", "__prn", "__cnjcoo", "__cnjsub"]:
+        pd = ET.SubElement(pardefs, "pardef", n=iv)
+        e = ET.SubElement(pd, "e")
+        p = ET.SubElement(e, "p")
+        ET.SubElement(p, "l").text = ""
+        r = ET.SubElement(p, "r")
+        ET.SubElement(r, "s", n=iv.replace("__", ""))
 
     section = ET.SubElement(dictionary, "section", id="main", type="standard")
+    def map_s_tag(par: str, pos: str | None) -> str | None:
+        if par in ("o__n",):
+            return "n"
+        if par in ("a__adj",):
+            return "adj"
+        if par in ("e__adv",):
+            return "adv"
+        if par in ("ar__vblex",):
+            return "vblex"
+        if par in ("__pr", "__det", "__prn", "__cnjcoo", "__cnjsub"):
+            return par.replace("__", "")
+        # Map raw pos for function words
+        if pos in ("pr", "det", "prn", "cnjcoo", "cnjsub"):
+            return pos
+        return None
+
     for e in entries:
         if e.get("language") != "io":
             continue
         lm = e.get("lemma")
-        par = (e.get("morphology") or {}).get("paradigm") or "o__n"
-        pos = e.get("pos")
+        raw_par = (e.get("morphology") or {}).get("paradigm") or "o__n"
+        pos = e.get("pos") if isinstance(e.get("pos"), str) else None
+        # Normalize function-word paradigms
+        par = raw_par
+        if raw_par in {"pr", "det", "prn", "cnjcoo", "cnjsub"}:
+            par = "__" + raw_par
         en = ET.SubElement(section, "e", lm=str(lm))
         i = ET.SubElement(en, "i")
         i.text = str(lm)
@@ -57,11 +85,25 @@ def build_bidix(entries):
     for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "p1", "p2", "p3"]:
         ET.SubElement(sdefs, "sdef", n=s)
     section = ET.SubElement(dictionary, "section", id="main", type="standard")
+    def map_s_tag(par: str, pos: str | None) -> str | None:
+        if par in ("o__n",):
+            return "n"
+        if par in ("a__adj",):
+            return "adj"
+        if par in ("e__adv",):
+            return "adv"
+        if par in ("ar__vblex",):
+            return "vblex"
+        if pos in ("pr", "det", "prn", "cnjcoo", "cnjsub"):
+            return pos
+        return None
+
     for e in entries:
         if e.get("language") != "io":
             continue
         lm = e.get("lemma")
-        pos = e.get("pos")
+        raw_par = (e.get("morphology") or {}).get("paradigm") or None
+        pos = e.get("pos") if isinstance(e.get("pos"), str) else None
         # Collect EO translations
         eo_terms = []
         for s in e.get("senses", []) or []:
@@ -69,7 +111,26 @@ def build_bidix(entries):
                 if tr.get("lang") == "eo":
                     term = tr.get("term")
                     if term:
-                        eo_terms.append(str(term))
+                        # Append sources indicator in braces if available (short codes)
+                        sources = []
+                        srcs = tr.get("sources") or []
+                        for sname in srcs:
+                            if "io_wiktionary" in sname:
+                                sources.append("wikt_io")
+                            elif "eo_wiktionary" in sname:
+                                sources.append("wikt_eo")
+                            elif "wikipedia" in sname:
+                                sources.append("wiki_io")
+                            elif "pivot_en" in sname:
+                                sources.append("pivot_en")
+                            elif "pivot_fr" in sname:
+                                sources.append("pivot_fr")
+                            elif "langlinks" in sname:
+                                sources.append("ll")
+                        label = f"{term}"
+                        if sources:
+                            label = f"{term}{{{','.join(sorted(set(sources)))}}}"
+                        eo_terms.append(label)
         if not eo_terms:
             continue
         # Use first translation as primary
@@ -78,12 +139,13 @@ def build_bidix(entries):
         p = ET.SubElement(en, "p")
         l = ET.SubElement(p, "l")
         l.text = str(lm)
-        if pos:
-            ET.SubElement(l, "s", n=str(pos))
+        s_tag = map_s_tag(raw_par or "", pos)
+        if s_tag:
+            ET.SubElement(l, "s", n=s_tag)
         r = ET.SubElement(p, "r")
         r.text = str(epo)
-        if pos:
-            ET.SubElement(r, "s", n=str(pos))
+        if s_tag:
+            ET.SubElement(r, "s", n=s_tag)
     return dictionary
 
 
@@ -100,13 +162,16 @@ def export_apertium(entries_path: Path, out_monodix: Path, out_bidix: Path) -> N
 def main(argv: Iterable[str]) -> int:
     ap = argparse.ArgumentParser(description="Export dictionaries to Apertium .dix (no commit)")
     ap.add_argument("--input", type=Path, default=Path(__file__).resolve().parents[1] / "work/final_vocabulary.json")
+    ap.add_argument("--big-bidix", type=Path, default=Path(__file__).resolve().parents[1] / "dist/bidix_big.json")
     ap.add_argument("--out-mono", type=Path, default=Path(__file__).resolve().parents[1] / "dist/apertium-ido.ido.dix")
     ap.add_argument("--out-bidi", type=Path, default=Path(__file__).resolve().parents[1] / "dist/apertium-ido-epo.ido-epo.dix")
     ap.add_argument("-v", "--verbose", action="count", default=0)
     args = ap.parse_args(list(argv))
 
     configure_logging(args.verbose)
-    export_apertium(args.input, args.out_mono, args.out_bidi)
+    # For monodix we still use final_vocabulary; for bidix we prefer BIG BIDIX if present
+    input_for_bidi = args.big_bidix if args.big_bidix.exists() else args.input
+    export_apertium(input_for_bidi, args.out_mono, args.out_bidi)
     return 0
 
 

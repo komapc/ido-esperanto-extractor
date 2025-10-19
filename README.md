@@ -33,8 +33,13 @@ python3 scripts/infer_morphology.py
 # 6) Filter & QA
 python3 scripts/filter_and_validate.py
 python3 scripts/report_coverage.py
+python3 scripts/report_stats.py
 
-# 7) Export Apertium (no auto-commit to external repos)
+# 7) Build ONE BIG BIDIX (EO-only) and reports
+python3 scripts/build_one_big_bidix_json.py
+python3 scripts/report_conflicts.py
+
+# 8) Export Apertium (no auto-commit to external repos)
 python3 scripts/export_apertium.py
 ```
 
@@ -46,3 +51,31 @@ Previous ad-hoc scripts (e.g., `ido_esperanto_extractor.py`, `create_ido_monolin
 
 ## Git Workflow
 - Use feature branches and open PRs. Do not push generated `.dix` directly to Apertium repos from this pipeline.
+
+## Execution Rules
+- If you need to run Python code longer than one line, create a script file under `scripts/` and run it; avoid inline heredocs.
+- For commands that may take longer than ~1 minute, add progress logging (e.g., `--verbose` flags, periodic counters/log lines).
+
+## Reports
+- `reports/stats_summary.md` — provenance split, Wiktionary translation counts, and coverage numbers
+- `reports/io_dump_coverage.md` — IO Wiktionary dump coverage (Ido without EO, EN/other counts when applicable)
+- `reports/bidix_conflicts.md` — IO lemmas with multiple distinct EO terms in ONE BIG BIDIX
+
+## ONE BIG BIDIX
+- Builder: `scripts/build_one_big_bidix_json.py`
+- Output: `dist/bidix_big.json`
+- Content: EO-only translations for IO lemmas with full provenance (multi-source), no confidence
+- Used by: bidix export, statistics, conflicts report, and future online dictionary
+
+Notes:
+- EO Wiktionary evidence is incorporated by flipping EO→IO pages that have IO translations into IO-centered items (marked `{wikt_eo}` at translation level), then flowing through normalize→morph→filter before BIG BIDIX build.
+
+## Current Statistics (latest run)
+- Final entries (work/final_vocabulary.json): 49,906
+- Monolingual Ido (dist/ido_dictionary.json): 48,878
+- Final by source: io_wiktionary 44,965; io_wikipedia 3,913; eo_wiktionary 0; whitelist 0
+- Wiktionary translations found: IO→EO 46,885; EO→IO 328
+- Wikipedia additions: any 3,913; only 3,913; Wikidata 0
+- ONE BIG BIDIX size: 122,871 entries
+- BIG BIDIX per source (entry-level): wiki 77,808; wikt_io 45,093; wikt_eo 983; pivot_en 692; pivot_fr 110
+- BIG BIDIX translation sources (entries with any): wikt_io 9,303; wikt_eo 257; pivot_en 726; pivot_fr 114

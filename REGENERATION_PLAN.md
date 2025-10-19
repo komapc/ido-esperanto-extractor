@@ -14,7 +14,9 @@
 5. Enrich with morphology and sense/provenance (`scripts/infer_morphology.py`)
 6. Consolidate and normalize (`scripts/normalize_entries.py`)
 7. Filter and QA (`scripts/filter_and_validate.py`, `scripts/report_coverage.py`)
-8. Export Apertium dictionaries (monodix + bidix) (`scripts/export_apertium.py`)
+8. Build ONE BIG BIDIX (EO-only, multi-provenance) (`scripts/build_one_big_bidix_json.py`) and conflicts report (`scripts/report_conflicts.py`)
+   - Include EO→IO flipped items: EO Wiktionary pages with IO translations produce IO-centered entries carrying `{wikt_eo}` at translation level
+9. Export Apertium dictionaries (monodix + bidix) (`scripts/export_apertium.py`)
 9. Report, version, and open PR (no commit to Apertium repo in this step)
 
 ---
@@ -153,14 +155,24 @@ Artifacts:
 Artifacts:
 - `reports/coverage.md`, `reports/conflicts.md`, `reports/samples.json`
 
-## 7) Export to Apertium
+## 7) ONE BIG BIDIX (EO-only)
+- Builder: `scripts/build_one_big_bidix_json.py`
+- Output: `dist/bidix_big.json`
+- Rules:
+  - Only EO translations retained (no EN/FR yet)
+  - Keep all sources (multi-provenance) for identical mappings
+  - When sources disagree on EO term, keep all EO variants (conflict report lists them)
+  - No confidence scores stored
+- Conflicts: `scripts/report_conflicts.py` → `reports/bidix_conflicts.md`
+
+## 8) Export to Apertium
 
 ### 7.1 Monodix (Ido)
 - Generate `apertium-ido.ido.dix` with paradigms and entries from IO side.
 - Ensure alphabetical ordering and zero validator errors (`xmllint`).
 
-### 7.2 Bidix (Ido–Esperanto)
-- Generate `apertium-ido-epo.ido-epo.dix` with sense-aware links, prioritizing symmetrical, high-confidence pairs.
+### 8.2 Bidix (Ido–Esperanto)
+- Generate `apertium-ido-epo.ido-epo.dix` from ONE BIG BIDIX, using EO-only mappings.
 - Emit `<par n="...">` usage consistent with monodix.
 
 Validation:

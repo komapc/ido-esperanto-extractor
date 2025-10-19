@@ -1,0 +1,2616 @@
+{
+  "metadata": {
+    "sample_date": "2025-10-16",
+    "source_file": "wikipedia_vocabulary_with_morphology.json",
+    "total_available": 5031,
+    "sample_size": 200,
+    "distribution": {
+      "n": 100,
+      "vblex": 50,
+      "adj": 30,
+      "adv": 20
+    }
+  },
+  "words": [
+    {
+      "ido_word": "Aarhus",
+      "esperanto_words": [
+        "Arhuzo"
+      ],
+      "morfologio": [
+        "Aarh",
+        ".us"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Abdulino",
+      "esperanto_words": [
+        "Abdulino"
+      ],
+      "morfologio": [
+        "Abdulin",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Abhazia",
+      "esperanto_words": [
+        "Abĥazio"
+      ],
+      "morfologio": [
+        "Abhazi",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Achrymowce",
+      "esperanto_words": [
+        "Achrymowce"
+      ],
+      "morfologio": [
+        "Achrymowc",
+        ".e"
+      ],
+      "part_of_speech": "adv",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Adrastos",
+      "esperanto_words": [
+        "Adrasto"
+      ],
+      "morfologio": [
+        "Adrast",
+        ".os"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Adriatiko",
+      "esperanto_words": [
+        "Adriatiko"
+      ],
+      "morfologio": [
+        "Adriatik",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Aigiptos",
+      "esperanto_words": [
+        "Egiptuso"
+      ],
+      "morfologio": [
+        "Aigipt",
+        ".os"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Akronimo",
+      "esperanto_words": [
+        "Akronimo"
+      ],
+      "morfologio": [
+        "Akronim",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Alagir",
+      "esperanto_words": [
+        "Alagir"
+      ],
+      "morfologio": [
+        "Alag",
+        ".ir"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Alpanseque",
+      "esperanto_words": [
+        "Alpanseque"
+      ],
+      "morfologio": [
+        "Alpansequ",
+        ".e"
+      ],
+      "part_of_speech": "adv",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Alta teknologio",
+      "esperanto_words": [
+        "Alta teknologio"
+      ],
+      "morfologio": [
+        "Alta teknologi",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Alytus",
+      "esperanto_words": [
+        "Alytus"
+      ],
+      "morfologio": [
+        "Alyt",
+        ".us"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Amiga",
+      "esperanto_words": [
+        "Amiga"
+      ],
+      "morfologio": [
+        "Amig",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Analitikala geometrio",
+      "esperanto_words": [
+        "Analitika geometrio"
+      ],
+      "morfologio": [
+        "Analitikala geometri",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Anxio",
+      "esperanto_words": [
+        "Anksieco"
+      ],
+      "morfologio": [
+        "Anxi",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Aprelevka",
+      "esperanto_words": [
+        "Aprelevka"
+      ],
+      "morfologio": [
+        "Aprelevk",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Apuleius",
+      "esperanto_words": [
+        "Apuleo"
+      ],
+      "morfologio": [
+        "Apulei",
+        ".us"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Argolika gulfo",
+      "esperanto_words": [
+        "Argolanda Golfo"
+      ],
+      "morfologio": [
+        "Argolika gulf",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Arzamas",
+      "esperanto_words": [
+        "Arzamaso"
+      ],
+      "morfologio": [
+        "Arzam",
+        ".as"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Asekuro",
+      "esperanto_words": [
+        "Asekuro"
+      ],
+      "morfologio": [
+        "Asekur",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Athos",
+      "esperanto_words": [
+        "Athos"
+      ],
+      "morfologio": [
+        "Ath",
+        ".os"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Austria-Hungaria",
+      "esperanto_words": [
+        "Aŭstrio-Hungario"
+      ],
+      "morfologio": [
+        "Austria-Hungari",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Autoklavo",
+      "esperanto_words": [
+        "Aŭtoklavo"
+      ],
+      "morfologio": [
+        "Autoklav",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Baekje",
+      "esperanto_words": [
+        "Baekje"
+      ],
+      "morfologio": [
+        "Baekj",
+        ".e"
+      ],
+      "part_of_speech": "adv",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Bakelito",
+      "esperanto_words": [
+        "Bakelito"
+      ],
+      "morfologio": [
+        "Bakelit",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Barbados",
+      "esperanto_words": [
+        "Barbado"
+      ],
+      "morfologio": [
+        "Barbad",
+        ".os"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Batiskafo",
+      "esperanto_words": [
+        "Batiskafo"
+      ],
+      "morfologio": [
+        "Batiskaf",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Bertioga",
+      "esperanto_words": [
+        "Bertioga"
+      ],
+      "morfologio": [
+        "Bertiog",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Betelgeuse",
+      "esperanto_words": [
+        "Betelĝuzo"
+      ],
+      "morfologio": [
+        "Betelgeus",
+        ".e"
+      ],
+      "part_of_speech": "adv",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Biciklagado",
+      "esperanto_words": [
+        "Biciklado"
+      ],
+      "morfologio": [
+        "Biciklagad",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Bizelo",
+      "esperanto_words": [
+        "Bevelo"
+      ],
+      "morfologio": [
+        "Bizel",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Blacos",
+      "esperanto_words": [
+        "Blacos"
+      ],
+      "morfologio": [
+        "Blac",
+        ".os"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Brankiopodo",
+      "esperanto_words": [
+        "Brankiopodoj"
+      ],
+      "morfologio": [
+        "Brankiopod",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Briseis",
+      "esperanto_words": [
+        "Brizeis"
+      ],
+      "morfologio": [
+        "Brise",
+        ".is"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Bucaramanga",
+      "esperanto_words": [
+        "Bucaramanga"
+      ],
+      "morfologio": [
+        "Bucaramang",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Buvrelo",
+      "esperanto_words": [
+        "Piroloj"
+      ],
+      "morfologio": [
+        "Buvrel",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Calais",
+      "esperanto_words": [
+        "Calais"
+      ],
+      "morfologio": [
+        "Cala",
+        ".is"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Campeche",
+      "esperanto_words": [
+        "Campeche"
+      ],
+      "morfologio": [
+        "Campech",
+        ".e"
+      ],
+      "part_of_speech": "adv",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Canoas",
+      "esperanto_words": [
+        "Canoas"
+      ],
+      "morfologio": [
+        "Cano",
+        ".as"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Cascais",
+      "esperanto_words": [
+        "Cascais"
+      ],
+      "morfologio": [
+        "Casca",
+        ".is"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Cazuza",
+      "esperanto_words": [
+        "Cazuza"
+      ],
+      "morfologio": [
+        "Cazuz",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Changwon",
+      "esperanto_words": [
+        "Ĉangvon"
+      ],
+      "morfologio": [
+        "Changw",
+        ".on"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Cinematiko",
+      "esperanto_words": [
+        "Kinematiko"
+      ],
+      "morfologio": [
+        "Cinematik",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Claudius",
+      "esperanto_words": [
+        "Klaŭdio"
+      ],
+      "morfologio": [
+        "Claudi",
+        ".us"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Comayagua",
+      "esperanto_words": [
+        "Comayagua"
+      ],
+      "morfologio": [
+        "Comayagu",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Cuadros",
+      "esperanto_words": [
+        "Cuadros"
+      ],
+      "morfologio": [
+        "Cuadr",
+        ".os"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Dahome",
+      "esperanto_words": [
+        "Reĝlando Dahomeo"
+      ],
+      "morfologio": [
+        "Dahom",
+        ".e"
+      ],
+      "part_of_speech": "adv",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Damaskus",
+      "esperanto_words": [
+        "Damasko"
+      ],
+      "morfologio": [
+        "Damask",
+        ".us"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Decimala nombrosistemo",
+      "esperanto_words": [
+        "Dekuma nombrosistemo"
+      ],
+      "morfologio": [
+        "Decimala nombrosistem",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Digestiva sistemo",
+      "esperanto_words": [
+        "Digesta sistemo"
+      ],
+      "morfologio": [
+        "Digestiva sistem",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Digora",
+      "esperanto_words": [
+        "Digora"
+      ],
+      "morfologio": [
+        "Digor",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Domeno-nomo",
+      "esperanto_words": [
+        "Domajna nomo"
+      ],
+      "morfologio": [
+        "Domeno-nom",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Dourados",
+      "esperanto_words": [
+        "Dourados"
+      ],
+      "morfologio": [
+        "Dourad",
+        ".os"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Egiptiana hieroglifi",
+      "esperanto_words": [
+        "Egiptaj hieroglifoj"
+      ],
+      "morfologio": [
+        "Egiptiana hieroglif",
+        ".i"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Emberizo",
+      "esperanto_words": [
+        "Emberizedoj"
+      ],
+      "morfologio": [
+        "Emberiz",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Enschede",
+      "esperanto_words": [
+        "Enschede"
+      ],
+      "morfologio": [
+        "Ensched",
+        ".e"
+      ],
+      "part_of_speech": "adv",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Epafos",
+      "esperanto_words": [
+        "Epafo"
+      ],
+      "morfologio": [
+        "Epaf",
+        ".os"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Epikuro",
+      "esperanto_words": [
+        "Epikuro"
+      ],
+      "morfologio": [
+        "Epikur",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Eros",
+      "esperanto_words": [
+        "Eroso"
+      ],
+      "morfologio": [
+        "Er",
+        ".os"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Estayo",
+      "esperanto_words": [
+        "Stajo"
+      ],
+      "morfologio": [
+        "Estay",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Etolia",
+      "esperanto_words": [
+        "Aitolio"
+      ],
+      "morfologio": [
+        "Etoli",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Extingo-Rebeleso",
+      "esperanto_words": [
+        "Extinction Rebellion"
+      ],
+      "morfologio": [
+        "Extingo-Rebeles",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Fermio",
+      "esperanto_words": [
+        "Fermio"
+      ],
+      "morfologio": [
+        "Fermi",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Fluoresko-lampo",
+      "esperanto_words": [
+        "Fluoreska lampo"
+      ],
+      "morfologio": [
+        "Fluoresko-lamp",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Foie gras",
+      "esperanto_words": [
+        "Grashepataĵo"
+      ],
+      "morfologio": [
+        "Foie gr",
+        ".as"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Fresno",
+      "esperanto_words": [
+        "Fresno"
+      ],
+      "morfologio": [
+        "Fresn",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Fujiyama",
+      "esperanto_words": [
+        "Monto Fuĵi"
+      ],
+      "morfologio": [
+        "Fujiyam",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Gaborone",
+      "esperanto_words": [
+        "Gaberono"
+      ],
+      "morfologio": [
+        "Gaboron",
+        ".e"
+      ],
+      "part_of_speech": "adv",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Galeno",
+      "esperanto_words": [
+        "Galeno"
+      ],
+      "morfologio": [
+        "Galen",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Gandhinagar",
+      "esperanto_words": [
+        "Gandhinagaro"
+      ],
+      "morfologio": [
+        "Gandhinag",
+        ".ar"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Gepardo",
+      "esperanto_words": [
+        "Gepardo"
+      ],
+      "morfologio": [
+        "Gepard",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Giga",
+      "esperanto_words": [
+        "Giga"
+      ],
+      "morfologio": [
+        "Gig",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Gnomo",
+      "esperanto_words": [
+        "Gnomo"
+      ],
+      "morfologio": [
+        "Gnom",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Guanajuato",
+      "esperanto_words": [
+        "Guanajuato"
+      ],
+      "morfologio": [
+        "Guanajuat",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Gurudongmar",
+      "esperanto_words": [
+        "Gurudongmar"
+      ],
+      "morfologio": [
+        "Gurudongm",
+        ".ar"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Hamas",
+      "esperanto_words": [
+        "Hamaso"
+      ],
+      "morfologio": [
+        "Ham",
+        ".as"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Hardeso",
+      "esperanto_words": [
+        "Dureco"
+      ],
+      "morfologio": [
+        "Hardes",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Hemera",
+      "esperanto_words": [
+        "Hemero"
+      ],
+      "morfologio": [
+        "Hemer",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Heraklion",
+      "esperanto_words": [
+        "Iraklio"
+      ],
+      "morfologio": [
+        "Herakli",
+        ".on"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Herefordshire",
+      "esperanto_words": [
+        "Herefordshire"
+      ],
+      "morfologio": [
+        "Herefordshir",
+        ".e"
+      ],
+      "part_of_speech": "adv",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Hesperos",
+      "esperanto_words": [
+        "Hespero"
+      ],
+      "morfologio": [
+        "Hesper",
+        ".os"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Hinduismo",
+      "esperanto_words": [
+        "Hinduismo"
+      ],
+      "morfologio": [
+        "Hinduism",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Hofburg-palaco",
+      "esperanto_words": [
+        "Hofburgo"
+      ],
+      "morfologio": [
+        "Hofburg-palac",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Homo habilis",
+      "esperanto_words": [
+        "Homo habilis"
+      ],
+      "morfologio": [
+        "Homo habil",
+        ".is"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Hungara linguo",
+      "esperanto_words": [
+        "Hungara lingvo"
+      ],
+      "morfologio": [
+        "Hungara lingu",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Ianus",
+      "esperanto_words": [
+        "Jano"
+      ],
+      "morfologio": [
+        "Ian",
+        ".us"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Impresario",
+      "esperanto_words": [
+        "Impresario"
+      ],
+      "morfologio": [
+        "Impresari",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Indochinia",
+      "esperanto_words": [
+        "Hindoĉinio"
+      ],
+      "morfologio": [
+        "Indochini",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Inkandeco-lampo",
+      "esperanto_words": [
+        "Ampolo"
+      ],
+      "morfologio": [
+        "Inkandeco-lamp",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Ishtar",
+      "esperanto_words": [
+        "Iŝtar"
+      ],
+      "morfologio": [
+        "Isht",
+        ".ar"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Istro-Rumaniana linguo",
+      "esperanto_words": [
+        "Istrorumana lingvo"
+      ],
+      "morfologio": [
+        "Istro-Rumaniana lingu",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Izagre",
+      "esperanto_words": [
+        "Izagre"
+      ],
+      "morfologio": [
+        "Izagr",
+        ".e"
+      ],
+      "part_of_speech": "adv",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Jurasal-epoko",
+      "esperanto_words": [
+        "Ĵurasio"
+      ],
+      "morfologio": [
+        "Jurasal-epok",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Kagoshima",
+      "esperanto_words": [
+        "Kagoŝimo"
+      ],
+      "morfologio": [
+        "Kagoshim",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Kanarii",
+      "esperanto_words": [
+        "Kanarioj"
+      ],
+      "morfologio": [
+        "Kanari",
+        ".i"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Kansas",
+      "esperanto_words": [
+        "Kansaso"
+      ],
+      "morfologio": [
+        "Kans",
+        ".as"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Kardioido",
+      "esperanto_words": [
+        "Kardioido"
+      ],
+      "morfologio": [
+        "Kardioid",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Kataluniana linguo",
+      "esperanto_words": [
+        "Kataluna lingvo"
+      ],
+      "morfologio": [
+        "Kataluniana lingu",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Katana",
+      "esperanto_words": [
+        "Katana"
+      ],
+      "morfologio": [
+        "Katan",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Keleos",
+      "esperanto_words": [
+        "Keleo"
+      ],
+      "morfologio": [
+        "Kele",
+        ".os"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Kik-boxo",
+      "esperanto_words": [
+        "Piedbato-bokso"
+      ],
+      "morfologio": [
+        "Kik-box",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Kobe",
+      "esperanto_words": [
+        "Kobeo"
+      ],
+      "morfologio": [
+        "Kob",
+        ".e"
+      ],
+      "part_of_speech": "adv",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Kolda guto",
+      "esperanto_words": [
+        "Malvarma guto"
+      ],
+      "morfologio": [
+        "Kolda gut",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Komunikala kanalo",
+      "esperanto_words": [
+        "Komunika kanalo"
+      ],
+      "morfologio": [
+        "Komunikala kanal",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Kontradanso",
+      "esperanto_words": [
+        "Kontraŭdanco"
+      ],
+      "morfologio": [
+        "Kontradans",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Kosmografio",
+      "esperanto_words": [
+        "Kosmografio"
+      ],
+      "morfologio": [
+        "Kosmografi",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Kotos",
+      "esperanto_words": [
+        "Kotoso"
+      ],
+      "morfologio": [
+        "Kot",
+        ".os"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Krosno",
+      "esperanto_words": [
+        "Krosno"
+      ],
+      "morfologio": [
+        "Krosn",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Kuroniana linguo",
+      "esperanto_words": [
+        "Kurona lingvo"
+      ],
+      "morfologio": [
+        "Kuroniana lingu",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Kwanza",
+      "esperanto_words": [
+        "Angola kvanzo"
+      ],
+      "morfologio": [
+        "Kwanz",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Lagos",
+      "esperanto_words": [
+        "Lagoso"
+      ],
+      "morfologio": [
+        "Lag",
+        ".os"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Latenta kaloro",
+      "esperanto_words": [
+        "Latenta varmo"
+      ],
+      "morfologio": [
+        "Latenta kalor",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Liktoro",
+      "esperanto_words": [
+        "Liktoro"
+      ],
+      "morfologio": [
+        "Liktor",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Lilongwe",
+      "esperanto_words": [
+        "Lilongvo"
+      ],
+      "morfologio": [
+        "Lilongw",
+        ".e"
+      ],
+      "part_of_speech": "adv",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Lokala reto",
+      "esperanto_words": [
+        "Loka reto"
+      ],
+      "morfologio": [
+        "Lokala ret",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Lotringia",
+      "esperanto_words": [
+        "Loreno"
+      ],
+      "morfologio": [
+        "Lotringi",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Lukianos",
+      "esperanto_words": [
+        "Luciano"
+      ],
+      "morfologio": [
+        "Lukian",
+        ".os"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Maklo",
+      "esperanto_words": [
+        "Kristala ĝemelo"
+      ],
+      "morfologio": [
+        "Makl",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Manaus",
+      "esperanto_words": [
+        "Manaŭso"
+      ],
+      "morfologio": [
+        "Mana",
+        ".us"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Marala nivelo",
+      "esperanto_words": [
+        "Marnivelo"
+      ],
+      "morfologio": [
+        "Marala nivel",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Masaya",
+      "esperanto_words": [
+        "Masaya"
+      ],
+      "morfologio": [
+        "Masay",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Mbabane",
+      "esperanto_words": [
+        "Mbabano"
+      ],
+      "morfologio": [
+        "Mbaban",
+        ".e"
+      ],
+      "part_of_speech": "adv",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Mediteranea klimato",
+      "esperanto_words": [
+        "Mediteranea klimato"
+      ],
+      "morfologio": [
+        "Mediteranea klimat",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Menelaos",
+      "esperanto_words": [
+        "Menelao"
+      ],
+      "morfologio": [
+        "Menela",
+        ".os"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Meteoroido",
+      "esperanto_words": [
+        "Meteoroido"
+      ],
+      "morfologio": [
+        "Meteoroid",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Mikrobiologio",
+      "esperanto_words": [
+        "Mikrobiologio"
+      ],
+      "morfologio": [
+        "Mikrobiologi",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Minnesota",
+      "esperanto_words": [
+        "Minesoto"
+      ],
+      "morfologio": [
+        "Minnesot",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Modiliono",
+      "esperanto_words": [
+        "Kantilevro"
+      ],
+      "morfologio": [
+        "Modilion",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Morelos",
+      "esperanto_words": [
+        "Morelos"
+      ],
+      "morfologio": [
+        "Morel",
+        ".os"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Moroni",
+      "esperanto_words": [
+        "Moronio"
+      ],
+      "morfologio": [
+        "Moron",
+        ".i"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Nacionalismo",
+      "esperanto_words": [
+        "Naciismo"
+      ],
+      "morfologio": [
+        "Nacionalism",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Narbonne",
+      "esperanto_words": [
+        "Narbonne"
+      ],
+      "morfologio": [
+        "Narbonn",
+        ".e"
+      ],
+      "part_of_speech": "adv",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Narros",
+      "esperanto_words": [
+        "Narros"
+      ],
+      "morfologio": [
+        "Narr",
+        ".os"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Narva",
+      "esperanto_words": [
+        "Narvo"
+      ],
+      "morfologio": [
+        "Narv",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Nefrologio",
+      "esperanto_words": [
+        "Nefrologio"
+      ],
+      "morfologio": [
+        "Nefrologi",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Neymar",
+      "esperanto_words": [
+        "Neymar"
+      ],
+      "morfologio": [
+        "Neym",
+        ".ar"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Noktovazo",
+      "esperanto_words": [
+        "Noktovazo"
+      ],
+      "morfologio": [
+        "Noktovaz",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Nova-Mexikia",
+      "esperanto_words": [
+        "Nov-Meksiko"
+      ],
+      "morfologio": [
+        "Nova-Mexiki",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Objektivismo",
+      "esperanto_words": [
+        "Objektivismo"
+      ],
+      "morfologio": [
+        "Objektivism",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Oileus",
+      "esperanto_words": [
+        "Ojleo"
+      ],
+      "morfologio": [
+        "Oile",
+        ".us"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "OpenAI",
+      "esperanto_words": [
+        "OpenAI"
+      ],
+      "morfologio": [
+        "OpenA",
+        ".i"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Osho",
+      "esperanto_words": [
+        "Oŝo"
+      ],
+      "morfologio": [
+        "Osh",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Ostrava",
+      "esperanto_words": [
+        "Ostrava"
+      ],
+      "morfologio": [
+        "Ostrav",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Ourinhos",
+      "esperanto_words": [
+        "Ourinhos"
+      ],
+      "morfologio": [
+        "Ourinh",
+        ".os"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Oxfordshire",
+      "esperanto_words": [
+        "Oxfordshire"
+      ],
+      "morfologio": [
+        "Oxfordshir",
+        ".e"
+      ],
+      "part_of_speech": "adv",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Pansexualeso",
+      "esperanto_words": [
+        "Ĉiuseksemo"
+      ],
+      "morfologio": [
+        "Pansexuales",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Pasamano",
+      "esperanto_words": [
+        "Manrelo"
+      ],
+      "morfologio": [
+        "Pasaman",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Peiritus",
+      "esperanto_words": [
+        "Piritoo"
+      ],
+      "morfologio": [
+        "Peirit",
+        ".us"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Pentekosto",
+      "esperanto_words": [
+        "Pentekosto"
+      ],
+      "morfologio": [
+        "Pentekost",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Perseus",
+      "esperanto_words": [
+        "Perseo"
+      ],
+      "morfologio": [
+        "Perse",
+        ".us"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Pilono",
+      "esperanto_words": [
+        "Pilono"
+      ],
+      "morfologio": [
+        "Pilon",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Pipro nigra",
+      "esperanto_words": [
+        "Nigra pipro"
+      ],
+      "morfologio": [
+        "Pipro nigr",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Pirrhus",
+      "esperanto_words": [
+        "Pirho"
+      ],
+      "morfologio": [
+        "Pirrh",
+        ".us"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Ploido",
+      "esperanto_words": [
+        "Ploido"
+      ],
+      "morfologio": [
+        "Ploid",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Polibios",
+      "esperanto_words": [
+        "Polibio"
+      ],
+      "morfologio": [
+        "Polibi",
+        ".os"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Pompeyi",
+      "esperanto_words": [
+        "Pompejo"
+      ],
+      "morfologio": [
+        "Pompey",
+        ".i"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Praha-skolo",
+      "esperanto_words": [
+        "Praga lingvoskolo"
+      ],
+      "morfologio": [
+        "Praha-skol",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Prishtina",
+      "esperanto_words": [
+        "Priŝtino"
+      ],
+      "morfologio": [
+        "Prishtin",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Prokuratoro",
+      "esperanto_words": [
+        "Akuzisto"
+      ],
+      "morfologio": [
+        "Prokurator",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Punjabana linguo",
+      "esperanto_words": [
+        "Panĝaba lingvo"
+      ],
+      "morfologio": [
+        "Punjabana lingu",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Qantas",
+      "esperanto_words": [
+        "Qantas"
+      ],
+      "morfologio": [
+        "Qant",
+        ".as"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Radiado",
+      "esperanto_words": [
+        "Radiado"
+      ],
+      "morfologio": [
+        "Radiad",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Reggae",
+      "esperanto_words": [
+        "Regeo"
+      ],
+      "morfologio": [
+        "Regga",
+        ".e"
+      ],
+      "part_of_speech": "adv",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Regulala poligono",
+      "esperanto_words": [
+        "Regula plurlatero"
+      ],
+      "morfologio": [
+        "Regulala poligon",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Riboflavino",
+      "esperanto_words": [
+        "Riboflavino"
+      ],
+      "morfologio": [
+        "Riboflavin",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Rosmaro",
+      "esperanto_words": [
+        "Rosmaro"
+      ],
+      "morfologio": [
+        "Rosmar",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Salvador",
+      "esperanto_words": [
+        "Salvadoro"
+      ],
+      "morfologio": [
+        "Salvad",
+        ".or"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Sanatorio",
+      "esperanto_words": [
+        "Sanatorio"
+      ],
+      "morfologio": [
+        "Sanatori",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Sant-Helena",
+      "esperanto_words": [
+        "Sankta Heleno"
+      ],
+      "morfologio": [
+        "Sant-Helen",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Seine",
+      "esperanto_words": [
+        "Sejno"
+      ],
+      "morfologio": [
+        "Sein",
+        ".e"
+      ],
+      "part_of_speech": "adv",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Sekleri",
+      "esperanto_words": [
+        "Sikuloj"
+      ],
+      "morfologio": [
+        "Sekler",
+        ".i"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Shario",
+      "esperanto_words": [
+        "Ŝario"
+      ],
+      "morfologio": [
+        "Shari",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Simoeis",
+      "esperanto_words": [
+        "Simoizo"
+      ],
+      "morfologio": [
+        "Simoe",
+        ".is"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Sinodo",
+      "esperanto_words": [
+        "Sinodo"
+      ],
+      "morfologio": [
+        "Sinod",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Siracusa",
+      "esperanto_words": [
+        "Sirakuzo"
+      ],
+      "morfologio": [
+        "Siracus",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Skriburo",
+      "esperanto_words": [
+        "Skribo"
+      ],
+      "morfologio": [
+        "Skribur",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Soviet-Uniono",
+      "esperanto_words": [
+        "Sovetunio"
+      ],
+      "morfologio": [
+        "Soviet-Union",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Stearino",
+      "esperanto_words": [
+        "Stearino"
+      ],
+      "morfologio": [
+        "Stearin",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Stekene",
+      "esperanto_words": [
+        "Stekene"
+      ],
+      "morfologio": [
+        "Steken",
+        ".e"
+      ],
+      "part_of_speech": "adv",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Subkontraktado",
+      "esperanto_words": [
+        "Subkontraktado"
+      ],
+      "morfologio": [
+        "Subkontraktad",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Sud-Osetia",
+      "esperanto_words": [
+        "Sud-Osetio"
+      ],
+      "morfologio": [
+        "Sud-Oseti",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Suellacabras",
+      "esperanto_words": [
+        "Suellacabras"
+      ],
+      "morfologio": [
+        "Suellacabr",
+        ".as"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Surmuleto",
+      "esperanto_words": [
+        "Mugiledoj"
+      ],
+      "morfologio": [
+        "Surmulet",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Tardigrado",
+      "esperanto_words": [
+        "Tardigradoj"
+      ],
+      "morfologio": [
+        "Tardigrad",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Taumas",
+      "esperanto_words": [
+        "Taŭmaso"
+      ],
+      "morfologio": [
+        "Taum",
+        ".as"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Tenio",
+      "esperanto_words": [
+        "Tenio"
+      ],
+      "morfologio": [
+        "Teni",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Termoelektro",
+      "esperanto_words": [
+        "Termoelektro"
+      ],
+      "morfologio": [
+        "Termoelektr",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Terpsikore",
+      "esperanto_words": [
+        "Terpsiĥoro"
+      ],
+      "morfologio": [
+        "Terpsikor",
+        ".e"
+      ],
+      "part_of_speech": "adv",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Tetris",
+      "esperanto_words": [
+        "Tetriso"
+      ],
+      "morfologio": [
+        "Tetr",
+        ".is"
+      ],
+      "part_of_speech": "vblex",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Tijuana",
+      "esperanto_words": [
+        "Tijuana"
+      ],
+      "morfologio": [
+        "Tijuan",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Titani",
+      "esperanto_words": [
+        "Titanoj"
+      ],
+      "morfologio": [
+        "Titan",
+        ".i"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Torpedo",
+      "esperanto_words": [
+        "Torpedo"
+      ],
+      "morfologio": [
+        "Torped",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Triatlono",
+      "esperanto_words": [
+        "Triatlono"
+      ],
+      "morfologio": [
+        "Triatlon",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Tualeteyo",
+      "esperanto_words": [
+        "Necesejo"
+      ],
+      "morfologio": [
+        "Tualetey",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Tushpa",
+      "esperanto_words": [
+        "Tuŝpo"
+      ],
+      "morfologio": [
+        "Tushp",
+        ".a"
+      ],
+      "part_of_speech": "adj",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Unesma krucomilito",
+      "esperanto_words": [
+        "Unua krucmilito"
+      ],
+      "morfologio": [
+        "Unesma krucomilit",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Vaporomashino",
+      "esperanto_words": [
+        "Vapormaŝino"
+      ],
+      "morfologio": [
+        "Vaporomashin",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Vientiane",
+      "esperanto_words": [
+        "Vjentiano"
+      ],
+      "morfologio": [
+        "Vientian",
+        ".e"
+      ],
+      "part_of_speech": "adv",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Vietnamana linguo",
+      "esperanto_words": [
+        "Vjetnama lingvo"
+      ],
+      "morfologio": [
+        "Vietnamana lingu",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    },
+    {
+      "ido_word": "Walsana linguo",
+      "esperanto_words": [
+        "Kimra lingvo"
+      ],
+      "morfologio": [
+        "Walsana lingu",
+        ".o"
+      ],
+      "part_of_speech": "n",
+      "source": "wikipedia",
+      "in_wiktionary": "no"
+    }
+  ]
+}
