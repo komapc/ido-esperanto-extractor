@@ -54,6 +54,13 @@ def identical_form_heuristic(io_entries: List[Dict[str, Any]], eo_entries: List[
                 if tr.get("lang") == "eo":
                     tr2 = dict(tr)
                     tr2["confidence"] = min(1.0, float(tr.get("confidence", 0.6)) + 0.2)
+                    # add eo_wiktionary to translation-level sources when identical-form confirms
+                    srcs = tr2.get("sources") or []
+                    if not isinstance(srcs, list):
+                        srcs = []
+                    if "eo_wiktionary" not in srcs:
+                        srcs.append("eo_wiktionary")
+                    tr2["sources"] = sorted(set(srcs))
                     translations.append(tr2)
         item = {
             "lemma": io_e.get("lemma"),
@@ -69,7 +76,7 @@ def identical_form_heuristic(io_entries: List[Dict[str, Any]], eo_entries: List[
     return aligned
 
 
-def align(io_path: Path, eo_path: Path, out_path: Path) -> None:
+def align(io_path: Path, eo_path: Path, out_path: Path, wiki_path: Path | None = None) -> None:
     logging.info("Aligning bilingual dictionaries: %s + %s", io_path, eo_path)
     io_entries = read_json(io_path)
     eo_entries = read_json(eo_path)
@@ -81,7 +88,17 @@ def align(io_path: Path, eo_path: Path, out_path: Path) -> None:
         for s in io_e.get("senses", []) or []:
             for tr in s.get("translations", []) or []:
                 if tr.get("lang") == "eo" and tr.get("term"):
-                    translations.append({"lang": "eo", "term": tr.get("term"), "confidence": float(tr.get("confidence", 0.5)), "source": tr.get("source", "io_wiktionary")})
+                    sources = tr.get("sources") or []
+                    src = tr.get("source", "io_wiktionary")
+                    if src:
+                        sources = list(sorted(set(list(sources) + [src])))
+                    translations.append({
+                        "lang": "eo",
+                        "term": tr.get("term"),
+                        "confidence": float(tr.get("confidence", 0.5)),
+                        "source": src,
+                        "sources": sources,
+                    })
         if not translations:
             continue
         item = {
@@ -92,6 +109,59 @@ def align(io_path: Path, eo_path: Path, out_path: Path) -> None:
             "provenance": list(io_e.get("provenance", []) or []),
         }
         aligned.append(item)
+    # Include Wikipedia titles (monolingual Ido entries) so they flow downstream
+    if wiki_path is not None and wiki_path.exists():
+        try:
+            wiki_entries = read_json(wiki_path)
+        except Exception:
+            wiki_entries = []
+        added = 0
+        for we in wiki_entries or []:
+            if (we.get("language") or "") != "io":
+                continue
+            item = {
+                "lemma": we.get("lemma"),
+                "pos": we.get("pos"),
+                "language": "io",
+                "senses": [],  # no translations; may be kept in monolingual via filter step
+                "provenance": list(we.get("provenance", []) or []),
+            }
+            aligned.append(item)
+            added += 1
+        logging.info("Added %d Wikipedia title entries", added)
+
+    # Flip EO→IO: create IO entries from EO pages (EO Wiktionary)
+    added_flipped = 0
+    for eo_e in eo_entries:
+        io_terms = set()
+        for s in eo_e.get("senses", []) or []:
+            for tr in s.get("translations", []) or []:
+                if tr.get("lang") == "io":
+                    term = (tr.get("term") or "").strip()
+                    if term:
+                        io_terms.add(term)
+        if not io_terms:
+            continue
+        eo_lemma = eo_e.get("lemma")
+        tr_payload = [{
+            "lang": "eo",
+            "term": eo_lemma,
+            "confidence": 0.6,
+            "source": "eo_wiktionary",
+            "sources": ["eo_wiktionary"],
+        }]
+        for io_term in sorted(io_terms):
+            item = {
+                "lemma": io_term,
+                "pos": eo_e.get("pos"),
+                "language": "io",
+                "senses": [{"senseId": None, "gloss": None, "translations": tr_payload}],
+                "provenance": list(eo_e.get("provenance", []) or []),
+            }
+            aligned.append(item)
+            added_flipped += 1
+    logging.info("Added %d flipped EO→IO items", added_flipped)
+
     write_json(out_path, aligned)
     logging.info("Wrote %s (%d aligned items)", out_path, len(aligned))
 
@@ -100,12 +170,13 @@ def main(argv: Iterable[str]) -> int:
     ap = argparse.ArgumentParser(description="Align IO→EO and EO→IO wiktionary outputs")
     ap.add_argument("--io", type=Path, default=Path(__file__).resolve().parents[1] / "work/io_wikt_io_eo.json")
     ap.add_argument("--eo", type=Path, default=Path(__file__).resolve().parents[1] / "work/eo_wikt_eo_io.json")
+    ap.add_argument("--wiki", type=Path, default=Path(__file__).resolve().parents[1] / "work/io_wiki_vocab.json")
     ap.add_argument("--out", type=Path, default=Path(__file__).resolve().parents[1] / "work/bilingual_raw.json")
     ap.add_argument("-v", "--verbose", action="count", default=0)
     args = ap.parse_args(list(argv))
 
     configure_logging(args.verbose)
-    align(args.io, args.eo, args.out)
+    align(args.io, args.eo, args.out, args.wiki)
     return 0
 
 

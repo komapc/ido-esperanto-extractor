@@ -11,6 +11,7 @@ mkdir -p "${RAW_DIR}"
 declare -a URLS=(
   "https://dumps.wikimedia.org/iowiktionary/latest/iowiktionary-latest-pages-articles.xml.bz2"
   "https://dumps.wikimedia.org/eowiktionary/latest/eowiktionary-latest-pages-articles.xml.bz2"
+  "https://dumps.wikimedia.org/enwiktionary/latest/enwiktionary-latest-pages-articles.xml.bz2"
   "https://dumps.wikimedia.org/iowiki/latest/iowiki-latest-pages-articles.xml.bz2"
   "https://dumps.wikimedia.org/iowiki/latest/iowiki-latest-langlinks.sql.gz"
 )
@@ -29,5 +30,7 @@ echo "Computing SHA256 sums..."
 
 echo "Done. Files in ${RAW_DIR}:"
 ls -lh "${RAW_DIR}"
+
+
 
 

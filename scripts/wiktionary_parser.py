@@ -28,6 +28,7 @@ def _child(elem: ET.Element, local: str) -> Optional[ET.Element]:
 LANG_SECTION_PATTERNS = {
     "io": [r"==\s*\{\{io\}\}\s*==", r"==\s*Ido\s*==", r"\{\{-ido-\}\}"],
     "eo": [r"==\s*\{\{eo\}\}\s*==", r"==\s*Esperanto\s*==", r"===\s*Esperanto\s*===", r"\{\{-eo-\}\}"],
+    "en": [r"==\s*English\s*==", r"==\s*\{\{en\}\}\s*=="],
 }
 
 TARGET_TRANSLATION_PATTERNS = {
@@ -44,15 +45,40 @@ TARGET_TRANSLATION_PATTERNS = {
     "eo": [
         r"\*\s*\{\{eo\}\}\s*[:\.-]\s*(.+?)(?=\n\*|\n\|\}|\Z)",
         r"\*\s*(?:Esperanto|esperanto|EO)\s*[:\.-]\s*(.+?)(?=\n\*|\n\|\}|\Z)",
+        r"(?m)^.*?Esperanto\s*[:\-]\s*([^\n|]+)",
         r"\{\{t\+?\|eo\|([^}|]+)",
         r"\{\{trad\+?\|eo\|([^}|]+)",
         r"\{\{l\|eo\|([^}|]+)",
         r"\{\{link\|eo\|([^}|]+)",
         r"\{\{m\|eo\|([^}|]+)",
     ],
+    "en": [
+        r"\*\s*\{\{en\}\}\s*[:\.-]\s*(.+?)(?=\n\*|\n\|\}|\Z)",
+        r"\*\s*(?:Angliana|English|EN|en)\s*[:\.-]\s*(.+?)(?=\n\*|\n\|\}|\Z)",
+        r"(?m)^.*?(?:Angliana|English)\s*[:\-]\s*([^\n|]+)",
+        r"\{\{t\+?\|en\|([^}|]+)",
+        r"\{\{trad\+?\|en\|([^}|]+)",
+        r"\{\{l\|en\|([^}|]+)",
+        r"\{\{link\|en\|([^}|]+)",
+        r"\{\{m\|en\|([^}|]+)",
+    ],
+    "fr": [
+        r"\*\s*\{\{fr\}\}\s*[:\.-]\s*(.+?)(?=\n\*|\n\|\}|\Z)",
+        r"\*\s*(?:Franciana|French|FR|fr)\s*[:\.-]\s*(.+?)(?=\n\*|\n\|\}|\Z)",
+        r"(?m)^.*?(?:Franciana|French)\s*[:\-]\s*([^\n|]+)",
+        r"\{\{t\+?\|fr\|([^}|]+)",
+        r"\{\{trad\+?\|fr\|([^}|]+)",
+        r"\{\{l\|fr\|([^}|]+)",
+        r"\{\{link\|fr\|([^}|]+)",
+        r"\{\{m\|fr\|([^}|]+)",
+    ],
 }
 
-POS_PATTERN = re.compile(r"===\s*(Noun|Verb|Adjective|Adverb|Pronoun|Preposition|Conjunction|Interjection|Substantivo|Verbo|Adjektivo|Adverbo)\s*===", re.IGNORECASE)
+# Match POS headings at level 3 or higher (===, ====, ...), English or Ido labels
+POS_HEADER_RE = re.compile(
+    r"^==+\s*(Noun|Verb|Adjective|Adverb|Pronoun|Preposition|Conjunction|Interjection|Substantivo|Verbo|Adjektivo|Adverbo)\s*==+\s*$",
+    re.IGNORECASE | re.MULTILINE,
+)
 
 
 def is_valid_title(title: str) -> bool:
@@ -82,11 +108,67 @@ def extract_language_section(wikitext: str, lang_code: str) -> Optional[str]:
 
 
 def extract_pos(section: str) -> Optional[str]:
-    m = POS_PATTERN.search(section or "")
-    if not m:
-        return None
-    pos = m.group(1).lower()
-    return {"substantivo": "noun", "verbo": "verb", "adjektivo": "adjective", "adverbo": "adverb"}.get(pos, pos)
+    text = section or ""
+    # 1) Heading-based detection
+    m = POS_HEADER_RE.search(text)
+    if m:
+        pos = m.group(1).lower()
+        pos = {"substantivo": "noun", "verbo": "verb", "adjektivo": "adjective", "adverbo": "adverb"}.get(pos, pos)
+        return pos
+
+    # 2) Template-based detection (e.g., {{head|io|verb}})
+    if mwparserfromhell is not None:
+        try:
+            wt = mwparserfromhell.parse(text)
+            for tpl in wt.filter_templates():
+                name = tpl.name.strip().lower()
+                # Generic head template
+                if name == "head" and tpl.has_param(0) and tpl.has_param(1):
+                    lang = str(tpl.get(0).value).strip().lower()
+                    p = str(tpl.get(1).value).strip().lower()
+                    if lang in {"io", "ido"}:
+                        if p in {"noun", "verb", "adjective", "adverb", "pronoun", "preposition", "conjunction", "interjection"}:
+                            return p
+                # Language-specific short templates (best-effort)
+                if name.startswith("io-"):
+                    p = name.split("io-", 1)[-1]
+                    mapping = {
+                        "noun": "noun",
+                        "verb": "verb",
+                        "adj": "adjective",
+                        "adjective": "adjective",
+                        "adv": "adverb",
+                        "adverb": "adverb",
+                        "pron": "pronoun",
+                        "prep": "preposition",
+                        "conj": "conjunction",
+                        "int": "interjection",
+                    }
+                    if p in mapping:
+                        return mapping[p]
+        except Exception:
+            pass
+
+    # 3) Category-based hints (English or Esperanto labels)
+    cat_text = text.lower()
+    cat_hints = [
+        ("[[category:ido nouns", "noun"),
+        ("[[category:ido verbs", "verb"),
+        ("[[category:ido adjectives", "adjective"),
+        ("[[category:ido adverbs", "adverb"),
+        ("[[kategorio:ido substantivo", "noun"),
+        ("[[kategorio:ido verbo", "verb"),
+        ("[[kategorio:ido adjektivo", "adjective"),
+        ("[[kategorio:ido adverbo", "adverb"),
+    ]
+    for needle, p in cat_hints:
+        if needle in cat_text:
+            return p
+
+    # 4) Fallback: use lemma ending heuristics where POS headings are absent
+    # This is handled later by morphology inference too, but giving POS helps downstream.
+    # We cannot access the title here, so skip to let morphology handle.
+    return None
 
 
 def clean_translation_text(text: str) -> str:
@@ -224,12 +306,19 @@ class ParserConfig:
     target_code: str  # 'eo' or 'io'
 
 
-def parse_wiktionary(xml_path: Path, cfg: ParserConfig, out_json: Path, limit: Optional[int] = None) -> None:
+def parse_wiktionary(
+    xml_path: Path,
+    cfg: ParserConfig,
+    out_json: Path,
+    limit: Optional[int] = None,
+    progress_every: Optional[int] = None,
+) -> None:
     logging.info("Parsing %s → %s from %s", cfg.source_code, cfg.target_code, xml_path)
     ensure_dir(out_json.parent)
     entries: List[Dict[str, Any]] = []
     processed = 0
 
+    prog_n = max(1, int(progress_every or 1000))
     for title, ns, text in iter_pages(xml_path):
         if limit and processed >= limit:
             break
@@ -241,6 +330,17 @@ def parse_wiktionary(xml_path: Path, cfg: ParserConfig, out_json: Path, limit: O
         section = extract_language_section(text, cfg.source_code)
         pos = extract_pos(section or "") if section else None
         translations = extract_translations(section or "", cfg.target_code) if section else []
+        # Also collect English/French translations for IO/EO pages; and for EN pages collect IO and EO
+        en_trans_lists: List[List[str]] = []
+        fr_trans_lists: List[List[str]] = []
+        if section and cfg.source_code in {"io", "eo"}:
+            en_trans_lists = extract_translations(section, "en")
+            fr_trans_lists = extract_translations(section, "fr")
+        io_from_en: List[List[str]] = []
+        eo_from_en: List[List[str]] = []
+        if section and cfg.source_code == "en":
+            io_from_en = extract_translations(section, "io")
+            eo_from_en = extract_translations(section, "eo")
         # Fallback heuristics for EO→IO: scan whole page if section yielded nothing
         if cfg.source_code == "eo" and not translations:
             # 1) Tradukoj block
@@ -248,21 +348,57 @@ def parse_wiktionary(xml_path: Path, cfg: ParserConfig, out_json: Path, limit: O
         if cfg.source_code == "eo" and not translations:
             # 2) Scan anywhere on the page for IO targets
             translations = extract_translations_anywhere(text, cfg.target_code)
-        if not translations:
+        # Allow entries that have EN/FR (or IO/EO on EN pages) even if no direct target translations
+        has_extras = bool(en_trans_lists or fr_trans_lists or io_from_en or eo_from_en)
+        if not translations and not has_extras:
             continue
         entry: Dict[str, Any] = {
             "id": f"{cfg.source_code}:{title}:{pos or 'x'}",
             "lemma": title,
             "pos": pos,
             "language": cfg.source_code,
-            "senses": [
-                {"senseId": None, "gloss": None, "translations": [{"lang": cfg.target_code, "term": t, "confidence": 0.6, "source": f"{cfg.source_code}_wiktionary"} for t in syns]}
-                for syns in translations
-            ],
+            "senses": [],
             "provenance": [{"source": f"{cfg.source_code}_wiktionary", "page": title, "rev": None}],
         }
+        # Add EO target translations as one sense per meaning list
+        for syns in translations:
+            entry["senses"].append({
+                "senseId": None,
+                "gloss": None,
+                "translations": [{"lang": cfg.target_code, "term": t, "confidence": 0.6, "source": f"{cfg.source_code}_wiktionary"} for t in syns]
+            })
+        # Add EN/FR translations as separate sense lists to preserve language
+        if en_trans_lists:
+            for syns in en_trans_lists:
+                entry["senses"].append({
+                    "senseId": None,
+                    "gloss": None,
+                    "translations": [{"lang": "en", "term": t, "confidence": 0.5, "source": f"{cfg.source_code}_wiktionary"} for t in syns]
+                })
+        if fr_trans_lists:
+            for syns in fr_trans_lists:
+                entry["senses"].append({
+                    "senseId": None,
+                    "gloss": None,
+                    "translations": [{"lang": "fr", "term": t, "confidence": 0.5, "source": f"{cfg.source_code}_wiktionary"} for t in syns]
+                })
+        # Add IO/EO captured on English pages
+        if io_from_en:
+            for syns in io_from_en:
+                entry["senses"].append({
+                    "senseId": None,
+                    "gloss": None,
+                    "translations": [{"lang": "io", "term": t, "confidence": 0.6, "source": f"{cfg.source_code}_wiktionary"} for t in syns]
+                })
+        if eo_from_en:
+            for syns in eo_from_en:
+                entry["senses"].append({
+                    "senseId": None,
+                    "gloss": None,
+                    "translations": [{"lang": "eo", "term": t, "confidence": 0.6, "source": f"{cfg.source_code}_wiktionary"} for t in syns]
+                })
         entries.append(entry)
-        if processed % 1000 == 0:
+        if processed % prog_n == 0:
             logging.info("Processed %d pages...", processed)
 
     write_json(out_json, entries)
@@ -276,12 +412,13 @@ def main(argv: Iterable[str]) -> int:
     ap.add_argument("--source", choices=["io", "eo"], required=True)
     ap.add_argument("--target", choices=["eo", "io"], required=True)
     ap.add_argument("--limit", type=int)
+    ap.add_argument("--progress-every", type=int, default=1000)
     ap.add_argument("-v", "--verbose", action="count", default=0)
     args = ap.parse_args(list(argv))
 
     configure_logging(args.verbose)
     cfg = ParserConfig(source_code=args.source, target_code=args.target)
-    parse_wiktionary(args.input, cfg, args.out, args.limit)
+    parse_wiktionary(args.input, cfg, args.out, args.limit, progress_every=args.progress_every)
     return 0
 
 
