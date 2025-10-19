@@ -1,0 +1,59 @@
+======================================================================
+FULL MERGE REPORT
+======================================================================
+Date: 2025-10-17T00:13:36.346915
+
+MERGE STATISTICS
+----------------------------------------------------------------------
+Current dictionary size:       7,809 entries
+Wikipedia vocabulary:          5,031 entries
+
+Added to dictionary:           5,031 entries
+Skipped (already exists):          0 entries
+
+Final dictionary size:        12,840 entries
+Growth:                       +64.4%
+
+ADDITIONS BY POS
+----------------------------------------------------------------------
+  n           2,539 entries
+  np          1,795 entries
+  adj           404 entries
+  vblex         188 entries
+  adv           105 entries
+
+SAMPLE ADDITIONS (first 20)
+----------------------------------------------------------------------
+  1. Aarhus               → Arhuzo               [vblex]
+  2. Abajas               → Abajas               [np]
+  3. Abdulino             → Abdulino             [np]
+  4. Abejar               → Abejar               [np]
+  5. Abel-manjero         → Eŭropa abelmanĝulo   [n]
+  6. Abel-Premio          → Abel-Premio          [np]
+  7. Abhazi               → Abĥazoj              [n]
+  8. Abhazia              → Abĥazio              [adj]
+  9. Aborto               → Aborto               [np]
+ 10. Abreviuro            → Mallongigo           [n]
+ 11. Abruzzo              → Abruco               [n]
+ 12. Abstraktismo         → Abstraktismo         [np]
+ 13. Absurdajo-teatro     → Absurda teatro       [n]
+ 14. Abuja                → Abuĝo                [adj]
+ 15. Abulio               → Abulio               [np]
+ 16. Acapulco             → Akapulko             [n]
+ 17. Accra                → Akrao                [adj]
+ 18. Acebedo              → Acebedo              [np]
+ 19. Acedera              → Acedera              [np]
+ 20. Aceh-linguo          → Aĉea lingvo          [n]
+     ... and 5,011 more
+
+======================================================================
+MERGE COMPLETE
+======================================================================
+✅ Successfully added 5,031 new entries
+✅ Dictionary size: 7,809 → 12,840
+
+Next steps:
+  1. Run create_ido_monolingual.py
+  2. Run create_ido_epo_bilingual.py
+  3. Rebuild translation system
+  4. Test translations

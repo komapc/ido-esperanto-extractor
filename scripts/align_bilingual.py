@@ -69,7 +69,7 @@ def identical_form_heuristic(io_entries: List[Dict[str, Any]], eo_entries: List[
     return aligned
 
 
-def align(io_path: Path, eo_path: Path, out_path: Path) -> None:
+def align(io_path: Path, eo_path: Path, out_path: Path, wiki_path: Path | None = None) -> None:
     logging.info("Aligning bilingual dictionaries: %s + %s", io_path, eo_path)
     io_entries = read_json(io_path)
     eo_entries = read_json(eo_path)
@@ -92,6 +92,27 @@ def align(io_path: Path, eo_path: Path, out_path: Path) -> None:
             "provenance": list(io_e.get("provenance", []) or []),
         }
         aligned.append(item)
+    # Include Wikipedia titles (monolingual Ido entries) so they flow downstream
+    if wiki_path is not None and wiki_path.exists():
+        try:
+            wiki_entries = read_json(wiki_path)
+        except Exception:
+            wiki_entries = []
+        added = 0
+        for we in wiki_entries or []:
+            if (we.get("language") or "") != "io":
+                continue
+            item = {
+                "lemma": we.get("lemma"),
+                "pos": we.get("pos"),
+                "language": "io",
+                "senses": [],  # no translations; may be kept in monolingual via filter step
+                "provenance": list(we.get("provenance", []) or []),
+            }
+            aligned.append(item)
+            added += 1
+        logging.info("Added %d Wikipedia title entries", added)
+
     write_json(out_path, aligned)
     logging.info("Wrote %s (%d aligned items)", out_path, len(aligned))
 
@@ -100,12 +121,13 @@ def main(argv: Iterable[str]) -> int:
     ap = argparse.ArgumentParser(description="Align IO→EO and EO→IO wiktionary outputs")
     ap.add_argument("--io", type=Path, default=Path(__file__).resolve().parents[1] / "work/io_wikt_io_eo.json")
     ap.add_argument("--eo", type=Path, default=Path(__file__).resolve().parents[1] / "work/eo_wikt_eo_io.json")
+    ap.add_argument("--wiki", type=Path, default=Path(__file__).resolve().parents[1] / "work/io_wiki_vocab.json")
     ap.add_argument("--out", type=Path, default=Path(__file__).resolve().parents[1] / "work/bilingual_raw.json")
     ap.add_argument("-v", "--verbose", action="count", default=0)
     args = ap.parse_args(list(argv))
 
     configure_logging(args.verbose)
-    align(args.io, args.eo, args.out)
+    align(args.io, args.eo, args.out, args.wiki)
     return 0
 
 
