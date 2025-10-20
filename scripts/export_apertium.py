@@ -60,7 +60,10 @@ def build_monodix(entries):
             return pos
         return None
 
-    for e in entries:
+    # Sort entries alphabetically by lemma before adding to section
+    sorted_entries = sorted(entries, key=lambda e: (e.get("lemma", "").lower(), e.get("lemma", "")))
+    
+    for e in sorted_entries:
         if e.get("language") != "io":
             continue
         lm = e.get("lemma")
@@ -98,7 +101,10 @@ def build_bidix(entries):
             return pos
         return None
 
-    for e in entries:
+    # Sort entries alphabetically by lemma before adding to section
+    sorted_entries = sorted(entries, key=lambda e: (e.get("lemma", "").lower(), e.get("lemma", "")))
+    
+    for e in sorted_entries:
         if e.get("language") != "io":
             continue
         lm = e.get("lemma")
@@ -125,6 +131,8 @@ def build_bidix(entries):
                                 sources.append("pivot_en")
                             elif "pivot_fr" in sname:
                                 sources.append("pivot_fr")
+                            elif "fr_wiktionary_meaning" in sname:
+                                sources.append("fr_wikt_m")
                             elif "langlinks" in sname:
                                 sources.append("ll")
                         label = f"{term}"
