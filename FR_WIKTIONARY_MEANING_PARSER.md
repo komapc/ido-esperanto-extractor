@@ -112,12 +112,17 @@ The parser produces IO-centered dictionary entries:
 
 ## Integration with BIG BIDIX
 
-These 1,050 pairs can be merged into the BIG BIDIX dictionary:
+✅ **Already Integrated!** The 1,050 pairs are automatically merged into the BIG BIDIX:
 
-1. **Add to pipeline:** Include in `Makefile` after other bilingual sources
-2. **Merge:** Use existing merge logic with `fr_wiktionary_meaning` source tag
-3. **Statistics:** Update reports to include this source
-4. **Web dictionary:** Display with French meaning context
+1. **Pipeline:** Added to `Makefile` in the `regenerate` target
+2. **Merge:** `build_one_big_bidix_json.py` now accepts multiple inputs and merges:
+   - `work/bilingual_with_morph.json` (main bilingual data)
+   - `work/fr_wikt_meanings.json` (French meaning-specific pairs)
+3. **Statistics:** Reports automatically include `fr_wiktionary_meaning` source
+4. **Results:**
+   - Total entries: **123,870** (was 122,871, +999)
+   - Entry-level provenance: 1,001 entries
+   - Translation-level pairs: 1,010 EO translations
 
 ## Performance Comparison
 
