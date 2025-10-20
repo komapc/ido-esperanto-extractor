@@ -12,6 +12,7 @@ declare -a URLS=(
   "https://dumps.wikimedia.org/iowiktionary/latest/iowiktionary-latest-pages-articles.xml.bz2"
   "https://dumps.wikimedia.org/eowiktionary/latest/eowiktionary-latest-pages-articles.xml.bz2"
   "https://dumps.wikimedia.org/enwiktionary/latest/enwiktionary-latest-pages-articles.xml.bz2"
+  "https://dumps.wikimedia.org/frwiktionary/latest/frwiktionary-latest-pages-articles.xml.bz2"
   "https://dumps.wikimedia.org/iowiki/latest/iowiki-latest-pages-articles.xml.bz2"
   "https://dumps.wikimedia.org/iowiki/latest/iowiki-latest-langlinks.sql.gz"
 )
