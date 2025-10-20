@@ -113,14 +113,14 @@ Create a script to add selected words from CSV:
 After adding words:
 
 ```bash
-cd /home/mark/apertium-dev/ido-esperanto-extractor
+cd /home/mark/apertium-ido-epo/ido-esperanto-extractor
 
 # Regenerate Apertium dictionaries
 python3 create_ido_monolingual.py
 python3 create_ido_epo_bilingual.py
 
 # Rebuild translation system
-cd ../apertium-ido-epo
+cd ../../apertium/apertium-ido-epo
 make clean && make
 make test
 ```
@@ -143,7 +143,7 @@ make test
 
 ## 🛠️ Pipeline Scripts (Already Created)
 
-All scripts are in `/home/mark/apertium-dev/ido-esperanto-extractor/`:
+All scripts are in `/home/mark/apertium-ido-epo/ido-esperanto-extractor/`:
 
 1. **`extract_ido_wiki_via_langlinks.py`** - Main extractor
 2. **`filter_vocabulary.py`** - Basic filtering
