@@ -1,0 +1,53 @@
+{
+  "paths": {
+    "dumps_dir": "dumps",
+    "sources_dir": "sources",
+    "output_dir": "output",
+    "dist_dir": "dist",
+    "work_dir": "work",
+    "vortaro_repo": "/home/mark/apertium-dev/vortaro",
+    "apertium_repo": "/home/mark/apertium-ido-epo"
+  },
+  "sources": {
+    "io_wiktionary": {
+      "enabled": true,
+      "url": "https://dumps.wikimedia.org/iowiktionary/latest/iowiktionary-latest-pages-articles.xml.bz2",
+      "parser": "scripts/01_parse_io_wiktionary.py"
+    },
+    "eo_wiktionary": {
+      "enabled": true,
+      "url": "https://dumps.wikimedia.org/eowiktionary/latest/eowiktionary-latest-pages-articles.xml.bz2",
+      "parser": "scripts/02_parse_eo_wiktionary.py"
+    },
+    "fr_wiktionary": {
+      "enabled": true,
+      "url": "https://dumps.wikimedia.org/frwiktionary/latest/frwiktionary-latest-pages-articles.xml.bz2",
+      "parser": "scripts/03_parse_fr_wiktionary.py"
+    },
+    "io_wikipedia": {
+      "enabled": true,
+      "url": "https://dumps.wikimedia.org/iowiki/latest/iowiki-latest-langlinks.sql.gz",
+      "parser": "scripts/04_parse_io_wikipedia.py"
+    },
+    "en_wiktionary": {
+      "enabled": false,
+      "url": "https://dumps.wikimedia.org/enwiktionary/latest/enwiktionary-latest-pages-articles.xml.bz2",
+      "parser": "scripts/06_parse_en_wiktionary.py",
+      "note": "Future: English pivot support"
+    }
+  },
+  "cache": {
+    "max_dump_age_days": 7,
+    "reparse_if_script_changed": true
+  },
+  "publish": {
+    "auto_publish": false,
+    "targets": {
+      "vortaro": true,
+      "apertium": false,
+      "github_releases": false
+    }
+  },
+  "version": "2.0.0-orthogonal"
+}
+
