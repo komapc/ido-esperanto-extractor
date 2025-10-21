@@ -1,3 +1,11 @@
+# Session-specific notes (keep local, don't commit)
+SESSION_SUMMARY_*.md
+NIGHT_SESSION_*.md
+FINAL_NIGHT_*.md
+STATUS_UPDATE_*.md
+*_2025-*.md
+ORTHOGONAL_MIGRATION_BLOCKER.md
+
 # Orthogonal Architecture - Large Data Files
 # These files are generated and should not be in git
 
@@ -36,3 +44,6 @@ dist/*.dix
 
 # Keep small files and configs
 !dist/README.md
+
+# Wikipedia classification data (generated)
+wikipedia_classifications.json
