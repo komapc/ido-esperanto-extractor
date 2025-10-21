@@ -1,10 +1,38 @@
-work/
-reports/
-dist/
-data/raw/
-*.xml.bz2
-*.sql.gz
-*.bin
-*.automorf.bin
-*.autobil.bin
-*.dix~
+# Orthogonal Architecture - Large Data Files
+# These files are generated and should not be in git
+
+# Stage 0: Downloaded dumps
+dumps/*.xml.bz2
+dumps/*.sql.gz
+dumps/*.xml
+dumps/*.sql
+
+# Stage 1: Parsed source JSONs
+sources/*.json
+
+# Stage 2: Merged outputs
+output/*.json
+
+# Keep metadata
+!output/metadata.json
+
+# Old intermediate files
+work/*.json
+work/*.yaml
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Test files
+test_*.py
+
+# Backup directories
+backup_*/
+
+# Generated Apertium files (large)
+dist/*.dix
+
+# Keep small files and configs
+!dist/README.md
