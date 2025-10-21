@@ -74,9 +74,15 @@ def build_monodix(entries):
     sorted_entries = sorted(entries, key=lambda e: (e.get("lemma", "").lower(), e.get("lemma", "")))
     
     for e in sorted_entries:
-        if e.get("language") != "io":
+        # New format doesn't have "language" field - all entries are Ido by default
+        # Old format had language field, so check if present
+        if e.get("language") and e.get("language") != "io":
             continue
+        
         lm = e.get("lemma")
+        if not lm:
+            continue
+            
         raw_par = (e.get("morphology") or {}).get("paradigm") or "o__n"
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
         # Normalize function-word paradigms
@@ -115,18 +121,30 @@ def build_bidix(entries):
     sorted_entries = sorted(entries, key=lambda e: (e.get("lemma", "").lower(), e.get("lemma", "")))
     
     for e in sorted_entries:
-        if e.get("language") != "io":
+        # New format doesn't have "language" field - all entries are Ido by default
+        if e.get("language") and e.get("language") != "io":
             continue
+        
         lm = e.get("lemma")
+        if not lm:
+            continue
+            
         raw_par = (e.get("morphology") or {}).get("paradigm") or None
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
-        # Collect EO translations
+        
+        # Collect EO translations - check both old and new formats
         eo_terms = []
+        
+        # New format: direct eo_translations field (BIG BIDIX format)
+        if "eo_translations" in e and isinstance(e["eo_translations"], list):
+            eo_terms.extend(e["eo_translations"])
+        
+        # Old format: senses with translations
         for s in e.get("senses", []) or []:
             for tr in s.get("translations", []) or []:
                 if tr.get("lang") == "eo":
                     term = tr.get("term")
-                    if term:
+                    if term and term not in eo_terms:
                         # Append sources indicator in braces if available (short codes)
                         sources = []
                         srcs = tr.get("sources") or []
@@ -169,7 +187,17 @@ def build_bidix(entries):
 
 def export_apertium(entries_path: Path, out_monodix: Path, out_bidix: Path) -> None:
     ensure_dir(out_monodix.parent)
-    entries = read_json(entries_path)
+    data = read_json(entries_path)
+    
+    # Handle both old format (list) and new format (dict with "entries" key)
+    if isinstance(data, dict) and 'entries' in data:
+        entries = data['entries']
+    elif isinstance(data, list):
+        entries = data
+    else:
+        entries = data
+    
+    logging.info(f"Exporting {len(entries)} entries to Apertium XML")
     mono = build_monodix(entries)
     bidi = build_bidix(entries)
     write_xml_file(mono, out_monodix)
