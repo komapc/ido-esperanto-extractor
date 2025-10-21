@@ -33,9 +33,11 @@ LANG_SECTION_PATTERNS = {
 
 TARGET_TRANSLATION_PATTERNS = {
     # Patterns try to capture list forms (bullets with language label) and template forms
+    # Note: Use [ \t]* instead of \s* to prevent matching newlines and jumping to next line
+    # Note: Use [^\n]+ to prevent capturing content from next line
     "io": [
-        r"\*\s*\{\{io\}\}\s*[:\.-]\s*(.+?)(?=\n\*|\n\|\}|\Z)",
-        r"\*\s*(?:Ido|ido|IO)\s*[:\.-]\s*(.+?)(?=\n\*|\n\|\}|\Z)",
+        r"\*[ \t]*\{\{io\}\}[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
+        r"\*[ \t]*(?:Ido|ido|IO)[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
         r"\{\{t\+?\|io\|([^}|]+)",
         r"\{\{trad\+?\|io\|([^}|]+)",
         r"\{\{l\|io\|([^}|]+)",
@@ -43,9 +45,9 @@ TARGET_TRANSLATION_PATTERNS = {
         r"\{\{m\|io\|([^}|]+)",
     ],
     "eo": [
-        r"\*\s*\{\{eo\}\}\s*[:\.-]\s*(.+?)(?=\n\*|\n\|\}|\Z)",
-        r"\*\s*(?:Esperanto|esperanto|EO)\s*[:\.-]\s*(.+?)(?=\n\*|\n\|\}|\Z)",
-        r"(?m)^.*?Esperanto\s*[:\-]\s*([^\n|]+)",
+        r"\*[ \t]*\{\{eo\}\}[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
+        r"\*[ \t]*(?:Esperanto|esperanto|EO)[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
+        r"(?m)^.*?Esperanto[ \t]*[:\-][ \t]*([^\n|]+)",
         r"\{\{t\+?\|eo\|([^}|]+)",
         r"\{\{trad\+?\|eo\|([^}|]+)",
         r"\{\{l\|eo\|([^}|]+)",
@@ -53,9 +55,9 @@ TARGET_TRANSLATION_PATTERNS = {
         r"\{\{m\|eo\|([^}|]+)",
     ],
     "en": [
-        r"\*\s*\{\{en\}\}\s*[:\.-]\s*(.+?)(?=\n\*|\n\|\}|\Z)",
-        r"\*\s*(?:Angliana|English|EN|en)\s*[:\.-]\s*(.+?)(?=\n\*|\n\|\}|\Z)",
-        r"(?m)^.*?(?:Angliana|English)\s*[:\-]\s*([^\n|]+)",
+        r"\*[ \t]*\{\{en\}\}[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
+        r"\*[ \t]*(?:Angliana|English|EN|en)[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
+        r"(?m)^.*?(?:Angliana|English)[ \t]*[:\-][ \t]*([^\n|]+)",
         r"\{\{t\+?\|en\|([^}|]+)",
         r"\{\{trad\+?\|en\|([^}|]+)",
         r"\{\{l\|en\|([^}|]+)",
@@ -63,9 +65,9 @@ TARGET_TRANSLATION_PATTERNS = {
         r"\{\{m\|en\|([^}|]+)",
     ],
     "fr": [
-        r"\*\s*\{\{fr\}\}\s*[:\.-]\s*(.+?)(?=\n\*|\n\|\}|\Z)",
-        r"\*\s*(?:Franciana|French|FR|fr)\s*[:\.-]\s*(.+?)(?=\n\*|\n\|\}|\Z)",
-        r"(?m)^.*?(?:Franciana|French)\s*[:\-]\s*([^\n|]+)",
+        r"\*[ \t]*\{\{fr\}\}[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
+        r"\*[ \t]*(?:Franciana|French|FR|fr)[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
+        r"(?m)^.*?(?:Franciana|French)[ \t]*[:\-][ \t]*([^\n|]+)",
         r"\{\{t\+?\|fr\|([^}|]+)",
         r"\{\{trad\+?\|fr\|([^}|]+)",
         r"\{\{l\|fr\|([^}|]+)",
@@ -220,6 +222,8 @@ def extract_translations(section: str, target_code: str) -> List[List[str]]:
         for match in re.findall(pat, section or "", flags=re.IGNORECASE | re.DOTALL):
             blob = match[0] if isinstance(match, tuple) else match
             meanings = parse_meanings(blob)
+            # Filter out empty meaning lists (e.g., when "Esperanto:" has no content)
+            meanings = [m for m in meanings if m and all(t.strip() for t in m)]
             out.extend(meanings)
     # dedupe meaning lists
     seen = set()
@@ -270,6 +274,8 @@ def extract_tradukoj_io(section_or_page: str) -> List[List[str]]:
         for match in re.findall(pat, block, flags=re.IGNORECASE | re.MULTILINE):
             blob = match[0] if isinstance(match, tuple) else match
             meanings = parse_meanings(blob)
+            # Filter out empty meaning lists
+            meanings = [m for m in meanings if m and all(t.strip() for t in m)]
             out.extend(meanings)
 
     # Dedupe
