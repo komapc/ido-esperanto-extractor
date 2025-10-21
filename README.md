@@ -2,6 +2,17 @@
 
 This project rebuilds Ido monolingual, Esperanto monolingual, and Ido–Esperanto bilingual dictionaries from Wiktionary, Wikipedia, and (optionally) Wikidata. See `REGENERATION_PLAN.md` for the full design.
 
+## Recent Improvements
+
+**October 2025 - Data Cleaning & XML Export Fix:**
+- ✅ Fixed critical XML export bug (was generating malformed 1-line files)
+- ✅ Implemented comprehensive lemma/translation cleaning (removes Wiktionary markup)
+- ✅ Proper multi-sense handling (numbered definitions → multiple Apertium entries)
+- ✅ Added Makefile skip options for faster iteration
+- ✅ Created comparison tool for testing dictionary quality
+
+See `docs/SESSION_SUMMARY_CLEANING.md` for complete details.
+
 ## Outputs
 - Ido dictionary (JSON/YAML): `dist/ido_dictionary.json` (and `.yaml`)
 - Esperanto dictionary (JSON/YAML): `dist/esperanto_dictionary.json` (and `.yaml`)
@@ -79,3 +90,55 @@ Notes:
 - ONE BIG BIDIX size: 122,871 entries
 - BIG BIDIX per source (entry-level): wiki 77,808; wikt_io 45,093; wikt_eo 983; pivot_en 692; pivot_fr 110
 - BIG BIDIX translation sources (entries with any): wikt_io 9,303; wikt_eo 257; pivot_en 726; pivot_fr 114
+## Dictionary Comparison
+
+To compare translations between the old and new dictionaries:
+
+```bash
+cd /home/mark/apertium-ido-epo/tools/extractor/ido-esperanto-extractor
+make compare
+# OR
+./compare_dictionaries.sh test_sentences.txt
+```
+
+The script will:
+1. Test translations with the current (old) dictionaries
+2. Install the new dictionaries from `dist/`
+3. Rebuild and test with new dictionaries
+4. Generate a comparison report
+5. Ask if you want to keep the new dictionaries or restore the old ones
+
+## Makefile Options
+
+The regenerate pipeline can be customized with skip flags:
+
+### Variables:
+- `SKIP_DOWNLOAD=1` - Skip downloading dumps (use existing files)
+- `SKIP_EN_WIKT=1` - Skip English Wiktionary parsing (default: 1, always skipped)
+- `SKIP_FR_WIKT=1` - Skip French Wiktionary parsing
+- `SKIP_FR_MEANINGS=1` - Skip French meanings extraction (saves ~13 min)
+
+### Examples:
+
+```bash
+# Full regeneration (includes French parsing, ~1.5 hours)
+make regenerate
+
+# Fast regeneration (skip downloads and FR meanings, ~1 hour)
+make regenerate-fast
+
+# Minimal regeneration (IO/EO Wiktionary + Wikipedia only, ~20 min)
+make regenerate-minimal
+
+# Custom: skip only downloads
+make regenerate SKIP_DOWNLOAD=1
+
+# Custom: skip downloads and French Wiktionary
+make regenerate SKIP_DOWNLOAD=1 SKIP_FR_WIKT=1
+```
+
+### Timing Estimates:
+- **Full** (`make regenerate`): ~1.5-2 hours
+- **Fast** (`make regenerate-fast`): ~1 hour
+- **Minimal** (`make regenerate-minimal`): ~20 minutes
+

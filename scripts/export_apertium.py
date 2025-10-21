@@ -8,9 +8,19 @@ from _common import read_json, ensure_dir, configure_logging
 import xml.etree.ElementTree as ET
 
 
-def pretty_bytes(elem: ET.Element) -> bytes:
-    # Minimal pretty output compatible with Apertium
-    return ET.tostring(elem, encoding="utf-8") + b"\n"
+def write_xml_file(elem: ET.Element, output_path: Path) -> None:
+    """Write properly formatted Apertium XML with declaration and indentation."""
+    # Add XML declaration
+    xml_declaration = b'<?xml version="1.0" encoding="UTF-8"?>\n'
+    
+    # Format the XML with indentation
+    ET.indent(elem, space="  ")
+    
+    # Write to file
+    with open(output_path, 'wb') as f:
+        f.write(xml_declaration)
+        f.write(ET.tostring(elem, encoding="utf-8"))
+        f.write(b'\n')
 
 
 def build_monodix(entries):
@@ -162,8 +172,8 @@ def export_apertium(entries_path: Path, out_monodix: Path, out_bidix: Path) -> N
     entries = read_json(entries_path)
     mono = build_monodix(entries)
     bidi = build_bidix(entries)
-    out_monodix.write_bytes(pretty_bytes(mono))
-    out_bidix.write_bytes(pretty_bytes(bidi))
+    write_xml_file(mono, out_monodix)
+    write_xml_file(bidi, out_bidix)
     logging.info("Exported Apertium XML: %s, %s", out_monodix, out_bidix)
 
 

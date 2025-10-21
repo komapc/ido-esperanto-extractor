@@ -4,6 +4,7 @@ import hashlib
 import json
 import logging
 import os
+import re
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional
 
@@ -77,6 +78,87 @@ def save_text(path: Path, text: str) -> None:
     ensure_dir(path.parent)
     with open(path, "w", encoding="utf-8") as fh:
         fh.write(text)
+
+
+def clean_lemma(lemma: str) -> str:
+    """Clean Wiktionary markup from lemmas while preserving actual content.
+    
+    Handles:
+    - Bold/italic markup: '''text''' → text
+    - Language codes: word (io) → word
+    - Numbered definitions: '''1.''' word → word
+    - Gender symbols: (''♀'') → (empty, should skip entry)
+    - Markup artifacts
+    
+    Returns cleaned lemma or empty string if unusable.
+    """
+    if not lemma:
+        return ""
+    
+    original = lemma
+    
+    # Remove bold/italic markup (''', '', etc.)
+    lemma = re.sub(r"'{2,}", "", lemma)
+    
+    # Remove numbered definitions at start (e.g., "1. word" or "'''1.''' word")
+    lemma = re.sub(r"^'{0,3}\s*\d+\.'{0,3}\s*", "", lemma)
+    
+    # Remove language codes in parentheses at end (e.g., "word (io)")
+    lemma = re.sub(r"\s*\([a-z]{2,3}\)\s*$", "", lemma, flags=re.IGNORECASE)
+    
+    # Remove gender symbols (♀, ♂) - if this is ALL that's left, return empty
+    lemma = re.sub(r"^\s*\(['']*[♀♂]['']*\)\s*$", "", lemma)
+    lemma = re.sub(r"\s*\(['']*[♀♂]['']*\)\s*", " ", lemma)
+    
+    # Remove remaining parenthetical wiki markup like (''...)
+    lemma = re.sub(r"\(['']+\)", "", lemma)
+    
+    # Remove template brackets that survived
+    lemma = re.sub(r"\{\{|\}\}", "", lemma)
+    lemma = re.sub(r"\[\[|\]\]", "", lemma)
+    
+    # Strip whitespace and common punctuation artifacts
+    lemma = lemma.strip(" \t\n\r\f\v:;,.–-|'\"")
+    
+    # Log if significant cleaning happened (for debugging)
+    if lemma != original and len(original) > 0:
+        if lemma == "":
+            logging.debug(f"Cleaned lemma to empty: '{original}'")
+        elif len(original) - len(lemma) > 5:
+            logging.debug(f"Cleaned lemma: '{original}' → '{lemma}'")
+    
+    return lemma
+
+
+def is_valid_lemma(lemma: str) -> bool:
+    """Check if cleaned lemma is a valid dictionary word.
+    
+    Rejects:
+    - Empty or too short
+    - Starts with special chars (markup remnants)
+    - Contains unresolved markup
+    - Obvious titles/phrases (very long with colons)
+    """
+    if not lemma or len(lemma) < 2:
+        return False
+    
+    # Reject if starts with special chars (markup remnants)
+    if lemma[0] in "'''([{%#*<>":
+        return False
+    
+    # Reject if contains unresolved markup
+    if any(x in lemma for x in ["'''", "''", "[[", "]]", "{{", "}}","<", ">"]):
+        return False
+    
+    # Reject obvious song/book titles (have colons and are long)
+    if ":" in lemma and len(lemma) > 30:
+        return False
+    
+    # Reject if entirely non-alphabetic (except allowed chars like - and space)
+    if not any(c.isalpha() for c in lemma):
+        return False
+    
+    return True
 
 
 

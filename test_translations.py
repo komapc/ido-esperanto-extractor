@@ -77,7 +77,7 @@ def main():
     
     print("This would test translations using the test dictionaries.")
     print("However, this requires:")
-    print("  1. Copying test .dix files to ../apertium-ido-epo/")
+    print("  1. Copying test .dix files to ../../apertium/apertium-ido-epo/")
     print("  2. Rebuilding the translation system")
     print("  3. Running apertium with test configuration")
     print()
@@ -111,7 +111,7 @@ def main():
         ido = entry['ido_word']
         epo = entry['esperanto_words'][0]
         print(f"  {ido:20} → {epo:20}")
-        test_cases.append(f"echo 'me havas {ido}' | apertium -d ../apertium-ido-epo ido-epo")
+        test_cases.append(f"echo 'me havas {ido}' | apertium -d ../../apertium/apertium-ido-epo ido-epo")
     
     print("\n🔧 VERBS (test with: 'me volas X'):")
     for entry in by_pos['vblex'][:5]:
@@ -120,14 +120,14 @@ def main():
         morfologio = entry.get('morfologio', [])
         if len(morfologio) >= 2 and morfologio[1] in ['.ar', '.ir', '.or']:
             print(f"  {ido:20} → {epo:20}")
-            test_cases.append(f"echo 'me volas {ido}' | apertium -d ../apertium-ido-epo ido-epo")
+            test_cases.append(f"echo 'me volas {ido}' | apertium -d ../../apertium/apertium-ido-epo ido-epo")
     
     print("\n🎨 ADJECTIVES (test with: 'la X kato'):")
     for entry in by_pos['adj'][:5]:
         ido = entry['ido_word']
         epo = entry['esperanto_words'][0]
         print(f"  {ido:20} → {epo:20}")
-        test_cases.append(f"echo 'la {ido} kato' | apertium -d ../apertium-ido-epo ido-epo")
+        test_cases.append(f"echo 'la {ido} kato' | apertium -d ../../apertium/apertium-ido-epo ido-epo")
     
     print()
     print("="*70)

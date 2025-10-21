@@ -107,13 +107,13 @@ echo "Acapulco" | lt-proc ido-epo.automorf.bin
 - `final_vocabulary.json` / `final_geographic.json` - Split files
 
 ### Generated Apertium Files
-- `../apertium-ido-epo/apertium-ido.ido.dix` - Monolingual dictionary
-- `../apertium-ido-epo/apertium-ido-epo.ido-epo.dix` - Bilingual dictionary
+- `../../apertium/apertium-ido-epo/apertium-ido.ido.dix` - Monolingual dictionary
+- `../../apertium/apertium-ido-epo/apertium-ido-epo.ido-epo.dix` - Bilingual dictionary
 
 ### Backups
 - `dictionary_merged_backup_*.json` - Multiple backups during process
-- `../apertium-ido-epo/apertium-ido.ido.dix.backup` - Original .dix files
-- `../apertium-ido-epo/apertium-ido-epo.ido-epo.dix.backup`
+- `../../apertium/apertium-ido-epo/apertium-ido.ido.dix.backup` - Original .dix files
+- `../../apertium/apertium-ido-epo/apertium-ido-epo.ido-epo.dix.backup`
 
 ### Reports & Documentation
 - `FULL_MERGE_REPORT.txt` - Detailed merge report
@@ -251,11 +251,11 @@ The Ido-Esperanto dictionary has been successfully enhanced with Wikipedia vocab
 
 ### Build Commands (for future reference)
 ```bash
-cd /home/mark/apertium-dev/ido-esperanto-extractor
+cd /home/mark/apertium-ido-epo/ido-esperanto-extractor
 python3 create_ido_monolingual.py
 python3 create_ido_epo_bilingual.py
 
-cd ../apertium-ido-epo
+cd ../../apertium/apertium-ido-epo
 make clean && make
 ```
 
