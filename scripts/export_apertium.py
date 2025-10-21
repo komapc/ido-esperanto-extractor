@@ -71,7 +71,8 @@ def build_monodix(entries):
         return None
 
     # Sort entries alphabetically by lemma before adding to section
-    sorted_entries = sorted(entries, key=lambda e: (e.get("lemma", "").lower(), e.get("lemma", "")))
+    # Handle None lemmas safely by using 'or ""' to convert None to empty string
+    sorted_entries = sorted(entries, key=lambda e: ((e.get("lemma") or "").lower(), e.get("lemma") or ""))
     
     for e in sorted_entries:
         # New format doesn't have "language" field - all entries are Ido by default
@@ -118,7 +119,8 @@ def build_bidix(entries):
         return None
 
     # Sort entries alphabetically by lemma before adding to section
-    sorted_entries = sorted(entries, key=lambda e: (e.get("lemma", "").lower(), e.get("lemma", "")))
+    # Handle None lemmas safely by using 'or ""' to convert None to empty string
+    sorted_entries = sorted(entries, key=lambda e: ((e.get("lemma") or "").lower(), e.get("lemma") or ""))
     
     for e in sorted_entries:
         # New format doesn't have "language" field - all entries are Ido by default
