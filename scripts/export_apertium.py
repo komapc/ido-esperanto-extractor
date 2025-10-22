@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import logging
+import re
 from pathlib import Path
 from typing import Iterable
 
@@ -28,7 +29,7 @@ def build_monodix(entries):
     alphabet = ET.SubElement(dictionary, "alphabet")
     alphabet.text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al"]:
+    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph"]:
         ET.SubElement(sdefs, "sdef", n=s)
     pardefs = ET.SubElement(dictionary, "pardefs")
     # Basic paradigms
@@ -44,6 +45,21 @@ def build_monodix(entries):
     add_paradigm("a__adj", "a", ["adj"])  # minimal
     add_paradigm("e__adv", "e", ["adv"])  # minimal
     add_paradigm("ar__vblex", "ar", ["vblex", "inf"])  # minimal
+    add_paradigm("num", "", ["num"])  # numbers: no inflection
+
+    # Add regex paradigm for compound numbers (like 123, 4567, 12.34)
+    # This follows the Esperanto pattern: <re>pattern</re><p><l></l><r>tags</r></p>
+    pd = ET.SubElement(pardefs, "pardef", n="num_regex")
+    e = ET.SubElement(pd, "e")
+    re_elem = ET.SubElement(e, "re")
+    re_elem.text = r"[0-9]+([.,][0-9]+)*"
+    p = ET.SubElement(e, "p")
+    ET.SubElement(p, "l")  # Empty left side
+    r = ET.SubElement(p, "r")
+    ET.SubElement(r, "s", n="num")
+    ET.SubElement(r, "s", n="ciph")  # cipher (number)
+    ET.SubElement(r, "s", n="sp")    # singular/plural
+    ET.SubElement(r, "s", n="nom")   # nominative
     # Invariable paradigms for function words
     for iv in ["__pr", "__det", "__prn", "__cnjcoo", "__cnjsub"]:
         pd = ET.SubElement(pardefs, "pardef", n=iv)
@@ -63,6 +79,10 @@ def build_monodix(entries):
             return "adv"
         if par in ("ar__vblex",):
             return "vblex"
+        if par in ("num",):
+            return "num"
+        if par in ("num_regex",):
+            return "num"
         if par in ("__pr", "__det", "__prn", "__cnjcoo", "__cnjsub"):
             return par.replace("__", "")
         # Map raw pos for function words
@@ -73,7 +93,13 @@ def build_monodix(entries):
     # Sort entries alphabetically by lemma before adding to section
     # Handle None lemmas safely by using 'or ""' to convert None to empty string
     sorted_entries = sorted(entries, key=lambda e: ((e.get("lemma") or "").lower(), e.get("lemma") or ""))
-    
+
+    # Add a single regex entry to match all compound numbers (like 123, 4567, 12.34)
+    # This will match any sequence of digits, with optional decimal point
+    # No r attribute means bidirectional (both analysis and generation)
+    en = ET.SubElement(section, "e")
+    par = ET.SubElement(en, "par", n="num_regex")
+
     for e in sorted_entries:
         # New format doesn't have "language" field - all entries are Ido by default
         # Old format had language field, so check if present
@@ -102,7 +128,7 @@ def build_bidix(entries):
     alphabet = ET.SubElement(dictionary, "alphabet")
     alphabet.text = "abcdefghijklmnopqrstuvwxyzĉĝĥĵŝŭABCDEFGHIJKLMNOPQRSTUVWXYZĈĜĤĴŜŬ"
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "p1", "p2", "p3"]:
+    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "p1", "p2", "p3", "ciph"]:
         ET.SubElement(sdefs, "sdef", n=s)
     section = ET.SubElement(dictionary, "section", id="main", type="standard")
     def map_s_tag(par: str, pos: str | None) -> str | None:
@@ -114,6 +140,10 @@ def build_bidix(entries):
             return "adv"
         if par in ("ar__vblex",):
             return "vblex"
+        if par in ("num",):
+            return "num"
+        if par in ("num_regex",):
+            return "num"
         if pos in ("pr", "det", "prn", "cnjcoo", "cnjsub"):
             return pos
         return None
@@ -219,7 +249,7 @@ def main(argv: Iterable[str]) -> int:
     configure_logging(args.verbose)
     # For monodix we still use final_vocabulary; for bidix we prefer BIG BIDIX if present
     input_for_bidi = args.big_bidix if args.big_bidix.exists() else args.input
-    export_apertium(input_for_bidi, args.out_mono, args.out_bidi)
+    export_apertium(args.input, args.out_mono, args.out_bidi)
     return 0
 
 
