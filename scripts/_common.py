@@ -85,6 +85,8 @@ def clean_lemma(lemma: str) -> str:
     
     Handles:
     - Bold/italic markup: '''text''' → text
+    - Wiki links: [[text]] or [[link|text]] → text
+    - Templates: {{template|param}} → extracted content
     - Language codes: word (io) → word
     - Numbered definitions: '''1.''' word → word
     - Gender symbols: (''♀'') → (empty, should skip entry)
@@ -97,9 +99,37 @@ def clean_lemma(lemma: str) -> str:
     
     original = lemma
     
-    # Remove bold/italic markup (''', '', etc.)
+    # 1. BOLD/ITALIC: Remove bold/italic markup (''', '', etc.)
+    #    Just strip the quotes, keep the content
     lemma = re.sub(r"'{2,}", "", lemma)
     
+    # 2. WIKILINKS: Clean wiki links [[...]]
+    #    [[word]] → word
+    #    [[link|display]] → display (the part after |)
+    lemma = re.sub(r"\[\[([^|\]]+)\|([^\]]+)\]\]", r"\2", lemma)  # [[link|text]] → text
+    lemma = re.sub(r"\[\[([^\]]+)\]\]", r"\1", lemma)  # [[word]] → word
+    
+    # 3. TEMPLATES: Handle common template types {{...}}
+    #    Language codes: {{io}}, {{eo}}, {{en}} etc. → remove entirely
+    #    Translation: {{tr|io|word}} → extract word
+    #    General: {{template|param}} → extract param or remove
+    
+    # Remove language code templates (standalone)
+    lemma = re.sub(r"\{\{[a-z]{2,3}\}\}", "", lemma)
+    
+    # Extract content from translation templates: {{tr|lang|word}} → word
+    lemma = re.sub(r"\{\{tr\|[^|]+\|([^}]+)\}\}", r"\1", lemma)
+    
+    # Extract content from parameterized templates: {{template|content}} → content
+    lemma = re.sub(r"\{\{[^|]+\|([^}]+)\}\}", r"\1", lemma)
+    
+    # Remove remaining simple templates: {{template}} → (removed)
+    lemma = re.sub(r"\{\{[^}]+\}\}", "", lemma)
+    
+    # Clean up any leftover brackets
+    lemma = re.sub(r"[\{\}\[\]]", "", lemma)
+    
+    # 4. OTHER CLEANING
     # Remove numbered definitions at start (e.g., "1. word" or "'''1.''' word")
     lemma = re.sub(r"^'{0,3}\s*\d+\.'{0,3}\s*", "", lemma)
     
@@ -113,12 +143,11 @@ def clean_lemma(lemma: str) -> str:
     # Remove remaining parenthetical wiki markup like (''...)
     lemma = re.sub(r"\(['']+\)", "", lemma)
     
-    # Remove template brackets that survived
-    lemma = re.sub(r"\{\{|\}\}", "", lemma)
-    lemma = re.sub(r"\[\[|\]\]", "", lemma)
-    
     # Strip whitespace and common punctuation artifacts
     lemma = lemma.strip(" \t\n\r\f\v:;,.–-|'\"")
+    
+    # Normalize multiple spaces
+    lemma = re.sub(r"\s+", " ", lemma)
     
     # Log if significant cleaning happened (for debugging)
     if lemma != original and len(original) > 0:
