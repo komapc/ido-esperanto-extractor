@@ -28,6 +28,17 @@ def infer_paradigm(entry: Dict[str, Any]) -> Optional[str]:
 
     lower_lemma = lemma.lower()
 
+    # Numbers: detect numeric patterns (basic numbers and compound numbers)
+    # Basic numbers (1-10): un, du, tri, kvar, kin, sis, sep, ok, non, dek
+    basic_numbers = {"un", "du", "tri", "kvar", "kin", "sis", "sep", "ok", "non", "dek"}
+    if lower_lemma in basic_numbers:
+        return "num"
+
+    # Compound numbers: patterns like 123, 4567, etc.
+    # Also handle decimal numbers like 12.34 or 5.6
+    if re.match(r'^\d+(\.\d+)?$', lemma):
+        return "num"
+
     # Multi-token (spaces or hyphens): treat as noun (proper name or compound)
     if " " in lemma or "-" in lemma:
         return "o__n"
