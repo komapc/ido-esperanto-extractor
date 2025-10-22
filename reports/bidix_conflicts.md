@@ -1,0 +1,142 @@
+# IO→EO Conflicts (multiple EO terms per IO lemma)
+- Total conflicts: 139
+
+- Franciana: Francio{wikt_io}, franca{fr_wiktionary_meaning,wikt_io}
+- Germania: Germanio{fr_wiktionary_meaning,wikt_io}, Germanlando{wikt_eo}
+- India: Barato{fr_wiktionary_meaning}, Hindio{wikt_io}
+- Ivora Rivo: Ebur-Bordo{fr_wiktionary_meaning}, Eburbordo{wikt_io}
+- Lesoto: Lesoto{fr_wiktionary_meaning}, Lesoto lesoto{wikt_io}
+- Nauru: Nauro{fr_wiktionary_meaning}, Naŭruo{wikt_io}
+- Nijer: Nigero{wikt_io}, Niĝero{fr_wiktionary_meaning}
+- Ruanda: Ruando{fr_wiktionary_meaning}, Rwando{wikt_io}
+- Rusia: Rusio{wikt_io}, Ruslando{wikt_eo}, Rusujo{wikt_io}
+- Zimbabwe: Zimbabvo{fr_wiktionary_meaning}, Zimbabwo{wikt_io}
+- abieto: abio{fr_wiktionary_meaning,wikt_io}, piceo{wikt_io}
+- abortigo: abortigo{wikt_io}, aborto{fr_wiktionary_meaning}
+- abrogar: aboli{wikt_io}, nuligi{fr_wiktionary_meaning}
+- absinto: absintaĵo{fr_wiktionary_meaning}, absinto{wikt_io}
+- acerba: acerba{wikt_io}, akra{fr_wiktionary_meaning}
+- alterar: aliiĝi{wikt_io}, falsi{fr_wiktionary_meaning}
+- analoga: analoga{wikt_io}, analogia{fr_wiktionary_meaning}
+- arbusto: arbedo{wikt_io}, arbusto{fr_wiktionary_meaning}
+- atakar: agresi{fr_wiktionary_meaning}, ataki{fr_wiktionary_meaning,wikt_io}
+- atesto: atesto{wikt_io}, signo{fr_wiktionary_meaning}
+- audado: aŭdado{wikt_io}, aŭdo{fr_wiktionary_meaning}
+- avantajo: avantaĝo{wikt_io}, profito{fr_wiktionary_meaning}
+- balnar: bani{fr_wiktionary_meaning,wikt_io}, sin bani{wikt_io}
+- barko: barko{wikt_io}, boato{fr_wiktionary_meaning}
+- baterio: baterio{wikt_io}, pilo{fr_wiktionary_meaning}
+- biblioteko: biblioteko{wikt_io}, librejo{fr_wiktionary_meaning}
+- bilorno: binoklo{fr_wiktionary_meaning,wikt_io}, dulorneto{wikt_io}
+- burso: burso{wikt_io}, stipendio{fr_wiktionary_meaning}
+- buxo: kesto{wikt_io}, skatolo{fr_wiktionary_meaning}
+- celiba: fraŭleca{wikt_io}, fraŭlo{fr_wiktionary_meaning}
+- cilio: cilio{wikt_io}, okulharo{fr_wiktionary_meaning}
+- danko: danko{wikt_io}, dankon{fr_wiktionary_meaning}
+- deceptar: trompi la esperojn de{wikt_io}, ĉagreni{fr_wiktionary_meaning}
+- dicionario: leksikono{wikt_io}, vortaro{wikt_eo,wikt_io}, vortoprovizo{wikt_io}
+- dio: diurno{wikt_io}, tago{fr_wiktionary_meaning,wikt_io}
+- disputar: disputi{wikt_io}, kvereli{fr_wiktionary_meaning}
+- domeno: bieno{wikt_io}, limo{fr_wiktionary_meaning}, sfero de ago aŭ influo{wikt_io}
+- duktar: konduki{wikt_io}, stiri{fr_wiktionary_meaning}
+- enduktar: alkonduki{wikt_io}, enŝovi{fr_wiktionary_meaning}
+- episkopo: episkopo{wikt_io}, kuriero{fr_wiktionary_meaning}
+- eshafodo: eŝafodo{wikt_io}, skafaldo{fr_wiktionary_meaning,wikt_io}
+- establisar: establi{wikt_io}, fondi{fr_wiktionary_meaning}
+- exkavar: elbori{wikt_io}, elfosi{wikt_io}, elkavigi{wikt_io}, esplori{fr_wiktionary_meaning}
+- extingar: estingi{fr_wiktionary_meaning,wikt_io}, estingiĝi{wikt_io}
+- farmacio: apoteko{fr_wiktionary_meaning}, farmacio{wikt_io}
+- filio: filo{fr_wiktionary_meaning}, infano{wikt_io}
+- fingro: fingro{fr_wiktionary_meaning,wikt_io}, manfingro{fr_wiktionary_meaning}
+- flecho: pinaklo{wikt_io}, sago{fr_wiktionary_meaning,wikt_io}
+- foso: fosaĵo{wikt_io}, foso{fr_wiktionary_meaning}
+- funciono: funkcio{wikt_io}, ofico{fr_wiktionary_meaning}
+- furtanto: rompŝtelisto{wikt_io}, ŝtelisto{fr_wiktionary_meaning}
+- gambo: gambo{wikt_io}, kruro{fr_wiktionary_meaning}
+- gento: gento{wikt_io}, homoj{fr_wiktionary_meaning}
+- gipso: gipsmineralo{wikt_io}, gipso{fr_wiktionary_meaning}
+- glaciero: glaciejo{wikt_io}, glaĉero{fr_wiktionary_meaning}
+- glacio: glaciaĵo{fr_wiktionary_meaning,wikt_io}, glacio{fr_wiktionary_meaning,wikt_io}
+- grenado: granato{wikt_io}, grenado{fr_wiktionary_meaning,wikt_io}
+- grondar: muĝi{wikt_io}, rori{fr_wiktionary_meaning}
+- gropo: gluteo{wikt_io}, gropo{fr_wiktionary_meaning}
+- grunar: grumbli{fr_wiktionary_meaning}, grunti{wikt_io}
+- hanulo: koko{fr_wiktionary_meaning}, virkoko{wikt_io}
+- imbecila: idiota{wikt_io}, stultulo{fr_wiktionary_meaning}
+- impedar: malhelpi{fr_wiktionary_meaning,wikt_io}, obstrukci{wikt_io}
+- inklinar: inklini{wikt_io}, inklinigi{wikt_io}, klini{fr_wiktionary_meaning}
+- inkubo: koŝmaro{wikt_io}, premsonĝo{fr_wiktionary_meaning}
+- inquestar: demandi{wikt_io}, enketi{wikt_io}, esplori{fr_wiktionary_meaning,wikt_io}
+- jerar: administri{fr_wiktionary_meaning,wikt_io}, aranĝi{wikt_io}
+- jurar: sakri{fr_wiktionary_meaning}, ĵuri{wikt_io}
+- karcero: karcero{wikt_io}, malliberejo{fr_wiktionary_meaning}
+- katarakto: akvofalo{fr_wiktionary_meaning}, katarakto{wikt_io}
+- klasifikar: klasi{fr_wiktionary_meaning}, klasifiki{wikt_io}
+- klosho: kloŝo{wikt_io}, sonorilo{fr_wiktionary_meaning,wikt_io}
+- klozar: fermi{fr_wiktionary_meaning,wikt_io}, ŝtopi{wikt_io}
+- konektar: konekti{fr_wiktionary_meaning,wikt_io}, kunigi{wikt_io}
+- konsputar: hui{fr_wiktionary_meaning}, malestimi{wikt_io}
+- kosto: marbordo{fr_wiktionary_meaning}, ripo{fr_wiktionary_meaning,wikt_io}
+- kritikar: kritiki{fr_wiktionary_meaning,wikt_io}, prijuĝi{wikt_io}
+- krucho: kruĉo{wikt_io}, trinkaĵskatolo{fr_wiktionary_meaning}
+- kulo: fundo{wikt_io}, gluteoj{wikt_io}, pugo{fr_wiktionary_meaning,wikt_io}
+- leda: malbela{fr_wiktionary_meaning,wikt_io}, malnobla{wikt_io}
+- lenso: lenso{wikt_io}, lento{fr_wiktionary_meaning,wikt_io}
+- lineo: linio{fr_wiktionary_meaning,wikt_io}, vico{fr_wiktionary_meaning}
+- longa: granda{fr_wiktionary_meaning}, longa{wikt_io}
+- lu: li{wikt_io}, ĝi{wikt_io}, ŝi{wikt_io}, ŝli{fr_wiktionary_meaning}
+- macerar: maceri{fr_wiktionary_meaning,wikt_io}, maceriĝi{wikt_io}
+- magazino: magazeno{wikt_io}, vendejo{fr_wiktionary_meaning}
+- maladeso: malsaneco{wikt_io}, malsano{fr_wiktionary_meaning,wikt_io}
+- maligna: malica{wikt_io}, maligna{fr_wiktionary_meaning,wikt_io}
+- manjar: konsumi{wikt_io}, manĝi{fr_wiktionary_meaning,wikt_io}
+- maskula: maskla{wikt_io}, vira{fr_wiktionary_meaning,wikt_io}
+- mato: mato{fr_wiktionary_meaning,wikt_io}, tapiŝo{fr_wiktionary_meaning}
+- me: mi{wikt_io}, min{fr_wiktionary_meaning}
+- medikamento: kuracilo{fr_wiktionary_meaning}, medikamento{wikt_io}
+- mestiero: metio{wikt_io}, profesio{fr_wiktionary_meaning}
+- mikra: eta{wikt_io}, malgranda{fr_wiktionary_meaning,wikt_io}
+- monotona: monotona{fr_wiktionary_meaning}, unutona{wikt_io}
+- muevo: laro{wikt_io}, mevo{fr_wiktionary_meaning,wikt_io}
+- muliero: edzino{fr_wiktionary_meaning}, plenaĝulino{wikt_io}, virino{fr_wiktionary_meaning,wikt_io}
+- navo: navo{wikt_io}, ŝipo{fr_wiktionary_meaning,wikt_io}
+- neglijeo: banvesto{fr_wiktionary_meaning}, negliĝo{wikt_io}
+- noktuo: noktuo{wikt_io}, strigo{fr_wiktionary_meaning}
+- obsoleta: arkaika{fr_wiktionary_meaning}, malnovmoda{wikt_io}
+- obtenar: akiri{fr_wiktionary_meaning}, havigi{wikt_io}, obteni{wikt_io}
+- oktavo: oktavo{wikt_io}, okto{fr_wiktionary_meaning}
+- omna: ĉio{fr_wiktionary_meaning}, ĉiu{wikt_io}
+- onomatopeo: onomatopeo{wikt_io}, sonimito{fr_wiktionary_meaning}
+- otuso: gufo{fr_wiktionary_meaning}, strigo{wikt_io}
+- palato: palaco{wikt_io}, palato{fr_wiktionary_meaning}
+- palmo: manplato{fr_wiktionary_meaning,wikt_io}, palmo{wikt_io}, polmo{wikt_io}
+- paplo: kaĉo{fr_wiktionary_meaning,wikt_io}, pulpo{wikt_io}
+- para: egala{wikt_io}, ekvivalenta{wikt_io}, para{fr_wiktionary_meaning}
+- persono: homo{fr_wiktionary_meaning}, persono{wikt_io}
+- pikar: piki{wikt_io}, stebi{fr_wiktionary_meaning}
+- posedar: havi{wikt_io}, posedi{fr_wiktionary_meaning,wikt_io}
+- presar: premi{wikt_io}, streĉi{fr_wiktionary_meaning}
+- prizar: altetaksi{wikt_io}, ŝati{fr_wiktionary_meaning}
+- quaresma: kvara{wikt_io}, kvarono{fr_wiktionary_meaning}
+- questionar: demandi{wikt_io}, pridemandi{fr_wiktionary_meaning}
+- rejo: reĝino{wikt_io}, reĝo{fr_wiktionary_meaning,wikt_io}
+- rentiro: boaco{wikt_io}, rangifero{fr_wiktionary_meaning,wikt_io}
+- revelar: malkaŝi{wikt_io}, revelacii{wikt_io}, riveli{fr_wiktionary_meaning,wikt_io}
+- revenuo: enspezo{wikt_io}, rento{fr_wiktionary_meaning}
+- rigo: rigilaro{wikt_io}, rigilo{wikt_io}, rigo{fr_wiktionary_meaning}
+- rivo: bordo{wikt_io}, digo{wikt_io}, marbordo{fr_wiktionary_meaning}
+- rugo: falto{fr_wiktionary_meaning}, ondeto{wikt_io}, sulketo{wikt_io}
+- siorino: damo{fr_wiktionary_meaning}, sinjorino{wikt_io}
+- soldar: luti{fr_wiktionary_meaning,wikt_io}, soldi{wikt_io}
+- sparar: esti ŝparema{wikt_io}, ŝpari{fr_wiktionary_meaning,wikt_io}
+- spozo: geedzo{wikt_io}, spozo{fr_wiktionary_meaning,wikt_io}
+- stando: farto{wikt_io}, ŝtato{fr_wiktionary_meaning}
+- stertorar: grumbli{fr_wiktionary_meaning}, stertori{wikt_io}
+- strandar: fiaski{fr_wiktionary_meaning}, grundi{wikt_io}
+- sukoza: bongusta{fr_wiktionary_meaning}, sukulento{wikt_io}
+- veko: krano{fr_wiktionary_meaning}, vekiĝo{wikt_io}
+- vizelo: mustelo{wikt_io}, vizelo{fr_wiktionary_meaning}, vizono{wikt_io}
+- vortaro: vortaro{fr_wiktionary_meaning,wikt_io}, vortoprovizo{wikt_io}
+- vortolibro: vortaro{wikt_eo,wikt_io}, vortoprovizo{wikt_io}
+- voyo: trako{wikt_io}, vojo{fr_wiktionary_meaning,wikt_io}
+- yuro: juro{fr_wiktionary_meaning}, rajto{wikt_io}
