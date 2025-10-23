@@ -28,17 +28,16 @@ endif
 	$(PY) scripts/extract_wikipedia_io.py
 	$(PY) scripts/build_frequency_io_wiki.py
 	$(PY) scripts/align_bilingual.py
-	$(PY) scripts/align_pivot_en_fr.py --pivot en --out work/bilingual_pivot_en.json
-	$(PY) scripts/align_pivot_en_fr.py --pivot fr --out work/bilingual_pivot_fr.json
-	# $(PY) scripts/build_pivot_from_en.py  # Skipped: requires English Wiktionary
-	# $(PY) scripts/merge_with_pivots.py --base work/bilingual_raw.json --pivot-en work/bilingual_pivot_en.json --pivot-fr work/bilingual_pivot_fr.json --out work/bilingual_raw.json  # Skipped: depends on build_pivot_from_en.py
+	# PIVOTING DISABLED - No intermediate language translations
+	# $(PY) scripts/align_pivot_en_fr.py --pivot en --out work/bilingual_pivot_en.json
+	# $(PY) scripts/align_pivot_en_fr.py --pivot fr --out work/bilingual_pivot_fr.json
+	# $(PY) scripts/build_pivot_from_en.py
+	# $(PY) scripts/merge_with_pivots.py
+	# $(PY) scripts/parse_fr_wiktionary_meanings.py  # No via/meaning translations
 	$(PY) scripts/normalize_entries.py
 	$(PY) scripts/infer_morphology.py
 	$(PY) scripts/filter_and_validate.py --wiki-top-n 1000
 	$(PY) scripts/final_preparation.py
-ifneq ($(SKIP_FR_MEANINGS),1)
-	$(PY) scripts/parse_fr_wiktionary_meanings.py -v --progress-every 10000
-endif
 	$(PY) scripts/build_monolingual.py
 	$(PY) scripts/build_one_big_bidix_json.py
 	$(PY) scripts/report_coverage.py --top 5000
