@@ -7,7 +7,7 @@ REPORTS=reports
 
 # Skip flags (set to 1 to skip)
 SKIP_DOWNLOAD ?= 0
-SKIP_EN_WIKT ?= 1
+SKIP_EN_WIKT ?= 0
 SKIP_FR_WIKT ?= 0
 SKIP_FR_MEANINGS ?= 0
 
@@ -27,13 +27,18 @@ ifneq ($(SKIP_FR_WIKT),1)
 endif
 	$(PY) scripts/extract_wikipedia_io.py
 	$(PY) scripts/build_frequency_io_wiki.py
+ifneq ($(SKIP_EN_WIKT),1)
+	@echo "============================================================"
+	@echo "Parsing English Wiktionary (FIXED template parser)"
+	@echo "============================================================"
+	$(PY) scripts/parse_wiktionary_en_fixed.py --input $(RAW)/enwiktionary-latest-pages-articles.xml.bz2 --target io --out $(WORK)/en_wikt_en_io.json --progress-every 50000
+	$(PY) scripts/parse_wiktionary_en_fixed.py --input $(RAW)/enwiktionary-latest-pages-articles.xml.bz2 --target eo --out $(WORK)/en_wikt_en_eo.json --progress-every 50000
+	$(PY) scripts/build_via_english.py --io-input $(WORK)/en_wikt_en_io.json --eo-input $(WORK)/en_wikt_en_eo.json --out $(WORK)/bilingual_via_en.json -v
+endif
 	$(PY) scripts/align_bilingual.py
-	# PIVOTING DISABLED - No intermediate language translations
-	# $(PY) scripts/align_pivot_en_fr.py --pivot en --out work/bilingual_pivot_en.json
-	# $(PY) scripts/align_pivot_en_fr.py --pivot fr --out work/bilingual_pivot_fr.json
-	# $(PY) scripts/build_pivot_from_en.py
-	# $(PY) scripts/merge_with_pivots.py
-	# $(PY) scripts/parse_fr_wiktionary_meanings.py  # No via/meaning translations
+ifneq ($(SKIP_FR_MEANINGS),1)
+	$(PY) scripts/parse_fr_wiktionary_meanings.py -v --progress-every 10000
+endif
 	$(PY) scripts/normalize_entries.py
 	$(PY) scripts/infer_morphology.py
 	$(PY) scripts/filter_and_validate.py --wiki-top-n 1000
