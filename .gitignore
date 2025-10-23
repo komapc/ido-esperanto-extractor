@@ -1,0 +1,49 @@
+# Build outputs
+dist/
+build/
+*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info
+.pytest_cache
+.venv/
+venv/
+ENV/
+env/
+
+# Node.js (if used)
+node_modules/
+.vite/
+npm-debug.log*
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Environment variables
+.env
+.env.local
+
+# Data processing outputs
+outputs/*.json
+outputs/*.tsv
+work/*.json
+work/*.xml
