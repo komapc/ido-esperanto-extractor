@@ -34,7 +34,7 @@ endif
 	# $(PY) scripts/merge_with_pivots.py --base work/bilingual_raw.json --pivot-en work/bilingual_pivot_en.json --pivot-fr work/bilingual_pivot_fr.json --out work/bilingual_raw.json  # Skipped: depends on build_pivot_from_en.py
 	$(PY) scripts/normalize_entries.py
 	$(PY) scripts/infer_morphology.py
-	$(PY) scripts/filter_and_validate.py --wiki-top-n 500
+	$(PY) scripts/filter_and_validate.py --wiki-top-n 1000
 	$(PY) scripts/final_preparation.py
 ifneq ($(SKIP_FR_MEANINGS),1)
 	$(PY) scripts/parse_fr_wiktionary_meanings.py -v --progress-every 10000
