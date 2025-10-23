@@ -76,7 +76,7 @@ def identical_form_heuristic(io_entries: List[Dict[str, Any]], eo_entries: List[
     return aligned
 
 
-def align(io_path: Path, eo_path: Path, out_path: Path, wiki_path: Path | None = None) -> None:
+def align(io_path: Path, eo_path: Path, out_path: Path, wiki_path: Path | None = None, via_en_path: Path | None = None) -> None:
     logging.info("Aligning bilingual dictionaries: %s + %s", io_path, eo_path)
     io_entries = read_json(io_path)
     eo_entries = read_json(eo_path)
@@ -162,6 +162,48 @@ def align(io_path: Path, eo_path: Path, out_path: Path, wiki_path: Path | None =
             added_flipped += 1
     logging.info("Added %d flipped EO→IO items", added_flipped)
 
+    # Add via-English bilingual pairs (if available)
+    if via_en_path is not None and via_en_path.exists():
+        try:
+            via_en_pairs = read_json(via_en_path)
+        except Exception:
+            via_en_pairs = []
+        added_via_en = 0
+        for pair in via_en_pairs or []:
+            io_term = pair.get('io')
+            eo_term = pair.get('eo')
+            via_word = pair.get('via')
+            confidence = pair.get('confidence', 0.8)
+            
+            if not io_term or not eo_term:
+                continue
+            
+            item = {
+                "lemma": io_term,
+                "pos": None,  # POS not known for via translations
+                "language": "io",
+                "senses": [{
+                    "senseId": None,
+                    "gloss": f"via English: {via_word}" if via_word else None,
+                    "translations": [{
+                        "lang": "eo",
+                        "term": eo_term,
+                        "confidence": confidence,
+                        "source": "en_wiktionary_via",
+                        "sources": ["en_wiktionary_via"],
+                        "via": via_word
+                    }]
+                }],
+                "provenance": [{
+                    "source": "en_wiktionary_via",
+                    "page": via_word,
+                    "rev": None
+                }],
+            }
+            aligned.append(item)
+            added_via_en += 1
+        logging.info("Added %d via-English IO↔EO pairs", added_via_en)
+
     write_json(out_path, aligned)
     logging.info("Wrote %s (%d aligned items)", out_path, len(aligned))
 
@@ -171,12 +213,13 @@ def main(argv: Iterable[str]) -> int:
     ap.add_argument("--io", type=Path, default=Path(__file__).resolve().parents[1] / "work/io_wikt_io_eo.json")
     ap.add_argument("--eo", type=Path, default=Path(__file__).resolve().parents[1] / "work/eo_wikt_eo_io.json")
     ap.add_argument("--wiki", type=Path, default=Path(__file__).resolve().parents[1] / "work/io_wiki_vocab.json")
+    ap.add_argument("--via-en", type=Path, default=Path(__file__).resolve().parents[1] / "work/bilingual_via_en.json", help="Via-English bilingual pairs")
     ap.add_argument("--out", type=Path, default=Path(__file__).resolve().parents[1] / "work/bilingual_raw.json")
     ap.add_argument("-v", "--verbose", action="count", default=0)
     args = ap.parse_args(list(argv))
 
     configure_logging(args.verbose)
-    align(args.io, args.eo, args.out, args.wiki)
+    align(args.io, args.eo, args.out, args.wiki, args.via_en)
     return 0
 
 
