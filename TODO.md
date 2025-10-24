@@ -372,7 +372,57 @@
 - ✅ Resumable processing (continue from any stage)
 - ✅ Cleaner separation of concerns
 
-### ⚡ **Issue 5: Regex Performance Optimization**
+### ⚡ **Issue 5: Wiktionary Two-Stage Processing** ✅ **COMPLETED**
+**Status:** COMPLETED - Architecture improvement implemented  
+**Problem:** Wiktionary processing is monolithic and not resumable  
+**Solution:** Two-stage processing with resumability implemented  
+
+**Stage 1: XML → Filtered JSON** ✅
+- [x] Convert zipped XML dump to filtered JSON
+- [x] Filter by content relevance and quality (skip templates, very long lemmas)
+- [x] Create intermediate artifacts: `work/{source}_wiktionary_filtered.json`
+- [x] Enable resumability: if artifact exists, skip Stage 1
+
+**Stage 2: JSON → Final Processing** ✅
+- [x] Convert filtered JSON to final parsed/cleaned format
+- [x] Include all information needed for BIG BIDIX and MONO
+- [x] Create final artifacts: `work/{source}_wiktionary_processed.json`
+- [x] Enable resumability: if artifact exists, skip Stage 2
+
+**Results:**
+- **Sources:** Ido and Esperanto Wiktionary
+- **Performance:** Faster development iterations
+- **Resumability:** ✅ Both stages can be skipped if output exists
+- **Testing:** ✅ Comprehensive unit tests implemented
+
+**Benefits Achieved:**
+- ✅ Faster development iterations (skip XML parsing)
+- ✅ Better debugging (inspect intermediate JSON)
+- ✅ Resumable processing (continue from any stage)
+- ✅ Cleaner separation of concerns
+- ✅ Comprehensive unit testing framework
+
+### ⚡ **Issue 6: Unit Testing Framework** ✅ **COMPLETED**
+**Status:** COMPLETED - Testing infrastructure implemented  
+**Problem:** No unit testing framework for code quality assurance  
+**Solution:** Comprehensive testing framework with proper structure  
+
+**Completed:**
+- [x] Create tests/ directory with proper structure
+- [x] Add test_wiktionary_simple.py with unit tests
+- [x] Add run_tests.py test runner
+- [x] Add conftest.py for pytest configuration
+- [x] Add fixtures and temp directories for test artifacts
+- [x] Integrate test target into Makefile
+- [x] Test resumability and basic functionality
+
+**Results:**
+- **Test Coverage:** Wiktionary two-stage processing
+- **Test Runner:** Automated test execution
+- **CI/CD Ready:** Structured for automated testing
+- **Quality Assurance:** Catch regressions early
+
+### ⚡ **Issue 7: Regex Performance Optimization**
 **Status:** COMPLETED - Performance improvement  
 **Problem:** Regex patterns compiled repeatedly in hot paths  
 **Solution:** Precompile all regex patterns at module level  
