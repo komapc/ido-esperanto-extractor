@@ -21,6 +21,20 @@ See `docs/SESSION_SUMMARY_CLEANING.md` for complete details.
   - `dist/apertium-ido.ido.dix`
   - `dist/apertium-ido-epo.ido-epo.dix`
 
+## Data Sources
+
+### Direct Sources (High Quality)
+- **io_wiktionary**: Ido Wiktionary → Esperanto translations
+- **eo_wiktionary**: Esperanto Wiktionary → Ido translations  
+- **io_wikipedia**: Wikipedia language links (proper nouns)
+
+### Via Sources (Medium Quality)
+- **en_wiktionary_via**: English Wiktionary pages containing both Ido AND Esperanto translations
+- **fr_wiktionary_via**: French Wiktionary pages containing both Ido AND Esperanto translations
+
+### Disabled Approaches
+- **Pivot**: Ido→English→Esperanto (chain translation) - DISABLED due to quality concerns
+
 ## Pipeline (script-per-stage)
 ```bash
 # 1) Acquire dumps

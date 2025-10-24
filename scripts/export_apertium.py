@@ -109,6 +109,15 @@ def build_monodix(entries):
         lm = e.get("lemma")
         if not lm:
             continue
+        
+        # Clean lemma of any existing metadata markers
+        clean_lm = str(lm)
+        # Remove {wikt_io}, {wikt_eo}, etc. markers
+        clean_lm = re.sub(r'\{[^}]+\}', '', clean_lm)
+        # Remove Kategorio: prefixes and suffixes
+        clean_lm = re.sub(r'\s*Kategorio:[A-Za-z]+\s+[A-Z]+\s*', '', clean_lm)
+        # Remove any remaining whitespace
+        clean_lm = clean_lm.strip()
             
         raw_par = (e.get("morphology") or {}).get("paradigm") or "o__n"
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
@@ -116,9 +125,9 @@ def build_monodix(entries):
         par = raw_par
         if raw_par in {"pr", "det", "prn", "cnjcoo", "cnjsub"}:
             par = "__" + raw_par
-        en = ET.SubElement(section, "e", lm=str(lm))
+        en = ET.SubElement(section, "e", lm=clean_lm)
         i = ET.SubElement(en, "i")
-        i.text = str(lm)
+        i.text = clean_lm
         ET.SubElement(en, "par", n=str(par))
     return dictionary
 
@@ -160,6 +169,15 @@ def build_bidix(entries):
         lm = e.get("lemma")
         if not lm:
             continue
+        
+        # Clean lemma of any existing metadata markers
+        clean_lm = str(lm)
+        # Remove {wikt_io}, {wikt_eo}, etc. markers
+        clean_lm = re.sub(r'\{[^}]+\}', '', clean_lm)
+        # Remove Kategorio: prefixes and suffixes
+        clean_lm = re.sub(r'\s*Kategorio:[A-Za-z]+\s+[A-Z]+\s*', '', clean_lm)
+        # Remove any remaining whitespace
+        clean_lm = clean_lm.strip()
             
         raw_par = (e.get("morphology") or {}).get("paradigm") or None
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
@@ -177,28 +195,15 @@ def build_bidix(entries):
                 if tr.get("lang") == "eo":
                     term = tr.get("term")
                     if term and term not in eo_terms:
-                        # Append sources indicator in braces if available (short codes)
-                        sources = []
-                        srcs = tr.get("sources") or []
-                        for sname in srcs:
-                            if "io_wiktionary" in sname:
-                                sources.append("wikt_io")
-                            elif "eo_wiktionary" in sname:
-                                sources.append("wikt_eo")
-                            elif "wikipedia" in sname:
-                                sources.append("wiki_io")
-                            elif "pivot_en" in sname:
-                                sources.append("pivot_en")
-                            elif "pivot_fr" in sname:
-                                sources.append("pivot_fr")
-                            elif "fr_wiktionary_meaning" in sname:
-                                sources.append("fr_wikt_m")
-                            elif "langlinks" in sname:
-                                sources.append("ll")
-                        label = f"{term}"
-                        if sources:
-                            label = f"{term}{{{','.join(sorted(set(sources)))}}}"
-                        eo_terms.append(label)
+                        # Clean term of any existing metadata markers
+                        clean_term = term
+                        # Remove {wikt_io}, {wikt_eo}, etc. markers
+                        clean_term = re.sub(r'\{[^}]+\}', '', clean_term)
+                        # Remove Kategorio: prefixes and suffixes
+                        clean_term = re.sub(r'\s*Kategorio:[A-Za-z]+\s+[A-Z]+\s*', '', clean_term)
+                        # Remove any remaining whitespace
+                        clean_term = clean_term.strip()
+                        eo_terms.append(clean_term)
         if not eo_terms:
             continue
         # Use first translation as primary
@@ -206,7 +211,7 @@ def build_bidix(entries):
         en = ET.SubElement(section, "e")
         p = ET.SubElement(en, "p")
         l = ET.SubElement(p, "l")
-        l.text = str(lm)
+        l.text = clean_lm
         s_tag = map_s_tag(raw_par or "", pos)
         if s_tag:
             ET.SubElement(l, "s", n=s_tag)
