@@ -381,6 +381,7 @@
 - [x] Add MDC rule for precompiled regex
 - [x] Update export_apertium.py with precompiled patterns
 - [x] Verify all regex in exporter are precompiled
+- [x] Consolidate duplicate template parsing logic into utils/template_parser.py
 
 ---
 
