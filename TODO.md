@@ -334,6 +334,45 @@
 
 ---
 
+## 🔧 **PERFORMANCE & ARCHITECTURE IMPROVEMENTS** **[NEW - Oct 24, 2025]**
+
+### ⚡ **Issue 4: Wikipedia Two-Stage Processing**
+**Status:** HIGH PRIORITY - Architecture improvement  
+**Problem:** Wikipedia processing is monolithic and not resumable  
+**Current:** Single-stage XML → final processing  
+**Required:** Two-stage processing with resumability  
+
+**Stage 1: XML → Filtered JSON**
+- [ ] Convert zipped XML dump to filtered JSON
+- [ ] Use categories to identify relevant articles
+- [ ] Skip items that don't have translations we need
+- [ ] Create intermediate artifact: `work/io_wikipedia_filtered.json`
+- [ ] Enable resumability: if artifact exists, skip Stage 1
+
+**Stage 2: JSON → Final Processing**
+- [ ] Convert filtered JSON to final parsed/cleaned format
+- [ ] Include all information needed for BIG BIDIX and MONO
+- [ ] Create final artifact: `work/io_wikipedia_processed.json`
+- [ ] Enable resumability: if artifact exists, skip Stage 2
+
+**Benefits:**
+- Faster development iterations (skip XML parsing)
+- Better debugging (inspect intermediate JSON)
+- Resumable processing (continue from any stage)
+- Cleaner separation of concerns
+
+### ⚡ **Issue 5: Regex Performance Optimization**
+**Status:** COMPLETED - Performance improvement  
+**Problem:** Regex patterns compiled repeatedly in hot paths  
+**Solution:** Precompile all regex patterns at module level  
+
+**Completed:**
+- [x] Add MDC rule for precompiled regex
+- [x] Update export_apertium.py with precompiled patterns
+- [x] Verify all regex in exporter are precompiled
+
+---
+
 ## 📊 Success Metrics
 
 - **Dictionary Size:** Target 60,000+ entries (currently ~50,000)
