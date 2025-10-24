@@ -176,7 +176,7 @@ def main(argv):
             base_dir / "dumps",
             base_dir / "data" / "raw"
         ]
-        args.dump = find_dump_file(dump_pattern, *search_paths)
+        args.dump = find_dump_file(dump_pattern, search_paths)
     
     if not args.dump or not args.dump.exists():
         logging.error("Dump file not found for %s Wiktionary", args.source)
