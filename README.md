@@ -35,6 +35,76 @@ See `docs/SESSION_SUMMARY_CLEANING.md` for complete details.
 ### Disabled Approaches
 - **Pivot**: Ido→English→Esperanto (chain translation) - DISABLED due to quality concerns
 
+## Quick Start
+
+### 🚀 Main Commands
+
+```bash
+# Full regeneration (all sources, ~1.5-2 hours)
+make regenerate
+
+# Fast regeneration (skip downloads & French via, ~1 hour)  
+make regenerate-fast
+
+# Minimal regeneration (core sources only, ~20 minutes)
+make regenerate-minimal
+
+# Compare old vs new dictionaries
+make compare
+```
+
+### 🎯 Skip Options
+
+```bash
+# Skip downloading dumps (use existing files)
+make regenerate SKIP_DOWNLOAD=1
+
+# Skip French Wiktionary processing
+make regenerate SKIP_FR_WIKT=1
+
+# Skip French via translations (saves ~13 minutes)
+make regenerate SKIP_FR_VIA=1
+
+# Custom combination
+make regenerate SKIP_DOWNLOAD=1 SKIP_FR_WIKT=1 SKIP_FR_VIA=1
+```
+
+### 📊 Individual Operations
+
+```bash
+# Download data sources
+./scripts/download_dumps.sh
+
+# Parse individual sources
+make wikt_io          # Ido Wiktionary
+make wikt_eo          # Esperanto Wiktionary  
+make wiki             # Wikipedia
+make wikt_fr          # French Wiktionary
+
+# Process pipeline stages
+make align            # Align bilingual entries
+make normalize        # Normalize entries
+make morph            # Infer morphology
+make mono             # Build monolingual dictionaries
+make filter           # Filter and validate
+make export           # Export to Apertium format
+
+# Generate reports
+make stats            # Overall statistics
+make report           # Coverage report
+make conflicts        # Translation conflicts
+make big_bidix_stats  # Big bidix statistics
+make dump_coverage    # Wiktionary coverage analysis
+```
+
+### 🧪 Testing & Maintenance
+
+```bash
+make test             # Run tests
+make compare          # Compare dictionaries
+make clean            # Clean all generated files
+```
+
 ## Pipeline (script-per-stage)
 ```bash
 # 1) Acquire dumps
@@ -104,6 +174,41 @@ Notes:
 - ONE BIG BIDIX size: 122,871 entries
 - BIG BIDIX per source (entry-level): wiki 77,808; wikt_io 45,093; wikt_eo 983; pivot_en 692; pivot_fr 110
 - BIG BIDIX translation sources (entries with any): wikt_io 9,303; wikt_eo 257; pivot_en 726; pivot_fr 114
+
+## 📁 Output Locations
+
+After running the exporter, you'll find outputs in:
+
+- **Dictionaries:** `dist/`
+  - `ido_dictionary.json` - Ido monolingual dictionary
+  - `esperanto_dictionary.json` - Esperanto monolingual dictionary  
+  - `bilingual_io_eo.json` - Bilingual Ido-Esperanto dictionary
+  - `apertium-ido.ido.dix` - Apertium Ido dictionary
+  - `apertium-ido-epo.ido-epo.dix` - Apertium bilingual dictionary
+
+- **Reports:** `reports/`
+  - `stats_summary.md` - Overall statistics
+  - `io_dump_coverage.md` - Wiktionary coverage analysis
+  - `bidix_conflicts.md` - Translation conflicts
+
+- **Work Files:** `work/` (intermediate processing files)
+
+## ⚡ Performance Tips
+
+1. **Use `regenerate-fast`** for most development work
+2. **Use `regenerate-minimal`** for quick testing
+3. **Set skip flags** to avoid re-downloading large files
+4. **Check `work/` directory** - many stages are resumable if intermediate files exist
+
+## 🐛 Troubleshooting
+
+If you encounter issues:
+
+1. **Check logs** in the `logs/` directory
+2. **Run individual stages** to isolate problems
+3. **Use `make clean`** to start fresh
+4. **Check disk space** - the pipeline requires several GB for dumps and processing
+
 ## Dictionary Comparison
 
 To compare translations between the old and new dictionaries:
