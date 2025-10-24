@@ -20,8 +20,11 @@ regenerate:
 ifneq ($(SKIP_DOWNLOAD),1)
 	./scripts/download_dumps.sh
 endif
-	$(PY) scripts/parse_wiktionary_io.py
-	$(PY) scripts/parse_wiktionary_eo.py
+	@echo "============================================================"
+	@echo "Two-stage Wiktionary processing (with resumability)"
+	@echo "============================================================"
+	$(PY) scripts/process_wiktionary_two_stage.py --source io
+	$(PY) scripts/process_wiktionary_two_stage.py --source eo
 ifneq ($(SKIP_FR_WIKT),1)
 	$(PY) scripts/parse_wiktionary_fr.py
 endif
@@ -72,10 +75,22 @@ freq:
 	$(PY) scripts/build_frequency_io_wiki.py
 
 wikt_io:
-	$(PY) scripts/parse_wiktionary_io.py
+	$(PY) scripts/process_wiktionary_two_stage.py --source io
 
 wikt_eo:
-	$(PY) scripts/parse_wiktionary_eo.py
+	$(PY) scripts/process_wiktionary_two_stage.py --source eo
+
+wikt_io-stage1:
+	$(PY) scripts/process_wiktionary_two_stage.py --source io --skip-stage2
+
+wikt_io-stage2:
+	$(PY) scripts/process_wiktionary_two_stage.py --source io --skip-stage1
+
+wikt_eo-stage1:
+	$(PY) scripts/process_wiktionary_two_stage.py --source eo --skip-stage2
+
+wikt_eo-stage2:
+	$(PY) scripts/process_wiktionary_two_stage.py --source eo --skip-stage1
 
 wikt_en:
 	$(PY) scripts/parse_wiktionary_en.py
@@ -141,6 +156,9 @@ stats:
 
 dump_coverage:
 	$(PY) scripts/report_io_dump_coverage.py
+
+test:
+	$(PY) run_tests.py
 
 clean:
 	rm -rf $(WORK) $(DIST) $(REPORTS)
