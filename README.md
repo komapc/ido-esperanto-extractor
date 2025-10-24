@@ -76,10 +76,18 @@ make regenerate SKIP_DOWNLOAD=1 SKIP_FR_WIKT=1 SKIP_FR_VIA=1
 ./scripts/download_dumps.sh
 
 # Parse individual sources
-make wikt_io          # Ido Wiktionary
-make wikt_eo          # Esperanto Wiktionary  
-make wiki             # Wikipedia
+make wikt_io          # Ido Wiktionary (two-stage processing)
+make wikt_eo          # Esperanto Wiktionary (two-stage processing)
+make wiki             # Wikipedia (two-stage processing)
 make wikt_fr          # French Wiktionary
+
+# Individual stages (for debugging)
+make wikt_io-stage1   # Ido Wiktionary Stage 1 only
+make wikt_io-stage2   # Ido Wiktionary Stage 2 only
+make wikt_eo-stage1   # Esperanto Wiktionary Stage 1 only
+make wikt_eo-stage2   # Esperanto Wiktionary Stage 2 only
+make wiki-stage1      # Wikipedia Stage 1 only
+make wiki-stage2      # Wikipedia Stage 2 only
 
 # Process pipeline stages
 make align            # Align bilingual entries
@@ -100,10 +108,31 @@ make dump_coverage    # Wiktionary coverage analysis
 ### 🧪 Testing & Maintenance
 
 ```bash
-make test             # Run tests
+make test             # Run unit tests
 make compare          # Compare dictionaries
 make clean            # Clean all generated files
 ```
+
+### 🔧 Two-Stage Processing
+
+The extractor now uses **two-stage processing** for both Wikipedia and Wiktionary sources:
+
+#### **Stage 1: XML → Filtered JSON**
+- Fast XML parsing with content filtering
+- Skip stubs, redirects, templates, and low-quality content
+- Create intermediate JSON files for debugging
+- **Resumable**: Skip if output already exists
+
+#### **Stage 2: JSON → Final Processing**
+- Detailed processing with validation and morphology
+- Convert to final format for BIG BIDIX and MONO
+- **Resumable**: Skip if output already exists
+
+#### **Benefits:**
+- **Faster Development**: Skip XML parsing during iterations
+- **Better Debugging**: Inspect intermediate JSON files
+- **Resumable Processing**: Continue from any stage
+- **Cleaner Architecture**: Separation of concerns
 
 ## Pipeline (script-per-stage)
 ```bash
