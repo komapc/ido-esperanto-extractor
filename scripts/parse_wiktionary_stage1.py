@@ -172,11 +172,11 @@ def main(argv):
     if not args.dump:
         base_dir = Path(__file__).parent.parent
         dump_pattern = f"{args.source}wiktionary-*.xml.bz2"
-        search_paths = [
-            base_dir / "dumps",
+        dumps_dir = base_dir / "dumps"
+        fallback_paths = [
             base_dir / "data" / "raw"
         ]
-        args.dump = find_dump_file(dump_pattern, search_paths)
+        args.dump = find_dump_file(dump_pattern, dumps_dir, fallback_paths)
     
     if not args.dump or not args.dump.exists():
         logging.error("Dump file not found for %s Wiktionary", args.source)
