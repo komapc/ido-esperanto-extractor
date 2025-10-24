@@ -11,7 +11,7 @@ SKIP_EN_WIKT ?= 0
 SKIP_FR_WIKT ?= 0
 SKIP_FR_MEANINGS ?= 0
 
-.PHONY: all regenerate regenerate-fast regenerate-minimal clean freq wikt_io wikt_eo wikt_en wiki align align_pivot normalize morph mono filter report export stats dump_coverage big_bidix conflicts big_bidix_stats web pivot_en pivot_fr compare
+.PHONY: all regenerate regenerate-fast regenerate-minimal clean freq wikt_io wikt_eo wikt_io-stage1 wikt_io-stage2 wikt_eo-stage1 wikt_eo-stage2 wikt_en wiki wiki-stage1 wiki-stage2 align align_pivot normalize morph mono filter report export stats dump_coverage big_bidix conflicts big_bidix_stats web pivot_en pivot_fr compare test
 
 all: regenerate
 
@@ -20,8 +20,11 @@ regenerate:
 ifneq ($(SKIP_DOWNLOAD),1)
 	./scripts/download_dumps.sh
 endif
-	$(PY) scripts/01_parse_io_wiktionary.py
-	$(PY) scripts/02_parse_eo_wiktionary.py
+	@echo "============================================================"
+	@echo "Two-stage Wiktionary processing (with resumability)"
+	@echo "============================================================"
+	$(PY) scripts/process_wiktionary_two_stage.py --source io
+	$(PY) scripts/process_wiktionary_two_stage.py --source eo
 ifneq ($(SKIP_FR_WIKT),1)
 	$(PY) scripts/parse_wiktionary_fr.py
 endif
@@ -72,10 +75,22 @@ freq:
 	$(PY) scripts/build_frequency_io_wiki.py
 
 wikt_io:
-	$(PY) scripts/01_parse_io_wiktionary.py
+	$(PY) scripts/process_wiktionary_two_stage.py --source io
 
 wikt_eo:
-	$(PY) scripts/02_parse_eo_wiktionary.py
+	$(PY) scripts/process_wiktionary_two_stage.py --source eo
+
+wikt_io-stage1:
+	$(PY) scripts/parse_wiktionary_stage1.py --source io
+
+wikt_io-stage2:
+	$(PY) scripts/process_wiktionary_stage2.py --source io
+
+wikt_eo-stage1:
+	$(PY) scripts/parse_wiktionary_stage1.py --source eo
+
+wikt_eo-stage2:
+	$(PY) scripts/process_wiktionary_stage2.py --source eo
 
 wikt_en:
 	$(PY) scripts/parse_wiktionary_en.py
@@ -141,6 +156,9 @@ stats:
 
 dump_coverage:
 	$(PY) scripts/report_io_dump_coverage.py
+
+test:
+	$(PY) run_tests.py
 
 clean:
 	rm -rf $(WORK) $(DIST) $(REPORTS)
