@@ -433,6 +433,24 @@
 - [x] Verify all regex in exporter are precompiled
 - [x] Consolidate duplicate template parsing logic into utils/template_parser.py
 
+### ⚡ **Issue 8: Wiktionary Stage 1 Bug Fix** ✅ **COMPLETED**
+**Status:** COMPLETED - Critical bug fix  
+**Problem:** TypeError in Wiktionary stage 1 find_dump_file function  
+**Solution:** Fixed function call parameters and argument passing  
+
+**Completed:**
+- [x] Fix TypeError: 'PosixPath' object is not iterable
+- [x] Fix TypeError: find_dump_file() missing 1 required positional argument
+- [x] Correct function call to pass dumps_dir and fallback_paths separately
+- [x] Test and verify Wiktionary two-stage processing works correctly
+- [x] Update documentation to reflect completed fixes
+
+**Results:**
+- **Bug Fixed**: Wiktionary stage 1 now works without TypeError
+- **Functionality**: Two-stage processing fully operational
+- **Testing**: All unit tests pass
+- **Documentation**: Updated with comprehensive usage examples
+
 ---
 
 ## 📊 Success Metrics
