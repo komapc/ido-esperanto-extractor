@@ -103,7 +103,10 @@ def extract_filtered_wiktionary(dump_path: Path, output_path: Path, source_code:
         # Parse to temporary file
         result = parse_wiktionary_wrapper(
             dump_path, cfg, temp_path, 
-            argparse.Namespace(limit=limit, progress_every=progress_every, verbose=1)
+            argparse.Namespace(limit=limit, progress_every=progress_every, verbose=1),
+            f"{source_code}_wiktionary",
+            f"https://{source_code}.wiktionary.org/wiki/",
+            dump_path
         )
         
         if result != 0:
