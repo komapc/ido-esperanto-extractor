@@ -25,7 +25,10 @@ endif
 ifneq ($(SKIP_FR_WIKT),1)
 	$(PY) scripts/parse_wiktionary_fr.py
 endif
-	$(PY) scripts/extract_wikipedia_io.py
+	@echo "============================================================"
+	@echo "Two-stage Wikipedia processing (with resumability)"
+	@echo "============================================================"
+	$(PY) scripts/process_wikipedia_two_stage.py
 	$(PY) scripts/build_frequency_io_wiki.py
 ifneq ($(SKIP_EN_WIKT),1)
 	@echo "============================================================"
@@ -81,7 +84,13 @@ wikt_fr:
 	$(PY) scripts/parse_wiktionary_fr.py
 
 wiki:
-	$(PY) scripts/extract_wikipedia_io.py
+	$(PY) scripts/process_wikipedia_two_stage.py
+
+wiki-stage1:
+	$(PY) scripts/process_wikipedia_two_stage.py --skip-stage2
+
+wiki-stage2:
+	$(PY) scripts/process_wikipedia_two_stage.py --skip-stage1
 
 align:
 	$(PY) scripts/align_bilingual.py
