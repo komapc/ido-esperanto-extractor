@@ -8,6 +8,10 @@ from typing import Iterable
 from _common import read_json, ensure_dir, configure_logging
 import xml.etree.ElementTree as ET
 
+# Precompiled regex patterns for performance
+METADATA_MARKER_RE = re.compile(r'\{[^}]+\}')
+KATEGORIO_PREFIX_RE = re.compile(r'\s*Kategorio:[A-Za-z]+\s+[A-Z]+\s*')
+
 
 def write_xml_file(elem: ET.Element, output_path: Path) -> None:
     """Write properly formatted Apertium XML with declaration and indentation."""
@@ -113,9 +117,9 @@ def build_monodix(entries):
         # Clean lemma of any existing metadata markers
         clean_lm = str(lm)
         # Remove {wikt_io}, {wikt_eo}, etc. markers
-        clean_lm = re.sub(r'\{[^}]+\}', '', clean_lm)
+        clean_lm = METADATA_MARKER_RE.sub('', clean_lm)
         # Remove Kategorio: prefixes and suffixes
-        clean_lm = re.sub(r'\s*Kategorio:[A-Za-z]+\s+[A-Z]+\s*', '', clean_lm)
+        clean_lm = KATEGORIO_PREFIX_RE.sub('', clean_lm)
         # Remove any remaining whitespace
         clean_lm = clean_lm.strip()
             
@@ -173,9 +177,9 @@ def build_bidix(entries):
         # Clean lemma of any existing metadata markers
         clean_lm = str(lm)
         # Remove {wikt_io}, {wikt_eo}, etc. markers
-        clean_lm = re.sub(r'\{[^}]+\}', '', clean_lm)
+        clean_lm = METADATA_MARKER_RE.sub('', clean_lm)
         # Remove Kategorio: prefixes and suffixes
-        clean_lm = re.sub(r'\s*Kategorio:[A-Za-z]+\s+[A-Z]+\s*', '', clean_lm)
+        clean_lm = KATEGORIO_PREFIX_RE.sub('', clean_lm)
         # Remove any remaining whitespace
         clean_lm = clean_lm.strip()
             
@@ -198,9 +202,9 @@ def build_bidix(entries):
                         # Clean term of any existing metadata markers
                         clean_term = term
                         # Remove {wikt_io}, {wikt_eo}, etc. markers
-                        clean_term = re.sub(r'\{[^}]+\}', '', clean_term)
+                        clean_term = METADATA_MARKER_RE.sub('', clean_term)
                         # Remove Kategorio: prefixes and suffixes
-                        clean_term = re.sub(r'\s*Kategorio:[A-Za-z]+\s+[A-Z]+\s*', '', clean_term)
+                        clean_term = KATEGORIO_PREFIX_RE.sub('', clean_term)
                         # Remove any remaining whitespace
                         clean_term = clean_term.strip()
                         eo_terms.append(clean_term)
