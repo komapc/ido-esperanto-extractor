@@ -20,8 +20,8 @@ regenerate:
 ifneq ($(SKIP_DOWNLOAD),1)
 	./scripts/download_dumps.sh
 endif
-	$(PY) scripts/parse_wiktionary_io.py
-	$(PY) scripts/parse_wiktionary_eo.py
+	$(PY) scripts/01_parse_io_wiktionary.py
+	$(PY) scripts/02_parse_eo_wiktionary.py
 ifneq ($(SKIP_FR_WIKT),1)
 	$(PY) scripts/parse_wiktionary_fr.py
 endif
@@ -34,13 +34,13 @@ ifneq ($(SKIP_EN_WIKT),1)
 	@echo "============================================================"
 	@echo "Parsing English Wiktionary (FIXED template parser)"
 	@echo "============================================================"
-	$(PY) scripts/parse_wiktionary_en_fixed.py --input $(RAW)/enwiktionary-latest-pages-articles.xml.bz2 --target io --out $(WORK)/en_wikt_en_io.json --progress-every 50000
-	$(PY) scripts/parse_wiktionary_en_fixed.py --input $(RAW)/enwiktionary-latest-pages-articles.xml.bz2 --target eo --out $(WORK)/en_wikt_en_eo.json --progress-every 50000
-	$(PY) scripts/build_via_english.py --io-input $(WORK)/en_wikt_en_io.json --eo-input $(WORK)/en_wikt_en_eo.json --out $(WORK)/bilingual_via_en.json -v
+	$(PY) scripts/parse_wiktionary_en.py --input $(RAW)/enwiktionary-latest-pages-articles.xml.bz2 --target io --out $(WORK)/en_wikt_en_io.json --progress-every 1000
+	$(PY) scripts/parse_wiktionary_en.py --input $(RAW)/enwiktionary-latest-pages-articles.xml.bz2 --target eo --out $(WORK)/en_wikt_en_eo.json --progress-every 1000
+	$(PY) scripts/parse_wiktionary_via.py --source en --io-input $(WORK)/en_wikt_en_io.json --eo-input $(WORK)/en_wikt_en_eo.json --out $(WORK)/bilingual_via_en.json --progress-every 1
 endif
 	$(PY) scripts/align_bilingual.py
 ifneq ($(SKIP_FR_MEANINGS),1)
-	$(PY) scripts/parse_fr_wiktionary_meanings.py -v --progress-every 10000
+	$(PY) scripts/parse_wiktionary_via.py --source fr --progress-every 1
 endif
 	$(PY) scripts/normalize_entries.py
 	$(PY) scripts/infer_morphology.py
@@ -72,10 +72,10 @@ freq:
 	$(PY) scripts/build_frequency_io_wiki.py
 
 wikt_io:
-	$(PY) scripts/parse_wiktionary_io.py
+	$(PY) scripts/01_parse_io_wiktionary.py
 
 wikt_eo:
-	$(PY) scripts/parse_wiktionary_eo.py
+	$(PY) scripts/02_parse_eo_wiktionary.py
 
 wikt_en:
 	$(PY) scripts/parse_wiktionary_en.py
