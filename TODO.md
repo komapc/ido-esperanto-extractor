@@ -294,6 +294,46 @@
 
 ---
 
+## 🚨 **CRITICAL DATA FLOW ISSUES TO INVESTIGATE** **[NEW - Oct 24, 2025]**
+
+### 🔴 **Issue 1: Esperanto Wiktionary Low Coverage**
+**Status:** CRITICAL - Data loss  
+**Problem:** Only 39 entries (0.5%) from Esperanto Wiktionary in final output  
+**Expected:** Should be 200-400+ entries  
+**Impact:** Missing hundreds of high-quality translations  
+
+**Investigation needed:**
+- [ ] Check if EO Wiktionary parser is working correctly
+- [ ] Verify if entries are being filtered out during normalization
+- [ ] Check if entries are lost during morphology inference
+- [ ] Compare raw EO Wiktionary output vs final vocabulary
+
+### 🔴 **Issue 2: Wikipedia Complete Filtering**
+**Status:** CRITICAL - Data loss  
+**Problem:** 0 Wikipedia entries in final output despite processing 68,360 titles  
+**Expected:** Should be 1,000-3,000 proper noun entries  
+**Impact:** Missing all geographic names, proper nouns, technical terms  
+
+**Investigation needed:**
+- [ ] Check Wikipedia filtering logic in normalization step
+- [ ] Verify if Wikipedia entries are being rejected as invalid
+- [ ] Check if Wikipedia entries need different morphology handling
+- [ ] Review filtering criteria for proper nouns
+
+### 🔴 **Issue 3: French Meanings Data Flow Issue**
+**Status:** CRITICAL - Inconsistent data flow  
+**Problem:** 1,001 French meaning entries in BIG BIDIX but 0 in final vocabulary  
+**Expected:** French meanings should flow through to final output  
+**Impact:** Missing 1,001 high-quality translations  
+
+**Investigation needed:**
+- [ ] Check why French meanings don't appear in final_vocabulary.json
+- [ ] Verify if French meanings are being filtered out
+- [ ] Check merge logic between BIG BIDIX and final vocabulary
+- [ ] Ensure French meanings have proper morphology tags
+
+---
+
 ## 📊 Success Metrics
 
 - **Dictionary Size:** Target 60,000+ entries (currently ~50,000)
