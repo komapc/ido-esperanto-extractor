@@ -16,8 +16,13 @@ def provenance_sources(entry: Dict[str, Any]) -> Set[str]:
 def compute_stats(final_path: Path, mono_path: Path, io_wikt_path: Path, eo_wikt_path: Path) -> Dict[str, Any]:
     final = read_json(final_path) if final_path.exists() else []
     mono = read_json(mono_path) if mono_path.exists() else []
-    io_wikt = read_json(io_wikt_path) if io_wikt_path.exists() else []
-    eo_wikt = read_json(eo_wikt_path) if eo_wikt_path.exists() else []
+    
+    # Extract entries from Wiktionary files which have {metadata, entries} structure
+    io_wikt_data = read_json(io_wikt_path) if io_wikt_path.exists() else {}
+    io_wikt = io_wikt_data.get("entries", []) if isinstance(io_wikt_data, dict) else []
+    
+    eo_wikt_data = read_json(eo_wikt_path) if eo_wikt_path.exists() else {}
+    eo_wikt = eo_wikt_data.get("entries", []) if isinstance(eo_wikt_data, dict) else []
 
     # Provenance presence
     missing_prov = sum(1 for e in final if not e.get("provenance"))
