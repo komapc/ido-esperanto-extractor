@@ -101,8 +101,9 @@ def extract_filtered_wiktionary(dump_path: Path, output_path: Path, source_code:
     
     try:
         # Parse directly to get raw output (no conversion)
+        # Use skip_pivot=False to extract EN/FR translations for Via approach
         from wiktionary_parser import parse_wiktionary
-        parse_wiktionary(dump_path, cfg, temp_path, limit, progress_every=progress_every, skip_pivot=True)
+        parse_wiktionary(dump_path, cfg, temp_path, limit, progress_every=progress_every, skip_pivot=False)
         
         # Load parsed data
         from _common import read_json
