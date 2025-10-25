@@ -289,42 +289,34 @@ def main(argv):
          "Build Wikipedia frequency data",
          None),
         
-        # Stage 8: English Wiktionary IO
-        ("wiktionary_en_io",
+        # Stage 8: English Wiktionary (both IO and EO in one pass)
+        ("wiktionary_en",
          ["python3", "scripts/parse_wiktionary_en.py", 
           "--input", "data/raw/enwiktionary-latest-pages-articles.xml.bz2",
-          "--out", "work/en_wikt_en_io.json",
+          "--out", "work/en_wikt_en_both.json",
+          "--target", "both",
           "--progress-every", "10000", "-v"],
-         "Parse English Wiktionary (IO)",
+         "Parse English Wiktionary (IO + EO)",
          None),
         
-        # Stage 9: English Wiktionary EO
-        ("wiktionary_en_eo",
-         ["python3", "scripts/parse_wiktionary_en.py",
-          "--input", "data/raw/enwiktionary-latest-pages-articles.xml.bz2",
-          "--out", "work/en_wikt_en_eo.json",
-          "--progress-every", "10000", "-v"],
-         "Parse English Wiktionary (EO)",
-         None),
-        
-        # Stage 10: Via English
+        # Stage 9: Via English
         ("via_english",
          ["python3", "scripts/parse_wiktionary_via.py",
           "--source", "en",
-          "--io-input", "work/en_wikt_en_io.json",
-          "--eo-input", "work/en_wikt_en_eo.json",
+          "--io-input", "work/en_wikt_en_both.json",
+          "--eo-input", "work/en_wikt_en_both.json",
           "--out", "work/bilingual_via_en.json",
           "--progress-every", "1000"],
          "Extract via English translations",
-         ["work/en_wikt_en_io.json", "work/en_wikt_en_eo.json"]),
+         ["work/en_wikt_en_both.json"]),
         
-        # Stage 11: Align bilingual
+        # Stage 10: Align bilingual
         ("align_bilingual",
          ["python3", "scripts/align_bilingual.py"],
          "Align bilingual entries",
          None),
         
-        # Stage 12: Via French
+        # Stage 11: Via French
         ("via_french",
          ["python3", "scripts/parse_wiktionary_via.py",
           "--source", "fr",
@@ -332,79 +324,79 @@ def main(argv):
          "Extract via French translations",
          None),
         
-        # Stage 13: Normalize
+        # Stage 12: Normalize
         ("normalize",
          ["python3", "scripts/normalize_entries.py"],
          "Normalize entries",
          None),
         
-        # Stage 14: Infer morphology
+        # Stage 13: Infer morphology
         ("infer_morphology",
          ["python3", "scripts/infer_morphology.py"],
          "Infer morphology",
          None),
         
-        # Stage 15: Filter and validate
+        # Stage 14: Filter and validate
         ("filter",
          ["python3", "scripts/filter_and_validate.py", "--wiki-top-n", "1000"],
          "Filter and validate entries",
          None),
         
-        # Stage 16: Final preparation
+        # Stage 15: Final preparation
         ("final_preparation",
          ["python3", "scripts/final_preparation.py"],
          "Final preparation",
          None),
         
-        # Stage 17: Build monolingual
+        # Stage 16: Build monolingual
         ("build_monolingual",
          ["python3", "scripts/build_monolingual.py"],
          "Build monolingual dictionaries",
          None),
         
-        # Stage 18: Build big bidix
+        # Stage 17: Build big bidix
         ("build_big_bidix",
          ["python3", "scripts/build_one_big_bidix_json.py"],
          "Build one big bilingual dictionary",
          None),
         
-        # Stage 19: Report coverage
+        # Stage 18: Report coverage
         ("report_coverage",
          ["python3", "scripts/report_coverage.py", "--top", "5000"],
          "Report coverage statistics",
          None),
         
-        # Stage 20: Export Apertium
+        # Stage 19: Export Apertium
         ("export_apertium",
          ["python3", "scripts/export_apertium.py"],
          "Export to Apertium XML",
          None),
         
-        # Stage 21: Report stats
+        # Stage 20: Report stats
         ("report_stats",
          ["python3", "scripts/report_stats.py"],
          "Report general statistics",
          None),
         
-        # Stage 22: Report dump coverage
+        # Stage 21: Report dump coverage
         ("report_dump_coverage",
          ["python3", "scripts/report_io_dump_coverage.py"],
          "Report dump coverage",
          None),
         
-        # Stage 23: Report conflicts
+        # Stage 22: Report conflicts
         ("report_conflicts",
          ["python3", "scripts/report_conflicts.py"],
          "Report conflicts",
          None),
         
-        # Stage 24: Report big bidix stats
+        # Stage 23: Report big bidix stats
         ("report_big_bidix_stats",
          ["python3", "scripts/report_big_bidix_stats.py"],
          "Report big bidix statistics",
          None),
         
-        # Stage 25: Build web index
+        # Stage 24: Build web index
         ("build_web_index",
          ["python3", "scripts/build_web_index.py"],
          "Build web index",

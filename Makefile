@@ -52,11 +52,10 @@ ifneq ($(SKIP_WIKI),1)
 endif
 ifneq ($(SKIP_EN_WIKT),1)
 	@echo "============================================================"
-	@echo "Parsing English Wiktionary (FIXED template parser)"
+	@echo "Parsing English Wiktionary"
 	@echo "============================================================"
-	$(PY) scripts/parse_wiktionary_en.py --input $(RAW)/enwiktionary-latest-pages-articles.xml.bz2 --out $(WORK)/en_wikt_en_io.json --progress-every 10000 -v
-	$(PY) scripts/parse_wiktionary_en.py --input $(RAW)/enwiktionary-latest-pages-articles.xml.bz2 --out $(WORK)/en_wikt_en_eo.json --progress-every 10000 -v
-	$(PY) scripts/parse_wiktionary_via.py --source en --io-input $(WORK)/en_wikt_en_io.json --eo-input $(WORK)/en_wikt_en_eo.json --out $(WORK)/bilingual_via_en.json --progress-every 1000
+	$(PY) scripts/parse_wiktionary_en.py --input $(RAW)/enwiktionary-latest-pages-articles.xml.bz2 --out $(WORK)/en_wikt_en_both.json --target both --progress-every 10000 -v
+	$(PY) scripts/parse_wiktionary_via.py --source en --io-input $(WORK)/en_wikt_en_both.json --eo-input $(WORK)/en_wikt_en_both.json --out $(WORK)/bilingual_via_en.json --progress-every 1000
 endif
 	$(PY) scripts/align_bilingual.py
 ifneq ($(SKIP_FR_MEANINGS),1)
