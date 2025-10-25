@@ -41,7 +41,7 @@ def main(argv):
     
     if not args.dump or not args.dump.exists():
         print(f"❌ Error: Dump file not found")
-        print(f"   Run: ./scripts/00_download_dumps.sh")
+        print(f"   Run: ./scripts/download_dumps.sh")
         return 1
     
     # Parse and convert
