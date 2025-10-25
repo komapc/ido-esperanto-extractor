@@ -12,11 +12,22 @@ SKIP_FR_WIKT ?= 0
 SKIP_FR_MEANINGS ?= 0
 SKIP_WIKI ?= 0
 
-.PHONY: all regenerate regenerate-fast regenerate-minimal clean freq wikt_io wikt_eo wikt_io-stage1 wikt_io-stage2 wikt_eo-stage1 wikt_eo-stage2 wikt_en wiki wiki-stage1 wiki-stage2 align align_pivot normalize morph mono filter report export stats dump_coverage big_bidix conflicts big_bidix_stats web pivot_en pivot_fr compare test
+# Pipeline manager options
+FORCE ?= 0
+STAGE ?=
 
-all: regenerate
+.PHONY: all regenerate regenerate-fast regenerate-minimal regenerate-managed clean freq wikt_io wikt_eo wikt_io-stage1 wikt_io-stage2 wikt_eo-stage1 wikt_eo-stage2 wikt_en wiki wiki-stage1 wiki-stage2 align align_pivot normalize morph mono filter report export stats dump_coverage big_bidix conflicts big_bidix_stats web pivot_en pivot_fr compare test pipeline-status
 
-# Full regeneration with all sources
+all: regenerate-managed
+
+# Pipeline-managed regeneration (with resumability)
+regenerate-managed:
+	@$(eval PIPELINE_ARGS := )
+	@if [ "$(FORCE)" = "1" ]; then $(eval PIPELINE_ARGS := --force) fi
+	@if [ -n "$(STAGE)" ]; then $(eval PIPELINE_ARGS := $(PIPELINE_ARGS) --stage $(STAGE)) fi
+	$(PY) scripts/pipeline_manager.py $(PIPELINE_ARGS)
+
+# Full regeneration with all sources (legacy, non-resumable)
 regenerate:
 ifneq ($(SKIP_DOWNLOAD),1)
 	./scripts/download_dumps.sh
@@ -166,8 +177,12 @@ dump_coverage:
 test:
 	$(PY) run_tests.py
 
+pipeline-status:
+	$(PY) scripts/pipeline_manager.py --status
+
 clean:
 	rm -rf $(WORK) $(DIST) $(REPORTS)
 	mkdir -p $(WORK) $(DIST) $(REPORTS)
+	rm -f $(WORK)/pipeline_state.json
 
 
