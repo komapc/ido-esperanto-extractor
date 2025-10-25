@@ -31,10 +31,13 @@ LANG_SECTION_PATTERNS = {
     "en": [r"==\s*English\s*==", r"==\s*\{\{en\}\}\s*=="],
 }
 
+# Translation extraction patterns for different target languages
+# Patterns capture both bullet list format (* Language: translation) and template format ({{t|lang|translation}})
+# Optimization notes:
+#   - Use [ \t]* instead of \s* to prevent matching newlines
+#   - Use [^\n]+ to limit capture to single line
+#   - Use (?=\n|\|\}|\Z) lookahead to stop at natural boundaries
 TARGET_TRANSLATION_PATTERNS = {
-    # Patterns try to capture list forms (bullets with language label) and template forms
-    # Note: Use [ \t]* instead of \s* to prevent matching newlines and jumping to next line
-    # Note: Use [^\n]+ to prevent capturing content from next line
     "io": [
         r"\*[ \t]*\{\{io\}\}[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
         r"\*[ \t]*(?:Ido|ido|IO)[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
@@ -82,7 +85,9 @@ COMPILED_TRANSLATION_PATTERNS = {
     for lang, patterns in TARGET_TRANSLATION_PATTERNS.items()
 }
 
-# Match POS headings at level 3 or higher (===, ====, ...), English or Ido labels
+# Match part-of-speech headings at level 3 or higher (===, ====, etc.)
+# Supports both English and Esperanto POS labels (e.g., "Noun" or "Substantivo")
+# Used to identify what type of word an entry is
 POS_HEADER_RE = re.compile(
     r"^==+\s*(Noun|Verb|Adjective|Adverb|Pronoun|Preposition|Conjunction|Interjection|Substantivo|Verbo|Adjektivo|Adverbo)\s*==+\s*$",
     re.IGNORECASE | re.MULTILINE,
@@ -101,14 +106,29 @@ def is_valid_title(title: str) -> bool:
     return True
 
 
+# OPTIMIZATION: Pre-compile language section patterns
+COMPILED_LANG_SECTION_PATTERNS = {
+    lang: [re.compile(pat, re.IGNORECASE) for pat in patterns]
+    for lang, patterns in LANG_SECTION_PATTERNS.items()
+}
+
+# Compiled pattern for finding next section separator
+NEXT_SECTION_RE = re.compile(r"\n==[^=]")
+
 def extract_language_section(wikitext: str, lang_code: str) -> Optional[str]:
-    for pat in LANG_SECTION_PATTERNS.get(lang_code, []):
-        m = re.search(pat, wikitext, flags=re.IGNORECASE)
+    """Extract language-specific section from Wiktionary page.
+    
+    Searches for language section headers like '=={{Lingvo|eo}}==' or '== Ido =='
+    and returns the content until the next section boundary.
+    """
+    compiled_patterns = COMPILED_LANG_SECTION_PATTERNS.get(lang_code, [])
+    for compiled_pat in compiled_patterns:
+        m = compiled_pat.search(wikitext)
         if not m:
             continue
         start = m.start()
         section = wikitext[start:]
-        nxt = re.search(r"\n==[^=]", section)
+        nxt = NEXT_SECTION_RE.search(section)
         if nxt:
             section = section[:nxt.start()]
         return section
@@ -180,12 +200,13 @@ def extract_pos(section: str) -> Optional[str]:
 
 
 # OPTIMIZATION: Pre-compile cleaning regexes (10-15% speedup)
-CLEAN_TEMPLATE_RE = re.compile(r"\{\{[^}]*\}}")
-CLEAN_LINK_RE = re.compile(r"\[\[(?:[^\]|]*\|)?([^\]]+)\]\]")
-CLEAN_CATEGORY_RE = re.compile(r"\[\[(?:Category|Kategorio):[^\]]*\]\]")
-CLEAN_HTML_RE = re.compile(r"<[^>]+>")
-CLEAN_PIPE_RE = re.compile(r"\|\s*\}.*$")
-CLEAN_WHITESPACE_RE = re.compile(r"\s+")
+# These patterns remove MediaWiki markup from translation text to extract clean words
+CLEAN_TEMPLATE_RE = re.compile(r"\{\{[^}]*\}}")                  # Remove {{templates}}
+CLEAN_LINK_RE = re.compile(r"\[\[(?:[^\]|]*\|)?([^\]]+)\]\]")    # Keep link text, discard link syntax
+CLEAN_CATEGORY_RE = re.compile(r"\[\[(?:Category|Kategorio):[^\]]*\]\]")  # Remove category links
+CLEAN_HTML_RE = re.compile(r"<[^>]+>")                          # Remove HTML tags
+CLEAN_PIPE_RE = re.compile(r"\|\s*\}.*$")                        # Remove template param remnants
+CLEAN_WHITESPACE_RE = re.compile(r"\s+")                         # Normalize whitespace
 
 def clean_translation_text(text: str) -> str:
     if not text:
@@ -204,14 +225,24 @@ def clean_translation_text(text: str) -> str:
     return text
 
 
+# OPTIMIZATION: Pre-compile numbered meaning pattern
+NUMBERED_MEANING_RE = re.compile(r"\((\d+)\)\s*([^;()]+)")
+
 def parse_meanings(blob: str) -> List[List[str]]:
+    """Parse translation meanings from various formats.
+    
+    Handles formats like:
+    - Numbered: "(1) meaning1; (2) meaning2"
+    - Semicolon-separated: "meaning1; meaning2"
+    - Comma-separated list (when likely synonyms)
+    """
     if not blob:
         return []
     t = clean_translation_text(blob)
     if not t:
         return []
     # number-separated meanings like (1) x; (2) y
-    numbered = re.findall(r"\((\d+)\)\s*([^;()]+)", t)
+    numbered = NUMBERED_MEANING_RE.findall(t)
     if numbered:
         out: List[List[str]] = []
         for _, meaning in numbered:
@@ -264,10 +295,32 @@ def extract_translations_anywhere(wikitext: str, target_code: str) -> List[List[
     return extract_translations(wikitext or "", target_code)
 
 
+# Compiled pattern for Tradukoj (translations) section header in Esperanto Wiktionary
+# Matches headers like "===Tradukoj===" or "====Tradukoj===="
 TRADUKOJ_HDR_RE = re.compile(r"^===+\s*Tradukoj\s*===+\s*$", re.IGNORECASE | re.MULTILINE)
 
+# Compiled pattern for finding next section boundary (any level 2+ heading)
+# Used to extract the Tradukoj section content
+NEXT_HEADING_RE = re.compile(r"^==[^=].*?$|^===+\s*[^=].*?$", re.MULTILINE)
+
+# OPTIMIZATION: Pre-compile Tradukoj Ido translation patterns
+# These extract Ido translations from the Tradukoj section using various formats
+TRADUKOJ_IDO_PATTERNS = [
+    re.compile(r"\*\s*\{\{io\}\}\s*[:\.-]\s*(.+)$", re.IGNORECASE | re.MULTILINE),
+    re.compile(r"\*\s*io\s*[:\.-]\s*(.+)$", re.IGNORECASE | re.MULTILINE),
+    re.compile(r"\{\{t\+?\|io\|([^}|]+)", re.IGNORECASE),
+    re.compile(r"\{\{trad\+?\|io\|([^}|]+)", re.IGNORECASE),
+    re.compile(r"\{\{l\|io\|([^}|]+)", re.IGNORECASE),
+    re.compile(r"\{\{link\|io\|([^}|]+)", re.IGNORECASE),
+    re.compile(r"\{\{m\|io\|([^}|]+)", re.IGNORECASE),
+]
 
 def extract_tradukoj_io(section_or_page: str) -> List[List[str]]:
+    """Extract Ido translations from Esperanto Wiktionary Tradukoj section.
+    
+    Searches for the Tradukoj (translations) subsection and extracts Ido translations
+    using various template formats.
+    """
     text = section_or_page or ""
     # Find Tradukoj subsection (level 3 or 4)
     m = TRADUKOJ_HDR_RE.search(text)
@@ -276,22 +329,13 @@ def extract_tradukoj_io(section_or_page: str) -> List[List[str]]:
     start = m.end()
     # Capture until next heading of same or higher level (=== or ==)
     tail = text[start:]
-    end_m = re.search(r"^==[^=].*?$|^===+\s*[^=].*?$", tail, flags=re.MULTILINE)
+    end_m = NEXT_HEADING_RE.search(tail)
     block = tail[: end_m.start()] if end_m else tail
 
-    # Collect Ido lines/templates within block
-    patterns = [
-        r"\*\s*\{\{io\}\}\s*[:\.-]\s*(.+)$",
-        r"\*\s*io\s*[:\.-]\s*(.+)$",
-        r"\{\{t\+?\|io\|([^}|]+)",
-        r"\{\{trad\+?\|io\|([^}|]+)",
-        r"\{\{l\|io\|([^}|]+)",
-        r"\{\{link\|io\|([^}|]+)",
-        r"\{\{m\|io\|([^}|]+)",
-    ]
+    # Collect Ido lines/templates within block using pre-compiled patterns
     out: List[List[str]] = []
-    for pat in patterns:
-        for match in re.findall(pat, block, flags=re.IGNORECASE | re.MULTILINE):
+    for compiled_pat in TRADUKOJ_IDO_PATTERNS:
+        for match in compiled_pat.findall(block):
             blob = match[0] if isinstance(match, tuple) else match
             meanings = parse_meanings(blob)
             # Filter out empty meaning lists
