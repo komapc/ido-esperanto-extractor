@@ -133,7 +133,10 @@ def find_dump_file(dump_pattern, dumps_dir, fallback_paths):
     # Try fallback paths
     for fallback in fallback_paths:
         if fallback.exists():
-            return fallback
+            candidates = list(fallback.glob(dump_pattern))
+            if candidates:
+                # Use most recent
+                return max(candidates, key=lambda p: p.stat().st_mtime)
     
     return None
 
