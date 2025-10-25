@@ -68,7 +68,7 @@ endif
 	$(PY) scripts/build_monolingual.py
 	$(PY) scripts/build_one_big_bidix_json.py
 	$(PY) scripts/report_coverage.py --top 5000
-	$(PY) scripts/export_apertium.py
+	$(PY) scripts/merge_with_extractor.py --extractor-file $(DIST)/ido_dictionary.json --output-file $(DIST)/apertium-ido.ido.dix --validate
 	$(PY) scripts/report_stats.py
 	$(PY) scripts/report_io_dump_coverage.py
 	$(PY) scripts/report_conflicts.py
@@ -153,7 +153,7 @@ report:
 	$(PY) scripts/report_coverage.py --top 5000
 
 export:
-	$(PY) scripts/export_apertium.py
+	$(PY) scripts/merge_with_extractor.py --extractor-file $(DIST)/ido_dictionary.json --output-file $(DIST)/apertium-ido.ido.dix --validate
 
 big_bidix:
 	$(PY) scripts/build_one_big_bidix_json.py
