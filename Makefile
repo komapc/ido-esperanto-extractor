@@ -40,8 +40,8 @@ ifneq ($(SKIP_EN_WIKT),1)
 	@echo "============================================================"
 	@echo "Parsing English Wiktionary (FIXED template parser)"
 	@echo "============================================================"
-	$(PY) scripts/parse_wiktionary_en.py --input $(RAW)/enwiktionary-latest-pages-articles.xml.bz2 --out $(WORK)/en_wikt_en_io.json --progress-every 1000
-	$(PY) scripts/parse_wiktionary_en.py --input $(RAW)/enwiktionary-latest-pages-articles.xml.bz2 --out $(WORK)/en_wikt_en_eo.json --progress-every 1000
+	$(PY) scripts/parse_wiktionary_en.py --input $(RAW)/enwiktionary-latest-pages-articles.xml.bz2 --out $(WORK)/en_wikt_en_io.json --progress-every 10000 -v
+	$(PY) scripts/parse_wiktionary_en.py --input $(RAW)/enwiktionary-latest-pages-articles.xml.bz2 --out $(WORK)/en_wikt_en_eo.json --progress-every 10000 -v
 	$(PY) scripts/parse_wiktionary_via.py --source en --io-input $(WORK)/en_wikt_en_io.json --eo-input $(WORK)/en_wikt_en_eo.json --out $(WORK)/bilingual_via_en.json --progress-every 1
 endif
 	$(PY) scripts/align_bilingual.py
