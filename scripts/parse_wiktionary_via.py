@@ -103,6 +103,8 @@ def parse_french_wiktionary_via(dump_path: Path, output_path: Path, progress_eve
     start_time = time.time()
     last_progress_time = start_time
     
+    in_page = False  # Initialize before loop to avoid UnboundLocalError
+    
     with open(dump_path, 'rb') as f:
         import bz2
         with bz2.open(f, 'rt', encoding='utf-8') as xml_file:
