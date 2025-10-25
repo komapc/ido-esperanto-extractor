@@ -4,6 +4,12 @@ This project rebuilds Ido monolingual, Esperanto monolingual, and Ido–Esperant
 
 ## Recent Improvements
 
+**October 2025 - Pipeline Manager:**
+- ✅ Implemented stage-based resumability with pipeline manager
+- ✅ Tracks completion status, errors, and timestamps for all stages
+- ✅ Resume from any stage after interruption
+- ✅ Visual progress tracking with status command
+
 **October 2025 - Data Cleaning & XML Export Fix:**
 - ✅ Fixed critical XML export bug (was generating malformed 1-line files)
 - ✅ Implemented comprehensive lemma/translation cleaning (removes Wiktionary markup)
@@ -11,7 +17,8 @@ This project rebuilds Ido monolingual, Esperanto monolingual, and Ido–Esperant
 - ✅ Added Makefile skip options for faster iteration
 - ✅ Created comparison tool for testing dictionary quality
 
-See `docs/SESSION_SUMMARY_CLEANING.md` for complete details.
+See `docs/PIPELINE_MANAGER.md` for pipeline manager documentation.
+See `docs/SESSION_SUMMARY_CLEANING.md` for data cleaning details.
 
 ## Outputs
 - Ido dictionary (JSON/YAML): `dist/ido_dictionary.json` (and `.yaml`)
@@ -40,14 +47,23 @@ See `docs/SESSION_SUMMARY_CLEANING.md` for complete details.
 ### 🚀 Main Commands
 
 ```bash
-# Full regeneration (all sources, ~1.5-2 hours)
-make regenerate
+# Full regeneration with pipeline manager (recommended, ~1.5-2 hours)
+make all                      # Uses pipeline manager with resumability
+make regenerate-managed       # Explicit pipeline-managed run
+
+# Legacy regeneration (without resumability)
+make regenerate               # Full regeneration without pipeline manager
 
 # Fast regeneration (skip downloads & French via, ~1 hour)  
 make regenerate-fast
 
 # Minimal regeneration (core sources only, ~20 minutes)
 make regenerate-minimal
+
+# Pipeline management
+make pipeline-status          # Check pipeline status
+make STAGE=<name>            # Resume from specific stage
+make FORCE=1                 # Force regeneration of all stages
 
 # Compare old vs new dictionaries
 make compare
