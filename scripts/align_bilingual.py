@@ -78,8 +78,17 @@ def identical_form_heuristic(io_entries: List[Dict[str, Any]], eo_entries: List[
 
 def align(io_path: Path, eo_path: Path, out_path: Path, wiki_path: Path | None = None, via_en_path: Path | None = None) -> None:
     logging.info("Aligning bilingual dictionaries: %s + %s", io_path, eo_path)
-    io_entries = read_json(io_path)
-    eo_entries = read_json(eo_path)
+    io_data = read_json(io_path)
+    eo_data = read_json(eo_path)
+    
+    # Handle both formats: metadata wrapper or plain list
+    io_entries = io_data.get("entries", io_data) if isinstance(io_data, dict) else io_data
+    eo_entries = eo_data.get("entries", eo_data) if isinstance(eo_data, dict) else eo_data
+    
+    if not isinstance(io_entries, list):
+        raise ValueError(f"io_wikt_io_eo.json must contain a list of entries (got {type(io_entries)})")
+    if not isinstance(eo_entries, list):
+        raise ValueError(f"eo_wikt_eo_io.json must contain a list of entries (got {type(eo_entries)})")
 
     aligned = identical_form_heuristic(io_entries, eo_entries)
     # Pass-through: include IO→EO entries as bilingual items even without EO confirmation
