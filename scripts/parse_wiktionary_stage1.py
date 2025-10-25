@@ -100,42 +100,31 @@ def extract_filtered_wiktionary(dump_path: Path, output_path: Path, source_code:
         temp_path = Path(temp_file.name)
     
     try:
-        # Parse to temporary file
-        result = parse_wiktionary_wrapper(
-            dump_path, cfg, temp_path, 
-            argparse.Namespace(limit=limit, progress_every=progress_every, verbose=1),
-            f"{source_code}_wiktionary",
-            f"https://{source_code}.wiktionary.org/wiki/",
-            dump_path
-        )
-        
-        if result != 0:
-            raise RuntimeError(f"Wiktionary parsing failed with exit code {result}")
+        # Parse directly to get raw output (no conversion)
+        from wiktionary_parser import parse_wiktionary
+        parse_wiktionary(dump_path, cfg, temp_path, limit, progress_every=progress_every, skip_pivot=True)
         
         # Load parsed data
         from _common import read_json
         raw_data = read_json(temp_path)
         
-        # Convert to standardized format
-        standardized_data = convert_wiktionary_to_standardized(
-            raw_data, 
-            f"{source_code}_wiktionary",
-            f"https://{source_code}.wiktionary.org/wiki/",
-            dump_path,
-            Path(__file__)
-        )
-        
-        # Filter entries
-        filtered_entries = filter_wiktionary_entries(standardized_data['entries'], source_code)
+        # Stage 1 now outputs raw parser format directly (no conversion)
+        # This preserves the 'senses' structure that Stage 2 expects
+        entries_count = len(raw_data)
         
         # Create filtered output
         filtered_data = {
-            'metadata': standardized_data['metadata'],
-            'entries': filtered_entries,
+            'metadata': {
+                'source': f'{source_code}_wiktionary',
+                'version': '2.0',
+                'dump_file': str(dump_path),
+                'parser': 'wiktionary_parser'
+            },
+            'entries': raw_data,
             'filtering_stats': {
-                'original_count': len(standardized_data['entries']),
-                'filtered_count': len(filtered_entries),
-                'retention_rate': len(filtered_entries) / len(standardized_data['entries']) if standardized_data['entries'] else 0
+                'original_count': entries_count,
+                'filtered_count': entries_count,
+                'retention_rate': 1.0
             }
         }
         
@@ -143,8 +132,8 @@ def extract_filtered_wiktionary(dump_path: Path, output_path: Path, source_code:
         from _common import write_json
         write_json(output_path, filtered_data)
         
-        logging.info("Stage 1 complete: Wrote %s (%d filtered entries from %d total)", 
-                    output_path, len(filtered_entries), len(standardized_data['entries']))
+        logging.info("Stage 1 complete: Wrote %s (%d entries)", 
+                    output_path, entries_count)
         
     finally:
         # Clean up temporary file
