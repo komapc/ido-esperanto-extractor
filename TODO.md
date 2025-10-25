@@ -1,6 +1,32 @@
 # TODO - Dictionary Extraction Pipeline
 
-**Last Updated:** October 23, 2025
+**Last Updated:** October 25, 2025
+
+## ✅ COMPLETED: Pipeline Manager (October 25, 2025)
+
+- [x] **Implemented Stage-Based Resumability** ⭐
+  - Created `scripts/pipeline_manager.py` with full state tracking
+  - Tracks 25 pipeline stages with completion status, errors, and timestamps
+  - Resume from any stage after interruption
+  - Status visualization with emoji indicators
+  - Force regeneration option
+  - Integrated with Makefile as default `make all` target
+  - Legacy `make regenerate` still available for backward compatibility
+  
+- [x] **Documentation**
+  - Created `docs/PIPELINE_MANAGER.md` with complete usage guide
+  - Updated `README.md` with pipeline manager commands
+  - Added status command to Makefile
+
+**Files Created:**
+- `scripts/pipeline_manager.py` - Pipeline manager implementation
+- `docs/PIPELINE_MANAGER.md` - Complete documentation
+
+**Files Modified:**
+- `Makefile` - Added `regenerate-managed` target, `pipeline-status` command
+- `README.md` - Updated with pipeline manager usage
+
+---
 
 ## 🔴 CRITICAL Issues (From Oct 23, 2025 Session)
 
@@ -63,7 +89,7 @@
   - Results from `run-ec2-en-wiktionary.sh` execution
   - Quality assessment of pivot-based translations
   - Comparison with direct translation sources
-  
+                        
 - [ ] **Create Recommendations**
   - Which pivot approaches work best?
   - What filtering thresholds are optimal?
