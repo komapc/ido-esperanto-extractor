@@ -26,6 +26,9 @@ endif
 	@echo "============================================================"
 	$(PY) scripts/process_wiktionary_two_stage.py --source io --target eo
 	$(PY) scripts/process_wiktionary_two_stage.py --source eo --target io
+	@# Copy processed files to expected names for align_bilingual.py
+	cp $(WORK)/io_wiktionary_processed.json $(WORK)/io_wikt_io_eo.json
+	cp $(WORK)/eo_wiktionary_processed.json $(WORK)/eo_wikt_eo_io.json
 ifneq ($(SKIP_FR_WIKT),1)
 	$(PY) scripts/parse_wiktionary_fr.py
 endif
