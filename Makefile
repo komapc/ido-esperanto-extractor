@@ -24,8 +24,8 @@ endif
 	@echo "============================================================"
 	@echo "Two-stage Wiktionary processing (with resumability)"
 	@echo "============================================================"
-	$(PY) scripts/process_wiktionary_two_stage.py --source io
-	$(PY) scripts/process_wiktionary_two_stage.py --source eo
+	$(PY) scripts/process_wiktionary_two_stage.py --source io --target eo
+	$(PY) scripts/process_wiktionary_two_stage.py --source eo --target io
 ifneq ($(SKIP_FR_WIKT),1)
 	$(PY) scripts/parse_wiktionary_fr.py
 endif
