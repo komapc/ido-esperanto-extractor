@@ -32,7 +32,7 @@ ido-esperanto-extractor/
 └── scripts/
     ├── run.py              # Master control script
     ├── config.py           # Configuration
-    ├── 00_download_dumps.sh
+    ├── download_dumps.sh
     ├── 01_parse_io_wiktionary.py
     ├── 02_parse_eo_wiktionary.py
     ├── 03_parse_fr_wiktionary.py
@@ -98,7 +98,7 @@ ido-esperanto-extractor/
 ## 🔄 Pipeline Stages
 
 ### Stage 0: Download Dumps (Cacheable)
-**Script:** `scripts/00_download_dumps.sh`  
+**Script:** `scripts/download_dumps.sh`  
 **Skip if:** Dumps exist and are < 7 days old  
 **Time:** ~45 minutes  
 

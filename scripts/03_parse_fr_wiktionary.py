@@ -177,7 +177,7 @@ def main(argv):
     
     if not dump_file.exists():
         print(f"❌ Error: Dump file not found: {dump_file}")
-        print(f"   Run: ./scripts/00_download_dumps.sh")
+        print(f"   Run: ./scripts/download_dumps.sh")
         print(f"   Note: French Wiktionary is OPTIONAL and can be skipped")
         return 1
     
