@@ -307,7 +307,7 @@
 - [ ] Achieve 2x performance improvement
 - [ ] Reach 60,000+ total entries
 - [ ] Improve proper noun classification
-- [ ] **EC2 Cloud Deployment** **[NEW - Oct 25, 2025]**
+- [ ] **EC2 Cloud Deployment**
   - Make pipeline easy to run on EC2 server
   - Use S3 for dump storage and intermediate artifacts
   - Reduce local disk requirements
