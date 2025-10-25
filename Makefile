@@ -10,6 +10,7 @@ SKIP_DOWNLOAD ?= 0
 SKIP_EN_WIKT ?= 0
 SKIP_FR_WIKT ?= 0
 SKIP_FR_MEANINGS ?= 0
+SKIP_WIKI ?= 0
 
 .PHONY: all regenerate regenerate-fast regenerate-minimal clean freq wikt_io wikt_eo wikt_io-stage1 wikt_io-stage2 wikt_eo-stage1 wikt_eo-stage2 wikt_en wiki wiki-stage1 wiki-stage2 align align_pivot normalize morph mono filter report export stats dump_coverage big_bidix conflicts big_bidix_stats web pivot_en pivot_fr compare test
 
@@ -28,17 +29,19 @@ endif
 ifneq ($(SKIP_FR_WIKT),1)
 	$(PY) scripts/parse_wiktionary_fr.py
 endif
+ifneq ($(SKIP_WIKI),1)
 	@echo "============================================================"
 	@echo "Two-stage Wikipedia processing (with resumability)"
 	@echo "============================================================"
 	$(PY) scripts/process_wikipedia_two_stage.py
 	$(PY) scripts/build_frequency_io_wiki.py
+endif
 ifneq ($(SKIP_EN_WIKT),1)
 	@echo "============================================================"
 	@echo "Parsing English Wiktionary (FIXED template parser)"
 	@echo "============================================================"
-	$(PY) scripts/parse_wiktionary_en.py --input $(RAW)/enwiktionary-latest-pages-articles.xml.bz2 --target io --out $(WORK)/en_wikt_en_io.json --progress-every 1000
-	$(PY) scripts/parse_wiktionary_en.py --input $(RAW)/enwiktionary-latest-pages-articles.xml.bz2 --target eo --out $(WORK)/en_wikt_en_eo.json --progress-every 1000
+	$(PY) scripts/parse_wiktionary_en.py --input $(RAW)/enwiktionary-latest-pages-articles.xml.bz2 --out $(WORK)/en_wikt_en_io.json --progress-every 1000
+	$(PY) scripts/parse_wiktionary_en.py --input $(RAW)/enwiktionary-latest-pages-articles.xml.bz2 --out $(WORK)/en_wikt_en_eo.json --progress-every 1000
 	$(PY) scripts/parse_wiktionary_via.py --source en --io-input $(WORK)/en_wikt_en_io.json --eo-input $(WORK)/en_wikt_en_eo.json --out $(WORK)/bilingual_via_en.json --progress-every 1
 endif
 	$(PY) scripts/align_bilingual.py
