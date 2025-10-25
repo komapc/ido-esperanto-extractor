@@ -104,8 +104,8 @@ def process_wiktionary_entries(filtered_path: Path, out_path: Path, source_code:
     
     if stats['by_pos']:
         logging.info("  - By POS:")
-        for pos, count in sorted(stats['by_pos'].items()):
-            logging.info("    %s: %d", pos, count)
+        for pos, count in sorted(stats['by_pos'].items(), key=lambda x: (x[0] is None, x[0])):
+            logging.info("    %s: %d", pos or 'null', count)
 
 
 def main(argv):
