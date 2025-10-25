@@ -27,7 +27,7 @@ def _child(elem: ET.Element, local: str) -> Optional[ET.Element]:
 
 LANG_SECTION_PATTERNS = {
     "io": [r"==\s*\{\{io\}\}\s*==", r"==\s*Ido\s*==", r"\{\{-ido-\}\}"],
-    "eo": [r"==\s*\{\{eo\}\}\s*==", r"==\s*Esperanto\s*==", r"===\s*Esperanto\s*===", r"\{\{-eo-\}\}"],
+    "eo": [r"==\s*\{\{Lingvo\|eo\}\}\s*==", r"==\s*\{\{eo\}\}\s*==", r"==\s*Esperanto\s*==", r"===\s*Esperanto\s*===", r"\{\{-eo-\}\}"],
     "en": [r"==\s*English\s*==", r"==\s*\{\{en\}\}\s*=="],
 }
 
