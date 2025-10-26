@@ -226,7 +226,7 @@ def build_bidix(entries):
     return dictionary
 
 
-def export_apertium(entries_path: Path, out_monodix: Path, out_bidix: Path) -> None:
+def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: Path, out_bidix: Path) -> None:
     ensure_dir(out_monodix.parent)
     data = read_json(entries_path)
     
@@ -240,8 +240,19 @@ def export_apertium(entries_path: Path, out_monodix: Path, out_bidix: Path) -> N
     
     logging.info(f"Exporting {len(entries)} entries to Apertium XML")
     mono = build_monodix(entries)
-    bidi = build_bidix(entries)
     write_xml_file(mono, out_monodix)
+    
+    # Build bilingual dictionary from separate file
+    bidix_data = read_json(bidix_entries_path)
+    if isinstance(bidix_data, dict) and 'entries' in bidix_data:
+        bidix_entries = bidix_data['entries']
+    elif isinstance(bidix_data, list):
+        bidix_entries = bidix_data
+    else:
+        bidix_entries = bidix_data
+    
+    logging.info(f"Building bilingual dictionary from {len(bidix_entries)} entries")
+    bidi = build_bidix(bidix_entries)
     write_xml_file(bidi, out_bidix)
     logging.info("Exported Apertium XML: %s, %s", out_monodix, out_bidix)
 
@@ -258,7 +269,7 @@ def main(argv: Iterable[str]) -> int:
     configure_logging(args.verbose)
     # For monodix we still use final_vocabulary; for bidix we prefer BIG BIDIX if present
     input_for_bidi = args.big_bidix if args.big_bidix.exists() else args.input
-    export_apertium(args.input, args.out_mono, args.out_bidi)
+    export_apertium(args.input, args.out_mono, input_for_bidi, args.out_bidi)
     return 0
 
 
