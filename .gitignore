@@ -1,0 +1,48 @@
+# Working directory - contains large intermediate files
+work/
+
+# Output directory - generated files
+output/
+
+# Distribution directory
+dist/
+
+# Logs
+logs/
+*.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large compressed files
+*.bz2
+*.bzip2
+*.gz
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+
+# Temporary files
+*.tmp
+*.temp
