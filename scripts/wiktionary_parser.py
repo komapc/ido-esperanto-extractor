@@ -207,6 +207,8 @@ CLEAN_CATEGORY_RE = re.compile(r"\[\[(?:Category|Kategorio):[^\]]*\]\]")  # Remo
 CLEAN_HTML_RE = re.compile(r"<[^>]+>")                          # Remove HTML tags
 CLEAN_PIPE_RE = re.compile(r"\|\s*\}.*$")                        # Remove template param remnants
 CLEAN_WHITESPACE_RE = re.compile(r"\s+")                         # Normalize whitespace
+# Remove numbered sense references like [1], [2], [1-3], [1, 2] anywhere in text
+CLEAN_NUMBERED_REF_RE = re.compile(r"\s*\[[\d\s,–-]+\]\s*")      # Remove [1], [2], [1-3], [1, 2]
 
 def clean_translation_text(text: str) -> str:
     if not text:
@@ -216,6 +218,8 @@ def clean_translation_text(text: str) -> str:
         return text.strip(" \t\n\r\f\v:;,.–-|")
     
     text = html.unescape(text)
+    # Remove numbered sense references first (before other cleaning)
+    text = CLEAN_NUMBERED_REF_RE.sub(" ", text)  # Replace with space to avoid joining words
     text = CLEAN_TEMPLATE_RE.sub("", text)
     text = CLEAN_LINK_RE.sub(r"\1", text)
     text = CLEAN_CATEGORY_RE.sub("", text)
