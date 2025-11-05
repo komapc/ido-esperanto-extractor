@@ -47,3 +47,6 @@ outputs/*.json
 outputs/*.tsv
 work/*.json
 work/*.xml
+
+# Raw data dumps (large files, downloaded on demand)
+data/raw/
