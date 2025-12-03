@@ -62,7 +62,12 @@ def create_word_entry(word_data: Dict[str, Any]) -> ET.Element:
     return entry
 
 def merge_dictionary(rules_root: ET.Element, words_data: List[Dict[str, Any]], output_file: Path) -> None:
-    """Merge rules with word entries and write to output file."""
+    """Merge rules with word entries and write to output file.
+    
+    This function preserves ALL sections from the rules file (main, final, inconditional, etc.)
+    and only modifies the main section with new word entries. All other sections are preserved
+    as-is to maintain morphological rules and special sections like number recognition.
+    """
     # Create a copy of the rules root
     merged_root = ET.fromstring(ET.tostring(rules_root, encoding='unicode'))
     
@@ -74,7 +79,7 @@ def merge_dictionary(rules_root: ET.Element, words_data: List[Dict[str, Any]], o
         main_section.set('id', 'main')
         main_section.set('type', 'standard')
     
-    # Clear existing entries (keep only the regex number entry)
+    # Clear existing entries in main section (keep only the regex number entry)
     existing_entries = main_section.findall('e')
     for entry in existing_entries:
         # Keep the number regex entry
@@ -83,10 +88,17 @@ def merge_dictionary(rules_root: ET.Element, words_data: List[Dict[str, Any]], o
             continue
         main_section.remove(entry)
     
-    # Add word entries
+    # Add word entries to main section
     for word_data in words_data:
         entry = create_word_entry(word_data)
         main_section.append(entry)
+    
+    # All other sections (final, inconditional, etc.) are preserved automatically
+    # since we're working with a copy of the rules_root that already contains them
+    other_sections = merged_root.findall('.//section')
+    preserved_sections = [s for s in other_sections if s.get('id') != 'main']
+    if preserved_sections:
+        logger.info(f"Preserved {len(preserved_sections)} additional section(s): {[s.get('id') for s in preserved_sections]}")
     
     # Write the merged dictionary
     try:

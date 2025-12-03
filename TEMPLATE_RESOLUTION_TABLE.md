@@ -233,3 +233,4 @@ bare_words = re.findall(r'\b([a-zA-ZĉĝĥĵŝŭĈĜĤĴŜŬ]+)\b', line)
 - Better morphology inference
 - More Wikipedia vocabulary extraction
 
+
