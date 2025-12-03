@@ -1,0 +1,7934 @@
+{
+  "metadata": {
+    "source_name": "en_pivot",
+    "file_type": "source_json",
+    "origin": {
+      "dump_file": "Converted from bilingual_pivot_en.json",
+      "dump_date": "2025-10-21",
+      "note": "Pre-processed pivot data from old pipeline"
+    },
+    "extraction": {
+      "date": "2025-10-22T01:53:17.905205",
+      "script": "/home/mark/apertium-ido-epo/tools/extractor/ido-esperanto-extractor/scripts/convert_old_pivot_to_source.py",
+      "version": "2.0-converted"
+    },
+    "statistics": {
+      "total_entries": 879,
+      "with_translations": 879,
+      "with_morphology": 0
+    }
+  },
+  "entries": [
+    {
+      "lemma": "kavalo",
+      "translations": {
+        "eo": [
+          "ĉevalo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "facar",
+      "translations": {
+        "eo": [
+          "krei"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "igar",
+      "translations": {
+        "eo": [
+          "krei"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fasono",
+      "translations": {
+        "eo": [
+          "krei"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "organo",
+      "translations": {
+        "eo": [
+          "kaco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "orgeno",
+      "translations": {
+        "eo": [
+          "kaco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "karcero",
+      "translations": {
+        "eo": [
+          "malliberejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "puniserio",
+      "translations": {
+        "eo": [
+          "malliberejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "puniseyo",
+      "translations": {
+        "eo": [
+          "malliberejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "chambro",
+      "translations": {
+        "eo": [
+          "ĉambro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "chambro",
+      "translations": {
+        "eo": [
+          "ĉambro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "familio",
+      "translations": {
+        "eo": [
+          "familio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pasto",
+      "translations": {
+        "eo": [
+          "bufo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mayo",
+      "translations": {
+        "eo": [
+          "povi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "povar",
+      "translations": {
+        "eo": [
+          "povi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kratego",
+      "translations": {
+        "eo": [
+          "povi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "yaro",
+      "translations": {
+        "eo": [
+          "jaro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "komencar",
+      "translations": {
+        "eo": [
+          "komenci"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "iniciar",
+      "translations": {
+        "eo": [
+          "komenci"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "komencar",
+      "translations": {
+        "eo": [
+          "komenci"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "komencar",
+      "translations": {
+        "eo": [
+          "komenci"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": ".esk",
+      "translations": {
+        "eo": [
+          "komenci"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "startar",
+      "translations": {
+        "eo": [
+          "komenci"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "debutar",
+      "translations": {
+        "eo": [
+          "komenci"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "iniciar",
+      "translations": {
+        "eo": [
+          "komenci"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "starto",
+      "translations": {
+        "eo": [
+          "komenci"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "ekbusheskar",
+      "translations": {
+        "eo": [
+          "komenci"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "parolar",
+      "translations": {
+        "eo": [
+          "paroli"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "questionar",
+      "translations": {
+        "eo": [
+          "demandi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "questionar",
+      "translations": {
+        "eo": [
+          "demando"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "questiono",
+      "translations": {
+        "eo": [
+          "demando"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "interpelo",
+      "translations": {
+        "eo": [
+          "demando"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "venar",
+      "translations": {
+        "eo": [
+          "veni"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "devenar",
+      "translations": {
+        "eo": [
+          "veni"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "cerebro",
+      "translations": {
+        "eo": [
+          "cerbo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "encefalo",
+      "translations": {
+        "eo": [
+          "cerbo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "hundo",
+      "translations": {
+        "eo": [
+          "hundo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "reda",
+      "translations": {
+        "eo": [
+          "ruĝa"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mamifero",
+      "translations": {
+        "eo": [
+          "mamulo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "flava",
+      "translations": {
+        "eo": [
+          "flava"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "flaveso",
+      "translations": {
+        "eo": [
+          "flava"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "flavo",
+      "translations": {
+        "eo": [
+          "flava"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pomo",
+      "translations": {
+        "eo": [
+          "pomo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "arboro",
+      "translations": {
+        "eo": [
+          "arbo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "duktar",
+      "translations": {
+        "eo": [
+          "plumbo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "guidar",
+      "translations": {
+        "eo": [
+          "plumbo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "konduktar",
+      "translations": {
+        "eo": [
+          "plumbo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "plombo",
+      "translations": {
+        "eo": [
+          "plumbo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mikra",
+      "translations": {
+        "eo": [
+          "malmulte"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "poka",
+      "translations": {
+        "eo": [
+          "malmulte"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kelketo",
+      "translations": {
+        "eo": [
+          "malmulte"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nemulta",
+      "translations": {
+        "eo": [
+          "malmulte"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mikra",
+      "translations": {
+        "eo": [
+          "malgranda"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "negrava",
+      "translations": {
+        "eo": [
+          "malgranda"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "ibe",
+      "translations": {
+        "eo": [
+          "tien"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "tre",
+      "translations": {
+        "eo": [
+          "tre"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Koreana",
+      "translations": {
+        "eo": [
+          "korea"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Koreano",
+      "translations": {
+        "eo": [
+          "korea"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "segun",
+      "translations": {
+        "eo": [
+          "laŭ"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "biologio",
+      "translations": {
+        "eo": [
+          "biologio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "aquo",
+      "translations": {
+        "eo": [
+          "akvo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "aquizar",
+      "translations": {
+        "eo": [
+          "akvo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "murmurar",
+      "translations": {
+        "eo": [
+          "akvo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "lakrimifar",
+      "translations": {
+        "eo": [
+          "akvo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "muarizar",
+      "translations": {
+        "eo": [
+          "akvo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "anke",
+      "translations": {
+        "eo": [
+          "tro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "hodie",
+      "translations": {
+        "eo": [
+          "hodiaŭ"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "cadie",
+      "translations": {
+        "eo": [
+          "hodiaŭ"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "vivo",
+      "translations": {
+        "eo": [
+          "vivo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "manjar",
+      "translations": {
+        "eo": [
+          "manĝi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "manjar",
+      "translations": {
+        "eo": [
+          "vori"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "glutar",
+      "translations": {
+        "eo": [
+          "gluti"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "hirundo",
+      "translations": {
+        "eo": [
+          "gluti"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "glutajo",
+      "translations": {
+        "eo": [
+          "gluti"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nubo",
+      "translations": {
+        "eo": [
+          "nubo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "korpo",
+      "translations": {
+        "eo": [
+          "korpo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "agregar",
+      "translations": {
+        "eo": [
+          "korpo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kelku",
+      "translations": {
+        "eo": [
+          "korpo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "galaxio",
+      "translations": {
+        "eo": [
+          "galaksio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "atomo",
+      "translations": {
+        "eo": [
+          "atomo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "tale",
+      "translations": {
+        "eo": [
+          "do"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "tale",
+      "translations": {
+        "eo": [
+          "do"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sen",
+      "translations": {
+        "eo": [
+          "sen"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sen",
+      "translations": {
+        "eo": [
+          "sen-"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sen.",
+      "translations": {
+        "eo": [
+          "sen"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sen.",
+      "translations": {
+        "eo": [
+          "sen-"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sen ke",
+      "translations": {
+        "eo": [
+          "sen"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sen ke",
+      "translations": {
+        "eo": [
+          "sen-"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "po",
+      "translations": {
+        "eo": [
+          "pro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nam",
+      "translations": {
+        "eo": [
+          "pro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pro ke",
+      "translations": {
+        "eo": [
+          "pro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "vakua",
+      "translations": {
+        "eo": [
+          "malplena"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "vakuigar",
+      "translations": {
+        "eo": [
+          "malplena"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nereala",
+      "translations": {
+        "eo": [
+          "malplena"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sensenca",
+      "translations": {
+        "eo": [
+          "malplena"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "tempo",
+      "translations": {
+        "eo": [
+          "tenso"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "tempo",
+      "translations": {
+        "eo": [
+          "tempo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "justa",
+      "translations": {
+        "eo": [
+          "tempo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "foye",
+      "translations": {
+        "eo": [
+          "tempo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "lango",
+      "translations": {
+        "eo": [
+          "lingvo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "du",
+      "translations": {
+        "eo": [
+          "du"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kin",
+      "translations": {
+        "eo": [
+          "kvin"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "non",
+      "translations": {
+        "eo": [
+          "naŭ"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "dek",
+      "translations": {
+        "eo": [
+          "dek"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "deko",
+      "translations": {
+        "eo": [
+          "dek"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sata",
+      "translations": {
+        "eo": [
+          "sufiĉa"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sat",
+      "translations": {
+        "eo": [
+          "sufiĉa"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sate",
+      "translations": {
+        "eo": [
+          "sufiĉa"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sato",
+      "translations": {
+        "eo": [
+          "sufiĉa"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sata",
+      "translations": {
+        "eo": [
+          "sufiĉa"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "suficanta",
+      "translations": {
+        "eo": [
+          "sufiĉa"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fero",
+      "translations": {
+        "eo": [
+          "fero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "repasilo",
+      "translations": {
+        "eo": [
+          "fero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "bloko",
+      "translations": {
+        "eo": [
+          "fero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fera",
+      "translations": {
+        "eo": [
+          "fero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nova",
+      "translations": {
+        "eo": [
+          "nova"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "hemo",
+      "translations": {
+        "eo": [
+          "hejmen"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "skolo",
+      "translations": {
+        "eo": [
+          "lernejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "skolala",
+      "translations": {
+        "eo": [
+          "lernejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sekundara",
+      "translations": {
+        "eo": [
+          "lernejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "portuo",
+      "translations": {
+        "eo": [
+          "pordo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "porto",
+      "translations": {
+        "eo": [
+          "pordo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "longa",
+      "translations": {
+        "eo": [
+          "alta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "longa",
+      "translations": {
+        "eo": [
+          "alta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "alta",
+      "translations": {
+        "eo": [
+          "alta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "gaso",
+      "translations": {
+        "eo": [
+          "gaso"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "abatar",
+      "translations": {
+        "eo": [
+          "maljunulo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "persono",
+      "translations": {
+        "eo": [
+          "maljunulo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "titulo",
+      "translations": {
+        "eo": [
+          "maljunulo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kuniklo",
+      "translations": {
+        "eo": [
+          "leporo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kafeo",
+      "translations": {
+        "eo": [
+          "kafo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "omnaloke",
+      "translations": {
+        "eo": [
+          "ĉien"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "exkavar",
+      "translations": {
+        "eo": [
+          "fosi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fisho",
+      "translations": {
+        "eo": [
+          "fiŝo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "peskar",
+      "translations": {
+        "eo": [
+          "fiŝo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "emundar",
+      "translations": {
+        "eo": [
+          "fiŝo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "questar",
+      "translations": {
+        "eo": [
+          "fiŝo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fungo",
+      "translations": {
+        "eo": [
+          "fungo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fongo",
+      "translations": {
+        "eo": [
+          "fungo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fungo",
+      "translations": {
+        "eo": [
+          "fungo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "chera",
+      "translations": {
+        "eo": [
+          "multekosta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kustanta",
+      "translations": {
+        "eo": [
+          "multekosta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kustoza",
+      "translations": {
+        "eo": [
+          "multekosta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "hanulo",
+      "translations": {
+        "eo": [
+          "kaco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "robineto",
+      "translations": {
+        "eo": [
+          "kaco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "ucelulo",
+      "translations": {
+        "eo": [
+          "kaco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "picho",
+      "translations": {
+        "eo": [
+          "kaco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kato",
+      "translations": {
+        "eo": [
+          "kato"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mine",
+      "translations": {
+        "eo": [
+          "sen-"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sen.",
+      "translations": {
+        "eo": [
+          "sen-"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "minuse",
+      "translations": {
+        "eo": [
+          "sen-"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "koliaro",
+      "translations": {
+        "eo": [
+          "kolumo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pos",
+      "translations": {
+        "eo": [
+          "post"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pos ke",
+      "translations": {
+        "eo": [
+          "post"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "posa",
+      "translations": {
+        "eo": [
+          "post"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sapono",
+      "translations": {
+        "eo": [
+          "sapo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kesto",
+      "translations": {
+        "eo": [
+          "sapo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "saponagar",
+      "translations": {
+        "eo": [
+          "sapo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "saponizar",
+      "translations": {
+        "eo": [
+          "sapo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "arto",
+      "translations": {
+        "eo": [
+          "arto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sugar",
+      "translations": {
+        "eo": [
+          "suĉi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mamosugar",
+      "translations": {
+        "eo": [
+          "suĉi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "retro",
+      "translations": {
+        "eo": [
+          "posta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "dorso",
+      "translations": {
+        "eo": [
+          "posta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "dopa",
+      "translations": {
+        "eo": [
+          "posta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "dopo",
+      "translations": {
+        "eo": [
+          "posta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "reverso",
+      "translations": {
+        "eo": [
+          "posta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "retroirar",
+      "translations": {
+        "eo": [
+          "posta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "retromarchar",
+      "translations": {
+        "eo": [
+          "posta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "koqueyo",
+      "translations": {
+        "eo": [
+          "kuirejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kelero",
+      "translations": {
+        "eo": [
+          "kelo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "basamento",
+      "translations": {
+        "eo": [
+          "kelo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kelero",
+      "translations": {
+        "eo": [
+          "kelo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "feldo",
+      "translations": {
+        "eo": [
+          "magneta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "magnetala",
+      "translations": {
+        "eo": [
+          "magneta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mala",
+      "translations": {
+        "eo": [
+          "fia"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "desbona",
+      "translations": {
+        "eo": [
+          "fia"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "malo",
+      "translations": {
+        "eo": [
+          "fia"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "malajo",
+      "translations": {
+        "eo": [
+          "fia"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mala",
+      "translations": {
+        "eo": [
+          "fia"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "maligna",
+      "translations": {
+        "eo": [
+          "fia"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "malajo",
+      "translations": {
+        "eo": [
+          "fia"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "malulo",
+      "translations": {
+        "eo": [
+          "fia"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "malino",
+      "translations": {
+        "eo": [
+          "fia"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nam",
+      "translations": {
+        "eo": [
+          "ekde"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "depos",
+      "translations": {
+        "eo": [
+          "ekde"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "depose",
+      "translations": {
+        "eo": [
+          "ekde"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "depos ke",
+      "translations": {
+        "eo": [
+          "ekde"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "quoniam",
+      "translations": {
+        "eo": [
+          "ekde"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "biro",
+      "translations": {
+        "eo": [
+          "biero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "benko",
+      "translations": {
+        "eo": [
+          "formo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fasonar",
+      "translations": {
+        "eo": [
+          "formo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "formo",
+      "translations": {
+        "eo": [
+          "formo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "formacar",
+      "translations": {
+        "eo": [
+          "formo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "konstitucar",
+      "translations": {
+        "eo": [
+          "formo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "formizar",
+      "translations": {
+        "eo": [
+          "formo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "naskodio",
+      "translations": {
+        "eo": [
+          "naskotago"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kamizo",
+      "translations": {
+        "eo": [
+          "ĉemizo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "latuno",
+      "translations": {
+        "eo": [
+          "latuno"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "solida",
+      "translations": {
+        "eo": [
+          "sono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "alta",
+      "translations": {
+        "eo": [
+          "sono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fono",
+      "translations": {
+        "eo": [
+          "sono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sonar",
+      "translations": {
+        "eo": [
+          "sono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sono",
+      "translations": {
+        "eo": [
+          "sono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sondilo",
+      "translations": {
+        "eo": [
+          "sono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "bonastanda",
+      "translations": {
+        "eo": [
+          "sono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "stonagar",
+      "translations": {
+        "eo": [
+          "ŝtono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "bloko",
+      "translations": {
+        "eo": [
+          "ŝtono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kerno",
+      "translations": {
+        "eo": [
+          "ŝtono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "petro",
+      "translations": {
+        "eo": [
+          "ŝtono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nukleo",
+      "translations": {
+        "eo": [
+          "ŝtono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "senkernigar",
+      "translations": {
+        "eo": [
+          "ŝtono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "stonomortigar",
+      "translations": {
+        "eo": [
+          "ŝtono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "skribar",
+      "translations": {
+        "eo": [
+          "skribi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mashino",
+      "translations": {
+        "eo": [
+          "maŝino"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nuda",
+      "translations": {
+        "eo": [
+          "nuda"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nuda",
+      "translations": {
+        "eo": [
+          "nuda"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nuda",
+      "translations": {
+        "eo": [
+          "nuda"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "cirklo",
+      "translations": {
+        "eo": [
+          "cirklo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "encirkligar",
+      "translations": {
+        "eo": [
+          "cirklo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "arkigar",
+      "translations": {
+        "eo": [
+          "cirklo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kurvigo",
+      "translations": {
+        "eo": [
+          "cirklo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "karbono",
+      "translations": {
+        "eo": [
+          "terkarbo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "minokarbono",
+      "translations": {
+        "eo": [
+          "terkarbo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "moneto",
+      "translations": {
+        "eo": [
+          "monero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "monetopeco",
+      "translations": {
+        "eo": [
+          "monero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "monetifar",
+      "translations": {
+        "eo": [
+          "monero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "monetigar",
+      "translations": {
+        "eo": [
+          "monero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kupro",
+      "translations": {
+        "eo": [
+          "kupro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "krear",
+      "translations": {
+        "eo": [
+          "krei"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "tenebroza",
+      "translations": {
+        "eo": [
+          "mallumo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "obskura",
+      "translations": {
+        "eo": [
+          "mallumo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "ombroza",
+      "translations": {
+        "eo": [
+          "mallumo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "brulita",
+      "translations": {
+        "eo": [
+          "mallumo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "tenebro",
+      "translations": {
+        "eo": [
+          "mallumo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "obskureso",
+      "translations": {
+        "eo": [
+          "mallumo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "avokado",
+      "translations": {
+        "eo": [
+          "avokado"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fusilo",
+      "translations": {
+        "eo": [
+          "pafilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "apuntar",
+      "translations": {
+        "eo": [
+          "pafilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pafilo",
+      "translations": {
+        "eo": [
+          "pafilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fusilo",
+      "translations": {
+        "eo": [
+          "muskedo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "musketo",
+      "translations": {
+        "eo": [
+          "muskedo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "apartamento",
+      "translations": {
+        "eo": [
+          "apartamento"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "apartamento",
+      "translations": {
+        "eo": [
+          "apartamento"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "plana",
+      "translations": {
+        "eo": [
+          "apartamento"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "bemolo",
+      "translations": {
+        "eo": [
+          "apartamento"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "plata",
+      "translations": {
+        "eo": [
+          "apartamento"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "repasto",
+      "translations": {
+        "eo": [
+          "manĝaĵo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "suno",
+      "translations": {
+        "eo": [
+          "suno"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "delicioza",
+      "translations": {
+        "eo": [
+          "bongusta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pupeo",
+      "translations": {
+        "eo": [
+          "pupo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pordo",
+      "translations": {
+        "eo": [
+          "pordo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pordo",
+      "translations": {
+        "eo": [
+          "pordo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pordego",
+      "translations": {
+        "eo": [
+          "pordo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Tero",
+      "translations": {
+        "eo": [
+          "tero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sulo",
+      "translations": {
+        "eo": [
+          "tero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "vejetala sulo",
+      "translations": {
+        "eo": [
+          "tero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "bona",
+      "translations": {
+        "eo": [
+          "bona"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "exemplo",
+      "translations": {
+        "eo": [
+          "ekzemplo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "existar",
+      "translations": {
+        "eo": [
+          "esti"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "yusta",
+      "translations": {
+        "eo": [
+          "ĵus"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "jus",
+      "translations": {
+        "eo": [
+          "ĵus"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "precize",
+      "translations": {
+        "eo": [
+          "ĵus"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "jusa",
+      "translations": {
+        "eo": [
+          "ĵus"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "ameskar",
+      "translations": {
+        "eo": [
+          "ekami"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": ".an",
+      "translations": {
+        "eo": [
+          "kaco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Suediana",
+      "translations": {
+        "eo": [
+          "sveda"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fairo",
+      "translations": {
+        "eo": [
+          "fajro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "incendio",
+      "translations": {
+        "eo": [
+          "fajro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "incendiala",
+      "translations": {
+        "eo": [
+          "fajro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "unesma",
+      "translations": {
+        "eo": [
+          "unua"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "komencala",
+      "translations": {
+        "eo": [
+          "unua"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "forco",
+      "translations": {
+        "eo": [
+          "forto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "forsar",
+      "translations": {
+        "eo": [
+          "forto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "koaktar",
+      "translations": {
+        "eo": [
+          "forto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "libera",
+      "translations": {
+        "eo": [
+          "sen-"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "desintrikar",
+      "translations": {
+        "eo": [
+          "sen-"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "libereskar",
+      "translations": {
+        "eo": [
+          "sen-"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "libereso",
+      "translations": {
+        "eo": [
+          "libereco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "libereso",
+      "translations": {
+        "eo": [
+          "libereco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "liberajo",
+      "translations": {
+        "eo": [
+          "libereco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Latina",
+      "translations": {
+        "eo": [
+          "Latino"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "okesma",
+      "translations": {
+        "eo": [
+          "oka"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "okimo",
+      "translations": {
+        "eo": [
+          "oka"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "okima",
+      "translations": {
+        "eo": [
+          "oka"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "vorto",
+      "translations": {
+        "eo": [
+          "vorto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "justa",
+      "translations": {
+        "eo": [
+          "vorto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "parolo",
+      "translations": {
+        "eo": [
+          "vorto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "komando",
+      "translations": {
+        "eo": [
+          "vorto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "informajo",
+      "translations": {
+        "eo": [
+          "vorto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "esar",
+      "translations": {
+        "eo": [
+          "esti"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "trovesar",
+      "translations": {
+        "eo": [
+          "esti"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "situar su",
+      "translations": {
+        "eo": [
+          "esti"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "aden",
+      "translations": {
+        "eo": [
+          "en"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "adfluar",
+      "translations": {
+        "eo": [
+          "en"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "povar",
+      "translations": {
+        "eo": [
+          "povi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "bidono",
+      "translations": {
+        "eo": [
+          "povi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "oro",
+      "translations": {
+        "eo": [
+          "oro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "ora",
+      "translations": {
+        "eo": [
+          "oro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "oratra",
+      "translations": {
+        "eo": [
+          "oro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "krizo.",
+      "translations": {
+        "eo": [
+          "oro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "martelo",
+      "translations": {
+        "eo": [
+          "martelo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "martelagar",
+      "translations": {
+        "eo": [
+          "martelo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "tampilo",
+      "translations": {
+        "eo": [
+          "martelo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "perkutilo",
+      "translations": {
+        "eo": [
+          "martelo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "truo",
+      "translations": {
+        "eo": [
+          "truo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "foso",
+      "translations": {
+        "eo": [
+          "truo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "chasero",
+      "translations": {
+        "eo": [
+          "ĉasisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "glacio",
+      "translations": {
+        "eo": [
+          "glacio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "glacio",
+      "translations": {
+        "eo": [
+          "glaciaĵo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "glaciajo",
+      "translations": {
+        "eo": [
+          "glaciaĵo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "malada",
+      "translations": {
+        "eo": [
+          "fia"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "inteligenta",
+      "translations": {
+        "eo": [
+          "inteligenta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "intelektoza",
+      "translations": {
+        "eo": [
+          "inteligenta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "hiere",
+      "translations": {
+        "eo": [
+          "hieraŭ"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "lakto",
+      "translations": {
+        "eo": [
+          "melki"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "melkar",
+      "translations": {
+        "eo": [
+          "melki"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Albaniana",
+      "translations": {
+        "eo": [
+          "albana"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Albaniano",
+      "translations": {
+        "eo": [
+          "albana"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "uzo",
+      "translations": {
+        "eo": [
+          "uzo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "uzo",
+      "translations": {
+        "eo": [
+          "uzi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "uzar",
+      "translations": {
+        "eo": [
+          "uzo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "uzar",
+      "translations": {
+        "eo": [
+          "uzi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "uzado",
+      "translations": {
+        "eo": [
+          "uzo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "uzado",
+      "translations": {
+        "eo": [
+          "uzi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "balnochambro",
+      "translations": {
+        "eo": [
+          "banĉambro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "omno",
+      "translations": {
+        "eo": [
+          "ĉio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "acensilo",
+      "translations": {
+        "eo": [
+          "levoforto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "elevatoro",
+      "translations": {
+        "eo": [
+          "levoforto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "acero",
+      "translations": {
+        "eo": [
+          "acero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "acido",
+      "translations": {
+        "eo": [
+          "acido"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "acida",
+      "translations": {
+        "eo": [
+          "acido"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "adio",
+      "translations": {
+        "eo": [
+          "ĝis revido"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "adinfre",
+      "translations": {
+        "eo": [
+          "suben"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "agnelo",
+      "translations": {
+        "eo": [
+          "ŝafido"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mutonyuno",
+      "translations": {
+        "eo": [
+          "ŝafido"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sorto",
+      "translations": {
+        "eo": [
+          "speco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "benigna",
+      "translations": {
+        "eo": [
+          "speco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "tenera",
+      "translations": {
+        "eo": [
+          "speco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "komplezema",
+      "translations": {
+        "eo": [
+          "speco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "komplezanta",
+      "translations": {
+        "eo": [
+          "speco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "algoritmo",
+      "translations": {
+        "eo": [
+          "algoritmo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mato",
+      "translations": {
+        "eo": [
+          "mato"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "antarktika",
+      "translations": {
+        "eo": [
+          "antarkta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "antarktika",
+      "translations": {
+        "eo": [
+          "antarkta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "antero",
+      "translations": {
+        "eo": [
+          "antero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "araneo",
+      "translations": {
+        "eo": [
+          "araneo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "aristokrato",
+      "translations": {
+        "eo": [
+          "nobelo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "arkaika",
+      "translations": {
+        "eo": [
+          "malnova"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "arkaika",
+      "translations": {
+        "eo": [
+          "maljunulo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "olda",
+      "translations": {
+        "eo": [
+          "malnova"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "olda",
+      "translations": {
+        "eo": [
+          "maljunulo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "evoza",
+      "translations": {
+        "eo": [
+          "malnova"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "evoza",
+      "translations": {
+        "eo": [
+          "maljunulo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "arkeologio",
+      "translations": {
+        "eo": [
+          "arkeologio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "arktika",
+      "translations": {
+        "eo": [
+          "arkta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "arktika",
+      "translations": {
+        "eo": [
+          "arkta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "aureolo",
+      "translations": {
+        "eo": [
+          "nubo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "halono",
+      "translations": {
+        "eo": [
+          "nubo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nimbo",
+      "translations": {
+        "eo": [
+          "nubo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "bero",
+      "translations": {
+        "eo": [
+          "bero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "binara",
+      "translations": {
+        "eo": [
+          "duuma"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "birko",
+      "translations": {
+        "eo": [
+          "betulo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "bombo",
+      "translations": {
+        "eo": [
+          "bombo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "bondeziro",
+      "translations": {
+        "eo": [
+          "voli"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "bronzo",
+      "translations": {
+        "eo": [
+          "bronzo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "bronzizar",
+      "translations": {
+        "eo": [
+          "bronzo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "bruisar",
+      "translations": {
+        "eo": [
+          "zumi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "cesar",
+      "translations": {
+        "eo": [
+          "ĉesi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "cielo",
+      "translations": {
+        "eo": [
+          "ĉielo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "cimo",
+      "translations": {
+        "eo": [
+          "cimo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "lernolibro",
+      "translations": {
+        "eo": [
+          "lernolibro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "deklinado",
+      "translations": {
+        "eo": [
+          "deklinacio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "geologo",
+      "translations": {
+        "eo": [
+          "geologo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "medicino",
+      "translations": {
+        "eo": [
+          "medicino"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "medicino",
+      "translations": {
+        "eo": [
+          "kuracilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "remediilo",
+      "translations": {
+        "eo": [
+          "medicino"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "remediilo",
+      "translations": {
+        "eo": [
+          "kuracilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "dento",
+      "translations": {
+        "eo": [
+          "dento"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pipo",
+      "translations": {
+        "eo": [
+          "pipo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "tubo",
+      "translations": {
+        "eo": [
+          "pipo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "shalmo",
+      "translations": {
+        "eo": [
+          "pipo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pipiar",
+      "translations": {
+        "eo": [
+          "pipo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pipietar",
+      "translations": {
+        "eo": [
+          "pipo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "desavantajo",
+      "translations": {
+        "eo": [
+          "malavantaĝo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "perdajo",
+      "translations": {
+        "eo": [
+          "malavantaĝo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "devorar",
+      "translations": {
+        "eo": [
+          "vori"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "dicionario",
+      "translations": {
+        "eo": [
+          "vortaro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "vortaro",
+      "translations": {
+        "eo": [
+          "vortaro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "vortolibro",
+      "translations": {
+        "eo": [
+          "vortaro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sama",
+      "translations": {
+        "eo": [
+          "sama"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "prepoziciono",
+      "translations": {
+        "eo": [
+          "prepozicio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "docisto",
+      "translations": {
+        "eo": [
+          "instruisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "instruktisto",
+      "translations": {
+        "eo": [
+          "instruisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "docanto",
+      "translations": {
+        "eo": [
+          "instruisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "instruktanto",
+      "translations": {
+        "eo": [
+          "instruisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "instruktero",
+      "translations": {
+        "eo": [
+          "instruisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "doloza",
+      "translations": {
+        "eo": [
+          "fia"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "malicema",
+      "translations": {
+        "eo": [
+          "fia"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "malicoza",
+      "translations": {
+        "eo": [
+          "fia"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sola",
+      "translations": {
+        "eo": [
+          "plandumo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "soleo",
+      "translations": {
+        "eo": [
+          "plandumo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nura",
+      "translations": {
+        "eo": [
+          "plandumo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "plando",
+      "translations": {
+        "eo": [
+          "plandumo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "duadek",
+      "translations": {
+        "eo": [
+          "dudek"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "duesma",
+      "translations": {
+        "eo": [
+          "dua"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "duesma",
+      "translations": {
+        "eo": [
+          "sekundo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sekundo",
+      "translations": {
+        "eo": [
+          "dua"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sekundo",
+      "translations": {
+        "eo": [
+          "sekundo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "duesmo",
+      "translations": {
+        "eo": [
+          "dua"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "duesmo",
+      "translations": {
+        "eo": [
+          "sekundo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "duko",
+      "translations": {
+        "eo": [
+          "duko"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "dukulo",
+      "translations": {
+        "eo": [
+          "duko"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "faleno",
+      "translations": {
+        "eo": [
+          "tineo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "tineo",
+      "translations": {
+        "eo": [
+          "tineo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "papiliono",
+      "translations": {
+        "eo": [
+          "tineo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fasonar",
+      "translations": {
+        "eo": [
+          "formo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "formo",
+      "translations": {
+        "eo": [
+          "formo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "formacar",
+      "translations": {
+        "eo": [
+          "formo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "taliar",
+      "translations": {
+        "eo": [
+          "formo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "formizar",
+      "translations": {
+        "eo": [
+          "formo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "ferovoyo",
+      "translations": {
+        "eo": [
+          "fervojo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "relovoyo",
+      "translations": {
+        "eo": [
+          "fervojo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "flegar",
+      "translations": {
+        "eo": [
+          "flegisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "flegisto",
+      "translations": {
+        "eo": [
+          "flegisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "flegistino",
+      "translations": {
+        "eo": [
+          "flegisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "flegistulo",
+      "translations": {
+        "eo": [
+          "flegisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nutristino",
+      "translations": {
+        "eo": [
+          "flegisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sorgisto",
+      "translations": {
+        "eo": [
+          "flegisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "flexar",
+      "translations": {
+        "eo": [
+          "arĉo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "inklinar",
+      "translations": {
+        "eo": [
+          "arĉo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "reverenco",
+      "translations": {
+        "eo": [
+          "arĉo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "reverencar",
+      "translations": {
+        "eo": [
+          "arĉo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "ark-armo",
+      "translations": {
+        "eo": [
+          "arĉo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pruo",
+      "translations": {
+        "eo": [
+          "arĉo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "flexo",
+      "translations": {
+        "eo": [
+          "arĉo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "folio",
+      "translations": {
+        "eo": [
+          "folio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "foresto",
+      "translations": {
+        "eo": [
+          "arbaro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "arborizar",
+      "translations": {
+        "eo": [
+          "arbaro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fotografar",
+      "translations": {
+        "eo": [
+          "foto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fotografuro",
+      "translations": {
+        "eo": [
+          "foto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "foxo",
+      "translations": {
+        "eo": [
+          "vulpo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "furtar",
+      "translations": {
+        "eo": [
+          "ŝteli"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "energio",
+      "translations": {
+        "eo": [
+          "energio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "energiozeso",
+      "translations": {
+        "eo": [
+          "energio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "exajerar",
+      "translations": {
+        "eo": [
+          "troigi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Germania",
+      "translations": {
+        "eo": [
+          "Germanlando"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "instruktar",
+      "translations": {
+        "eo": [
+          "instrui"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Japoniana",
+      "translations": {
+        "eo": [
+          "japana"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Japoniano",
+      "translations": {
+        "eo": [
+          "japana"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Japonia",
+      "translations": {
+        "eo": [
+          "Japanujo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "justa",
+      "translations": {
+        "eo": [
+          "rajto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "justa",
+      "translations": {
+        "eo": [
+          "rajti"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "korekta",
+      "translations": {
+        "eo": [
+          "rajto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "korekta",
+      "translations": {
+        "eo": [
+          "rajti"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "yusto",
+      "translations": {
+        "eo": [
+          "rajto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "yusto",
+      "translations": {
+        "eo": [
+          "rajti"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "korekte",
+      "translations": {
+        "eo": [
+          "rajto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "korekte",
+      "translations": {
+        "eo": [
+          "rajti"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "zumar",
+      "translations": {
+        "eo": [
+          "zumi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kakatuo",
+      "translations": {
+        "eo": [
+          "kakatuo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kaldiero",
+      "translations": {
+        "eo": [
+          "kaldrono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kaldrono",
+      "translations": {
+        "eo": [
+          "kaldrono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kalko",
+      "translations": {
+        "eo": [
+          "tilio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "limeo",
+      "translations": {
+        "eo": [
+          "tilio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kamarado",
+      "translations": {
+        "eo": [
+          "samideano"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kamarado",
+      "translations": {
+        "eo": [
+          "mato"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mateo",
+      "translations": {
+        "eo": [
+          "mato"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "spozeskar",
+      "translations": {
+        "eo": [
+          "mato"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "parigar",
+      "translations": {
+        "eo": [
+          "mato"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "spozigar",
+      "translations": {
+        "eo": [
+          "mato"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kamelo",
+      "translations": {
+        "eo": [
+          "kamelo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kastoro",
+      "translations": {
+        "eo": [
+          "kastoro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Kataluniano",
+      "translations": {
+        "eo": [
+          "kataluna"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kavaliero",
+      "translations": {
+        "eo": [
+          "ĉevalo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kerlo",
+      "translations": {
+        "eo": [
+          "samideano"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "asociito",
+      "translations": {
+        "eo": [
+          "samideano"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kontreparto",
+      "translations": {
+        "eo": [
+          "samideano"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "simetrajo",
+      "translations": {
+        "eo": [
+          "samideano"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kerno",
+      "translations": {
+        "eo": [
+          "kerno"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nukleo",
+      "translations": {
+        "eo": [
+          "kerno"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "klemar",
+      "translations": {
+        "eo": [
+          "nodo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nodo",
+      "translations": {
+        "eo": [
+          "nodo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "klosho",
+      "translations": {
+        "eo": [
+          "sonorilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "equipar",
+      "translations": {
+        "eo": [
+          "soldato"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "soldato",
+      "translations": {
+        "eo": [
+          "soldato"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "komocionar",
+      "translations": {
+        "eo": [
+          "ŝoki"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "shoko",
+      "translations": {
+        "eo": [
+          "ŝoki"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kompleta",
+      "translations": {
+        "eo": [
+          "tuta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kompletigar",
+      "translations": {
+        "eo": [
+          "tuta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kompleteskar",
+      "translations": {
+        "eo": [
+          "tuta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "parlaborita",
+      "translations": {
+        "eo": [
+          "tuta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Persiana",
+      "translations": {
+        "eo": [
+          "persa"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Persiano",
+      "translations": {
+        "eo": [
+          "persa"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Perso",
+      "translations": {
+        "eo": [
+          "persa"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "konocar",
+      "translations": {
+        "eo": [
+          "scii"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "konseque",
+      "translations": {
+        "eo": [
+          "do"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pro to",
+      "translations": {
+        "eo": [
+          "do"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "korbo",
+      "translations": {
+        "eo": [
+          "korbo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "korbokesto",
+      "translations": {
+        "eo": [
+          "korbo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "koshmaro",
+      "translations": {
+        "eo": [
+          "inkubsonĝo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "inkubo",
+      "translations": {
+        "eo": [
+          "inkubsonĝo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "vaporomashino",
+      "translations": {
+        "eo": [
+          "vapormaŝino"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "vazo",
+      "translations": {
+        "eo": [
+          "vazo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "vergo",
+      "translations": {
+        "eo": [
+          "kaco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "stango",
+      "translations": {
+        "eo": [
+          "kaco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "abeleyo",
+      "translations": {
+        "eo": [
+          "abelejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "abeluyo",
+      "translations": {
+        "eo": [
+          "abelujo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "abelokorbo",
+      "translations": {
+        "eo": [
+          "abelujo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "abeluyo",
+      "translations": {
+        "eo": [
+          "abelujo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "viceparolanto",
+      "translations": {
+        "eo": [
+          "proparolanto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "vipero",
+      "translations": {
+        "eo": [
+          "vipero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "acideso",
+      "translations": {
+        "eo": [
+          "acideco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "vitobero",
+      "translations": {
+        "eo": [
+          "vinbero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "voyo",
+      "translations": {
+        "eo": [
+          "vojo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "maniero",
+      "translations": {
+        "eo": [
+          "vojo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "ube",
+      "translations": {
+        "eo": [
+          "kien"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "ulaloke",
+      "translations": {
+        "eo": [
+          "ien"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "ureo",
+      "translations": {
+        "eo": [
+          "ureo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "uremio",
+      "translations": {
+        "eo": [
+          "uremio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "utensilo",
+      "translations": {
+        "eo": [
+          "ilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Afrika",
+      "translations": {
+        "eo": [
+          "Afriko"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Arieto",
+      "translations": {
+        "eo": [
+          "Ŝafo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Polonia",
+      "translations": {
+        "eo": [
+          "Pollando"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "maleolo",
+      "translations": {
+        "eo": [
+          "piedartiko"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "maligna",
+      "translations": {
+        "eo": [
+          "fia"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "glano",
+      "translations": {
+        "eo": [
+          "glano"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "genero",
+      "translations": {
+        "eo": [
+          "genro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "imperio",
+      "translations": {
+        "eo": [
+          "regno"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Merkuro",
+      "translations": {
+        "eo": [
+          "hidrargo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Merkurio",
+      "translations": {
+        "eo": [
+          "hidrargo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Rusia",
+      "translations": {
+        "eo": [
+          "Ruslando"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "infinito",
+      "translations": {
+        "eo": [
+          "senfina"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "infinita",
+      "translations": {
+        "eo": [
+          "senfina"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nevroso",
+      "translations": {
+        "eo": [
+          "neŭrozo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "gajo",
+      "translations": {
+        "eo": [
+          "peono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "gajigar",
+      "translations": {
+        "eo": [
+          "peono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "gaje",
+      "translations": {
+        "eo": [
+          "peono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fripono",
+      "translations": {
+        "eo": [
+          "bufo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "bubacho",
+      "translations": {
+        "eo": [
+          "bufo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "raskalo",
+      "translations": {
+        "eo": [
+          "bufo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "islamo",
+      "translations": {
+        "eo": [
+          "islamo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "heliko",
+      "translations": {
+        "eo": [
+          "heliko"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Suedia",
+      "translations": {
+        "eo": [
+          "Svedlando"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "latrino",
+      "translations": {
+        "eo": [
+          "fekejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "laveyo",
+      "translations": {
+        "eo": [
+          "fekejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "latrino",
+      "translations": {
+        "eo": [
+          "fekejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "latrino",
+      "translations": {
+        "eo": [
+          "fekejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "tualeto",
+      "translations": {
+        "eo": [
+          "fekejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "tualeteyo",
+      "translations": {
+        "eo": [
+          "fekejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "hidrogeno",
+      "translations": {
+        "eo": [
+          "hidrogeno"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "hido",
+      "translations": {
+        "eo": [
+          "hidrogeno"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "molusko",
+      "translations": {
+        "eo": [
+          "molusko"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "oceano",
+      "translations": {
+        "eo": [
+          "oceano"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "lanjo",
+      "translations": {
+        "eo": [
+          "vindotuko"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "raspar",
+      "translations": {
+        "eo": [
+          "krado"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "frigorizilo",
+      "translations": {
+        "eo": [
+          "fridujo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "frigorizilo",
+      "translations": {
+        "eo": [
+          "fridujo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mortigo",
+      "translations": {
+        "eo": [
+          "murdo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mortigo",
+      "translations": {
+        "eo": [
+          "murdi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "ocido",
+      "translations": {
+        "eo": [
+          "murdo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "ocido",
+      "translations": {
+        "eo": [
+          "murdi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "maro",
+      "translations": {
+        "eo": [
+          "maro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "rabio",
+      "translations": {
+        "eo": [
+          "rabio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "policisto",
+      "translations": {
+        "eo": [
+          "policisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sbiro",
+      "translations": {
+        "eo": [
+          "policisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "policano",
+      "translations": {
+        "eo": [
+          "policisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "quarimo",
+      "translations": {
+        "eo": [
+          "kvara"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "quaresma",
+      "translations": {
+        "eo": [
+          "kvara"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "quarto",
+      "translations": {
+        "eo": [
+          "kvara"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "rinocero",
+      "translations": {
+        "eo": [
+          "rinocero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "triesma",
+      "translations": {
+        "eo": [
+          "tria"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "triimo",
+      "translations": {
+        "eo": [
+          "tria"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mondomilito",
+      "translations": {
+        "eo": [
+          "mondmilito"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "preter",
+      "translations": {
+        "eo": [
+          "post"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pasinta",
+      "translations": {
+        "eo": [
+          "post"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pasinto",
+      "translations": {
+        "eo": [
+          "post"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "eterna",
+      "translations": {
+        "eo": [
+          "eterna"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "til",
+      "translations": {
+        "eo": [
+          "al"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "tilio",
+      "translations": {
+        "eo": [
+          "tilio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "cinematografisto",
+      "translations": {
+        "eo": [
+          "reĝisoro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "plumo",
+      "translations": {
+        "eo": [
+          "skribilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "klozajo",
+      "translations": {
+        "eo": [
+          "skribilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "singulara",
+      "translations": {
+        "eo": [
+          "ununombro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "singulara",
+      "translations": {
+        "eo": [
+          "ununombra"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "falva",
+      "translations": {
+        "eo": [
+          "novalo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nekultivita",
+      "translations": {
+        "eo": [
+          "novalo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "tunelo",
+      "translations": {
+        "eo": [
+          "tunelo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "minogalerio",
+      "translations": {
+        "eo": [
+          "tunelo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "obediar",
+      "translations": {
+        "eo": [
+          "obei"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nazo",
+      "translations": {
+        "eo": [
+          "nazo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "bifurkilo",
+      "translations": {
+        "eo": [
+          "trakforko"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "perversa",
+      "translations": {
+        "eo": [
+          "fia"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sivo",
+      "translations": {
+        "eo": [
+          "kribrilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kribleto",
+      "translations": {
+        "eo": [
+          "kribrilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "blutilo",
+      "translations": {
+        "eo": [
+          "kribrilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sivo",
+      "translations": {
+        "eo": [
+          "kribrilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "filtrilo",
+      "translations": {
+        "eo": [
+          "kribrilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "bulionokribleto",
+      "translations": {
+        "eo": [
+          "kribrilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "polpo",
+      "translations": {
+        "eo": [
+          "polpo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "batrako",
+      "translations": {
+        "eo": [
+          "bufo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "rospo",
+      "translations": {
+        "eo": [
+          "bufo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "semblar",
+      "translations": {
+        "eo": [
+          "ŝajni"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "leporo",
+      "translations": {
+        "eo": [
+          "leporo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "okupar",
+      "translations": {
+        "eo": [
+          "okupi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "onomatopeo",
+      "translations": {
+        "eo": [
+          "onomatopeo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "titulo",
+      "translations": {
+        "eo": [
+          "artikolo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "indulgema",
+      "translations": {
+        "eo": [
+          "facila"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "posto",
+      "translations": {
+        "eo": [
+          "poŝto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "ofico",
+      "translations": {
+        "eo": [
+          "poŝto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "paliso",
+      "translations": {
+        "eo": [
+          "poŝto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "posteno",
+      "translations": {
+        "eo": [
+          "poŝto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "grilar",
+      "translations": {
+        "eo": [
+          "krado"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "novico",
+      "translations": {
+        "eo": [
+          "komencanto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "debutantulo",
+      "translations": {
+        "eo": [
+          "komencanto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "debutantino",
+      "translations": {
+        "eo": [
+          "komencanto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "simpla",
+      "translations": {
+        "eo": [
+          "simpla"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "siliko",
+      "translations": {
+        "eo": [
+          "silicio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "genro",
+      "translations": {
+        "eo": [
+          "genro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "plako",
+      "translations": {
+        "eo": [
+          "folio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "eskoto",
+      "translations": {
+        "eo": [
+          "folio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nutrajo",
+      "translations": {
+        "eo": [
+          "manĝaĵo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "manjajo",
+      "translations": {
+        "eo": [
+          "manĝaĵo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nutrivaro",
+      "translations": {
+        "eo": [
+          "manĝaĵo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pafilo",
+      "translations": {
+        "eo": [
+          "pafilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pafoarmo",
+      "translations": {
+        "eo": [
+          "pafilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "linguistiko",
+      "translations": {
+        "eo": [
+          "lingvoscienco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "integra",
+      "translations": {
+        "eo": [
+          "tuta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "tota",
+      "translations": {
+        "eo": [
+          "tuta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "toteso",
+      "translations": {
+        "eo": [
+          "tuta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "ofte",
+      "translations": {
+        "eo": [
+          "ofte"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "ofte",
+      "translations": {
+        "eo": [
+          "ofte"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "frigorizar",
+      "translations": {
+        "eo": [
+          "mojosa"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "koldeta",
+      "translations": {
+        "eo": [
+          "mojosa"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "volo",
+      "translations": {
+        "eo": [
+          "voli"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "strucho",
+      "translations": {
+        "eo": [
+          "struto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "forteso",
+      "translations": {
+        "eo": [
+          "forto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "maristo",
+      "translations": {
+        "eo": [
+          "maristo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "navano",
+      "translations": {
+        "eo": [
+          "maristo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "navisto",
+      "translations": {
+        "eo": [
+          "maristo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "shamo",
+      "translations": {
+        "eo": [
+          "honto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "shamigar",
+      "translations": {
+        "eo": [
+          "honto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "lampo",
+      "translations": {
+        "eo": [
+          "lampo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "prehistoriala",
+      "translations": {
+        "eo": [
+          "pra-"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "terovenar",
+      "translations": {
+        "eo": [
+          "lando"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "blokala",
+      "translations": {
+        "eo": [
+          "tutmonda"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "globala",
+      "translations": {
+        "eo": [
+          "tutmonda"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "substantivo",
+      "translations": {
+        "eo": [
+          "substantivo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "obsoleta",
+      "translations": {
+        "eo": [
+          "malnoviĝinta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "ciel-arko",
+      "translations": {
+        "eo": [
+          "ĉielarko"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pluv-arko",
+      "translations": {
+        "eo": [
+          "ĉielarko"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "patrio",
+      "translations": {
+        "eo": [
+          "patrujo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "naskolando",
+      "translations": {
+        "eo": [
+          "patrujo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mistifikar",
+      "translations": {
+        "eo": [
+          "stultulo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "folo",
+      "translations": {
+        "eo": [
+          "stultulo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "stulto",
+      "translations": {
+        "eo": [
+          "stultulo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "ruro",
+      "translations": {
+        "eo": [
+          "lando"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "lamentar",
+      "translations": {
+        "eo": [
+          "plori"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "milito",
+      "translations": {
+        "eo": [
+          "milito"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Roma",
+      "translations": {
+        "eo": [
+          "Romo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "refujanto",
+      "translations": {
+        "eo": [
+          "rifuĝinto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "refujinto",
+      "translations": {
+        "eo": [
+          "rifuĝinto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sharko",
+      "translations": {
+        "eo": [
+          "ŝarko"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "squalo",
+      "translations": {
+        "eo": [
+          "ŝarko"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "eskrokero",
+      "translations": {
+        "eo": [
+          "ŝarko"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "eskrokanto",
+      "translations": {
+        "eo": [
+          "ŝarko"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "eskrokisto",
+      "translations": {
+        "eo": [
+          "ŝarko"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "saporoza",
+      "translations": {
+        "eo": [
+          "bongusta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "frianda",
+      "translations": {
+        "eo": [
+          "bongusta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "plorar",
+      "translations": {
+        "eo": [
+          "plori"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "salmono",
+      "translations": {
+        "eo": [
+          "salmo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "salmonea",
+      "translations": {
+        "eo": [
+          "salmo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sambuko",
+      "translations": {
+        "eo": [
+          "maljunulo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "seniora",
+      "translations": {
+        "eo": [
+          "maljunulo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sekretario",
+      "translations": {
+        "eo": [
+          "sekretario"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "seniora",
+      "translations": {
+        "eo": [
+          "maljunulo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "senioro",
+      "translations": {
+        "eo": [
+          "maljunulo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "granito",
+      "translations": {
+        "eo": [
+          "granito"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "semanala",
+      "translations": {
+        "eo": [
+          "ĉiusemajna"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "semanala",
+      "translations": {
+        "eo": [
+          "ĉiusemajne"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "portisto",
+      "translations": {
+        "eo": [
+          "portisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "balayajo",
+      "translations": {
+        "eo": [
+          "tero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sordidajo",
+      "translations": {
+        "eo": [
+          "tero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "obceneso",
+      "translations": {
+        "eo": [
+          "tero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "suskriptar",
+      "translations": {
+        "eo": [
+          "aboni"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "berilo",
+      "translations": {
+        "eo": [
+          "berilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "smeraldo",
+      "translations": {
+        "eo": [
+          "smeraldo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "skarsa",
+      "translations": {
+        "eo": [
+          "malabunda"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "ribo",
+      "translations": {
+        "eo": [
+          "ribo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pikar",
+      "translations": {
+        "eo": [
+          "kaco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "orelobinoklo",
+      "translations": {
+        "eo": [
+          "okulvitroj"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "biologo",
+      "translations": {
+        "eo": [
+          "biologo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "biologiisto",
+      "translations": {
+        "eo": [
+          "biologo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "limono",
+      "translations": {
+        "eo": [
+          "citrono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "lavar",
+      "translations": {
+        "eo": [
+          "lavi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "lavado",
+      "translations": {
+        "eo": [
+          "lavi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "linjolavajaro",
+      "translations": {
+        "eo": [
+          "lavi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "lociono",
+      "translations": {
+        "eo": [
+          "lavi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "plaudo",
+      "translations": {
+        "eo": [
+          "lavi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "patriotismo",
+      "translations": {
+        "eo": [
+          "patriotismo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "patrioteso",
+      "translations": {
+        "eo": [
+          "patriotismo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "flereto",
+      "translations": {
+        "eo": [
+          "folio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "rapiero",
+      "translations": {
+        "eo": [
+          "folio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "vanigar",
+      "translations": {
+        "eo": [
+          "folio"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "boikotar",
+      "translations": {
+        "eo": [
+          "bojkoto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "boikoto",
+      "translations": {
+        "eo": [
+          "bojkoto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "havajo",
+      "translations": {
+        "eo": [
+          "resurso"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "resurso",
+      "translations": {
+        "eo": [
+          "resurso"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "rezulto",
+      "translations": {
+        "eo": [
+          "vivresumo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mesajacho",
+      "translations": {
+        "eo": [
+          "spamo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "spamo",
+      "translations": {
+        "eo": [
+          "spamo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "certe",
+      "translations": {
+        "eo": [
+          "certe"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "plusa",
+      "translations": {
+        "eo": [
+          "plus"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "skribilo",
+      "translations": {
+        "eo": [
+          "skribilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "skribomashino",
+      "translations": {
+        "eo": [
+          "skribmaŝino"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mashinoskribero",
+      "translations": {
+        "eo": [
+          "skribmaŝino"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "taipilo",
+      "translations": {
+        "eo": [
+          "skribmaŝino"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nulafoye",
+      "translations": {
+        "eo": [
+          "neniam"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sordideso",
+      "translations": {
+        "eo": [
+          "porkejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "desnetigar",
+      "translations": {
+        "eo": [
+          "porkejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sordidajo",
+      "translations": {
+        "eo": [
+          "porkejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "repasterio",
+      "translations": {
+        "eo": [
+          "porkejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "arufeso",
+      "translations": {
+        "eo": [
+          "porkejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "desneteskar",
+      "translations": {
+        "eo": [
+          "porkejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sordidigar",
+      "translations": {
+        "eo": [
+          "tero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sordideskar",
+      "translations": {
+        "eo": [
+          "tero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "desnetigar",
+      "translations": {
+        "eo": [
+          "tero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "vejetala sulo",
+      "translations": {
+        "eo": [
+          "tero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "komputilo",
+      "translations": {
+        "eo": [
+          "komputilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "komputero",
+      "translations": {
+        "eo": [
+          "komputilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "indijo",
+      "translations": {
+        "eo": [
+          "voli"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "chasohundo",
+      "translations": {
+        "eo": [
+          "hundo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "itero",
+      "translations": {
+        "eo": [
+          "generado"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "genitado",
+      "translations": {
+        "eo": [
+          "generado"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "riprodukto",
+      "translations": {
+        "eo": [
+          "generado"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "postokarto",
+      "translations": {
+        "eo": [
+          "poŝtkarto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "submersonavo",
+      "translations": {
+        "eo": [
+          "submarŝipo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "submara",
+      "translations": {
+        "eo": [
+          "submarŝipo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sucino",
+      "translations": {
+        "eo": [
+          "sukcena"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sucino",
+      "translations": {
+        "eo": [
+          "sukceno"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "implicita",
+      "translations": {
+        "eo": [
+          "subkomprenata"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "tacita",
+      "translations": {
+        "eo": [
+          "subkomprenata"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "rangizar",
+      "translations": {
+        "eo": [
+          "klaso"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "rebuso",
+      "translations": {
+        "eo": [
+          "rebuso"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nejusta",
+      "translations": {
+        "eo": [
+          "misa"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nekorekta",
+      "translations": {
+        "eo": [
+          "misa"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "noco",
+      "translations": {
+        "eo": [
+          "misa"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "neyustajo",
+      "translations": {
+        "eo": [
+          "misa"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "neyusteso",
+      "translations": {
+        "eo": [
+          "misa"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "erore",
+      "translations": {
+        "eo": [
+          "misa"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "rejio",
+      "translations": {
+        "eo": [
+          "regno"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "rejolando",
+      "translations": {
+        "eo": [
+          "regno"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "furtisto",
+      "translations": {
+        "eo": [
+          "ŝtelisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "raptisto",
+      "translations": {
+        "eo": [
+          "ŝtelisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "furtero",
+      "translations": {
+        "eo": [
+          "ŝtelisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "raptero",
+      "translations": {
+        "eo": [
+          "ŝtelisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "furtanto",
+      "translations": {
+        "eo": [
+          "ŝtelisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "rovobero",
+      "translations": {
+        "eo": [
+          "rubusbero"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "formiko",
+      "translations": {
+        "eo": [
+          "formiko"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pluralo",
+      "translations": {
+        "eo": [
+          "multenombro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "plurala",
+      "translations": {
+        "eo": [
+          "multenombro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "rumo",
+      "translations": {
+        "eo": [
+          "rumo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "triadek",
+      "translations": {
+        "eo": [
+          "tridek"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "quaradek",
+      "translations": {
+        "eo": [
+          "kvardek"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Ido",
+      "translations": {
+        "eo": [
+          "Ido"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "embarko",
+      "translations": {
+        "eo": [
+          "poŝtaĵo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "expedio",
+      "translations": {
+        "eo": [
+          "poŝtaĵo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kargado",
+      "translations": {
+        "eo": [
+          "poŝtaĵo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fashismo",
+      "translations": {
+        "eo": [
+          "faŝismo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fuzeo",
+      "translations": {
+        "eo": [
+          "raketo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "gazono",
+      "translations": {
+        "eo": [
+          "herbo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "narciso",
+      "translations": {
+        "eo": [
+          "narciso"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "narciso",
+      "translations": {
+        "eo": [
+          "narciso"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "manipulatoro",
+      "translations": {
+        "eo": [
+          "morsoklavo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mopso",
+      "translations": {
+        "eo": [
+          "mopso"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fashisto",
+      "translations": {
+        "eo": [
+          "faŝisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Filipini",
+      "translations": {
+        "eo": [
+          "Filipinoj"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "autentikeso",
+      "translations": {
+        "eo": [
+          "aŭtentikeco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pedofingro",
+      "translations": {
+        "eo": [
+          "piedfingro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fornego",
+      "translations": {
+        "eo": [
+          "altforno"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "exploziva",
+      "translations": {
+        "eo": [
+          "eksplodaĵo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "explozivo",
+      "translations": {
+        "eo": [
+          "eksplodaĵo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fraktalo",
+      "translations": {
+        "eo": [
+          "frakto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "furto",
+      "translations": {
+        "eo": [
+          "ŝtelo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "uzanta",
+      "translations": {
+        "eo": [
+          "uzanto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "uzero",
+      "translations": {
+        "eo": [
+          "uzanto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "uzanto",
+      "translations": {
+        "eo": [
+          "uzanto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nekorekta",
+      "translations": {
+        "eo": [
+          "misa"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "neexakta",
+      "translations": {
+        "eo": [
+          "misa"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "penisoglano",
+      "translations": {
+        "eo": [
+          "glano"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pando",
+      "translations": {
+        "eo": [
+          "granda pando"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Idisto",
+      "translations": {
+        "eo": [
+          "idisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sunala sistemo",
+      "translations": {
+        "eo": [
+          "sunsistemo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Ioannes",
+      "translations": {
+        "eo": [
+          "fekejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "katulo",
+      "translations": {
+        "eo": [
+          "kato"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kapitalismo",
+      "translations": {
+        "eo": [
+          "kapitalismo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "laktovoyo",
+      "translations": {
+        "eo": [
+          "Lakta Vojo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mondala",
+      "translations": {
+        "eo": [
+          "tutmonda"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "lavomashino",
+      "translations": {
+        "eo": [
+          "lavmaŝino"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "lavanto",
+      "translations": {
+        "eo": [
+          "lavmaŝino"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "lavero",
+      "translations": {
+        "eo": [
+          "lavmaŝino"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "lavisto",
+      "translations": {
+        "eo": [
+          "lavmaŝino"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "katyuno",
+      "translations": {
+        "eo": [
+          "katido"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nulaloke",
+      "translations": {
+        "eo": [
+          "nenien"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "postokontoro",
+      "translations": {
+        "eo": [
+          "poŝtoficejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mangiero",
+      "translations": {
+        "eo": [
+          "mangarbo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pakto",
+      "translations": {
+        "eo": [
+          "pakto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nukleala",
+      "translations": {
+        "eo": [
+          "nuklea"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nukleara",
+      "translations": {
+        "eo": [
+          "nuklea"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Mortinta Maro",
+      "translations": {
+        "eo": [
+          "Morta Maro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "muelilo",
+      "translations": {
+        "eo": [
+          "muelejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "mueleyo",
+      "translations": {
+        "eo": [
+          "muelejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "muelodisko",
+      "translations": {
+        "eo": [
+          "muelŝtono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "muelopetro",
+      "translations": {
+        "eo": [
+          "muelŝtono"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "atom-armo",
+      "translations": {
+        "eo": [
+          "nuklea armilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "musketiero",
+      "translations": {
+        "eo": [
+          "muskedisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "navano",
+      "translations": {
+        "eo": [
+          "maristo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "obliviema",
+      "translations": {
+        "eo": [
+          "forgesema"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "uzantonomo",
+      "translations": {
+        "eo": [
+          "uzantonomo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "senfina",
+      "translations": {
+        "eo": [
+          "senfina"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "oranjiero",
+      "translations": {
+        "eo": [
+          "oranĝarbo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pendigar",
+      "translations": {
+        "eo": [
+          "pendumi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "pendajo",
+      "translations": {
+        "eo": [
+          "pendumi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fontokodexo",
+      "translations": {
+        "eo": [
+          "fonto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fonta",
+      "translations": {
+        "eo": [
+          "fonto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "eskalatoro",
+      "translations": {
+        "eo": [
+          "rulŝtuparo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "piochagar",
+      "translations": {
+        "eo": [
+          "fosi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "fosifar",
+      "translations": {
+        "eo": [
+          "fosi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "polvosugilo",
+      "translations": {
+        "eo": [
+          "polvosuĉilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "quale se",
+      "translations": {
+        "eo": [
+          "kvazaŭ"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "relovoyo",
+      "translations": {
+        "eo": [
+          "fervojo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "repleteso",
+      "translations": {
+        "eo": [
+          "koncentriteco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "romantikismo",
+      "translations": {
+        "eo": [
+          "romantikismo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "Singapur",
+      "translations": {
+        "eo": [
+          "Singapuro"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "vers-supre",
+      "translations": {
+        "eo": [
+          "supren"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "urso blanka",
+      "translations": {
+        "eo": [
+          "arkta urso"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "veho",
+      "translations": {
+        "eo": [
+          "rajdi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "veturirar",
+      "translations": {
+        "eo": [
+          "rajdi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kavalkado",
+      "translations": {
+        "eo": [
+          "rajdi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "venonta",
+      "translations": {
+        "eo": [
+          "posta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nexta",
+      "translations": {
+        "eo": [
+          "posta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "sequante",
+      "translations": {
+        "eo": [
+          "posta"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kalumnioza",
+      "translations": {
+        "eo": [
+          "misfamiga"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kalumnia",
+      "translations": {
+        "eo": [
+          "misfamiga"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kalumniema",
+      "translations": {
+        "eo": [
+          "misfamiga"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "difamanto",
+      "translations": {
+        "eo": [
+          "misfamiga"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "difamero",
+      "translations": {
+        "eo": [
+          "misfamiga"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "maldicensemo",
+      "translations": {
+        "eo": [
+          "misfamiga"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "komputar",
+      "translations": {
+        "eo": [
+          "komputi"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "komencanto",
+      "translations": {
+        "eo": [
+          "komencanto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "debutanto",
+      "translations": {
+        "eo": [
+          "komencanto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "debutanta",
+      "translations": {
+        "eo": [
+          "komencanto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "debutantulo",
+      "translations": {
+        "eo": [
+          "komencanto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "debutantino",
+      "translations": {
+        "eo": [
+          "komencanto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "instrumentaro",
+      "translations": {
+        "eo": [
+          "rapidumo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "asasinanto",
+      "translations": {
+        "eo": [
+          "murdisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "asasinero",
+      "translations": {
+        "eo": [
+          "murdisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "ocidero",
+      "translations": {
+        "eo": [
+          "murdisto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "charjisto",
+      "translations": {
+        "eo": [
+          "elektra ŝargilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "charjilo",
+      "translations": {
+        "eo": [
+          "elektra ŝargilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "picho",
+      "translations": {
+        "eo": [
+          "kaco"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "bulionokribleto",
+      "translations": {
+        "eo": [
+          "kribrilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "gasodukto",
+      "translations": {
+        "eo": [
+          "gasodukto"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "librovenderio",
+      "translations": {
+        "eo": [
+          "librovendejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "desesperanto",
+      "translations": {
+        "eo": [
+          "senespera"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "desesperala",
+      "translations": {
+        "eo": [
+          "senespera"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "golo",
+      "translations": {
+        "eo": [
+          "golo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nevrosika",
+      "translations": {
+        "eo": [
+          "neŭroza"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "nevrosiko",
+      "translations": {
+        "eo": [
+          "neŭroza"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "emendala",
+      "translations": {
+        "eo": [
+          "malliberejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "emendeyo",
+      "translations": {
+        "eo": [
+          "malliberejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "puniserio",
+      "translations": {
+        "eo": [
+          "malliberejo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "hanyuneto",
+      "translations": {
+        "eo": [
+          "leporo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "akrochanto",
+      "translations": {
+        "eo": [
+          "pendumo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kivio",
+      "translations": {
+        "eo": [
+          "kivo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "kiwio",
+      "translations": {
+        "eo": [
+          "kivo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "ekmoda",
+      "translations": {
+        "eo": [
+          "stultulo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "tacita",
+      "translations": {
+        "eo": [
+          "subkomprenata"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    },
+    {
+      "lemma": "servero",
+      "translations": {
+        "eo": [
+          "servilo"
+        ]
+      },
+      "source_page": "Pivot: en_pivot"
+    }
+  ]
+}
