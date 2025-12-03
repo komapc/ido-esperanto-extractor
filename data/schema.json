@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Unified Dictionary Source Format",
+  "description": "Schema for all dictionary source JSON files. All sources must conform to this format.",
+  "type": "object",
+  "required": ["metadata", "entries"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["source_name", "version", "generation_date"],
+      "properties": {
+        "source_name": {
+          "type": "string",
+          "description": "Identifier for the source system (e.g., 'io_wiktionary', 'bert', 'ido_lexicon')"
+        },
+        "version": {
+          "type": "string",
+          "description": "Format version (e.g., '1.0')"
+        },
+        "generation_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when this file was generated"
+        },
+        "statistics": {
+          "type": "object",
+          "description": "Optional statistics about the source data",
+          "properties": {
+            "total_entries": {"type": "integer"},
+            "entries_with_translations": {"type": "integer"},
+            "entries_with_morphology": {"type": "integer"}
+          }
+        }
+      }
+    },
+    "entries": {
+      "type": "array",
+      "description": "List of dictionary entries",
+      "items": {
+        "type": "object",
+        "required": ["lemma", "source", "translations"],
+        "properties": {
+          "lemma": {
+            "type": "string",
+            "description": "The Ido word form (lemma/stem)"
+          },
+          "source": {
+            "type": "string",
+            "description": "Source identifier for this entry (e.g., 'io_wiktionary', 'bert')"
+          },
+          "pos": {
+            "type": "string",
+            "description": "Part of speech (optional): 'n', 'vblex', 'adj', 'adv', 'pr', 'det', 'prn', 'cnjcoo', 'cnjsub', 'num', 'ij'"
+          },
+          "morphology": {
+            "type": "object",
+            "description": "Morphological information (optional)",
+            "properties": {
+              "paradigm": {
+                "type": "string",
+                "description": "Paradigm identifier (e.g., 'o__n', 'ar__vblex', 'a__adj')"
+              }
+            }
+          },
+          "translations": {
+            "type": "array",
+            "description": "List of translations (can be empty for monolingual entries)",
+            "items": {
+              "type": "object",
+              "required": ["term", "lang", "confidence", "source"],
+              "properties": {
+                "term": {
+                  "type": "string",
+                  "description": "The translation term"
+                },
+                "lang": {
+                  "type": "string",
+                  "description": "Target language code (e.g., 'eo' for Esperanto)"
+                },
+                "confidence": {
+                  "type": "number",
+                  "minimum": 0.0,
+                  "maximum": 1.0,
+                  "description": "Confidence score (0.0-1.0). Defaults: wiktionary=1.0, wikipedia=0.9, bert=similarity value"
+                },
+                "source": {
+                  "type": "string",
+                  "description": "Source identifier for this translation"
+                }
+              }
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Additional metadata (optional)",
+            "properties": {
+              "source_page": {
+                "type": "string",
+                "format": "uri",
+                "description": "URL to the source page (e.g., Wiktionary article)"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
