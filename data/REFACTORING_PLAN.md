@@ -329,11 +329,15 @@ projects/
 
 ## Progress Tracking
 
-- [x] Phase 1: Define Unified Format Schema
-- [x] Phase 3: Simplify Merging (scripts created)
-- [x] Phase 5: Directory Structure
+- [x] Phase 1: Define Unified Format Schema ✅
+- [x] Phase 3: Simplify Merging (scripts created) ✅
+- [x] Phase 5: Directory Structure ✅
 - [ ] Phase 2: Update Source Generators
 - [ ] Phase 4: DIX Generation
 - [ ] Phase 6: Rules Preservation
 - [ ] Phase 7: Cleanup and Migration
+
+## PR Links
+
+- **Phase 1 (Schema & Infrastructure)**: [PR #42](https://github.com/komapc/ido-esperanto-extractor/pull/42) - Merged ✅
 

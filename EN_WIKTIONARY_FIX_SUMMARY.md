@@ -325,3 +325,4 @@ EOF
 - `TEMPLATE_RESOLUTION_TABLE.md` - Full template inventory and resolution strategy
 - `TEMPLATE_ANALYSIS_FR_WIKTIONARY.md` - French comparison (different architecture)
 
+

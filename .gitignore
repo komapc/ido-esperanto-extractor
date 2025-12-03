@@ -50,3 +50,9 @@ work/*.xml
 
 # Raw data dumps (large files, downloaded on demand)
 data/raw/
+
+# Large generated data files (regenerated from sources)
+data/generated/
+data/merged/
+data/sources/*.json
+!data/sources/source_*.json.example  # Keep example files
