@@ -41,6 +41,8 @@ def create_metadata(source_name, dump_file, dump_date=None, script_path=None, ve
     
     metadata = {
         "source_name": source_name,
+        "version": version,
+        "generation_date": datetime.now().isoformat(),
         "file_type": "source_json",
         "origin": {
             "dump_file": dump_path.name,

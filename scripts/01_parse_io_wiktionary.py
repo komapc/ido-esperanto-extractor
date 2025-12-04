@@ -22,7 +22,7 @@ from utils.parser_base import parse_wiktionary_wrapper, find_dump_file
 def main(argv):
     ap = argparse.ArgumentParser(description="Parse Ido Wiktionary (Orthogonal)")
     ap.add_argument("--dump", type=Path, help="Path to Wiktionary dump file")
-    ap.add_argument("--output", type=Path, default=Path("sources/source_io_wiktionary.json"))
+    ap.add_argument("--output", type=Path, default=Path("../data/sources/source_io_wiktionary.json"))
     ap.add_argument("--limit", type=int, help="Limit number of pages to parse (for testing)")
     ap.add_argument("--progress-every", type=int, default=1000)
     ap.add_argument("-v", "--verbose", action="count", default=0)
