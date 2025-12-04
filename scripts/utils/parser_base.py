@@ -11,9 +11,15 @@ from utils.json_utils import save_json, get_file_size_mb
 from utils.metadata import create_metadata, update_statistics
 
 
-def convert_wiktionary_to_standardized(old_format_data, source_name, url_base, dump_file, script_path):
+def convert_wiktionary_to_unified(old_format_data, source_name, url_base, dump_file, script_path, confidence=1.0):
     """
-    Convert wiktionary_parser output to standardized format.
+    Convert wiktionary_parser output to unified JSON format.
+    
+    Unified format specification:
+    - Each entry has "source" field
+    - Translations are array of objects with "term", "lang", "confidence", "source"
+    - Metadata fields go in "metadata" object
+    - Confidence: 1.0 for wiktionary, 0.9 for wikipedia
     
     Args:
         old_format_data: Output from wiktionary_parser
@@ -21,16 +27,17 @@ def convert_wiktionary_to_standardized(old_format_data, source_name, url_base, d
         url_base: e.g., "https://io.wiktionary.org/wiki/"
         dump_file: Path to dump file
         script_path: Path to parser script
+        confidence: Confidence score for translations (default 1.0)
     
     Returns:
-        dict: {"metadata": {...}, "entries": [...]}
+        dict: {"metadata": {...}, "entries": [...]} in unified format
     """
     # Create metadata
     metadata = create_metadata(
         source_name=source_name,
         dump_file=dump_file,
         script_path=script_path,
-        version="2.0"
+        version="3.0"  # Unified format version
     )
     
     # Handle both list and dict formats
@@ -39,7 +46,7 @@ def convert_wiktionary_to_standardized(old_format_data, source_name, url_base, d
     else:
         entries_list = old_format_data
     
-    # Convert entries to standardized format
+    # Convert entries to unified format
     entries = []
     total_entries = 0
     with_translations = 0
@@ -52,8 +59,10 @@ def convert_wiktionary_to_standardized(old_format_data, source_name, url_base, d
         
         total_entries += 1
         
-        # Extract translations from senses
-        translations = {}
+        # Extract translations from senses - convert to unified format
+        translations_unified = []
+        seen_translations = set()  # Track (term, lang) to avoid duplicates
+        
         if 'senses' in entry_data:
             for sense in entry_data['senses']:
                 if 'translations' in sense:
@@ -63,17 +72,22 @@ def convert_wiktionary_to_standardized(old_format_data, source_name, url_base, d
                         
                         # Clean up term (remove markup)
                         if term:
-                            term = re.sub(r'\s*Kategorio:.*$', '', term)
+                            term = re.sub(r'\s*Kategorio:.*', '', term)
                             term = re.sub(r'\s*\[\[.*?\]\]', '', term)
                             term = term.strip()
                         
                         if lang and term:
-                            if lang not in translations:
-                                translations[lang] = []
-                            if term not in translations[lang]:
-                                translations[lang].append(term)
+                            trans_key = (term, lang)
+                            if trans_key not in seen_translations:
+                                seen_translations.add(trans_key)
+                                translations_unified.append({
+                                    "term": term,
+                                    "lang": lang,
+                                    "confidence": confidence,
+                                    "source": source_name
+                                })
         
-        if translations:
+        if translations_unified:
             with_translations += 1
         
         # Extract morphology
@@ -84,22 +98,24 @@ def convert_wiktionary_to_standardized(old_format_data, source_name, url_base, d
                 morphology = {"paradigm": morph_data['paradigm']}
                 with_morphology += 1
         
-        # Create standardized entry
+        # Create unified entry
         entry = {
             "lemma": lemma,
-            "pos": entry_data.get('pos'),
-            "translations": translations,
-            "morphology": morphology,
-            "source_page": f"{url_base}{lemma}"
+            "source": source_name,
+            "translations": translations_unified,
         }
         
-        # Remove empty/null fields
-        if not entry['pos']:
-            del entry['pos']
-        if not entry['translations']:
-            del entry['translations']
-        if not entry['morphology']:
-            del entry['morphology']
+        # Add optional fields
+        if entry_data.get('pos'):
+            entry['pos'] = entry_data['pos']
+        
+        if morphology:
+            entry['morphology'] = morphology
+        
+        # Add metadata (source_page, etc.)
+        entry['metadata'] = {
+            "source_page": f"{url_base}{lemma}"
+        }
         
         entries.append(entry)
     
@@ -110,6 +126,12 @@ def convert_wiktionary_to_standardized(old_format_data, source_name, url_base, d
         "metadata": metadata,
         "entries": entries
     }
+
+
+# Keep old function name for backward compatibility
+def convert_wiktionary_to_standardized(old_format_data, source_name, url_base, dump_file, script_path):
+    """Legacy wrapper - calls convert_wiktionary_to_unified."""
+    return convert_wiktionary_to_unified(old_format_data, source_name, url_base, dump_file, script_path, confidence=1.0)
 
 
 def find_dump_file(dump_pattern, dumps_dir, fallback_paths):
@@ -142,7 +164,7 @@ def find_dump_file(dump_pattern, dumps_dir, fallback_paths):
 
 
 def parse_wiktionary_wrapper(dump_file, parser_config, output_file, args, 
-                            source_name, url_base, script_path):
+                            source_name, url_base, script_path, confidence=1.0):
     """
     Wrapper for parse_wiktionary that handles temp files and conversion.
     
@@ -154,6 +176,7 @@ def parse_wiktionary_wrapper(dump_file, parser_config, output_file, args,
         source_name: Source name for metadata
         url_base: Base URL for source_page links
         script_path: Path to parser script for metadata
+        confidence: Confidence score for translations (default 1.0)
     
     Returns:
         int: 0 on success, 1 on error
@@ -179,17 +202,17 @@ def parse_wiktionary_wrapper(dump_file, parser_config, output_file, args,
         with open(temp_output, 'r', encoding='utf-8') as f:
             old_data = json.load(f)
         
-        # Convert to standardized format
-        print(f"\n📦 Converting to standardized format...")
-        standardized_data = convert_wiktionary_to_standardized(
-            old_data, source_name, url_base, dump_file, script_path
+        # Convert to unified format
+        print(f"\n📦 Converting to unified format...")
+        unified_data = convert_wiktionary_to_unified(
+            old_data, source_name, url_base, dump_file, script_path, confidence
         )
         
-        # Save standardized output
-        save_json(standardized_data, output_file)
+        # Save unified output
+        save_json(unified_data, output_file)
         
         # Print statistics
-        stats = standardized_data['metadata']['statistics']
+        stats = unified_data['metadata']['statistics']
         print(f"\n✅ Parsing complete!")
         print(f"   Total entries: {stats['total_entries']:,}")
         print(f"   With translations: {stats['with_translations']:,}")
@@ -202,4 +225,3 @@ def parse_wiktionary_wrapper(dump_file, parser_config, output_file, args,
         # Clean up temp file
         if temp_output.exists():
             temp_output.unlink()
-
