@@ -26,7 +26,13 @@ def _child(elem: ET.Element, local: str) -> Optional[ET.Element]:
 
 
 LANG_SECTION_PATTERNS = {
-    "io": [r"==\s*\{\{io\}\}\s*==", r"==\s*Ido\s*==", r"\{\{-ido-\}\}"],
+    "io": [
+        r"==\s*\{\{io\}\}\s*==", 
+        r"==\s*Ido\s*==", 
+        r"==\s*[IVX]+?\s*\{\{io\}\}",  # Handle "==II {{io}}" format
+        r"==\s*[IVX]+?\s*Ido",  # Handle "==II Ido" format
+        r"\{\{-ido-\}\}"
+    ],
     "eo": [r"==\s*\{\{Lingvo\|eo\}\}\s*==", r"==\s*\{\{eo\}\}\s*==", r"==\s*Esperanto\s*==", r"===\s*Esperanto\s*===", r"\{\{-eo-\}\}"],
     "en": [r"==\s*English\s*==", r"==\s*\{\{en\}\}\s*=="],
 }
@@ -92,13 +98,22 @@ POS_HEADER_RE = re.compile(
     r"^==+\s*(Noun|Verb|Adjective|Adverb|Pronoun|Preposition|Conjunction|Interjection|Substantivo|Verbo|Adjektivo|Adverbo)\s*==+\s*$",
     re.IGNORECASE | re.MULTILINE,
 )
+# Match POS in section headers like "==II {{io}} (prepoziciono)==" or "== {{io}} (prepoziciono)=="
+POS_IN_SECTION_HEADER_RE = re.compile(
+    r"==+\s*(?:[IVX]+)?\s*\{\{io\}\}\s*\(([^)]+)\)",
+    re.IGNORECASE,
+)
 
 
 def is_valid_title(title: str) -> bool:
     if not title:
         return False
     t = title.strip()
+    # Allow single-letter function words (common Ido/Esperanto particles)
     if len(t) < 2:
+        # Allow common single-letter function words
+        if t.lower() in {'e', 'a', 'o', 'i', 'u'}:
+            return True
         return False
     skip = {"MediaWiki", "Help", "Category", "Template", "User", "Talk", "File", "Image", "Special", "Main", "Wikipedia", "Wiktionary"}
     if t in skip:
@@ -137,6 +152,29 @@ def extract_language_section(wikitext: str, lang_code: str) -> Optional[str]:
 
 def extract_pos(section: str) -> Optional[str]:
     text = section or ""
+    # 0) Check section header for POS in parentheses (e.g., "==II {{io}} (prepoziciono)==")
+    m = POS_IN_SECTION_HEADER_RE.search(text)
+    if m:
+        pos_in_header = m.group(1).strip().lower()
+        # Map Ido POS terms to English
+        pos_map = {
+            "prepoziciono": "preposition",
+            "prepoziciona": "preposition",
+            "konjunciono": "conjunction",
+            "konjunciona": "conjunction",
+            "substantivo": "noun",
+            "verbo": "verb",
+            "adjektivo": "adjective",
+            "adverbo": "adverb",
+            "pronomo": "pronoun",
+            "interjeciono": "interjection",
+        }
+        if pos_in_header in pos_map:
+            return pos_map[pos_in_header]
+        # Also try direct match
+        if pos_in_header in {"preposition", "conjunction", "noun", "verb", "adjective", "adverb", "pronoun", "interjection"}:
+            return pos_in_header
+    
     # 1) Heading-based detection
     m = POS_HEADER_RE.search(text)
     if m:
