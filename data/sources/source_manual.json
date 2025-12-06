@@ -1,0 +1,71 @@
+{
+  "metadata": {
+    "source_name": "manual",
+    "version": "1.0",
+    "generation_date": "2025-12-06",
+    "description": "Manual entries for proper nouns and missing words",
+    "statistics": {
+      "total_entries": 3
+    }
+  },
+  "entries": [
+    {
+      "lemma": "Ido",
+      "source": "manual",
+      "pos": "np",
+      "morphology": {
+        "paradigm": "np__np"
+      },
+      "translations": [
+        {
+          "term": "Ido",
+          "lang": "eo",
+          "confidence": 1.0,
+          "source": "manual"
+        }
+      ],
+      "metadata": {
+        "note": "Proper noun: Ido language name"
+      }
+    },
+    {
+      "lemma": "Paris",
+      "source": "manual",
+      "pos": "np",
+      "morphology": {
+        "paradigm": "np__np"
+      },
+      "translations": [
+        {
+          "term": "Parizo",
+          "lang": "eo",
+          "confidence": 1.0,
+          "source": "manual"
+        }
+      ],
+      "metadata": {
+        "note": "Proper noun: Paris city name"
+      }
+    },
+    {
+      "lemma": "Idisti",
+      "source": "manual",
+      "pos": "n",
+      "morphology": {
+        "paradigm": "i__n"
+      },
+      "translations": [
+        {
+          "term": "Idistoj",
+          "lang": "eo",
+          "confidence": 1.0,
+          "source": "manual"
+        }
+      ],
+      "metadata": {
+        "note": "Plural noun: Ido speakers/learners"
+      }
+    }
+  ]
+}
+
