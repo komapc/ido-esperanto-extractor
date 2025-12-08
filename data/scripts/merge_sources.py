@@ -28,34 +28,6 @@ sys.path.insert(0, str(Path(__file__).parent))
 from validate_schema import load_schema, validate_file
 
 
-# Known function words with their POS and paradigms
-FUNCTION_WORDS = {
-    'por': {'pos': 'pr', 'paradigm': '__pr'},
-    'de': {'pos': 'pr', 'paradigm': '__pr'},
-    'en': {'pos': 'pr', 'paradigm': '__pr'},
-    'per': {'pos': 'pr', 'paradigm': '__pr'},
-    'ye': {'pos': 'pr', 'paradigm': '__pr'},
-    'kom': {'pos': 'pr', 'paradigm': '__pr'},
-    'od': {'pos': 'cnjcoo', 'paradigm': '__cnjcoo'},
-    'e': {'pos': 'cnjcoo', 'paradigm': '__cnjcoo'},
-    'di': {'pos': 'pr', 'paradigm': '__pr'},
-    'da': {'pos': 'pr', 'paradigm': '__pr'},
-    'til': {'pos': 'pr', 'paradigm': '__pr'},
-    'pro': {'pos': 'pr', 'paradigm': '__pr'},
-    'kun': {'pos': 'pr', 'paradigm': '__pr'},
-    'sen': {'pos': 'pr', 'paradigm': '__pr'},
-    'sur': {'pos': 'pr', 'paradigm': '__pr'},
-    'sub': {'pos': 'pr', 'paradigm': '__pr'},
-    'super': {'pos': 'pr', 'paradigm': '__pr'},
-    'inter': {'pos': 'pr', 'paradigm': '__pr'},
-    'kontre': {'pos': 'pr', 'paradigm': '__pr'},
-    'dum': {'pos': 'pr', 'paradigm': '__pr'},
-    'kad': {'pos': 'cnjsub', 'paradigm': '__cnjsub'},
-    'ke': {'pos': 'cnjsub', 'paradigm': '__cnjsub'},
-    'se': {'pos': 'cnjsub', 'paradigm': '__cnjsub'},
-    'quar': {'pos': 'cnjsub', 'paradigm': '__cnjsub'},
-}
-
 SOURCE_PRIORITY = {
     'ido_lexicon': 4,
     'io_wiktionary': 3,
@@ -113,10 +85,6 @@ def infer_ido_morphology(lemma: str, source: Optional[str] = None, existing_pos:
         existing_pos: Existing POS tag - if 'np', don't override with verb endings
     """
     lemma_lower = lemma.lower().strip()
-    
-    # Check known function words first
-    if lemma_lower in FUNCTION_WORDS:
-        return FUNCTION_WORDS[lemma_lower].copy()
     
     # Skip very short words or non-alphabetic
     if len(lemma_lower) < 2:
