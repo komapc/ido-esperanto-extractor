@@ -56,8 +56,46 @@ FUNCTION_WORDS = {
     'quar': {'pos': 'cnjsub', 'paradigm': '__cnjsub'},
 }
 
+SOURCE_PRIORITY = {
+    'ido_lexicon': 4,
+    'io_wiktionary': 3,
+    'eo_wiktionary': 3,
+    'io_wikipedia': 2,
+    'bert': 1,
+}
 
-def infer_ido_morphology(lemma: str) -> Dict[str, str]:
+
+def choose_canonical_lemma(entries: List[Dict[str, Any]]) -> str:
+    """
+    Choose a canonical lemma for a group of entries.
+
+    Rules:
+    - Prefer lowercase forms (function words and common lemmas are lowercase)
+    - Within casing, prefer higher source priority: lexicon > wiktionary > wikipedia > bert
+    - Fallback to the first lemma lowercased
+    """
+    best: Optional[Tuple[int, int, str]] = None  # (is_lower, priority, lemma_lower)
+    for entry in entries:
+        lemma = entry.get('lemma', '').strip()
+        if not lemma:
+            continue
+        is_lower = 1 if lemma.islower() else 0
+        priority = SOURCE_PRIORITY.get(entry.get('source', ''), 0)
+        lemma_lower = lemma.lower()
+        candidate = (is_lower, priority, lemma_lower)
+        if best is None or candidate > best:
+            best = candidate
+    if best:
+        return best[2]
+    # Fallback: lowercased first lemma
+    for entry in entries:
+        lemma = entry.get('lemma', '').strip()
+        if lemma:
+            return lemma.lower()
+    return ''
+
+
+def infer_ido_morphology(lemma: str, source: Optional[str] = None, existing_pos: Optional[str] = None) -> Dict[str, str]:
     """
     Infer POS and paradigm from Ido word endings.
     
@@ -68,6 +106,11 @@ def infer_ido_morphology(lemma: str) -> Dict[str, str]:
     - Verbs end in -ar (infinitive), -as (present), -is (past), -os (future)
     
     Also checks known function words.
+    
+    Args:
+        lemma: The word to analyze
+        source: Source name (e.g., 'io_wikipedia') - used for proper noun detection
+        existing_pos: Existing POS tag - if 'np', don't override with verb endings
     """
     lemma_lower = lemma.lower().strip()
     
@@ -83,15 +126,27 @@ def infer_ido_morphology(lemma: str) -> Dict[str, str]:
     if not lemma_lower.replace('-', '').replace('.', '').isalpha():
         return {}
     
+    # CRITICAL: If entry is from Wikipedia or already has np POS, treat -is endings as proper nouns
+    # Wikipedia entries are almost always proper nouns (places, people, etc.)
+    # Examples: Paris, Adonis, Artemis, Briseis - these are proper nouns, not verbs
+    is_wikipedia = source and 'wikipedia' in source.lower()
+    is_proper_noun = existing_pos and existing_pos.lower() in {'np', 'proper noun', 'proper_noun'}
+    
+    if is_wikipedia or is_proper_noun:
+        # For Wikipedia entries, don't treat -is as verb ending
+        # They're likely proper nouns (Greek names, place names, etc.)
+        pass
+    else:
+        # Verb conjugated forms (only if not from Wikipedia and not already proper noun)
+        if lemma_lower.endswith('is') and len(lemma_lower) > 3:
+            return {'pos': 'vblex', 'paradigm': 'ar__vblex'}
+    
     # Verb infinitives (most specific)
     if lemma_lower.endswith('ar'):
         return {'pos': 'vblex', 'paradigm': 'ar__vblex'}
     
     # Verb conjugated forms
     if lemma_lower.endswith('as') and len(lemma_lower) > 3:
-        return {'pos': 'vblex', 'paradigm': 'ar__vblex'}
-    
-    if lemma_lower.endswith('is') and len(lemma_lower) > 3:
         return {'pos': 'vblex', 'paradigm': 'ar__vblex'}
     
     if lemma_lower.endswith('os') and len(lemma_lower) > 3:
@@ -144,7 +199,7 @@ def assign_paradigm_from_pos(pos: str) -> Optional[str]:
     # Function word paradigms (invariable)
     if pos_lower in {'pr', 'prep', 'preposition'}:
         return '__pr'
-    elif pos_lower in {'cnjcoo', 'coordinating conjunction'}:
+    elif pos_lower in {'cnjcoo', 'coordinating conjunction', 'conjunction'}:
         return '__cnjcoo'
     elif pos_lower in {'cnjsub', 'subordinating conjunction'}:
         return '__cnjsub'
@@ -191,10 +246,30 @@ def apply_morphology_inference(entries: List[Dict[str, Any]]) -> List[Dict[str, 
         if entry.get('morphology', {}).get('paradigm'):
             continue
         
+        source = entry.get('source', '')
+        existing_pos = entry.get('pos')
+        lemma_lower = lemma.lower()
+        
+        # CRITICAL: Wikipedia entries are almost always proper nouns
+        # If entry is from Wikipedia and has no POS, default to proper noun
+        # Also: Wikipedia entries ending in -is are likely proper nouns (Greek names, etc.)
+        # Override incorrect verb classification
+        is_wikipedia = source and 'wikipedia' in source.lower()
+        if is_wikipedia:
+            if not existing_pos:
+                entry['pos'] = 'np'
+                existing_pos = 'np'
+            elif existing_pos == 'vblex' and lemma_lower.endswith('is') and len(lemma_lower) > 3:
+                # Override: Wikipedia entries ending in -is should be proper nouns, not verbs
+                entry['pos'] = 'np'
+                existing_pos = 'np'
+        
         # Try to infer from word form
-        inferred = infer_ido_morphology(lemma)
+        # Pass source and existing POS to handle Wikipedia proper nouns correctly
+        inferred = infer_ido_morphology(lemma, source=source, existing_pos=existing_pos)
         if inferred:
-            if inferred.get('pos'):
+            # Don't override np with inferred pos if it's from Wikipedia
+            if inferred.get('pos') and not (is_wikipedia and existing_pos == 'np'):
                 entry['pos'] = inferred.get('pos')
             if inferred.get('paradigm'):
                 if 'morphology' not in entry:
@@ -283,9 +358,11 @@ def deduplicate_translations(translations: List[Dict[str, Any]]) -> List[Dict[st
     return deduplicated
 
 
-def merge_entry_group(entries: List[Dict[str, Any]]) -> Dict[str, Any]:
+def merge_entry_group(entries: List[Dict[str, Any]], canonical_lemma: str) -> Dict[str, Any]:
     """Merge multiple entries with same lemma (handles entries with/without POS)."""
     base_entry = entries[0].copy()
+    if canonical_lemma:
+        base_entry['lemma'] = canonical_lemma
     
     # Collect all translations
     all_translations = []
@@ -296,37 +373,91 @@ def merge_entry_group(entries: List[Dict[str, Any]]) -> Dict[str, Any]:
     merged_translations = deduplicate_translations(all_translations)
     base_entry['translations'] = merged_translations
     
-    # Merge POS (prefer lexicon > wiktionary > bert)
-    pos_priority = {'ido_lexicon': 3, 'io_wiktionary': 2, 'eo_wiktionary': 2, 'bert': 1}
+    # Merge POS (prefer lexicon > wiktionary > wikipedia > bert)
+    # CRITICAL: Wikipedia entries are almost always proper nouns when tagged as np
+    # Override BERT's suffix-based guesses for proper nouns
+    pos_priority = {'ido_lexicon': 4, 'io_wiktionary': 3, 'eo_wiktionary': 3, 'io_wikipedia': 2, 'bert': 1}
     best_pos = None
     best_pos_priority = 0
+    has_wikipedia_np = False
     
     for entry in entries:
         if entry.get('pos'):
             source = entry.get('source', '')
+            pos = entry.get('pos')
+            
+            # Check if Wikipedia has np (proper noun) - this should override BERT's vblex
+            if source == 'io_wikipedia' and pos == 'np':
+                has_wikipedia_np = True
+            
             priority = pos_priority.get(source, 0)
             if priority > best_pos_priority:
-                best_pos = entry['pos']
+                best_pos = pos
                 best_pos_priority = priority
+    
+    # If Wikipedia says it's a proper noun, use that (override BERT's suffix guess)
+    if has_wikipedia_np:
+        best_pos = 'np'
     
     if best_pos:
         base_entry['pos'] = best_pos
     
-    # Merge morphology (prefer lexicon > wiktionary > bert)
-    morphology_priority = {'ido_lexicon': 3, 'io_wiktionary': 2, 'eo_wiktionary': 2, 'bert': 1}
+    # Merge morphology (prefer lexicon > wiktionary > wikipedia > bert)
+    # CRITICAL: If we overrode POS to np, also override paradigm
+    # CRITICAL: For function words, prefer Wiktionary (more accurate POS/paradigm)
+    morphology_priority = {'ido_lexicon': 4, 'io_wiktionary': 3, 'eo_wiktionary': 3, 'io_wikipedia': 2, 'bert': 1}
     best_morphology = None
     best_priority = 0
+    has_wikipedia_morphology = False
+    
+    # Check if this is a function word (conjunction, preposition, etc.)
+    is_function_word = best_pos and best_pos.lower() in {'cnjcoo', 'cnjsub', 'pr', 'prep', 'det', 'prn'}
     
     for entry in entries:
         if 'morphology' in entry and entry['morphology'].get('paradigm'):
             source = entry.get('source', '')
+            paradigm = entry['morphology'].get('paradigm')
+            
+            # Check if Wikipedia has np__np paradigm
+            if source == 'io_wikipedia' and paradigm == 'np__np':
+                has_wikipedia_morphology = True
+            
             priority = morphology_priority.get(source, 0)
             if priority > best_priority:
                 best_morphology = entry['morphology']
                 best_priority = priority
     
-    if best_morphology:
-        base_entry['morphology'] = best_morphology
+    # If we overrode POS to np, also override paradigm to np__np
+    if has_wikipedia_np:
+        if 'morphology' not in base_entry:
+            base_entry['morphology'] = {}
+        base_entry['morphology']['paradigm'] = 'np__np'
+    elif best_morphology:
+        # For function words, verify the paradigm matches the POS
+        # Wikipedia might have wrong paradigm (e.g., "e" as e__adv instead of __cnjcoo)
+        # Check if POS maps to a function word paradigm
+        expected_paradigm = assign_paradigm_from_pos(best_pos) if best_pos else None
+        is_function_word_paradigm = expected_paradigm and expected_paradigm.startswith('__')
+        
+        if is_function_word_paradigm and best_morphology.get('paradigm') != expected_paradigm:
+            # Override with correct paradigm for function words
+            base_entry['morphology'] = {'paradigm': expected_paradigm}
+        else:
+            base_entry['morphology'] = best_morphology
+    elif best_pos:
+        # For entries without morphology, assign paradigm from POS
+        paradigm = assign_paradigm_from_pos(best_pos)
+        if paradigm:
+            if 'morphology' not in base_entry:
+                base_entry['morphology'] = {}
+            base_entry['morphology']['paradigm'] = paradigm
+    elif is_function_word:
+        # For function words without morphology, assign paradigm from POS
+        paradigm = assign_paradigm_from_pos(best_pos)
+        if paradigm:
+            if 'morphology' not in base_entry:
+                base_entry['morphology'] = {}
+            base_entry['morphology']['paradigm'] = paradigm
     
     # Collect all sources
     all_sources = list(set(entry.get('source') for entry in entries if entry.get('source')))
@@ -362,9 +493,13 @@ def deduplicate_entries(entries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     }
     
     for lemma, entry_group in grouped.items():
+        # Choose canonical lemma (prefer lowercase + higher priority source)
+        canonical_lemma = choose_canonical_lemma(entry_group)
         if len(entry_group) == 1:
             # No duplicates
             entry = entry_group[0]
+            if canonical_lemma:
+                entry['lemma'] = canonical_lemma
             # Convert single source to sources array in translations
             for trans in entry.get('translations', []):
                 if 'source' in trans and 'sources' not in trans:
@@ -374,7 +509,7 @@ def deduplicate_entries(entries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
             continue
         
         # Multiple entries with same lemma - merge them
-        merged_entry = merge_entry_group(entry_group)
+        merged_entry = merge_entry_group(entry_group, canonical_lemma)
         deduplicated.append(merged_entry)
         stats['merged_count'] += len(entry_group) - 1
     
