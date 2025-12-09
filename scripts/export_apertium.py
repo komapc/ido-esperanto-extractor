@@ -28,50 +28,48 @@ def write_xml_file(elem: ET.Element, output_path: Path) -> None:
         f.write(b'\n')
 
 
+def load_pardefs_from_file(pardefs_path: Path) -> ET.Element:
+    """Load paradigm definitions from an XML file."""
+    try:
+        tree = ET.parse(pardefs_path)
+        return tree.getroot()
+    except Exception as e:
+        logging.error(f"Failed to load pardefs from {pardefs_path}: {e}")
+        # Return empty pardefs element if file load fails
+        return ET.Element("pardefs")
+
+
 def build_monodix(entries):
     dictionary = ET.Element("dictionary")
     alphabet = ET.SubElement(dictionary, "alphabet")
     alphabet.text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph"]:
+    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pres", "past", "fut", "cond", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able"]:
         ET.SubElement(sdefs, "sdef", n=s)
-    pardefs = ET.SubElement(dictionary, "pardefs")
-    # Basic paradigms
-    def add_paradigm(name: str, l_text: str, r_s: list):
-        pd = ET.SubElement(pardefs, "pardef", n=name)
-        e = ET.SubElement(pd, "e")
-        p = ET.SubElement(e, "p")
-        ET.SubElement(p, "l").text = l_text
-        r = ET.SubElement(p, "r")
-        for s in r_s:
-            ET.SubElement(r, "s", n=s)
-    add_paradigm("o__n", "o", ["n", "sg", "nom"])  # minimal
-    add_paradigm("a__adj", "a", ["adj"])  # minimal
-    add_paradigm("e__adv", "e", ["adv"])  # minimal
-    add_paradigm("ar__vblex", "ar", ["vblex", "inf"])  # minimal
-    add_paradigm("num", "", ["num"])  # numbers: no inflection
-
-    # Add regex paradigm for compound numbers (like 123, 4567, 12.34)
-    # This follows the Esperanto pattern: <re>pattern</re><p><l></l><r>tags</r></p>
-    pd = ET.SubElement(pardefs, "pardef", n="num_regex")
-    e = ET.SubElement(pd, "e")
-    re_elem = ET.SubElement(e, "re")
-    re_elem.text = r"[0-9]+([.,][0-9]+)*"
-    p = ET.SubElement(e, "p")
-    ET.SubElement(p, "l")  # Empty left side
-    r = ET.SubElement(p, "r")
-    ET.SubElement(r, "s", n="num")
-    ET.SubElement(r, "s", n="ciph")  # cipher (number)
-    ET.SubElement(r, "s", n="sp")    # singular/plural
-    ET.SubElement(r, "s", n="nom")   # nominative
-    # Invariable paradigms for function words
-    for iv in ["__pr", "__det", "__prn", "__cnjcoo", "__cnjsub"]:
-        pd = ET.SubElement(pardefs, "pardef", n=iv)
-        e = ET.SubElement(pd, "e")
-        p = ET.SubElement(e, "p")
-        ET.SubElement(p, "l").text = ""
-        r = ET.SubElement(p, "r")
-        ET.SubElement(r, "s", n=iv.replace("__", ""))
+    
+    # Load pardefs from external file instead of hardcoding
+    pardefs_path = Path(__file__).resolve().parents[1] / "data/pardefs.xml"
+    if pardefs_path.exists():
+        logging.info(f"Loading pardefs from {pardefs_path}")
+        external_pardefs = load_pardefs_from_file(pardefs_path)
+        dictionary.append(external_pardefs)
+    else:
+        logging.warning(f"Pardefs file not found at {pardefs_path}, falling back to minimal defaults")
+        pardefs = ET.SubElement(dictionary, "pardefs")
+        # Basic paradigms (fallback only)
+        def add_paradigm(name: str, l_text: str, r_s: list):
+            pd = ET.SubElement(pardefs, "pardef", n=name)
+            e = ET.SubElement(pd, "e")
+            p = ET.SubElement(e, "p")
+            ET.SubElement(p, "l").text = l_text
+            r = ET.SubElement(p, "r")
+            for s in r_s:
+                ET.SubElement(r, "s", n=s)
+        add_paradigm("o__n", "o", ["n", "sg", "nom"])
+        add_paradigm("a__adj", "a", ["adj"])
+        add_paradigm("e__adv", "e", ["adv"])
+        add_paradigm("ar__vblex", "ar", ["vblex", "inf"])
+        add_paradigm("num", "", ["num"])
 
     section = ET.SubElement(dictionary, "section", id="main", type="standard")
     def map_s_tag(par: str, pos: str | None) -> str | None:
@@ -104,6 +102,21 @@ def build_monodix(entries):
     en = ET.SubElement(section, "e")
     par = ET.SubElement(en, "par", n="num_regex")
 
+    def get_stem(lemma: str, paradigm: str) -> str:
+        if not lemma:
+            return ""
+        if paradigm == "ar__vblex":
+            if lemma.endswith("ar"): return lemma[:-2]
+            if lemma.endswith("ir"): return lemma[:-2]
+            if lemma.endswith("or"): return lemma[:-2]
+        if paradigm == "o__n" and lemma.endswith("o"):
+            return lemma[:-1]
+        if paradigm == "a__adj" and lemma.endswith("a"):
+            return lemma[:-1]
+        if paradigm == "e__adv" and lemma.endswith("e"):
+            return lemma[:-1]
+        return lemma
+
     for e in sorted_entries:
         # New format doesn't have "language" field - all entries are Ido by default
         # Old format had language field, so check if present
@@ -129,9 +142,13 @@ def build_monodix(entries):
         par = raw_par
         if raw_par in {"pr", "det", "prn", "cnjcoo", "cnjsub"}:
             par = "__" + raw_par
+        
+        # Calculate stem based on paradigm
+        stem = get_stem(clean_lm, str(par))
+        
         en = ET.SubElement(section, "e", lm=clean_lm)
         i = ET.SubElement(en, "i")
-        i.text = clean_lm
+        i.text = stem
         ET.SubElement(en, "par", n=str(par))
     return dictionary
 
