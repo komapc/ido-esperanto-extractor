@@ -28,6 +28,37 @@
 
 ---
 
+## 🚨 **CRITICAL ISSUES - December 8, 2025**
+
+### 🔴 1. Fix Tense Recognition (Present/Past Confusion)
+**Status:** CRITICAL - High error rate in tests
+**Problem:** Verbs are not being correctly analyzed/generated for tense (e.g., *partoprenas* vs *partoprenis*).
+**Impact:** 74% error rate in Sentence 2 of test corpus.
+**Action Items:**
+- [ ] Investigate `scripts/infer_morphology.py` logic for verb tenses
+- [ ] Check if `-as` vs `-is` suffix handling is correct
+- [ ] Verify Apertium transfer rules for verb tense mapping
+- [ ] Add unit tests for verb tense inflection
+
+### 🔴 2. Fix Compound Word Handling
+**Status:** CRITICAL - Incorrect splitting
+**Problem:** Hyphenated compounds like `video-konfero` are split incorrectly into parts.
+**Action Items:**
+- [ ] Update tokenizer/parser to preserve hyphenated compounds
+- [ ] Ensure compound analysis treats the whole word or splits correctly
+- [ ] Add rules for common compound patterns (e.g., `noun-noun`)
+
+### 🔴 3. Add Missing Dictionary Entries
+**Status:** HIGH
+**Problem:** Common words missing from dictionary (e.g., *lernebla*, *uzebla*, *sabata*).
+**Action Items:**
+- [ ] Add `lernebla`, `uzebla` to dictionary
+- [ ] Add `sabata` (Saturday) to dictionary
+- [ ] Add `anstataŭigi` (replace) to dictionary
+- [ ] Run full regeneration to include these updates
+
+---
+
 ## 🔴 CRITICAL Issues (From Oct 23, 2025 Session)
 
 ### 🔢 0. Number Recognition Testing **[NEW - Oct 23, 2025]**
