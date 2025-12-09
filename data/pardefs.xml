@@ -3,13 +3,13 @@
       <e>
         <p>
           <l>o</l>
-          <r>o<s n="n"/><s n="sg"/><s n="nom"/></r>
+          <r><s n="n"/><s n="sg"/><s n="nom"/></r>
         </p>
       </e>
       <e>
         <p>
           <l>i</l>
-          <r>o<s n="n"/><s n="pl"/><s n="nom"/></r>
+          <r><s n="n"/><s n="pl"/><s n="nom"/></r>
         </p>
       </e>
     </pardef>
@@ -17,7 +17,7 @@
       <e>
         <p>
           <l>a</l>
-          <r>a<s n="adj"/></r>
+          <r><s n="adj"/></r>
         </p>
       </e>
     </pardef>
@@ -25,7 +25,7 @@
       <e>
         <p>
           <l>e</l>
-          <r>e<s n="adv"/></r>
+          <r><s n="adv"/></r>
         </p>
       </e>
     </pardef>
@@ -33,49 +33,43 @@
       <e>
         <p>
           <l>ar</l>
-          <r>ar<s n="vblex"/><s n="inf"/></r>
+          <r><s n="vblex"/><s n="inf"/></r>
         </p>
       </e>
       <e>
         <p>
           <l>as</l>
-          <r>ar<s n="vblex"/><s n="pres"/></r>
+          <r><s n="vblex"/><s n="pri"/></r>
         </p>
       </e>
       <e>
         <p>
           <l>is</l>
-          <r>ar<s n="vblex"/><s n="past"/></r>
+          <r><s n="vblex"/><s n="pii"/></r>
         </p>
       </e>
       <e>
         <p>
           <l>os</l>
-          <r>ar<s n="vblex"/><s n="fut"/></r>
+          <r><s n="vblex"/><s n="fti"/></r>
         </p>
       </e>
       <e>
         <p>
           <l>us</l>
-          <r>ar<s n="vblex"/><s n="cond"/></r>
+          <r><s n="vblex"/><s n="cni"/></r>
         </p>
       </e>
       <e>
         <p>
           <l>ez</l>
-          <r>ar<s n="vblex"/><s n="imp"/></r>
+          <r><s n="vblex"/><s n="imp"/></r>
         </p>
       </e>
       <e>
         <p>
           <l>ita</l>
-          <r>ar<s n="vblex"/><s n="pp"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>ebla</l>
-          <r>ar<s n="adj"/><s n="able"/></r>
+          <r><s n="vblex"/><s n="pp"/></r>
         </p>
       </e>
     </pardef>
