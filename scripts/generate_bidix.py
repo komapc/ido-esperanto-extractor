@@ -89,6 +89,9 @@ def extract_lemma_ido(word: str, pos: Optional[str] = None) -> str:
     - Adverbs ending in -e → remove -e (bone → bon)
     - Invariable words (prepositions, conjunctions, etc.) → return as-is
     - Others → return as-is
+    
+    CRITICAL: If POS is None or unknown, don't guess and strip stems.
+    Only strip stems when we're confident about the POS.
     """
     if not word:
         return word
@@ -104,16 +107,28 @@ def extract_lemma_ido(word: str, pos: Optional[str] = None) -> str:
             pos = 'cnjsub'
         elif pos_lower in {'preposition'}:
             pos = 'prep'
+        elif pos_lower in {'determiner', 'article', 'art', 'det'}:
+            pos = 'det'
+        elif pos_lower in {'pronoun', 'prn'}:
+            pos = 'prn'
+        elif pos_lower in {'adverb', 'adv'}:
+            pos = 'adv'
     
     # Invariable words (function words) should not have stems extracted
     invariable_pos = {'pr', 'prep', 'cnjcoo', 'cnjsub', 'det', 'prn', 'ij', 'num'}
     if pos in invariable_pos:
         return word.lower()  # Normalize to lowercase for function words
     
-    # If POS not provided, guess it
+    # CRITICAL FIX: If POS is None, don't guess for short words (likely function words)
+    # Short words (2-3 chars) are usually function words and shouldn't have stems stripped
     if not pos:
+        if len(word) <= 3:
+            # Don't guess POS for short words - they're likely function words
+            return word.lower()
+        # Only guess POS for longer words
         pos = guess_pos_ido(word)
     
+    # Extract stems based on POS (only if we have a confident POS)
     if pos == 'n' and word.endswith('o'):
         return word[:-1]
     elif pos in ('v', 'vblex') and word.endswith('ar'):
@@ -276,6 +291,13 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
         
         pos = entry.get('pos')
         
+        # FIX: Correct obviously wrong POS assignments
+        # Special case: 'la' is often mis-tagged as 'adj' but should be 'det' (article)
+        lemma_lower = lemma.lower()
+        if lemma_lower == 'la' and pos == 'adj':
+            # Fix wrong POS: la is an article, not an adjective
+            pos = 'det'
+        
         # Normalize POS to standard form (conjunction → cnjcoo, etc.)
         pos_normalized = pos
         if pos:
@@ -286,12 +308,18 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
                 pos_normalized = 'cnjsub'
             elif pos_lower in {'preposition'}:
                 pos_normalized = 'prep'
+            elif pos_lower in {'determiner', 'article', 'art', 'det'}:
+                pos_normalized = 'det'
+            elif pos_lower in {'pronoun', 'prn'}:
+                pos_normalized = 'prn'
+            elif pos_lower in {'adverb', 'adv'}:
+                pos_normalized = 'adv'
         
         # For function words (conjunctions, prepositions), don't add POS tags in bidix
         # They need to match without POS tags for proper lookup
         # Use POS from source (Wiktionary, etc.) instead of hardcoding
         # Function word POS types that should not have tags in bidix:
-        function_word_pos = {'cnjcoo', 'cnjsub', 'pr', 'prep', 'det', 'prn'}
+        function_word_pos = {'cnjcoo', 'cnjsub', 'pr', 'prep', 'det', 'prn', 'adv'}
         is_function_word = pos_normalized in function_word_pos if pos_normalized else False
         should_add_pos = add_pos and pos_normalized and pos_normalized in POS_MAP and not is_function_word
         
@@ -360,7 +388,7 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
             # Extract lemmas (stems)
             # For Ido: extract stem (homo → hom)
             # For Esperanto: keep full lemma (homo → homo) because Esperanto generator expects full lemmas
-            # Use normalized POS for lemma extraction
+            # Use normalized POS for lemma extraction (this is the corrected POS)
             ido_lemma = extract_lemma_ido(lemma, pos_normalized)
             epo_lemma = term  # Keep full Esperanto lemma, don't extract stem
             
@@ -374,12 +402,76 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
             section.append(entry_elem)
             entries_added += 1
     
+    # Second pass: Generate -ebl adjective bidix entries from verbs
+    # For each verb with Esperanto translation, generate corresponding -ebl adjective
+    ebl_bidix_generated = 0
+    processed_bidix_lemmas = set()
+    
+    # Collect all lemmas we've already added to avoid duplicates
+    for entry in entries:
+        processed_bidix_lemmas.add(entry.get('lemma', '').lower())
+    
+    # Generate -ebl bidix entries from verbs
+    for entry in entries:
+        lemma = entry.get('lemma', '').strip()
+        if not lemma:
+            continue
+        
+        pos = entry.get('pos')
+        pos_normalized = pos
+        if pos:
+            pos_lower = pos.lower()
+            if pos_lower in {'conjunction', 'coordinating conjunction'}:
+                pos_normalized = 'cnjcoo'
+            elif pos_lower in {'subordinating conjunction'}:
+                pos_normalized = 'cnjsub'
+            elif pos_lower in {'preposition'}:
+                pos_normalized = 'prep'
+        
+        # Check if this is a verb with Esperanto translation
+        if pos_normalized in {'v', 'vblex', 'verb'} and lemma.endswith('ar') and len(lemma) > 3:
+            translations = entry.get('translations', [])
+            eo_translations = [t for t in translations if t.get('lang') == 'eo' and t.get('confidence', 0) >= min_confidence]
+            
+            if eo_translations:
+                verb_stem = lemma[:-2]  # Remove -ar
+                ebl_lemma = verb_stem + 'ebla'
+                
+                # Skip if already exists
+                if ebl_lemma.lower() in processed_bidix_lemmas:
+                    continue
+                
+                # Generate Esperanto -ebla form from verb translation
+                # Map Ido verb stem to full Esperanto -ebla adjective form
+                # Pattern: Ido stem "lern" → Esperanto full form "lernebla"
+                # Since Esperanto doesn't have morphological generation for -ebl,
+                # we map directly to the full form
+                for eo_trans in eo_translations[:1]:  # Use first translation
+                    eo_verb = eo_trans.get('term', '').strip()
+                    if eo_verb and eo_verb.endswith('i'):
+                        eo_verb_stem = eo_verb[:-1]  # Remove -i
+                        eo_ebla_full = eo_verb_stem + 'ebla'  # Full form: stem + ebla
+                        
+                        # Create bidix entry: Ido verb stem → Esperanto full -ebla form
+                        # Example: lern → lernebla
+                        # The Ido side uses stem "lern" + ebl__adj paradigm to generate "lernebla"
+                        # The Esperanto side is the full form "lernebla" ready to use
+                        ido_lemma_stem = verb_stem
+                        entry_elem = create_bidix_entry(ido_lemma_stem, eo_ebla_full, 0.95, 'adj', add_pos and True)
+                        section.append(entry_elem)
+                        entries_added += 1
+                        ebl_bidix_generated += 1
+                        processed_bidix_lemmas.add(ebl_lemma.lower())
+                        break  # Only generate one entry per verb
+    
     # Write output
     print(f"\nWriting bidix to {output_file}...")
     print(f"  Entries added: {entries_added}")
     print(f"  Entries skipped (no translation): {entries_skipped_no_translation}")
     print(f"  Entries skipped (low confidence): {entries_skipped_low_confidence}")
     print(f"  Entries skipped (no lemma): {entries_skipped_no_lemma}")
+    if ebl_bidix_generated > 0:
+        print(f"  -ebl adjective bidix entries generated from verbs: {ebl_bidix_generated}")
     
     # Format XML with proper indentation
     indent_xml(root)
