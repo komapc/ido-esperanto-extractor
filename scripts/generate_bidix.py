@@ -291,12 +291,31 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
         
         pos = entry.get('pos')
         
-        # FIX: Correct obviously wrong POS assignments
-        # Special case: 'la' is often mis-tagged as 'adj' but should be 'det' (article)
+        # FIX: Correct obviously wrong POS assignments and infer for common function words
         lemma_lower = lemma.lower()
+        
+        # Special case: 'la' is often mis-tagged as 'adj' but should be 'det' (article)
         if lemma_lower == 'la' and pos == 'adj':
             # Fix wrong POS: la is an article, not an adjective
             pos = 'det'
+        
+        # CRITICAL: Infer POS for common function words when pos is None
+        # These are critical function words that must be recognized
+        if pos is None:
+            if lemma_lower == 'de':
+                pos = 'prep'  # preposition
+            elif lemma_lower in {'por', 'kun', 'sur', 'sub', 'per', 'pro', 'sen', 'dum'}:
+                pos = 'prep'  # prepositions
+            elif lemma_lower in {'ni', 'vi', 'ili', 'ili', 'oni'}:
+                pos = 'prn'  # pronouns
+            elif lemma_lower in {'kaj', 'sed', 'aŭ', 'nek'}:
+                pos = 'cnjcoo'  # coordinating conjunctions
+            elif lemma_lower in {'ke', 'se', 'kvankam'}:
+                pos = 'cnjsub'  # subordinating conjunctions
+            elif lemma_lower in {'ĉu', 'kiel', 'kie', 'kiam'}:
+                pos = 'adv'  # question words/adverbs
+            elif lemma_lower in {'jam', 'ankoraŭ', 'nun', 'tiam'}:
+                pos = 'adv'  # adverbs
         
         # Normalize POS to standard form (conjunction → cnjcoo, etc.)
         pos_normalized = pos
@@ -371,9 +390,11 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
             })
         
         # Filter cognates: remove if other non-cognate translations exist
+        # EXCEPTION: For function words (prepositions, conjunctions, etc.), keep cognates
+        # because they're often the correct translation (e.g., de → de, kaj → kaj)
         non_cognate_count = sum(1 for t in valid_translations if not t['is_cognate'])
-        if non_cognate_count > 0:
-            # Remove cognates when alternatives exist
+        if non_cognate_count > 0 and not is_function_word:
+            # Remove cognates when alternatives exist (but not for function words)
             valid_translations = [t for t in valid_translations if not t['is_cognate']]
         
         # Sort by confidence (highest first)
