@@ -21,6 +21,14 @@
         </p>
       </e>
     </pardef>
+    <pardef n="ebl__adj">
+      <e>
+        <p>
+          <l>ebla</l>
+          <r><s n="adj"/></r>
+        </p>
+      </e>
+    </pardef>
     <pardef n="e__adv">
       <e>
         <p>
@@ -111,6 +119,14 @@
         <p>
           <l/>
           <r><s n="prn"/></r>
+        </p>
+      </e>
+    </pardef>
+    <pardef n="__adv">
+      <e>
+        <p>
+          <l/>
+          <r><s n="adv"/></r>
         </p>
       </e>
     </pardef>

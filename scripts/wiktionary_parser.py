@@ -218,14 +218,23 @@ def extract_pos(section: str) -> Optional[str]:
     # 3) Category-based hints (English or Esperanto labels)
     cat_text = text.lower()
     cat_hints = [
+        # English category labels
         ("[[category:ido nouns", "noun"),
         ("[[category:ido verbs", "verb"),
         ("[[category:ido adjectives", "adjective"),
         ("[[category:ido adverbs", "adverb"),
+        # Esperanto category labels
         ("[[kategorio:ido substantivo", "noun"),
         ("[[kategorio:ido verbo", "verb"),
         ("[[kategorio:ido adjektivo", "adjective"),
         ("[[kategorio:ido adverbo", "adverb"),
+        # Ido category labels (as seen in io.wiktionary)
+        ("[[kategorio:adverbi", "adverb"),
+        ("[[kategorio:citovorti", "interjection"),   # citation/exclamatory words → treat as interjections
+        ("[[kategorio:interjecioni", "interjection"),
+        ("[[kategorio:konjuncioni", "conjunction"),
+        ("[[kategorio:prepozicioni", "preposition"),
+        ("[[kategorio:pronomi", "pronoun"),
     ]
     for needle, p in cat_hints:
         if needle in cat_text:
