@@ -70,10 +70,11 @@ def convert_wiktionary_to_unified(old_format_data, source_name, url_base, dump_f
                         lang = trans.get('lang', '')
                         term = trans.get('term', '').strip()
                         
-                        # Clean up term (remove markup)
+                        # Clean up term (extract from markup)
                         if term:
                             term = re.sub(r'\s*Kategorio:.*', '', term)
-                            term = re.sub(r'\s*\[\[.*?\]\]', '', term)
+                            # Extract content from [[link]] or [[link|display]] - keep the term, not remove it
+                            term = re.sub(r'\[\[([^\]|]+)(?:\|[^\]]+)?\]\]', r'\1', term)
                             term = term.strip()
                         
                         if lang and term:
