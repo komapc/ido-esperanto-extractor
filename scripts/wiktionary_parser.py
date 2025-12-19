@@ -168,11 +168,14 @@ def extract_pos(section: str) -> Optional[str]:
             "adverbo": "adverb",
             "pronomo": "pronoun",
             "interjeciono": "interjection",
+            # Articles (definite article la, lo)
+            "artiklo": "determiner",
+            "artikoli": "determiner",
         }
         if pos_in_header in pos_map:
             return pos_map[pos_in_header]
         # Also try direct match
-        if pos_in_header in {"preposition", "conjunction", "noun", "verb", "adjective", "adverb", "pronoun", "interjection"}:
+        if pos_in_header in {"preposition", "conjunction", "noun", "verb", "adjective", "adverb", "pronoun", "interjection", "determiner"}:
             return pos_in_header
     
     # 1) Heading-based detection

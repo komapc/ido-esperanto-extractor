@@ -1,149 +1,199 @@
 {
   "metadata": {
     "source_name": "function_words_seed",
-    "file_type": "source_json",
-    "origin": {
-      "description": "Manually curated critical Ido function words with Esperanto translations",
-      "created": "2025-12-19"
-    },
+    "version": "1.0",
+    "generation_date": "2025-12-19",
+    "description": "Manually curated critical Ido function words with Esperanto translations",
     "statistics": {
-      "total_entries": 15
+      "total_entries": 16
     }
   },
   "entries": [
     {
+      "lemma": "la",
+      "source": "function_words_seed",
+      "pos": "determiner",
+      "translations": [
+        {"term": "la", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+      ],
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'la' = Esperanto 'la' (definite article)"
+      }
+    },
+    {
       "lemma": "de",
+      "source": "function_words_seed",
       "pos": "preposition",
       "translations": [
         {"term": "de", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "source_page": "manual"
+      "metadata": {"source_page": "manual"}
     },
     {
       "lemma": "por",
+      "source": "function_words_seed",
       "pos": "preposition",
       "translations": [
         {"term": "por", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "source_page": "manual"
+      "metadata": {"source_page": "manual"}
     },
     {
       "lemma": "da",
+      "source": "function_words_seed",
       "pos": "preposition",
       "translations": [
         {"term": "de", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "source_page": "manual",
-      "note": "Ido 'da' = Esperanto 'de' (of, by agent)"
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'da' = Esperanto 'de' (of, by agent)"
+      }
     },
     {
       "lemma": "di",
+      "source": "function_words_seed",
       "pos": "preposition",
       "translations": [
         {"term": "de", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "source_page": "manual",
-      "note": "Ido 'di' = Esperanto 'de' (of, possessive)"
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'di' = Esperanto 'de' (of, possessive)"
+      }
     },
     {
       "lemma": "kom",
+      "source": "function_words_seed",
       "pos": "preposition",
       "translations": [
         {"term": "kiel", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "source_page": "manual",
-      "note": "Ido 'kom' = Esperanto 'kiel' (as, like)"
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'kom' = Esperanto 'kiel' (as, like)"
+      }
     },
     {
       "lemma": "a",
+      "source": "function_words_seed",
       "pos": "preposition",
       "translations": [
         {"term": "al", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "source_page": "manual",
-      "note": "Ido 'a' = Esperanto 'al' (to)"
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'a' = Esperanto 'al' (to)"
+      }
     },
     {
       "lemma": "esas",
+      "source": "function_words_seed",
       "pos": "verb",
       "translations": [
         {"term": "estas", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "source_page": "manual",
-      "note": "Ido 'esas' = Esperanto 'estas' (is/are - present)"
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'esas' = Esperanto 'estas' (is/are - present)"
+      }
     },
     {
       "lemma": "es",
+      "source": "function_words_seed",
       "pos": "verb",
       "translations": [
         {"term": "esti", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "source_page": "manual",
-      "note": "Ido 'es' root = Esperanto 'esti' (to be)"
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'es' root = Esperanto 'esti' (to be)"
+      }
     },
     {
       "lemma": "vu",
+      "source": "function_words_seed",
       "pos": "pronoun",
       "translations": [
         {"term": "vi", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "source_page": "manual",
-      "note": "Ido 'vu' = Esperanto 'vi' (you singular)"
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'vu' = Esperanto 'vi' (you singular)"
+      }
     },
     {
       "lemma": "il",
+      "source": "function_words_seed",
       "pos": "pronoun",
       "translations": [
         {"term": "li", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "source_page": "manual",
-      "note": "Ido 'il' = Esperanto 'li' (he)"
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'il' = Esperanto 'li' (he)"
+      }
     },
     {
       "lemma": "el",
+      "source": "function_words_seed",
       "pos": "pronoun",
       "translations": [
         {"term": "ŝi", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "source_page": "manual",
-      "note": "Ido 'el' = Esperanto 'ŝi' (she)"
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'el' = Esperanto 'ŝi' (she)"
+      }
     },
     {
       "lemma": "ol",
+      "source": "function_words_seed",
       "pos": "pronoun",
       "translations": [
         {"term": "ĝi", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "source_page": "manual",
-      "note": "Ido 'ol' = Esperanto 'ĝi' (it)"
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'ol' = Esperanto 'ĝi' (it)"
+      }
     },
     {
       "lemma": "on",
+      "source": "function_words_seed",
       "pos": "pronoun",
       "translations": [
         {"term": "oni", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "source_page": "manual",
-      "note": "Ido 'on' = Esperanto 'oni' (one, impersonal)"
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'on' = Esperanto 'oni' (one, impersonal)"
+      }
     },
     {
       "lemma": "kad",
+      "source": "function_words_seed",
       "pos": "conjunction",
       "translations": [
         {"term": "ĉu", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "source_page": "manual",
-      "note": "Ido 'kad' = Esperanto 'ĉu' (whether, question particle)"
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'kad' = Esperanto 'ĉu' (whether, question particle)"
+      }
     },
     {
       "lemma": "o",
+      "source": "function_words_seed",
       "pos": "conjunction",
       "translations": [
         {"term": "aŭ", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "source_page": "manual",
-      "note": "Ido 'o' = Esperanto 'aŭ' (or)"
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'o' = Esperanto 'aŭ' (or)"
+      }
     }
   ]
 }
-
