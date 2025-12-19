@@ -11,6 +11,64 @@ from utils.json_utils import save_json, get_file_size_mb
 from utils.metadata import create_metadata, update_statistics
 
 
+# Precompiled regex patterns for cleaning Wiktionary translation terms
+# These strip metadata markers that pollute dictionary entries
+RE_ARROW_MARKERS = re.compile(r'\s*[↓→←↑]\s*')
+RE_PARENTHETICAL = re.compile(r'\s*\([^)]*\)\s*')
+RE_BRACKET_HINTS = re.compile(r'\s*\[[^\]]*\]\s*')
+RE_KATEGORIO = re.compile(r'\s*Kategorio:.*', re.IGNORECASE)
+RE_WIKI_LINK = re.compile(r'\[\[([^\]|]+)(?:\|[^\]]+)?\]\]')
+RE_MULTIPLE_SPACES = re.compile(r'\s+')
+
+
+def clean_wiktionary_term(term: str) -> str:
+    """
+    Clean Wiktionary translation term by removing metadata markers.
+    
+    Removes:
+    - Arrow markers: ↓, →, ←, ↑ (Wiktionary formatting)
+    - Parenthetical hints: (indikante aganton), (noun), etc.
+    - Bracket hints: [see also], etc.
+    - Kategorio: markers
+    - Wiki link markup: [[link]] or [[link|display]]
+    - Multiple spaces
+    
+    Examples:
+        "de ↓ (indikante aganton)" → "de"
+        "en ↓" → "en"
+        "dika ↓" → "dika"
+        "[[vorto]]" → "vorto"
+        "klara ↓, distinta" → "klara, distinta"
+    
+    This cleaning happens at extraction time to ensure source JSON is clean.
+    """
+    if not term:
+        return term
+    
+    # Remove Kategorio: markers first
+    term = RE_KATEGORIO.sub('', term)
+    
+    # Extract content from [[link]] or [[link|display]] - keep the term
+    term = RE_WIKI_LINK.sub(r'\1', term)
+    
+    # Remove arrow markers
+    term = RE_ARROW_MARKERS.sub(' ', term)
+    
+    # Remove parenthetical hints
+    term = RE_PARENTHETICAL.sub(' ', term)
+    
+    # Remove bracket hints
+    term = RE_BRACKET_HINTS.sub(' ', term)
+    
+    # Normalize spaces
+    term = RE_MULTIPLE_SPACES.sub(' ', term)
+    
+    # Clean up commas with extra spaces
+    term = term.replace(' ,', ',').replace(',  ', ', ')
+    
+    return term.strip()
+
+
 def convert_wiktionary_to_unified(old_format_data, source_name, url_base, dump_file, script_path, confidence=1.0):
     """
     Convert wiktionary_parser output to unified JSON format.
@@ -70,12 +128,9 @@ def convert_wiktionary_to_unified(old_format_data, source_name, url_base, dump_f
                         lang = trans.get('lang', '')
                         term = trans.get('term', '').strip()
                         
-                        # Clean up term (extract from markup)
+                        # Clean up term (extract from markup, remove Wiktionary metadata)
                         if term:
-                            term = re.sub(r'\s*Kategorio:.*', '', term)
-                            # Extract content from [[link]] or [[link|display]] - keep the term, not remove it
-                            term = re.sub(r'\[\[([^\]|]+)(?:\|[^\]]+)?\]\]', r'\1', term)
-                            term = term.strip()
+                            term = clean_wiktionary_term(term)
                         
                         if lang and term:
                             trans_key = (term, lang)

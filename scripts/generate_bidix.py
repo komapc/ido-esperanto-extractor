@@ -21,6 +21,51 @@ from typing import Dict, List, Optional
 import re
 
 
+# Precompiled regex patterns for cleaning translations
+# These strip Wiktionary metadata that pollutes dictionary entries
+RE_ARROW_MARKERS = re.compile(r'\s*[↓→←↑]\s*')
+RE_PARENTHETICAL = re.compile(r'\s*\([^)]*\)\s*')
+RE_BRACKET_HINTS = re.compile(r'\s*\[[^\]]*\]\s*')
+RE_MULTIPLE_SPACES = re.compile(r'\s+')
+
+
+def clean_translation(text: str) -> str:
+    """
+    Clean translation text by removing Wiktionary metadata markers.
+    
+    Removes:
+    - Arrow markers: ↓, →, ←, ↑
+    - Parenthetical hints: (indikante aganton), (noun), etc.
+    - Bracket hints: [see also], etc.
+    - Multiple spaces
+    
+    Examples:
+        "de ↓ (indikante aganton)" → "de"
+        "en ↓" → "en"
+        "dika ↓" → "dika"
+        "klara ↓, distinta" → "klara, distinta"
+    """
+    if not text:
+        return text
+    
+    # Remove arrow markers
+    text = RE_ARROW_MARKERS.sub(' ', text)
+    
+    # Remove parenthetical hints
+    text = RE_PARENTHETICAL.sub(' ', text)
+    
+    # Remove bracket hints
+    text = RE_BRACKET_HINTS.sub(' ', text)
+    
+    # Normalize spaces
+    text = RE_MULTIPLE_SPACES.sub(' ', text)
+    
+    # Clean up commas with extra spaces
+    text = text.replace(' ,', ',').replace(',  ', ', ')
+    
+    return text.strip()
+
+
 # POS mapping from JSON to Apertium symbol definitions
 POS_MAP = {
     'n': 'n',           # noun
@@ -376,6 +421,14 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
                 entries_skipped_low_confidence += 1
                 continue
             
+            if not term:
+                continue
+            
+            # CRITICAL: Clean translation of Wiktionary metadata markers
+            # Removes ↓, →, ←, parenthetical hints like (indikante aganton), etc.
+            term = clean_translation(term)
+            
+            # Skip if term is empty after cleaning
             if not term:
                 continue
             
