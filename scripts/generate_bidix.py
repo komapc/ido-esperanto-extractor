@@ -28,8 +28,8 @@ POS_MAP = {
     'vblex': 'vblex',   # verb (already mapped)
     'adj': 'adj',       # adjective
     'adv': 'adv',       # adverb
-    'pr': 'prep',       # preposition -> prep in bidix
-    'prep': 'prep',     # preposition
+    'pr': 'pr',         # preposition - must match monodix tag
+    'prep': 'pr',       # preposition - normalize to 'pr' to match monodix
     'prn': 'prn',       # pronoun
     'det': 'det',       # determiner
     'num': 'num',       # numeral
@@ -257,8 +257,8 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
     # Add symbol definitions
     sdefs = ET.SubElement(root, 'sdefs')
     
-    # Standard symbol definitions for bidix
-    sdef_list = ['n', 'vblex', 'adj', 'adv', 'prn', 'det', 'prep', 
+    # Standard symbol definitions for bidix (must match monodix tag names)
+    sdef_list = ['n', 'vblex', 'adj', 'adv', 'prn', 'det', 'pr', 
                  'cnjcoo', 'cnjsub', 'num', 'np']
     
     for sdef_name in sdef_list:
@@ -334,13 +334,13 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
             elif pos_lower in {'adverb', 'adv'}:
                 pos_normalized = 'adv'
         
-        # For function words (conjunctions, prepositions), don't add POS tags in bidix
-        # They need to match without POS tags for proper lookup
-        # Use POS from source (Wiktionary, etc.) instead of hardcoding
-        # Function word POS types that should not have tags in bidix:
+        # Function words (conjunctions, prepositions, etc.) MUST have POS tags in bidix
+        # because the monodix analyzer outputs them with tags (e.g., a<pr>)
+        # and the bilingual lookup needs matching tags to work correctly.
         function_word_pos = {'cnjcoo', 'cnjsub', 'pr', 'prep', 'det', 'prn', 'adv'}
         is_function_word = pos_normalized in function_word_pos if pos_normalized else False
-        should_add_pos = add_pos and pos_normalized and pos_normalized in POS_MAP and not is_function_word
+        # Add POS tags for ALL entries including function words
+        should_add_pos = add_pos and pos_normalized and pos_normalized in POS_MAP
         
         # Filter and sort translations before processing
         # 1. Filter cognates (identical lemma == translation, case-insensitive)
