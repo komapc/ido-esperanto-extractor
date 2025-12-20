@@ -29,10 +29,12 @@ from validate_schema import load_schema, validate_file
 
 
 SOURCE_PRIORITY = {
+    'function_words_seed': 5,  # Highest priority for manually curated function words
     'ido_lexicon': 4,
     'io_wiktionary': 3,
     'eo_wiktionary': 3,
     'io_wikipedia': 2,
+    'bert_embeddings': 1,
     'bert': 1,
 }
 
@@ -364,7 +366,7 @@ def merge_entry_group(entries: List[Dict[str, Any]], canonical_lemma: str) -> Di
     # Merge POS (prefer lexicon > wiktionary > wikipedia > bert)
     # CRITICAL: Wikipedia entries are almost always proper nouns when tagged as np
     # Override BERT's suffix-based guesses for proper nouns
-    pos_priority = {'ido_lexicon': 4, 'io_wiktionary': 3, 'eo_wiktionary': 3, 'io_wikipedia': 2, 'bert': 1}
+    pos_priority = {'function_words_seed': 5, 'ido_lexicon': 4, 'io_wiktionary': 3, 'eo_wiktionary': 3, 'io_wikipedia': 2, 'bert_embeddings': 1, 'bert': 1}
     best_pos = None
     best_pos_priority = 0
     has_wikipedia_np = False
@@ -393,7 +395,7 @@ def merge_entry_group(entries: List[Dict[str, Any]], canonical_lemma: str) -> Di
     # Merge morphology (prefer lexicon > wiktionary > wikipedia > bert)
     # CRITICAL: If we overrode POS to np, also override paradigm
     # CRITICAL: For function words, prefer Wiktionary (more accurate POS/paradigm)
-    morphology_priority = {'ido_lexicon': 4, 'io_wiktionary': 3, 'eo_wiktionary': 3, 'io_wikipedia': 2, 'bert': 1}
+    morphology_priority = {'function_words_seed': 5, 'ido_lexicon': 4, 'io_wiktionary': 3, 'eo_wiktionary': 3, 'io_wikipedia': 2, 'bert_embeddings': 1, 'bert': 1}
     best_morphology = None
     best_priority = 0
     has_wikipedia_morphology = False

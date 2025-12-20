@@ -2,7 +2,7 @@
   "metadata": {
     "source_name": "io_wiktionary",
     "version": "3.0",
-    "generation_date": "2025-12-19T13:04:52.487435",
+    "generation_date": "2025-12-19T17:40:32.612304",
     "file_type": "source_json",
     "origin": {
       "dump_file": "iowiktionary-latest-pages-articles.xml.bz2",
@@ -10,7 +10,7 @@
       "dump_size_mb": 29.85
     },
     "extraction": {
-      "date": "2025-12-19T13:04:52.487449",
+      "date": "2025-12-19T17:40:32.612324",
       "script": "/home/mark/apertium-dev/projects/extractor/scripts/01_parse_io_wiktionary.py",
       "version": "3.0"
     },
@@ -11838,6 +11838,7 @@
           "source": "io_wiktionary"
         }
       ],
+      "pos": "determiner",
       "metadata": {
         "source_page": "https://io.wiktionary.org/wiki/la"
       }
