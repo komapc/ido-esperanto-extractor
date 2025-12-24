@@ -148,9 +148,9 @@ def infer_ido_morphology(lemma: str, source: Optional[str] = None, existing_pos:
     return {}
 
 
-def assign_paradigm_from_pos(pos: str) -> Optional[str]:
+def assign_paradigm_from_pos(pos: str, lemma: str = "") -> Optional[str]:
     """
-    Assign paradigm based on POS tag.
+    Assign paradigm based on POS tag and lemma.
     
     Maps POS tags to Apertium paradigms:
     - pr (preposition) → __pr
@@ -161,10 +161,11 @@ def assign_paradigm_from_pos(pos: str) -> Optional[str]:
     - np (proper noun) → np__np
     - n (noun) → o__n (if not already set)
     - adj (adjective) → a__adj (if not already set)
-    - adv (adverb) → e__adv (if not already set)
+    - adv (adverb) → e__adv (if ending in -e) or __adv (otherwise)
     - vblex (verb) → ar__vblex (if not already set)
     """
     pos_lower = pos.lower().strip()
+    lemma_lower = lemma.lower().strip() if lemma else ""
     
     # Function word paradigms (invariable)
     if pos_lower in {'pr', 'prep', 'preposition'}:
@@ -188,6 +189,8 @@ def assign_paradigm_from_pos(pos: str) -> Optional[str]:
     elif pos_lower in {'adj', 'adjective', 'adjektivo'}:
         return 'a__adj'
     elif pos_lower in {'adv', 'adverb', 'adverbo'}:
+        if lemma_lower and not lemma_lower.endswith('e'):
+            return '__adv'
         return 'e__adv'
     elif pos_lower in {'v', 'vblex', 'verb', 'verbo'}:
         return 'ar__vblex'
@@ -251,7 +254,7 @@ def apply_morphology_inference(entries: List[Dict[str, Any]]) -> List[Dict[str, 
         # If we have POS but no paradigm, assign paradigm from POS
         pos = entry.get('pos')
         if pos:
-            paradigm = assign_paradigm_from_pos(pos)
+            paradigm = assign_paradigm_from_pos(pos, lemma)
             if paradigm:
                 if 'morphology' not in entry:
                     entry['morphology'] = {}
@@ -387,7 +390,10 @@ def merge_entry_group(entries: List[Dict[str, Any]], canonical_lemma: str) -> Di
     
     # If Wikipedia says it's a proper noun, use that (override BERT's suffix guess)
     if has_wikipedia_np:
-        best_pos = 'np'
+        # Only override if we don't have a better source (e.g. seed, lexicon, wiktionary)
+        # Priority: seed(5) > lexicon(4) > wiktionary(3) > wikipedia(2) > bert(1)
+        if best_pos_priority <= 2:
+            best_pos = 'np'
     
     if best_pos:
         base_entry['pos'] = best_pos
@@ -418,7 +424,7 @@ def merge_entry_group(entries: List[Dict[str, Any]], canonical_lemma: str) -> Di
                 best_priority = priority
     
     # If we overrode POS to np, also override paradigm to np__np
-    if has_wikipedia_np:
+    if has_wikipedia_np and best_pos_priority <= 2:
         if 'morphology' not in base_entry:
             base_entry['morphology'] = {}
         base_entry['morphology']['paradigm'] = 'np__np'
@@ -436,14 +442,14 @@ def merge_entry_group(entries: List[Dict[str, Any]], canonical_lemma: str) -> Di
             base_entry['morphology'] = best_morphology
     elif best_pos:
         # For entries without morphology, assign paradigm from POS
-        paradigm = assign_paradigm_from_pos(best_pos)
+        paradigm = assign_paradigm_from_pos(best_pos, canonical_lemma)
         if paradigm:
             if 'morphology' not in base_entry:
                 base_entry['morphology'] = {}
             base_entry['morphology']['paradigm'] = paradigm
     elif is_function_word:
         # For function words without morphology, assign paradigm from POS
-        paradigm = assign_paradigm_from_pos(best_pos)
+        paradigm = assign_paradigm_from_pos(best_pos, canonical_lemma)
         if paradigm:
             if 'morphology' not in base_entry:
                 base_entry['morphology'] = {}
