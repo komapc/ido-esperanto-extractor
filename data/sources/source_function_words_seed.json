@@ -5,7 +5,7 @@
     "generation_date": "2025-12-19",
     "description": "Manually curated critical Ido function words with Esperanto translations",
     "statistics": {
-      "total_entries": 16
+      "total_entries": 23
     }
   },
   "entries": [
@@ -19,6 +19,66 @@
       "metadata": {
         "source_page": "manual",
         "note": "Ido 'la' = Esperanto 'la' (definite article)"
+      }
+    },
+    {
+      "lemma": "l'",
+      "source": "function_words_seed",
+      "pos": "determiner",
+      "morphology": {
+        "paradigm": "__det"
+      },
+      "translations": [
+        {"term": "la", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+      ],
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'l'' = Esperanto 'la' (elided definite article before vowels)"
+      }
+    },
+    {
+      "lemma": "l",
+      "source": "function_words_seed",
+      "pos": "determiner",
+      "morphology": {
+        "paradigm": "__det"
+      },
+      "translations": [
+        {"term": "la", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+      ],
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'l' = Esperanto 'la' (contracted article token)"
+      }
+    },
+    {
+      "lemma": "Ido",
+      "source": "function_words_seed",
+      "pos": "noun",
+      "morphology": {
+        "paradigm": "o__n"
+      },
+      "translations": [
+        {"term": "Ido", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+      ],
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido language (capitalized) - treated as noun to match automorf"
+      }
+    },
+    {
+      "lemma": "Konstruita",
+      "source": "function_words_seed",
+      "pos": "adjective",
+      "morphology": {
+        "paradigm": "a__adj"
+      },
+      "translations": [
+        {"term": "konstruita", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+      ],
+      "metadata": {
+        "source_page": "manual",
+        "note": "Capitalized form workaround for sentence-initial past participle"
       }
     },
     {
@@ -193,6 +253,102 @@
       "metadata": {
         "source_page": "manual",
         "note": "Ido 'o' = Esperanto 'aŭ' (or)"
+      }
+    },
+    {
+      "lemma": "maxim",
+      "source": "function_words_seed",
+      "pos": "adverb",
+      "translations": [
+        {"term": "plej", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+      ],
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'maxim' = Esperanto 'plej' (most - superlative)"
+      }
+    },
+    {
+      "lemma": "nomizar",
+      "source": "function_words_seed",
+      "pos": "verb",
+      "translations": [
+        {"term": "nomi", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+      ],
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'nomizar' = Esperanto 'nomi' (to name)"
+      }
+    },
+    {
+      "lemma": "quin",
+      "source": "function_words_seed",
+      "pos": "pronoun",
+      "translations": [
+        {"term": "kiujn", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+      ],
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'quin' = Esperanto 'kiujn' (which/who - plural accusative)"
+      }
+    },
+    {
+      "lemma": "Esperantido",
+      "source": "function_words_seed",
+      "pos": "noun",
+      "translations": [
+        {"term": "Esperantido", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+      ],
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'Esperantido' = Esperanto 'Esperantido' (Esperanto descendant)"
+      }
+    },
+    {
+      "lemma": "Esperantidoj",
+      "source": "function_words_seed",
+      "pos": "proper noun",
+      "translations": [
+        {"term": "Esperantidoj", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+      ],
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'Esperantidoj' (quoted proper noun) = Esperanto 'Esperantidoj'"
+      }
+    },
+    {
+      "lemma": "sucesoza",
+      "source": "function_words_seed",
+      "pos": "adjective",
+      "translations": [
+        {"term": "sukcesa", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+      ],
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'sucesoza' = Esperanto 'sukcesa' (successful)"
+      }
+    },
+    {
+      "lemma": "facile",
+      "source": "function_words_seed",
+      "pos": "adverb",
+      "translations": [
+        {"term": "facile", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+      ],
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'facile' = Esperanto 'facile' (easily)"
+      }
+    },
+    {
+      "lemma": "kreinto",
+      "source": "function_words_seed",
+      "pos": "noun",
+      "translations": [
+        {"term": "kreinto", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+      ],
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'kreinto' = Esperanto 'kreinto' (creator)"
       }
     }
   ]
