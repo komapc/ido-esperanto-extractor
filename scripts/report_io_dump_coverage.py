@@ -13,7 +13,7 @@ def compute_io_dump_coverage(io_wikt_path: Path) -> Dict[str, int]:
     
     # Handle both old format (list) and new format (dict with entries key)
     if isinstance(data, dict):
-        data = data.get(\"entries\", [])
+        data = data.get("entries", [])
     
     no_eo_total = 0
     no_eo_any_other = 0

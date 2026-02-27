@@ -18,20 +18,14 @@ def run_stage(stage_script: str, args: list, description: str) -> bool:
     logging.info("=" * 60)
     logging.info("Running %s", description)
     logging.info("=" * 60)
-    
+
     try:
         cmd = [sys.executable, stage_script] + args
-        result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+        subprocess.run(cmd, check=True)
         logging.info("✓ %s completed successfully", description)
-        if result.stdout:
-            logging.info("Output: %s", result.stdout.strip())
         return True
     except subprocess.CalledProcessError as e:
         logging.error("✗ %s failed with exit code %d", description, e.returncode)
-        if e.stdout:
-            logging.error("Stdout: %s", e.stdout)
-        if e.stderr:
-            logging.error("Stderr: %s", e.stderr)
         return False
 
 
