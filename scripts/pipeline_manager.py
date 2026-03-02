@@ -255,13 +255,13 @@ def main(argv):
         
         # Stage 2: Ido Wiktionary
         ("wiktionary_io",
-         ["python3", "scripts/process_wiktionary_two_stage.py", "--source", "io", "--target", "eo"],
+         ["python3", "scripts/process_wiktionary_two_stage.py", "--source", "io", "--target", "eo", "--force"],
          "Process Ido Wiktionary (two-stage)",
          None),
         
         # Stage 3: Esperanto Wiktionary
         ("wiktionary_eo",
-         ["python3", "scripts/process_wiktionary_two_stage.py", "--source", "eo", "--target", "io"],
+         ["python3", "scripts/process_wiktionary_two_stage.py", "--source", "eo", "--target", "io", "--force"],
          "Process Esperanto Wiktionary (two-stage)",
          None),
         
