@@ -118,7 +118,7 @@ def clean_lemma(lemma: str) -> str:
     lemma = re.sub(r"\{\{[a-z]{2,3}\}\}", "", lemma)
     
     # Extract content from translation templates: {{tr|lang|word}} → word
-    lemma = re.sub(r"\{\{tr\|[^|]+\|([^}]+)\}\}", r"\1", lemma)
+    lemma = re.sub(r"\{\{(?:t\+?|trad\+?|l|link|m|tr)\|[^|]+\|([^}|]+)[^}]*\}\}", r"\1", lemma)
     
     # Extract content from parameterized templates: {{template|content}} → content
     lemma = re.sub(r"\{\{[^|]+\|([^}]+)\}\}", r"\1", lemma)

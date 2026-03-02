@@ -47,41 +47,41 @@ TARGET_TRANSLATION_PATTERNS = {
     "io": [
         r"\*[ \t]*\{\{io\}\}[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
         r"\*[ \t]*(?:Ido|ido|IO)[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
-        r"\{\{t\+?\|io\|([^}|]+)",
-        r"\{\{trad\+?\|io\|([^}|]+)",
-        r"\{\{l\|io\|([^}|]+)",
-        r"\{\{link\|io\|([^}|]+)",
-        r"\{\{m\|io\|([^}|]+)",
+        r"\{\{t\+?\|io\|([^}]+)",
+        r"\{\{trad\+?\|io\|([^}]+)",
+        r"\{\{l\|io\|([^}]+)",
+        r"\{\{link\|io\|([^}]+)",
+        r"\{\{m\|io\|([^}]+)",
     ],
     "eo": [
         r"\*[ \t]*\{\{eo\}\}[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
         r"\*[ \t]*(?:Esperanto|esperanto|EO)[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
-        r"(?m)^.*?Esperanto[ \t]*[:\-][ \t]*([^\n|]+)",
-        r"\{\{t\+?\|eo\|([^}|]+)",
-        r"\{\{trad\+?\|eo\|([^}|]+)",
-        r"\{\{l\|eo\|([^}|]+)",
-        r"\{\{link\|eo\|([^}|]+)",
-        r"\{\{m\|eo\|([^}|]+)",
+        r"(?m)^.*?Esperanto[ \t]*[:\-][ \t]*([^\n]+)",
+        r"\{\{t\+?\|eo\|([^}]+)",
+        r"\{\{trad\+?\|eo\|([^}]+)",
+        r"\{\{l\|eo\|([^}]+)",
+        r"\{\{link\|eo\|([^}]+)",
+        r"\{\{m\|eo\|([^}]+)",
     ],
     "en": [
         r"\*[ \t]*\{\{en\}\}[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
         r"\*[ \t]*(?:Angliana|English|EN|en)[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
-        r"(?m)^.*?(?:Angliana|English)[ \t]*[:\-][ \t]*([^\n|]+)",
-        r"\{\{t\+?\|en\|([^}|]+)",
-        r"\{\{trad\+?\|en\|([^}|]+)",
-        r"\{\{l\|en\|([^}|]+)",
-        r"\{\{link\|en\|([^}|]+)",
-        r"\{\{m\|en\|([^}|]+)",
+        r"(?m)^.*?(?:Angliana|English)[ \t]*[:\-][ \t]*([^\n]+)",
+        r"\{\{t\+?\|en\|([^}]+)",
+        r"\{\{trad\+?\|en\|([^}]+)",
+        r"\{\{l\|en\|([^}]+)",
+        r"\{\{link\|en\|([^}]+)",
+        r"\{\{m\|en\|([^}]+)",
     ],
     "fr": [
         r"\*[ \t]*\{\{fr\}\}[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
         r"\*[ \t]*(?:Franciana|French|FR|fr)[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
-        r"(?m)^.*?(?:Franciana|French)[ \t]*[:\-][ \t]*([^\n|]+)",
-        r"\{\{t\+?\|fr\|([^}|]+)",
-        r"\{\{trad\+?\|fr\|([^}|]+)",
-        r"\{\{l\|fr\|([^}|]+)",
-        r"\{\{link\|fr\|([^}|]+)",
-        r"\{\{m\|fr\|([^}|]+)",
+        r"(?m)^.*?(?:Franciana|French)[ \t]*[:\-][ \t]*([^\n]+)",
+        r"\{\{t\+?\|fr\|([^}]+)",
+        r"\{\{trad\+?\|fr\|([^}]+)",
+        r"\{\{l\|fr\|([^}]+)",
+        r"\{\{link\|fr\|([^}]+)",
+        r"\{\{m\|fr\|([^}]+)",
     ],
 }
 
@@ -251,6 +251,7 @@ def extract_pos(section: str) -> Optional[str]:
 
 # OPTIMIZATION: Pre-compile cleaning regexes (10-15% speedup)
 # These patterns remove MediaWiki markup from translation text to extract clean words
+TRANS_TEMPLATE_RE = re.compile(r'\{\{(?:t\+?|trad\+?|l|link|m)\|[^|]+\|([^}]+)[^}]*\}\}')
 CLEAN_TEMPLATE_RE = re.compile(r"\{\{[^}]*\}}")                  # Remove {{templates}}
 CLEAN_LINK_RE = re.compile(r"\[\[(?:[^\]|]*\|)?([^\]]+)\]\]")    # Keep link text, discard link syntax
 CLEAN_CATEGORY_RE = re.compile(r"\[\[(?:Category|Kategorio):[^\]]*\]\]")  # Remove category links
@@ -270,6 +271,8 @@ def clean_translation_text(text: str) -> str:
     text = html.unescape(text)
     # Remove numbered sense references first (before other cleaning)
     text = CLEAN_NUMBERED_REF_RE.sub(" ", text)  # Replace with space to avoid joining words
+    # Extract terms from common translation templates before deleting all templates
+    text = TRANS_TEMPLATE_RE.sub(r"\1", text)
     text = CLEAN_TEMPLATE_RE.sub("", text)
     text = CLEAN_LINK_RE.sub(r"\1", text)
     text = CLEAN_CATEGORY_RE.sub("", text)
@@ -362,11 +365,11 @@ NEXT_HEADING_RE = re.compile(r"^==[^=].*?$|^===+\s*[^=].*?$", re.MULTILINE)
 TRADUKOJ_IDO_PATTERNS = [
     re.compile(r"\*\s*\{\{io\}\}\s*[:\.-]\s*(.+)$", re.IGNORECASE | re.MULTILINE),
     re.compile(r"\*\s*io\s*[:\.-]\s*(.+)$", re.IGNORECASE | re.MULTILINE),
-    re.compile(r"\{\{t\+?\|io\|([^}|]+)", re.IGNORECASE),
-    re.compile(r"\{\{trad\+?\|io\|([^}|]+)", re.IGNORECASE),
-    re.compile(r"\{\{l\|io\|([^}|]+)", re.IGNORECASE),
-    re.compile(r"\{\{link\|io\|([^}|]+)", re.IGNORECASE),
-    re.compile(r"\{\{m\|io\|([^}|]+)", re.IGNORECASE),
+    re.compile(r"\{\{t\+?\|io\|([^}]+)", re.IGNORECASE),
+    re.compile(r"\{\{trad\+?\|io\|([^}]+)", re.IGNORECASE),
+    re.compile(r"\{\{l\|io\|([^}]+)", re.IGNORECASE),
+    re.compile(r"\{\{link\|io\|([^}]+)", re.IGNORECASE),
+    re.compile(r"\{\{m\|io\|([^}]+)", re.IGNORECASE),
 ]
 
 def extract_tradukoj_io(section_or_page: str) -> List[List[str]]:

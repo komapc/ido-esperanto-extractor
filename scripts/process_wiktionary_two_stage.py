@@ -39,6 +39,7 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--stage2-out", type=Path, help="Stage 2 output path")
     ap.add_argument("--skip-stage1", action="store_true", help="Skip Stage 1 (XML → Filtered JSON)")
     ap.add_argument("--skip-stage2", action="store_true", help="Skip Stage 2 (JSON → Final Processing)")
+    ap.add_argument("--force", action="store_true", help="Force regeneration of all stages")
     ap.add_argument("--limit", type=int, help="Limit number of pages to parse (for testing)")
     ap.add_argument("--progress-every", type=int, default=1000)
     ap.add_argument("-v", "--verbose", action="count", default=0)
@@ -81,7 +82,7 @@ def main(argv: list[str]) -> int:
     
     # Stage 1: XML → Filtered JSON
     if not args.skip_stage1:
-        if args.stage1_out.exists():
+        if args.stage1_out.exists() and not args.force:
             logging.info("Stage 1 output already exists, skipping...")
         else:
             stage1_args = common_args + ["--output", str(args.stage1_out)]
@@ -94,7 +95,7 @@ def main(argv: list[str]) -> int:
     
     # Stage 2: JSON → Final Processing
     if not args.skip_stage2:
-        if args.stage2_out.exists():
+        if args.stage2_out.exists() and not args.force:
             logging.info("Stage 2 output already exists, skipping...")
         else:
             stage2_args = ["--source", args.source, "--input", str(args.stage1_out), 
@@ -113,7 +114,7 @@ def main(argv: list[str]) -> int:
     logging.info("=" * 60)
     
     # Show final statistics
-    if args.stage2_out.exists():
+    if args.stage2_out.exists() and not args.force:
         from _common import read_json
         final_data = read_json(args.stage2_out)
         entries = final_data.get('entries', [])

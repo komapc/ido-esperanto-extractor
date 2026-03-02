@@ -87,9 +87,6 @@ def extract_filtered_wiktionary(dump_path: Path, output_path: Path, source_code:
     logging.info("Stage 1: Extracting filtered %s Wiktionary from %s", source_code, dump_path)
     
     # Check if output already exists (resumability)
-    if output_path.exists():
-        logging.info("Output file %s already exists, skipping Stage 1", output_path)
-        return
     
     # Parse Wiktionary using existing parser
     cfg = ParserConfig(source_code=source_code, target_code=target_code)
