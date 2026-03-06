@@ -131,23 +131,31 @@ COMPILED_LANG_SECTION_PATTERNS = {
 NEXT_SECTION_RE = re.compile(r"\n==[^=]")
 
 def extract_language_section(wikitext: str, lang_code: str) -> Optional[str]:
-    """Extract language-specific section from Wiktionary page.
-    
-    Searches for language section headers like '=={{Lingvo|eo}}==' or '== Ido =='
-    and returns the content until the next section boundary.
+    """Extract language-specific section(s) from Wiktionary page.
+
+    Some io.wiktionary pages split one word across multiple numbered sections
+    (e.g. "==I {{io}} (radiko)==" then "==II {{io}} (prepoziciono)==").
+    This function returns ALL matching sections concatenated so translations
+    in any section are visible to the caller.
     """
     compiled_patterns = COMPILED_LANG_SECTION_PATTERNS.get(lang_code, [])
+    # Collect start positions of every matching section header
+    starts = []
     for compiled_pat in compiled_patterns:
-        m = compiled_pat.search(wikitext)
-        if not m:
-            continue
-        start = m.start()
-        section = wikitext[start:]
-        nxt = NEXT_SECTION_RE.search(section)
+        for m in compiled_pat.finditer(wikitext):
+            starts.append(m.start())
+    if not starts:
+        return None
+    starts = sorted(set(starts))
+    # For each start, extract until the next top-level (==) section
+    sections = []
+    for start in starts:
+        chunk = wikitext[start:]
+        nxt = NEXT_SECTION_RE.search(chunk)
         if nxt:
-            section = section[:nxt.start()]
-        return section
-    return None
+            chunk = chunk[:nxt.start()]
+        sections.append(chunk)
+    return "\n".join(sections)
 
 
 def extract_pos(section: str) -> Optional[str]:
@@ -260,30 +268,36 @@ CLEAN_PIPE_RE = re.compile(r"\|\s*\}.*$")                        # Remove templa
 CLEAN_WHITESPACE_RE = re.compile(r"\s+")                         # Normalize whitespace
 # Remove numbered sense references like [1], [2], [1-3], [1, 2] anywhere in text
 CLEAN_NUMBERED_REF_RE = re.compile(r"\s*\[[\d\s,–-]+\]\s*")      # Remove [1], [2], [1-3], [1, 2]
+CLEAN_NAV_ARROWS_RE = re.compile(r"[↓↑]")                        # Remove navigation arrows (io.wiktionary)
+NUMBERED_MEANING_RE = re.compile(r"\((\d+)\)\s*([^;()]+)")
 
 def clean_translation_text(text: str) -> str:
     if not text:
         return ""
-    # Early exit if no markup detected (most translations are clean)
-    if not any(c in text for c in ['{', '[', '<', '|', '&']):
+    # Early exit if no markup detected
+    if not any(c in text for c in ["{", "[", "<", "|", "&"]):
         return text.strip(" \t\n\r\f\v:;,.–-|")
     
+    import html
     text = html.unescape(text)
-    # Remove numbered sense references first (before other cleaning)
-    text = CLEAN_NUMBERED_REF_RE.sub(" ", text)  # Replace with space to avoid joining words
-    # Extract terms from common translation templates before deleting all templates
-    text = TRANS_TEMPLATE_RE.sub(r"\1", text)
+    # Remove numbered sense references first
+    text = CLEAN_NUMBERED_REF_RE.sub(" ", text)
+    
+    # Process translation templates: {{t|lang|term|...}} -> term
+    def extract_term(m):
+        blob = m.group(1)
+        return blob.split("|")[0]
+    
+    text = CLEAN_NAV_ARROWS_RE.sub("", text)  # remove ↓↑ navigation symbols before any other cleanup
+    text = TRANS_TEMPLATE_RE.sub(extract_term, text)
     text = CLEAN_TEMPLATE_RE.sub("", text)
+    text = CLEAN_CATEGORY_RE.sub("", text)  # must run before CLEAN_LINK_RE destroys [[...]] syntax
     text = CLEAN_LINK_RE.sub(r"\1", text)
-    text = CLEAN_CATEGORY_RE.sub("", text)
     text = CLEAN_HTML_RE.sub("", text)
     text = CLEAN_PIPE_RE.sub("", text)
     text = CLEAN_WHITESPACE_RE.sub(" ", text).strip(" \t\n\r\f\v:;,.–-|")
     return text
 
-
-# OPTIMIZATION: Pre-compile numbered meaning pattern
-NUMBERED_MEANING_RE = re.compile(r"\((\d+)\)\s*([^;()]+)")
 
 def parse_meanings(blob: str) -> List[List[str]]:
     """Parse translation meanings from various formats.

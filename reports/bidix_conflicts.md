@@ -1,11 +1,16 @@
 # IO→EO Conflicts (multiple EO terms per IO lemma)
-- Total conflicts: 139
+- Total conflicts: 160
 
+- Austria: Aŭstrio{fr_wiktionary_meaning}, Aŭstrujo{wikt_eo}
+- Egiptia: Egiptio{wikt_eo,wikt_io}, Egiptujo{wikt_io}
+- Finlando: Finnlando{wikt_eo,wikt_io}, Suomio{wikt_io}
 - Franciana: Francio{wikt_io}, franca{fr_wiktionary_meaning,wikt_io}
 - Germania: Germanio{fr_wiktionary_meaning,wikt_io}, Germanlando{wikt_eo}
 - India: Barato{fr_wiktionary_meaning}, Hindio{wikt_io}
+- Italia: Italio{wikt_eo,wikt_io}, Italiujo{wikt_io}
 - Ivora Rivo: Ebur-Bordo{fr_wiktionary_meaning}, Eburbordo{wikt_io}
 - Lesoto: Lesoto{fr_wiktionary_meaning}, Lesoto lesoto{wikt_io}
+- Libano: Libano{wikt_eo}, Libano libano{wikt_io}
 - Nauru: Nauro{fr_wiktionary_meaning}, Naŭruo{wikt_io}
 - Nijer: Nigero{wikt_io}, Niĝero{fr_wiktionary_meaning}
 - Ruanda: Ruando{fr_wiktionary_meaning}, Rwando{wikt_io}
@@ -16,6 +21,7 @@
 - abrogar: aboli{wikt_io}, nuligi{fr_wiktionary_meaning}
 - absinto: absintaĵo{fr_wiktionary_meaning}, absinto{wikt_io}
 - acerba: acerba{wikt_io}, akra{fr_wiktionary_meaning}
+- akuta: akra{wikt_eo}, akuta{wikt_io}
 - alterar: aliiĝi{wikt_io}, falsi{fr_wiktionary_meaning}
 - analoga: analoga{wikt_io}, analogia{fr_wiktionary_meaning}
 - arbusto: arbedo{wikt_io}, arbusto{fr_wiktionary_meaning}
@@ -35,7 +41,7 @@
 - danko: danko{wikt_io}, dankon{fr_wiktionary_meaning}
 - deceptar: trompi la esperojn de{wikt_io}, ĉagreni{fr_wiktionary_meaning}
 - dicionario: leksikono{wikt_io}, vortaro{wikt_eo,wikt_io}, vortoprovizo{wikt_io}
-- dio: diurno{wikt_io}, tago{fr_wiktionary_meaning,wikt_io}
+- dio: diurno{wikt_io}, tago{fr_wiktionary_meaning,wikt_eo,wikt_io}
 - disputar: disputi{wikt_io}, kvereli{fr_wiktionary_meaning}
 - domeno: bieno{wikt_io}, limo{fr_wiktionary_meaning}, sfero de ago aŭ influo{wikt_io}
 - duktar: konduki{wikt_io}, stiri{fr_wiktionary_meaning}
@@ -46,7 +52,8 @@
 - exkavar: elbori{wikt_io}, elfosi{wikt_io}, elkavigi{wikt_io}, esplori{fr_wiktionary_meaning}
 - extingar: estingi{fr_wiktionary_meaning,wikt_io}, estingiĝi{wikt_io}
 - farmacio: apoteko{fr_wiktionary_meaning}, farmacio{wikt_io}
-- filio: filo{fr_wiktionary_meaning}, infano{wikt_io}
+- femina: femala{wikt_eo,wikt_io}, virina{wikt_io}
+- filio: filo{fr_wiktionary_meaning,wikt_eo}, infano{wikt_io}
 - fingro: fingro{fr_wiktionary_meaning,wikt_io}, manfingro{fr_wiktionary_meaning}
 - flecho: pinaklo{wikt_io}, sago{fr_wiktionary_meaning,wikt_io}
 - foso: fosaĵo{wikt_io}, foso{fr_wiktionary_meaning}
@@ -62,6 +69,12 @@
 - gropo: gluteo{wikt_io}, gropo{fr_wiktionary_meaning}
 - grunar: grumbli{fr_wiktionary_meaning}, grunti{wikt_io}
 - hanulo: koko{fr_wiktionary_meaning}, virkoko{wikt_io}
+- heterosexuala: aliseksama{wikt_io}, aliseksema{wikt_eo,wikt_io}
+- heterosexualino: aliseksamantino{wikt_io}, aliseksamulino{wikt_eo,wikt_io}, aliseksemulino{wikt_io}
+- heterosexualo: aliseksamanto{wikt_io}, aliseksamulo{wikt_eo,wikt_io}, aliseksemulo{wikt_eo,wikt_io}, malgejo{wikt_eo}
+- homeosexuala: geja{wikt_eo}, samseksama{wikt_eo,wikt_io}, samseksema{wikt_eo,wikt_io}
+- homeosexualino: lesbo{wikt_eo}, samseksamantino{wikt_io}, samseksamulino{wikt_eo,wikt_io}, samseksemulino{wikt_eo,wikt_io}
+- homeosexualo: gejo{wikt_eo}, samseksamanto{wikt_io}, samseksamulo{wikt_eo,wikt_io}, samseksemulo{wikt_eo,wikt_io}
 - imbecila: idiota{wikt_io}, stultulo{fr_wiktionary_meaning}
 - impedar: malhelpi{fr_wiktionary_meaning,wikt_io}, obstrukci{wikt_io}
 - inklinar: inklini{wikt_io}, inklinigi{wikt_io}, klini{fr_wiktionary_meaning}
@@ -69,8 +82,11 @@
 - inquestar: demandi{wikt_io}, enketi{wikt_io}, esplori{fr_wiktionary_meaning,wikt_io}
 - jerar: administri{fr_wiktionary_meaning,wikt_io}, aranĝi{wikt_io}
 - jurar: sakri{fr_wiktionary_meaning}, ĵuri{wikt_io}
+- kapo: kapo{wikt_io}, ĉefo{wikt_eo,wikt_io}
 - karcero: karcero{wikt_io}, malliberejo{fr_wiktionary_meaning}
+- karpo: karpeo{wikt_io}, karpo{fr_wiktionary_meaning}
 - katarakto: akvofalo{fr_wiktionary_meaning}, katarakto{wikt_io}
+- kateto: kateto{wikt_io}, katido{fr_wiktionary_meaning}
 - klasifikar: klasi{fr_wiktionary_meaning}, klasifiki{wikt_io}
 - klosho: kloŝo{wikt_io}, sonorilo{fr_wiktionary_meaning,wikt_io}
 - klozar: fermi{fr_wiktionary_meaning,wikt_io}, ŝtopi{wikt_io}
@@ -79,21 +95,22 @@
 - kosto: marbordo{fr_wiktionary_meaning}, ripo{fr_wiktionary_meaning,wikt_io}
 - kritikar: kritiki{fr_wiktionary_meaning,wikt_io}, prijuĝi{wikt_io}
 - krucho: kruĉo{wikt_io}, trinkaĵskatolo{fr_wiktionary_meaning}
-- kulo: fundo{wikt_io}, gluteoj{wikt_io}, pugo{fr_wiktionary_meaning,wikt_io}
+- kulo: fundo{wikt_io}, gluteoj{wikt_io}, pugo{fr_wiktionary_meaning,wikt_eo,wikt_io}
 - leda: malbela{fr_wiktionary_meaning,wikt_io}, malnobla{wikt_io}
 - lenso: lenso{wikt_io}, lento{fr_wiktionary_meaning,wikt_io}
 - lineo: linio{fr_wiktionary_meaning,wikt_io}, vico{fr_wiktionary_meaning}
 - longa: granda{fr_wiktionary_meaning}, longa{wikt_io}
-- lu: li{wikt_io}, ĝi{wikt_io}, ŝi{wikt_io}, ŝli{fr_wiktionary_meaning}
+- lu: li{wikt_io}, ri{wikt_eo}, ĝi{wikt_eo,wikt_io}, ŝi{wikt_io}, ŝli{fr_wiktionary_meaning}
 - macerar: maceri{fr_wiktionary_meaning,wikt_io}, maceriĝi{wikt_io}
 - magazino: magazeno{wikt_io}, vendejo{fr_wiktionary_meaning}
 - maladeso: malsaneco{wikt_io}, malsano{fr_wiktionary_meaning,wikt_io}
 - maligna: malica{wikt_io}, maligna{fr_wiktionary_meaning,wikt_io}
 - manjar: konsumi{wikt_io}, manĝi{fr_wiktionary_meaning,wikt_io}
-- maskula: maskla{wikt_io}, vira{fr_wiktionary_meaning,wikt_io}
+- maskula: maskla{wikt_eo,wikt_io}, vira{fr_wiktionary_meaning,wikt_io}
 - mato: mato{fr_wiktionary_meaning,wikt_io}, tapiŝo{fr_wiktionary_meaning}
-- me: mi{wikt_io}, min{fr_wiktionary_meaning}
+- me: mi{wikt_eo,wikt_io}, min{fr_wiktionary_meaning}
 - medikamento: kuracilo{fr_wiktionary_meaning}, medikamento{wikt_io}
+- mem: eĉ{wikt_io}, ja{wikt_eo,wikt_io}
 - mestiero: metio{wikt_io}, profesio{fr_wiktionary_meaning}
 - mikra: eta{wikt_io}, malgranda{fr_wiktionary_meaning,wikt_io}
 - monotona: monotona{fr_wiktionary_meaning}, unutona{wikt_io}
@@ -105,7 +122,7 @@
 - obsoleta: arkaika{fr_wiktionary_meaning}, malnovmoda{wikt_io}
 - obtenar: akiri{fr_wiktionary_meaning}, havigi{wikt_io}, obteni{wikt_io}
 - oktavo: oktavo{wikt_io}, okto{fr_wiktionary_meaning}
-- omna: ĉio{fr_wiktionary_meaning}, ĉiu{wikt_io}
+- omna: ĉia{wikt_eo}, ĉio{fr_wiktionary_meaning}, ĉiu{wikt_io}
 - onomatopeo: onomatopeo{wikt_io}, sonimito{fr_wiktionary_meaning}
 - otuso: gufo{fr_wiktionary_meaning}, strigo{wikt_io}
 - palato: palaco{wikt_io}, palato{fr_wiktionary_meaning}
@@ -114,12 +131,14 @@
 - para: egala{wikt_io}, ekvivalenta{wikt_io}, para{fr_wiktionary_meaning}
 - persono: homo{fr_wiktionary_meaning}, persono{wikt_io}
 - pikar: piki{wikt_io}, stebi{fr_wiktionary_meaning}
+- po: en{wikt_io}, en prezo de{wikt_io}, je{wikt_eo,wikt_io}, por{wikt_io}
 - posedar: havi{wikt_io}, posedi{fr_wiktionary_meaning,wikt_io}
 - presar: premi{wikt_io}, streĉi{fr_wiktionary_meaning}
 - prizar: altetaksi{wikt_io}, ŝati{fr_wiktionary_meaning}
 - quaresma: kvara{wikt_io}, kvarono{fr_wiktionary_meaning}
 - questionar: demandi{wikt_io}, pridemandi{fr_wiktionary_meaning}
-- rejo: reĝino{wikt_io}, reĝo{fr_wiktionary_meaning,wikt_io}
+- qui: kioj{wikt_eo}, kiuj{wikt_io}
+- rejo: reĝino{wikt_io}, reĝo{fr_wiktionary_meaning,wikt_eo,wikt_io}
 - rentiro: boaco{wikt_io}, rangifero{fr_wiktionary_meaning,wikt_io}
 - revelar: malkaŝi{wikt_io}, revelacii{wikt_io}, riveli{fr_wiktionary_meaning,wikt_io}
 - revenuo: enspezo{wikt_io}, rento{fr_wiktionary_meaning}
@@ -134,9 +153,11 @@
 - stertorar: grumbli{fr_wiktionary_meaning}, stertori{wikt_io}
 - strandar: fiaski{fr_wiktionary_meaning}, grundi{wikt_io}
 - sukoza: bongusta{fr_wiktionary_meaning}, sukulento{wikt_io}
+- tu: ci{wikt_eo,wikt_io}, vi{wikt_eo}
 - veko: krano{fr_wiktionary_meaning}, vekiĝo{wikt_io}
 - vizelo: mustelo{wikt_io}, vizelo{fr_wiktionary_meaning}, vizono{wikt_io}
 - vortaro: vortaro{fr_wiktionary_meaning,wikt_io}, vortoprovizo{wikt_io}
 - vortolibro: vortaro{wikt_eo,wikt_io}, vortoprovizo{wikt_io}
 - voyo: trako{wikt_io}, vojo{fr_wiktionary_meaning,wikt_io}
 - yuro: juro{fr_wiktionary_meaning}, rajto{wikt_io}
+- zero: nul{wikt_eo}, nulo{wikt_io}

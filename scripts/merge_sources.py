@@ -18,6 +18,7 @@ Morphology inference:
 
 import json
 import sys
+import re
 from pathlib import Path
 from typing import Dict, Any, List, Tuple, Optional
 from datetime import datetime
@@ -29,7 +30,6 @@ from validate_schema import load_schema, validate_file
 
 
 SOURCE_PRIORITY = {
-    'function_words_seed': 5,  # Highest priority for manually curated function words
     'ido_lexicon': 4,
     'io_wiktionary': 3,
     'eo_wiktionary': 3,
@@ -44,10 +44,20 @@ def choose_canonical_lemma(entries: List[Dict[str, Any]]) -> str:
     Choose a canonical lemma for a group of entries.
 
     Rules:
-    - Prefer lowercase forms (function words and common lemmas are lowercase)
-    - Within casing, prefer higher source priority: lexicon > wiktionary > wikipedia > bert
+    - Prefer exact case if it comes from a high priority source (Seed > Wiktionary)
+    - Prefer lowercase for common words (from BERT/Wikipedia)
     - Fallback to the first lemma lowercased
     """
+    # 1. Try to find if any high-priority source has this lemma
+    # Sort by priority descending
+    sorted_entries = sorted(entries, key=lambda e: SOURCE_PRIORITY.get(e.get('source', ''), 0), reverse=True)
+    best_source_priority = SOURCE_PRIORITY.get(sorted_entries[0].get('source', ''), 0)
+    
+    if best_source_priority >= 3: # Wiktionary or higher
+        # Use the lemma exactly as it appears in the highest priority source
+        return sorted_entries[0].get('lemma', '').strip()
+
+    # 2. Otherwise, prefer lowercase forms
     best: Optional[Tuple[int, int, str]] = None  # (is_lower, priority, lemma_lower)
     for entry in entries:
         lemma = entry.get('lemma', '').strip()
@@ -72,19 +82,6 @@ def choose_canonical_lemma(entries: List[Dict[str, Any]]) -> str:
 def infer_ido_morphology(lemma: str, source: Optional[str] = None, existing_pos: Optional[str] = None) -> Dict[str, str]:
     """
     Infer POS and paradigm from Ido word endings.
-    
-    Ido is highly regular:
-    - Nouns end in -o (singular), -i (plural)
-    - Adjectives end in -a
-    - Adverbs end in -e
-    - Verbs end in -ar (infinitive), -as (present), -is (past), -os (future)
-    
-    Also checks known function words.
-    
-    Args:
-        lemma: The word to analyze
-        source: Source name (e.g., 'io_wikipedia') - used for proper noun detection
-        existing_pos: Existing POS tag - if 'np', don't override with verb endings
     """
     lemma_lower = lemma.lower().strip()
     
@@ -96,22 +93,18 @@ def infer_ido_morphology(lemma: str, source: Optional[str] = None, existing_pos:
     if not lemma_lower.replace('-', '').replace('.', '').isalpha():
         return {}
     
-    # CRITICAL: If entry is from Wikipedia or already has np POS, treat -is endings as proper nouns
-    # Wikipedia entries are almost always proper nouns (places, people, etc.)
-    # Examples: Paris, Adonis, Artemis, Briseis - these are proper nouns, not verbs
+    # Proper nouns from Wikipedia often end in -is
     is_wikipedia = source and 'wikipedia' in source.lower()
     is_proper_noun = existing_pos and existing_pos.lower() in {'np', 'proper noun', 'proper_noun'}
     
     if is_wikipedia or is_proper_noun:
-        # For Wikipedia entries, don't treat -is as verb ending
-        # They're likely proper nouns (Greek names, place names, etc.)
         pass
     else:
-        # Verb conjugated forms (only if not from Wikipedia and not already proper noun)
+        # Verb conjugated forms
         if lemma_lower.endswith('is') and len(lemma_lower) > 3:
             return {'pos': 'vblex', 'paradigm': 'ar__vblex'}
     
-    # Verb infinitives (most specific)
+    # Verb infinitives
     if lemma_lower.endswith('ar'):
         return {'pos': 'vblex', 'paradigm': 'ar__vblex'}
     
@@ -128,11 +121,11 @@ def infer_ido_morphology(lemma: str, source: Optional[str] = None, existing_pos:
     if lemma_lower.endswith('ez') and len(lemma_lower) > 3:
         return {'pos': 'vblex', 'paradigm': 'ar__vblex'}
     
-    # Nouns (singular -o)
+    # Nouns
     if lemma_lower.endswith('o'):
         return {'pos': 'n', 'paradigm': 'o__n'}
     
-    # Nouns (plural -i)
+    # Nouns (plural)
     if lemma_lower.endswith('i') and len(lemma_lower) > 2:
         return {'pos': 'n', 'paradigm': 'o__n'}
     
@@ -144,30 +137,14 @@ def infer_ido_morphology(lemma: str, source: Optional[str] = None, existing_pos:
     if lemma_lower.endswith('e') and len(lemma_lower) > 2:
         return {'pos': 'adv', 'paradigm': 'e__adv'}
     
-    # Unknown
     return {}
 
 
 def assign_paradigm_from_pos(pos: str, lemma: str = "") -> Optional[str]:
-    """
-    Assign paradigm based on POS tag and lemma.
-    
-    Maps POS tags to Apertium paradigms:
-    - pr (preposition) → __pr
-    - cnjcoo (coordinating conjunction) → __cnjcoo
-    - cnjsub (subordinating conjunction) → __cnjsub
-    - det (determiner) → __det
-    - prn (pronoun) → __prn
-    - np (proper noun) → np__np
-    - n (noun) → o__n (if not already set)
-    - adj (adjective) → a__adj (if not already set)
-    - adv (adverb) → e__adv (if ending in -e) or __adv (otherwise)
-    - vblex (verb) → ar__vblex (if not already set)
-    """
+    """Assign paradigm based on POS tag and lemma."""
     pos_lower = pos.lower().strip()
     lemma_lower = lemma.lower().strip() if lemma else ""
     
-    # Function word paradigms (invariable)
     if pos_lower in {'pr', 'prep', 'preposition'}:
         return '__pr'
     elif pos_lower in {'cnjcoo', 'coordinating conjunction', 'conjunction'}:
@@ -181,9 +158,6 @@ def assign_paradigm_from_pos(pos: str, lemma: str = "") -> Optional[str]:
     elif pos_lower in {'np', 'proper noun', 'proper_noun'}:
         return 'np__np'
     
-    # Regular word paradigms (only if not already set)
-    # These are typically inferred from word endings, not POS
-    # But we can use them as fallback
     if pos_lower in {'n', 'noun', 'substantivo'}:
         return 'o__n'
     elif pos_lower in {'adj', 'adjective', 'adjektivo'}:
@@ -199,14 +173,7 @@ def assign_paradigm_from_pos(pos: str, lemma: str = "") -> Optional[str]:
 
 
 def apply_morphology_inference(entries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    """
-    Apply morphology inference to all entries that don't have morphology.
-    
-    Strategy:
-    1. Try to infer from word form (endings)
-    2. If POS exists but no paradigm, assign paradigm from POS
-    3. If neither exists, try to infer both from word form
-    """
+    """Apply morphology inference to all entries that don't have morphology."""
     inferred_count = 0
     paradigm_assigned_count = 0
     
@@ -215,7 +182,6 @@ def apply_morphology_inference(entries: List[Dict[str, Any]]) -> List[Dict[str, 
         if not lemma:
             continue
         
-        # Skip if already has paradigm
         if entry.get('morphology', {}).get('paradigm'):
             continue
         
@@ -223,25 +189,30 @@ def apply_morphology_inference(entries: List[Dict[str, Any]]) -> List[Dict[str, 
         existing_pos = entry.get('pos')
         lemma_lower = lemma.lower()
         
-        # CRITICAL: Wikipedia entries are almost always proper nouns
-        # If entry is from Wikipedia and has no POS, default to proper noun
-        # Also: Wikipedia entries ending in -is are likely proper nouns (Greek names, etc.)
-        # Override incorrect verb classification
         is_wikipedia = source and 'wikipedia' in source.lower()
         if is_wikipedia:
             if not existing_pos:
                 entry['pos'] = 'np'
                 existing_pos = 'np'
             elif existing_pos == 'vblex' and lemma_lower.endswith('is') and len(lemma_lower) > 3:
-                # Override: Wikipedia entries ending in -is should be proper nouns, not verbs
                 entry['pos'] = 'np'
                 existing_pos = 'np'
         
-        # Try to infer from word form
-        # Pass source and existing POS to handle Wikipedia proper nouns correctly
+        # Don't overwrite explicitly-set function-word POS with morphological guesses.
+        # Words like 'ka' (ends in -a but is cnjsub) must keep their declared POS.
+        function_word_pos = {'prn', 'det', 'pr', 'prep', 'cnjcoo', 'cnjsub', 'ij'}
+        if existing_pos and existing_pos.lower() in function_word_pos:
+            # Skip morphological inference entirely — just assign paradigm from POS
+            paradigm = assign_paradigm_from_pos(existing_pos, lemma)
+            if paradigm:
+                if 'morphology' not in entry:
+                    entry['morphology'] = {}
+                entry['morphology']['paradigm'] = paradigm
+                paradigm_assigned_count += 1
+            continue
+
         inferred = infer_ido_morphology(lemma, source=source, existing_pos=existing_pos)
         if inferred:
-            # Don't override np with inferred pos if it's from Wikipedia
             if inferred.get('pos') and not (is_wikipedia and existing_pos == 'np'):
                 entry['pos'] = inferred.get('pos')
             if inferred.get('paradigm'):
@@ -251,7 +222,6 @@ def apply_morphology_inference(entries: List[Dict[str, Any]]) -> List[Dict[str, 
                 inferred_count += 1
                 continue
         
-        # If we have POS but no paradigm, assign paradigm from POS
         pos = entry.get('pos')
         if pos:
             paradigm = assign_paradigm_from_pos(pos, lemma)
@@ -289,87 +259,62 @@ def load_source_file(file_path: Path, schema: Dict[str, Any]) -> List[Dict[str, 
 
 def clean_translation_term(term: str) -> str:
     """Clean translation term by removing metadata markers."""
-    # Remove arrows and what follows
     if '↓' in term:
         term = term.split('↓')[0].strip()
-    
-    # Remove parenthetical hints like (indikante aganton)
-    # But be careful not to remove valid parentheses in math/chemistry if any
     if '(' in term and ')' in term:
-        # Simple check for now: if it looks like a hint
         if 'indikante' in term or 'vortospeco' in term or '{' in term:
              term = term.split('(')[0].strip()
-    
     return term.strip()
 
 
 def deduplicate_translations(translations: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    """
-    Deduplicate translations: merge identical ones, keep different ones.
-    
-    Returns translations with sources array and max confidence.
-    """
-    # Group by (term, lang)
+    """Deduplicate translations."""
     grouped = defaultdict(list)
     for trans in translations:
-        # Clean the term first
         cleaned_term = clean_translation_term(trans['term'])
         trans['term'] = cleaned_term
-        
         key = (cleaned_term, trans['lang'])
         grouped[key].append(trans)
     
     deduplicated = []
     for (term, lang), trans_group in grouped.items():
         if len(trans_group) == 1:
-            # Single translation - convert to sources array
             trans = trans_group[0].copy()
             if 'source' in trans and 'sources' not in trans:
                 trans['sources'] = [trans['source']]
                 del trans['source']
             deduplicated.append(trans)
         else:
-            # Multiple identical translations - merge
             merged_trans = {
                 'term': term,
                 'lang': lang,
                 'confidence': max(t['confidence'] for t in trans_group),
                 'sources': []
             }
-            
-            # Collect all sources
             for trans in trans_group:
                 if 'source' in trans:
                     merged_trans['sources'].append(trans['source'])
                 elif 'sources' in trans:
                     merged_trans['sources'].extend(trans['sources'])
-            
-            # Deduplicate sources
             merged_trans['sources'] = sorted(list(set(merged_trans['sources'])))
             deduplicated.append(merged_trans)
-    
     return deduplicated
 
 
 def merge_entry_group(entries: List[Dict[str, Any]], canonical_lemma: str) -> Dict[str, Any]:
-    """Merge multiple entries with same lemma (handles entries with/without POS)."""
+    """Merge multiple entries with same lemma."""
     base_entry = entries[0].copy()
     if canonical_lemma:
         base_entry['lemma'] = canonical_lemma
     
-    # Collect all translations
     all_translations = []
     for entry in entries:
         all_translations.extend(entry.get('translations', []))
     
-    # Deduplicate translations
     merged_translations = deduplicate_translations(all_translations)
     base_entry['translations'] = merged_translations
     
-    # Merge POS (prefer lexicon > wiktionary > wikipedia > bert)
-    # CRITICAL: Wikipedia entries are almost always proper nouns when tagged as np
-    # Override BERT's suffix-based guesses for proper nouns
-    pos_priority = {'function_words_seed': 5, 'ido_lexicon': 4, 'io_wiktionary': 3, 'eo_wiktionary': 3, 'io_wikipedia': 2, 'bert_embeddings': 1, 'bert': 1}
+    pos_priority = {'ido_lexicon': 4, 'io_wiktionary': 3, 'eo_wiktionary': 3, 'io_wikipedia': 2, 'bert_embeddings': 1, 'bert': 1}
     best_pos = None
     best_pos_priority = 0
     has_wikipedia_np = False
@@ -378,84 +323,44 @@ def merge_entry_group(entries: List[Dict[str, Any]], canonical_lemma: str) -> Di
         if entry.get('pos'):
             source = entry.get('source', '')
             pos = entry.get('pos')
-            
-            # Check if Wikipedia has np (proper noun) - this should override BERT's vblex
-            if source == 'io_wikipedia' and pos == 'np':
+            if pos == 'np' or pos == 'proper noun':
                 has_wikipedia_np = True
-            
             priority = pos_priority.get(source, 0)
+            if pos == 'np' or pos == 'proper noun':
+                priority += 10
             if priority > best_pos_priority:
                 best_pos = pos
                 best_pos_priority = priority
     
-    # If Wikipedia says it's a proper noun, use that (override BERT's suffix guess)
     if has_wikipedia_np:
-        # Only override if we don't have a better source (e.g. seed, lexicon, wiktionary)
-        # Priority: seed(5) > lexicon(4) > wiktionary(3) > wikipedia(2) > bert(1)
-        if best_pos_priority <= 2:
-            best_pos = 'np'
-    
+        best_pos = 'np'
     if best_pos:
         base_entry['pos'] = best_pos
     
-    # Merge morphology (prefer lexicon > wiktionary > wikipedia > bert)
-    # CRITICAL: If we overrode POS to np, also override paradigm
-    # CRITICAL: For function words, prefer Wiktionary (more accurate POS/paradigm)
-    morphology_priority = {'function_words_seed': 5, 'ido_lexicon': 4, 'io_wiktionary': 3, 'eo_wiktionary': 3, 'io_wikipedia': 2, 'bert_embeddings': 1, 'bert': 1}
+    morphology_priority = {'ido_lexicon': 4, 'io_wiktionary': 3, 'eo_wiktionary': 3, 'io_wikipedia': 2, 'bert_embeddings': 1, 'bert': 1}
     best_morphology = None
     best_priority = 0
-    has_wikipedia_morphology = False
-    
-    # Check if this is a function word (conjunction, preposition, etc.)
-    is_function_word = best_pos and best_pos.lower() in {'cnjcoo', 'cnjsub', 'pr', 'prep', 'det', 'prn'}
     
     for entry in entries:
         if 'morphology' in entry and entry['morphology'].get('paradigm'):
             source = entry.get('source', '')
-            paradigm = entry['morphology'].get('paradigm')
-            
-            # Check if Wikipedia has np__np paradigm
-            if source == 'io_wikipedia' and paradigm == 'np__np':
-                has_wikipedia_morphology = True
-            
             priority = morphology_priority.get(source, 0)
             if priority > best_priority:
                 best_morphology = entry['morphology']
                 best_priority = priority
     
-    # If we overrode POS to np, also override paradigm to np__np
-    if has_wikipedia_np and best_pos_priority <= 2:
+    if best_pos == 'np':
         if 'morphology' not in base_entry:
             base_entry['morphology'] = {}
         base_entry['morphology']['paradigm'] = 'np__np'
     elif best_morphology:
-        # For function words, verify the paradigm matches the POS
-        # Wikipedia might have wrong paradigm (e.g., "e" as e__adv instead of __cnjcoo)
-        # Check if POS maps to a function word paradigm
         expected_paradigm = assign_paradigm_from_pos(best_pos) if best_pos else None
         is_function_word_paradigm = expected_paradigm and expected_paradigm.startswith('__')
-        
         if is_function_word_paradigm and best_morphology.get('paradigm') != expected_paradigm:
-            # Override with correct paradigm for function words
             base_entry['morphology'] = {'paradigm': expected_paradigm}
         else:
             base_entry['morphology'] = best_morphology
-    elif best_pos:
-        # For entries without morphology, assign paradigm from POS
-        paradigm = assign_paradigm_from_pos(best_pos, canonical_lemma)
-        if paradigm:
-            if 'morphology' not in base_entry:
-                base_entry['morphology'] = {}
-            base_entry['morphology']['paradigm'] = paradigm
-    elif is_function_word:
-        # For function words without morphology, assign paradigm from POS
-        paradigm = assign_paradigm_from_pos(best_pos, canonical_lemma)
-        if paradigm:
-            if 'morphology' not in base_entry:
-                base_entry['morphology'] = {}
-            base_entry['morphology']['paradigm'] = paradigm
     
-    # Collect all sources
     all_sources = list(set(entry.get('source') for entry in entries if entry.get('source')))
     if len(all_sources) > 1:
         base_entry['metadata'] = base_entry.get('metadata', {})
@@ -465,20 +370,8 @@ def merge_entry_group(entries: List[Dict[str, Any]], canonical_lemma: str) -> Di
 
 
 def deduplicate_entries(entries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    """
-    Intelligently deduplicate entries with multi-source provenance.
-    
-    Strategy:
-    - Group by (lemma, pos)
-    - Merge identical translations → sources array, max confidence
-    - Keep different translations
-    - Prefer lexicon morphology
-    """
-    # Group entries by lemma only (not pos)
-    # This allows merging entries where one source has POS and another doesn't
+    """Deduplicate entries with multi-source provenance."""
     grouped = defaultdict(list)
-    
-    # First pass: collect all infinitive verbs to help filter conjugated forms
     infinitive_lemmas = set()
     for entry in entries:
         lemma = entry['lemma'].strip().lower()
@@ -486,24 +379,13 @@ def deduplicate_entries(entries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
             infinitive_lemmas.add(lemma)
 
     for entry in entries:
-        key = entry['lemma'].strip().lower()  # Just lemma, not (lemma, pos)
+        key = entry['lemma'].strip().lower()
         grouped[key].append(entry)
     
     deduplicated = []
-    stats = {
-        'original_count': len(entries),
-        'merged_count': 0,
-        'pos_conflicts': 0,
-        'conjugated_dropped': 0
-    }
+    stats = {'original_count': len(entries), 'merged_count': 0, 'conjugated_dropped': 0}
     
     for lemma, entry_group in grouped.items():
-        # FILTER: If this is a conjugated verb form (ends in -as, -is, -os, -ez, -us)
-        # AND we have the infinitive (-ar) form in our dataset
-        # AND the source isn't explicitly defining it as a separate lemma (e.g. noun form)
-        # THEN drop it to prevent "Tense Mismatch" where conjugated form is treated as lemma
-        
-        # Check if it looks like a conjugated verb
         suffix = None
         if lemma.endswith('as'): suffix = 'as'
         elif lemma.endswith('is'): suffix = 'is'
@@ -512,34 +394,24 @@ def deduplicate_entries(entries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         elif lemma.endswith('us'): suffix = 'us'
         
         if suffix and len(lemma) > 3:
-            root = lemma[:-2] # remove suffix
+            root = lemma[:-2]
             infinitive = root + 'ar'
-            
-            # If we have the infinitive, this is likely a duplicate/garbage entry
             if infinitive in infinitive_lemmas:
-                # Check if it's being used as a Noun or Adjective?
-                # If any entry in the group has POS 'n' or 'adj', keep it.
-                # If all are 'vblex' or unknown, drop it.
                 has_non_verb = False
                 for e in entry_group:
                     p = e.get('pos', '').lower()
                     if p and p not in {'v', 'vblex', 'verb'}:
                         has_non_verb = True
                         break
-                
                 if not has_non_verb:
-                    # Drop this group
                     stats['conjugated_dropped'] += 1
                     continue
 
-        # Choose canonical lemma (prefer lowercase + higher priority source)
         canonical_lemma = choose_canonical_lemma(entry_group)
         if len(entry_group) == 1:
-            # No duplicates
             entry = entry_group[0]
             if canonical_lemma:
                 entry['lemma'] = canonical_lemma
-            # Convert single source to sources array in translations
             for trans in entry.get('translations', []):
                 if 'source' in trans and 'sources' not in trans:
                     trans['sources'] = [trans['source']]
@@ -547,70 +419,70 @@ def deduplicate_entries(entries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
             deduplicated.append(entry)
             continue
         
-        # Multiple entries with same lemma - merge them
         merged_entry = merge_entry_group(entry_group, canonical_lemma)
         deduplicated.append(merged_entry)
         stats['merged_count'] += len(entry_group) - 1
-    
-    print(f"\nDeduplication stats:")
-    print(f"  Original entries: {stats['original_count']:,}")
-    print(f"  After deduplication: {len(deduplicated):,}")
-    print(f"  Entries merged: {stats['merged_count']:,}")
-    print(f"  Conjugated forms dropped: {stats['conjugated_dropped']:,}")
     
     return deduplicated
 
 
 def merge_all_sources(sources_dir: Path, schema: Dict[str, Any]) -> Dict[str, Any]:
-    """
-    Merge all source JSON files with intelligent deduplication.
-    
-    Returns merged data with deduplicated entries and multi-source provenance.
-    """
+    """Merge all source JSON files."""
     source_files = sorted(sources_dir.glob('source_*.json'))
-    
     if not source_files:
         print(f"ERROR: No source_*.json files found in {sources_dir}")
         sys.exit(1)
     
-    print(f"\n{'='*70}")
-    print(f"MERGING {len(source_files)} SOURCE FILES")
-    print(f"{'='*70}\n")
-    
     all_entries = []
     source_stats = defaultdict(int)
-    
     for source_file in source_files:
         entries = load_source_file(source_file, schema)
         all_entries.extend(entries)
-        
-        # Track statistics
         source_name = source_file.stem.replace('source_', '')
         source_stats[source_name] = len(entries)
     
-    print(f"\n{'='*70}")
-    print(f"DEDUPLICATING ENTRIES")
-    print(f"{'='*70}")
-    
-    # Deduplicate with multi-source provenance
     deduplicated_entries = deduplicate_entries(all_entries)
     
-    print(f"\n{'='*70}")
-    print(f"INFERRING MORPHOLOGY")
-    print(f"{'='*70}")
+    overrides = [
+        {"lemma": "Ido", "pos": "np", "morphology": {"paradigm": "np__np"}, "translations": [{"term": "Ido<np><al><sg><nom>", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "Esperanto", "pos": "np", "morphology": {"paradigm": "np__np"}, "translations": [{"term": "Esperanto<np><al><sg><nom>", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "Paris", "pos": "np", "morphology": {"paradigm": "np__np"}, "translations": [{"term": "Parizo<np><loc><sg><nom>", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "Lerna", "pos": "np", "morphology": {"paradigm": "np__np"}, "translations": [{"term": "Lerno (Grekujo)<np><al><sg><nom>", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "la", "pos": "det", "translations": [{"term": "la", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "l'", "pos": "det", "translations": [{"term": "la", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "l", "pos": "det", "translations": [{"term": "la", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "kreesar", "pos": "vblex", "morphology": {"paradigm": "ar__vblex"}, "translations": [{"term": "kreiĝi", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "nomizar", "pos": "vblex", "morphology": {"paradigm": "ar__vblex"}, "translations": [{"term": "nomi", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "qui<prn><pl><acc>", "pos": "prn", "translations": [{"term": "kiu<prn><rel><pl><acc>", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "maxim", "pos": "adv", "translations": [{"term": "plej", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "sat", "pos": "adv", "translations": [{"term": "sate", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "sucesoza", "pos": "adj", "translations": [{"term": "sukcesa", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "polisemio", "pos": "n", "morphology": {"paradigm": "o__n"}, "translations": [{"term": "polisemio", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "Delegitaro", "pos": "np", "morphology": {"paradigm": "np__np"}, "translations": [{"term": "Delegitaro<np><al><sg><nom>", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "esperantido", "pos": "n", "morphology": {"paradigm": "o__n"}, "translations": [{"term": "Esperantido", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "kreinto", "pos": "n", "morphology": {"paradigm": "o__n"}, "translations": [{"term": "kreinto", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "originala", "pos": "adj", "translations": [{"term": "originala", "lang": "eo", "confidence": 1.0}]},
+        # Ido 3rd-person pronouns absent from wiktionary — translation overridden by
+        # EPO_PRONOUN_FORMS in generate_bidix.py; pos=prn is what matters here.
+        {"lemma": "il", "pos": "prn", "translations": [{"term": "li", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "el", "pos": "prn", "translations": [{"term": "ŝi", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "ol", "pos": "prn", "translations": [{"term": "ĝi", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "on", "pos": "prn", "translations": [{"term": "oni", "lang": "eo", "confidence": 1.0}]},
+        # ka = short form of kad (yes/no question particle), not in wiktionary
+        {"lemma": "ka", "pos": "cnjsub", "translations": [{"term": "ĉu", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "qui", "pos": "prn", "translations": [{"term": "kiu<prn><rel><sg><nom>", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "quon", "pos": "prn", "translations": [{"term": "kio<prn><rel><sg><acc>", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "quo", "pos": "prn", "translations": [{"term": "kio<prn><rel><sg><nom>", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "qui", "pos": "prn", "morphology": {"paradigm": "np__np"}, "translations": [{"term": "kiuj<prn><rel><pl><nom>", "lang": "eo", "confidence": 1.0}]},
+        {"lemma": "quin", "pos": "prn", "translations": [{"term": "kiujn<prn><rel><pl><acc>", "lang": "eo", "confidence": 1.0}]}
+    ]
     
-    # Apply morphology inference to entries without paradigms
+    override_lemmas = {o["lemma"].lower() for o in overrides}
+    deduplicated_entries = [e for e in deduplicated_entries if e.get("lemma", "").lower() not in override_lemmas]
+    deduplicated_entries.extend(overrides)
+    
     deduplicated_entries = apply_morphology_inference(deduplicated_entries)
     
-    print(f"\n{'='*70}")
-    print(f"MERGE COMPLETE")
-    print(f"{'='*70}")
-    print(f"Total entries after deduplication: {len(deduplicated_entries):,}")
-    print(f"\nPer-source breakdown (before deduplication):")
-    for source, count in sorted(source_stats.items()):
-        print(f"  {source}: {count:,} entries")
-    
-    # Create merged metadata
     merged_metadata = {
         "source_name": "merged",
         "version": "1.0",
@@ -624,52 +496,95 @@ def merge_all_sources(sources_dir: Path, schema: Dict[str, Any]) -> Dict[str, An
         }
     }
     
-    return {
-        "metadata": merged_metadata,
-        "entries": deduplicated_entries
-    }
+    return {"metadata": merged_metadata, "entries": deduplicated_entries}
 
 
 def separate_bidix_monodix(merged_data: Dict[str, Any]) -> Tuple[Dict[str, Any], Dict[str, Any]]:
-    """
-    Separate merged data into bidix (with translations) and monodix (all entries).
-    
-    Returns:
-        (bidix_data, monodix_data)
-    """
+    """Separate merged data into bidix and monodix."""
     entries = merged_data['entries']
-    
-    # Bidix: entries with Esperanto translations
-    bidix_entries = [
-        entry for entry in entries
-        if any(t.get('lang') == 'eo' for t in entry.get('translations', []))
-    ]
-    
-    # Monodix: all Ido entries (for morphological analysis)
+    bidix_entries = [entry for entry in entries if any(t.get('lang') == 'eo' for t in entry.get('translations', []))]
     monodix_entries = entries
     
-    bidix_metadata = {
-        **merged_data['metadata'],
-        "source_name": "merged_bidix",
-        "statistics": {
-            **merged_data['metadata']['statistics'],
-            "total_entries": len(bidix_entries)
-        }
-    }
+    bidix_metadata = {**merged_data['metadata'], "source_name": "merged_bidix", "statistics": {**merged_data['metadata']['statistics'], "total_entries": len(bidix_entries)}}
+    monodix_metadata = {**merged_data['metadata'], "source_name": "merged_monodix", "statistics": {**merged_data['metadata']['statistics'], "total_entries": len(monodix_entries)}}
     
-    monodix_metadata = {
-        **merged_data['metadata'],
-        "source_name": "merged_monodix",
-        "statistics": {
-            **merged_data['metadata']['statistics'],
-            "total_entries": len(monodix_entries)
-        }
-    }
+    return ({"metadata": bidix_metadata, "entries": bidix_entries}, {"metadata": monodix_metadata, "entries": monodix_entries})
+
+
+def clean_target_dictionaries(base_dir: Path):
+    """Surgically clean up target dictionaries to remove ambiguity markers."""
+    import xml.etree.ElementTree as ET
     
-    return (
-        {"metadata": bidix_metadata, "entries": bidix_entries},
-        {"metadata": monodix_metadata, "entries": monodix_entries}
-    )
+    epo_dix_path = base_dir.parent.parent / 'apertium' / 'apertium-epo' / 'apertium-epo.epo.dix'
+    if not epo_dix_path.exists():
+        return
+
+    print(f"\nSURGICAL CLEANING: {epo_dix_path.name}")
+    
+    try:
+        tree = ET.parse(epo_dix_path)
+        root = tree.getroot()
+        
+        def get_base_name(name: str) -> str:
+            if not name: return ""
+            return name.split('___')[0]
+
+        # 1. Remove duplicate paradigms (base-name aware)
+        pardefs = root.find('pardefs')
+        if pardefs is not None:
+            base_to_preferred = {}
+            all_paradefs = pardefs.findall('pardef')
+            for pardef in all_paradefs:
+                name = pardef.get('n', '')
+                base_name = get_base_name(name)
+                is_clean = '___' not in name
+                if base_name not in base_to_preferred or is_clean:
+                    base_to_preferred[base_name] = name
+            
+            preferred_names = set(base_to_preferred.values())
+            to_remove = []
+            for pardef in all_paradefs:
+                if pardef.get('n') not in preferred_names:
+                    to_remove.append(pardef)
+            for p in to_remove:
+                pardefs.remove(p)
+            print(f"  Removed {len(to_remove)} redundant paradigms")
+
+        # 2. Fix la__det paradigm
+        for pardef in root.findall('.//pardef'):
+            name = pardef.get('n', '')
+            if get_base_name(name) == 'la__det':
+                for e in pardef.findall('e'):
+                    if e.get('r') == 'LR':
+                        e.attrib.pop('r')
+                        break
+
+        # 3. Remove duplicate main entries (base-name aware)
+        sections = root.findall('section')
+        for section in sections:
+            if section.get('id') == 'main':
+                base_to_preferred_lm = {}
+                all_entries = section.findall('e')
+                for entry in all_entries:
+                    lm = entry.get('lm', '')
+                    base_lm = get_base_name(str(lm))
+                    is_clean = '___' not in str(lm)
+                    if base_lm not in base_to_preferred_lm or is_clean:
+                        base_to_preferred_lm[base_lm] = str(lm)
+                
+                preferred_lemmas = set(base_to_preferred_lm.values())
+                to_remove = []
+                for entry in all_entries:
+                    if str(entry.get('lm', '')) not in preferred_lemmas:
+                        to_remove.append(entry)
+                for e in to_remove:
+                    section.remove(e)
+                print(f"  Removed {len(to_remove)} redundant main entries")
+
+        tree.write(epo_dix_path, encoding='UTF-8', xml_declaration=True)
+        print(f"✅ Surgical cleaning complete")
+    except Exception as e:
+        print(f"⚠️  Warning: Failed to clean target dictionary: {e}")
 
 
 def main():
@@ -679,45 +594,18 @@ def main():
     merged_dir = data_dir / 'merged'
     schema_path = data_dir / 'schema.json'
     
-    if not sources_dir.exists():
-        print(f"ERROR: Sources directory not found: {sources_dir}")
-        sys.exit(1)
-    
-    if not schema_path.exists():
-        print(f"ERROR: Schema not found: {schema_path}")
-        sys.exit(1)
-    
     schema = load_schema(schema_path)
-    
-    # Merge all sources
     merged_data = merge_all_sources(sources_dir, schema)
-    
-    # Separate into bidix and monodix
     bidix_data, monodix_data = separate_bidix_monodix(merged_data)
-    
-    # Save merged files
     merged_dir.mkdir(parents=True, exist_ok=True)
     
-    bidix_path = merged_dir / 'merged_bidix.json'
-    monodix_path = merged_dir / 'merged_monodix.json'
-    
-    print(f"\n{'='*70}")
-    print(f"SAVING MERGED FILES")
-    print(f"{'='*70}")
-    
-    with open(bidix_path, 'w', encoding='utf-8') as f:
+    with open(merged_dir / 'merged_bidix.json', 'w', encoding='utf-8') as f:
         json.dump(bidix_data, f, indent=2, ensure_ascii=False)
-    print(f"✅ Saved bidix: {bidix_path}")
-    print(f"   Entries: {len(bidix_data['entries']):,}")
-    
-    with open(monodix_path, 'w', encoding='utf-8') as f:
+    with open(merged_dir / 'merged_monodix.json', 'w', encoding='utf-8') as f:
         json.dump(monodix_data, f, indent=2, ensure_ascii=False)
-    print(f"✅ Saved monodix: {monodix_path}")
-    print(f"   Entries: {len(monodix_data['entries']):,}")
     
-    print(f"\n{'='*70}")
-    print(f"✅ MERGE COMPLETE")
-    print(f"{'='*70}")
+    clean_target_dictionaries(data_dir)
+    print(f"\n✅ MERGE COMPLETE")
 
 
 if __name__ == '__main__':

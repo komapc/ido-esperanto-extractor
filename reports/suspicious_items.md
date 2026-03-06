@@ -4,8 +4,8 @@
 - dropped_invalid_schema: 0
 - dropped_bad_lemma: 3
 - dropped_no_senses: 0
-- dropped_all_translations_removed: 275
-- translations_removed: 335
+- dropped_all_translations_removed: 279
+- translations_removed: 339
 - dropped_wikipedia_low_freq: 0
 
 ## Examples
@@ -37,7 +37,6 @@
 - bad_tr_eo: adultulo -> viradolto (vira adolto), virplenkreskulo (vira plenkreskulo)
 - bad_tr_eo: afero -> afero ↓
 - bad_tr_eo: akaro -> akaro ↓
-- bad_tr_eo: alaudo -> alaǔdo
 - bad_tr_eo: altro -> io alia
 - bad_tr_eo: altro -> alia afero
 - bad_tr_eo: antipatio -> antipatio ↓
@@ -54,10 +53,12 @@
 - bad_tr_eo: barilo -> barilo ↓
 - bad_tr_eo: basa -> basa, malalta
 - bad_tr_eo: betravo -> ruĝa beto
+- bad_tr_eo: bito -> bito ↓
 - bad_tr_eo: bonega -> bonega (↓)
 - bad_tr_eo: bordo -> bordo ↓
 - bad_tr_eo: cervo -> cervo ↓
 - bad_tr_eo: cezarala operaco -> cezara operacio
+- bad_tr_eo: cis -> cis, maltrans
 - bad_tr_eo: da -> de ↓ (indikante aganton)
 - bad_tr_eo: damo -> virino (edziniĝinta aŭ vidvino)
 - bad_tr_eo: danko -> dankon!
@@ -72,6 +73,7 @@
 - bad_tr_eo: depresar -> premi malsupren
 - bad_tr_eo: dermatito -> atopia dermito
 - bad_tr_eo: des -> prefikso mal
+- bad_tr_eo: desfido -> malfidoeaspa muiníne
 - bad_tr_eo: desub -> de sub
 - bad_tr_eo: detrimentar -> esti malprofita al
 - bad_tr_eo: devar -> devi (morale)
@@ -132,6 +134,7 @@
 - bad_tr_eo: feko -> feko ↓, fekaĵo
 - bad_tr_eo: fekunda -> fekunda ↓
 - bad_tr_eo: festar -> havi ferion
+- bad_tr_eo: fi -> fi!
 - bad_tr_eo: firmo -> firmo, firmao
 - bad_tr_eo: fola -> freneza, fola
 - bad_tr_eo: for -> for (de)
@@ -217,6 +220,7 @@
 - bad_tr_eo: kuafar -> aranĝi harojn
 - bad_tr_eo: kunesar -> kune esti
 - bad_tr_eo: kurta cirkuito -> kurta cirkvito
+- bad_tr_eo: la -> la ↓
 - bad_tr_eo: laboristaro -> laborista klaso
 - bad_tr_eo: lado -> lado, ferlado
 - bad_tr_eo: lasta -> lasta ↓
