@@ -27,6 +27,28 @@ RE_ARROW_MARKERS = re.compile(r'\s*[↓→←↑]\s*')
 RE_PARENTHETICAL = re.compile(r'\s*\([^)]*\)\s*')
 RE_BRACKET_HINTS = re.compile(r'\s*\[[^\]]*\]\s*')
 RE_MULTIPLE_SPACES = re.compile(r'\s+')
+_JUNK_LEMMA_RE = re.compile(r'[\d,;()%²³]')
+
+
+def is_valid_lemma(lemma: str, stem: Optional[str] = None) -> bool:
+    """Return False for numbers, dates, units, and other non-word noise."""
+    if not lemma:
+        return False
+    if _JUNK_LEMMA_RE.search(lemma):
+        return False
+    
+    # Filter out participle stems that often appear as junk lemmas from BERT/Wikipedia
+    # Examples: "facit", "kreit", "donant", "iront"
+    # We check both the lemma and the extracted stem
+    for text in [lemma.lower(), stem.lower() if stem else ""]:
+        if not text: continue
+        if text.endswith(('it', 'ant', 'int', 'ont', 'at', 'ot')):
+            # Allow-list for valid short words that happen to end in these suffixes
+            if text in {'kant', 'sant', 'granit', 'spirit', 'vundit', 'esperant', 'konstrukt', 'fac', 'dikant', 'indikant', 'sat', 'sucesoz', 'maxim'}:
+                continue
+            return False
+        
+    return True
 
 
 def clean_translation(text: str) -> str:
@@ -66,18 +88,46 @@ def clean_translation(text: str) -> str:
     return text.strip()
 
 
+# Ido pronoun → correct Esperanto analysis form with full morphological tags.
+# The Esperanto autogen requires these tags to produce the right surface form.
+# Format: ido_stem -> "epo_lemma<tag1><tag2>..." (parsed by create_bidix_entry)
+# Ido pronoun → correct Esperanto analysis form with full morphological tags.
+# The Esperanto autogen uses the nomacc paradigm: prpers<prn><p?><mf><sg/pl>
+# The transfer adds <nom>, so we omit <subj> here — the pipeline produces the right form.
+EPO_PRONOUN_FORMS = {
+    'me':  'prpers<prn><p1><mf><sg>',   # mi
+    'tu':  'prpers<prn><p2><mf><sp>',   # vi (Esperanto doesn't distinguish sg/pl for p2)
+    'il':  'prpers<prn><p3><m><sg>',    # li
+    'el':  'prpers<prn><p3><f><sg>',    # ŝi
+    'ol':  'prpers<prn><p3><nt><sg>',   # ĝi
+    'on':  'oni<prn><tn><sg>',           # oni
+    'vu':  'prpers<prn><p2><mf><sp>',   # vi (sg/pl formal)
+    'ni':  'prpers<prn><p1><mf><pl>',   # ni
+    'vi':  'prpers<prn><p2><mf><sp>',   # vi (pl → same as sg in Esperanto)
+    'ili': 'prpers<prn><p3><mf><pl>',   # ili
+    'quin': 'prpers<prn><p3><mf><pl>',  # kiujn - approximate
+}
+
 # POS mapping from JSON to Apertium symbol definitions
 POS_MAP = {
     'n': 'n',           # noun
+    'noun': 'n',        # noun (full name)
     'v': 'vblex',       # verb
+    'verb': 'vblex',    # verb (full name)
     'vblex': 'vblex',   # verb (already mapped)
     'adj': 'adj',       # adjective
+    'adjective': 'n',   # adjective full-name (often misclassified nouns from Wikipedia)
     'adv': 'adv',       # adverb
+    'adverb': 'adv',    # adverb (full name)
     'pr': 'pr',         # preposition - must match monodix tag
     'prep': 'pr',       # preposition - normalize to 'pr' to match monodix
+    'preposition': 'pr',# preposition (full name)
     'prn': 'prn',       # pronoun
+    'pronoun': 'prn',   # pronoun (full name)
     'det': 'det',       # determiner
+    'determiner': 'det',# determiner (full name)
     'num': 'num',       # numeral
+    'numeral': 'num',   # numeral (full name)
     'cnjcoo': 'cnjcoo', # coordinating conjunction
     'np': 'np',         # proper noun
     'cnjsub': 'cnjsub', # subordinating conjunction
@@ -158,10 +208,16 @@ def extract_lemma_ido(word: str, pos: Optional[str] = None) -> str:
             pos = 'prn'
         elif pos_lower in {'adverb', 'adv'}:
             pos = 'adv'
-    
+        elif pos_lower in {'noun', 'adjective'}:
+            pos = 'n'
+        elif pos_lower in {'verb'}:
+            pos = 'vblex'
+
     # Invariable words (function words) should not have stems extracted
-    invariable_pos = {'pr', 'prep', 'cnjcoo', 'cnjsub', 'det', 'prn', 'ij', 'num'}
+    invariable_pos = {'pr', 'prep', 'cnjcoo', 'cnjsub', 'det', 'prn', 'ij', 'num', 'np'}
     if pos in invariable_pos:
+        if pos == 'np':
+            return word.strip()
         return word.lower()  # Normalize to lowercase for function words
     
     # CRITICAL FIX: If POS is None, don't guess for short words (likely function words)
@@ -222,23 +278,7 @@ def create_bidix_entry(ido_lemma: str, epo_lemma: str, confidence: float,
                        pos: Optional[str] = None, add_pos: bool = True) -> ET.Element:
     """
     Create a bidix entry element.
-    
-    Format without POS:
-    <e>
-      <p>
-        <l>ido_lemma</l>
-        <r>epo_lemma</r>
-      </p>
-    </e>
-    
-    Format with POS:
-    <e>
-      <!-- confidence: 1.0000 -->
-      <p>
-        <l>ido_lemma<s n="pos"/></l>
-        <r>epo_lemma<s n="pos"/></r>
-      </p>
-    </e>
+    Supports lemmas with explicit tags like "Word<tag1><tag2>".
     """
     entry = ET.Element('e')
     
@@ -250,20 +290,22 @@ def create_bidix_entry(ido_lemma: str, epo_lemma: str, confidence: float,
     left = ET.SubElement(pair, 'l')
     right = ET.SubElement(pair, 'r')
     
-    # Decide whether to add POS tags
-    if add_pos and pos and pos in POS_MAP:
-        # With POS tags
-        left.text = ido_lemma
-        s_left = ET.SubElement(left, 's')
-        s_left.set('n', POS_MAP[pos])
-        
-        right.text = epo_lemma
-        s_right = ET.SubElement(right, 's')
-        s_right.set('n', POS_MAP[pos])
-    else:
-        # Without POS tags
-        left.text = ido_lemma
-        right.text = epo_lemma
+    def add_lemma_with_tags(elem, lemma_str, default_pos):
+        if '<' in lemma_str:
+            # Parse Word<tag1><tag2>
+            parts = re.split(r'[<>]', lemma_str)
+            base = parts[0]
+            elem.text = base
+            for tag in parts[1:]:
+                if tag:
+                    ET.SubElement(elem, 's').set('n', tag)
+        else:
+            elem.text = lemma_str
+            if add_pos and default_pos and default_pos in POS_MAP:
+                ET.SubElement(elem, 's').set('n', POS_MAP[default_pos])
+
+    add_lemma_with_tags(left, ido_lemma, pos)
+    add_lemma_with_tags(right, epo_lemma, pos)
     
     return entry
 
@@ -303,8 +345,12 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
     sdefs = ET.SubElement(root, 'sdefs')
     
     # Standard symbol definitions for bidix (must match monodix tag names)
-    sdef_list = ['n', 'vblex', 'adj', 'adv', 'prn', 'det', 'pr', 
-                 'cnjcoo', 'cnjsub', 'num', 'np']
+    sdef_list = ['n', 'vblex', 'adj', 'adv', 'prn', 'det', 'pr',
+                 'cnjcoo', 'cnjsub', 'num', 'np', 'ord',
+                 'sg', 'pl', 'nom', 'acc', 'al', 'loc', 'ant', 'cog',
+                 'rel', 'itg', 'p1', 'p2', 'p3', 'm', 'f', 'mf', 'nt',
+                 'subj', 'obj', 'tn',
+                 'def', 'sp', 'qnt', 'ref', 'pos', 'ij']
     
     for sdef_name in sdef_list:
         sdef = ET.SubElement(sdefs, 'sdef')
@@ -317,9 +363,36 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
     
     # Track statistics
     entries_added = 0
+    
+    # Add static entries for numbers and other special cases
+    # 1. Ordinal numbers: 24ma -> 24-a
+    num_ord_entry = ET.SubElement(section, 'e')
+    ET.SubElement(num_ord_entry, 're').text = '[0-9]+\\-a'
+    pair = ET.SubElement(num_ord_entry, 'p')
+    left = ET.SubElement(pair, 'l')
+    ET.SubElement(left, 's').set('n', 'num')
+    ET.SubElement(left, 's').set('n', 'ord')
+    
+    right = ET.SubElement(pair, 'r')
+    ET.SubElement(right, 's').set('n', 'num')
+    ET.SubElement(right, 's').set('n', 'ord')
+    entries_added += 1
+    
+    # 2. Plain numbers: 1907 -> 1907 (pass-through)
+    num_entry = ET.SubElement(section, 'e')
+    ET.SubElement(num_entry, 're').text = '[0-9]+'
+    pair = ET.SubElement(num_entry, 'p')
+    left = ET.SubElement(pair, 'l')
+    ET.SubElement(left, 's').set('n', 'num')
+    
+    right = ET.SubElement(pair, 'r')
+    ET.SubElement(right, 's').set('n', 'num')
+    entries_added += 1
+
     entries_skipped_no_translation = 0
     entries_skipped_low_confidence = 0
     entries_skipped_no_lemma = 0
+    entries_skipped_junk = 0
     
     for entry in entries:
         lemma = entry.get('lemma', '').strip()
@@ -327,7 +400,7 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
         if not lemma:
             entries_skipped_no_lemma += 1
             continue
-        
+
         translations = entry.get('translations', [])
         
         if not translations:
@@ -335,6 +408,10 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
             continue
         
         pos = entry.get('pos')
+        
+        # Guess POS if missing
+        if not pos:
+            pos = guess_pos_ido(lemma)
         
         # FIX: Correct obviously wrong POS assignments and infer for common function words
         lemma_lower = lemma.lower()
@@ -379,6 +456,15 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
             elif pos_lower in {'adverb', 'adv'}:
                 pos_normalized = 'adv'
         
+        # Extract stem for Ido
+        paradigm = entry.get('morphology', {}).get('paradigm')
+        ido_stem = extract_lemma_ido(lemma, pos_normalized)
+        
+        # Skip junk lemmas (numbers, units, etc.)
+        if not is_valid_lemma(lemma, ido_stem):
+            entries_skipped_junk += 1
+            continue
+
         # Function words (conjunctions, prepositions, etc.) MUST have POS tags in bidix
         # because the monodix analyzer outputs them with tags (e.g., a<pr>)
         # and the bilingual lookup needs matching tags to work correctly.
@@ -391,7 +477,6 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
         # 1. Filter cognates (identical lemma == translation, case-insensitive)
         # 2. Sort by confidence (highest first)
         valid_translations = []
-        lemma_lower = lemma.lower()
         
         # PRE-FILTER: For verbs, if we have an infinitive translation (ends in -i),
         # drop any conjugated translations (ends in -as, -is, -os, etc.)
@@ -427,11 +512,16 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
             # CRITICAL: Clean translation of Wiktionary metadata markers
             # Removes ↓, →, ←, parenthetical hints like (indikante aganton), etc.
             term = clean_translation(term)
-            
+
+            # If multiple alternatives separated by comma, take only the first.
+            # e.g., "de, da" → "de"  (the autogen can't generate multi-word terms)
+            if ',' in term:
+                term = term.split(',')[0].strip()
+
             # Skip if term is empty after cleaning
             if not term:
                 continue
-            
+
             # Check if cognate (identical lemma == translation, case-insensitive)
             is_cognate = lemma_lower == term.lower()
             
@@ -443,12 +533,25 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
             })
         
         # Filter cognates: remove if other non-cognate translations exist
-        # EXCEPTION: For function words (prepositions, conjunctions, etc.), keep cognates
-        # because they're often the correct translation (e.g., de → de, kaj → kaj)
+        # EXCEPTION 1: For function words, keep cognates
+        # EXCEPTION 2: If a cognate has high confidence (>= 0.95), keep it!
         non_cognate_count = sum(1 for t in valid_translations if not t['is_cognate'])
+        best_non_cognate_conf = max([t['confidence'] for t in valid_translations if not t['is_cognate']] + [0.0])
+        best_overall_conf = max([t['confidence'] for t in valid_translations] + [0.0])
+        
         if non_cognate_count > 0 and not is_function_word:
-            # Remove cognates when alternatives exist (but not for function words)
-            valid_translations = [t for t in valid_translations if not t['is_cognate']]
+            # Only remove cognates if they have lower confidence than the best non-cognate
+            # OR if they are low confidence in general.
+            # But if we have a 1.0 confidence cognate, we should definitely keep it!
+            valid_translations = [t for t in valid_translations 
+                                if not t['is_cognate'] or t['confidence'] >= 0.95 or t['confidence'] >= best_non_cognate_conf]
+        
+        # CRITICAL: Filter out low-confidence translations if we have a high-confidence one
+        if best_overall_conf >= 0.95:
+            # If we have a very high confidence translation (like from Wiktionary/Seed),
+            # drop any translations that have significantly lower confidence (like from BERT)
+            # This prevents BERT junk from polluting common words
+            valid_translations = [t for t in valid_translations if t['confidence'] >= 0.95 or t['confidence'] >= best_overall_conf - 0.01]
         
         # Sort by confidence (highest first)
         valid_translations.sort(key=lambda t: t['confidence'], reverse=True)
@@ -457,19 +560,22 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
         for trans_data in valid_translations:
             term = trans_data['term']
             confidence = trans_data['confidence']
-            trans = trans_data['trans']
             
-            # Extract lemmas (stems)
-            # For Ido: extract stem (homo → hom)
-            # For Esperanto: keep full lemma (homo → homo) because Esperanto generator expects full lemmas
-            # Use normalized POS for lemma extraction (this is the corrected POS)
-            ido_lemma = extract_lemma_ido(lemma, pos_normalized)
-            epo_lemma = term  # Keep full Esperanto lemma, don't extract stem
-            
+            # Use already extracted stems
+            ido_lemma = ido_stem
+            epo_lemma = EPO_PRONOUN_FORMS.get(ido_lemma, term) if pos_normalized == 'prn' else term
+
+            # For determiners: strip any embedded XML tags from translation term.
+            # The transfer rule for det already adds <def><sp>, so the bidix must
+            # supply only the bare lemma+det tag (e.g., la<det>), not la<det><def><sp>.
+            if pos_normalized == 'det' and '<' in epo_lemma:
+                epo_lemma = epo_lemma.split('<')[0]
+
+
             # Skip if either lemma is empty
             if not ido_lemma or not epo_lemma:
                 continue
-            
+
             # Create entry (use should_add_pos instead of add_pos for function words)
             # Use normalized POS for bidix entry
             entry_elem = create_bidix_entry(ido_lemma, epo_lemma, confidence, pos_normalized, should_add_pos)
@@ -492,6 +598,8 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
             continue
         
         pos = entry.get('pos')
+        if not pos:
+            pos = guess_pos_ido(lemma)
         pos_normalized = pos
         if pos:
             pos_lower = pos.lower()
@@ -518,25 +626,30 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
                 # Generate Esperanto -ebla form from verb translation
                 # Map Ido verb stem to full Esperanto -ebla adjective form
                 # Pattern: Ido stem "lern" → Esperanto full form "lernebla"
-                # Since Esperanto doesn't have morphological generation for -ebl,
-                # we map directly to the full form
-                for eo_trans in eo_translations[:1]:  # Use first translation
-                    eo_verb = eo_trans.get('term', '').strip()
-                    if eo_verb and eo_verb.endswith('i'):
-                        eo_verb_stem = eo_verb[:-1]  # Remove -i
-                        eo_ebla_full = eo_verb_stem + 'ebla'  # Full form: stem + ebla
-                        
-                        # Create bidix entry: Ido verb stem → Esperanto full -ebla form
-                        # Example: lern → lernebla
-                        # The Ido side uses stem "lern" + ebl__adj paradigm to generate "lernebla"
-                        # The Esperanto side is the full form "lernebla" ready to use
-                        ido_lemma_stem = verb_stem
-                        entry_elem = create_bidix_entry(ido_lemma_stem, eo_ebla_full, 0.95, 'adj', add_pos and True)
-                        section.append(entry_elem)
-                        entries_added += 1
-                        ebl_bidix_generated += 1
-                        processed_bidix_lemmas.add(ebl_lemma.lower())
-                        break  # Only generate one entry per verb
+                # Search all translations for an infinitive (-i) to derive from
+                eo_infinitive = None
+                # Sort translations by confidence to get the best one
+                eo_translations.sort(key=lambda t: t.get('confidence', 0), reverse=True)
+                
+                for eo_trans in eo_translations:
+                    term = eo_trans.get('term', '').strip()
+                    if term and term.endswith('i'):
+                        eo_infinitive = term
+                        break
+                
+                if eo_infinitive:
+                    verb_stem = lemma[:-2]  # Remove -ar
+                    eo_verb_stem = eo_infinitive[:-1]  # Remove -i
+                    eo_ebla_full = eo_verb_stem + 'ebla'  # Full form: stem + ebla
+                    
+                    # Create bidix entry: Ido verb stem → Esperanto full -ebla form
+                    # Example: lern → lernebla
+                    ido_lemma_stem = verb_stem
+                    entry_elem = create_bidix_entry(ido_lemma_stem, eo_ebla_full, 0.95, 'adj', add_pos and True)
+                    section.append(entry_elem)
+                    entries_added += 1
+                    ebl_bidix_generated += 1
+                    processed_bidix_lemmas.add(ebl_lemma.lower())
     
     # Write output
     print(f"\nWriting bidix to {output_file}...")
@@ -544,6 +657,7 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
     print(f"  Entries skipped (no translation): {entries_skipped_no_translation}")
     print(f"  Entries skipped (low confidence): {entries_skipped_low_confidence}")
     print(f"  Entries skipped (no lemma): {entries_skipped_no_lemma}")
+    print(f"  Entries skipped (junk lemma): {entries_skipped_junk}")
     if ebl_bidix_generated > 0:
         print(f"  -ebl adjective bidix entries generated from verbs: {ebl_bidix_generated}")
     
@@ -624,5 +738,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
