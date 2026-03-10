@@ -5,8 +5,8 @@
     "output_dir": "output",
     "dist_dir": "dist",
     "work_dir": "work",
-    "vortaro_repo": "/home/mark/apertium-dev/vortaro",
-    "apertium_repo": "/home/mark/apertium-dev/apertium/apertium-ido-epo"
+    "vortaro_repo": "/home/mark/projects/apertium-dev/vortaro",
+    "apertium_repo": "/home/mark/projects/apertium-dev/apertium/apertium-ido-epo"
   },
   "sources": {
     "io_wiktionary": {

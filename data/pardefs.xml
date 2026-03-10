@@ -140,6 +140,28 @@
         </p>
       </e>
     </pardef>
+    <pardef n="ma__ord">
+      <e>
+        <p>
+          <l>ma</l>
+          <r><s n="num" /><s n="ord" /></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>esma</l>
+          <r><s n="num" /><s n="ord" /></r>
+        </p>
+      </e>
+    </pardef>
+    <pardef n="__invar_verb">
+      <e>
+        <p>
+          <l />
+          <r><s n="vblex" /><s n="pri" /></r>
+        </p>
+      </e>
+    </pardef>
     <pardef n="np__np">
       <e>
         <p>
