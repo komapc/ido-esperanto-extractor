@@ -5,7 +5,7 @@ set -euo pipefail
 # Usage: ./compare_dictionaries.sh [test_file.txt]
 
 PAIR_DIR="/home/mark/projects/apertium-dev/apertium/apertium-ido-epo"
-EXTRACTOR_DIR="/home/mark/projects/apertium-dev/projects/extractor"
+EXTRACTOR_DIR="/home/mark/projects/apertium-dev/extractor"
 BACKUP_DIR="$EXTRACTOR_DIR/backup_old_dix"
 TEST_FILE="${1:-$EXTRACTOR_DIR/test_sentences.txt}"
 
