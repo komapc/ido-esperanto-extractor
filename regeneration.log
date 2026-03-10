@@ -1,17 +1,17 @@
 ./scripts/download_dumps.sh
-Downloading dumps to /home/mark/apertium-dev/projects/extractor/data/raw...
+Downloading dumps to /home/mark/projects/apertium-dev/extractor/data/raw...
 -- https://dumps.wikimedia.org/iowiktionary/latest/iowiktionary-latest-pages-articles.xml.bz2
 --2025-10-22 23:29:57--  https://dumps.wikimedia.org/iowiktionary/latest/iowiktionary-latest-pages-articles.xml.bz2
 Resolving dumps.wikimedia.org (dumps.wikimedia.org)... 208.80.154.71, 2620:0:861:3:208:80:154:71
 Connecting to dumps.wikimedia.org (dumps.wikimedia.org)|208.80.154.71|:443... connected.
 HTTP request sent, awaiting response... 206 Partial Content
 Length: 31296974 (30M), 7215 (7.0K) remaining [application/octet-stream]
-Saving to: ‘/home/mark/apertium-dev/projects/extractor/data/raw/iowiktionary-latest-pages-articles.xml.bz2’
+Saving to: ‘/home/mark/projects/apertium-dev/extractor/data/raw/iowiktionary-latest-pages-articles.xml.bz2’
 
         [ skipping 30550K ]
  30550K ,,,,,,.... ...                                        100% 1.97G=0s
 
-2025-10-22 23:29:58 (1.97 GB/s) - ‘/home/mark/apertium-dev/projects/extractor/data/raw/iowiktionary-latest-pages-articles.xml.bz2’ saved [31296974/31296974]
+2025-10-22 23:29:58 (1.97 GB/s) - ‘/home/mark/projects/apertium-dev/extractor/data/raw/iowiktionary-latest-pages-articles.xml.bz2’ saved [31296974/31296974]
 
 -- https://dumps.wikimedia.org/eowiktionary/latest/eowiktionary-latest-pages-articles.xml.bz2
 --2025-10-22 23:29:58--  https://dumps.wikimedia.org/eowiktionary/latest/eowiktionary-latest-pages-articles.xml.bz2
@@ -27,7 +27,7 @@ Resolving dumps.wikimedia.org (dumps.wikimedia.org)... 208.80.154.71, 2620:0:861
 Connecting to dumps.wikimedia.org (dumps.wikimedia.org)|208.80.154.71|:443... connected.
 HTTP request sent, awaiting response... 206 Partial Content
 Length: 1521985157 (1.4G), 7307117 (7.0M) remaining [application/octet-stream]
-Saving to: ‘/home/mark/apertium-dev/projects/extractor/data/raw/enwiktionary-latest-pages-articles.xml.bz2’
+Saving to: ‘/home/mark/projects/apertium-dev/extractor/data/raw/enwiktionary-latest-pages-articles.xml.bz2’
 
          [ skipping 1479150K ]
 1479150K ,,,,,,,,,, ,,,,,,,,,, ,,,,,,,... .......... .......... 99%  591M 0s
@@ -175,7 +175,7 @@ Saving to: ‘/home/mark/apertium-dev/projects/extractor/data/raw/enwiktionary-l
 1486250K .......... .......... .......... .......... .......... 99%  482M 0s
 1486300K .......... ...                                        100%  504M=9.0s
 
-2025-10-22 23:30:09 (795 KB/s) - ‘/home/mark/apertium-dev/projects/extractor/data/raw/enwiktionary-latest-pages-articles.xml.bz2’ saved [1521985157/1521985157]
+2025-10-22 23:30:09 (795 KB/s) - ‘/home/mark/projects/apertium-dev/extractor/data/raw/enwiktionary-latest-pages-articles.xml.bz2’ saved [1521985157/1521985157]
 
 -- https://dumps.wikimedia.org/frwiktionary/latest/frwiktionary-latest-pages-articles.xml.bz2
 --2025-10-22 23:30:09--  https://dumps.wikimedia.org/frwiktionary/latest/frwiktionary-latest-pages-articles.xml.bz2
@@ -183,7 +183,7 @@ Resolving dumps.wikimedia.org (dumps.wikimedia.org)... 208.80.154.71, 2620:0:861
 Connecting to dumps.wikimedia.org (dumps.wikimedia.org)|208.80.154.71|:443... connected.
 HTTP request sent, awaiting response... 206 Partial Content
 Length: 832516662 (794M), 4443686 (4.2M) remaining [application/octet-stream]
-Saving to: ‘/home/mark/apertium-dev/projects/extractor/data/raw/frwiktionary-latest-pages-articles.xml.bz2’
+Saving to: ‘/home/mark/projects/apertium-dev/extractor/data/raw/frwiktionary-latest-pages-articles.xml.bz2’
 
         [ skipping 808650K ]
 808650K ,,,,,,,,,, ,,,,,..... .......... .......... .......... 99%  320K 19s
@@ -275,7 +275,7 @@ Saving to: ‘/home/mark/apertium-dev/projects/extractor/data/raw/frwiktionary-l
 812950K .......... .......... .......... .......... .......... 99%  112M 0s
 813000K ....                                                  100% 12.3M=2.8s
 
-2025-10-22 23:30:13 (1.53 MB/s) - ‘/home/mark/apertium-dev/projects/extractor/data/raw/frwiktionary-latest-pages-articles.xml.bz2’ saved [832516662/832516662]
+2025-10-22 23:30:13 (1.53 MB/s) - ‘/home/mark/projects/apertium-dev/extractor/data/raw/frwiktionary-latest-pages-articles.xml.bz2’ saved [832516662/832516662]
 
 -- https://dumps.wikimedia.org/iowiki/latest/iowiki-latest-pages-articles.xml.bz2
 --2025-10-22 23:30:13--  https://dumps.wikimedia.org/iowiki/latest/iowiki-latest-pages-articles.xml.bz2
@@ -283,14 +283,14 @@ Resolving dumps.wikimedia.org (dumps.wikimedia.org)... 208.80.154.71, 2620:0:861
 Connecting to dumps.wikimedia.org (dumps.wikimedia.org)|208.80.154.71|:443... connected.
 HTTP request sent, awaiting response... 206 Partial Content
 Length: 21150071 (20M), 103807 (101K) remaining [application/octet-stream]
-Saving to: ‘/home/mark/apertium-dev/projects/extractor/data/raw/iowiki-latest-pages-articles.xml.bz2’
+Saving to: ‘/home/mark/projects/apertium-dev/extractor/data/raw/iowiki-latest-pages-articles.xml.bz2’
 
         [ skipping 20550K ]
  20550K ,,........ .......... .......... .......... .......... 99%  248K 0s
  20600K .......... .......... .......... .......... .......... 99%  254K 0s
  20650K ....                                                  100% 8.13T=0.4s
 
-2025-10-22 23:30:14 (254 KB/s) - ‘/home/mark/apertium-dev/projects/extractor/data/raw/iowiki-latest-pages-articles.xml.bz2’ saved [21150071/21150071]
+2025-10-22 23:30:14 (254 KB/s) - ‘/home/mark/projects/apertium-dev/extractor/data/raw/iowiki-latest-pages-articles.xml.bz2’ saved [21150071/21150071]
 
 -- https://dumps.wikimedia.org/iowiki/latest/iowiki-latest-langlinks.sql.gz
 --2025-10-22 23:30:14--  https://dumps.wikimedia.org/iowiki/latest/iowiki-latest-langlinks.sql.gz
@@ -298,7 +298,7 @@ Resolving dumps.wikimedia.org (dumps.wikimedia.org)... 208.80.154.71, 2620:0:861
 Connecting to dumps.wikimedia.org (dumps.wikimedia.org)|208.80.154.71|:443... connected.
 HTTP request sent, awaiting response... 206 Partial Content
 Length: 30717701 (29M), 211061 (206K) remaining [application/octet-stream]
-Saving to: ‘/home/mark/apertium-dev/projects/extractor/data/raw/iowiki-latest-langlinks.sql.gz’
+Saving to: ‘/home/mark/projects/apertium-dev/extractor/data/raw/iowiki-latest-langlinks.sql.gz’
 
         [ skipping 29750K ]
  29750K ,,,,,,,,,, ,,,,,,,,,, ,,,,,,,,,, ,,,,,,,,,, ,......... 99% 7.19G 0s
@@ -307,10 +307,10 @@ Saving to: ‘/home/mark/apertium-dev/projects/extractor/data/raw/iowiki-latest-
  29900K .......... .......... .......... .......... .......... 99%  348M 0s
  29950K .......... .......... .......... .......... .......   100%  243K=0.6s
 
-2025-10-22 23:30:16 (344 KB/s) - ‘/home/mark/apertium-dev/projects/extractor/data/raw/iowiki-latest-langlinks.sql.gz’ saved [30717701/30717701]
+2025-10-22 23:30:16 (344 KB/s) - ‘/home/mark/projects/apertium-dev/extractor/data/raw/iowiki-latest-langlinks.sql.gz’ saved [30717701/30717701]
 
 Computing SHA256 sums...
-Done. Files in /home/mark/apertium-dev/projects/extractor/data/raw:
+Done. Files in /home/mark/projects/apertium-dev/extractor/data/raw:
 total 2.3G
 -rw-rw-r-- 1 mark mark 1.5G Oct 21 02:59 enwiktionary-latest-pages-articles.xml.bz2
 -rw-rw-r-- 1 mark mark  20M Oct 20 17:37 eowiktionary-latest-pages-articles.xml.bz2
@@ -320,7 +320,7 @@ total 2.3G
 -rw-rw-r-- 1 mark mark  30M Oct 21 03:23 iowiktionary-latest-pages-articles.xml.bz2
 -rw-rw-r-- 1 mark mark  636 Oct 22 23:30 SHA256SUMS.txt
 python3 scripts/parse_wiktionary_io.py
-2025-10-22 23:30:24,161 INFO Parsing io → eo from /home/mark/apertium-dev/projects/extractor/data/raw/iowiktionary-latest-pages-articles.xml.bz2
+2025-10-22 23:30:24,161 INFO Parsing io → eo from /home/mark/projects/apertium-dev/extractor/data/raw/iowiktionary-latest-pages-articles.xml.bz2
 2025-10-22 23:31:11,741 INFO Processed 4000 pages...
 2025-10-22 23:36:29,348 INFO Processed 28000 pages...
 2025-10-22 23:36:35,602 INFO Processed 29000 pages...
@@ -365,17 +365,17 @@ python3 scripts/parse_wiktionary_io.py
 2025-10-23 00:34:16,414 INFO Processed 313000 pages...
 2025-10-23 00:36:10,580 INFO Processed 316000 pages...
 2025-10-23 00:37:16,397 INFO Processed 318000 pages...
-2025-10-23 00:38:54,985 INFO Wrote /home/mark/apertium-dev/projects/extractor/work/io_wikt_io_eo.json (44218 entries)
+2025-10-23 00:38:54,985 INFO Wrote /home/mark/projects/apertium-dev/extractor/work/io_wikt_io_eo.json (44218 entries)
 python3 scripts/parse_wiktionary_eo.py
-2025-10-23 00:38:55,227 INFO Parsing eo → io from /home/mark/apertium-dev/projects/extractor/data/raw/eowiktionary-latest-pages-articles.xml.bz2
-2025-10-23 00:39:13,174 INFO Wrote /home/mark/apertium-dev/projects/extractor/work/eo_wikt_eo_io.json (565 entries)
+2025-10-23 00:38:55,227 INFO Parsing eo → io from /home/mark/projects/apertium-dev/extractor/data/raw/eowiktionary-latest-pages-articles.xml.bz2
+2025-10-23 00:39:13,174 INFO Wrote /home/mark/projects/apertium-dev/extractor/work/eo_wikt_eo_io.json (565 entries)
 python3 scripts/parse_wiktionary_fr.py
-2025-10-23 00:39:13,328 INFO Parsing fr → io/eo from /home/mark/apertium-dev/projects/extractor/data/raw/frwiktionary-latest-pages-articles.xml.bz2
-2025-10-23 00:39:13,328 INFO Parsing fr → io,eo from /home/mark/apertium-dev/projects/extractor/data/raw/frwiktionary-latest-pages-articles.xml.bz2
-2025-10-23 00:51:59,062 INFO Wrote /home/mark/apertium-dev/projects/extractor/work/fr_wikt_fr_xx.json (0 entries)
-2025-10-23 00:51:59,062 INFO Wrote /home/mark/apertium-dev/projects/extractor/work/fr_wikt_fr_xx.json (0 entries)
+2025-10-23 00:39:13,328 INFO Parsing fr → io/eo from /home/mark/projects/apertium-dev/extractor/data/raw/frwiktionary-latest-pages-articles.xml.bz2
+2025-10-23 00:39:13,328 INFO Parsing fr → io,eo from /home/mark/projects/apertium-dev/extractor/data/raw/frwiktionary-latest-pages-articles.xml.bz2
+2025-10-23 00:51:59,062 INFO Wrote /home/mark/projects/apertium-dev/extractor/work/fr_wikt_fr_xx.json (0 entries)
+2025-10-23 00:51:59,062 INFO Wrote /home/mark/projects/apertium-dev/extractor/work/fr_wikt_fr_xx.json (0 entries)
 python3 scripts/extract_wikipedia_io.py
-2025-10-23 00:51:59,167 INFO Extracting Ido Wikipedia titles from /home/mark/apertium-dev/projects/extractor/data/raw/iowiki-latest-pages-articles.xml.bz2
+2025-10-23 00:51:59,167 INFO Extracting Ido Wikipedia titles from /home/mark/projects/apertium-dev/extractor/data/raw/iowiki-latest-pages-articles.xml.bz2
 2025-10-23 00:52:00,003 INFO Processed 2000 titles...
 2025-10-23 00:52:00,318 INFO Processed 4000 titles...
 2025-10-23 00:52:00,713 INFO Processed 6000 titles...
@@ -410,16 +410,16 @@ python3 scripts/extract_wikipedia_io.py
 2025-10-23 00:52:10,685 INFO Processed 64000 titles...
 2025-10-23 00:52:10,985 INFO Processed 66000 titles...
 2025-10-23 00:52:11,178 INFO Processed 68000 titles...
-2025-10-23 00:52:12,067 INFO Wrote /home/mark/apertium-dev/projects/extractor/work/io_wiki_vocab.json (68015 items)
+2025-10-23 00:52:12,067 INFO Wrote /home/mark/projects/apertium-dev/extractor/work/io_wiki_vocab.json (68015 items)
 python3 scripts/build_frequency_io_wiki.py
-2025-10-23 00:52:12,229 INFO Building frequency from /home/mark/apertium-dev/projects/extractor/data/raw/iowiki-latest-pages-articles.xml.bz2
+2025-10-23 00:52:12,229 INFO Building frequency from /home/mark/projects/apertium-dev/extractor/data/raw/iowiki-latest-pages-articles.xml.bz2
 2025-10-23 00:52:22,939 INFO Finished pages: 0, unique tokens: 0
-2025-10-23 00:52:22,939 INFO Wrote /home/mark/apertium-dev/projects/extractor/work/io_wiki_frequency.json
+2025-10-23 00:52:22,939 INFO Wrote /home/mark/projects/apertium-dev/extractor/work/io_wiki_frequency.json
 python3 scripts/align_bilingual.py
-2025-10-23 00:52:23,039 INFO Aligning bilingual dictionaries: /home/mark/apertium-dev/projects/extractor/work/io_wikt_io_eo.json + /home/mark/apertium-dev/projects/extractor/work/eo_wikt_eo_io.json
+2025-10-23 00:52:23,039 INFO Aligning bilingual dictionaries: /home/mark/projects/apertium-dev/extractor/work/io_wikt_io_eo.json + /home/mark/projects/apertium-dev/extractor/work/eo_wikt_eo_io.json
 2025-10-23 00:52:24,693 INFO Added 68015 Wikipedia title entries
 2025-10-23 00:52:24,694 INFO Added 42 flipped EO→IO items
-2025-10-23 00:52:25,930 INFO Wrote /home/mark/apertium-dev/projects/extractor/work/bilingual_raw.json (75288 aligned items)
+2025-10-23 00:52:25,930 INFO Wrote /home/mark/projects/apertium-dev/extractor/work/bilingual_raw.json (75288 aligned items)
 python3 scripts/align_pivot_en_fr.py --pivot en --out work/bilingual_pivot_en.json
 2025-10-23 00:52:27,310 INFO Wrote work/bilingual_pivot_en.json (879 items)
 python3 scripts/align_pivot_en_fr.py --pivot fr --out work/bilingual_pivot_fr.json
@@ -433,13 +433,13 @@ python3 scripts/normalize_entries.py
 2025-10-23 00:52:30,960 INFO   Invalid lemmas removed: 68117
 2025-10-23 00:52:30,960 INFO   Duplicates removed: 4
 2025-10-23 00:52:30,961 INFO   Output entries: 7167
-2025-10-23 00:52:30,961 INFO Wrote /home/mark/apertium-dev/projects/extractor/work/bilingual_normalized.json (7167 entries)
+2025-10-23 00:52:30,961 INFO Wrote /home/mark/projects/apertium-dev/extractor/work/bilingual_normalized.json (7167 entries)
 python3 scripts/infer_morphology.py
-2025-10-23 00:52:31,554 INFO Wrote /home/mark/apertium-dev/projects/extractor/work/bilingual_with_morph.json (7366 entries)
+2025-10-23 00:52:31,554 INFO Wrote /home/mark/projects/apertium-dev/extractor/work/bilingual_with_morph.json (7366 entries)
 python3 scripts/filter_and_validate.py --wiki-top-n 1000
-2025-10-23 00:52:32,137 INFO Wrote /home/mark/apertium-dev/projects/extractor/work/final_vocabulary.json (7363 entries)
+2025-10-23 00:52:32,137 INFO Wrote /home/mark/projects/apertium-dev/extractor/work/final_vocabulary.json (7363 entries)
 python3 scripts/final_preparation.py
-2025-10-23 00:52:32,649 INFO Merged function words. Wrote /home/mark/apertium-dev/projects/extractor/work/final_vocabulary.json (7336 entries)
+2025-10-23 00:52:32,649 INFO Merged function words. Wrote /home/mark/projects/apertium-dev/extractor/work/final_vocabulary.json (7336 entries)
 python3 scripts/parse_fr_wiktionary_meanings.py -v --progress-every 10000
 2025-10-23 00:52:32,759 INFO Parsing French Wiktionary dump for meaning-specific translations
 2025-10-23 00:52:32,791 INFO Found 1 pairs in page: encyclopédie (total: 1)
@@ -2199,28 +2199,28 @@ python3 scripts/parse_fr_wiktionary_meanings.py -v --progress-every 10000
 2025-10-23 01:06:01,352 INFO Processed 7410000 pages, 2021506 French pages, 7505 with translations, found 1050 meaning pairs
 2025-10-23 01:06:02,229 INFO Processed 7420000 pages, 2021941 French pages, 7505 with translations, found 1050 meaning pairs
 2025-10-23 01:06:03,088 INFO Processed 7430000 pages, 2022144 French pages, 7506 with translations, found 1050 meaning pairs
-2025-10-23 01:06:03,190 INFO Wrote /home/mark/apertium-dev/projects/extractor/work/fr_wikt_meanings.json (1050 meaning-specific pairs)
+2025-10-23 01:06:03,190 INFO Wrote /home/mark/projects/apertium-dev/extractor/work/fr_wikt_meanings.json (1050 meaning-specific pairs)
 python3 scripts/build_monolingual.py
-2025-10-23 01:06:03,664 INFO Loading /home/mark/apertium-dev/projects/extractor/work/final_vocabulary.json
-2025-10-23 01:06:03,735 INFO Loading /home/mark/apertium-dev/projects/extractor/work/fr_wikt_meanings.json
-2025-10-23 01:06:04,113 INFO Wrote /home/mark/apertium-dev/projects/extractor/dist/ido_dictionary.json (8331 entries)
-2025-10-23 01:06:04,113 INFO Wrote /home/mark/apertium-dev/projects/extractor/dist/esperanto_dictionary.json (0 entries)
+2025-10-23 01:06:03,664 INFO Loading /home/mark/projects/apertium-dev/extractor/work/final_vocabulary.json
+2025-10-23 01:06:03,735 INFO Loading /home/mark/projects/apertium-dev/extractor/work/fr_wikt_meanings.json
+2025-10-23 01:06:04,113 INFO Wrote /home/mark/projects/apertium-dev/extractor/dist/ido_dictionary.json (8331 entries)
+2025-10-23 01:06:04,113 INFO Wrote /home/mark/projects/apertium-dev/extractor/dist/esperanto_dictionary.json (0 entries)
 python3 scripts/build_one_big_bidix_json.py
-2025-10-23 01:06:04,219 INFO Loading /home/mark/apertium-dev/projects/extractor/work/bilingual_with_morph.json
-2025-10-23 01:06:04,294 INFO Loading /home/mark/apertium-dev/projects/extractor/work/fr_wikt_meanings.json
-2025-10-23 01:06:04,793 INFO Wrote /home/mark/apertium-dev/projects/extractor/dist/bidix_big.json (8359 entries)
+2025-10-23 01:06:04,219 INFO Loading /home/mark/projects/apertium-dev/extractor/work/bilingual_with_morph.json
+2025-10-23 01:06:04,294 INFO Loading /home/mark/projects/apertium-dev/extractor/work/fr_wikt_meanings.json
+2025-10-23 01:06:04,793 INFO Wrote /home/mark/projects/apertium-dev/extractor/dist/bidix_big.json (8359 entries)
 python3 scripts/report_coverage.py --top 5000
-2025-10-23 01:06:04,986 INFO Wrote /home/mark/apertium-dev/projects/extractor/reports/frequency_coverage.md
+2025-10-23 01:06:04,986 INFO Wrote /home/mark/projects/apertium-dev/extractor/reports/frequency_coverage.md
 python3 scripts/export_apertium.py
 2025-10-23 01:06:05,165 INFO Exporting 7336 entries to Apertium XML
-2025-10-23 01:06:05,550 INFO Exported Apertium XML: /home/mark/apertium-dev/projects/extractor/dist/apertium-ido.ido.dix, /home/mark/apertium-dev/projects/extractor/dist/apertium-ido-epo.ido-epo.dix
+2025-10-23 01:06:05,550 INFO Exported Apertium XML: /home/mark/projects/apertium-dev/extractor/dist/apertium-ido.ido.dix, /home/mark/projects/apertium-dev/extractor/dist/apertium-ido-epo.ido-epo.dix
 python3 scripts/report_stats.py
-2025-10-23 01:06:06,651 INFO Wrote /home/mark/apertium-dev/projects/extractor/reports/stats_summary.md
+2025-10-23 01:06:06,651 INFO Wrote /home/mark/projects/apertium-dev/extractor/reports/stats_summary.md
 python3 scripts/report_io_dump_coverage.py
-2025-10-23 01:06:07,469 INFO Wrote /home/mark/apertium-dev/projects/extractor/reports/io_dump_coverage.md
+2025-10-23 01:06:07,469 INFO Wrote /home/mark/projects/apertium-dev/extractor/reports/io_dump_coverage.md
 python3 scripts/report_conflicts.py
-2025-10-23 01:06:07,711 INFO Wrote /home/mark/apertium-dev/projects/extractor/reports/bidix_conflicts.md
+2025-10-23 01:06:07,711 INFO Wrote /home/mark/projects/apertium-dev/extractor/reports/bidix_conflicts.md
 python3 scripts/report_big_bidix_stats.py
-2025-10-23 01:06:07,911 INFO Wrote /home/mark/apertium-dev/projects/extractor/reports/big_bidix_stats.md
+2025-10-23 01:06:07,911 INFO Wrote /home/mark/projects/apertium-dev/extractor/reports/big_bidix_stats.md
 python3 scripts/build_web_index.py
-2025-10-23 01:06:08,132 INFO Wrote /home/mark/apertium-dev/projects/extractor/docs/data/index.json (8359 records)
+2025-10-23 01:06:08,132 INFO Wrote /home/mark/projects/apertium-dev/extractor/docs/data/index.json (8359 records)

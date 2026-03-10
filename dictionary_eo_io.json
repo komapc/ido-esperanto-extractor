@@ -16,7 +16,7 @@
     },
     "source_dump": {
       "dump_filename": "eowiktionary-latest-pages-articles.xml.bz2",
-      "dump_path": "/home/mark/apertium-dev/ido-esperanto-extractor/eowiktionary-latest-pages-articles.xml.bz2",
+      "dump_path": "/home/mark/projects/apertium-dev/ido-esperanto-extractor/eowiktionary-latest-pages-articles.xml.bz2",
       "dump_size_bytes": 20336040,
       "dump_size_mb": 19.39,
       "dump_modified": "2025-10-03T13:21:03.534668",

@@ -1,0 +1,11 @@
+=== BASELINE (Oct 21 2025 dumps) ===
+IO Wiktionary entries (parsed):   44,214
+EO Wiktionary entries (parsed):    3,170
+EN Wiktionary IO+EO entries:      25,573
+IO<->EO via English:              19,846
+bilingual_raw (after align):       7,482
+bilingual_normalized:              7,369
+bilingual_with_morph:              7,581
+final_vocabulary:                  7,511
+bidix_big.json:                    8,537
+ido_dictionary.json (monolingual): 8,506

@@ -4,8 +4,8 @@ set -euo pipefail
 # Compare translations between old and new dictionaries
 # Usage: ./compare_dictionaries.sh [test_file.txt]
 
-PAIR_DIR="/home/mark/apertium-dev/apertium/apertium-ido-epo"
-EXTRACTOR_DIR="/home/mark/apertium-dev/projects/extractor"
+PAIR_DIR="/home/mark/projects/apertium-dev/apertium/apertium-ido-epo"
+EXTRACTOR_DIR="/home/mark/projects/apertium-dev/extractor"
 BACKUP_DIR="$EXTRACTOR_DIR/backup_old_dix"
 TEST_FILE="${1:-$EXTRACTOR_DIR/test_sentences.txt}"
 

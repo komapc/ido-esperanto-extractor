@@ -250,10 +250,10 @@ The `output/vortaro.json` file is optimized for the vortaro website:
 **To use in vortaro website:**
 ```bash
 # Copy to vortaro repo
-cp output/vortaro.json /home/mark/apertium-dev/vortaro/dictionary.json
+cp output/vortaro.json /home/mark/projects/apertium-dev/vortaro/dictionary.json
 
 # Deploy
-cd /home/mark/apertium-dev/vortaro
+cd /home/mark/projects/apertium-dev/vortaro
 git add dictionary.json
 git commit -m "Update dictionary with orthogonal pipeline"
 git push
