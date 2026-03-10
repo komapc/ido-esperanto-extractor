@@ -1,12 +1,12 @@
 {
   "paths": {
-    "dumps_dir": "dumps",
+    "dumps_dir": "/home/mark/projects/apertium-dev/extractor/data/raw",
     "sources_dir": "sources",
     "output_dir": "output",
     "dist_dir": "dist",
     "work_dir": "work",
     "vortaro_repo": "/home/mark/projects/apertium-dev/vortaro",
-    "apertium_repo": "/home/mark/projects/apertium-dev/apertium/apertium-ido-epo"
+    "apertium_repo": "/home/mark/projects/apertium-dev/apertium-ido-epo"
   },
   "sources": {
     "io_wiktionary": {

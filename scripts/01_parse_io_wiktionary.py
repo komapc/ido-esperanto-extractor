@@ -36,7 +36,7 @@ def main(argv):
         args.dump = find_dump_file(
             "iowiktionary-*.xml.bz2",
             base_dir / "dumps",
-            [base_dir / "data" / "iowiktionary-latest-pages-articles.xml.bz2"]
+            [base_dir / "data" / "raw"]
         )
     
     if not args.dump or not args.dump.exists():

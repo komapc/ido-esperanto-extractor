@@ -339,6 +339,22 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
     print(f"Min confidence: {min_confidence}")
     print(f"Add POS tags: {add_pos}")
     
+    # Load Esperanto lemmas for fallback (if the root is identical in both languages)
+    epo_lemmas = set()
+    epo_dix_path = Path(__file__).resolve().parents[3] / "apertium-epo/apertium-epo.epo.dix"
+    if epo_dix_path.exists():
+        try:
+            epo_tree = ET.parse(epo_dix_path)
+            for e in epo_tree.findall(".//e"):
+                lm = e.get('lm')
+                if lm:
+                    epo_lemmas.add(lm.lower())
+            print(f"  ✅ Loaded {len(epo_lemmas)} lemmas from Esperanto dictionary for fallback")
+        except Exception as e:
+            print(f"  ⚠️ Warning: Failed to parse Esperanto dictionary: {e}")
+    else:
+        print(f"  ⚠️ Warning: Esperanto dictionary not found at {epo_dix_path}")
+
     # Create root element
     root = ET.Element('dictionary')
     
@@ -436,12 +452,22 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
             continue
 
         translations = entry.get('translations', [])
+        pos = entry.get('pos')
+        lemma_lower = lemma.lower()
         
         if not translations:
-            entries_skipped_no_translation += 1
-            continue
-        
-        pos = entry.get('pos')
+            # FALLBACK: If no translation but lemma exists in Esperanto, assume identical root
+            if lemma_lower in epo_lemmas:
+                # Create a synthetic translation
+                translations = [{
+                    'term': lemma, # Use same word
+                    'lang': 'eo',
+                    'confidence': 0.8,
+                    'source': 'root_fallback'
+                }]
+            else:
+                entries_skipped_no_translation += 1
+                continue
         
         # Guess POS if missing
         if not pos:

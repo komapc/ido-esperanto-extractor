@@ -40,8 +40,10 @@ def process_wikipedia_entries(filtered_path: Path, out_path: Path) -> None:
         processed_entry = {
             'id': f'io:wikipedia:{lemma}',
             'lemma': lemma,
+            'source': 'io_wikipedia',
             'pos': 'propn',  # All Wikipedia entries are proper nouns
             'language': 'io',
+            'translations': [],  # Must be an empty list if no translations
             'senses': [],  # No translations for proper nouns
             'morphology': {
                 'paradigm': 'o__n',  # Default noun paradigm
@@ -67,8 +69,21 @@ def process_wikipedia_entries(filtered_path: Path, out_path: Path) -> None:
     # Sort by lemma
     processed_entries.sort(key=lambda x: x['lemma'].lower())
     
+    # Wrap in standard object format
+    from datetime import datetime
+    output_data = {
+        "metadata": {
+            "source_name": "io_wikipedia",
+            "version": "1.0",
+            "generation_date": datetime.now().isoformat(),
+            "description": "Ido Wikipedia proper nouns extracted with expanded category filter",
+            "statistics": stats
+        },
+        "entries": processed_entries
+    }
+    
     # Write output
-    write_json(out_path, processed_entries)
+    write_json(out_path, output_data)
     
     # Log statistics
     logging.info("Stage 2 complete: Processed %d entries (%d valid, %d invalid)", 

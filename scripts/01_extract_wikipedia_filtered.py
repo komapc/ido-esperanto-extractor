@@ -31,6 +31,15 @@ RELEVANT_CATEGORIES = [
     re.compile(r"kategorio:.*lando", re.IGNORECASE),
     re.compile(r"kategorio:.*rivero", re.IGNORECASE),
     re.compile(r"kategorio:.*monto", re.IGNORECASE),
+    re.compile(r"kategorio:.*arto", re.IGNORECASE),
+    re.compile(r"kategorio:.*literaturo", re.IGNORECASE),
+    re.compile(r"kategorio:.*linguo", re.IGNORECASE),
+    re.compile(r"kategorio:.*cinematografo", re.IGNORECASE),
+    re.compile(r"kategorio:.*cenaristo", re.IGNORECASE),
+    re.compile(r"kategorio:.*filmo", re.IGNORECASE),
+    re.compile(r"kategorio:.*aktoro", re.IGNORECASE),
+    re.compile(r"kategorio:.*biografio", re.IGNORECASE),
+    re.compile(r"kategorio:.*religio", re.IGNORECASE),
 ]
 
 
