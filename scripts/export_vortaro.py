@@ -1,19 +1,50 @@
 #!/usr/bin/env python3
 """
 Convert the new bidix_big.json format to vortaro dictionary format.
+Includes filtering of junk entries (numbers, corrupted data, etc).
 """
 
 import json
+import re
 from datetime import datetime
 from pathlib import Path
 
+def is_junk_lemma(lemma: str) -> bool:
+    """Check if lemma is junk (number, corrupted data, etc)."""
+    if not lemma or not isinstance(lemma, str):
+        return True
+
+    lemma = lemma.strip()
+
+    # Pure numbers
+    if re.match(r'^-?\d+(\.\d+)?$', lemma):
+        return True
+
+    # Numbers with corrupted punctuation (2000,, 2011,)
+    if re.match(r'^\d+[,;:]', lemma):
+        return True
+
+    # Percentages and corrupted decimals (0.00%)
+    if re.match(r'^[\d.,%\-]+$', lemma):
+        return True
+
+    # Ordinals with corrupted suffixes (1ma, 2ma, 6ma)
+    if re.match(r'^\d+(ma|st|nd|rd|th|ĝa|a)$', lemma):
+        return True
+
+    # Special codes/identifiers with mostly numbers
+    if re.match(r'^\w{0,3}\d{2,}\w{0,3}$', lemma):
+        return True
+
+    return False
+
 def convert_to_vortaro_format(bidix_path: str, output_path: str):
     """Convert bidix_big.json to vortaro's dictionary.json format."""
-    
+
     print(f"Loading {bidix_path}...")
     with open(bidix_path, 'r', encoding='utf-8') as f:
         bidix = json.load(f)
-    
+
     # Build vortaro format
     vortaro = {
         "metadata": {
@@ -21,19 +52,25 @@ def convert_to_vortaro_format(bidix_path: str, output_path: str):
             "total_words": 0,
             "sources": [
                 "io_wiktionary",
-                "eo_wiktionary", 
+                "eo_wiktionary",
                 "io_wikipedia",
                 "fr_wiktionary",
                 "whitelist"
             ],
-            "version": "3.0-regenerate-fast"
+            "version": "3.1-junk-filtered"
         }
     }
-    
+
     # Convert each entry
+    junk_count = 0
     for entry in bidix:
         lemma = entry.get('lemma')
         if not lemma:
+            continue
+
+        # Filter out junk entries
+        if is_junk_lemma(lemma):
+            junk_count += 1
             continue
             
         # Get all Esperanto translations
@@ -54,33 +91,35 @@ def convert_to_vortaro_format(bidix_path: str, output_path: str):
         # Skip entries without Esperanto translations
         if not esperanto_words:
             continue
-        
+
         # Get morphology
         morph = entry.get('morphology', {})
         paradigm = morph.get('paradigm')
         morfologio = [paradigm] if paradigm else []
-        
+
         # Get provenance sources
         for prov in entry.get('provenance', []):
             src = prov.get('source')
             if src:
                 sources.add(src)
-        
+
         # Add to vortaro dictionary
         vortaro[lemma] = {
             "esperanto_words": esperanto_words,
             "sources": sorted(list(sources)),
             "morfologio": morfologio
         }
-    
+
     # Update metadata
     vortaro["metadata"]["total_words"] = len(vortaro) - 1  # Exclude metadata itself
-    
+    vortaro["metadata"]["junk_removed"] = junk_count
+
     print(f"Writing {output_path}...")
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(vortaro, f, ensure_ascii=False, indent=2)
-    
+
     print(f"✅ Converted {len(vortaro) - 1} entries")
+    print(f"🗑️  Filtered {junk_count} junk lemmas")
     print(f"   Output: {output_path}")
 
 if __name__ == '__main__':
