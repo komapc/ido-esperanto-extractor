@@ -14,12 +14,9 @@ KATEGORIO_PREFIX_RE = re.compile(r'\s*Kategorio:[A-Za-z]+\s+[A-Z]+\s*')
 
 
 def write_xml_file(elem: ET.Element, output_path: Path) -> None:
-    """Write properly formatted Apertium XML with declaration and indentation."""
+    """Write Apertium XML with declaration (no indentation to avoid breaking lt-proc)."""
     # Add XML declaration
     xml_declaration = b'<?xml version="1.0" encoding="UTF-8"?>\n'
-    
-    # Format the XML with indentation
-    ET.indent(elem, space="  ")
     
     # Write to file
     with open(output_path, 'wb') as f:
@@ -43,10 +40,10 @@ def build_monodix(entries):
     dictionary = ET.Element("dictionary")
     alphabet = ET.SubElement(dictionary, "alphabet")
     alphabet.text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    # Define sdefs for monolingual dictionary
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pres", "past", "fut", "cond", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able"]:
+    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def"]:
         ET.SubElement(sdefs, "sdef", n=s)
-    
     # Load pardefs from external file instead of hardcoding
     pardefs_path = Path(__file__).resolve().parents[1] / "data/pardefs.xml"
     if pardefs_path.exists():
@@ -105,6 +102,8 @@ def build_monodix(entries):
     def get_stem(lemma: str, paradigm: str) -> str:
         if not lemma:
             return ""
+        if paradigm in {"__pr", "__det", "__prn", "__cnjcoo", "__cnjsub", "__prep_art"}:
+            return lemma
         if paradigm == "ar__vblex":
             if lemma.endswith("ar"): return lemma[:-2]
             if lemma.endswith("ir"): return lemma[:-2]
@@ -138,27 +137,65 @@ def build_monodix(entries):
             
         raw_par = (e.get("morphology") or {}).get("paradigm") or "o__n"
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
+
         # Normalize function-word paradigms
         par = raw_par
-        if raw_par in {"pr", "det", "prn", "cnjcoo", "cnjsub"}:
-            par = "__" + raw_par
-        
+        # Special case for prepositional articles (dil, dal, etc.)
+        if raw_par == 'prep_art':
+            par = "__prep_art"
+        elif raw_par in {"pr", "det", "prn", "cnjcoo", "cnjsub", "prep", "conj", "article"}:
+            if raw_par == "prep": par = "__pr"
+            elif raw_par == "conj": par = "__cnjcoo"
+            elif raw_par == "article": par = "__det"
+            else: par = "__" + raw_par
+        elif pos in {"pr", "det", "prn", "cnjcoo", "cnjsub"}:
+            par = "__" + pos
+
         # Calculate stem based on paradigm
         stem = get_stem(clean_lm, str(par))
         
         en = ET.SubElement(section, "e", lm=clean_lm)
         i = ET.SubElement(en, "i")
         i.text = stem
-        ET.SubElement(en, "par", n=str(par))
+        par_elem = ET.SubElement(en, "par")
+        par_elem.set("n", str(par))
+        par_elem.tail = "" # No newlines
     return dictionary
 
 
 def build_bidix(entries):
+    # Ido Function Words and Contractions (re-used from infer_morphology)
+    FUNCTION_WORDS = {
+        'dil': 'prep_art', 'dal': 'prep_art', 'del': 'prep_art', 'al': 'prep_art', 
+        'el': 'prep_art', 'ol': 'prep_art', 'sil': 'prep_art', 'vual': 'prep_art',
+        'la': 'det', 'le': 'det', 'lo': 'det',
+        'de': 'pr', 'di': 'pr', 'da': 'pr', 'a': 'pr', 'en': 'pr', 'pro': 'pr', 
+        'per': 'pr', 'kon': 'pr', 'kontre': 'pr', 'pri': 'pr', 'por': 'pr', 
+        'sur': 'pr', 'sub': 'pr', 'super': 'pr', 'tra': 'pr', 'cis': 'pr', 
+        'trans': 'pr', 'ultre': 'pr', 'inter': 'pr', 'ex': 'pr', 'til': 'pr',
+        'dum': 'pr', 'sine': 'pr', 'veze': 'pr', 'be': 'pr', 'po': 'pr',
+        'propre': 'pr', 'lor': 'pr', 'avan': 'pr', 'dop': 'pr', 'infre': 'pr',
+        'nome': 'pr', 'konten': 'pr', 'kontene': 'pr', 'pos': 'pr', 'pre': 'pr',
+        'che': 'pr', 'ye': 'pr', 'coram': 'pr', 'koram': 'pr', 'travers': 'pr',
+        'alonge': 'pr', 'segun': 'pr', 'vice': 'pr', 'kontree': 'pr', 'proxim': 'pr',
+        'apud': 'pr', 'chefe': 'pr', 'dextre': 'pr', 'sinistre': 'pr',
+        'e': 'cnjcoo', 'ed': 'cnjcoo', 'o': 'cnjcoo', 'od': 'cnjcoo', 
+        'ma': 'cnjcoo', 'nam': 'cnjsub', 'ke': 'cnjsub', 'se': 'cnjsub', 
+        'yen': 'cnjcoo', 'nek': 'cnjcoo', ' sive': 'cnjcoo',
+        'me': 'prn', 'tu': 'prn', 'vu': 'prn', 'ilu': 'prn', 'elu': 'prn', 
+        'olu': 'prn', 'eli': 'prn', 'ili': 'prn', 'oli': 'prn', 'ni': 'prn', 
+        'vi': 'prn', 'li': 'prn', 'on': 'prn', 'onu': 'prn', 'su': 'prn',
+        'ca': 'prn', 'ta': 'prn', 'cua': 'prn', 'qua': 'prn', 'qui': 'prn',
+        'ulo': 'prn', 'ulo-ca': 'prn', 'ulo-ta': 'prn', 'nulo': 'prn',
+        'omna': 'det', 'nula': 'det', 'irga': 'det', 'altra': 'det',
+        'singla': 'det', 'vula': 'det', 'tala': 'det', 'quala': 'det',
+    }
+
     dictionary = ET.Element("dictionary")
     alphabet = ET.SubElement(dictionary, "alphabet")
     alphabet.text = "abcdefghijklmnopqrstuvwxyzĉĝĥĵŝŭABCDEFGHIJKLMNOPQRSTUVWXYZĈĜĤĴŜŬ"
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "p1", "p2", "p3", "ciph"]:
+    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "p1", "p2", "p3", "ciph", "np", "def"]:
         ET.SubElement(sdefs, "sdef", n=s)
     section = ET.SubElement(dictionary, "section", id="main", type="standard")
     def map_s_tag(par: str, pos: str | None) -> str | None:
@@ -231,15 +268,62 @@ def build_bidix(entries):
         epo = eo_terms[0]
         en = ET.SubElement(section, "e")
         p = ET.SubElement(en, "p")
+
+        # Left (Ido)
         l = ET.SubElement(p, "l")
         l.text = clean_lm
-        s_tag = map_s_tag(raw_par or "", pos)
-        if s_tag:
-            ET.SubElement(l, "s", n=s_tag)
+        
+        # Determine Ido tag
+        raw_par = (e.get("morphology") or {}).get("paradigm") or None
+        if not raw_par and clean_lm.lower() in FUNCTION_WORDS:
+            raw_par = FUNCTION_WORDS[clean_lm.lower()]
+        
+        if not raw_par:
+            raw_par = "o__n"
+            
+        pos = e.get("pos") if isinstance(e.get("pos"), str) else None
+        ido_tag = map_s_tag(raw_par, pos)
+        
+        # Determine tags for Left (Ido)
+        l_tags = []
+        if raw_par == 'prep_art':
+            l_tags = ["pr", "def"]
+        elif ido_tag:
+            l_tags = [ido_tag]
+        
+        for t in l_tags:
+            s_elem = ET.SubElement(l, "s")
+            s_elem.set("n", t)
+            s_elem.tail = ""
+        
+        # Right (Esperanto)
         r = ET.SubElement(p, "r")
-        r.text = str(epo)
-        if s_tag:
-            ET.SubElement(r, "s", n=s_tag)
+        
+        # If multi-word (e.g. "de la"), split into multiple tags/blocks
+        if " " in epo:
+            words = epo.split()
+            for i, word in enumerate(words):
+                if i == 0:
+                    r.text = word
+                else:
+                    # Add blank between words
+                    b = ET.SubElement(r, "b")
+                    b.tail = word
+                
+                # Guess tag for the word (simplified)
+                # 'de' -> pr, 'la' -> det
+                tag = "pr" if word == 'de' else ("det" if word == 'la' else (ido_tag or "n"))
+                
+                s_elem = ET.SubElement(r, "s")
+                s_elem.set("n", tag)
+                s_elem.tail = ""
+        else:
+            r.text = epo
+            # Use the same tags as left side for single-word translations
+            for t in l_tags:
+                s_elem = ET.SubElement(r, "s")
+                s_elem.set("n", t)
+                s_elem.tail = ""
     return dictionary
 
 

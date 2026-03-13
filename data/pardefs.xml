@@ -170,4 +170,12 @@
         </p>
       </e>
     </pardef>
+    <pardef n="__prep_art">
+      <e>
+        <p>
+          <l/>
+          <r><s n="pr"/><s n="def"/></r>
+        </p>
+      </e>
+    </pardef>
   </pardefs>
