@@ -33,8 +33,10 @@
   { "lemma": "dum", "pos": "cnjsub" },
   { "lemma": "quale", "pos": "cnjsub" },
   { "lemma": "quankam", "pos": "cnjsub" },
+  { "lemma": "kam", "pos": "cnjsub" },
 
   { "lemma": "la", "pos": "det" },
+  { "lemma": "l", "pos": "det" },
   { "lemma": "un", "pos": "det" },
   { "lemma": "omna", "pos": "det" },
   { "lemma": "ula", "pos": "det" },
@@ -51,7 +53,10 @@
   { "lemma": "lu", "pos": "prn" },
   { "lemma": "ni", "pos": "prn" },
   { "lemma": "vi", "pos": "prn" },
-  { "lemma": "li", "pos": "prn" }
+  { "lemma": "li", "pos": "prn" },
+
+  { "lemma": "min", "pos": "adv" },
+  { "lemma": "maxim", "pos": "adv" }
 ]
 
 
