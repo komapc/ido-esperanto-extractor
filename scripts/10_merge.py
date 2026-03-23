@@ -33,6 +33,8 @@ from utils.metadata import create_merge_metadata
 
 # Source priority (higher = more trusted)
 SOURCE_PRIORITY = {
+    'function_words_seed': 110,  # Highest priority - curated critical words
+    'quick_improvements': 105,    # Manual improvements from community
     'io_wiktionary': 100,
     'eo_wiktionary': 90,
     'io_wikipedia': 50,
@@ -100,16 +102,29 @@ def merge_sources(sources_data):
             if source_name not in merged[lemma]['sources']:
                 merged[lemma]['sources'].append(source_name)
             
-            # Merge translations
+            # Merge translations (handle both list and dict formats)
             if 'translations' in entry:
-                for lang, terms in entry['translations'].items():
-                    if lang not in merged[lemma]['translations']:
-                        merged[lemma]['translations'][lang] = []
-                    
-                    # Add new translations
-                    for term in terms:
-                        if term not in merged[lemma]['translations'][lang]:
-                            merged[lemma]['translations'][lang].append(term)
+                translations = entry['translations']
+                # Handle list format (list of dicts with 'term' and 'lang' keys)
+                if isinstance(translations, list):
+                    for trans_obj in translations:
+                        lang = trans_obj.get('lang')
+                        term = trans_obj.get('term')
+                        if lang and term:
+                            if lang not in merged[lemma]['translations']:
+                                merged[lemma]['translations'][lang] = []
+                            if term not in merged[lemma]['translations'][lang]:
+                                merged[lemma]['translations'][lang].append(term)
+                # Handle dict format (dict with lang keys)
+                elif isinstance(translations, dict):
+                    for lang, terms in translations.items():
+                        if lang not in merged[lemma]['translations']:
+                            merged[lemma]['translations'][lang] = []
+
+                        # Add new translations
+                        for term in terms:
+                            if term not in merged[lemma]['translations'][lang]:
+                                merged[lemma]['translations'][lang].append(term)
             
             # Merge morphology (prefer higher priority source)
             if 'morphology' in entry and entry['morphology']:

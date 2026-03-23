@@ -158,6 +158,62 @@ def extract_language_section(wikitext: str, lang_code: str) -> Optional[str]:
     return "\n".join(sections)
 
 
+def extract_morphology(section: str, title: str) -> Tuple[Optional[str], Optional[str]]:
+    """
+    Extract morphology from Ido Wiktionary 'Morfologio:' line and infer POS from endings.
+
+    Returns: (morphology_string, inferred_pos)
+
+    Examples:
+    - "bitr.a" → POS="adjective" (ends in -a)
+    - "plant.o" → POS="noun" (ends in -o)
+    - "amar.ar" → POS="verb" (ends in -ar/-ir/-or)
+    - "dolc.e" → POS="adverb" (ends in -e)
+    """
+    text = section or ""
+
+    # Look for Morfologio line (Ido Wiktionary format)
+    # Pattern: *Morfologio: [[root]][[.ending]] or similar
+    morfologio_match = re.search(r'\*\s*Morfologio\s*:\s*([^\[\n]+(?:\[\[[^\]]*\]\][^\n]*)?)', text)
+    if not morfologio_match:
+        return None, None
+
+    morfologio_text = morfologio_match.group(1).strip()
+
+    # Extract the actual morphological ending from wiki markup
+    # Remove [[brackets]] and get the ending part
+    morfo_clean = re.sub(r'\[\[', '', morfologio_text)
+    morfo_clean = re.sub(r'\]\]', '', morfo_clean)
+
+    # Look for the ending pattern like ".a", ".o", ".ar", ".e"
+    # Also handle space-separated forms like "bitr .a" → "bitr.a"
+    morfo_clean = morfo_clean.replace(' ', '')
+
+    # Extract the actual word stem + ending
+    # Look for patterns like "bitr.a", "plant.o", "amar.ar", "dolc.e"
+    # Stop at first non-letter after the dot to avoid including categories
+    morph_pattern = re.search(r'(\w+)(\.[a-z]+)', morfo_clean)
+    if morph_pattern:
+        stem = morph_pattern.group(1)
+        ending = morph_pattern.group(2)  # includes the dot (e.g., ".a", ".ar")
+
+        # Infer POS from ending
+        pos = None
+        if ending in {'.a', '.ala', '.ada', '.ade', '.ula'}:
+            pos = "adjective"
+        elif ending in {'.o', '.oi', '.ajo', '.ego', '.ujo'}:
+            pos = "noun"
+        elif ending in {'.ar', '.ir', '.or', '.esar', '.iar'}:
+            pos = "verb"
+        elif ending in {'.e', '.ime', '.en', '.ene'}:
+            pos = "adverb"
+
+        # Return the morphology string and inferred POS
+        return morfo_clean, pos
+
+    return None, None
+
+
 def extract_pos(section: str) -> Optional[str]:
     text = section or ""
     # 0) Check section header for POS in parentheses (e.g., "==II {{io}} (prepoziciono)==")
@@ -474,6 +530,10 @@ def parse_wiktionary(
         if not section:
             continue
         pos = extract_pos(section)
+        morph_str, inferred_pos = extract_morphology(section, title)
+        # Use inferred POS from morphology if extract_pos didn't find one
+        if not pos and inferred_pos:
+            pos = inferred_pos
         translations = extract_translations(section, cfg.target_code)
         # OPTIMIZATION: Skip EN/FR extraction if flag set (for orthogonal pipeline)
         en_trans_lists: List[List[str]] = []
@@ -505,6 +565,21 @@ def parse_wiktionary(
             "senses": [],
             "provenance": [{"source": f"{cfg.source_code}_wiktionary", "page": title, "rev": None}],
         }
+        # Add morphology if extracted
+        if morph_str:
+            # Store both raw morphology and inferred paradigm for merge script
+            entry["morphology"] = {"raw": morph_str}
+            # Add paradigm for merge/export pipeline
+            if inferred_pos:
+                paradigm_map = {
+                    "adj": "a__adj",
+                    "noun": "o__n",
+                    "verb": "ar__vblex",
+                    "adv": "e__adv"
+                }
+                paradigm = paradigm_map.get(inferred_pos)
+                if paradigm:
+                    entry["morphology"]["paradigm"] = paradigm
         # Add EO target translations as one sense per meaning list
         for syns in translations:
             entry["senses"].append({
