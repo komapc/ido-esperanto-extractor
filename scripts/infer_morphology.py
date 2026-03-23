@@ -48,8 +48,8 @@ def infer_paradigm(entry: Dict[str, Any]) -> Optional[str]:
         'apud': 'pr', 'chefe': 'pr', 'dextre': 'pr', 'sinistre': 'pr',
         # Conjunctions
         'e': 'cnjcoo', 'ed': 'cnjcoo', 'o': 'cnjcoo', 'od': 'cnjcoo', 
-        'ma': 'cnjcoo', 'nam': 'cnjsub', 'ke': 'cnjsub', 'se': 'cnjsub', 
-        'yen': 'cnjcoo', 'nek': 'cnjcoo', ' sive': 'cnjcoo',
+        'ma': 'cnjcoo', 'nam': 'cnjsub', 'ke': 'cnjsub', 'se': 'cnjsub',
+        'kande': 'cnjsub', 'yen': 'cnjcoo', 'nek': 'cnjcoo', 'sive': 'cnjcoo',
         # Pronouns
         'me': 'prn', 'tu': 'prn', 'vu': 'prn', 'ilu': 'prn', 'elu': 'prn', 
         'olu': 'prn', 'eli': 'prn', 'ili': 'prn', 'oli': 'prn', 'ni': 'prn', 

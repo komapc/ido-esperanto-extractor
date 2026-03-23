@@ -10,7 +10,8 @@ import xml.etree.ElementTree as ET
 
 # Precompiled regex patterns for performance
 METADATA_MARKER_RE = re.compile(r'\{[^}]+\}')
-KATEGORIO_PREFIX_RE = re.compile(r'\s*Kategorio:[A-Za-z]+\s+[A-Z]+\s*')
+KATEGORIO_PREFIX_RE = re.compile(r'\s*Kategorio:[^\s]+(?:\s+[A-Z]+)?\s*')
+ARROW_RE = re.compile(r'\s*\(\s*[↓↑→←⇒⇐⇑⇓]+\s*\)\s*|\s*[↓↑→←⇒⇐⇑⇓]\s*')
 
 
 def write_xml_file(elem: ET.Element, output_path: Path) -> None:
@@ -34,6 +35,25 @@ def load_pardefs_from_file(pardefs_path: Path) -> ET.Element:
         logging.error(f"Failed to load pardefs from {pardefs_path}: {e}")
         # Return empty pardefs element if file load fails
         return ET.Element("pardefs")
+
+
+def extract_stem(lemma: str, paradigm: str) -> str:
+    """Extract stem from lemma based on paradigm. Used for both monolingual and bilingual dicts."""
+    if not lemma:
+        return ""
+    if paradigm in {"__pr", "__det", "__prn", "__cnjcoo", "__cnjsub", "__prep_art"}:
+        return lemma
+    if paradigm == "ar__vblex":
+        if lemma.endswith("ar"): return lemma[:-2]
+        if lemma.endswith("ir"): return lemma[:-2]
+        if lemma.endswith("or"): return lemma[:-2]
+    if paradigm == "o__n" and lemma.endswith("o"):
+        return lemma[:-1]
+    if paradigm == "a__adj" and lemma.endswith("a"):
+        return lemma[:-1]
+    if paradigm == "e__adv" and lemma.endswith("e"):
+        return lemma[:-1]
+    return lemma
 
 
 def build_monodix(entries):
@@ -99,23 +119,6 @@ def build_monodix(entries):
     en = ET.SubElement(section, "e")
     par = ET.SubElement(en, "par", n="num_regex")
 
-    def get_stem(lemma: str, paradigm: str) -> str:
-        if not lemma:
-            return ""
-        if paradigm in {"__pr", "__det", "__prn", "__cnjcoo", "__cnjsub", "__prep_art"}:
-            return lemma
-        if paradigm == "ar__vblex":
-            if lemma.endswith("ar"): return lemma[:-2]
-            if lemma.endswith("ir"): return lemma[:-2]
-            if lemma.endswith("or"): return lemma[:-2]
-        if paradigm == "o__n" and lemma.endswith("o"):
-            return lemma[:-1]
-        if paradigm == "a__adj" and lemma.endswith("a"):
-            return lemma[:-1]
-        if paradigm == "e__adv" and lemma.endswith("e"):
-            return lemma[:-1]
-        return lemma
-
     for e in sorted_entries:
         # New format doesn't have "language" field - all entries are Ido by default
         # Old format had language field, so check if present
@@ -135,8 +138,28 @@ def build_monodix(entries):
         # Remove any remaining whitespace
         clean_lm = clean_lm.strip()
             
-        raw_par = (e.get("morphology") or {}).get("paradigm") or "o__n"
+        raw_par = (e.get("morphology") or {}).get("paradigm")
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
+
+        # If no explicit paradigm, infer from POS
+        if not raw_par:
+            # Normalize verbose POS names from Wiktionary to short tags
+            _POS_NORM = {
+                "preposition": "pr", "conjunction": "cnjcoo",
+                "determiner": "det", "pronoun": "prn",
+                "subordinating conjunction": "cnjsub",
+            }
+            pos_norm = _POS_NORM.get(pos, pos)
+            if pos_norm == "verb":
+                raw_par = "ar__vblex"
+            elif pos_norm == "adj":
+                raw_par = "a__adj"
+            elif pos_norm == "adv":
+                raw_par = "e__adv"
+            elif pos_norm in {"pr", "det", "prn", "cnjcoo", "cnjsub"}:
+                raw_par = "__" + pos_norm
+            else:
+                raw_par = "o__n"  # Default to noun
 
         # Normalize function-word paradigms
         par = raw_par
@@ -152,7 +175,7 @@ def build_monodix(entries):
             par = "__" + pos
 
         # Calculate stem based on paradigm
-        stem = get_stem(clean_lm, str(par))
+        stem = extract_stem(clean_lm, str(par))
         
         en = ET.SubElement(section, "e", lm=clean_lm)
         i = ET.SubElement(en, "i")
@@ -182,7 +205,7 @@ def build_bidix(entries):
         'e': 'cnjcoo', 'ed': 'cnjcoo', 'o': 'cnjcoo', 'od': 'cnjcoo', 
         'ma': 'cnjcoo', 'nam': 'cnjsub', 'ke': 'cnjsub', 'se': 'cnjsub', 
         'yen': 'cnjcoo', 'nek': 'cnjcoo', ' sive': 'cnjcoo',
-        'me': 'prn', 'tu': 'prn', 'vu': 'prn', 'ilu': 'prn', 'elu': 'prn', 
+        'mi': 'prn', 'me': 'prn', 'tu': 'prn', 'vu': 'prn', 'ilu': 'prn', 'elu': 'prn', 
         'olu': 'prn', 'eli': 'prn', 'ili': 'prn', 'oli': 'prn', 'ni': 'prn', 
         'vi': 'prn', 'li': 'prn', 'on': 'prn', 'onu': 'prn', 'su': 'prn',
         'ca': 'prn', 'ta': 'prn', 'cua': 'prn', 'qua': 'prn', 'qui': 'prn',
@@ -211,6 +234,9 @@ def build_bidix(entries):
             return "num"
         if par in ("num_regex",):
             return "num"
+        # Check if par is a function word POS directly (from FUNCTION_WORDS dict)
+        if par in ("pr", "det", "prn", "cnjcoo", "cnjsub", "prep_art"):
+            return par if par != "prep_art" else None
         if pos in ("pr", "det", "prn", "cnjcoo", "cnjsub"):
             return pos
         return None
@@ -255,13 +281,17 @@ def build_bidix(entries):
                     if term and term not in eo_terms:
                         # Clean term of any existing metadata markers
                         clean_term = term
+                        # Remove Wiktionary arrow artifacts (↓, ↑, etc.)
+                        clean_term = ARROW_RE.sub('', clean_term)
                         # Remove {wikt_io}, {wikt_eo}, etc. markers
                         clean_term = METADATA_MARKER_RE.sub('', clean_term)
                         # Remove Kategorio: prefixes and suffixes
                         clean_term = KATEGORIO_PREFIX_RE.sub('', clean_term)
                         # Remove any remaining whitespace
                         clean_term = clean_term.strip()
-                        eo_terms.append(clean_term)
+                        
+                        if clean_term and clean_term not in eo_terms:
+                            eo_terms.append(clean_term)
         if not eo_terms:
             continue
         # Use first translation as primary
@@ -269,20 +299,42 @@ def build_bidix(entries):
         en = ET.SubElement(section, "e")
         p = ET.SubElement(en, "p")
 
-        # Left (Ido)
-        l = ET.SubElement(p, "l")
-        l.text = clean_lm
-        
-        # Determine Ido tag
+        # Determine Ido paradigm FIRST (needed for stem extraction)
         raw_par = (e.get("morphology") or {}).get("paradigm") or None
+        pos = e.get("pos") if isinstance(e.get("pos"), str) else None
+
+        # Try function words first
         if not raw_par and clean_lm.lower() in FUNCTION_WORDS:
             raw_par = FUNCTION_WORDS[clean_lm.lower()]
-        
+
+        # Infer from POS if still no paradigm
         if not raw_par:
-            raw_par = "o__n"
-            
-        pos = e.get("pos") if isinstance(e.get("pos"), str) else None
+            # Normalize verbose POS names from Wiktionary to short tags
+            _POS_NORM = {
+                "preposition": "pr", "conjunction": "cnjcoo",
+                "determiner": "det", "pronoun": "prn",
+                "subordinating conjunction": "cnjsub",
+            }
+            pos_norm = _POS_NORM.get(pos, pos)
+            if pos_norm == "verb":
+                raw_par = "ar__vblex"
+            elif pos_norm == "adj":
+                raw_par = "a__adj"
+            elif pos_norm == "adv":
+                raw_par = "e__adv"
+            elif pos_norm in {"pr", "det", "prn", "cnjcoo", "cnjsub"}:
+                raw_par = "__" + pos_norm
+            else:
+                raw_par = "o__n"  # Default to noun
+
         ido_tag = map_s_tag(raw_par, pos)
+
+        # Extract stem from lemma for bilingual dictionary
+        stem = extract_stem(clean_lm, str(raw_par))
+
+        # Left (Ido) - use STEM, not full lemma
+        l = ET.SubElement(p, "l")
+        l.text = stem
         
         # Determine tags for Left (Ido)
         l_tags = []
