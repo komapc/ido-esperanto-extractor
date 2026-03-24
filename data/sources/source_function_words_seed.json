@@ -256,18 +256,6 @@
       }
     },
     {
-      "lemma": "maxim",
-      "source": "function_words_seed",
-      "pos": "adverb",
-      "translations": [
-        {"term": "plej", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
-      ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'maxim' = Esperanto 'plej' (most - superlative)"
-      }
-    },
-    {
       "lemma": "nomizar",
       "source": "function_words_seed",
       "pos": "verb",

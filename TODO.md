@@ -179,6 +179,13 @@
   - Expected: 100-500 new entries
 
 ##### Medium Priority Sources:
+- [ ] **Ido Radikaro (ido.li PDF)**
+  - URL: http://www.ido.li/vortari/radikaro.pdf
+  - Curated list of Ido root words — high quality, authoritative
+  - Format: PDF, needs extraction/parsing
+  - Use as: vocabulary coverage check + possible missing-root source
+  - Expected: comprehensive root inventory for gap analysis
+
 - [ ] **German Wiktionary (Pivot)**
   - Similar to French pivot approach
   - Ido section exists in DE Wiktionary

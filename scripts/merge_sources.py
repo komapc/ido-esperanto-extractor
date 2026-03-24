@@ -140,6 +140,28 @@ def infer_ido_morphology(lemma: str, source: Optional[str] = None, existing_pos:
     return {}
 
 
+# Normalize long-form POS names (from wiktionary_parser output) to Apertium short tags
+_POS_LONG_TO_SHORT = {
+    "determiner": "det",
+    "pronoun": "prn",
+    "adverb": "adv",
+    "noun": "n",
+    "verb": "vblex",
+    "adjective": "adj",
+    "preposition": "pr",
+    "conjunction": "cnjcoo",
+    "subordinating conjunction": "cnjsub",
+    "interjection": "ij",
+    "proper noun": "np",
+    "proper_noun": "np",
+}
+
+
+def normalize_pos(pos: str) -> str:
+    """Normalize long-form POS name to Apertium short tag."""
+    return _POS_LONG_TO_SHORT.get(pos.lower().strip(), pos)
+
+
 def assign_paradigm_from_pos(pos: str, lemma: str = "") -> Optional[str]:
     """Assign paradigm based on POS tag and lemma."""
     pos_lower = pos.lower().strip()
@@ -442,19 +464,23 @@ def merge_all_sources(sources_dir: Path, schema: Dict[str, Any]) -> Dict[str, An
         source_stats[source_name] = len(entries)
     
     deduplicated_entries = deduplicate_entries(all_entries)
-    
+
+    # Normalize long-form POS names to Apertium short tags
+    for entry in deduplicated_entries:
+        if "pos" in entry and entry["pos"]:
+            entry["pos"] = normalize_pos(entry["pos"])
+
     overrides = [
         {"lemma": "Ido", "pos": "np", "morphology": {"paradigm": "np__np"}, "translations": [{"term": "Ido<np><al><sg><nom>", "lang": "eo", "confidence": 1.0}]},
         {"lemma": "Esperanto", "pos": "np", "morphology": {"paradigm": "np__np"}, "translations": [{"term": "Esperanto<np><al><sg><nom>", "lang": "eo", "confidence": 1.0}]},
         {"lemma": "Paris", "pos": "np", "morphology": {"paradigm": "np__np"}, "translations": [{"term": "Parizo<np><loc><sg><nom>", "lang": "eo", "confidence": 1.0}]},
         {"lemma": "Lerna", "pos": "np", "morphology": {"paradigm": "np__np"}, "translations": [{"term": "Lerno (Grekujo)<np><al><sg><nom>", "lang": "eo", "confidence": 1.0}]},
-        {"lemma": "la", "pos": "det", "translations": [{"term": "la", "lang": "eo", "confidence": 1.0}]},
+        # l' and l are elided/clitic forms of la, absent from wiktionary
         {"lemma": "l'", "pos": "det", "translations": [{"term": "la", "lang": "eo", "confidence": 1.0}]},
         {"lemma": "l", "pos": "det", "translations": [{"term": "la", "lang": "eo", "confidence": 1.0}]},
         {"lemma": "kreesar", "pos": "vblex", "morphology": {"paradigm": "ar__vblex"}, "translations": [{"term": "kreiĝi", "lang": "eo", "confidence": 1.0}]},
         {"lemma": "nomizar", "pos": "vblex", "morphology": {"paradigm": "ar__vblex"}, "translations": [{"term": "nomi", "lang": "eo", "confidence": 1.0}]},
         {"lemma": "qui<prn><pl><acc>", "pos": "prn", "translations": [{"term": "kiu<prn><rel><pl><acc>", "lang": "eo", "confidence": 1.0}]},
-        {"lemma": "maxim", "pos": "adv", "translations": [{"term": "plej", "lang": "eo", "confidence": 1.0}]},
         {"lemma": "sat", "pos": "adv", "translations": [{"term": "sate", "lang": "eo", "confidence": 1.0}]},
         {"lemma": "sucesoza", "pos": "adj", "translations": [{"term": "sukcesa", "lang": "eo", "confidence": 1.0}]},
         {"lemma": "polisemio", "pos": "n", "morphology": {"paradigm": "o__n"}, "translations": [{"term": "polisemio", "lang": "eo", "confidence": 1.0}]},

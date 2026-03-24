@@ -28,6 +28,42 @@ def infer_paradigm(entry: Dict[str, Any]) -> Optional[str]:
 
     lower_lemma = lemma.lower()
 
+    # Ido Function Words and Contractions
+    FUNCTION_WORDS = {
+        # Contractions (Preposition + Article)
+        'dil': 'prep_art', 'dal': 'prep_art', 'del': 'prep_art', 'al': 'prep_art', 
+        'el': 'prep_art', 'ol': 'prep_art', 'sil': 'prep_art', 'vual': 'prep_art',
+        # Articles
+        'la': 'det', 'le': 'det', 'lo': 'det',
+        # Prepositions
+        'de': 'pr', 'di': 'pr', 'da': 'pr', 'a': 'pr', 'en': 'pr', 'pro': 'pr', 
+        'per': 'pr', 'kon': 'pr', 'kontre': 'pr', 'pri': 'pr', 'por': 'pr', 
+        'sur': 'pr', 'sub': 'pr', 'super': 'pr', 'tra': 'pr', 'cis': 'pr', 
+        'trans': 'pr', 'ultre': 'pr', 'inter': 'pr', 'ex': 'pr', 'til': 'pr',
+        'dum': 'pr', 'sine': 'pr', 'veze': 'pr', 'be': 'pr', 'po': 'pr',
+        'propre': 'pr', 'lor': 'pr', 'avan': 'pr', 'dop': 'pr', 'infre': 'pr',
+        'nome': 'pr', 'konten': 'pr', 'kontene': 'pr', 'pos': 'pr', 'pre': 'pr',
+        'che': 'pr', 'ye': 'pr', 'coram': 'pr', 'koram': 'pr', 'travers': 'pr',
+        'alonge': 'pr', 'segun': 'pr', 'vice': 'pr', 'kontree': 'pr', 'proxim': 'pr',
+        'apud': 'pr', 'chefe': 'pr', 'dextre': 'pr', 'sinistre': 'pr',
+        # Conjunctions
+        'e': 'cnjcoo', 'ed': 'cnjcoo', 'o': 'cnjcoo', 'od': 'cnjcoo', 
+        'ma': 'cnjcoo', 'nam': 'cnjsub', 'ke': 'cnjsub', 'se': 'cnjsub',
+        'kande': 'cnjsub', 'yen': 'cnjcoo', 'nek': 'cnjcoo', 'sive': 'cnjcoo',
+        # Pronouns
+        'me': 'prn', 'tu': 'prn', 'vu': 'prn', 'ilu': 'prn', 'elu': 'prn', 
+        'olu': 'prn', 'eli': 'prn', 'ili': 'prn', 'oli': 'prn', 'ni': 'prn', 
+        'vi': 'prn', 'li': 'prn', 'on': 'prn', 'onu': 'prn', 'su': 'prn',
+        'ca': 'prn', 'ta': 'prn', 'cua': 'prn', 'qua': 'prn', 'qui': 'prn',
+        'ulo': 'prn', 'ulo-ca': 'prn', 'ulo-ta': 'prn', 'nulo': 'prn',
+        # Determiners
+        'omna': 'det', 'nula': 'det', 'irga': 'det', 'altra': 'det',
+        'singla': 'det', 'vula': 'det', 'tala': 'det', 'quala': 'det',
+    }
+
+    if lower_lemma in FUNCTION_WORDS:
+        return FUNCTION_WORDS[lower_lemma]
+
     # Numbers: detect numeric patterns (basic numbers and compound numbers)
     # Basic numbers (1-10): un, du, tri, kvar, kin, sis, sep, ok, non, dek
     basic_numbers = {"un", "du", "tri", "kvar", "kin", "sis", "sep", "ok", "non", "dek"}

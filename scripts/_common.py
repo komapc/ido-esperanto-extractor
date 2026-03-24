@@ -136,6 +136,10 @@ def clean_lemma(lemma: str) -> str:
     # Remove language codes in parentheses at end (e.g., "word (io)")
     lemma = re.sub(r"\s*\([a-z]{2,3}\)\s*$", "", lemma, flags=re.IGNORECASE)
     
+    # Remove Wiktionary "see also" arrows (↓, ↑, →, etc.), with or without parens
+    lemma = re.sub(r'\s*\(\s*[↓↑→←⇒⇐⇑⇓]+\s*\)\s*', ' ', lemma)
+    lemma = re.sub(r'\s*[↓↑→←⇒⇐⇑⇓]\s*', ' ', lemma)
+
     # Remove gender symbols (♀, ♂) - if this is ALL that's left, return empty
     lemma = re.sub(r"^\s*\(['']*[♀♂]['']*\)\s*$", "", lemma)
     lemma = re.sub(r"\s*\(['']*[♀♂]['']*\)\s*", " ", lemma)

@@ -15,6 +15,22 @@
     {"ido_word": "domestikigita", "esperanto_words": ["hejmigita"], "morfologio": null},
     {"ido_word": "apartenas", "esperanto_words": ["apartenas"], "morfologio": null},
     {"ido_word": "konektita", "esperanto_words": ["konektita"], "morfologio": null},
-    {"ido_word": "parlata", "esperanto_words": ["parolata"], "morfologio": null}
+    {"ido_word": "parlata", "esperanto_words": ["parolata"], "morfologio": null},
+    {"ido_word": "sud", "esperanto_words": ["sudo"], "morfologio": ["sud"]},
+    {"ido_word": "este", "esperanto_words": ["oriento"], "morfologio": ["est", ".e"]},
+    {"ido_word": "sude", "esperanto_words": ["sudo"], "morfologio": ["sud", ".e"]},
+    {"ido_word": "norde", "esperanto_words": ["nordo"], "morfologio": ["nord", ".e"]},
+    {"ido_word": "weste", "esperanto_words": ["okcidento"], "morfologio": ["west", ".e"]},
+    {"ido_word": "km²", "esperanto_words": ["km²"], "morfologio": null},
+    {"ido_word": "mi²", "esperanto_words": ["mi²"], "morfologio": null},
+    {"ido_word": "n.", "esperanto_words": ["n."], "morfologio": null},
+    {"ido_word": "Referi", "esperanto_words": ["Referencoj"], "morfologio": null},
+    {"ido_word": "Polonia", "esperanto_words": ["Pollando"], "morfologio": null},
+    {"ido_word": "habitanti", "esperanto_words": ["loĝantoj"], "morfologio": ["habitant", ".i"]},
+    {"ido_word": "chefurbo", "esperanto_words": ["ĉefurbo"], "morfologio": ["chef", "urb", ".o"]},
+    {"ido_word": "sudo", "esperanto_words": ["sudo"], "morfologio": ["sud", ".o"]},
+    {"ido_word": "esto", "esperanto_words": ["oriento"], "morfologio": ["est", ".o"]},
+    {"ido_word": "nordo", "esperanto_words": ["nordo"], "morfologio": ["nord", ".o"]},
+    {"ido_word": "westo", "esperanto_words": ["okcidento"], "morfologio": ["west", ".o"]}
   ]
 }
