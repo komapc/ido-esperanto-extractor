@@ -62,7 +62,7 @@ def build_monodix(entries):
     alphabet.text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     # Define sdefs for monolingual dictionary
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def", "der_pres", "der_act", "der_qual"]:
+    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_past"]:
         ET.SubElement(sdefs, "sdef", n=s)
     # Load pardefs from external file instead of hardcoding
     pardefs_path = Path(__file__).resolve().parents[1] / "data/pardefs.xml"
@@ -218,7 +218,7 @@ def build_bidix(entries):
     alphabet = ET.SubElement(dictionary, "alphabet")
     alphabet.text = "abcdefghijklmnopqrstuvwxyzĉĝĥĵŝŭABCDEFGHIJKLMNOPQRSTUVWXYZĈĜĤĴŜŬ"
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "p1", "p2", "p3", "ciph", "np", "def", "der_pres", "der_act", "der_qual"]:
+    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "p1", "p2", "p3", "ciph", "np", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_past"]:
         ET.SubElement(sdefs, "sdef", n=s)
     section = ET.SubElement(dictionary, "section", id="main", type="standard")
     def map_s_tag(par: str, pos: str | None) -> str | None:
@@ -384,7 +384,7 @@ def build_bidix(entries):
         # Right: epo_form<n> — remaining <sg><nom> etc. pass through from input.
         if raw_par == 'ar__vblex' and epo and epo.endswith('i') and ' ' not in epo:
             epo_stem = epo[:-1]  # 'krei' → 'kre'
-            for der_tag, epo_suffix in [('der_pres', 'anto'), ('der_act', 'ado')]:
+            for der_tag, epo_suffix in [('der_pres', 'anto'), ('der_act', 'ado'), ('der_past', 'into')]:
                 e_der = ET.SubElement(section, "e")
                 p_der = ET.SubElement(e_der, "p")
                 l_der = ET.SubElement(p_der, "l")
@@ -407,6 +407,21 @@ def build_bidix(entries):
             r_der = ET.SubElement(p_der, "r")
             r_der.text = epo_stem + 'eco'
             ET.SubElement(r_der, "s", n="n").tail = ""
+        elif raw_par == 'o__n' and epo and ' ' not in epo:
+            # -oza suffix: suces+oza → sucesoza ("full of success")
+            # Epo noun → adj: sukceso → sukcesa (if adj exists) or just map to noun root + 'a'
+            # We map Ido noun stem to Epo adj stem (strip Epo noun ending if -o/-a, else use as-is)
+            epo_stripped = epo[:-1] if epo.endswith('o') else epo  # 'sukceso' → 'sukcес'
+            e_der = ET.SubElement(section, "e")
+            p_der = ET.SubElement(e_der, "p")
+            l_der = ET.SubElement(p_der, "l")
+            l_der.text = stem
+            ET.SubElement(l_der, "s", n="n").tail = ""
+            ET.SubElement(l_der, "s", n="der_oz").tail = ""
+            ET.SubElement(l_der, "s", n="adj").tail = ""
+            r_der = ET.SubElement(p_der, "r")
+            r_der.text = epo_stripped + 'a'
+            ET.SubElement(r_der, "s", n="adj").tail = ""
     return dictionary
 
 

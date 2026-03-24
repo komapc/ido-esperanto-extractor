@@ -12,6 +12,9 @@
           <r><s n="n"/><s n="pl"/><s n="nom"/></r>
         </p>
       </e>
+      <!-- Adjectival derivation from nouns: suces+oza → sucesoza (full of success).
+           Include <sg><nom> so remaining tags feed Epo autogen correctly. -->
+      <e><p><l>oza</l><r><s n="n"/><s n="der_oz"/><s n="adj"/><s n="sg"/><s n="nom"/></r></p></e>
     </pardef>
     <pardef n="a__adj">
       <e>
@@ -83,6 +86,9 @@
       <!-- Action nouns: kre+ado → kreado (the act of creating) -->
       <e><p><l>ado</l><r><s n="vblex"/><s n="der_act"/><s n="n"/><s n="sg"/><s n="nom"/></r></p></e>
       <e><p><l>adi</l><r><s n="vblex"/><s n="der_act"/><s n="n"/><s n="pl"/><s n="nom"/></r></p></e>
+      <!-- Past-agent nouns: kre+into → kreinto (one who created) -->
+      <e><p><l>into</l><r><s n="vblex"/><s n="der_past"/><s n="n"/><s n="sg"/><s n="nom"/></r></p></e>
+      <e><p><l>inti</l><r><s n="vblex"/><s n="der_past"/><s n="n"/><s n="pl"/><s n="nom"/></r></p></e>
     </pardef>
     <pardef n="num">
       <e>
