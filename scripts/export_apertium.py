@@ -62,7 +62,7 @@ def build_monodix(entries):
     alphabet.text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     # Define sdefs for monolingual dictionary
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def"]:
+    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def", "der_pres", "der_act", "der_qual"]:
         ET.SubElement(sdefs, "sdef", n=s)
     # Load pardefs from external file instead of hardcoding
     pardefs_path = Path(__file__).resolve().parents[1] / "data/pardefs.xml"
@@ -218,7 +218,7 @@ def build_bidix(entries):
     alphabet = ET.SubElement(dictionary, "alphabet")
     alphabet.text = "abcdefghijklmnopqrstuvwxyzĉĝĥĵŝŭABCDEFGHIJKLMNOPQRSTUVWXYZĈĜĤĴŜŬ"
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "p1", "p2", "p3", "ciph", "np", "def"]:
+    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "p1", "p2", "p3", "ciph", "np", "def", "der_pres", "der_act", "der_qual"]:
         ET.SubElement(sdefs, "sdef", n=s)
     section = ET.SubElement(dictionary, "section", id="main", type="standard")
     def map_s_tag(par: str, pos: str | None) -> str | None:
@@ -376,6 +376,37 @@ def build_bidix(entries):
                 s_elem = ET.SubElement(r, "s")
                 s_elem.set("n", t)
                 s_elem.tail = ""
+
+        # Productive derivational morphology: generate bilingual entries for
+        # derived forms of known stems so any stem in the dict gets derivations free.
+        # Include <n> on both sides so inflection tags pass through cleanly (no double tags).
+        # Left: stem<vblex><der_X><n> — consumes all derivation symbols including noun tag.
+        # Right: epo_form<n> — remaining <sg><nom> etc. pass through from input.
+        if raw_par == 'ar__vblex' and epo and epo.endswith('i') and ' ' not in epo:
+            epo_stem = epo[:-1]  # 'krei' → 'kre'
+            for der_tag, epo_suffix in [('der_pres', 'anto'), ('der_act', 'ado')]:
+                e_der = ET.SubElement(section, "e")
+                p_der = ET.SubElement(e_der, "p")
+                l_der = ET.SubElement(p_der, "l")
+                l_der.text = stem
+                ET.SubElement(l_der, "s", n="vblex").tail = ""
+                ET.SubElement(l_der, "s", n=der_tag).tail = ""
+                ET.SubElement(l_der, "s", n="n").tail = ""
+                r_der = ET.SubElement(p_der, "r")
+                r_der.text = epo_stem + epo_suffix
+                ET.SubElement(r_der, "s", n="n").tail = ""
+        elif raw_par == 'a__adj' and epo and epo.endswith('a') and ' ' not in epo:
+            epo_stem = epo[:-1]  # 'bona' → 'bon'
+            e_der = ET.SubElement(section, "e")
+            p_der = ET.SubElement(e_der, "p")
+            l_der = ET.SubElement(p_der, "l")
+            l_der.text = stem
+            ET.SubElement(l_der, "s", n="adj").tail = ""
+            ET.SubElement(l_der, "s", n="der_qual").tail = ""
+            ET.SubElement(l_der, "s", n="n").tail = ""
+            r_der = ET.SubElement(p_der, "r")
+            r_der.text = epo_stem + 'eco'
+            ET.SubElement(r_der, "s", n="n").tail = ""
     return dictionary
 
 

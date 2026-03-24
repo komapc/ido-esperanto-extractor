@@ -220,33 +220,41 @@ def extract_pos(section: str) -> Optional[str]:
     m = POS_IN_SECTION_HEADER_RE.search(text)
     if m:
         pos_in_header = m.group(1).strip().lower()
-        # Map Ido POS terms to English
+        # Map Ido POS terms to Apertium short tags
         pos_map = {
-            "prepoziciono": "preposition",
-            "prepoziciona": "preposition",
-            "konjunciono": "conjunction",
-            "konjunciona": "conjunction",
-            "substantivo": "noun",
-            "verbo": "verb",
-            "adjektivo": "adjective",
-            "adverbo": "adverb",
-            "pronomo": "pronoun",
-            "interjeciono": "interjection",
+            "prepoziciono": "pr",
+            "prepoziciona": "pr",
+            "konjunciono": "cnjcoo",
+            "konjunciona": "cnjcoo",
+            "substantivo": "n",
+            "verbo": "vblex",
+            "adjektivo": "adj",
+            "adverbo": "adv",
+            "pronomo": "prn",
+            "interjeciono": "ij",
             # Articles (definite article la, lo)
-            "artiklo": "determiner",
-            "artikoli": "determiner",
+            "artiklo": "det",
+            "artikoli": "det",
+        }
+        # Also handle long-form English names
+        long_to_short = {
+            "preposition": "pr", "conjunction": "cnjcoo", "noun": "n",
+            "verb": "vblex", "adjective": "adj", "adverb": "adv",
+            "pronoun": "prn", "interjection": "ij", "determiner": "det",
         }
         if pos_in_header in pos_map:
             return pos_map[pos_in_header]
-        # Also try direct match
-        if pos_in_header in {"preposition", "conjunction", "noun", "verb", "adjective", "adverb", "pronoun", "interjection", "determiner"}:
-            return pos_in_header
+        if pos_in_header in long_to_short:
+            return long_to_short[pos_in_header]
     
     # 1) Heading-based detection
     m = POS_HEADER_RE.search(text)
     if m:
         pos = m.group(1).lower()
-        pos = {"substantivo": "noun", "verbo": "verb", "adjektivo": "adjective", "adverbo": "adverb"}.get(pos, pos)
+        pos = {"substantivo": "n", "verbo": "vblex", "adjektivo": "adj", "adverbo": "adv",
+               "noun": "n", "verb": "vblex", "adjective": "adj", "adverb": "adv",
+               "pronoun": "prn", "determiner": "det", "preposition": "pr",
+               "conjunction": "cnjcoo", "interjection": "ij"}.get(pos, pos)
         return pos
 
     # 2) Template-based detection (e.g., {{head|io|verb}})
@@ -260,22 +268,25 @@ def extract_pos(section: str) -> Optional[str]:
                     lang = str(tpl.get(0).value).strip().lower()
                     p = str(tpl.get(1).value).strip().lower()
                     if lang in {"io", "ido"}:
-                        if p in {"noun", "verb", "adjective", "adverb", "pronoun", "preposition", "conjunction", "interjection"}:
-                            return p
+                        head_map = {"noun": "n", "verb": "vblex", "adjective": "adj",
+                                    "adverb": "adv", "pronoun": "prn", "preposition": "pr",
+                                    "conjunction": "cnjcoo", "interjection": "ij"}
+                        if p in head_map:
+                            return head_map[p]
                 # Language-specific short templates (best-effort)
                 if name.startswith("io-"):
                     p = name.split("io-", 1)[-1]
                     mapping = {
-                        "noun": "noun",
-                        "verb": "verb",
-                        "adj": "adjective",
-                        "adjective": "adjective",
-                        "adv": "adverb",
-                        "adverb": "adverb",
-                        "pron": "pronoun",
-                        "prep": "preposition",
-                        "conj": "conjunction",
-                        "int": "interjection",
+                        "noun": "n",
+                        "verb": "vblex",
+                        "adj": "adj",
+                        "adjective": "adj",
+                        "adv": "adv",
+                        "adverb": "adv",
+                        "pron": "prn",
+                        "prep": "pr",
+                        "conj": "cnjcoo",
+                        "int": "ij",
                     }
                     if p in mapping:
                         return mapping[p]
@@ -286,22 +297,22 @@ def extract_pos(section: str) -> Optional[str]:
     cat_text = text.lower()
     cat_hints = [
         # English category labels
-        ("[[category:ido nouns", "noun"),
-        ("[[category:ido verbs", "verb"),
-        ("[[category:ido adjectives", "adjective"),
-        ("[[category:ido adverbs", "adverb"),
+        ("[[category:ido nouns", "n"),
+        ("[[category:ido verbs", "vblex"),
+        ("[[category:ido adjectives", "adj"),
+        ("[[category:ido adverbs", "adv"),
         # Esperanto category labels
-        ("[[kategorio:ido substantivo", "noun"),
-        ("[[kategorio:ido verbo", "verb"),
-        ("[[kategorio:ido adjektivo", "adjective"),
-        ("[[kategorio:ido adverbo", "adverb"),
+        ("[[kategorio:ido substantivo", "n"),
+        ("[[kategorio:ido verbo", "vblex"),
+        ("[[kategorio:ido adjektivo", "adj"),
+        ("[[kategorio:ido adverbo", "adv"),
         # Ido category labels (as seen in io.wiktionary)
-        ("[[kategorio:adverbi", "adverb"),
-        ("[[kategorio:citovorti", "interjection"),   # citation/exclamatory words → treat as interjections
-        ("[[kategorio:interjecioni", "interjection"),
-        ("[[kategorio:konjuncioni", "conjunction"),
-        ("[[kategorio:prepozicioni", "preposition"),
-        ("[[kategorio:pronomi", "pronoun"),
+        ("[[kategorio:adverbi", "adv"),
+        ("[[kategorio:citovorti", "ij"),   # citation/exclamatory words → treat as interjections
+        ("[[kategorio:interjecioni", "ij"),
+        ("[[kategorio:konjuncioni", "cnjcoo"),
+        ("[[kategorio:prepozicioni", "pr"),
+        ("[[kategorio:pronomi", "prn"),
     ]
     for needle, p in cat_hints:
         if needle in cat_text:
