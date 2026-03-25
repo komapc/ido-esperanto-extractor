@@ -62,7 +62,7 @@ def build_monodix(entries):
     alphabet.text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     # Define sdefs for monolingual dictionary
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut"]:
+    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra"]:
         ET.SubElement(sdefs, "sdef", n=s)
     # Load pardefs from external file instead of hardcoding
     pardefs_path = Path(__file__).resolve().parents[1] / "data/pardefs.xml"
@@ -218,7 +218,7 @@ def build_bidix(entries):
     alphabet = ET.SubElement(dictionary, "alphabet")
     alphabet.text = "abcdefghijklmnopqrstuvwxyzĉĝĥĵŝŭABCDEFGHIJKLMNOPQRSTUVWXYZĈĜĤĴŜŬ"
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "vbtr", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp3", "ppres", "p1", "p2", "p3", "ciph", "np", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut"]:
+    for s in ["n", "adj", "adv", "vblex", "vbtr", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp3", "ppres", "p1", "p2", "p3", "ciph", "np", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra"]:
         ET.SubElement(sdefs, "sdef", n=s)
     section = ET.SubElement(dictionary, "section", id="main", type="standard")
     def map_s_tag(par: str, pos: str | None) -> str | None:
@@ -400,7 +400,20 @@ def build_bidix(entries):
             # der_ppas(-ita): krei<vblex><pp>+<sg><nom> → kreita
             # der_ppa(-inta):  krei<vblex><pp3>+<sg>    → kreinta  (no <nom> in pardefs)
             # der_pprs(-ata):  krei<vbtr><ppres>+<sg><nom> → kreata
-            # der_pfut(-ota): not supported by apertium-epo — skip bilingual entry
+            # der_ppra(-anta) and der_pfut(-ota): apertium-epo cannot generate these.
+            # Output surface form + <adj> so autobil blocks verb-fallback and shows
+            # #kreanta/#kreota rather than the confusing #krei fallback.
+            for der_tag, epo_suffix in [('der_ppra', 'anta'), ('der_pfut', 'ota')]:
+                e_der = ET.SubElement(section, "e")
+                p_der = ET.SubElement(e_der, "p")
+                l_der = ET.SubElement(p_der, "l")
+                l_der.text = stem
+                ET.SubElement(l_der, "s", n="vblex").tail = ""
+                ET.SubElement(l_der, "s", n=der_tag).tail = ""
+                ET.SubElement(l_der, "s", n="adj").tail = ""
+                r_der = ET.SubElement(p_der, "r")
+                r_der.text = epo_stem + epo_suffix
+                ET.SubElement(r_der, "s", n="adj").tail = ""
             for der_tag, epo_vtag, epo_ptag in [
                 ('der_ppas', 'vblex', 'pp'),
                 ('der_ppa',  'vblex', 'pp3'),
