@@ -108,7 +108,10 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
     out: List[Dict[str, Any]] = []
     for (_lm, _pos), rec in sorted(by_key.items(), key=lambda kv: (kv[0][0], kv[0][1])):
         translations: List[Dict[str, Any]] = []
-        for term, srcs in sorted(rec['_eo_terms'].items(), key=lambda kv: kv[0]):
+        # Sort: seed translations first (authoritative), then alphabetical
+        SEED_SOURCE = 'function_words_seed'
+        for term, srcs in sorted(rec['_eo_terms'].items(),
+                                  key=lambda kv: (0 if SEED_SOURCE in kv[1] else 1, kv[0])):
             translations.append({
                 'lang': 'eo',
                 'term': term,

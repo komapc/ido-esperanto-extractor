@@ -5,7 +5,7 @@
     "generation_date": "2025-12-19",
     "description": "Manually curated critical Ido function words with Esperanto translations",
     "statistics": {
-      "total_entries": 35
+      "total_entries": 37
     },
     "file_type": "source",
     "origin": "manual",
@@ -615,6 +615,40 @@
       "metadata": {
         "source_page": "manual",
         "note": "Ido 'multa' = Esperanto 'multa' (many, much)"
+      }
+    },
+    {
+      "lemma": "po",
+      "source": "function_words_seed",
+      "pos": "preposition",
+      "translations": [
+        {
+          "term": "po",
+          "lang": "eo",
+          "confidence": 1.0,
+          "source": "function_words_seed"
+        }
+      ],
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'po' = Esperanto 'po' (distributive preposition: at a rate of)"
+      }
+    },
+    {
+      "lemma": "ultre",
+      "source": "function_words_seed",
+      "pos": "preposition",
+      "translations": [
+        {
+          "term": "preter",
+          "lang": "eo",
+          "confidence": 0.9,
+          "source": "function_words_seed"
+        }
+      ],
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'ultre' = Esperanto 'preter' (beyond, past)"
       }
     }
   ]

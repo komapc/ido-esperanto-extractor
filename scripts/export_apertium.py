@@ -241,10 +241,22 @@ def build_bidix(entries):
             return pos
         return None
 
-    # Sort entries alphabetically by lemma before adding to section
-    # Handle None lemmas safely by using 'or ""' to convert None to empty string
-    sorted_entries = sorted(entries, key=lambda e: ((e.get("lemma") or "").lower(), e.get("lemma") or ""))
-    
+    # Sort entries: seed entries last so they override Wiktionary for same lemma+paradigm.
+    SEED_SRC = 'function_words_seed'
+    def _is_seed(e):
+        return any(SEED_SRC in str(p) for p in (e.get('provenance') or []))
+    sorted_entries = sorted(entries, key=lambda e: (
+        (e.get("lemma") or "").lower(), e.get("lemma") or "", 1 if _is_seed(e) else 0))
+
+    # Deduplicate by (lemma, paradigm): last entry wins (seed overrides Wiktionary).
+    _seen: dict = {}
+    for e in sorted_entries:
+        lm = (e.get("lemma") or "").lower()
+        par = (e.get("morphology") or {}).get("paradigm") or (e.get("pos") or "")
+        _seen[(lm, par)] = e
+    sorted_entries = sorted(_seen.values(), key=lambda e: (
+        (e.get("lemma") or "").lower(), e.get("lemma") or ""))
+
     for e in sorted_entries:
         # New format doesn't have "language" field - all entries are Ido by default
         if e.get("language") and e.get("language") != "io":
