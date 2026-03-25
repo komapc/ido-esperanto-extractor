@@ -14,7 +14,11 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
     for path in entries_paths:
         if path.exists():
             logging.info("Loading %s", path)
-            entries.extend(read_json(path))
+            data = read_json(path)
+            if isinstance(data, dict):
+                entries.extend(data.get('entries', []))
+            else:
+                entries.extend(data)
         else:
             logging.warning("File not found: %s (skipping)", path)
     # Map: (lemma, pos) -> { 'lemma':.., 'pos':.., 'language':'io', 'morphology':.., 'translations': term -> set(sources), 'provenance': set(sources) }
@@ -47,10 +51,15 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
         test = t.replace(' ', '')
         if not EO_ALLOWED_RE.match(test):
             return ''
+        # Reject likely definitions (3+ words are descriptions, not translations)
+        if t.count(' ') >= 2:
+            return ''
         return t
 
     for e in entries:
-        if (e.get('language') or '') != 'io':
+        # Allow entries without a language field (source_io_wiktionary.json format)
+        lang_field = e.get('language')
+        if lang_field is not None and lang_field != 'io':
             continue
         lemma = (e.get('lemma') or '').strip()
         pos = (e.get('pos') or '').strip()
@@ -83,6 +92,17 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
                 cur = rec['_eo_terms'].setdefault(term, set())
                 if src:
                     cur.add(src)
+        # Also collect top-level translations (source_io_wiktionary.json format)
+        for tr in e.get('translations', []) or []:
+            lang = tr.get('lang')
+            raw = (tr.get('term') or '')
+            term = clean_term(raw)
+            if lang != 'eo' or not term:
+                continue
+            src = str(tr.get('source') or '')
+            cur = rec['_eo_terms'].setdefault(term, set())
+            if src:
+                cur.add(src)
 
     # Materialize final structure: senses with EO-only translations; keep multi-provenance per translation
     out: List[Dict[str, Any]] = []
@@ -124,6 +144,11 @@ def main(argv: Iterable[str]) -> int:
     inputs = args.input if args.input else [
         base_path / 'work/bilingual_with_morph.json',
         base_path / 'work/fr_wikt_meanings.json',
+        # Include raw Wiktionary source so words dropped by align_bilingual
+        # (e.g. function words e, de, por) still get their Epo translations.
+        base_path.parent / 'data/sources/source_io_wiktionary.json',
+        # Manually curated function words (e, ed, kon, per, sur, dum, etc.)
+        base_path / 'sources/source_function_words_seed.json',
     ]
     
     big = build_big_bidix(inputs)

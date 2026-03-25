@@ -89,6 +89,14 @@
       <!-- Past-agent nouns: kre+into → kreinto (one who created) -->
       <e><p><l>into</l><r><s n="vblex"/><s n="der_past"/><s n="n"/><s n="sg"/><s n="nom"/></r></p></e>
       <e><p><l>inti</l><r><s n="vblex"/><s n="der_past"/><s n="n"/><s n="pl"/><s n="nom"/></r></p></e>
+      <!-- Past-active participle (adj): kre+inta → kreinta; needs <sg> (no <nom>) for pp3 Epo generation -->
+      <e><p><l>inta</l><r><s n="vblex"/><s n="der_ppa"/><s n="adj"/><s n="sg"/></r></p></e>
+      <!-- Past-passive participle (adj): kre+ita → kreita (created) -->
+      <e><p><l>ita</l><r><s n="vblex"/><s n="der_ppas"/><s n="adj"/><s n="sg"/><s n="nom"/></r></p></e>
+      <!-- Present-passive participle (adj): kre+ata → kreata (being created) -->
+      <e><p><l>ata</l><r><s n="vblex"/><s n="der_pprs"/><s n="adj"/><s n="sg"/><s n="nom"/></r></p></e>
+      <!-- Future-passive participle (adj): kre+ota → kreota (about to be created) -->
+      <e><p><l>ota</l><r><s n="vblex"/><s n="der_pfut"/><s n="adj"/><s n="sg"/><s n="nom"/></r></p></e>
     </pardef>
     <pardef n="num">
       <e>

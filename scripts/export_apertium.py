@@ -62,7 +62,7 @@ def build_monodix(entries):
     alphabet.text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     # Define sdefs for monolingual dictionary
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_past"]:
+    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut"]:
         ET.SubElement(sdefs, "sdef", n=s)
     # Load pardefs from external file instead of hardcoding
     pardefs_path = Path(__file__).resolve().parents[1] / "data/pardefs.xml"
@@ -218,7 +218,7 @@ def build_bidix(entries):
     alphabet = ET.SubElement(dictionary, "alphabet")
     alphabet.text = "abcdefghijklmnopqrstuvwxyzĉĝĥĵŝŭABCDEFGHIJKLMNOPQRSTUVWXYZĈĜĤĴŜŬ"
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "p1", "p2", "p3", "ciph", "np", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_past"]:
+    for s in ["n", "adj", "adv", "vblex", "vbtr", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp3", "ppres", "p1", "p2", "p3", "ciph", "np", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut"]:
         ET.SubElement(sdefs, "sdef", n=s)
     section = ET.SubElement(dictionary, "section", id="main", type="standard")
     def map_s_tag(par: str, pos: str | None) -> str | None:
@@ -384,6 +384,7 @@ def build_bidix(entries):
         # Right: epo_form<n> — remaining <sg><nom> etc. pass through from input.
         if raw_par == 'ar__vblex' and epo and epo.endswith('i') and ' ' not in epo:
             epo_stem = epo[:-1]  # 'krei' → 'kre'
+            # Noun-form derivations: -anto, -ado, -into (der tag + n)
             for der_tag, epo_suffix in [('der_pres', 'anto'), ('der_act', 'ado'), ('der_past', 'into')]:
                 e_der = ET.SubElement(section, "e")
                 p_der = ET.SubElement(e_der, "p")
@@ -395,6 +396,27 @@ def build_bidix(entries):
                 r_der = ET.SubElement(p_der, "r")
                 r_der.text = epo_stem + epo_suffix
                 ET.SubElement(r_der, "s", n="n").tail = ""
+            # Participle adjectives: map to Epo verb paradigm tags for correct generation.
+            # der_ppas(-ita): krei<vblex><pp>+<sg><nom> → kreita
+            # der_ppa(-inta):  krei<vblex><pp3>+<sg>    → kreinta  (no <nom> in pardefs)
+            # der_pprs(-ata):  krei<vbtr><ppres>+<sg><nom> → kreata
+            # der_pfut(-ota): not supported by apertium-epo — skip bilingual entry
+            for der_tag, epo_vtag, epo_ptag in [
+                ('der_ppas', 'vblex', 'pp'),
+                ('der_ppa',  'vblex', 'pp3'),
+                ('der_pprs', 'vbtr',  'ppres'),
+            ]:
+                e_der = ET.SubElement(section, "e")
+                p_der = ET.SubElement(e_der, "p")
+                l_der = ET.SubElement(p_der, "l")
+                l_der.text = stem
+                ET.SubElement(l_der, "s", n="vblex").tail = ""
+                ET.SubElement(l_der, "s", n=der_tag).tail = ""
+                ET.SubElement(l_der, "s", n="adj").tail = ""
+                r_der = ET.SubElement(p_der, "r")
+                r_der.text = epo  # Epo verb lemma (e.g. 'krei'), not a suffix combo
+                ET.SubElement(r_der, "s", n=epo_vtag).tail = ""
+                ET.SubElement(r_der, "s", n=epo_ptag).tail = ""
         elif raw_par == 'a__adj' and epo and epo.endswith('a') and ' ' not in epo:
             epo_stem = epo[:-1]  # 'bona' → 'bon'
             e_der = ET.SubElement(section, "e")
@@ -437,10 +459,6 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
     else:
         entries = data
     
-    logging.info(f"Exporting {len(entries)} entries to Apertium XML")
-    mono = build_monodix(entries)
-    write_xml_file(mono, out_monodix)
-    
     # Build bilingual dictionary from separate file
     bidix_data = read_json(bidix_entries_path)
     if isinstance(bidix_data, dict) and 'entries' in bidix_data:
@@ -449,7 +467,36 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
         bidix_entries = bidix_data
     else:
         bidix_entries = bidix_data
-    
+
+    # Patch vocab entries: if bidix has a function-word paradigm for the same lemma
+    # and vocab has it wrong (e.g. 'dum' classified as cnjsub instead of pr),
+    # override with the bidix paradigm.
+    FUNC_PARS = {'pr', 'det', 'prn', 'cnjcoo', 'cnjsub'}
+    bidix_by_lemma: dict = {}
+    for be in bidix_entries:
+        lm = (be.get('lemma') or '').lower()
+        if lm not in bidix_by_lemma:
+            bidix_by_lemma[lm] = be
+    for ve in entries:
+        lm = (ve.get('lemma') or '').lower()
+        be = bidix_by_lemma.get(lm)
+        if be:
+            be_par = (be.get('morphology') or {}).get('paradigm', '')
+            ve_par = (ve.get('morphology') or {}).get('paradigm', '')
+            if be_par in FUNC_PARS and be_par != ve_par:
+                ve.setdefault('morphology', {})['paradigm'] = be_par
+                logging.debug("Patched %s: paradigm %s → %s", lm, ve_par, be_par)
+
+    # Merge bidix-only entries into monodix so words with Epo translations
+    # but absent from final_vocabulary are still morphologically analyzable.
+    existing_lemmas = {(e.get('lemma') or '').lower() for e in entries}
+    extra = [e for e in bidix_entries if (e.get('lemma') or '').lower() not in existing_lemmas]
+    mono_entries = entries + extra
+    logging.info(f"Monodix: {len(entries)} vocab + {len(extra)} bidix-only = {len(mono_entries)} total")
+
+    mono = build_monodix(mono_entries)
+    write_xml_file(mono, out_monodix)
+
     logging.info(f"Building bilingual dictionary from {len(bidix_entries)} entries")
     bidi = build_bidix(bidix_entries)
     write_xml_file(bidi, out_bidix)
