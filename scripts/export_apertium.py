@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 import argparse
 import logging
+import re
 from pathlib import Path
 from typing import Iterable
 
-from _common import read_json, ensure_dir, configure_logging
+from _common import read_json, ensure_dir, configure_logging, clean_lemma
 import xml.etree.ElementTree as ET
 from typing import Dict
 
@@ -35,6 +36,24 @@ def _load_function_words() -> Dict[str, str]:
 
 # Loaded once at import time.
 _FUNCTION_WORDS: Dict[str, str] = _load_function_words()
+
+_KATEGORIO_RE = re.compile(r'\s*Kategorio:[^\s]+.*$', re.IGNORECASE)
+
+
+def _clean_translation_term(raw: str) -> str:
+    """Strip arrow artifacts and Kategorio references from a translation term."""
+    term = clean_lemma(raw).strip()
+    term = _KATEGORIO_RE.sub('', term).strip()
+    return term
+
+
+# Map verbose Wiktionary POS names to short Apertium tags.
+_VERBOSE_POS: Dict[str, str] = {
+    "preposition": "pr", "conjunction": "cnjcoo",
+    "subordinating conjunction": "cnjsub", "determiner": "det",
+    "pronoun": "prn", "noun": "n", "adjective": "adj",
+    "adverb": "adv", "verb": "vblex", "interjection": "ij", "numeral": "num",
+}
 
 
 def write_xml_file(elem: ET.Element, output_path: Path) -> None:
@@ -155,6 +174,15 @@ def build_monodix(entries):
         clean_lm = str(lm).strip()
         raw_par = (e.get("morphology") or {}).get("paradigm")
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
+        # Normalize verbose POS names to short Apertium tags (entries that
+        # bypassed infer_morphology.py may still carry verbose labels).
+        if pos and pos in _VERBOSE_POS:
+            pos = _VERBOSE_POS[pos]
+
+        # Function words override stale paradigms from infer_morphology.py
+        # (e.g. "ke" was assigned "e__adv" by ending heuristic but is cnjsub).
+        if clean_lm.lower() in _FUNCTION_WORDS:
+            raw_par = _FUNCTION_WORDS[clean_lm.lower()]
 
         # If no explicit paradigm, infer from POS (normalized upstream) with
         # ending heuristic fallback for entries that bypass infer_morphology.py.
@@ -250,18 +278,23 @@ def build_bidix(entries):
 
         # Collect EO translations - check both old and new formats
         eo_terms = []
-        
+
         # New format: direct eo_translations field (BIG BIDIX format)
         if "eo_translations" in e and isinstance(e["eo_translations"], list):
-            eo_terms.extend(e["eo_translations"])
-        
+            for raw_term in e["eo_translations"]:
+                term = _clean_translation_term(str(raw_term))
+                if term and term not in eo_terms:
+                    eo_terms.append(term)
+
         # Old format: senses with translations
         for s in e.get("senses", []) or []:
             for tr in s.get("translations", []) or []:
                 if tr.get("lang") == "eo":
-                    term = tr.get("term")
-                    if term and term not in eo_terms:
-                        eo_terms.append(term)
+                    raw_term = tr.get("term")
+                    if raw_term:
+                        term = _clean_translation_term(str(raw_term))
+                        if term and term not in eo_terms:
+                            eo_terms.append(term)
         if not eo_terms:
             continue
         # Use first translation as primary
@@ -272,15 +305,15 @@ def build_bidix(entries):
         # Determine Ido paradigm FIRST (needed for stem extraction)
         raw_par = (e.get("morphology") or {}).get("paradigm") or None
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
+        # Normalize verbose POS names to short Apertium tags.
+        if pos and pos in _VERBOSE_POS:
+            pos = _VERBOSE_POS[pos]
 
         # Try function words first
         if not raw_par and clean_lm.lower() in _FUNCTION_WORDS:
             raw_par = _FUNCTION_WORDS[clean_lm.lower()]
 
         # Infer paradigm from POS (normalized upstream) or lemma ending as fallback.
-        # Only match short-form POS tags here; verbose forms (e.g. "adjective" from
-        # fr_wiktionary entries that bypass infer_morphology.py) fall through to the
-        # ending heuristic, which is more reliable for Ido (o→noun, a→adj, e→adv).
         if not raw_par:
             if pos in {"vblex", "verb"}:
                 raw_par = "ar__vblex"
