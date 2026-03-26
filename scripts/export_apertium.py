@@ -203,7 +203,7 @@ def build_bidix(entries):
         'alonge': 'pr', 'segun': 'pr', 'vice': 'pr', 'kontree': 'pr', 'proxim': 'pr',
         'apud': 'pr', 'chefe': 'pr', 'dextre': 'pr', 'sinistre': 'pr',
         'e': 'cnjcoo', 'ed': 'cnjcoo', 'o': 'cnjcoo', 'od': 'cnjcoo', 
-        'ma': 'cnjcoo', 'nam': 'cnjsub', 'ke': 'cnjsub', 'se': 'cnjsub', 
+        'ma': 'cnjcoo', 'nam': 'cnjsub', 'ke': 'cnjsub', 'se': 'cnjsub', 'kad': 'cnjsub',
         'yen': 'cnjcoo', 'nek': 'cnjcoo', ' sive': 'cnjcoo',
         'mi': 'prn', 'me': 'prn', 'tu': 'prn', 'vu': 'prn', 'ilu': 'prn', 'elu': 'prn', 
         'olu': 'prn', 'eli': 'prn', 'ili': 'prn', 'oli': 'prn', 'ni': 'prn', 
@@ -241,20 +241,7 @@ def build_bidix(entries):
             return pos
         return None
 
-    # Sort entries: seed entries last so they override Wiktionary for same lemma+paradigm.
-    SEED_SRC = 'function_words_seed'
-    def _is_seed(e):
-        return any(SEED_SRC in str(p) for p in (e.get('provenance') or []))
     sorted_entries = sorted(entries, key=lambda e: (
-        (e.get("lemma") or "").lower(), e.get("lemma") or "", 1 if _is_seed(e) else 0))
-
-    # Deduplicate by (lemma, paradigm): last entry wins (seed overrides Wiktionary).
-    _seen: dict = {}
-    for e in sorted_entries:
-        lm = (e.get("lemma") or "").lower()
-        par = (e.get("morphology") or {}).get("paradigm") or (e.get("pos") or "")
-        _seen[(lm, par)] = e
-    sorted_entries = sorted(_seen.values(), key=lambda e: (
         (e.get("lemma") or "").lower(), e.get("lemma") or ""))
 
     for e in sorted_entries:
@@ -514,6 +501,24 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
 
     # Merge bidix-only entries into monodix so words with Epo translations
     # but absent from final_vocabulary are still morphologically analyzable.
+    # Index bidix entries by lower-case lemma, preferring entries with non-null POS.
+    bidix_by_lemma = {}
+    for be in bidix_entries:
+        lm = (be.get('lemma') or '').lower()
+        if not lm:
+            continue
+        existing = bidix_by_lemma.get(lm)
+        if existing is None or (not existing.get('pos') and be.get('pos')):
+            bidix_by_lemma[lm] = be
+    # Upgrade vocab entries that have no pos/paradigm using the bidix entry
+    for ve in entries:
+        lm = (ve.get('lemma') or '').lower()
+        if not ve.get('pos') and not (ve.get('morphology') or {}).get('paradigm'):
+            be = bidix_by_lemma.get(lm)
+            if be and be.get('pos'):
+                ve['pos'] = be['pos']
+                if be.get('morphology'):
+                    ve['morphology'] = be['morphology']
     existing_lemmas = {(e.get('lemma') or '').lower() for e in entries}
     extra = [e for e in bidix_entries if (e.get('lemma') or '').lower() not in existing_lemmas]
     mono_entries = entries + extra
