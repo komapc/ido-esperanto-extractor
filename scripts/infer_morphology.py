@@ -11,6 +11,43 @@ from _common import read_json, write_json, configure_logging
 DEMONYM_NOUN_SUFFIXES = ("ano", "iano")
 DEMONYM_ADJ_SUFFIXES = ("ana", "iana")
 
+# Normalized POS names: verbose Wiktionary labels → short Apertium tags
+_SHORT_POS: Dict[str, str] = {
+    "noun": "n", "adjective": "adj", "adverb": "adv", "verb": "vblex",
+    "preposition": "pr", "conjunction": "cnjcoo",
+    "subordinating conjunction": "cnjsub", "determiner": "det", "pronoun": "prn",
+    "interjection": "ij", "numeral": "num",
+}
+
+
+def _load_function_words() -> Dict[str, str]:
+    """Load Ido function words (lemma → paradigm) from data/function_words_io.json.
+
+    Prepositional-article contractions (dil, dal, …) use the special
+    ``prep_art`` paradigm and are kept hardcoded here since that paradigm
+    is not representable as a plain POS tag in the JSON file.
+    """
+    fw: Dict[str, str] = {
+        # Contractions: preposition + definite article (paradigm 'prep_art')
+        'dil': 'prep_art', 'dal': 'prep_art', 'del': 'prep_art',
+        'al': 'prep_art', 'el': 'prep_art', 'sil': 'prep_art', 'vual': 'prep_art',
+    }
+    fw_path = Path(__file__).resolve().parents[1] / 'data/function_words_io.json'
+    try:
+        data = read_json(fw_path)
+        for entry in data:
+            lemma = str(entry.get('lemma') or '').lower()
+            pos = str(entry.get('pos') or '')
+            if lemma and pos:
+                fw[lemma] = pos  # JSON entries override hardcoded defaults
+    except Exception as exc:
+        logging.warning("Could not load function_words_io.json: %s", exc)
+    return fw
+
+
+# Loaded once at import time; refreshed only when the module is re-imported.
+FUNCTION_WORDS: Dict[str, str] = _load_function_words()
+
 
 def has_wikipedia_provenance(entry: Dict[str, Any]) -> bool:
     for p in entry.get("provenance", []) or []:
@@ -27,39 +64,6 @@ def infer_paradigm(entry: Dict[str, Any]) -> Optional[str]:
         return None
 
     lower_lemma = lemma.lower()
-
-    # Ido Function Words and Contractions
-    FUNCTION_WORDS = {
-        # Contractions (Preposition + Article)
-        'dil': 'prep_art', 'dal': 'prep_art', 'del': 'prep_art', 'al': 'prep_art', 
-        'el': 'prep_art', 'ol': 'prep_art', 'sil': 'prep_art', 'vual': 'prep_art',
-        # Articles
-        'la': 'det', 'le': 'det', 'lo': 'det',
-        # Prepositions
-        'de': 'pr', 'di': 'pr', 'da': 'pr', 'a': 'pr', 'en': 'pr', 'pro': 'pr', 
-        'per': 'pr', 'kon': 'pr', 'kontre': 'pr', 'pri': 'pr', 'por': 'pr', 
-        'sur': 'pr', 'sub': 'pr', 'super': 'pr', 'tra': 'pr', 'cis': 'pr', 
-        'trans': 'pr', 'ultre': 'pr', 'inter': 'pr', 'ex': 'pr', 'til': 'pr',
-        'dum': 'pr', 'sine': 'pr', 'veze': 'pr', 'be': 'pr', 'po': 'pr',
-        'propre': 'pr', 'lor': 'pr', 'avan': 'pr', 'dop': 'pr', 'infre': 'pr',
-        'nome': 'pr', 'konten': 'pr', 'kontene': 'pr', 'pos': 'pr', 'pre': 'pr',
-        'che': 'pr', 'ye': 'pr', 'coram': 'pr', 'koram': 'pr', 'travers': 'pr',
-        'alonge': 'pr', 'segun': 'pr', 'vice': 'pr', 'kontree': 'pr', 'proxim': 'pr',
-        'apud': 'pr', 'chefe': 'pr', 'dextre': 'pr', 'sinistre': 'pr',
-        # Conjunctions
-        'e': 'cnjcoo', 'ed': 'cnjcoo', 'o': 'cnjcoo', 'od': 'cnjcoo', 
-        'ma': 'cnjcoo', 'nam': 'cnjsub', 'ke': 'cnjsub', 'se': 'cnjsub',
-        'kande': 'cnjsub', 'yen': 'cnjcoo', 'nek': 'cnjcoo', 'sive': 'cnjcoo',
-        # Pronouns
-        'me': 'prn', 'tu': 'prn', 'vu': 'prn', 'ilu': 'prn', 'elu': 'prn', 
-        'olu': 'prn', 'eli': 'prn', 'ili': 'prn', 'oli': 'prn', 'ni': 'prn', 
-        'vi': 'prn', 'li': 'prn', 'on': 'prn', 'onu': 'prn', 'su': 'prn',
-        'ca': 'prn', 'ta': 'prn', 'cua': 'prn', 'qua': 'prn', 'qui': 'prn',
-        'ulo': 'prn', 'ulo-ca': 'prn', 'ulo-ta': 'prn', 'nulo': 'prn',
-        # Determiners
-        'omna': 'det', 'nula': 'det', 'irga': 'det', 'altra': 'det',
-        'singla': 'det', 'vula': 'det', 'tala': 'det', 'quala': 'det',
-    }
 
     if lower_lemma in FUNCTION_WORDS:
         return FUNCTION_WORDS[lower_lemma]
@@ -163,7 +167,11 @@ def infer(entries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     for e in entries:
         par = infer_paradigm(e)
         morph = {"paradigm": par, "features": {}}
-        e2 = {**e, "morphology": morph}
+        # Normalize verbose POS names to short Apertium tags so downstream
+        # scripts (export_apertium.py) don't need their own normalization pass.
+        raw_pos = e.get("pos")
+        norm_pos = _SHORT_POS.get(str(raw_pos or ''), raw_pos)
+        e2 = {**e, "morphology": morph, "pos": norm_pos}
         add_entry(e2)
         maybe_add_demonym_twin(e2)
         # Toponym twin: -ia noun -> -iana adjective

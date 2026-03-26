@@ -64,7 +64,6 @@ endif
 	$(PY) scripts/normalize_entries.py
 	$(PY) scripts/infer_morphology.py
 	$(PY) scripts/filter_and_validate.py --wiki-top-n 1000
-	$(PY) scripts/final_preparation.py
 	$(PY) scripts/build_monolingual.py
 	$(PY) scripts/build_one_big_bidix_json.py
 	$(PY) scripts/report_coverage.py --top 5000
@@ -74,6 +73,7 @@ endif
 	$(PY) scripts/report_conflicts.py
 	$(PY) scripts/report_big_bidix_stats.py
 	$(PY) scripts/build_web_index.py
+	$(PY) scripts/export_apertium.py
 
 # Fast regeneration (skip downloads and French meanings parsing)
 regenerate-fast:
