@@ -8,6 +8,16 @@ from _common import read_json, write_json, configure_logging
 import re
 
 
+# Translations for function words that have no usable Wiktionary entry.
+# These are kept minimal — one canonical Esperanto equivalent per word.
+_FUNCTION_WORD_OVERRIDES: Dict[str, Dict[str, str]] = {
+    'ed':  {'pos': 'cnjcoo', 'eo': 'kaj'},   # variant of e (and), before vowels
+    'od':  {'pos': 'cnjcoo', 'eo': 'aŭ'},    # variant of o (or), before vowels
+    'kon': {'pos': 'pr',     'eo': 'kun'},    # variant of kun (with), before vowels
+    'a':   {'pos': 'pr',     'eo': 'al'},     # to (direction), short form
+}
+
+
 def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
     # Load and merge all input files
     entries = []
@@ -106,6 +116,22 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
                 cur = rec['_eo_terms'].setdefault(term, set())
                 if src:
                     cur.add(src)
+
+    # Inject function-word overrides for words absent from all sources.
+    for lemma_lc, info in _FUNCTION_WORD_OVERRIDES.items():
+        key = (lemma_lc, info['pos'])
+        if key not in by_key:
+            by_key[key] = {
+                'lemma': lemma_lc,
+                'pos': info['pos'],
+                'language': 'io',
+                'morphology': {'paradigm': '__' + info['pos'], 'features': {}},
+                '_eo_terms': {info['eo']: {'function_word_override'}},
+                '_all_sources': {'function_word_override'},
+            }
+        elif not by_key[key]['_eo_terms']:
+            # Entry exists (from whitelist) but has no translation — inject it
+            by_key[key]['_eo_terms'][info['eo']] = {'function_word_override'}
 
     # Materialize final structure: senses with EO-only translations; keep multi-provenance per translation
     out: List[Dict[str, Any]] = []
