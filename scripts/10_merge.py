@@ -33,7 +33,6 @@ from utils.metadata import create_merge_metadata
 
 # Source priority (higher = more trusted)
 SOURCE_PRIORITY = {
-    'function_words_seed': 110,  # Highest priority - curated critical words
     'quick_improvements': 105,    # Manual improvements from community
     'io_wiktionary': 100,
     'eo_wiktionary': 90,

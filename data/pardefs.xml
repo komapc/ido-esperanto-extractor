@@ -97,6 +97,8 @@
       <e><p><l>ata</l><r><s n="vblex"/><s n="der_pprs"/><s n="adj"/><s n="sg"/><s n="nom"/></r></p></e>
       <!-- Future-passive participle (adj): kre+ota → kreota (about to be created) -->
       <e><p><l>ota</l><r><s n="vblex"/><s n="der_pfut"/><s n="adj"/><s n="sg"/><s n="nom"/></r></p></e>
+      <!-- Present-active participle (adj): kre+anta → kreanta (creating) -->
+      <e><p><l>anta</l><r><s n="vblex"/><s n="der_ppra"/><s n="adj"/><s n="sg"/><s n="nom"/></r></p></e>
     </pardef>
     <pardef n="num">
       <e>

@@ -28,9 +28,14 @@
   { "lemma": "sed", "pos": "cnjcoo" },
   { "lemma": "nam", "pos": "cnjcoo" },
 
+  { "lemma": "ed", "pos": "cnjcoo" },
+  { "lemma": "od", "pos": "cnjcoo" },
+  { "lemma": "kon", "pos": "pr" },
+
   { "lemma": "se", "pos": "cnjsub" },
   { "lemma": "kande", "pos": "cnjsub" },
-  { "lemma": "dum", "pos": "cnjsub" },
+  { "lemma": "kad", "pos": "cnjsub" },
+  { "lemma": "dum", "pos": "pr" },
   { "lemma": "quale", "pos": "cnjsub" },
   { "lemma": "quankam", "pos": "cnjsub" },
   { "lemma": "kam", "pos": "cnjsub" },

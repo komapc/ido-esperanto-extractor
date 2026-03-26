@@ -1,17 +1,11 @@
 #!/usr/bin/env python3
 import argparse
 import logging
-import re
 from pathlib import Path
 from typing import Iterable
 
 from _common import read_json, ensure_dir, configure_logging
 import xml.etree.ElementTree as ET
-
-# Precompiled regex patterns for performance
-METADATA_MARKER_RE = re.compile(r'\{[^}]+\}')
-KATEGORIO_PREFIX_RE = re.compile(r'\s*Kategorio:[^\s]+(?:\s+[A-Z]+)?\s*')
-ARROW_RE = re.compile(r'\s*\(\s*[↓↑→←⇒⇐⇑⇓]+\s*\)\s*|\s*[↓↑→←⇒⇐⇑⇓]\s*')
 
 
 def write_xml_file(elem: ET.Element, output_path: Path) -> None:
@@ -62,7 +56,7 @@ def build_monodix(entries):
     alphabet.text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     # Define sdefs for monolingual dictionary
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut"]:
+    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra"]:
         ET.SubElement(sdefs, "sdef", n=s)
     # Load pardefs from external file instead of hardcoding
     pardefs_path = Path(__file__).resolve().parents[1] / "data/pardefs.xml"
@@ -129,15 +123,7 @@ def build_monodix(entries):
         if not lm:
             continue
         
-        # Clean lemma of any existing metadata markers
-        clean_lm = str(lm)
-        # Remove {wikt_io}, {wikt_eo}, etc. markers
-        clean_lm = METADATA_MARKER_RE.sub('', clean_lm)
-        # Remove Kategorio: prefixes and suffixes
-        clean_lm = KATEGORIO_PREFIX_RE.sub('', clean_lm)
-        # Remove any remaining whitespace
-        clean_lm = clean_lm.strip()
-            
+        clean_lm = str(lm).strip()
         raw_par = (e.get("morphology") or {}).get("paradigm")
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
 
@@ -203,7 +189,7 @@ def build_bidix(entries):
         'alonge': 'pr', 'segun': 'pr', 'vice': 'pr', 'kontree': 'pr', 'proxim': 'pr',
         'apud': 'pr', 'chefe': 'pr', 'dextre': 'pr', 'sinistre': 'pr',
         'e': 'cnjcoo', 'ed': 'cnjcoo', 'o': 'cnjcoo', 'od': 'cnjcoo', 
-        'ma': 'cnjcoo', 'nam': 'cnjsub', 'ke': 'cnjsub', 'se': 'cnjsub', 
+        'ma': 'cnjcoo', 'nam': 'cnjsub', 'ke': 'cnjsub', 'se': 'cnjsub', 'kad': 'cnjsub',
         'yen': 'cnjcoo', 'nek': 'cnjcoo', ' sive': 'cnjcoo',
         'mi': 'prn', 'me': 'prn', 'tu': 'prn', 'vu': 'prn', 'ilu': 'prn', 'elu': 'prn', 
         'olu': 'prn', 'eli': 'prn', 'ili': 'prn', 'oli': 'prn', 'ni': 'prn', 
@@ -218,7 +204,7 @@ def build_bidix(entries):
     alphabet = ET.SubElement(dictionary, "alphabet")
     alphabet.text = "abcdefghijklmnopqrstuvwxyzĉĝĥĵŝŭABCDEFGHIJKLMNOPQRSTUVWXYZĈĜĤĴŜŬ"
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "vbtr", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp3", "ppres", "p1", "p2", "p3", "ciph", "np", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut"]:
+    for s in ["n", "adj", "adv", "vblex", "vbtr", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp3", "ppres", "p1", "p2", "p3", "ciph", "np", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra"]:
         ET.SubElement(sdefs, "sdef", n=s)
     section = ET.SubElement(dictionary, "section", id="main", type="standard")
     def map_s_tag(par: str, pos: str | None) -> str | None:
@@ -241,10 +227,9 @@ def build_bidix(entries):
             return pos
         return None
 
-    # Sort entries alphabetically by lemma before adding to section
-    # Handle None lemmas safely by using 'or ""' to convert None to empty string
-    sorted_entries = sorted(entries, key=lambda e: ((e.get("lemma") or "").lower(), e.get("lemma") or ""))
-    
+    sorted_entries = sorted(entries, key=lambda e: (
+        (e.get("lemma") or "").lower(), e.get("lemma") or ""))
+
     for e in sorted_entries:
         # New format doesn't have "language" field - all entries are Ido by default
         if e.get("language") and e.get("language") != "io":
@@ -254,18 +239,10 @@ def build_bidix(entries):
         if not lm:
             continue
         
-        # Clean lemma of any existing metadata markers
-        clean_lm = str(lm)
-        # Remove {wikt_io}, {wikt_eo}, etc. markers
-        clean_lm = METADATA_MARKER_RE.sub('', clean_lm)
-        # Remove Kategorio: prefixes and suffixes
-        clean_lm = KATEGORIO_PREFIX_RE.sub('', clean_lm)
-        # Remove any remaining whitespace
-        clean_lm = clean_lm.strip()
-            
+        clean_lm = str(lm).strip()
         raw_par = (e.get("morphology") or {}).get("paradigm") or None
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
-        
+
         # Collect EO translations - check both old and new formats
         eo_terms = []
         
@@ -279,19 +256,7 @@ def build_bidix(entries):
                 if tr.get("lang") == "eo":
                     term = tr.get("term")
                     if term and term not in eo_terms:
-                        # Clean term of any existing metadata markers
-                        clean_term = term
-                        # Remove Wiktionary arrow artifacts (↓, ↑, etc.)
-                        clean_term = ARROW_RE.sub('', clean_term)
-                        # Remove {wikt_io}, {wikt_eo}, etc. markers
-                        clean_term = METADATA_MARKER_RE.sub('', clean_term)
-                        # Remove Kategorio: prefixes and suffixes
-                        clean_term = KATEGORIO_PREFIX_RE.sub('', clean_term)
-                        # Remove any remaining whitespace
-                        clean_term = clean_term.strip()
-                        
-                        if clean_term and clean_term not in eo_terms:
-                            eo_terms.append(clean_term)
+                        eo_terms.append(term)
         if not eo_terms:
             continue
         # Use first translation as primary
@@ -400,7 +365,20 @@ def build_bidix(entries):
             # der_ppas(-ita): krei<vblex><pp>+<sg><nom> → kreita
             # der_ppa(-inta):  krei<vblex><pp3>+<sg>    → kreinta  (no <nom> in pardefs)
             # der_pprs(-ata):  krei<vbtr><ppres>+<sg><nom> → kreata
-            # der_pfut(-ota): not supported by apertium-epo — skip bilingual entry
+            # der_ppra(-anta) and der_pfut(-ota): apertium-epo cannot generate these.
+            # Output surface form + <adj> so autobil blocks verb-fallback and shows
+            # #kreanta/#kreota rather than the confusing #krei fallback.
+            for der_tag, epo_suffix in [('der_ppra', 'anta'), ('der_pfut', 'ota')]:
+                e_der = ET.SubElement(section, "e")
+                p_der = ET.SubElement(e_der, "p")
+                l_der = ET.SubElement(p_der, "l")
+                l_der.text = stem
+                ET.SubElement(l_der, "s", n="vblex").tail = ""
+                ET.SubElement(l_der, "s", n=der_tag).tail = ""
+                ET.SubElement(l_der, "s", n="adj").tail = ""
+                r_der = ET.SubElement(p_der, "r")
+                r_der.text = epo_stem + epo_suffix
+                ET.SubElement(r_der, "s", n="adj").tail = ""
             for der_tag, epo_vtag, epo_ptag in [
                 ('der_ppas', 'vblex', 'pp'),
                 ('der_ppa',  'vblex', 'pp3'),
@@ -468,27 +446,26 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
     else:
         bidix_entries = bidix_data
 
-    # Patch vocab entries: if bidix has a function-word paradigm for the same lemma
-    # and vocab has it wrong (e.g. 'dum' classified as cnjsub instead of pr),
-    # override with the bidix paradigm.
-    FUNC_PARS = {'pr', 'det', 'prn', 'cnjcoo', 'cnjsub'}
-    bidix_by_lemma: dict = {}
-    for be in bidix_entries:
-        lm = (be.get('lemma') or '').lower()
-        if lm not in bidix_by_lemma:
-            bidix_by_lemma[lm] = be
-    for ve in entries:
-        lm = (ve.get('lemma') or '').lower()
-        be = bidix_by_lemma.get(lm)
-        if be:
-            be_par = (be.get('morphology') or {}).get('paradigm', '')
-            ve_par = (ve.get('morphology') or {}).get('paradigm', '')
-            if be_par in FUNC_PARS and be_par != ve_par:
-                ve.setdefault('morphology', {})['paradigm'] = be_par
-                logging.debug("Patched %s: paradigm %s → %s", lm, ve_par, be_par)
-
     # Merge bidix-only entries into monodix so words with Epo translations
     # but absent from final_vocabulary are still morphologically analyzable.
+    # Index bidix entries by lower-case lemma, preferring entries with non-null POS.
+    bidix_by_lemma = {}
+    for be in bidix_entries:
+        lm = (be.get('lemma') or '').lower()
+        if not lm:
+            continue
+        existing = bidix_by_lemma.get(lm)
+        if existing is None or (not existing.get('pos') and be.get('pos')):
+            bidix_by_lemma[lm] = be
+    # Upgrade vocab entries that have no pos/paradigm using the bidix entry
+    for ve in entries:
+        lm = (ve.get('lemma') or '').lower()
+        if not ve.get('pos') and not (ve.get('morphology') or {}).get('paradigm'):
+            be = bidix_by_lemma.get(lm)
+            if be and be.get('pos'):
+                ve['pos'] = be['pos']
+                if be.get('morphology'):
+                    ve['morphology'] = be['morphology']
     existing_lemmas = {(e.get('lemma') or '').lower() for e in entries}
     extra = [e for e in bidix_entries if (e.get('lemma') or '').lower() not in existing_lemmas]
     mono_entries = entries + extra

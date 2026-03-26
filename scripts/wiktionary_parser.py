@@ -318,7 +318,27 @@ def extract_pos(section: str) -> Optional[str]:
         if needle in cat_text:
             return p
 
-    # 4) Fallback: use lemma ending heuristics where POS headings are absent
+    # 4) Semantiko: line — scan for [[pos_keyword]] in the semantics line
+    # e.g. "*Semantiko: [[konjunciono]] [[questionala]]" → cnjcoo
+    # This is the idiomatic format for invariant function words on io.wiktionary.org
+    semantiko_m = re.search(r'\*\s*Semantiko\s*:[^\n]+', text, re.IGNORECASE)
+    if semantiko_m:
+        semantiko_text = semantiko_m.group(0).lower()
+        SEMANTIKO_POS = {
+            "konjunciono": "cnjcoo", "konjunciona": "cnjcoo",
+            "prepoziciono": "pr", "prepoziciona": "pr",
+            "pronomo": "prn",
+            "adverbo": "adv",
+            "substantivo": "n",
+            "verbo": "vblex",
+            "adjektivo": "adj",
+            "artiklo": "det",
+        }
+        for keyword, pos_tag in SEMANTIKO_POS.items():
+            if keyword in semantiko_text:
+                return pos_tag
+
+    # 5) Fallback: use lemma ending heuristics where POS headings are absent
     # This is handled later by morphology inference too, but giving POS helps downstream.
     # We cannot access the title here, so skip to let morphology handle.
     return None

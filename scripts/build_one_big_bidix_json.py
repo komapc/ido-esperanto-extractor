@@ -35,6 +35,13 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
 
     EO_ALLOWED_RE = re.compile(r"^[A-Za-zĈĜĤĴŜŬĉĝĥĵŝŭ\-]+$")
 
+    def clean_terms(raw: str):
+        """Split on commas/semicolons, clean each part, yield valid terms."""
+        for part in re.split(r'[,;]', raw or ''):
+            t = clean_term(part)
+            if t:
+                yield t
+
     def clean_term(term: str) -> str:
         t = (term or '').strip()
         if not t:
@@ -83,32 +90,28 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
         # Collect only EO translations, aggregate per term sources
         for s in e.get('senses', []) or []:
             for tr in s.get('translations', []) or []:
-                lang = tr.get('lang')
-                raw = (tr.get('term') or '')
-                term = clean_term(raw)
-                if lang != 'eo' or not term:
+                if tr.get('lang') != 'eo':
                     continue
                 src = str(tr.get('source') or '')
+                for term in clean_terms(tr.get('term') or ''):
+                    cur = rec['_eo_terms'].setdefault(term, set())
+                    if src:
+                        cur.add(src)
+        # Also collect top-level translations (source_io_wiktionary.json format)
+        for tr in e.get('translations', []) or []:
+            if tr.get('lang') != 'eo':
+                continue
+            src = str(tr.get('source') or '')
+            for term in clean_terms(tr.get('term') or ''):
                 cur = rec['_eo_terms'].setdefault(term, set())
                 if src:
                     cur.add(src)
-        # Also collect top-level translations (source_io_wiktionary.json format)
-        for tr in e.get('translations', []) or []:
-            lang = tr.get('lang')
-            raw = (tr.get('term') or '')
-            term = clean_term(raw)
-            if lang != 'eo' or not term:
-                continue
-            src = str(tr.get('source') or '')
-            cur = rec['_eo_terms'].setdefault(term, set())
-            if src:
-                cur.add(src)
 
     # Materialize final structure: senses with EO-only translations; keep multi-provenance per translation
     out: List[Dict[str, Any]] = []
     for (_lm, _pos), rec in sorted(by_key.items(), key=lambda kv: (kv[0][0], kv[0][1])):
         translations: List[Dict[str, Any]] = []
-        for term, srcs in sorted(rec['_eo_terms'].items(), key=lambda kv: kv[0]):
+        for term, srcs in rec['_eo_terms'].items():
             translations.append({
                 'lang': 'eo',
                 'term': term,
@@ -147,8 +150,6 @@ def main(argv: Iterable[str]) -> int:
         # Include raw Wiktionary source so words dropped by align_bilingual
         # (e.g. function words e, de, por) still get their Epo translations.
         base_path.parent / 'data/sources/source_io_wiktionary.json',
-        # Manually curated function words (e, ed, kon, per, sur, dum, etc.)
-        base_path / 'sources/source_function_words_seed.json',
     ]
     
     big = build_big_bidix(inputs)

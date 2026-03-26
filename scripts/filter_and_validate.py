@@ -159,7 +159,7 @@ def apply_filters(entries: List[Dict[str, Any]], wiki_top_n: int) -> Tuple[List[
                     stats['translations_removed'] += 1
                     suspicious.append(f"comma_tr: {lemma} -> {term}")
                     continue
-                cleaned_tr.append(t)
+                cleaned_tr.append({**t, 'term': term})
             if cleaned_tr:
                 senses.append({**s, 'translations': cleaned_tr})
         if not senses:
