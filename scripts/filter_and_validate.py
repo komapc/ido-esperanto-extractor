@@ -7,6 +7,9 @@ from typing import Any, Dict, Iterable, List, Tuple
 
 from _common import read_json, write_json, configure_logging, save_text
 
+# Short POS tags that are valid Apertium paradigm names for function words.
+_FUNC_POS = frozenset({'cnjcoo', 'cnjsub', 'pr', 'det', 'prn'})
+
 
 ALLOWED_EO_CHARS_RE = re.compile(r"^[A-Za-zĈĜĤĴŜŬĉĝĥĵŝŭ\-]+$")
 
@@ -175,10 +178,55 @@ def apply_filters(entries: List[Dict[str, Any]], wiki_top_n: int) -> Tuple[List[
     return out, stats, suspicious
 
 
+def merge_function_words(entries: List[Dict[str, Any]], function_words_path: Path) -> List[Dict[str, Any]]:
+    """Merge function words whitelist into entries.
+
+    For lemmas already present: overwrite pos and morphology.
+    For lemmas absent: insert a stub entry (no senses) so the morphological
+    analyser can still tag them correctly.
+    Replaces ``final_preparation.py`` as a separate pipeline step.
+    """
+    try:
+        fws = read_json(function_words_path)
+    except Exception as exc:
+        logging.warning("Could not load function words from %s: %s", function_words_path, exc)
+        return entries
+
+    by_lemma = {str(e.get('lemma') or ''): e for e in entries}
+    added = 0
+    for fw in fws:
+        lemma = str(fw.get('lemma') or '')
+        pos = str(fw.get('pos') or '')
+        if not lemma or not pos:
+            continue
+        paradigm = pos if pos in _FUNC_POS else None
+        morph = {'paradigm': paradigm, 'features': {}}
+        if lemma in by_lemma:
+            by_lemma[lemma]['pos'] = pos
+            by_lemma[lemma]['morphology'] = morph
+        else:
+            by_lemma[lemma] = {
+                'id': f'io:{lemma}:{pos}',
+                'lemma': lemma,
+                'pos': pos,
+                'language': 'io',
+                'senses': [],
+                'morphology': morph,
+                'provenance': [{'source': 'whitelist'}],
+            }
+            added += 1
+    if added:
+        logging.info("Added %d function words not in bilingual data", added)
+    merged = list(by_lemma.values())
+    merged.sort(key=lambda x: (str(x.get('lemma', '')), str(x.get('pos', ''))))
+    return merged
+
+
 def main(argv: Iterable[str]) -> int:
-    ap = argparse.ArgumentParser(description="Filter and validate entries")
+    ap = argparse.ArgumentParser(description="Filter, validate and finalize vocabulary entries")
     ap.add_argument("--input", type=Path, default=Path(__file__).resolve().parents[1] / "work/bilingual_with_morph.json")
     ap.add_argument("--out", type=Path, default=Path(__file__).resolve().parents[1] / "work/final_vocabulary.json")
+    ap.add_argument("--function-words", type=Path, default=Path(__file__).resolve().parents[1] / "data/function_words_io.json")
     ap.add_argument("--wiki-top-n", type=int, default=500, help="Top-N frequency rank threshold for Wikipedia-only keep")
     ap.add_argument("-v", "--verbose", action="count", default=0)
     args = ap.parse_args(list(argv))
@@ -186,6 +234,7 @@ def main(argv: Iterable[str]) -> int:
     configure_logging(args.verbose)
     entries = read_json(args.input)
     result, stats, suspicious = apply_filters(entries, wiki_top_n=args.wiki_top_n)
+    result = merge_function_words(result, args.function_words)
     write_json(args.out, result)
     logging.info("Wrote %s (%d entries)", args.out, len(result))
 

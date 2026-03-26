@@ -336,18 +336,13 @@ def main(argv):
          "Infer morphology",
          None),
         
-        # Stage 14: Filter and validate
+        # Stage 14: Filter, validate, and merge function words whitelist
+        # (final_preparation.py was merged into filter_and_validate.py)
         ("filter",
          ["python3", "scripts/filter_and_validate.py", "--wiki-top-n", "1000"],
-         "Filter and validate entries",
+         "Filter, validate and merge function words",
          None),
-        
-        # Stage 15: Final preparation
-        ("final_preparation",
-         ["python3", "scripts/final_preparation.py"],
-         "Final preparation",
-         None),
-        
+
         # Stage 16: Build monolingual
         ("build_monolingual",
          ["python3", "scripts/build_monolingual.py"],

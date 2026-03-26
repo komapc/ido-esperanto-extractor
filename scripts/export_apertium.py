@@ -6,6 +6,35 @@ from typing import Iterable
 
 from _common import read_json, ensure_dir, configure_logging
 import xml.etree.ElementTree as ET
+from typing import Dict
+
+
+def _load_function_words() -> Dict[str, str]:
+    """Load Ido function words (lemma → paradigm) from function_words_io.json.
+
+    Prepositional-article contractions (dil, dal, …) use the special
+    ``prep_art`` paradigm and are kept hardcoded since that paradigm is not
+    representable as a plain POS tag in the JSON file.
+    """
+    fw: Dict[str, str] = {
+        'dil': 'prep_art', 'dal': 'prep_art', 'del': 'prep_art',
+        'al': 'prep_art', 'el': 'prep_art', 'sil': 'prep_art', 'vual': 'prep_art',
+    }
+    fw_path = Path(__file__).resolve().parents[1] / 'data/function_words_io.json'
+    try:
+        data = read_json(fw_path)
+        for entry in data:
+            lemma = str(entry.get('lemma') or '').lower()
+            pos = str(entry.get('pos') or '')
+            if lemma and pos:
+                fw[lemma] = pos
+    except Exception as exc:
+        logging.warning("Could not load function_words_io.json: %s", exc)
+    return fw
+
+
+# Loaded once at import time.
+_FUNCTION_WORDS: Dict[str, str] = _load_function_words()
 
 
 def write_xml_file(elem: ET.Element, output_path: Path) -> None:
@@ -127,25 +156,27 @@ def build_monodix(entries):
         raw_par = (e.get("morphology") or {}).get("paradigm")
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
 
-        # If no explicit paradigm, infer from POS
+        # If no explicit paradigm, infer from POS (normalized upstream) with
+        # ending heuristic fallback for entries that bypass infer_morphology.py.
         if not raw_par:
-            # Normalize verbose POS names from Wiktionary to short tags
-            _POS_NORM = {
-                "preposition": "pr", "conjunction": "cnjcoo",
-                "determiner": "det", "pronoun": "prn",
-                "subordinating conjunction": "cnjsub",
-            }
-            pos_norm = _POS_NORM.get(pos, pos)
-            if pos_norm == "verb":
+            if pos in {"vblex", "verb"}:
                 raw_par = "ar__vblex"
-            elif pos_norm == "adj":
+            elif pos == "adj":
                 raw_par = "a__adj"
-            elif pos_norm == "adv":
+            elif pos == "adv":
                 raw_par = "e__adv"
-            elif pos_norm in {"pr", "det", "prn", "cnjcoo", "cnjsub"}:
-                raw_par = "__" + pos_norm
+            elif pos in {"pr", "det", "prn", "cnjcoo", "cnjsub"}:
+                raw_par = "__" + pos
             else:
-                raw_par = "o__n"  # Default to noun
+                lm_lower = clean_lm.lower()
+                if lm_lower.endswith("ar") or lm_lower.endswith("ir"):
+                    raw_par = "ar__vblex"
+                elif lm_lower.endswith("a"):
+                    raw_par = "a__adj"
+                elif lm_lower.endswith("e"):
+                    raw_par = "e__adv"
+                else:
+                    raw_par = "o__n"
 
         # Normalize function-word paradigms
         par = raw_par
@@ -173,32 +204,6 @@ def build_monodix(entries):
 
 
 def build_bidix(entries):
-    # Ido Function Words and Contractions (re-used from infer_morphology)
-    FUNCTION_WORDS = {
-        'dil': 'prep_art', 'dal': 'prep_art', 'del': 'prep_art', 'al': 'prep_art', 
-        'el': 'prep_art', 'ol': 'prep_art', 'sil': 'prep_art', 'vual': 'prep_art',
-        'la': 'det', 'le': 'det', 'lo': 'det',
-        'de': 'pr', 'di': 'pr', 'da': 'pr', 'a': 'pr', 'en': 'pr', 'pro': 'pr', 
-        'per': 'pr', 'kon': 'pr', 'kontre': 'pr', 'pri': 'pr', 'por': 'pr', 
-        'sur': 'pr', 'sub': 'pr', 'super': 'pr', 'tra': 'pr', 'cis': 'pr', 
-        'trans': 'pr', 'ultre': 'pr', 'inter': 'pr', 'ex': 'pr', 'til': 'pr',
-        'dum': 'pr', 'sine': 'pr', 'veze': 'pr', 'be': 'pr', 'po': 'pr',
-        'propre': 'pr', 'lor': 'pr', 'avan': 'pr', 'dop': 'pr', 'infre': 'pr',
-        'nome': 'pr', 'konten': 'pr', 'kontene': 'pr', 'pos': 'pr', 'pre': 'pr',
-        'che': 'pr', 'ye': 'pr', 'coram': 'pr', 'koram': 'pr', 'travers': 'pr',
-        'alonge': 'pr', 'segun': 'pr', 'vice': 'pr', 'kontree': 'pr', 'proxim': 'pr',
-        'apud': 'pr', 'chefe': 'pr', 'dextre': 'pr', 'sinistre': 'pr',
-        'e': 'cnjcoo', 'ed': 'cnjcoo', 'o': 'cnjcoo', 'od': 'cnjcoo', 
-        'ma': 'cnjcoo', 'nam': 'cnjsub', 'ke': 'cnjsub', 'se': 'cnjsub', 'kad': 'cnjsub',
-        'yen': 'cnjcoo', 'nek': 'cnjcoo', ' sive': 'cnjcoo',
-        'mi': 'prn', 'me': 'prn', 'tu': 'prn', 'vu': 'prn', 'ilu': 'prn', 'elu': 'prn', 
-        'olu': 'prn', 'eli': 'prn', 'ili': 'prn', 'oli': 'prn', 'ni': 'prn', 
-        'vi': 'prn', 'li': 'prn', 'on': 'prn', 'onu': 'prn', 'su': 'prn',
-        'ca': 'prn', 'ta': 'prn', 'cua': 'prn', 'qua': 'prn', 'qui': 'prn',
-        'ulo': 'prn', 'ulo-ca': 'prn', 'ulo-ta': 'prn', 'nulo': 'prn',
-        'omna': 'det', 'nula': 'det', 'irga': 'det', 'altra': 'det',
-        'singla': 'det', 'vula': 'det', 'tala': 'det', 'quala': 'det',
-    }
 
     dictionary = ET.Element("dictionary")
     alphabet = ET.SubElement(dictionary, "alphabet")
@@ -269,28 +274,33 @@ def build_bidix(entries):
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
 
         # Try function words first
-        if not raw_par and clean_lm.lower() in FUNCTION_WORDS:
-            raw_par = FUNCTION_WORDS[clean_lm.lower()]
+        if not raw_par and clean_lm.lower() in _FUNCTION_WORDS:
+            raw_par = _FUNCTION_WORDS[clean_lm.lower()]
 
-        # Infer from POS if still no paradigm
+        # Infer paradigm from POS (normalized upstream) or lemma ending as fallback.
+        # Only match short-form POS tags here; verbose forms (e.g. "adjective" from
+        # fr_wiktionary entries that bypass infer_morphology.py) fall through to the
+        # ending heuristic, which is more reliable for Ido (o→noun, a→adj, e→adv).
         if not raw_par:
-            # Normalize verbose POS names from Wiktionary to short tags
-            _POS_NORM = {
-                "preposition": "pr", "conjunction": "cnjcoo",
-                "determiner": "det", "pronoun": "prn",
-                "subordinating conjunction": "cnjsub",
-            }
-            pos_norm = _POS_NORM.get(pos, pos)
-            if pos_norm == "verb":
+            if pos in {"vblex", "verb"}:
                 raw_par = "ar__vblex"
-            elif pos_norm == "adj":
+            elif pos == "adj":
                 raw_par = "a__adj"
-            elif pos_norm == "adv":
+            elif pos == "adv":
                 raw_par = "e__adv"
-            elif pos_norm in {"pr", "det", "prn", "cnjcoo", "cnjsub"}:
-                raw_par = "__" + pos_norm
+            elif pos in {"pr", "det", "prn", "cnjcoo", "cnjsub"}:
+                raw_par = "__" + pos
             else:
-                raw_par = "o__n"  # Default to noun
+                # Ending heuristic for un-normalized entries (e.g. fr_wiktionary)
+                lm_lower = clean_lm.lower()
+                if lm_lower.endswith("ar") or lm_lower.endswith("ir"):
+                    raw_par = "ar__vblex"
+                elif lm_lower.endswith("a"):
+                    raw_par = "a__adj"
+                elif lm_lower.endswith("e"):
+                    raw_par = "e__adv"
+                else:
+                    raw_par = "o__n"
 
         ido_tag = map_s_tag(raw_par, pos)
 
