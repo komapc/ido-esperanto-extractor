@@ -19,7 +19,7 @@ def _load_function_words() -> Dict[str, str]:
     """
     fw: Dict[str, str] = {
         'dil': 'prep_art', 'dal': 'prep_art', 'del': 'prep_art',
-        'al': 'prep_art', 'el': 'prep_art', 'sil': 'prep_art', 'vual': 'prep_art',
+        'al': 'prep_art', 'el': 'prep_art', 'sil': 'prep_art',
     }
     fw_path = Path(__file__).resolve().parents[1] / 'data/function_words_io.json'
     try:
@@ -104,7 +104,7 @@ def build_monodix(entries):
     alphabet.text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     # Define sdefs for monolingual dictionary
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra"]:
+    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_izar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra"]:
         ET.SubElement(sdefs, "sdef", n=s)
     # Load pardefs from external file instead of hardcoding
     pardefs_path = Path(__file__).resolve().parents[1] / "data/pardefs.xml"
@@ -246,7 +246,7 @@ def build_bidix(entries):
     alphabet = ET.SubElement(dictionary, "alphabet")
     alphabet.text = "abcdefghijklmnopqrstuvwxyzĉĝĥĵŝŭABCDEFGHIJKLMNOPQRSTUVWXYZĈĜĤĴŜŬ"
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "vbtr", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp3", "ppres", "p1", "p2", "p3", "ciph", "np", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra"]:
+    for s in ["n", "adj", "adv", "vblex", "vbtr", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp3", "ppres", "p1", "p2", "p3", "ciph", "np", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_izar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra"]:
         ET.SubElement(sdefs, "sdef", n=s)
     section = ET.SubElement(dictionary, "section", id="main", type="standard")
     def map_s_tag(par: str, pos: str | None) -> str | None:
@@ -461,8 +461,6 @@ def build_bidix(entries):
             ET.SubElement(r_der, "s", n="n").tail = ""
         elif raw_par == 'o__n' and epo and ' ' not in epo:
             # -oza suffix: suces+oza → sucesoza ("full of success")
-            # Epo noun → adj: sukceso → sukcesa (if adj exists) or just map to noun root + 'a'
-            # We map Ido noun stem to Epo adj stem (strip Epo noun ending if -o/-a, else use as-is)
             epo_stripped = epo[:-1] if epo.endswith('o') else epo  # 'sukceso' → 'sukcес'
             e_der = ET.SubElement(section, "e")
             p_der = ET.SubElement(e_der, "p")
@@ -474,6 +472,23 @@ def build_bidix(entries):
             r_der = ET.SubElement(p_der, "r")
             r_der.text = epo_stripped + 'a'
             ET.SubElement(r_der, "s", n="adj").tail = ""
+            # -izar suffix: nom+izar → nomizar (to name); Epo: strip -o, add -i
+            # Emit all tenses so the bidix covers nomizar/nomizas/nomizis/...
+            if epo.endswith('o'):
+                epo_verb = epo[:-1] + 'i'  # 'nomo' → 'nomi'
+                for tense in ['inf', 'pri', 'pii', 'fti', 'cni', 'imp']:
+                    e_iz = ET.SubElement(section, "e")
+                    p_iz = ET.SubElement(e_iz, "p")
+                    l_iz = ET.SubElement(p_iz, "l")
+                    l_iz.text = stem
+                    ET.SubElement(l_iz, "s", n="n").tail = ""
+                    ET.SubElement(l_iz, "s", n="der_izar").tail = ""
+                    ET.SubElement(l_iz, "s", n="vblex").tail = ""
+                    ET.SubElement(l_iz, "s", n=tense).tail = ""
+                    r_iz = ET.SubElement(p_iz, "r")
+                    r_iz.text = epo_verb
+                    ET.SubElement(r_iz, "s", n="vblex").tail = ""
+                    ET.SubElement(r_iz, "s", n=tense).tail = ""
     return dictionary
 
 

@@ -662,7 +662,7 @@ def generate_bidix(input_file: Path, output_file: Path, min_confidence: float = 
     ]
     
     # Do not apply suffix mapping to these words (avoid wrong guesses)
-    SUFFIX_BLACKLIST = {'ala', 'balo', 'pino', 'panino', 'mano'}
+    SUFFIX_BLACKLIST = {'ala', 'balo', 'pino', 'panino'}
     
     productive_entries_added = 0
     for entry in entries:

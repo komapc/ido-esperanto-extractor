@@ -15,6 +15,14 @@
       <!-- Adjectival derivation from nouns: suces+oza → sucesoza (full of success).
            Include <sg><nom> so remaining tags feed Epo autogen correctly. -->
       <e><p><l>oza</l><r><s n="n"/><s n="der_oz"/><s n="adj"/><s n="sg"/><s n="nom"/></r></p></e>
+      <!-- Verb derivation from nouns: nom+izar → nomizar (to name); Epo stem+i.
+           Full conjugation: izar/izas/izis/izos/izus/izez -->
+      <e><p><l>izar</l><r><s n="n"/><s n="der_izar"/><s n="vblex"/><s n="inf"/></r></p></e>
+      <e><p><l>izas</l><r><s n="n"/><s n="der_izar"/><s n="vblex"/><s n="pri"/></r></p></e>
+      <e><p><l>izis</l><r><s n="n"/><s n="der_izar"/><s n="vblex"/><s n="pii"/></r></p></e>
+      <e><p><l>izos</l><r><s n="n"/><s n="der_izar"/><s n="vblex"/><s n="fti"/></r></p></e>
+      <e><p><l>izus</l><r><s n="n"/><s n="der_izar"/><s n="vblex"/><s n="cni"/></r></p></e>
+      <e><p><l>izez</l><r><s n="n"/><s n="der_izar"/><s n="vblex"/><s n="imp"/></r></p></e>
       <!-- Feminine derivation: vir+ino → virino (woman), kat+ino → katino (female cat).
            Tags mirror Esperanto: viro<n><f><sg><nom> → virino via autogen. -->
       <e><p><l>ino</l><r><s n="n"/><s n="f"/><s n="sg"/><s n="nom"/></r></p></e>

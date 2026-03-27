@@ -30,7 +30,7 @@ def _load_function_words() -> Dict[str, str]:
     fw: Dict[str, str] = {
         # Contractions: preposition + definite article (paradigm 'prep_art')
         'dil': 'prep_art', 'dal': 'prep_art', 'del': 'prep_art',
-        'al': 'prep_art', 'el': 'prep_art', 'sil': 'prep_art', 'vual': 'prep_art',
+        'al': 'prep_art', 'el': 'prep_art', 'sil': 'prep_art',
     }
     fw_path = Path(__file__).resolve().parents[1] / 'data/function_words_io.json'
     try:

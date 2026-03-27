@@ -13,7 +13,6 @@ import re
 _FUNCTION_WORD_OVERRIDES: Dict[str, Dict[str, str]] = {
     'ed':  {'pos': 'cnjcoo', 'eo': 'kaj'},   # variant of e (and), before vowels
     'od':  {'pos': 'cnjcoo', 'eo': 'aŭ'},    # variant of o (or), before vowels
-    'kon': {'pos': 'pr',     'eo': 'kun'},    # variant of kun (with), before vowels
     'a':   {'pos': 'pr',     'eo': 'al'},     # to (direction), short form
 }
 
