@@ -19,7 +19,10 @@ def _load_function_words() -> Dict[str, str]:
     """
     fw: Dict[str, str] = {
         'dil': 'prep_art', 'dal': 'prep_art', 'del': 'prep_art',
-        'al': 'prep_art', 'el': 'prep_art', 'sil': 'prep_art',
+        'el': 'prep_art', 'sil': 'prep_art',
+        # NOTE: 'al' is NOT here — it is used both as a standalone preposition
+        # ("towards") and as a contraction of 'a + la'. Treating it as a regular
+        # preposition avoids generating double articles ("al la X" → "al la la X").
     }
     fw_path = Path(__file__).resolve().parents[1] / 'data/function_words_io.json'
     try:
@@ -36,6 +39,23 @@ def _load_function_words() -> Dict[str, str]:
 
 # Loaded once at import time.
 _FUNCTION_WORDS: Dict[str, str] = _load_function_words()
+
+# Maps contraction surface form → base preposition lemma (used by monodix/bidix).
+# We encode contractions as explicit <p> entries so lt-proc -b can handle them
+# without needing multi-token output (which lt-proc -b does not support).
+_PREP_ART: Dict[str, str] = {
+    'dal': 'da',  # da + la → da<pr><def>
+    'del': 'de',  # de + la → de<pr><def>
+    'dil': 'di',  # di + la → di<pr><def>
+    'el':  'e',   # e + la  → e<pr><def>
+    'sil': 'si',  # si + la → si<pr><def>
+    # NOTE: 'al' is NOT here — see _FUNCTION_WORDS comment
+}
+
+# Esperanto preposition equivalent for each Ido base preposition
+_PREP_ART_EPO: Dict[str, str] = {
+    'da': 'de', 'de': 'de', 'di': 'de', 'e': 'al', 'si': 'al',
+}
 
 _KATEGORIO_RE = re.compile(r'\s*Kategorio:[^\s]+.*$', re.IGNORECASE)
 
@@ -217,9 +237,30 @@ def build_monodix(entries):
             par = "o__n"
         elif raw_par == "vblex":
             par = "ar__vblex"
-        # Special case for prepositional articles (dil, dal, etc.)
+        # Prep-article contractions: encode as explicit <p> so lt-proc can
+        # surface-analyze the form and tag it as base_prep<pr><def>.
         elif raw_par == 'prep_art':
-            par = "__prep_art"
+            lm_lc = clean_lm.lower()
+            if lm_lc in _PREP_ART:
+                base_prep = _PREP_ART[lm_lc]
+                en = ET.SubElement(section, "e", lm=base_prep)
+                p_elem = ET.SubElement(en, "p")
+                l_elem = ET.SubElement(p_elem, "l")
+                l_elem.text = clean_lm        # surface: "dil"
+                r_elem = ET.SubElement(p_elem, "r")
+                r_elem.text = base_prep       # base: "di"
+                ET.SubElement(r_elem, "s", n="pr").tail = ""
+                ET.SubElement(r_elem, "s", n="def").tail = ""
+            else:
+                # Unknown contraction: fall back to __prep_art paradigm
+                par = "__prep_art"
+                en = ET.SubElement(section, "e", lm=clean_lm)
+                i = ET.SubElement(en, "i")
+                i.text = clean_lm
+                par_elem = ET.SubElement(en, "par")
+                par_elem.set("n", str(par))
+                par_elem.tail = ""
+            continue
         elif raw_par in {"pr", "det", "prn", "cnjcoo", "cnjsub", "prep", "conj", "article"}:
             if raw_par == "prep": par = "__pr"
             elif raw_par == "conj": par = "__cnjcoo"
@@ -230,7 +271,7 @@ def build_monodix(entries):
 
         # Calculate stem based on paradigm
         stem = extract_stem(clean_lm, str(par))
-        
+
         en = ET.SubElement(section, "e", lm=clean_lm)
         i = ET.SubElement(en, "i")
         i.text = stem
@@ -268,6 +309,8 @@ def build_bidix(entries):
         if pos in ("pr", "det", "prn", "cnjcoo", "cnjsub"):
             return pos
         return None
+
+    _generated_contraction_bases: set = set()
 
     sorted_entries = sorted(entries, key=lambda e: (
         (e.get("lemma") or "").lower(), e.get("lemma") or ""))
@@ -346,53 +389,54 @@ def build_bidix(entries):
 
         ido_tag = map_s_tag(raw_par, pos)
 
+        # Prep-article contractions: generate 1-to-1 base_prep<pr><def> mapping.
+        # lt-proc -b cannot produce multi-token output (<b/> in right side
+        # causes the entry to be silently excluded from the compiled binary).
+        # T1x expands the single tag to two surface tokens.
+        if raw_par == 'prep_art':
+            section.remove(en)   # discard the placeholder created above
+            lm_lc = clean_lm.lower()
+            base_prep = _PREP_ART.get(lm_lc)
+            if base_prep and base_prep not in _generated_contraction_bases:
+                _generated_contraction_bases.add(base_prep)
+                epo_prep = _PREP_ART_EPO.get(base_prep, 'de')
+                en2 = ET.SubElement(section, "e")
+                p2 = ET.SubElement(en2, "p")
+                l2 = ET.SubElement(p2, "l")
+                l2.text = base_prep
+                ET.SubElement(l2, "s", n="pr").tail = ""
+                ET.SubElement(l2, "s", n="def").tail = ""
+                r2 = ET.SubElement(p2, "r")
+                r2.text = epo_prep
+                ET.SubElement(r2, "s", n="pr").tail = ""
+                ET.SubElement(r2, "s", n="def").tail = ""
+            continue
+
         # Extract stem from lemma for bilingual dictionary
         stem = extract_stem(clean_lm, str(raw_par))
 
         # Left (Ido) - use STEM, not full lemma
         l = ET.SubElement(p, "l")
         l.text = stem
-        
+
         # Determine tags for Left (Ido)
         l_tags = []
-        if raw_par == 'prep_art':
-            l_tags = ["pr", "def"]
-        elif ido_tag:
+        if ido_tag:
             l_tags = [ido_tag]
-        
+
         for t in l_tags:
             s_elem = ET.SubElement(l, "s")
             s_elem.set("n", t)
             s_elem.tail = ""
-        
+
         # Right (Esperanto)
         r = ET.SubElement(p, "r")
-        
-        # If multi-word (e.g. "de la"), split into multiple tags/blocks
-        if " " in epo:
-            words = epo.split()
-            for i, word in enumerate(words):
-                if i == 0:
-                    r.text = word
-                else:
-                    # Add blank between words
-                    b = ET.SubElement(r, "b")
-                    b.tail = word
-                
-                # Guess tag for the word (simplified)
-                # 'de' -> pr, 'la' -> det
-                tag = "pr" if word == 'de' else ("det" if word == 'la' else (ido_tag or "n"))
-                
-                s_elem = ET.SubElement(r, "s")
-                s_elem.set("n", tag)
-                s_elem.tail = ""
-        else:
-            r.text = epo
-            # Use the same tags as left side for single-word translations
-            for t in l_tags:
-                s_elem = ET.SubElement(r, "s")
-                s_elem.set("n", t)
-                s_elem.tail = ""
+        r.text = epo
+        # Use the same tags as left side for single-word translations
+        for t in l_tags:
+            s_elem = ET.SubElement(r, "s")
+            s_elem.set("n", t)
+            s_elem.tail = ""
 
         # Productive derivational morphology: generate bilingual entries for
         # derived forms of known stems so any stem in the dict gets derivations free.
