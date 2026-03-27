@@ -16,7 +16,7 @@ SKIP_WIKI ?= 0
 FORCE ?= 0
 STAGE ?=
 
-.PHONY: all regenerate regenerate-fast regenerate-minimal regenerate-managed clean freq wikt_io wikt_eo wikt_io-stage1 wikt_io-stage2 wikt_eo-stage1 wikt_eo-stage2 wikt_en wiki wiki-stage1 wiki-stage2 align align_pivot normalize morph mono filter report export stats dump_coverage big_bidix conflicts big_bidix_stats web pivot_en pivot_fr compare test pipeline-status
+.PHONY: all regenerate regenerate-fast regenerate-minimal regenerate-managed clean freq wikt_io wikt_eo wikt_io-stage1 wikt_io-stage2 wikt_eo-stage1 wikt_eo-stage2 wikt_en wiki wiki-stage1 wiki-stage2 align align_pivot normalize morph mono filter prepare report export stats dump_coverage big_bidix conflicts big_bidix_stats web pivot_en pivot_fr compare test pipeline-status
 
 all: regenerate-managed
 
@@ -61,9 +61,7 @@ endif
 ifneq ($(SKIP_FR_MEANINGS),1)
 	$(PY) scripts/parse_wiktionary_via.py --source fr --progress-every 1000
 endif
-	$(PY) scripts/normalize_entries.py
-	$(PY) scripts/infer_morphology.py
-	$(PY) scripts/filter_and_validate.py --wiki-top-n 1000
+	$(PY) scripts/prepare_vocabulary.py --wiki-top-n 1000
 	$(PY) scripts/build_monolingual.py
 	$(PY) scripts/build_one_big_bidix_json.py
 	$(PY) scripts/report_coverage.py --top 5000

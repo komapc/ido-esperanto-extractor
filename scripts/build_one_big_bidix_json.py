@@ -172,11 +172,10 @@ def main(argv: Iterable[str]) -> int:
     # Default inputs if none specified
     base_path = Path(__file__).resolve().parents[1]
     inputs = args.input if args.input else [
-        base_path / 'work/bilingual_with_morph.json',
+        # prepare_vocabulary.py output: normalized + morphology-inferred + filtered
+        # (replaces the old bilingual_with_morph.json + source_io_wiktionary.json pair)
+        base_path / 'work/final_vocabulary.json',
         base_path / 'work/fr_wikt_meanings.json',
-        # Include raw Wiktionary source so words dropped by align_bilingual
-        # (e.g. function words e, de, por) still get their Epo translations.
-        base_path.parent / 'data/sources/source_io_wiktionary.json',
     ]
     
     big = build_big_bidix(inputs)
