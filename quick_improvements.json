@@ -31,6 +31,8 @@
     {"ido_word": "sudo", "esperanto_words": ["sudo"], "morfologio": ["sud", ".o"]},
     {"ido_word": "esto", "esperanto_words": ["oriento"], "morfologio": ["est", ".o"]},
     {"ido_word": "nordo", "esperanto_words": ["nordo"], "morfologio": ["nord", ".o"]},
-    {"ido_word": "westo", "esperanto_words": ["okcidento"], "morfologio": ["west", ".o"]}
+    {"ido_word": "westo", "esperanto_words": ["okcidento"], "morfologio": ["west", ".o"]},
+    {"ido_word": "trinkar", "esperanto_words": ["trinki"], "morfologio": ["trink", ".ar"]},
+    {"ido_word": "doro", "esperanto_words": ["pordo"], "morfologio": ["dor", ".o"]}
   ]
 }

@@ -208,8 +208,17 @@ def build_monodix(entries):
 
         # Normalize function-word paradigms
         par = raw_par
+        # Expand short POS tags from _FUNCTION_WORDS to full paradigm names
+        if raw_par == "adv":
+            par = "e__adv"
+        elif raw_par == "adj":
+            par = "a__adj"
+        elif raw_par in {"n", "num", "ij"}:
+            par = "o__n"
+        elif raw_par == "vblex":
+            par = "ar__vblex"
         # Special case for prepositional articles (dil, dal, etc.)
-        if raw_par == 'prep_art':
+        elif raw_par == 'prep_art':
             par = "__prep_art"
         elif raw_par in {"pr", "det", "prn", "cnjcoo", "cnjsub", "prep", "conj", "article"}:
             if raw_par == "prep": par = "__pr"

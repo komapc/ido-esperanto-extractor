@@ -56,6 +56,8 @@ def main():
                         paradigm = "e__adv"
                     elif suffix == ".a":
                         paradigm = "a__adj"
+                    elif suffix in {".ar", ".ir", ".iar"}:
+                        paradigm = "ar__vblex"
                     elif suffix == ".i":
                         paradigm = "o__n" # plurals are usually nouns
                 entry['morphology'] = {"paradigm": paradigm, "features": {}}

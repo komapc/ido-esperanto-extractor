@@ -15,6 +15,10 @@
       <!-- Adjectival derivation from nouns: suces+oza → sucesoza (full of success).
            Include <sg><nom> so remaining tags feed Epo autogen correctly. -->
       <e><p><l>oza</l><r><s n="n"/><s n="der_oz"/><s n="adj"/><s n="sg"/><s n="nom"/></r></p></e>
+      <!-- Feminine derivation: vir+ino → virino (woman), kat+ino → katino (female cat).
+           Tags mirror Esperanto: viro<n><f><sg><nom> → virino via autogen. -->
+      <e><p><l>ino</l><r><s n="n"/><s n="f"/><s n="sg"/><s n="nom"/></r></p></e>
+      <e><p><l>ini</l><r><s n="n"/><s n="f"/><s n="pl"/><s n="nom"/></r></p></e>
     </pardef>
     <pardef n="a__adj">
       <e>
