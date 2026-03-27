@@ -3,42 +3,11 @@ import argparse
 import logging
 import re
 from pathlib import Path
-from typing import Iterable
+from typing import Dict, Iterable
 
 from _common import read_json, ensure_dir, configure_logging, clean_lemma
 import xml.etree.ElementTree as ET
-from typing import Dict
 
-
-def _load_function_words() -> Dict[str, str]:
-    """Load Ido function words (lemma → paradigm) from function_words_io.json.
-
-    Prepositional-article contractions (dil, dal, …) use the special
-    ``prep_art`` paradigm and are kept hardcoded since that paradigm is not
-    representable as a plain POS tag in the JSON file.
-    """
-    fw: Dict[str, str] = {
-        'dil': 'prep_art', 'dal': 'prep_art', 'del': 'prep_art',
-        'el': 'prep_art', 'sil': 'prep_art',
-        # NOTE: 'al' is NOT here — it is used both as a standalone preposition
-        # ("towards") and as a contraction of 'a + la'. Treating it as a regular
-        # preposition avoids generating double articles ("al la X" → "al la la X").
-    }
-    fw_path = Path(__file__).resolve().parents[1] / 'data/function_words_io.json'
-    try:
-        data = read_json(fw_path)
-        for entry in data:
-            lemma = str(entry.get('lemma') or '').lower()
-            pos = str(entry.get('pos') or '')
-            if lemma and pos:
-                fw[lemma] = pos
-    except Exception as exc:
-        logging.warning("Could not load function_words_io.json: %s", exc)
-    return fw
-
-
-# Loaded once at import time.
-_FUNCTION_WORDS: Dict[str, str] = _load_function_words()
 
 # Maps contraction surface form → base preposition lemma (used by monodix/bidix).
 # We encode contractions as explicit <p> entries so lt-proc -b can handle them
@@ -199,13 +168,9 @@ def build_monodix(entries):
         if pos and pos in _VERBOSE_POS:
             pos = _VERBOSE_POS[pos]
 
-        # Function words override stale paradigms from infer_morphology.py
-        # (e.g. "ke" was assigned "e__adv" by ending heuristic but is cnjsub).
-        if clean_lm.lower() in _FUNCTION_WORDS:
-            raw_par = _FUNCTION_WORDS[clean_lm.lower()]
-
-        # If no explicit paradigm, infer from POS (normalized upstream) with
-        # ending heuristic fallback for entries that bypass infer_morphology.py.
+        # If no explicit paradigm, fall back to POS or lemma ending.
+        # Entries from final_vocabulary.json have paradigms set by prepare_vocabulary.py.
+        # Entries from fr_wikt_meanings.json may still need this heuristic.
         if not raw_par:
             if pos in {"vblex", "verb"}:
                 raw_par = "ar__vblex"
@@ -361,11 +326,7 @@ def build_bidix(entries):
         if pos and pos in _VERBOSE_POS:
             pos = _VERBOSE_POS[pos]
 
-        # Try function words first
-        if not raw_par and clean_lm.lower() in _FUNCTION_WORDS:
-            raw_par = _FUNCTION_WORDS[clean_lm.lower()]
-
-        # Infer paradigm from POS (normalized upstream) or lemma ending as fallback.
+        # Infer paradigm from POS or lemma ending as fallback for un-normalized entries.
         if not raw_par:
             if pos in {"vblex", "verb"}:
                 raw_par = "ar__vblex"
