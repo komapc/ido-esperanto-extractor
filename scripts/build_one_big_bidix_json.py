@@ -11,9 +11,11 @@ import re
 # Translations for function words that have no usable Wiktionary entry.
 # These are kept minimal — one canonical Esperanto equivalent per word.
 _FUNCTION_WORD_OVERRIDES: Dict[str, Dict[str, str]] = {
-    'ed':  {'pos': 'cnjcoo', 'eo': 'kaj'},   # variant of e (and), before vowels
-    'od':  {'pos': 'cnjcoo', 'eo': 'aŭ'},    # variant of o (or), before vowels
-    'a':   {'pos': 'pr',     'eo': 'al'},     # to (direction), short form
+    'ed':  {'pos': 'cnjcoo',    'eo': 'kaj'},   # variant of e (and), before vowels
+    'od':  {'pos': 'cnjcoo',    'eo': 'aŭ'},    # variant of o (or), before vowels
+    'a':   {'pos': 'pr',        'eo': 'al'},     # to (direction), short form
+    'al':  {'pos': 'pr',        'eo': 'al'},     # preposition "towards/to" (also a+la contraction, but ambiguous)
+    'dal': {'pos': 'prep_art',  'eo': 'de'},     # da + la = from the (contraction)
 }
 
 

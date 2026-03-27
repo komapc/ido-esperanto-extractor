@@ -30,7 +30,10 @@ def _load_function_words() -> Dict[str, str]:
     fw: Dict[str, str] = {
         # Contractions: preposition + definite article (paradigm 'prep_art')
         'dil': 'prep_art', 'dal': 'prep_art', 'del': 'prep_art',
-        'al': 'prep_art', 'el': 'prep_art', 'sil': 'prep_art',
+        'el': 'prep_art', 'sil': 'prep_art',
+        # NOTE: 'al' is NOT here — it is used both as a standalone preposition
+        # ("towards") and as a contraction of 'a + la'. Treating it as a regular
+        # preposition avoids generating double articles ("al la X" → "al la la X").
     }
     fw_path = Path(__file__).resolve().parents[1] / 'data/function_words_io.json'
     try:
