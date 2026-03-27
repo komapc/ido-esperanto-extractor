@@ -324,23 +324,10 @@ def main(argv):
          "Extract via French translations",
          None),
         
-        # Stage 12: Normalize
-        ("normalize",
-         ["python3", "scripts/normalize_entries.py"],
-         "Normalize entries",
-         None),
-        
-        # Stage 13: Infer morphology
-        ("infer_morphology",
-         ["python3", "scripts/infer_morphology.py"],
-         "Infer morphology",
-         None),
-        
-        # Stage 14: Filter, validate, and merge function words whitelist
-        # (final_preparation.py was merged into filter_and_validate.py)
-        ("filter",
-         ["python3", "scripts/filter_and_validate.py", "--wiki-top-n", "1000"],
-         "Filter, validate and merge function words",
+        # Stage 12: Prepare vocabulary (normalize + morphology + filter in one pass)
+        ("prepare_vocabulary",
+         ["python3", "scripts/prepare_vocabulary.py", "--wiki-top-n", "1000"],
+         "Prepare vocabulary (normalize + morphology + filter)",
          None),
 
         # Stage 16: Build monolingual
