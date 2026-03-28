@@ -96,6 +96,10 @@ def infer_paradigm(entry: Dict[str, Any]) -> Optional[str]:
     if lower_lemma.endswith("ia") and len(lemma) > 3:
         return "o__n"
 
+    # Ido verb endings are definitive — override noisy POS tags from fr_wikt etc.
+    if (lower_lemma.endswith("ar") or lower_lemma.endswith("ir")) and not lemma[:1].isupper():
+        return "ar__vblex"
+
     # POS-informed rules (accept both verbose and short-form tags)
     if pos in ("noun", "n"):
         return "o__n"

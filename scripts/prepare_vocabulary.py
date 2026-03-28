@@ -167,6 +167,9 @@ def _infer_paradigm(entry: Dict[str, Any], function_words: Dict[str, str]) -> Op
         return "a__adj"
     if lower.endswith("ia") and len(lemma) > 3:
         return "o__n"
+    # Ido verb endings are definitive — override noisy POS tags from fr_wikt etc.
+    if (lower.endswith("ar") or lower.endswith("ir")) and not lemma[:1].isupper():
+        return "ar__vblex"
     if pos in ("noun", "n"):
         return "o__n"
     if pos in ("adjective", "adj"):

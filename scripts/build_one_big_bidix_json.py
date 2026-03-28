@@ -22,10 +22,14 @@ _SHORT_POS: Dict[str, str] = {
 # Translations for function words that have no usable Wiktionary entry.
 # These are kept minimal — one canonical Esperanto equivalent per word.
 _FUNCTION_WORD_OVERRIDES: Dict[str, Dict[str, str]] = {
-    'ed':  {'pos': 'cnjcoo',    'eo': 'kaj'},   # variant of e (and), before vowels
-    'od':  {'pos': 'cnjcoo',    'eo': 'aŭ'},    # variant of o (or), before vowels
-    'a':   {'pos': 'pr',        'eo': 'al'},     # to (direction), short form
-    'al':  {'pos': 'pr',        'eo': 'al'},     # preposition "towards/to" (also a+la contraction, but ambiguous)
+    'e':   {'pos': 'cnjcoo',    'eo': 'kaj'},   # and
+    'ed':  {'pos': 'cnjcoo',    'eo': 'kaj'},   # and (before vowels)
+    'o':   {'pos': 'cnjcoo',    'eo': 'aŭ'},    # or
+    'od':  {'pos': 'cnjcoo',    'eo': 'aŭ'},    # or (before vowels)
+    'a':   {'pos': 'pr',        'eo': 'al'},     # to (direction)
+    'al':  {'pos': 'pr',        'eo': 'al'},     # towards/to
+    'kon': {'pos': 'pr',        'eo': 'kun'},    # with
+    'multa': {'pos': 'det',     'eo': 'multa'},  # many/much
     'dal': {'pos': 'prep_art',  'eo': 'de'},     # da + la = from the (contraction)
 }
 
