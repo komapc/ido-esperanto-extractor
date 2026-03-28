@@ -36,15 +36,6 @@ def _clean_translation_term(raw: str) -> str:
     return term
 
 
-# Map verbose Wiktionary POS names to short Apertium tags.
-_VERBOSE_POS: Dict[str, str] = {
-    "preposition": "pr", "conjunction": "cnjcoo",
-    "subordinating conjunction": "cnjsub", "determiner": "det",
-    "pronoun": "prn", "noun": "n", "adjective": "adj",
-    "adverb": "adv", "verb": "vblex", "interjection": "ij", "numeral": "num",
-}
-
-
 def write_xml_file(elem: ET.Element, output_path: Path) -> None:
     """Write Apertium XML with declaration (no indentation to avoid breaking lt-proc)."""
     # Add XML declaration
@@ -163,37 +154,13 @@ def build_monodix(entries):
         clean_lm = str(lm).strip()
         raw_par = (e.get("morphology") or {}).get("paradigm")
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
-        # Normalize verbose POS names to short Apertium tags (entries that
-        # bypassed infer_morphology.py may still carry verbose labels).
-        if pos and pos in _VERBOSE_POS:
-            pos = _VERBOSE_POS[pos]
 
-        # If no explicit paradigm, fall back to POS or lemma ending.
-        # Entries from final_vocabulary.json have paradigms set by prepare_vocabulary.py.
-        # Entries from fr_wikt_meanings.json may still need this heuristic.
         if not raw_par:
-            if pos in {"vblex", "verb"}:
-                raw_par = "ar__vblex"
-            elif pos == "adj":
-                raw_par = "a__adj"
-            elif pos == "adv":
-                raw_par = "e__adv"
-            elif pos in {"pr", "det", "prn", "cnjcoo", "cnjsub"}:
-                raw_par = "__" + pos
-            else:
-                lm_lower = clean_lm.lower()
-                if lm_lower.endswith("ar") or lm_lower.endswith("ir"):
-                    raw_par = "ar__vblex"
-                elif lm_lower.endswith("a"):
-                    raw_par = "a__adj"
-                elif lm_lower.endswith("e"):
-                    raw_par = "e__adv"
-                else:
-                    raw_par = "o__n"
+            logging.warning("No paradigm for %s (pos=%s) — defaulting to o__n", clean_lm, pos)
+            raw_par = "o__n"
 
-        # Normalize function-word paradigms
+        # Expand short POS tags to full paradigm names
         par = raw_par
-        # Expand short POS tags from _FUNCTION_WORDS to full paradigm names
         if raw_par == "adv":
             par = "e__adv"
         elif raw_par == "adj":
@@ -322,31 +289,10 @@ def build_bidix(entries):
         # Determine Ido paradigm FIRST (needed for stem extraction)
         raw_par = (e.get("morphology") or {}).get("paradigm") or None
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
-        # Normalize verbose POS names to short Apertium tags.
-        if pos and pos in _VERBOSE_POS:
-            pos = _VERBOSE_POS[pos]
 
-        # Infer paradigm from POS or lemma ending as fallback for un-normalized entries.
         if not raw_par:
-            if pos in {"vblex", "verb"}:
-                raw_par = "ar__vblex"
-            elif pos == "adj":
-                raw_par = "a__adj"
-            elif pos == "adv":
-                raw_par = "e__adv"
-            elif pos in {"pr", "det", "prn", "cnjcoo", "cnjsub"}:
-                raw_par = "__" + pos
-            else:
-                # Ending heuristic for un-normalized entries (e.g. fr_wiktionary)
-                lm_lower = clean_lm.lower()
-                if lm_lower.endswith("ar") or lm_lower.endswith("ir"):
-                    raw_par = "ar__vblex"
-                elif lm_lower.endswith("a"):
-                    raw_par = "a__adj"
-                elif lm_lower.endswith("e"):
-                    raw_par = "e__adv"
-                else:
-                    raw_par = "o__n"
+            logging.warning("No paradigm for %s (pos=%s) — defaulting to o__n", clean_lm, pos)
+            raw_par = "o__n"
 
         ido_tag = map_s_tag(raw_par, pos)
 

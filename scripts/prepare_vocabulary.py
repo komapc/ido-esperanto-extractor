@@ -167,14 +167,26 @@ def _infer_paradigm(entry: Dict[str, Any], function_words: Dict[str, str]) -> Op
         return "a__adj"
     if lower.endswith("ia") and len(lemma) > 3:
         return "o__n"
-    if pos == "noun":
+    if pos in ("noun", "n"):
         return "o__n"
-    if pos == "adjective":
+    if pos in ("adjective", "adj"):
         return "a__adj"
-    if pos == "adverb":
+    if pos in ("adverb", "adv"):
         return "e__adv"
-    if pos == "verb":
+    if pos in ("verb", "vblex"):
         return "ar__vblex"
+    if pos in ("preposition", "pr"):
+        return "__pr"
+    if pos in ("conjunction", "cnjcoo"):
+        return "__cnjcoo"
+    if pos in ("subordinating conjunction", "cnjsub"):
+        return "__cnjsub"
+    if pos in ("determiner", "det"):
+        return "__det"
+    if pos in ("pronoun", "prn"):
+        return "__prn"
+    if pos in ("interjection", "ij", "numeral", "num"):
+        return "o__n"
     if lower.endswith("a"):
         return "a__adj"
     if lower.endswith("e"):

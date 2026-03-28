@@ -2,10 +2,21 @@
 import argparse
 import logging
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Tuple
+from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 from _common import read_json, write_json, configure_logging
+from infer_morphology import infer_paradigm as _infer_paradigm
 import re
+
+
+# Normalize verbose Wiktionary POS names to short Apertium tags so that all
+# entries in bidix_big.json carry a consistent POS regardless of source.
+_SHORT_POS: Dict[str, str] = {
+    "noun": "n", "adjective": "adj", "adverb": "adv", "verb": "vblex",
+    "preposition": "pr", "conjunction": "cnjcoo",
+    "subordinating conjunction": "cnjsub", "determiner": "det", "pronoun": "prn",
+    "interjection": "ij", "numeral": "num",
+}
 
 
 # Translations for function words that have no usable Wiktionary entry.
@@ -80,7 +91,7 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
         if lang_field is not None and lang_field != 'io':
             continue
         lemma = (e.get('lemma') or '').strip()
-        pos = (e.get('pos') or '').strip()
+        pos = _SHORT_POS.get((e.get('pos') or '').strip(), (e.get('pos') or '').strip())
         if not lemma:
             continue
         key = (lemma.lower(), pos.lower())
@@ -121,18 +132,37 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
     # Inject function-word overrides for words absent from all sources.
     for lemma_lc, info in _FUNCTION_WORD_OVERRIDES.items():
         key = (lemma_lc, info['pos'])
+        # prep_art uses its own paradigm name; other function words use __<pos>
+        par = info['pos'] if info['pos'] == 'prep_art' else '__' + info['pos']
         if key not in by_key:
             by_key[key] = {
                 'lemma': lemma_lc,
                 'pos': info['pos'],
                 'language': 'io',
-                'morphology': {'paradigm': '__' + info['pos'], 'features': {}},
+                'morphology': {'paradigm': par, 'features': {}},
                 '_eo_terms': {info['eo']: {'function_word_override'}},
                 '_all_sources': {'function_word_override'},
             }
         elif not by_key[key]['_eo_terms']:
             # Entry exists (from whitelist) but has no translation — inject it
             by_key[key]['_eo_terms'][info['eo']] = {'function_word_override'}
+
+    # Infer paradigm for entries with empty morphology (e.g. fr_wikt entries
+    # that bypass prepare_vocabulary.py).  Uses the same function-word-aware
+    # heuristic as infer_morphology.py so export_apertium.py needs no fallback.
+    _POS_TO_PAR: Dict[str, str] = {
+        'n': 'o__n', 'adj': 'a__adj', 'adv': 'e__adv', 'vblex': 'ar__vblex',
+        'pr': '__pr', 'det': '__det', 'prn': '__prn',
+        'cnjcoo': '__cnjcoo', 'cnjsub': '__cnjsub', 'ij': 'o__n', 'num': 'num',
+    }
+    for rec in by_key.values():
+        if not (rec.get('morphology') or {}).get('paradigm'):
+            par = _infer_paradigm(rec)
+            if not par:
+                # infer_morphology expects verbose POS; fall back to short-form map
+                par = _POS_TO_PAR.get(str(rec.get('pos') or ''))
+            if par:
+                rec['morphology'] = {'paradigm': par, 'features': {}}
 
     # Materialize final structure: senses with EO-only translations; keep multi-provenance per translation
     out: List[Dict[str, Any]] = []
