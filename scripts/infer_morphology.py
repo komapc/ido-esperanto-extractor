@@ -21,20 +21,8 @@ _SHORT_POS: Dict[str, str] = {
 
 
 def _load_function_words() -> Dict[str, str]:
-    """Load Ido function words (lemma → paradigm) from data/function_words_io.json.
-
-    Prepositional-article contractions (dil, dal, …) use the special
-    ``prep_art`` paradigm and are kept hardcoded here since that paradigm
-    is not representable as a plain POS tag in the JSON file.
-    """
-    fw: Dict[str, str] = {
-        # Contractions: preposition + definite article (paradigm 'prep_art')
-        'dil': 'prep_art', 'dal': 'prep_art', 'del': 'prep_art',
-        'el': 'prep_art', 'sil': 'prep_art',
-        # NOTE: 'al' is NOT here — it is used both as a standalone preposition
-        # ("towards") and as a contraction of 'a + la'. Treating it as a regular
-        # preposition avoids generating double articles ("al la X" → "al la la X").
-    }
+    """Load Ido function words (lemma → paradigm) from data/function_words_io.json."""
+    fw: Dict[str, str] = {}
     fw_path = Path(__file__).resolve().parents[1] / 'data/function_words_io.json'
     try:
         data = read_json(fw_path)
@@ -42,7 +30,7 @@ def _load_function_words() -> Dict[str, str]:
             lemma = str(entry.get('lemma') or '').lower()
             pos = str(entry.get('pos') or '')
             if lemma and pos:
-                fw[lemma] = pos  # JSON entries override hardcoded defaults
+                fw[lemma] = pos
     except Exception as exc:
         logging.warning("Could not load function_words_io.json: %s", exc)
     return fw
@@ -71,13 +59,7 @@ def infer_paradigm(entry: Dict[str, Any]) -> Optional[str]:
     if lower_lemma in FUNCTION_WORDS:
         return FUNCTION_WORDS[lower_lemma]
 
-    # Numbers: detect numeric patterns (basic numbers and compound numbers)
-    # Basic numbers (1-10): un, du, tri, kvar, kin, sis, sep, ok, non, dek
-    basic_numbers = {"un", "du", "tri", "kvar", "kin", "sis", "sep", "ok", "non", "dek"}
-    if lower_lemma in basic_numbers:
-        return "num"
-
-    # Compound numbers: patterns like 123, 4567, etc.
+    # Numeric strings: patterns like 123, 4567, 12.34
     # Also handle decimal numbers like 12.34 or 5.6
     if re.match(r'^\d+(\.\d+)?$', lemma):
         return "num"
@@ -95,6 +77,10 @@ def infer_paradigm(entry: Dict[str, Any]) -> Optional[str]:
     # Toponyms ending with -ia (Brazilia, Chinia, etc.) → treat as noun
     if lower_lemma.endswith("ia") and len(lemma) > 3:
         return "o__n"
+
+    # Ido verb endings are definitive — override noisy POS tags from fr_wikt etc.
+    if (lower_lemma.endswith("ar") or lower_lemma.endswith("ir")) and not lemma[:1].isupper():
+        return "ar__vblex"
 
     # POS-informed rules (accept both verbose and short-form tags)
     if pos in ("noun", "n"):

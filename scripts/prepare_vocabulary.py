@@ -25,7 +25,7 @@ ALLOWED_EO_CHARS_RE = re.compile(r"^[A-Za-zĈĜĤĴŜŬĉĝĥĵŝŭ\-]+$")
 DEMONYM_NOUN_SUFFIXES = ("ano", "iano")
 DEMONYM_ADJ_SUFFIXES = ("ana", "iana")
 
-_FUNC_POS = frozenset({'cnjcoo', 'cnjsub', 'pr', 'det', 'prn'})
+_FUNC_POS = frozenset({'cnjcoo', 'cnjsub', 'pr', 'det', 'prn', 'num', 'prep_art'})
 
 _SHORT_POS: Dict[str, str] = {
     "noun": "n", "adjective": "adj", "adverb": "adv", "verb": "vblex",
@@ -119,11 +119,7 @@ def _normalize(entries: List[Dict[str, Any]]) -> Tuple[List[Dict[str, Any]], Dic
 # ---------------------------------------------------------------------------
 
 def _load_function_words(fw_path: Path) -> Dict[str, str]:
-    fw: Dict[str, str] = {
-        'dil': 'prep_art', 'dal': 'prep_art', 'del': 'prep_art',
-        'el': 'prep_art', 'sil': 'prep_art',
-        # NOTE: 'al' excluded — also a standalone preposition, avoid double articles
-    }
+    fw: Dict[str, str] = {}
     try:
         data = read_json(fw_path)
         for entry in data:
@@ -154,9 +150,6 @@ def _infer_paradigm(entry: Dict[str, Any], function_words: Dict[str, str]) -> Op
     if lower in function_words:
         return function_words[lower]
 
-    basic_numbers = {"un", "du", "tri", "kvar", "kin", "sis", "sep", "ok", "non", "dek"}
-    if lower in basic_numbers:
-        return "num"
     if re.match(r'^\d+(\.\d+)?$', lemma):
         return "num"
     if " " in lemma or "-" in lemma:
@@ -167,6 +160,9 @@ def _infer_paradigm(entry: Dict[str, Any], function_words: Dict[str, str]) -> Op
         return "a__adj"
     if lower.endswith("ia") and len(lemma) > 3:
         return "o__n"
+    # Ido verb endings are definitive — override noisy POS tags from fr_wikt etc.
+    if (lower.endswith("ar") or lower.endswith("ir")) and not lemma[:1].isupper():
+        return "ar__vblex"
     if pos in ("noun", "n"):
         return "o__n"
     if pos in ("adjective", "adj"):

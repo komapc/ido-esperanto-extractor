@@ -260,48 +260,10 @@ def build_bidix(entries):
         raw_par = (e.get("morphology") or {}).get("paradigm") or None
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
 
-        # Collect EO translations - check both old and new formats
-        eo_terms = []
-
-        # New format: direct eo_translations field (BIG BIDIX format)
-        if "eo_translations" in e and isinstance(e["eo_translations"], list):
-            for raw_term in e["eo_translations"]:
-                term = _clean_translation_term(str(raw_term))
-                if term and term not in eo_terms:
-                    eo_terms.append(term)
-
-        # Old format: senses with translations
-        for s in e.get("senses", []) or []:
-            for tr in s.get("translations", []) or []:
-                if tr.get("lang") == "eo":
-                    raw_term = tr.get("term")
-                    if raw_term:
-                        term = _clean_translation_term(str(raw_term))
-                        if term and term not in eo_terms:
-                            eo_terms.append(term)
-        if not eo_terms:
-            continue
-        # Use first translation as primary
-        epo = eo_terms[0]
-        en = ET.SubElement(section, "e")
-        p = ET.SubElement(en, "p")
-
-        # Determine Ido paradigm FIRST (needed for stem extraction)
-        raw_par = (e.get("morphology") or {}).get("paradigm") or None
-        pos = e.get("pos") if isinstance(e.get("pos"), str) else None
-
-        if not raw_par:
-            logging.warning("No paradigm for %s (pos=%s) — defaulting to o__n", clean_lm, pos)
-            raw_par = "o__n"
-
-        ido_tag = map_s_tag(raw_par, pos)
-
         # Prep-article contractions: generate 1-to-1 base_prep<pr><def> mapping.
-        # lt-proc -b cannot produce multi-token output (<b/> in right side
-        # causes the entry to be silently excluded from the compiled binary).
-        # T1x expands the single tag to two surface tokens.
+        # Must be checked before eo_terms collection since these entries have no
+        # stored translations — their Epo equivalent is in _PREP_ART_EPO.
         if raw_par == 'prep_art':
-            section.remove(en)   # discard the placeholder created above
             lm_lc = clean_lm.lower()
             base_prep = _PREP_ART.get(lm_lc)
             if base_prep and base_prep not in _generated_contraction_bases:
@@ -318,6 +280,33 @@ def build_bidix(entries):
                 ET.SubElement(r2, "s", n="pr").tail = ""
                 ET.SubElement(r2, "s", n="def").tail = ""
             continue
+
+        # Collect EO translations
+        eo_terms = []
+        if "eo_translations" in e and isinstance(e["eo_translations"], list):
+            for raw_term in e["eo_translations"]:
+                term = _clean_translation_term(str(raw_term))
+                if term and term not in eo_terms:
+                    eo_terms.append(term)
+        for s in e.get("senses", []) or []:
+            for tr in s.get("translations", []) or []:
+                if tr.get("lang") == "eo":
+                    raw_term = tr.get("term")
+                    if raw_term:
+                        term = _clean_translation_term(str(raw_term))
+                        if term and term not in eo_terms:
+                            eo_terms.append(term)
+        if not eo_terms:
+            continue
+        epo = eo_terms[0]
+        en = ET.SubElement(section, "e")
+        p = ET.SubElement(en, "p")
+
+        if not raw_par:
+            logging.warning("No paradigm for %s (pos=%s) — defaulting to o__n", clean_lm, pos)
+            raw_par = "o__n"
+
+        ido_tag = map_s_tag(raw_par, pos)
 
         # Extract stem from lemma for bilingual dictionary
         stem = extract_stem(clean_lm, str(raw_par))
