@@ -96,15 +96,27 @@ def infer_paradigm(entry: Dict[str, Any]) -> Optional[str]:
     if lower_lemma.endswith("ia") and len(lemma) > 3:
         return "o__n"
 
-    # POS-informed rules
-    if pos == "noun":
+    # POS-informed rules (accept both verbose and short-form tags)
+    if pos in ("noun", "n"):
         return "o__n"
-    if pos == "adjective":
+    if pos in ("adjective", "adj"):
         return "a__adj"
-    if pos == "adverb":
+    if pos in ("adverb", "adv"):
         return "e__adv"
-    if pos == "verb":
+    if pos in ("verb", "vblex"):
         return "ar__vblex"
+    if pos in ("preposition", "pr"):
+        return "__pr"
+    if pos in ("conjunction", "cnjcoo"):
+        return "__cnjcoo"
+    if pos in ("subordinating conjunction", "cnjsub"):
+        return "__cnjsub"
+    if pos in ("determiner", "det"):
+        return "__det"
+    if pos in ("pronoun", "prn"):
+        return "__prn"
+    if pos in ("interjection", "ij", "numeral", "num"):
+        return "o__n"
 
     # Heuristic fallback by endings
     if lower_lemma.endswith("a"):
