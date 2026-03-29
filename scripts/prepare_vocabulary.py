@@ -25,7 +25,7 @@ ALLOWED_EO_CHARS_RE = re.compile(r"^[A-Za-zĈĜĤĴŜŬĉĝĥĵŝŭ\-]+$")
 DEMONYM_NOUN_SUFFIXES = ("ano", "iano")
 DEMONYM_ADJ_SUFFIXES = ("ana", "iana")
 
-_FUNC_POS = frozenset({'cnjcoo', 'cnjsub', 'pr', 'det', 'prn', 'num', 'prep_art'})
+_FUNC_POS = frozenset({'cnjcoo', 'cnjsub', 'pr', 'det', 'prn', 'num', 'prep_art', 'adv'})
 
 _SHORT_POS: Dict[str, str] = {
     "noun": "n", "adjective": "adj", "adverb": "adv", "verb": "vblex",
@@ -383,16 +383,24 @@ def _merge_function_words(entries: List[Dict[str, Any]], fw_path: Path) -> List[
             continue
         paradigm = pos if pos in _FUNC_POS else None
         morph = {'paradigm': paradigm, 'features': {}}
+        # Build authoritative senses from eo field if present
+        eo = fw.get('eo')
+        fw_senses = [{'senseId': None, 'gloss': None, 'translations': [
+            {'lang': 'eo', 'term': eo, 'sources': ['function_words_io']}
+        ]}] if eo else []
         if lemma in by_lemma:
             by_lemma[lemma]['pos'] = pos
             by_lemma[lemma]['morphology'] = morph
+            if eo:
+                # Override Wiktionary senses with authoritative function-word translation
+                by_lemma[lemma]['senses'] = fw_senses
         else:
             by_lemma[lemma] = {
                 'id': f'io:{lemma}:{pos}',
                 'lemma': lemma,
                 'pos': pos,
                 'language': 'io',
-                'senses': [],
+                'senses': fw_senses,
                 'morphology': morph,
                 'provenance': [{'source': 'whitelist'}],
             }
