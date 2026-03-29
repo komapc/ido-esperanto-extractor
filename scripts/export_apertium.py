@@ -221,7 +221,24 @@ def build_bidix(entries):
     sdefs = ET.SubElement(dictionary, "sdefs")
     for s in ["n", "adj", "adv", "vblex", "vbtr", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp3", "ppres", "p1", "p2", "p3", "ciph", "np", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra"]:
         ET.SubElement(sdefs, "sdef", n=s)
+    # Structural pardefs: regex-based rules that are independent of vocabulary data
+    pardefs = ET.SubElement(dictionary, "pardefs")
+    _num_pd = ET.SubElement(pardefs, "pardef", n="num_regex")
+    _num_e = ET.SubElement(_num_pd, "e")
+    ET.SubElement(_num_e, "re").text = "[0-9]+([.,][0-9]+)*"
+    _num_p = ET.SubElement(_num_e, "p")
+    _num_l = ET.SubElement(_num_p, "l")
+    ET.SubElement(_num_l, "s", n="num")
+    ET.SubElement(_num_l, "s", n="ciph")
+    ET.SubElement(_num_l, "s", n="sp")
+    ET.SubElement(_num_l, "s", n="nom")
+    _num_r = ET.SubElement(_num_p, "r")
+    ET.SubElement(_num_r, "s", n="num")
+    ET.SubElement(_num_r, "s", n="ciph")
     section = ET.SubElement(dictionary, "section", id="main", type="standard")
+    # Regex number passthrough: maps Ido digits → same digits in Esperanto
+    _num_sec = ET.SubElement(section, "e")
+    ET.SubElement(_num_sec, "par", n="num_regex")
     def map_s_tag(par: str, pos: str | None) -> str | None:
         if par in ("o__n",):
             return "n"
