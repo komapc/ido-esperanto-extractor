@@ -84,7 +84,7 @@ def build_monodix(entries):
     alphabet.text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     # Define sdefs for monolingual dictionary
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra"]:
+    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_ala", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra"]:
         ET.SubElement(sdefs, "sdef", n=s)
     # Load pardefs from external file instead of hardcoding
     pardefs_path = Path(__file__).resolve().parents[1] / "data/pardefs.xml"
@@ -219,7 +219,7 @@ def build_bidix(entries):
     alphabet = ET.SubElement(dictionary, "alphabet")
     alphabet.text = "abcdefghijklmnopqrstuvwxyzĉĝĥĵŝŭABCDEFGHIJKLMNOPQRSTUVWXYZĈĜĤĴŜŬ"
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "vbtr", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp3", "ppres", "p1", "p2", "p3", "ciph", "np", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra"]:
+    for s in ["n", "adj", "adv", "vblex", "vbtr", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp3", "ppres", "p1", "p2", "p3", "ciph", "np", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_ala", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra"]:
         ET.SubElement(sdefs, "sdef", n=s)
     # Structural pardefs: regex-based rules that are independent of vocabulary data
     pardefs = ET.SubElement(dictionary, "pardefs")
@@ -432,8 +432,19 @@ def build_bidix(entries):
             r_der.text = epo_stem + 'eco'
             ET.SubElement(r_der, "s", n="n").tail = ""
         elif raw_par == 'o__n' and epo and ' ' not in epo:
+            epo_stripped = epo[:-1] if epo.endswith('o') else epo  # 'sukceso' → 'sukcese'
+            # -ala suffix: ekonomi+ala → ekonomiala ("relating to economy"); Epo: ekonomia
+            e_ala = ET.SubElement(section, "e")
+            p_ala = ET.SubElement(e_ala, "p")
+            l_ala = ET.SubElement(p_ala, "l")
+            l_ala.text = stem
+            ET.SubElement(l_ala, "s", n="n").tail = ""
+            ET.SubElement(l_ala, "s", n="der_ala").tail = ""
+            ET.SubElement(l_ala, "s", n="adj").tail = ""
+            r_ala = ET.SubElement(p_ala, "r")
+            r_ala.text = epo_stripped + 'a'
+            ET.SubElement(r_ala, "s", n="adj").tail = ""
             # -oza suffix: suces+oza → sucesoza ("full of success")
-            epo_stripped = epo[:-1] if epo.endswith('o') else epo  # 'sukceso' → 'sukcес'
             e_der = ET.SubElement(section, "e")
             p_der = ET.SubElement(e_der, "p")
             l_der = ET.SubElement(p_der, "l")
