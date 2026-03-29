@@ -404,8 +404,8 @@ def build_bidix(entries):
                 r_der.text = epo  # Epo verb lemma (e.g. 'krei'), not a suffix combo
                 ET.SubElement(r_der, "s", n=epo_vtag).tail = ""
                 ET.SubElement(r_der, "s", n=epo_ptag).tail = ""
-            # -esar: kreesar → kreiĝi; append ĝi to Epo infinitive
-            epo_passive = epo + 'ĝi'  # 'krei' → 'kreiĝi'
+            # -esar: kreesar → passive construction; t1x vbpasv rule produces "esti<tense> + verb<pp>"
+            # Right side carries the base Epo lemma so clip side="tl" part="lem" returns it
             for tense in ['inf', 'pri', 'pii', 'fti', 'cni', 'imp']:
                 e_es = ET.SubElement(section, "e")
                 p_es = ET.SubElement(e_es, "p")
@@ -416,7 +416,7 @@ def build_bidix(entries):
                 ET.SubElement(l_es, "s", n="vblex").tail = ""
                 ET.SubElement(l_es, "s", n=tense).tail = ""
                 r_es = ET.SubElement(p_es, "r")
-                r_es.text = epo_passive
+                r_es.text = epo
                 ET.SubElement(r_es, "s", n="vblex").tail = ""
                 ET.SubElement(r_es, "s", n=tense).tail = ""
         elif raw_par == 'a__adj' and epo and epo.endswith('a') and ' ' not in epo:
