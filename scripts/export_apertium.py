@@ -63,7 +63,7 @@ def extract_stem(lemma: str, paradigm: str) -> str:
     """Extract stem from lemma based on paradigm. Used for both monolingual and bilingual dicts."""
     if not lemma:
         return ""
-    if paradigm in {"__pr", "__det", "__prn", "__cnjcoo", "__cnjsub", "__prep_art"}:
+    if paradigm in {"__pr", "__det", "__prn", "__cnjcoo", "__cnjsub", "__prep_art", "__adv"}:
         return lemma
     if paradigm == "ar__vblex":
         if lemma.endswith("ar"): return lemma[:-2]
@@ -107,6 +107,7 @@ def build_monodix(entries):
         add_paradigm("o__n", "o", ["n", "sg", "nom"])
         add_paradigm("a__adj", "a", ["adj"])
         add_paradigm("e__adv", "e", ["adv"])
+        add_paradigm("__adv", "", ["adv"])
         add_paradigm("ar__vblex", "ar", ["vblex", "inf"])
         add_paradigm("num", "", ["num"])
 
@@ -116,7 +117,7 @@ def build_monodix(entries):
             return "n"
         if par in ("a__adj",):
             return "adj"
-        if par in ("e__adv",):
+        if par in ("e__adv", "__adv"):
             return "adv"
         if par in ("ar__vblex",):
             return "vblex"
@@ -162,7 +163,7 @@ def build_monodix(entries):
         # Expand short POS tags to full paradigm names
         par = raw_par
         if raw_par == "adv":
-            par = "e__adv"
+            par = "__adv"  # invariant adverbs (function words) — no suffix paradigm
         elif raw_par == "adj":
             par = "a__adj"
         elif raw_par in {"n", "num", "ij"}:
@@ -244,7 +245,7 @@ def build_bidix(entries):
             return "n"
         if par in ("a__adj",):
             return "adj"
-        if par in ("e__adv",):
+        if par in ("e__adv", "__adv", "adv"):
             return "adv"
         if par in ("ar__vblex",):
             return "vblex"
