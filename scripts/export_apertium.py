@@ -161,7 +161,9 @@ def build_monodix(entries):
 
 
     section = ET.SubElement(dictionary, "section", id="main", type="standard")
-    # Use top-level map_s_tag
+    # Number passthrough: regex entry must be first in section
+    _num_sec = ET.SubElement(section, "e")
+    ET.SubElement(_num_sec, "par", n="num_regex")
 
     # Deduplicate entries by lemma, prioritizing more specific paradigms over o__n
     best_entries = {}
