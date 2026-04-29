@@ -118,20 +118,6 @@ def _normalize(entries: List[Dict[str, Any]]) -> Tuple[List[Dict[str, Any]], Dic
 # Step 2: Infer morphology  (was infer_morphology.py)
 # ---------------------------------------------------------------------------
 
-def _load_function_words(fw_path: Path) -> Dict[str, str]:
-    fw: Dict[str, str] = {}
-    try:
-        data = read_json(fw_path)
-        for entry in data:
-            lemma = str(entry.get('lemma') or '').lower()
-            pos = str(entry.get('pos') or '')
-            if lemma and pos:
-                fw[lemma] = pos
-    except Exception as exc:
-        logging.warning("Could not load function_words_io.json: %s", exc)
-    return fw
-
-
 def _has_wikipedia_provenance(entry: Dict[str, Any]) -> bool:
     for p in entry.get("provenance", []) or []:
         src = str(p.get("source") or "")
@@ -140,15 +126,12 @@ def _has_wikipedia_provenance(entry: Dict[str, Any]) -> bool:
     return False
 
 
-def _infer_paradigm(entry: Dict[str, Any], function_words: Dict[str, str]) -> Optional[str]:
+def _infer_paradigm(entry: Dict[str, Any]) -> Optional[str]:
     lemma = str(entry.get("lemma") or "")
     pos = entry.get("pos")
     if not lemma:
         return None
     lower = lemma.lower()
-
-    if lower in function_words:
-        return function_words[lower]
 
     if re.match(r'^\d+(\.\d+)?$', lemma):
         return "num"
@@ -367,51 +350,6 @@ def _apply_filters(
     return out, stats, suspicious
 
 
-def _merge_function_words(entries: List[Dict[str, Any]], fw_path: Path) -> List[Dict[str, Any]]:
-    try:
-        fws = read_json(fw_path)
-    except Exception as exc:
-        logging.warning("Could not load function words: %s", exc)
-        return entries
-
-    by_lemma = {str(e.get('lemma') or ''): e for e in entries}
-    added = 0
-    for fw in fws:
-        lemma = str(fw.get('lemma') or '')
-        pos = str(fw.get('pos') or '')
-        if not lemma or not pos:
-            continue
-        paradigm = pos if pos in _FUNC_POS else None
-        morph = {'paradigm': paradigm, 'features': {}}
-        # Build authoritative senses from eo field if present
-        eo = fw.get('eo')
-        fw_senses = [{'senseId': None, 'gloss': None, 'translations': [
-            {'lang': 'eo', 'term': eo, 'sources': ['function_words_io']}
-        ]}] if eo else []
-        if lemma in by_lemma:
-            by_lemma[lemma]['pos'] = pos
-            by_lemma[lemma]['morphology'] = morph
-            if eo:
-                # Override Wiktionary senses with authoritative function-word translation
-                by_lemma[lemma]['senses'] = fw_senses
-        else:
-            by_lemma[lemma] = {
-                'id': f'io:{lemma}:{pos}',
-                'lemma': lemma,
-                'pos': pos,
-                'language': 'io',
-                'senses': fw_senses,
-                'morphology': morph,
-                'provenance': [{'source': 'whitelist'}],
-            }
-            added += 1
-    if added:
-        logging.info("Added %d function words absent from bilingual data", added)
-    merged = list(by_lemma.values())
-    merged.sort(key=lambda x: (str(x.get('lemma', '')), str(x.get('pos', ''))))
-    return merged
-
-
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -419,7 +357,6 @@ def _merge_function_words(entries: List[Dict[str, Any]], fw_path: Path) -> List[
 def prepare(
     input_path: Path,
     output_path: Path,
-    fw_path: Path,
     freq_path: Path,
     wiki_top_n: int,
 ) -> int:
@@ -435,8 +372,7 @@ def prepare(
                  norm_stats['cleaned'], norm_stats['invalid'], norm_stats['duplicates'])
 
     # Step 2: infer morphology
-    function_words = _load_function_words(fw_path)
-    entries = _infer_morphology(entries, function_words)
+    entries = _infer_morphology(entries)
     logging.info("Morphology inference: %d entries (incl. demonym/toponym twins)", len(entries))
 
     # Step 3: filter and validate
@@ -444,9 +380,6 @@ def prepare(
     logging.info("Filter: bad_schema=%d bad_lemma=%d wiki_low_freq=%d tr_removed=%d",
                  filt_stats['bad_schema'], filt_stats['bad_lemma'],
                  filt_stats['wiki_low_freq'], filt_stats['tr_removed'])
-
-    # Step 4: merge function words whitelist
-    entries = _merge_function_words(entries, fw_path)
 
     write_json(output_path, entries)
     logging.info("Wrote %s (%d entries)", output_path, len(entries))
@@ -470,14 +403,13 @@ def main(argv: Iterable[str]) -> int:
     ap = argparse.ArgumentParser(description="Single-pass vocabulary preparation: normalize + morph + filter")
     ap.add_argument("--input", type=Path, default=base / "work/bilingual_raw.json")
     ap.add_argument("--out", type=Path, default=base / "work/final_vocabulary.json")
-    ap.add_argument("--function-words", type=Path, default=base / "data/function_words_io.json")
     ap.add_argument("--freq", type=Path, default=base / "work/io_wiki_frequency.json")
     ap.add_argument("--wiki-top-n", type=int, default=500)
     ap.add_argument("-v", "--verbose", action="count", default=0)
     args = ap.parse_args(list(argv))
 
     configure_logging(args.verbose)
-    return prepare(args.input, args.out, args.function_words, args.freq, args.wiki_top_n)
+    return prepare(args.input, args.out, args.freq, args.wiki_top_n)
 
 
 if __name__ == "__main__":

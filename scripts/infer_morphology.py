@@ -20,26 +20,6 @@ _SHORT_POS: Dict[str, str] = {
 }
 
 
-def _load_function_words() -> Dict[str, str]:
-    """Load Ido function words (lemma → paradigm) from data/function_words_io.json."""
-    fw: Dict[str, str] = {}
-    fw_path = Path(__file__).resolve().parents[1] / 'data/function_words_io.json'
-    try:
-        data = read_json(fw_path)
-        for entry in data:
-            lemma = str(entry.get('lemma') or '').lower()
-            pos = str(entry.get('pos') or '')
-            if lemma and pos:
-                fw[lemma] = pos
-    except Exception as exc:
-        logging.warning("Could not load function_words_io.json: %s", exc)
-    return fw
-
-
-# Loaded once at import time; refreshed only when the module is re-imported.
-FUNCTION_WORDS: Dict[str, str] = _load_function_words()
-
-
 def has_wikipedia_provenance(entry: Dict[str, Any]) -> bool:
     for p in entry.get("provenance", []) or []:
         src = str(p.get("source") or "")
@@ -55,9 +35,6 @@ def infer_paradigm(entry: Dict[str, Any]) -> Optional[str]:
         return None
 
     lower_lemma = lemma.lower()
-
-    if lower_lemma in FUNCTION_WORDS:
-        return FUNCTION_WORDS[lower_lemma]
 
     # Numeric strings: patterns like 123, 4567, 12.34
     # Also handle decimal numbers like 12.34 or 5.6

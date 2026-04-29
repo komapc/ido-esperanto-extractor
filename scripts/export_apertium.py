@@ -40,13 +40,16 @@ def write_xml_file(elem: ET.Element, output_path: Path) -> None:
     """Write Apertium XML with declaration (no indentation to avoid breaking lt-proc)."""
     # Add XML declaration
     xml_declaration = b'<?xml version="1.0" encoding="UTF-8"?>\n'
-    
+
     # Write to file
     with open(output_path, 'wb') as f:
         f.write(xml_declaration)
-        f.write(ET.tostring(elem, encoding="utf-8"))
+        content = ET.tostring(elem, encoding="utf-8")
+        # Remove spaces before self-closing tags (e.g., <s n="n" /> -> <s n="n"/>)
+        # This is CRITICAL for lt-proc compatibility
+        content = content.replace(b' />', b'/>')
+        f.write(content)
         f.write(b'\n')
-
 
 def load_pardefs_from_file(pardefs_path: Path) -> ET.Element:
     """Load paradigm definitions from an XML file."""
@@ -63,7 +66,7 @@ def extract_stem(lemma: str, paradigm: str) -> str:
     """Extract stem from lemma based on paradigm. Used for both monolingual and bilingual dicts."""
     if not lemma:
         return ""
-    if paradigm in {"__pr", "__det", "__prn", "__cnjcoo", "__cnjsub", "__prep_art", "__adv"}:
+    if paradigm in {"__pr", "__det", "__prn", "__cnjcoo", "__cnjsub", "__prep_art", "__adv", "__ij"}:
         return lemma
     if paradigm == "ar__vblex":
         if lemma.endswith("ar"): return lemma[:-2]
@@ -76,6 +79,29 @@ def extract_stem(lemma: str, paradigm: str) -> str:
     if paradigm == "e__adv" and lemma.endswith("e"):
         return lemma[:-1]
     return lemma
+
+
+def map_s_tag(par: str | None, pos: str | None) -> str | None:
+    if not par:
+        return pos if pos in ("pr", "det", "prn", "cnjcoo", "cnjsub", "ij") else None
+        
+    if par == "o__n":
+        return "n"
+    if par == "a__adj":
+        return "adj"
+    if par in ("e__adv", "__adv"):
+        return "adv"
+    if par == "ar__vblex":
+        return "vblex"
+    if par == "num":
+        return "num"
+    if par in ("__pr", "__det", "__prn", "__cnjcoo", "__cnjsub", "__ij"):
+        return par.replace("__", "")
+
+    # Map raw pos for function words as fallback
+    if pos in ("pr", "det", "prn", "cnjcoo", "cnjsub", "ij"):
+        return pos
+    return None
 
 
 def build_monodix(entries):
@@ -96,7 +122,7 @@ def build_monodix(entries):
         logging.warning(f"Pardefs file not found at {pardefs_path}, falling back to minimal defaults")
         pardefs = ET.SubElement(dictionary, "pardefs")
         # Basic paradigms (fallback only)
-        def add_paradigm(name: str, l_text: str, r_s: list):
+        def add_paradigm(name, l_text, r_s):
             pd = ET.SubElement(pardefs, "pardef", n=name)
             e = ET.SubElement(pd, "e")
             p = ET.SubElement(e, "p")
@@ -109,91 +135,91 @@ def build_monodix(entries):
         add_paradigm("e__adv", "e", ["adv"])
         add_paradigm("__adv", "", ["adv"])
         add_paradigm("ar__vblex", "ar", ["vblex", "inf"])
-        add_paradigm("num", "", ["num"])
+        add_paradigm("__ij", "", ["ij"])
+        
+        # Bidirectional number paradigm
+        pd_num = ET.SubElement(pardefs, "pardef", n="num")
+        e_num = ET.SubElement(pd_num, "e")
+        p_num = ET.SubElement(e_num, "p")
+        ET.SubElement(p_num, "l")
+        r_num = ET.SubElement(p_num, "r")
+        ET.SubElement(r_num, "s", n="num")
+
+        # Add a specific num_regex pardef that works for both analysis and generation
+        num_regex_pd = ET.SubElement(pardefs, "pardef", n="num_regex")
+        nr_e = ET.SubElement(num_regex_pd, "e")
+        ET.SubElement(nr_e, "re").text = "[0-9]+([.,][0-9]+)*"
+        nr_p = ET.SubElement(nr_e, "p")
+        # For analysis: match regex, output tags
+        # For generation: match tags, output regex (passed through)
+        ET.SubElement(nr_p, "l")
+        nr_r = ET.SubElement(nr_p, "r")
+        ET.SubElement(nr_r, "s", n="num")
+        ET.SubElement(nr_r, "s", n="ciph")
+        ET.SubElement(nr_r, "s", n="sp")
+        ET.SubElement(nr_r, "s", n="nom")
+
 
     section = ET.SubElement(dictionary, "section", id="main", type="standard")
-    def map_s_tag(par: str, pos: str | None) -> str | None:
-        if par in ("o__n",):
-            return "n"
-        if par in ("a__adj",):
-            return "adj"
-        if par in ("e__adv", "__adv"):
-            return "adv"
-        if par in ("ar__vblex",):
-            return "vblex"
-        if par in ("num",):
-            return "num"
-        if par in ("num_regex",):
-            return "num"
-        if par in ("__pr", "__det", "__prn", "__cnjcoo", "__cnjsub"):
-            return par.replace("__", "")
-        # Map raw pos for function words
-        if pos in ("pr", "det", "prn", "cnjcoo", "cnjsub"):
-            return pos
-        return None
+    # Number passthrough: regex entry must be first in section
+    _num_sec = ET.SubElement(section, "e")
+    ET.SubElement(_num_sec, "par", n="num_regex")
 
-    # Sort entries alphabetically by lemma before adding to section
-    # Handle None lemmas safely by using 'or ""' to convert None to empty string
-    sorted_entries = sorted(entries, key=lambda e: ((e.get("lemma") or "").lower(), e.get("lemma") or ""))
-
-    # Add a single regex entry to match all compound numbers (like 123, 4567, 12.34)
-    # This will match any sequence of digits, with optional decimal point
-    # No r attribute means bidirectional (both analysis and generation)
-    en = ET.SubElement(section, "e")
-    par = ET.SubElement(en, "par", n="num_regex")
-
-    for e in sorted_entries:
-        # New format doesn't have "language" field - all entries are Ido by default
-        # Old format had language field, so check if present
+    # Deduplicate entries by lemma, prioritizing more specific paradigms over o__n
+    best_entries = {}
+    for e in entries:
         if e.get("language") and e.get("language") != "io":
             continue
-        
-        lm = e.get("lemma")
+        lm = str(e.get("lemma") or "").strip()
         if not lm:
             continue
         
-        clean_lm = str(lm).strip()
+        raw_par = (e.get("morphology") or {}).get("paradigm")
+        
+        if lm not in best_entries:
+            best_entries[lm] = e
+        else:
+            old_par = (best_entries[lm].get("morphology") or {}).get("paradigm")
+            # Priority: prn > vblex/adj > others > o__n or None
+            def get_priority(p):
+                if p == 'prn': return 10
+                if p in ('vblex', 'ar__vblex', 'adj', 'a__adj', 'adv', 'e__adv'): return 5
+                if p in ('pr', 'det', 'num', 'cnjcoo', 'cnjsub'): return 3
+                if p in ('o__n', 'n') or not p: return 1
+                return 2
+            
+            if lm == 'me':
+                logging.info(f"DEBUG: best_entries comparison for 'me'. old_par={old_par} (pri={get_priority(old_par)}), new_par={raw_par} (pri={get_priority(raw_par)})")
+
+            if get_priority(raw_par) > get_priority(old_par):
+                best_entries[lm] = e
+
+    # Sort and collect entries for the section
+    final_list = []
+    _PRON_POSS = {
+        'me': 'me', 'tu': 'tu', 'vu': 'vu', 'lu': 'lu',
+        'elu': 'elu', 'ilu': 'ilu', 'olu': 'olu',
+        'ni': 'ni', 'vi': 'vi', 'li': 'li',
+        'ili': 'ili', 'eli': 'eli', 'oli': 'oli'
+    }
+
+    # Track all lemmas added to prevent any duplicates
+    global_seen_lemmas = set()
+
+    # Step 1: Pre-process best entries and their possessives
+    for lm, e in best_entries.items():
+        clean_lm = lm
         raw_par = (e.get("morphology") or {}).get("paradigm")
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
+        if not raw_par: raw_par = "o__n"
 
-        if not raw_par:
-            logging.warning("No paradigm for %s (pos=%s) — defaulting to o__n", clean_lm, pos)
-            raw_par = "o__n"
-
-        # Expand short POS tags to full paradigm names
+        # Expand paradigm
         par = raw_par
-        if raw_par == "adv":
-            par = "__adv"  # invariant adverbs (function words) — no suffix paradigm
-        elif raw_par == "adj":
-            par = "a__adj"
-        elif raw_par in {"n", "num", "ij"}:
-            par = "o__n"
-        elif raw_par == "vblex":
-            par = "ar__vblex"
-        # Prep-article contractions: encode as explicit <p> so lt-proc can
-        # surface-analyze the form and tag it as base_prep<pr><def>.
-        elif raw_par == 'prep_art':
-            lm_lc = clean_lm.lower()
-            if lm_lc in _PREP_ART:
-                base_prep = _PREP_ART[lm_lc]
-                en = ET.SubElement(section, "e", lm=base_prep)
-                p_elem = ET.SubElement(en, "p")
-                l_elem = ET.SubElement(p_elem, "l")
-                l_elem.text = clean_lm        # surface: "dil"
-                r_elem = ET.SubElement(p_elem, "r")
-                r_elem.text = base_prep       # base: "di"
-                ET.SubElement(r_elem, "s", n="pr").tail = ""
-                ET.SubElement(r_elem, "s", n="def").tail = ""
-            else:
-                # Unknown contraction: fall back to __prep_art paradigm
-                par = "__prep_art"
-                en = ET.SubElement(section, "e", lm=clean_lm)
-                i = ET.SubElement(en, "i")
-                i.text = clean_lm
-                par_elem = ET.SubElement(en, "par")
-                par_elem.set("n", str(par))
-                par_elem.tail = ""
-            continue
+        if raw_par == "adv": par = "__adv"
+        elif raw_par == "adj": par = "a__adj"
+        elif raw_par in {"n", "num", "ij"}: par = "o__n"
+        elif raw_par == "vblex": par = "ar__vblex"
+        elif raw_par == 'prep_art': pass
         elif raw_par in {"pr", "det", "prn", "cnjcoo", "cnjsub", "prep", "conj", "article"}:
             if raw_par == "prep": par = "__pr"
             elif raw_par == "conj": par = "__cnjcoo"
@@ -202,15 +228,60 @@ def build_monodix(entries):
         elif pos in {"pr", "det", "prn", "cnjcoo", "cnjsub"}:
             par = "__" + pos
 
-        # Calculate stem based on paradigm
-        stem = extract_stem(clean_lm, str(par))
+        # Add base entry if not seen
+        if clean_lm not in global_seen_lemmas:
+            stem = extract_stem(clean_lm, str(par))
+            final_list.append({
+                'lm': clean_lm, 'stem': stem, 'par': str(par), 'raw_par': raw_par
+            })
+            global_seen_lemmas.add(clean_lm)
+
+        # Add possessive if needed and not seen
+        if str(raw_par).strip('_') == 'prn' and clean_lm.lower() in _PRON_POSS:
+            poss_lm = clean_lm + 'a'
+            if poss_lm not in global_seen_lemmas:
+                final_list.append({
+                    'lm': poss_lm, 'stem': poss_lm, 'par': "a__adj", 'raw_par': "adj"
+                })
+                global_seen_lemmas.add(poss_lm)
+
+    # Sort final list by lemma
+    final_list.sort(key=lambda x: (x['lm'].lower(), x['lm']))
+
+    for item in final_list:
+        clean_lm = item['lm']
+        stem = item['stem']
+        par = item['par']
+        raw_par = item['raw_par']
+
+        if raw_par == 'prep_art':
+            lm_lc = clean_lm.lower()
+            if lm_lc in _PREP_ART:
+                base_prep = _PREP_ART[lm_lc]
+                en = ET.SubElement(section, "e", lm=base_prep)
+                p_elem = ET.SubElement(en, "p")
+                l_elem = ET.SubElement(p_elem, "l")
+                l_elem.text = clean_lm
+                r_elem = ET.SubElement(p_elem, "r")
+                r_elem.text = base_prep
+                ET.SubElement(r_elem, "s", n="pr").tail = ""
+                ET.SubElement(r_elem, "s", n="def").tail = ""
+            else:
+                en = ET.SubElement(section, "e", lm=clean_lm)
+                i = ET.SubElement(en, "i")
+                i.text = clean_lm
+                par_elem = ET.SubElement(en, "par")
+                par_elem.set("n", "__prep_art")
+                par_elem.tail = ""
+            continue
 
         en = ET.SubElement(section, "e", lm=clean_lm)
         i = ET.SubElement(en, "i")
         i.text = stem
         par_elem = ET.SubElement(en, "par")
-        par_elem.set("n", str(par))
-        par_elem.tail = "" # No newlines
+        par_elem.set("n", par)
+        par_elem.tail = "" 
+    
     return dictionary
 
 
@@ -225,56 +296,108 @@ def build_bidix(entries):
     # Structural pardefs: regex-based rules that are independent of vocabulary data
     pardefs = ET.SubElement(dictionary, "pardefs")
     _num_pd = ET.SubElement(pardefs, "pardef", n="num_regex")
-    _num_e = ET.SubElement(_num_pd, "e")
-    ET.SubElement(_num_e, "re").text = "[0-9]+([.,][0-9]+)*"
-    _num_p = ET.SubElement(_num_e, "p")
-    _num_l = ET.SubElement(_num_p, "l")
-    ET.SubElement(_num_l, "s", n="num")
-    ET.SubElement(_num_l, "s", n="ciph")
-    ET.SubElement(_num_l, "s", n="sp")
-    ET.SubElement(_num_l, "s", n="nom")
-    _num_r = ET.SubElement(_num_p, "r")
-    ET.SubElement(_num_r, "s", n="num")
-    ET.SubElement(_num_r, "s", n="ciph")
+    
+    # Entry 1: Ido <num.ciph.sp.nom> <-> Esperanto <num.ciph.sp.nom>
+    _num_e1 = ET.SubElement(_num_pd, "e")
+    ET.SubElement(_num_e1, "re").text = "[0-9]+([.,][0-9]+)*"
+    _num_p1 = ET.SubElement(_num_e1, "p")
+    _num_l1 = ET.SubElement(_num_p1, "l")
+    ET.SubElement(_num_l1, "s", n="num")
+    ET.SubElement(_num_l1, "s", n="ciph")
+    ET.SubElement(_num_l1, "s", n="sp")
+    ET.SubElement(_num_l1, "s", n="nom")
+    _num_r1 = ET.SubElement(_num_p1, "r")
+    ET.SubElement(_num_r1, "s", n="num")
+    ET.SubElement(_num_r1, "s", n="ciph")
+    ET.SubElement(_num_r1, "s", n="sp")
+    ET.SubElement(_num_r1, "s", n="nom")
+
+    # Entry 2: Ido <num.ciph.sp.nom> <-> Esperanto <num.ciph.sp.acc>
+    # Note: Ido numbers don't have -n, so always map to nominative on Ido side
+    _num_e2 = ET.SubElement(_num_pd, "e")
+    ET.SubElement(_num_e2, "re").text = "[0-9]+([.,][0-9]+)*"
+    _num_p2 = ET.SubElement(_num_e2, "p")
+    _num_l2 = ET.SubElement(_num_p2, "l")
+    ET.SubElement(_num_l2, "s", n="num")
+    ET.SubElement(_num_l2, "s", n="ciph")
+    ET.SubElement(_num_l2, "s", n="sp")
+    ET.SubElement(_num_l2, "s", n="nom")
+    _num_r2 = ET.SubElement(_num_p2, "r")
+    ET.SubElement(_num_r2, "s", n="num")
+    ET.SubElement(_num_r2, "s", n="ciph")
+    ET.SubElement(_num_r2, "s", n="sp")
+    ET.SubElement(_num_r2, "s", n="acc")
+
+    # Entry 3: Generic fallback <num> <-> <num>
+    _num_e3 = ET.SubElement(_num_pd, "e")
+    ET.SubElement(_num_e3, "re").text = "[0-9]+([.,][0-9]+)*"
+    _num_p3 = ET.SubElement(_num_e3, "p")
+    _num_l3 = ET.SubElement(_num_p3, "l")
+    ET.SubElement(_num_l3, "s", n="num")
+    _num_r3 = ET.SubElement(_num_p3, "r")
+    ET.SubElement(_num_r3, "s", n="num")
     section = ET.SubElement(dictionary, "section", id="main", type="standard")
     # Regex number passthrough: maps Ido digits → same digits in Esperanto
     _num_sec = ET.SubElement(section, "e")
     ET.SubElement(_num_sec, "par", n="num_regex")
-    def map_s_tag(par: str, pos: str | None) -> str | None:
-        if par in ("o__n",):
-            return "n"
-        if par in ("a__adj",):
-            return "adj"
-        if par in ("e__adv", "__adv", "adv"):
-            return "adv"
-        if par in ("ar__vblex",):
-            return "vblex"
-        if par in ("num",):
-            return "num"
-        if par in ("num_regex",):
-            return "num"
-        # Check if par is a function word POS directly (from FUNCTION_WORDS dict)
-        if par in ("pr", "det", "prn", "cnjcoo", "cnjsub", "prep_art"):
-            return par if par != "prep_art" else None
-        if pos in ("pr", "det", "prn", "cnjcoo", "cnjsub"):
-            return pos
-        return None
 
-    _generated_contraction_bases: set = set()
+    # Use top-level map_s_tag
 
-    sorted_entries = sorted(entries, key=lambda e: (
-        (e.get("lemma") or "").lower(), e.get("lemma") or ""))
-
-    for e in sorted_entries:
-        # New format doesn't have "language" field - all entries are Ido by default
+    # Deduplicate entries by (lemma, epo_translation), prioritizing more specific paradigms
+    best_bidix_entries = {}
+    for e in entries:
         if e.get("language") and e.get("language") != "io":
             continue
-        
-        lm = e.get("lemma")
+        lm = str(e.get("lemma") or "").strip()
         if not lm:
             continue
         
-        clean_lm = str(lm).strip()
+        # Collect EO translations
+        eo_terms = []
+        if "eo_translations" in e and isinstance(e["eo_translations"], list):
+            for raw_term in e["eo_translations"]:
+                term = _clean_translation_term(str(raw_term))
+                if term and term not in eo_terms:
+                    eo_terms.append(term)
+        for s in e.get("senses", []) or []:
+            for tr in s.get("translations", []) or []:
+                if tr.get("lang") == "eo":
+                    raw_term = tr.get("term")
+                    if raw_term:
+                        term = _clean_translation_term(str(raw_term))
+                        if term and term not in eo_terms:
+                            eo_terms.append(term)
+        if not eo_terms:
+            continue
+        epo = eo_terms[0]
+        
+        raw_par = (e.get("morphology") or {}).get("paradigm")
+        
+        key = (lm, epo)
+        if key not in best_bidix_entries:
+            best_bidix_entries[key] = e
+        else:
+            old_par = (best_bidix_entries[key].get("morphology") or {}).get("paradigm")
+            def get_priority(p):
+                if p == 'prn': return 10
+                if p in ('vblex', 'ar__vblex', 'adj', 'a__adj', 'adv', 'e__adv'): return 5
+                if p in ('pr', 'det', 'num', 'cnjcoo', 'cnjsub'): return 3
+                if p in ('o__n', 'n') or not p: return 1
+                return 2
+            if get_priority(raw_par) > get_priority(old_par):
+                best_bidix_entries[key] = e
+
+    # FINAL deduplication pass for bidix
+    seen_bidix_keys = set()
+    deduped_final_bidix = []
+    # Sort by Ido lemma, then Epo lemma
+    final_list_bidix = sorted(best_bidix_entries.values(), key=lambda e: (str(e.get("lemma") or "").lower(), str(e.get("lemma") or "")))
+    
+    # Process and build final XML here
+    _generated_contraction_bases: set = set()
+
+    for e in final_list_bidix:
+        clean_lm = str(e.get("lemma")).strip()
         raw_par = (e.get("morphology") or {}).get("paradigm") or None
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
 
@@ -299,24 +422,21 @@ def build_bidix(entries):
                 ET.SubElement(r2, "s", n="def").tail = ""
             continue
 
-        # Collect EO translations
+        # Get translation (already filtered in pre-pass)
         eo_terms = []
         if "eo_translations" in e and isinstance(e["eo_translations"], list):
-            for raw_term in e["eo_translations"]:
-                term = _clean_translation_term(str(raw_term))
-                if term and term not in eo_terms:
-                    eo_terms.append(term)
-        for s in e.get("senses", []) or []:
-            for tr in s.get("translations", []) or []:
-                if tr.get("lang") == "eo":
-                    raw_term = tr.get("term")
-                    if raw_term:
-                        term = _clean_translation_term(str(raw_term))
+             eo_terms = [_clean_translation_term(str(t)) for t in e["eo_translations"] if t]
+        if not eo_terms:
+            for s in e.get("senses", []) or []:
+                for tr in s.get("translations", []) or []:
+                    if tr.get("lang") == "eo" and tr.get("term"):
+                        term = _clean_translation_term(str(tr["term"]))
                         if term and term not in eo_terms:
                             eo_terms.append(term)
         if not eo_terms:
             continue
         epo = eo_terms[0]
+
         en = ET.SubElement(section, "e")
         p = ET.SubElement(en, "p")
 
@@ -326,9 +446,29 @@ def build_bidix(entries):
 
         ido_tag = map_s_tag(raw_par, pos)
 
+        # Pronoun possessive derivation: me -> mea (mia), ni -> nia (nia)
+        # Handle this as an adjective entry: stem + <adj> -> epo_stem + 'a' + <adj>
+        # We use a mapping from Ido to Esperanto possessive stems.
+        _PRON_TO_EPO_POSS = {
+            'me': 'mi', 'tu': 'vi', 'vu': 'vi', 'lu': 'li',
+            'elu': 'ŝi', 'ilu': 'li', 'olu': 'ĝi',
+            'ni': 'ni', 'vi': 'vi', 'li': 'ili'
+        }
+        lm_lower = clean_lm.lower()
+        if str(raw_par).strip('_') == 'prn' and lm_lower in _PRON_TO_EPO_POSS:
+            epo_poss_stem = _PRON_TO_EPO_POSS[lm_lower]
+            e_poss = ET.SubElement(section, "e")
+            p_poss = ET.SubElement(e_poss, "p")
+            l_poss = ET.SubElement(p_poss, "l")
+            l_poss.text = clean_lm + 'a'
+            ET.SubElement(l_poss, "s", n="adj").tail = ""
+            r_poss = ET.SubElement(p_poss, "r")
+            r_poss.text = epo_poss_stem + 'a'
+            ET.SubElement(r_poss, "s", n="adj").tail = ""
+
         # Extract stem from lemma for bilingual dictionary
         stem = extract_stem(clean_lm, str(raw_par))
-
+        
         # Left (Ido) - use STEM, not full lemma
         l = ET.SubElement(p, "l")
         l.text = stem
@@ -407,19 +547,20 @@ def build_bidix(entries):
                 ET.SubElement(r_der, "s", n=epo_ptag).tail = ""
             # -esar: kreesar → passive construction; t1x vbpasv rule produces "esti<tense> + verb<pp>"
             # Right side carries the base Epo lemma so clip side="tl" part="lem" returns it
-            for tense in ['inf', 'pri', 'pii', 'fti', 'cni', 'imp']:
-                e_es = ET.SubElement(section, "e")
-                p_es = ET.SubElement(e_es, "p")
-                l_es = ET.SubElement(p_es, "l")
-                l_es.text = stem
-                ET.SubElement(l_es, "s", n="vblex").tail = ""
-                ET.SubElement(l_es, "s", n="der_esar").tail = ""
-                ET.SubElement(l_es, "s", n="vblex").tail = ""
-                ET.SubElement(l_es, "s", n=tense).tail = ""
-                r_es = ET.SubElement(p_es, "r")
-                r_es.text = epo
-                ET.SubElement(r_es, "s", n="vblex").tail = ""
-                ET.SubElement(r_es, "s", n=tense).tail = ""
+            if False:
+                for tense in ['inf', 'pri', 'pii', 'fti', 'cni', 'imp']:
+                    e_es = ET.SubElement(section, "e")
+                    p_es = ET.SubElement(e_es, "p")
+                    l_es = ET.SubElement(p_es, "l")
+                    l_es.text = stem
+                    ET.SubElement(l_es, "s", n="vblex").tail = ""
+                    ET.SubElement(l_es, "s", n="der_esar").tail = ""
+                    ET.SubElement(l_es, "s", n="vblex").tail = ""
+                    ET.SubElement(l_es, "s", n=tense).tail = ""
+                    r_es = ET.SubElement(p_es, "r")
+                    r_es.text = epo
+                    ET.SubElement(r_es, "s", n="vblex").tail = ""
+                    ET.SubElement(r_es, "s", n=tense).tail = ""
         elif raw_par == 'a__adj' and epo and epo.endswith('a') and ' ' not in epo:
             epo_stem = epo[:-1]  # 'bona' → 'bon'
             e_der = ET.SubElement(section, "e")
@@ -458,7 +599,7 @@ def build_bidix(entries):
             ET.SubElement(r_der, "s", n="adj").tail = ""
             # -izar suffix: nom+izar → nomizar (to name); Epo: strip -o, add -i
             # Emit all tenses so the bidix covers nomizar/nomizas/nomizis/...
-            if epo.endswith('o'):
+            if False and epo.endswith('o'):
                 epo_verb = epo[:-1] + 'i'  # 'nomo' → 'nomi'
                 for tense in ['inf', 'pri', 'pii', 'fti', 'cni', 'imp']:
                     e_iz = ET.SubElement(section, "e")

@@ -28,6 +28,7 @@ _FUNCTION_WORD_OVERRIDES: Dict[str, Dict[str, str]] = {
     'a':   {'pos': 'pr',        'eo': 'al'},     # to/toward (Wiktionary translation blank)
     'al':  {'pos': 'pr',        'eo': 'al'},     # a+la contraction, kept as pr to avoid double-article
     'dal': {'pos': 'prep_art',  'eo': 'de'},     # da + la = from the (contraction)
+    'saluto': {'pos': 'ij',      'eo': 'saluton'}, # greeting
 }
 
 
@@ -131,31 +132,31 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
                     cur.add(src)
 
     # Inject function-word overrides for words absent from all sources.
+    _POS_TO_PAR: Dict[str, str] = {
+        'n': 'o__n', 'adj': 'a__adj', 'adv': 'e__adv', 'vblex': 'ar__vblex',
+        'pr': '__pr', 'det': '__det', 'prn': '__prn',
+        'cnjcoo': '__cnjcoo', 'cnjsub': '__cnjsub', 'ij': '__ij', 'num': 'num',
+        'prep_art': '__prep_art'
+    }
+
     for lemma_lc, info in _FUNCTION_WORD_OVERRIDES.items():
         key = (lemma_lc, info['pos'])
-        # prep_art uses its own paradigm name; other function words use __<pos>
-        par = info['pos'] if info['pos'] == 'prep_art' else '__' + info['pos']
+        # Use _POS_TO_PAR for consistent paradigm names
+        par = _POS_TO_PAR.get(info['pos'], '__' + info['pos'])
+        
+        # Always ensure the entry exists with correct morphology and translation
         if key not in by_key:
             by_key[key] = {
                 'lemma': lemma_lc,
                 'pos': info['pos'],
                 'language': 'io',
-                'morphology': {'paradigm': par, 'features': {}},
-                '_eo_terms': {info['eo']: {'function_word_override'}},
+                '_eo_terms': {},
                 '_all_sources': {'function_word_override'},
             }
-        elif not by_key[key]['_eo_terms']:
-            # Entry exists (from whitelist) but has no translation — inject it
-            by_key[key]['_eo_terms'][info['eo']] = {'function_word_override'}
-
-    # Infer paradigm for entries with empty morphology (e.g. fr_wikt entries
-    # that bypass prepare_vocabulary.py).  Uses the same function-word-aware
-    # heuristic as infer_morphology.py so export_apertium.py needs no fallback.
-    _POS_TO_PAR: Dict[str, str] = {
-        'n': 'o__n', 'adj': 'a__adj', 'adv': 'e__adv', 'vblex': 'ar__vblex',
-        'pr': '__pr', 'det': '__det', 'prn': '__prn',
-        'cnjcoo': '__cnjcoo', 'cnjsub': '__cnjsub', 'ij': 'o__n', 'num': 'num',
-    }
+        
+        by_key[key]['morphology'] = {'paradigm': par, 'features': {}}
+        # Inject or override translation
+        by_key[key]['_eo_terms'][info['eo']] = {'function_word_override'}
     for rec in by_key.values():
         if not (rec.get('morphology') or {}).get('paradigm'):
             par = _infer_paradigm(rec)
