@@ -45,43 +45,51 @@ LANG_SECTION_PATTERNS = {
 #   - Use (?=\n|\|\}|\Z) lookahead to stop at natural boundaries
 TARGET_TRANSLATION_PATTERNS = {
     "io": [
-        r"\*[ \t]*\{\{io\}\}[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
-        r"\*[ \t]*(?:Ido|ido|IO)[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
-        r"\{\{t\+?\|io\|([^}]+)",
-        r"\{\{trad\+?\|io\|([^}]+)",
-        r"\{\{l\|io\|([^}]+)",
-        r"\{\{link\|io\|([^}]+)",
-        r"\{\{m\|io\|([^}]+)",
+        r"\*[ \t]*\{\{io\}\}[ \t]*[:\.-][ \t]*\{\{t\+?\|io\|([^}|]+)",
+        r"\*[ \t]*\{\{io\}\}[ \t]*[:\.-][ \t]*([^\n{]+?)(?=\n|\|\}|\Z)",
+        r"\*[ \t]*(?:Ido|ido|IO)[ \t]*[:\.-][ \t]*\{\{t\+?\|io\|([^}|]+)",
+        r"\*[ \t]*(?:Ido|ido|IO)[ \t]*[:\.-][ \t]*([^\n{]+?)(?=\n|\|\}|\Z)",
+        r"\{\{t\+?\|io\|([^}|]+)",
+        r"\{\{trad\+?\|io\|([^}|]+)",
+        r"\{\{l\|io\|([^}|]+)",
+        r"\{\{link\|io\|([^}|]+)",
+        r"\{\{m\|io\|([^}|]+)",
     ],
     "eo": [
-        r"\*[ \t]*\{\{eo\}\}[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
-        r"\*[ \t]*(?:Esperanto|esperanto|EO)[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
+        r"\*[ \t]*\{\{eo\}\}[ \t]*[:\.-][ \t]*\{\{t\+?\|eo\|([^}|]+)",
+        r"\*[ \t]*\{\{eo\}\}[ \t]*[:\.-][ \t]*([^\n{]+?)(?=\n|\|\}|\Z)",
+        r"\*[ \t]*(?:Esperanto|esperanto|EO)[ \t]*[:\.-][ \t]*\{\{t\+?\|eo\|([^}|]+)",
+        r"\*[ \t]*(?:Esperanto|esperanto|EO)[ \t]*[:\.-][ \t]*([^\n{]+?)(?=\n|\|\}|\Z)",
         r"(?m)^.*?Esperanto[ \t]*[:\-][ \t]*([^\n]+)",
-        r"\{\{t\+?\|eo\|([^}]+)",
-        r"\{\{trad\+?\|eo\|([^}]+)",
-        r"\{\{l\|eo\|([^}]+)",
-        r"\{\{link\|eo\|([^}]+)",
-        r"\{\{m\|eo\|([^}]+)",
+        r"\{\{t\+?\|eo\|([^}|]+)",
+        r"\{\{trad\+?\|eo\|([^}|]+)",
+        r"\{\{l\|eo\|([^}|]+)",
+        r"\{\{link\|eo\|([^}|]+)",
+        r"\{\{m\|eo\|([^}|]+)",
     ],
     "en": [
-        r"\*[ \t]*\{\{en\}\}[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
-        r"\*[ \t]*(?:Angliana|English|EN|en)[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
+        r"\*[ \t]*\{\{en\}\}[ \t]*[:\.-][ \t]*\{\{t\+?\|en\|([^}|]+)",
+        r"\*[ \t]*\{\{en\}\}[ \t]*[:\.-][ \t]*([^\n{]+?)(?=\n|\|\}|\Z)",
+        r"\*[ \t]*(?:Angliana|English|EN|en)[ \t]*[:\.-][ \t]*\{\{t\+?\|en\|([^}|]+)",
+        r"\*[ \t]*(?:Angliana|English|EN|en)[ \t]*[:\.-][ \t]*([^\n{]+?)(?=\n|\|\}|\Z)",
         r"(?m)^.*?(?:Angliana|English)[ \t]*[:\-][ \t]*([^\n]+)",
-        r"\{\{t\+?\|en\|([^}]+)",
-        r"\{\{trad\+?\|en\|([^}]+)",
-        r"\{\{l\|en\|([^}]+)",
-        r"\{\{link\|en\|([^}]+)",
-        r"\{\{m\|en\|([^}]+)",
+        r"\{\{t\+?\|en\|([^}|]+)",
+        r"\{\{trad\+?\|en\|([^}|]+)",
+        r"\{\{l\|en\|([^}|]+)",
+        r"\{\{link\|en\|([^}|]+)",
+        r"\{\{m\|en\|([^}|]+)",
     ],
     "fr": [
-        r"\*[ \t]*\{\{fr\}\}[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
-        r"\*[ \t]*(?:Franciana|French|FR|fr)[ \t]*[:\.-][ \t]*([^\n]+?)(?=\n|\|\}|\Z)",
+        r"\*[ \t]*\{\{fr\}\}[ \t]*[:\.-][ \t]*\{\{t\+?\|fr\|([^}|]+)",
+        r"\*[ \t]*\{\{fr\}\}[ \t]*[:\.-][ \t]*([^\n{]+?)(?=\n|\|\}|\Z)",
+        r"\*[ \t]*(?:Franciana|French|FR|fr)[ \t]*[:\.-][ \t]*\{\{t\+?\|fr\|([^}|]+)",
+        r"\*[ \t]*(?:Franciana|French|FR|fr)[ \t]*[:\.-][ \t]*([^\n{]+?)(?=\n|\|\}|\Z)",
         r"(?m)^.*?(?:Franciana|French)[ \t]*[:\-][ \t]*([^\n]+)",
-        r"\{\{t\+?\|fr\|([^}]+)",
-        r"\{\{trad\+?\|fr\|([^}]+)",
-        r"\{\{l\|fr\|([^}]+)",
-        r"\{\{link\|fr\|([^}]+)",
-        r"\{\{m\|fr\|([^}]+)",
+        r"\{\{t\+?\|fr\|([^}|]+)",
+        r"\{\{trad\+?\|fr\|([^}|]+)",
+        r"\{\{l\|fr\|([^}|]+)",
+        r"\{\{link\|fr\|([^}|]+)",
+        r"\{\{m\|fr\|([^}|]+)",
     ],
 }
 
@@ -356,6 +364,7 @@ CLEAN_WHITESPACE_RE = re.compile(r"\s+")                         # Normalize whi
 # Remove numbered sense references like [1], [2], [1-3], [1, 2] anywhere in text
 CLEAN_NUMBERED_REF_RE = re.compile(r"\s*\[[\d\s,–-]+\]\s*")      # Remove [1], [2], [1-3], [1, 2]
 CLEAN_NAV_ARROWS_RE = re.compile(r"[↓↑]")                        # Remove navigation arrows (io.wiktionary)
+CLEAN_PAREN_ANNOTATION_RE = re.compile(r"\s*\([^)0-9][^)]*\)\s*")  # Remove parenthetical annotations like (indikante aganton) but not (1), (2)
 NUMBERED_MEANING_RE = re.compile(r"\((\d+)\)\s*([^;()]+)")
 
 def clean_translation_text(text: str) -> str:
@@ -380,6 +389,7 @@ def clean_translation_text(text: str) -> str:
     text = CLEAN_TEMPLATE_RE.sub("", text)
     text = CLEAN_CATEGORY_RE.sub("", text)  # must run before CLEAN_LINK_RE destroys [[...]] syntax
     text = CLEAN_LINK_RE.sub(r"\1", text)
+    text = CLEAN_PAREN_ANNOTATION_RE.sub(" ", text)  # remove (indikante aganton) style annotations
     text = CLEAN_HTML_RE.sub("", text)
     text = CLEAN_PIPE_RE.sub("", text)
     text = CLEAN_WHITESPACE_RE.sub(" ", text).strip(" \t\n\r\f\v:;,.–-|")

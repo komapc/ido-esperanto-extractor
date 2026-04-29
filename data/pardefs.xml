@@ -224,4 +224,12 @@
         </p>
       </e>
     </pardef>
-  </pardefs>
+    <pardef n="__ij">
+      <e>
+        <p>
+          <l/>
+          <r><s n="ij"/></r>
+        </p>
+      </e>
+    </pardef>
+    </pardefs>

@@ -163,68 +163,61 @@ def build_monodix(entries):
     section = ET.SubElement(dictionary, "section", id="main", type="standard")
     # Use top-level map_s_tag
 
-    # Sort entries alphabetically by lemma before adding to section
-    # Handle None lemmas safely by using 'or ""' to convert None to empty string
-    sorted_entries = sorted(entries, key=lambda e: ((e.get("lemma") or "").lower(), e.get("lemma") or ""))
-
-    # Add a single regex entry to match all compound numbers (like 123, 4567, 12.34)
-    # This will match any sequence of digits, with optional decimal point
-    # No r attribute means bidirectional (both analysis and generation)
-    en = ET.SubElement(section, "e")
-    par = ET.SubElement(en, "par", n="num_regex")
-
-    for e in sorted_entries:
-        # New format doesn't have "language" field - all entries are Ido by default
-        # Old format had language field, so check if present
+    # Deduplicate entries by lemma, prioritizing more specific paradigms over o__n
+    best_entries = {}
+    for e in entries:
         if e.get("language") and e.get("language") != "io":
             continue
-        
-        lm = e.get("lemma")
+        lm = str(e.get("lemma") or "").strip()
         if not lm:
             continue
         
-        clean_lm = str(lm).strip()
+        raw_par = (e.get("morphology") or {}).get("paradigm")
+        
+        if lm not in best_entries:
+            best_entries[lm] = e
+        else:
+            old_par = (best_entries[lm].get("morphology") or {}).get("paradigm")
+            # Priority: prn > vblex/adj > others > o__n or None
+            def get_priority(p):
+                if p == 'prn': return 10
+                if p in ('vblex', 'ar__vblex', 'adj', 'a__adj', 'adv', 'e__adv'): return 5
+                if p in ('pr', 'det', 'num', 'cnjcoo', 'cnjsub'): return 3
+                if p in ('o__n', 'n') or not p: return 1
+                return 2
+            
+            if lm == 'me':
+                logging.info(f"DEBUG: best_entries comparison for 'me'. old_par={old_par} (pri={get_priority(old_par)}), new_par={raw_par} (pri={get_priority(raw_par)})")
+
+            if get_priority(raw_par) > get_priority(old_par):
+                best_entries[lm] = e
+
+    # Sort and collect entries for the section
+    final_list = []
+    _PRON_POSS = {
+        'me': 'me', 'tu': 'tu', 'vu': 'vu', 'lu': 'lu',
+        'elu': 'elu', 'ilu': 'ilu', 'olu': 'olu',
+        'ni': 'ni', 'vi': 'vi', 'li': 'li',
+        'ili': 'ili', 'eli': 'eli', 'oli': 'oli'
+    }
+
+    # Track all lemmas added to prevent any duplicates
+    global_seen_lemmas = set()
+
+    # Step 1: Pre-process best entries and their possessives
+    for lm, e in best_entries.items():
+        clean_lm = lm
         raw_par = (e.get("morphology") or {}).get("paradigm")
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
+        if not raw_par: raw_par = "o__n"
 
-        if not raw_par:
-            logging.warning("No paradigm for %s (pos=%s) — defaulting to o__n", clean_lm, pos)
-            raw_par = "o__n"
-
-        # Expand short POS tags to full paradigm names
+        # Expand paradigm
         par = raw_par
-        if raw_par == "adv":
-            par = "__adv"  # invariant adverbs (function words) — no suffix paradigm
-        elif raw_par == "adj":
-            par = "a__adj"
-        elif raw_par in {"n", "num", "ij"}:
-            par = "o__n"
-        elif raw_par == "vblex":
-            par = "ar__vblex"
-        # Prep-article contractions: encode as explicit <p> so lt-proc can
-        # surface-analyze the form and tag it as base_prep<pr><def>.
-        elif raw_par == 'prep_art':
-            lm_lc = clean_lm.lower()
-            if lm_lc in _PREP_ART:
-                base_prep = _PREP_ART[lm_lc]
-                en = ET.SubElement(section, "e", lm=base_prep)
-                p_elem = ET.SubElement(en, "p")
-                l_elem = ET.SubElement(p_elem, "l")
-                l_elem.text = clean_lm        # surface: "dil"
-                r_elem = ET.SubElement(p_elem, "r")
-                r_elem.text = base_prep       # base: "di"
-                ET.SubElement(r_elem, "s", n="pr").tail = ""
-                ET.SubElement(r_elem, "s", n="def").tail = ""
-            else:
-                # Unknown contraction: fall back to __prep_art paradigm
-                par = "__prep_art"
-                en = ET.SubElement(section, "e", lm=clean_lm)
-                i = ET.SubElement(en, "i")
-                i.text = clean_lm
-                par_elem = ET.SubElement(en, "par")
-                par_elem.set("n", str(par))
-                par_elem.tail = ""
-            continue
+        if raw_par == "adv": par = "__adv"
+        elif raw_par == "adj": par = "a__adj"
+        elif raw_par in {"n", "num", "ij"}: par = "o__n"
+        elif raw_par == "vblex": par = "ar__vblex"
+        elif raw_par == 'prep_art': pass
         elif raw_par in {"pr", "det", "prn", "cnjcoo", "cnjsub", "prep", "conj", "article"}:
             if raw_par == "prep": par = "__pr"
             elif raw_par == "conj": par = "__cnjcoo"
@@ -233,30 +226,60 @@ def build_monodix(entries):
         elif pos in {"pr", "det", "prn", "cnjcoo", "cnjsub"}:
             par = "__" + pos
 
-        # Calculate stem based on paradigm
-        stem = extract_stem(clean_lm, str(par))
+        # Add base entry if not seen
+        if clean_lm not in global_seen_lemmas:
+            stem = extract_stem(clean_lm, str(par))
+            final_list.append({
+                'lm': clean_lm, 'stem': stem, 'par': str(par), 'raw_par': raw_par
+            })
+            global_seen_lemmas.add(clean_lm)
 
-        # Pronoun possessives: generate mea/nia as adjectives
-        _PRON_POSS = {
-            'me': 'me', 'tu': 'tu', 'vu': 'vu', 'lu': 'lu',
-            'elu': 'elu', 'ilu': 'ilu', 'olu': 'olu',
-            'ni': 'ni', 'vi': 'vi', 'li': 'li',
-            'ili': 'ili', 'eli': 'eli', 'oli': 'oli'
-        }
-        if raw_par == '__prn' and clean_lm in _PRON_POSS:
+        # Add possessive if needed and not seen
+        if str(raw_par).strip('_') == 'prn' and clean_lm.lower() in _PRON_POSS:
             poss_lm = clean_lm + 'a'
-            en_poss = ET.SubElement(section, "e", lm=poss_lm)
-            i_poss = ET.SubElement(en_poss, "i")
-            i_poss.text = clean_lm
-            par_poss = ET.SubElement(en_poss, "par", n="a__adj")
-            par_poss.tail = ""
+            if poss_lm not in global_seen_lemmas:
+                final_list.append({
+                    'lm': poss_lm, 'stem': poss_lm, 'par': "a__adj", 'raw_par': "adj"
+                })
+                global_seen_lemmas.add(poss_lm)
+
+    # Sort final list by lemma
+    final_list.sort(key=lambda x: (x['lm'].lower(), x['lm']))
+
+    for item in final_list:
+        clean_lm = item['lm']
+        stem = item['stem']
+        par = item['par']
+        raw_par = item['raw_par']
+
+        if raw_par == 'prep_art':
+            lm_lc = clean_lm.lower()
+            if lm_lc in _PREP_ART:
+                base_prep = _PREP_ART[lm_lc]
+                en = ET.SubElement(section, "e", lm=base_prep)
+                p_elem = ET.SubElement(en, "p")
+                l_elem = ET.SubElement(p_elem, "l")
+                l_elem.text = clean_lm
+                r_elem = ET.SubElement(p_elem, "r")
+                r_elem.text = base_prep
+                ET.SubElement(r_elem, "s", n="pr").tail = ""
+                ET.SubElement(r_elem, "s", n="def").tail = ""
+            else:
+                en = ET.SubElement(section, "e", lm=clean_lm)
+                i = ET.SubElement(en, "i")
+                i.text = clean_lm
+                par_elem = ET.SubElement(en, "par")
+                par_elem.set("n", "__prep_art")
+                par_elem.tail = ""
+            continue
 
         en = ET.SubElement(section, "e", lm=clean_lm)
         i = ET.SubElement(en, "i")
         i.text = stem
         par_elem = ET.SubElement(en, "par")
-        par_elem.set("n", str(par))
-        par_elem.tail = "" # No newlines
+        par_elem.set("n", par)
+        par_elem.tail = "" 
+    
     return dictionary
 
 
@@ -318,22 +341,61 @@ def build_bidix(entries):
 
     # Use top-level map_s_tag
 
-    _generated_contraction_bases: set = set()
-    seen_entries: set = set()
-
-    sorted_entries = sorted(entries, key=lambda e: (
-        (e.get("lemma") or "").lower(), e.get("lemma") or ""))
-
-    for e in sorted_entries:
-        # New format doesn't have "language" field - all entries are Ido by default
+    # Deduplicate entries by (lemma, epo_translation), prioritizing more specific paradigms
+    best_bidix_entries = {}
+    for e in entries:
         if e.get("language") and e.get("language") != "io":
             continue
-        
-        lm = e.get("lemma")
+        lm = str(e.get("lemma") or "").strip()
         if not lm:
             continue
         
-        clean_lm = str(lm).strip()
+        # Collect EO translations
+        eo_terms = []
+        if "eo_translations" in e and isinstance(e["eo_translations"], list):
+            for raw_term in e["eo_translations"]:
+                term = _clean_translation_term(str(raw_term))
+                if term and term not in eo_terms:
+                    eo_terms.append(term)
+        for s in e.get("senses", []) or []:
+            for tr in s.get("translations", []) or []:
+                if tr.get("lang") == "eo":
+                    raw_term = tr.get("term")
+                    if raw_term:
+                        term = _clean_translation_term(str(raw_term))
+                        if term and term not in eo_terms:
+                            eo_terms.append(term)
+        if not eo_terms:
+            continue
+        epo = eo_terms[0]
+        
+        raw_par = (e.get("morphology") or {}).get("paradigm")
+        
+        key = (lm, epo)
+        if key not in best_bidix_entries:
+            best_bidix_entries[key] = e
+        else:
+            old_par = (best_bidix_entries[key].get("morphology") or {}).get("paradigm")
+            def get_priority(p):
+                if p == 'prn': return 10
+                if p in ('vblex', 'ar__vblex', 'adj', 'a__adj', 'adv', 'e__adv'): return 5
+                if p in ('pr', 'det', 'num', 'cnjcoo', 'cnjsub'): return 3
+                if p in ('o__n', 'n') or not p: return 1
+                return 2
+            if get_priority(raw_par) > get_priority(old_par):
+                best_bidix_entries[key] = e
+
+    # FINAL deduplication pass for bidix
+    seen_bidix_keys = set()
+    deduped_final_bidix = []
+    # Sort by Ido lemma, then Epo lemma
+    final_list_bidix = sorted(best_bidix_entries.values(), key=lambda e: (str(e.get("lemma") or "").lower(), str(e.get("lemma") or "")))
+    
+    # Process and build final XML here
+    _generated_contraction_bases: set = set()
+
+    for e in final_list_bidix:
+        clean_lm = str(e.get("lemma")).strip()
         raw_par = (e.get("morphology") or {}).get("paradigm") or None
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
 
@@ -358,30 +420,20 @@ def build_bidix(entries):
                 ET.SubElement(r2, "s", n="def").tail = ""
             continue
 
-        # Collect EO translations
+        # Get translation (already filtered in pre-pass)
         eo_terms = []
         if "eo_translations" in e and isinstance(e["eo_translations"], list):
-            for raw_term in e["eo_translations"]:
-                term = _clean_translation_term(str(raw_term))
-                if term and term not in eo_terms:
-                    eo_terms.append(term)
-        for s in e.get("senses", []) or []:
-            for tr in s.get("translations", []) or []:
-                if tr.get("lang") == "eo":
-                    raw_term = tr.get("term")
-                    if raw_term:
-                        term = _clean_translation_term(str(raw_term))
+             eo_terms = [_clean_translation_term(str(t)) for t in e["eo_translations"] if t]
+        if not eo_terms:
+            for s in e.get("senses", []) or []:
+                for tr in s.get("translations", []) or []:
+                    if tr.get("lang") == "eo" and tr.get("term"):
+                        term = _clean_translation_term(str(tr["term"]))
                         if term and term not in eo_terms:
                             eo_terms.append(term)
         if not eo_terms:
             continue
         epo = eo_terms[0]
-
-        # Deduplicate bidix entries
-        entry_key = (clean_lm, pos, raw_par, epo)
-        if entry_key in seen_entries:
-            continue
-        seen_entries.add(entry_key)
 
         en = ET.SubElement(section, "e")
         p = ET.SubElement(en, "p")
@@ -394,14 +446,15 @@ def build_bidix(entries):
 
         # Pronoun possessive derivation: me -> mea (mia), ni -> nia (nia)
         # Handle this as an adjective entry: stem + <adj> -> epo_stem + 'a' + <adj>
+        # We use a mapping from Ido to Esperanto possessive stems.
         _PRON_TO_EPO_POSS = {
             'me': 'mi', 'tu': 'vi', 'vu': 'vi', 'lu': 'li',
             'elu': 'ŝi', 'ilu': 'li', 'olu': 'ĝi',
-            'ni': 'ni', 'vi': 'vi', 'li': 'ili',
-            'ili': 'ili', 'eli': 'ili', 'oli': 'ili'
+            'ni': 'ni', 'vi': 'vi', 'li': 'ili'
         }
-        if raw_par == '__prn' and clean_lm in _PRON_TO_EPO_POSS:
-            epo_poss_stem = _PRON_TO_EPO_POSS[clean_lm]
+        lm_lower = clean_lm.lower()
+        if str(raw_par).strip('_') == 'prn' and lm_lower in _PRON_TO_EPO_POSS:
+            epo_poss_stem = _PRON_TO_EPO_POSS[lm_lower]
             e_poss = ET.SubElement(section, "e")
             p_poss = ET.SubElement(e_poss, "p")
             l_poss = ET.SubElement(p_poss, "l")
