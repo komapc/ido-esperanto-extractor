@@ -165,11 +165,18 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
             if par:
                 rec['morphology'] = {'paradigm': par, 'features': {}}
 
+    # BERT translations are low-priority: skip them for lemmas that already have Wiktionary coverage.
+    _BERT_SOURCES = frozenset({'bert_embeddings'})
+
     # Materialize final structure: senses with EO-only translations; keep multi-provenance per translation
     out: List[Dict[str, Any]] = []
     for (_lm, _pos), rec in sorted(by_key.items(), key=lambda kv: (kv[0][0], kv[0][1])):
+        # Wiktionary wins: if any translation comes from a non-BERT source, drop BERT-only translations.
+        has_wikt = any(srcs - _BERT_SOURCES for srcs in rec['_eo_terms'].values())
         translations: List[Dict[str, Any]] = []
         for term, srcs in rec['_eo_terms'].items():
+            if has_wikt and not (srcs - _BERT_SOURCES):
+                continue  # skip BERT-only translation when Wiktionary has coverage
             translations.append({
                 'lang': 'eo',
                 'term': term,
@@ -207,6 +214,11 @@ def main(argv: Iterable[str]) -> int:
         # (replaces the old bilingual_with_morph.json + source_io_wiktionary.json pair)
         base_path / 'work/final_vocabulary.json',
         base_path / 'work/fr_wikt_meanings.json',
+        # Function words whose EO translations the live parser cannot extract from the Wiktionary dump.
+        # Keep this list minimal — entries here override BERT but lose to any live Wiktionary extraction.
+        base_path / 'data/sources/source_function_words_seed.json',
+        # BERT cross-lingual alignment (lowest priority: only fills gaps not covered by anything above)
+        base_path / 'data/sources/source_bert_embeddings.json',
     ]
     
     big = build_big_bidix(inputs)
