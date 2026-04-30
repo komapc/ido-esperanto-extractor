@@ -1,11 +1,11 @@
 {
   "metadata": {
     "source_name": "function_words_seed",
-    "version": "1.0",
-    "generation_date": "2025-12-19",
-    "description": "Manually curated critical Ido function words with Esperanto translations",
+    "version": "1.1",
+    "generation_date": "2026-04-30",
+    "description": "Manually curated Ido function words that are missing from Wiktionary or whose Wiktionary translations cannot be extracted by the parser. Keep this list minimal — add an entry only when the pipeline provably fails to produce the translation.",
     "statistics": {
-      "total_entries": 23
+      "total_entries": 19
     }
   },
   "entries": [
@@ -16,10 +16,7 @@
       "translations": [
         {"term": "la", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'la' = Esperanto 'la' (definite article)"
-      }
+      "metadata": {"source_page": "manual", "note": "Definite article; Wiktionary parser misses EO translation"}
     },
     {
       "lemma": "l'",
@@ -31,10 +28,7 @@
       "translations": [
         {"term": "la", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'l'' = Esperanto 'la' (elided definite article before vowels)"
-      }
+      "metadata": {"source_page": "manual", "note": "Elided article before vowels; no standalone Wiktionary entry"}
     },
     {
       "lemma": "l",
@@ -46,40 +40,7 @@
       "translations": [
         {"term": "la", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'l' = Esperanto 'la' (contracted article token)"
-      }
-    },
-    {
-      "lemma": "Ido",
-      "source": "function_words_seed",
-      "pos": "noun",
-      "morphology": {
-        "paradigm": "o__n"
-      },
-      "translations": [
-        {"term": "Ido", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
-      ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido language (capitalized) - treated as noun to match automorf"
-      }
-    },
-    {
-      "lemma": "Konstruita",
-      "source": "function_words_seed",
-      "pos": "adjective",
-      "morphology": {
-        "paradigm": "a__adj"
-      },
-      "translations": [
-        {"term": "konstruita", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
-      ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Capitalized form workaround for sentence-initial past participle"
-      }
+      "metadata": {"source_page": "manual", "note": "Contracted article token; no standalone Wiktionary entry"}
     },
     {
       "lemma": "de",
@@ -88,7 +49,7 @@
       "translations": [
         {"term": "de", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "metadata": {"source_page": "manual"}
+      "metadata": {"source_page": "manual", "note": "Wiktionary parser misses EO translation"}
     },
     {
       "lemma": "por",
@@ -97,7 +58,7 @@
       "translations": [
         {"term": "por", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "metadata": {"source_page": "manual"}
+      "metadata": {"source_page": "manual", "note": "Wiktionary parser misses EO translation"}
     },
     {
       "lemma": "da",
@@ -106,10 +67,7 @@
       "translations": [
         {"term": "de", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'da' = Esperanto 'de' (of, by agent)"
-      }
+      "metadata": {"source_page": "manual", "note": "Ido 'da' = Epo 'de' (of, by agent); Wiktionary parser misses EO translation"}
     },
     {
       "lemma": "di",
@@ -118,10 +76,7 @@
       "translations": [
         {"term": "de", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'di' = Esperanto 'de' (of, possessive)"
-      }
+      "metadata": {"source_page": "manual", "note": "Ido 'di' = Epo 'de' (of, possessive); Wiktionary parser misses EO translation"}
     },
     {
       "lemma": "kom",
@@ -130,10 +85,7 @@
       "translations": [
         {"term": "kiel", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'kom' = Esperanto 'kiel' (as, like)"
-      }
+      "metadata": {"source_page": "manual", "note": "Ido 'kom' = Epo 'kiel' (as, like); Wiktionary parser misses EO translation"}
     },
     {
       "lemma": "a",
@@ -142,10 +94,7 @@
       "translations": [
         {"term": "al", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'a' = Esperanto 'al' (to)"
-      }
+      "metadata": {"source_page": "manual", "note": "Ido 'a' = Epo 'al' (to); Wiktionary translation blank"}
     },
     {
       "lemma": "esas",
@@ -154,10 +103,7 @@
       "translations": [
         {"term": "estas", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'esas' = Esperanto 'estas' (is/are - present)"
-      }
+      "metadata": {"source_page": "manual", "note": "Ido 'esas' = Epo 'estas' (is/are - present); Wiktionary parser misses EO translation"}
     },
     {
       "lemma": "es",
@@ -166,10 +112,7 @@
       "translations": [
         {"term": "esti", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'es' root = Esperanto 'esti' (to be)"
-      }
+      "metadata": {"source_page": "manual", "note": "Ido 'es' root = Epo 'esti' (to be); not a standalone Wiktionary entry"}
     },
     {
       "lemma": "vu",
@@ -178,10 +121,7 @@
       "translations": [
         {"term": "vi", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'vu' = Esperanto 'vi' (you singular)"
-      }
+      "metadata": {"source_page": "manual", "note": "Ido 'vu' = Epo 'vi' (you singular); Wiktionary parser misses EO translation"}
     },
     {
       "lemma": "il",
@@ -190,10 +130,7 @@
       "translations": [
         {"term": "li", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'il' = Esperanto 'li' (he)"
-      }
+      "metadata": {"source_page": "manual", "note": "Ido 'il' = Epo 'li' (he); not in Wiktionary with EO translation"}
     },
     {
       "lemma": "el",
@@ -202,10 +139,7 @@
       "translations": [
         {"term": "ŝi", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'el' = Esperanto 'ŝi' (she)"
-      }
+      "metadata": {"source_page": "manual", "note": "Ido 'el' = Epo 'ŝi' (she); not in Wiktionary with EO translation"}
     },
     {
       "lemma": "ol",
@@ -214,10 +148,7 @@
       "translations": [
         {"term": "ĝi", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'ol' = Esperanto 'ĝi' (it)"
-      }
+      "metadata": {"source_page": "manual", "note": "Ido 'ol' = Epo 'ĝi' (it); not in Wiktionary with EO translation"}
     },
     {
       "lemma": "on",
@@ -226,10 +157,7 @@
       "translations": [
         {"term": "oni", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'on' = Esperanto 'oni' (one, impersonal)"
-      }
+      "metadata": {"source_page": "manual", "note": "Ido 'on' = Epo 'oni' (one, impersonal); not in Wiktionary with EO translation"}
     },
     {
       "lemma": "kad",
@@ -238,10 +166,7 @@
       "translations": [
         {"term": "ĉu", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'kad' = Esperanto 'ĉu' (whether, question particle)"
-      }
+      "metadata": {"source_page": "manual", "note": "Ido 'kad' = Epo 'ĉu' (question particle); Wiktionary parser misses EO translation"}
     },
     {
       "lemma": "o",
@@ -250,22 +175,7 @@
       "translations": [
         {"term": "aŭ", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'o' = Esperanto 'aŭ' (or)"
-      }
-    },
-    {
-      "lemma": "nomizar",
-      "source": "function_words_seed",
-      "pos": "verb",
-      "translations": [
-        {"term": "nomi", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
-      ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'nomizar' = Esperanto 'nomi' (to name)"
-      }
+      "metadata": {"source_page": "manual", "note": "Ido 'o' = Epo 'aŭ' (or); Wiktionary parser misses EO translation"}
     },
     {
       "lemma": "quin",
@@ -274,70 +184,7 @@
       "translations": [
         {"term": "kiujn", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'quin' = Esperanto 'kiujn' (which/who - plural accusative)"
-      }
-    },
-    {
-      "lemma": "Esperantido",
-      "source": "function_words_seed",
-      "pos": "noun",
-      "translations": [
-        {"term": "Esperantido", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
-      ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'Esperantido' = Esperanto 'Esperantido' (Esperanto descendant)"
-      }
-    },
-    {
-      "lemma": "Esperantidoj",
-      "source": "function_words_seed",
-      "pos": "proper noun",
-      "translations": [
-        {"term": "Esperantidoj", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
-      ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'Esperantidoj' (quoted proper noun) = Esperanto 'Esperantidoj'"
-      }
-    },
-    {
-      "lemma": "sucesoza",
-      "source": "function_words_seed",
-      "pos": "adjective",
-      "translations": [
-        {"term": "sukcesa", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
-      ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'sucesoza' = Esperanto 'sukcesa' (successful)"
-      }
-    },
-    {
-      "lemma": "facile",
-      "source": "function_words_seed",
-      "pos": "adverb",
-      "translations": [
-        {"term": "facile", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
-      ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'facile' = Esperanto 'facile' (easily)"
-      }
-    },
-    {
-      "lemma": "kreinto",
-      "source": "function_words_seed",
-      "pos": "noun",
-      "translations": [
-        {"term": "kreinto", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
-      ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Ido 'kreinto' = Esperanto 'kreinto' (creator)"
-      }
+      "metadata": {"source_page": "manual", "note": "Ido 'quin' = Epo 'kiujn' (which/who - plural accusative); not in Wiktionary"}
     }
   ]
 }

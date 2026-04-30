@@ -383,9 +383,18 @@ def main(argv):
          ["python3", "scripts/build_web_index.py"],
          "Build web index",
          None),
+
+        # Stage 25: Export vortaro dictionary
+        ("export_vortaro",
+         ["python3", "scripts/export_vortaro.py"],
+         "Export vortaro dictionary (dist/vortaro_dictionary.json)",
+         None),
     ]
-    
+
     manager.run_pipeline(stages, start_from=args.stage)
+    logging.info("")
+    logging.info("To deploy generated files to consumer repos, run:")
+    logging.info("    cd .. && ./deploy.sh")
     return 0
 
 

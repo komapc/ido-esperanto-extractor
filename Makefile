@@ -16,7 +16,7 @@ SKIP_WIKI ?= 0
 FORCE ?= 0
 STAGE ?=
 
-.PHONY: all regenerate regenerate-fast regenerate-minimal regenerate-managed clean freq wikt_io wikt_eo wikt_io-stage1 wikt_io-stage2 wikt_eo-stage1 wikt_eo-stage2 wikt_en wiki wiki-stage1 wiki-stage2 align align_pivot normalize morph mono filter prepare report export stats dump_coverage big_bidix conflicts big_bidix_stats web pivot_en pivot_fr compare test pipeline-status
+.PHONY: all regenerate regenerate-fast regenerate-minimal regenerate-managed clean freq wikt_io wikt_eo wikt_io-stage1 wikt_io-stage2 wikt_eo-stage1 wikt_eo-stage2 wikt_en wiki wiki-stage1 wiki-stage2 align report big_bidix conflicts big_bidix_stats web stats dump_coverage compare test pipeline-status
 
 all: regenerate-managed
 
@@ -65,13 +65,13 @@ endif
 	$(PY) scripts/build_monolingual.py
 	$(PY) scripts/build_one_big_bidix_json.py
 	$(PY) scripts/report_coverage.py --top 5000
-	$(PY) scripts/merge_with_extractor.py --extractor-file $(DIST)/ido_dictionary.json --output-file $(DIST)/apertium-ido.ido.dix --validate
+	$(PY) scripts/export_apertium.py
+	$(PY) scripts/export_vortaro.py
 	$(PY) scripts/report_stats.py
 	$(PY) scripts/report_io_dump_coverage.py
 	$(PY) scripts/report_conflicts.py
 	$(PY) scripts/report_big_bidix_stats.py
 	$(PY) scripts/build_web_index.py
-	$(PY) scripts/export_apertium.py
 
 # Fast regeneration (skip downloads and French meanings parsing)
 regenerate-fast:
@@ -124,34 +124,8 @@ wiki-stage2:
 align:
 	$(PY) scripts/align_bilingual.py
 
-align_pivot:
-	$(PY) scripts/align_pivot_en_fr.py --pivot en --out work/bilingual_pivot_en.json
-	$(PY) scripts/align_pivot_en_fr.py --pivot fr --out work/bilingual_pivot_fr.json
-	$(PY) scripts/merge_with_pivots.py --base work/bilingual_raw.json --pivot-en work/bilingual_pivot_en.json --pivot-fr work/bilingual_pivot_fr.json --out work/bilingual_raw.json
-
-pivot_en:
-	$(PY) scripts/build_pivot_from_en.py
-
-pivot_fr:
-	$(PY) scripts/build_pivot_from_fr.py --input work/fr_wikt_fr_xx.json
-
-normalize:
-	$(PY) scripts/normalize_entries.py
-
-morph:
-	$(PY) scripts/infer_morphology.py
-
-mono:
-	$(PY) scripts/build_monolingual.py
-
-filter:
-	$(PY) scripts/filter_and_validate.py
-
 report:
 	$(PY) scripts/report_coverage.py --top 5000
-
-export:
-	$(PY) scripts/merge_with_extractor.py --extractor-file $(DIST)/ido_dictionary.json --output-file $(DIST)/apertium-ido.ido.dix --validate
 
 big_bidix:
 	$(PY) scripts/build_one_big_bidix_json.py
@@ -181,5 +155,3 @@ clean:
 	rm -rf $(WORK) $(DIST) $(REPORTS)
 	mkdir -p $(WORK) $(DIST) $(REPORTS)
 	rm -f $(WORK)/pipeline_state.json
-
-
