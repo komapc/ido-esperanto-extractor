@@ -207,7 +207,7 @@ def _maybe_add_demonym_twin(
             break
 
 
-def _infer_morphology(entries: List[Dict[str, Any]], function_words: Dict[str, str]) -> List[Dict[str, Any]]:
+def _infer_morphology(entries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     out: List[Dict[str, Any]] = []
     existing: set = set()
 
@@ -218,7 +218,7 @@ def _infer_morphology(entries: List[Dict[str, Any]], function_words: Dict[str, s
         out.append(e)
 
     for e in entries:
-        par = _infer_paradigm(e, function_words)
+        par = _infer_paradigm(e)
         morph = {"paradigm": par, "features": {}}
         raw_pos = e.get("pos")
         norm_pos = _SHORT_POS.get(str(raw_pos or ''), raw_pos)
