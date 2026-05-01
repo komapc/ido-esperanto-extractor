@@ -27,9 +27,11 @@ def main(argv):
     args = ap.parse_args(list(argv))
 
     configure_logging(args.verbose)
-    
-    # Parse once if targeting both languages
+
     if args.target == "both":
+        # Single pass: parse_wiktionary with source=en already extracts both
+        # lang="io" and lang="eo" senses in one loop (io_from_en + eo_from_en).
+        # The combined output works as both --io-input and --eo-input for parse_wiktionary_via.py.
         cfg = ParserConfig(source_code="en", target_code="io")
         parse_wiktionary(args.input, cfg, args.out, args.limit, progress_every=args.progress_every)
     else:
