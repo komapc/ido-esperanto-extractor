@@ -13,6 +13,11 @@ from typing import Any, Dict, Iterable, Iterator, List, Optional, Tuple
 from _common import open_maybe_compressed, write_json, ensure_dir, configure_logging
 
 try:
+    import lxml.etree as _lxml_etree  # type: ignore
+except ImportError:
+    _lxml_etree = None  # type: ignore
+
+try:
     import mwparserfromhell  # type: ignore
 except Exception:  # pragma: no cover
     mwparserfromhell = None  # type: ignore
@@ -523,10 +528,14 @@ def extract_tradukoj_io(section_or_page: str) -> List[List[str]]:
 
 
 def iter_pages(xml_path: Path) -> Iterator[Tuple[str, str, str]]:
-    with open_maybe_compressed(xml_path, mode="rt", encoding="utf-8") as fh:
-        context = ET.iterparse(fh, events=("end",))
-        for event, elem in context:
-            if isinstance(elem.tag, str) and elem.tag.endswith("page"):
+    if _lxml_etree is not None:
+        # lxml path: binary stream, tag filter fires only on <page> — 2-5x faster than stdlib ET
+        import bz2, gzip
+        suffix = xml_path.suffix.lower()
+        _open = bz2.open if suffix == ".bz2" else gzip.open if suffix == ".gz" else open
+        with _open(xml_path, "rb") as fh:
+            context = _lxml_etree.iterparse(fh, events=("end",), tag=("{*}page", "page"))
+            for event, elem in context:
                 title_el = _child(elem, "title")
                 ns_el = _child(elem, "ns")
                 rev_el = _child(elem, "revision")
@@ -536,6 +545,22 @@ def iter_pages(xml_path: Path) -> Iterator[Tuple[str, str, str]]:
                 ns = ns_el.text if ns_el is not None else ""
                 yield title or "", ns or "", text or ""
                 elem.clear()
+                while elem.getprevious() is not None:
+                    del elem.getparent()[0]
+    else:
+        with open_maybe_compressed(xml_path, mode="rt", encoding="utf-8") as fh:
+            context = ET.iterparse(fh, events=("end",))
+            for event, elem in context:
+                if isinstance(elem.tag, str) and elem.tag.endswith("page"):
+                    title_el = _child(elem, "title")
+                    ns_el = _child(elem, "ns")
+                    rev_el = _child(elem, "revision")
+                    text_el = _child(rev_el, "text") if rev_el is not None else None
+                    title = title_el.text if title_el is not None else ""
+                    text = text_el.text if text_el is not None else ""
+                    ns = ns_el.text if ns_el is not None else ""
+                    yield title or "", ns or "", text or ""
+                    elem.clear()
 
 
 @dataclass

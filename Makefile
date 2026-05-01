@@ -22,10 +22,9 @@ all: regenerate-managed
 
 # Pipeline-managed regeneration (with resumability)
 regenerate-managed:
-	@$(eval PIPELINE_ARGS := )
-	@if [ "$(FORCE)" = "1" ]; then $(eval PIPELINE_ARGS := --force) fi
-	@if [ -n "$(STAGE)" ]; then $(eval PIPELINE_ARGS := $(PIPELINE_ARGS) --stage $(STAGE)) fi
-	$(PY) scripts/pipeline_manager.py $(PIPELINE_ARGS)
+	$(PY) scripts/pipeline_manager.py \
+	  $(if $(filter 1,$(FORCE)),--force) \
+	  $(if $(STAGE),--stage $(STAGE))
 
 # Full regeneration with all sources (legacy, non-resumable)
 regenerate:
