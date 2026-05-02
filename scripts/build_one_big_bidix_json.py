@@ -94,7 +94,7 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
             continue
         lemma = (e.get('lemma') or '').strip()
         pos = _SHORT_POS.get((e.get('pos') or '').strip(), (e.get('pos') or '').strip())
-        if not lemma:
+        if not lemma or not lemma[0].isalpha() or re.search(r'[(),;:!@#$%^&*\[\]{}|<>?/\\]', lemma):
             continue
         key = (lemma.lower(), pos.lower())
         rec = by_key.get(key)

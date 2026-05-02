@@ -48,18 +48,14 @@ def convert_to_vortaro_format(bidix_path: str, output_path: str):
     # Build vortaro format
     vortaro = {
         "metadata": {
-            "creation_date": datetime.now().isoformat(),
-            "total_words": 0,
-            "sources": [
-                "io_wiktionary",
-                "eo_wiktionary",
-                "io_wikipedia",
-                "fr_wiktionary",
-                "whitelist"
-            ],
-            "version": "3.1-junk-filtered"
+            "last_updated": datetime.now().isoformat(),
+            "total_unique_ido_words": 0,
+            "source_stats": {},
+            "version": "3.2"
         }
     }
+
+    source_counts: dict = {}
 
     # Convert each entry
     junk_count = 0
@@ -109,9 +105,12 @@ def convert_to_vortaro_format(bidix_path: str, output_path: str):
             "sources": sorted(list(sources)),
             "morfologio": morfologio
         }
+        for src in sources:
+            source_counts[src] = source_counts.get(src, 0) + 1
 
     # Update metadata
-    vortaro["metadata"]["total_words"] = len(vortaro) - 1  # Exclude metadata itself
+    vortaro["metadata"]["total_unique_ido_words"] = len(vortaro) - 1
+    vortaro["metadata"]["source_stats"] = source_counts
     vortaro["metadata"]["junk_removed"] = junk_count
 
     print(f"Writing {output_path}...")

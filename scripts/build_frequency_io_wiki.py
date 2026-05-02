@@ -16,10 +16,10 @@ except Exception:  # pragma: no cover
     mwparserfromhell = None  # type: ignore
 
 
-TITLE_TAG = "{http://www.mediawiki.org/xml/export-0.10/}title"
-NS_TAG = "{http://www.mediawiki.org/xml/export-0.10/}ns"
-REV_TAG = "{http://www.mediawiki.org/xml/export-0.10/}revision"
-TEXT_TAG = "{http://www.mediawiki.org/xml/export-0.10/}text"
+TITLE_TAG = "{*}title"
+NS_TAG = "{*}ns"
+REV_TAG = "{*}revision"
+TEXT_TAG = "{*}text"
 
 
 WIKITEXT_LINK_RE = re.compile(r"\[\[(?:[^\]|]*\|)?([^\]]+)\]\]")
