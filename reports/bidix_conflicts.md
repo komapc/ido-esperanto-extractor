@@ -1,156 +1,469 @@
 # IO→EO Conflicts (multiple EO terms per IO lemma)
-- Total conflicts: 153
+- Total conflicts: 466
 
 - Austria: Aŭstrio{fr_wiktionary_meaning}, Aŭstrujo{wikt_eo}
-- Germania: Germanio{fr_wiktionary_meaning}, Germanlando{wikt_eo}
+- Egiptia: Egiptio{wikt_eo,wikt_io}, Egiptujo{wikt_io}
+- Finlando: Finnlando{wikt_eo,wikt_io}, Suomio{wikt_io}
+- Franciana: Francio{wikt_io}, franca{fr_wiktionary_meaning,wikt_io}
+- Germania: Germanio{fr_wiktionary_meaning,wikt_io}, Germanlando{wikt_eo}
 - India: Barato{fr_wiktionary_meaning}, Hindio{wikt_io}
+- Italia: Italio{wikt_eo,wikt_io}, Italiujo{wikt_io}
 - Ivora Rivo: Ebur-Bordo{fr_wiktionary_meaning}, Eburbordo{wikt_io}
-- Monako: Monako{fr_wiktionary_meaning,wikt_io}, monako{wikt_io}, monaĥo{wikt_io}
+- Monako: Monako{fr_wiktionary_meaning,wikt_io}, monako{wikt_io}, monaĥo{bert_embeddings,wikt_io}
 - Nauru: Nauro{fr_wiktionary_meaning}, Naŭruo{wikt_io}
 - Nijer: Nigero{wikt_io}, Niĝero{fr_wiktionary_meaning}
 - Ruanda: Ruando{fr_wiktionary_meaning}, Rwando{wikt_io}
+- Rusia: Rusio{wikt_io}, Ruslando{wikt_eo}, Rusujo{wikt_io}
 - Zimbabwe: Zimbabvo{fr_wiktionary_meaning}, Zimbabwo{wikt_io}
+- abasar: amase{bert_embeddings}, karpata{bert_embeddings}, malaltigi{fr_wiktionary_meaning}
+- abeluyo: abelujo{fr_wiktionary_meaning}, malsanulejo{bert_embeddings}, precipaj{bert_embeddings}, preĝeja{bert_embeddings}
 - abieto: abio{fr_wiktionary_meaning,wikt_io}, piceo{wikt_io}
 - abortigo: abortigo{wikt_io}, aborto{fr_wiktionary_meaning}
 - abrogar: aboli{wikt_io}, nuligi{fr_wiktionary_meaning}
 - absinto: absintaĵo{fr_wiktionary_meaning}, absinto{wikt_io}
+- abundo: abunde{bert_embeddings}, abundo{bert_embeddings,fr_wiktionary_meaning}, lundo{bert_embeddings}
+- acensar: acida{bert_embeddings}, censita{bert_embeddings}, grimpi{fr_wiktionary_meaning}, subtenas{bert_embeddings}
 - acerba: acerba{wikt_io}, akra{fr_wiktionary_meaning}
+- ad: ad{bert_embeddings}, al{bert_embeddings,wikt_io}, as{bert_embeddings}
+- adherar: adheri{fr_wiktionary_meaning}, engaĝiĝis{bert_embeddings}, kondukanta{bert_embeddings}, kondukas{bert_embeddings}
+- adminime: aktivis{bert_embeddings}, almenaŭ{wikt_io}, kunigas{bert_embeddings}, viktimoj{bert_embeddings}
+- administrala: administra{wikt_io}, administras{bert_embeddings}, formala{bert_embeddings}, teknika{bert_embeddings}
+- aeroplano: aeroplano{wikt_io}, aviadilo{bert_embeddings,wikt_io}, avio{wikt_io}
+- agar: agi{fr_wiktionary_meaning}, aktiva{bert_embeddings}, iso{bert_embeddings}, zur{bert_embeddings}
 - akra: acerba{fr_wiktionary_meaning}, akra{wikt_io}, akuta{wikt_io}, aspera{wikt_io}, pikanta{wikt_io}, stridanta{wikt_io}
+- akuta: akra{wikt_eo}, akuta{wikt_io}
+- al: al{bert_embeddings,function_word_override}, aldona{bert_embeddings}, alfred{bert_embeddings}
 - alterar: aliiĝi{wikt_io}, falsi{fr_wiktionary_meaning}
+- amaso: alo{bert_embeddings}, amaso{bert_embeddings}, pilo{fr_wiktionary_meaning}, tomaso{bert_embeddings}
 - analoga: analoga{wikt_io}, analogia{fr_wiktionary_meaning}
+- ante: antaŭe{bert_embeddings,wikt_io}, estante{bert_embeddings}, tradicie{bert_embeddings}
 - antipatio: abomeno{fr_wiktionary_meaning}, antipatio{wikt_io}
+- aparta: aparta{bert_embeddings,wikt_io}, distinta{wikt_io}
+- apertita: aperta{wikt_io}, disvastigita{bert_embeddings}, entombigita{bert_embeddings}, konektita{bert_embeddings}, malfermita{wikt_io}
+- apogeo: apogas{bert_embeddings}, apogeo{fr_wiktionary_meaning}, apogi{bert_embeddings}, apogo{bert_embeddings}
+- apud: apud{bert_embeddings,wikt_io}, kvazaŭ{bert_embeddings}
 - arbusto: arbedo{wikt_io}, arbusto{fr_wiktionary_meaning}
+- arketo: arbo{bert_embeddings}, arko{bert_embeddings}, arĉo{fr_wiktionary_meaning}, enketo{bert_embeddings}
+- armaro: armilejo{bert_embeddings}, armilo{bert_embeddings}, kiraso{fr_wiktionary_meaning}, martiro{bert_embeddings}
+- artisto: arkitekto{bert_embeddings}, artisto{bert_embeddings,wikt_io}, poeto{bert_embeddings}
+- asasinar: mortiga{bert_embeddings}, mortigas{bert_embeddings}, murdi{fr_wiktionary_meaning}, signas{bert_embeddings}
+- asociuro: asociita{bert_embeddings}, asocio{wikt_io}, organizita{bert_embeddings}, organizo{bert_embeddings}
 - atakar: agresi{fr_wiktionary_meaning}, ataki{fr_wiktionary_meaning,wikt_io}
 - atesto: atesto{wikt_io}, signo{fr_wiktionary_meaning}
+- atomala: atoma{wikt_io}, ekologia{bert_embeddings}, mekanika{bert_embeddings}, molekula{bert_embeddings}
 - audado: aŭdado{wikt_io}, aŭdo{fr_wiktionary_meaning}
+- avan: agado{bert_embeddings}, antaŭ{wikt_io}, avenuo{bert_embeddings}, kondukas{bert_embeddings}
 - avantajo: avantaĝo{wikt_io}, profito{fr_wiktionary_meaning}
+- averso: akso{bert_embeddings}, averso{fr_wiktionary_meaning}, rifuzo{bert_embeddings}, tiso{bert_embeddings}
+- balono: flugo{bert_embeddings}, pilko{fr_wiktionary_meaning}, platformo{bert_embeddings}, raketo{bert_embeddings}
 - barko: barko{wikt_io}, boato{fr_wiktionary_meaning}
 - baterio: baterio{wikt_io}, pilo{fr_wiktionary_meaning}
-- biblioteko: biblioteko{wikt_io}, librejo{fr_wiktionary_meaning}
+- biblioteko: biblioteko{bert_embeddings,wikt_io}, librejo{fr_wiktionary_meaning}
 - bilorno: binoklo{fr_wiktionary_meaning,wikt_io}, dulorneto{wikt_io}
+- boneto: bulteno{bert_embeddings}, grenejo{bert_embeddings}, monteto{bert_embeddings}, ĉapo{fr_wiktionary_meaning}
 - bovo: bovaĵo{wikt_io}, bovino{fr_wiktionary_meaning}, bovo{wikt_io}, okso{fr_wiktionary_meaning,wikt_io}
 - burso: burso{wikt_io}, stipendio{fr_wiktionary_meaning}
 - buxo: kesto{wikt_io}, skatolo{fr_wiktionary_meaning}
 - celiba: fraŭleca{wikt_io}, fraŭlo{fr_wiktionary_meaning}
+- cent: bona{bert_embeddings}, cent{bert_embeddings,wikt_io}, une{bert_embeddings}
+- centi: cent{bert_embeddings}, centi{wikt_io}, cm{bert_embeddings}, nombro{bert_embeddings}
+- cesar: alvenas{bert_embeddings}, erare{bert_embeddings}, karel{bert_embeddings}, ĉesi{fr_wiktionary_meaning}
+- chasero: kasisto{bert_embeddings}, kavalira{bert_embeddings}, sakrala{bert_embeddings}, ĉasisto{fr_wiktionary_meaning}
+- che: con{bert_embeddings}, ke{bert_embeddings}, per{bert_embeddings}, ĉe{wikt_io}
+- chef-urbo: episkopo{bert_embeddings}, grandurbo{bert_embeddings}, subregiono{bert_embeddings}, ĉefurbo{wikt_io}
+- chefurbo: grandurbo{bert_embeddings}, kampurbo{bert_embeddings}, kampuso{bert_embeddings}, ĉefurbo{fr_wiktionary_meaning}
+- chomeso: kermeso{bert_embeddings}, malpermeso{bert_embeddings}, promesis{bert_embeddings}, senlaboreco{wikt_io}
+- ciencisto: botanikisto{bert_embeddings}, historiisto{bert_embeddings}, sciencisto{bert_embeddings,wikt_io}
 - cilio: cilio{wikt_io}, okulharo{fr_wiktionary_meaning}
+- cirkum: cirklo{bert_embeddings}, ligita{bert_embeddings}, surloke{bert_embeddings}, ĉirkaŭ{wikt_io}
+- citrono: citrono{fr_wiktionary_meaning}, floro{bert_embeddings}, frukto{bert_embeddings}, maldekstro{bert_embeddings}
+- da: da{bert_embeddings}, david{bert_embeddings}, davis{bert_embeddings}, de{function_words_seed,wikt_io}
+- dal: da{bert_embeddings}, davis{bert_embeddings}, de{function_word_override}, don{bert_embeddings}
 - danko: danko{wikt_io}, dankon{fr_wiktionary_meaning}
-- dio: diurno{wikt_io}, tago{fr_wiktionary_meaning,wikt_io}
+- de: da{wikt_io}, de{bert_embeddings,function_words_seed,wikt_io}, dek{bert_embeddings}, devus{bert_embeddings}
+- dekimo: deka{bert_embeddings}, dekano{bert_embeddings}, dekila{bert_embeddings}, dekono{fr_wiktionary_meaning}
+- dekreto: dekreto{bert_embeddings,fr_wiktionary_meaning}, dekretoj{bert_embeddings}, delegito{bert_embeddings}
+- delegitaro: dekreto{bert_embeddings}, delegacio{wikt_io}, delegitaro{wikt_io}, delegito{bert_embeddings}, konfederacio{bert_embeddings}
+- depos: demando{bert_embeddings}, depost{wikt_io}, detruita{bert_embeddings}, devus{bert_embeddings}, ekde{wikt_io}
+- desfacila: akompanis{bert_embeddings}, danĝera{bert_embeddings}, facila{bert_embeddings}, malfacila{wikt_io}
+- deskovro: desegnita{bert_embeddings}, deziro{bert_embeddings}, esploro{bert_embeddings}, malkovro{wikt_io}
+- di: de{function_words_seed,wikt_io}, di{bert_embeddings}, difini{bert_embeddings}, dika{bert_embeddings}
+- dicionario: leksikono{wikt_io}, vortaro{wikt_eo,wikt_io}, vortoprovizo{wikt_io}
+- diktatoreso: diktatoreco{wikt_io}, imperiestro{bert_embeddings}, okupado{bert_embeddings}, sultano{bert_embeddings}
+- dio: diurno{wikt_io}, tago{fr_wiktionary_meaning,wikt_eo,wikt_io}
+- diplomacisto: botanikisto{bert_embeddings}, diplomato{wikt_io}, historiisto{bert_embeddings}, sciencisto{bert_embeddings}
 - disputar: disputi{wikt_io}, kvereli{fr_wiktionary_meaning}
+- distanta: distanca{wikt_io}, malproksima{bert_embeddings,wikt_io}, milita{bert_embeddings}, preciza{bert_embeddings}
+- do: do{bert_embeddings,wikt_io}, doni{bert_embeddings}, donis{bert_embeddings}
+- domaro: domajno{bert_embeddings}, domaro{bert_embeddings,wikt_io}, produktoro{bert_embeddings}
 - domeno: bieno{wikt_io}, limo{fr_wiktionary_meaning}
+- dop: kie{bert_embeddings}, malantaŭ{wikt_io}, pest{bert_embeddings}, tie{bert_embeddings}
+- duesma: asembleo{bert_embeddings}, decido{bert_embeddings}, dua{wikt_io}, konkurso{bert_embeddings}
+- duimo: dufoje{bert_embeddings}, duono{bert_embeddings,wikt_io}, viktimo{bert_embeddings}
+- duko: dukino{wikt_io}, duko{bert_embeddings,wikt_io}
 - duktar: konduki{wikt_io}, stiri{fr_wiktionary_meaning}
+- dum: du{bert_embeddings}, dum{bert_embeddings,wikt_io}, tom{bert_embeddings}
+- duopla: duonon{bert_embeddings}, duopla{wikt_io}, plenkreskuloj{bert_embeddings}, surloke{bert_embeddings}
+- ed: and{bert_embeddings}, ed{bert_embeddings}, edward{bert_embeddings}, kaj{function_word_override}
+- eduko: edukado{bert_embeddings}, eduko{bert_embeddings,fr_wiktionary_meaning}, pedagogo{bert_embeddings}
+- ek: ek{bert_embeddings}, ekis{bert_embeddings}, ekz{bert_embeddings}, el{wikt_io}
+- elu: lia{bert_embeddings}, urban{bert_embeddings}, vivi{bert_embeddings}, ŝi{wikt_io}
+- en: en{bert_embeddings,wikt_io}, ene{bert_embeddings}, enlanda{bert_embeddings}
 - enduktar: alkonduki{wikt_io}, enŝovi{fr_wiktionary_meaning}
+- entote: enketo{bert_embeddings}, entombigita{bert_embeddings}, entute{bert_embeddings,wikt_io}
 - epika: epika{wikt_io}, epopea{fr_wiktionary_meaning,wikt_io}
-- episkopo: episkopo{wikt_io}, kuriero{fr_wiktionary_meaning}
+- episkopo: episkopo{bert_embeddings,wikt_io}, kuriero{fr_wiktionary_meaning}
+- equivalanta: egala{bert_embeddings}, ekvivalenta{wikt_io}, kompare{bert_embeddings}, rezultanta{bert_embeddings}
+- es: ec{wikt_io}, esti{function_words_seed}, iĝ{wikt_io}
 - eshafodo: eŝafodo{wikt_io}, skafaldo{fr_wiktionary_meaning,wikt_io}
 - establisar: establi{wikt_io}, fondi{fr_wiktionary_meaning}
+- evento: evento{bert_embeddings,wikt_io}, okazo{wikt_io}
 - exkavar: elbori{wikt_io}, elfosi{wikt_io}, elkavigi{wikt_io}, esplori{fr_wiktionary_meaning}
+- explorero: eksploristo{wikt_io}, esploro{bert_embeddings}, insularo{bert_embeddings}, oficiro{bert_embeddings}
+- expreso: esprimo{fr_wiktionary_meaning}, indiko{bert_embeddings}, sinonimo{bert_embeddings}, sufikso{bert_embeddings}
+- extenso: longa{bert_embeddings}, longe{bert_embeddings}, longo{bert_embeddings}, spaco{fr_wiktionary_meaning}
+- exter: ekster{wikt_io}, krei{bert_embeddings}, preter{bert_embeddings}, surloke{bert_embeddings}
 - extingar: estingi{fr_wiktionary_meaning,wikt_io}, estingiĝi{wikt_io}
+- fabrikerio: fabriko{bert_embeddings,wikt_io}, niĝerio{bert_embeddings}, produktado{bert_embeddings}
+- falo: falo{bert_embeddings,fr_wiktionary_meaning}, flugo{bert_embeddings}, kreo{bert_embeddings}
+- famoza: fama{wikt_io}, kreas{bert_embeddings}, markizo{bert_embeddings}, populara{bert_embeddings}
+- fantazio: eksperimento{bert_embeddings}, inspiro{bert_embeddings}, intrigo{bert_embeddings}, manio{fr_wiktionary_meaning}
 - farmacio: apoteko{fr_wiktionary_meaning}, farmacio{wikt_io}
 - feko: fekaĵo{wikt_io}, feko{fr_wiktionary_meaning,wikt_io}
-- filio: filo{fr_wiktionary_meaning}, infano{wikt_io}
+- femina: femala{wikt_eo,wikt_io}, virina{wikt_io}
+- filiino: filino{bert_embeddings,fr_wiktionary_meaning,wikt_io}, fratino{bert_embeddings}, patrino{bert_embeddings}
+- filio: filo{fr_wiktionary_meaning,wikt_eo}, infano{wikt_io}
+- filiulo: filino{bert_embeddings}, filo{fr_wiktionary_meaning,wikt_io}, fratino{bert_embeddings}, frato{bert_embeddings}
 - fingro: fingro{fr_wiktionary_meaning,wikt_io}, manfingro{fr_wiktionary_meaning}
+- fizikisto: fizikisto{bert_embeddings,wikt_io}, kemiisto{bert_embeddings}, matematikisto{bert_embeddings}
 - flecho: pinaklo{wikt_io}, sago{fr_wiktionary_meaning,wikt_io}
 - fola: fola{wikt_io}, freneza{fr_wiktionary_meaning,wikt_io}
+- foleso: floro{bert_embeddings}, forigo{bert_embeddings}, kosto{bert_embeddings}, manio{fr_wiktionary_meaning}
+- for: for{bert_embeddings,wikt_io}, formis{bert_embeddings}, por{bert_embeddings}
+- fore: for{fr_wiktionary_meaning}, forigita{bert_embeddings}, kune{bert_embeddings}, sube{bert_embeddings}
+- forketo: enketo{bert_embeddings}, forko{fr_wiktionary_meaning}, forstado{bert_embeddings}, forto{bert_embeddings}
+- formala: formala{bert_embeddings,wikt_io}, formale{bert_embeddings}, stabila{bert_embeddings}
+- forsan: eble{wikt_io}, formis{bert_embeddings}, fortan{bert_embeddings}, forton{bert_embeddings}
 - foso: fosaĵo{wikt_io}, foso{fr_wiktionary_meaning}
-- fronto: fronto{wikt_io}, frunto{fr_wiktionary_meaning,wikt_io}
+- fratino: fratino{bert_embeddings,wikt_io}, fratinoj{bert_embeddings}, frato{bert_embeddings}
+- fratulo: fratino{bert_embeddings}, fratinoj{bert_embeddings}, frato{bert_embeddings,wikt_io}
+- frontiero: fronto{bert_embeddings,wikt_io}, landlimo{wikt_io}
+- fronto: fronto{bert_embeddings,wikt_io}, frunto{fr_wiktionary_meaning,wikt_io}
 - funciono: funkcio{wikt_io}, ofico{fr_wiktionary_meaning}
+- furio: falo{bert_embeddings}, kolero{fr_wiktionary_meaning}, plimulto{bert_embeddings}, torturo{bert_embeddings}
 - furtanto: rompŝtelisto{wikt_io}, ŝtelisto{fr_wiktionary_meaning}
+- futbalisto: futbalisto{bert_embeddings,wikt_io}, futbalo{bert_embeddings}, muzikisto{bert_embeddings}
 - gambo: gambo{wikt_io}, kruro{fr_wiktionary_meaning}
 - gento: gento{wikt_io}, homoj{fr_wiktionary_meaning}
 - gipso: gipsmineralo{wikt_io}, gipso{fr_wiktionary_meaning,wikt_io}
 - glaciero: glaciejo{wikt_io}, glaĉero{fr_wiktionary_meaning}
 - glacio: glaciaĵo{fr_wiktionary_meaning,wikt_io}, glacio{fr_wiktionary_meaning,wikt_io}
 - gluo: gluaĵo{wikt_io}, gluo{fr_wiktionary_meaning,wikt_io}
+- grandega: grande{bert_embeddings}, grandeco{bert_embeddings}, grandega{bert_embeddings,wikt_io}
+- grandeso: grandeco{wikt_io}, grando{bert_embeddings}, valoro{bert_embeddings}, volumo{bert_embeddings}
+- grava: grava{bert_embeddings,wikt_io}, peza{wikt_io}
 - grenado: granato{wikt_io}, grenado{fr_wiktionary_meaning,wikt_io}
 - grondar: muĝi{wikt_io}, rori{fr_wiktionary_meaning}
 - gropo: gluteo{wikt_io}, gropo{fr_wiktionary_meaning}, pugo{wikt_io}
 - grunar: grumbli{fr_wiktionary_meaning}, grunti{wikt_io}
+- habitantaro: homaro{bert_embeddings}, loĝantaro{bert_embeddings,wikt_io}, populacio{bert_embeddings}
 - hanulo: koko{fr_wiktionary_meaning}, virkoko{wikt_io}
+- herisono: erinaco{fr_wiktionary_meaning}, etoso{bert_embeddings}, hemisfero{bert_embeddings}, parolo{bert_embeddings}
+- heterosexuala: aliseksama{wikt_io}, aliseksema{wikt_eo,wikt_io}
+- heterosexualino: aliseksamantino{wikt_io}, aliseksamulino{wikt_eo,wikt_io}, aliseksemulino{wikt_io}
+- heterosexualo: aliseksamanto{wikt_io}, aliseksamulo{wikt_eo,wikt_io}, aliseksemulo{wikt_eo,wikt_io}, malgejo{wikt_eo}
+- historiisto: botanikisto{bert_embeddings}, historiisto{bert_embeddings,wikt_io}, komercisto{bert_embeddings}
+- homala: homa{bert_embeddings,wikt_io}, homaj{bert_embeddings}, homaro{bert_embeddings}
+- homaro: homa{bert_embeddings}, homaj{bert_embeddings}, homaro{bert_embeddings,wikt_io}
+- homeosexuala: geja{wikt_eo}, samseksama{wikt_eo,wikt_io}, samseksema{wikt_eo,wikt_io}
+- homeosexualino: lesbo{wikt_eo}, samseksamantino{wikt_io}, samseksamulino{wikt_eo,wikt_io}, samseksemulino{wikt_eo,wikt_io}
+- homeosexualo: gejo{wikt_eo}, samseksamanto{wikt_io}, samseksamulo{wikt_eo,wikt_io}, samseksemulo{wikt_eo,wikt_io}
+- hosto: busto{bert_embeddings}, gastiganto{fr_wiktionary_meaning}, groto{bert_embeddings}, vito{bert_embeddings}
+- humanismo: humanismo{fr_wiktionary_meaning}, katolikismo{bert_embeddings}, komunismo{bert_embeddings}, realismo{bert_embeddings}
+- ica: igas{bert_embeddings}, igis{bert_embeddings}, pio{bert_embeddings}, ĉi{wikt_io}
+- il: el{bert_embeddings}, il{bert_embeddings}, ilona{bert_embeddings}, li{function_words_seed}
+- ili: ili{bert_embeddings}, ilia{bert_embeddings}, ilian{bert_embeddings}, liaro{wikt_io}
+- ilu: helpis{bert_embeddings}, il{bert_embeddings}, ilona{bert_embeddings}, li{wikt_io}
+- imaginado: aplikado{bert_embeddings}, imago{fr_wiktionary_meaning}, interpretado{bert_embeddings}, observado{bert_embeddings}
 - imbecila: idiota{wikt_io}, stultulo{fr_wiktionary_meaning}
 - impedar: malhelpi{fr_wiktionary_meaning,wikt_io}, obstrukci{wikt_io}
+- imprimuro: formulo{bert_embeddings}, ilustristo{bert_embeddings}, kalkulo{bert_embeddings}, spuro{fr_wiktionary_meaning}
 - inklinar: inklini{wikt_io}, inklinigi{wikt_io}, klini{fr_wiktionary_meaning}
 - inkubo: koŝmaro{wikt_io}, premsonĝo{fr_wiktionary_meaning}
 - inquestar: demandi{wikt_io}, enketi{wikt_io}, esplori{fr_wiktionary_meaning,wikt_io}
+- inter: inter{bert_embeddings,wikt_io}, interreta{bert_embeddings}, intertempe{bert_embeddings}
+- internaciona: facila{bert_embeddings}, internacia{wikt_io}, konkurso{bert_embeddings}, populara{bert_embeddings}
+- ita: loka{bert_embeddings}, monda{bert_embeddings}, tiu{wikt_io}, utila{bert_embeddings}
 - jerar: administri{fr_wiktionary_meaning,wikt_io}, aranĝi{wikt_io}
+- jibeto: bebo{bert_embeddings}, kebekio{bert_embeddings}, pendumilo{fr_wiktionary_meaning}, tibeto{bert_embeddings}
+- jovdio: esploroj{bert_embeddings}, svedio{bert_embeddings}, varsovio{bert_embeddings}, ĵaŭdo{fr_wiktionary_meaning,wikt_eo}
+- judiciala: civila{bert_embeddings}, juĝa{wikt_io}, religia{bert_embeddings}, teknika{bert_embeddings}
 - jurar: sakri{fr_wiktionary_meaning}, ĵuri{wikt_io}
+- jurnalisto: artisto{bert_embeddings}, diplomato{bert_embeddings}, juristo{bert_embeddings}, ĵurnalisto{wikt_io}
+- jus: certa{bert_embeddings}, ju{bert_embeddings}, signifi{bert_embeddings}, ĵus{wikt_io}
+- kalkulo: formulo{bert_embeddings}, kalkuli{bert_embeddings}, kalkulo{bert_embeddings}, ŝtono{fr_wiktionary_meaning}
 - kameleono: kameleono{fr_wiktionary_meaning,wikt_io}, ĥameleono{wikt_io}
+- kande: kadre{bert_embeddings}, kiam{wikt_io}, pordego{bert_embeddings}, surloke{bert_embeddings}
+- kansono: kanto{bert_embeddings,wikt_io}, kanzono{wikt_io}
+- kantisto: gitaristo{bert_embeddings}, kantisto{bert_embeddings,wikt_io}, muzikisto{bert_embeddings}
+- kantono: departemento{bert_embeddings}, fronto{bert_embeddings}, kantono{bert_embeddings,fr_wiktionary_meaning}
+- kapo: kapo{bert_embeddings,wikt_io}, ĉefo{wikt_eo,wikt_io}
+- kaprino: kaple{bert_embeddings}, kaprino{fr_wiktionary_meaning}, kapti{bert_embeddings}, torino{bert_embeddings}
 - karcero: karcero{wikt_io}, malliberejo{fr_wiktionary_meaning}
 - karno: karno{wikt_io}, viando{fr_wiktionary_meaning,wikt_io}
 - karpo: karpeo{wikt_io}, karpo{fr_wiktionary_meaning,wikt_io}
 - kaseto: kasedo{wikt_io}, trezoro{fr_wiktionary_meaning}
 - katarakto: akvofalo{fr_wiktionary_meaning}, katarakto{wikt_io}
 - kateto: kateto{wikt_io}, katido{fr_wiktionary_meaning}
+- kazerno: dezerto{bert_embeddings}, kaverno{bert_embeddings}, konzerno{bert_embeddings}, soldatejo{fr_wiktionary_meaning}
+- ke: ede{bert_embeddings}, ke{bert_embeddings,wikt_io}, per{bert_embeddings}
+- kemiisto: botanikisto{bert_embeddings}, kemiisto{bert_embeddings}, matematikisto{bert_embeddings}, ĥemiisto{wikt_io}
+- kemio: kemio{bert_embeddings,wikt_io}, ĥemio{wikt_io}
+- kilometro: celo{bert_embeddings}, kilometro{bert_embeddings,wikt_io}, preparado{bert_embeddings}
+- kirko: kirko{bert_embeddings,wikt_io}, preĝejo{wikt_io}
+- klara: distinta{wikt_io}, klara{bert_embeddings,wikt_io}
+- klareso: estreco{bert_embeddings}, klareco{fr_wiktionary_meaning}, koruso{bert_embeddings}, sekureca{bert_embeddings}
 - klasifikar: klasi{fr_wiktionary_meaning}, klasifiki{wikt_io}
 - klosho: kloŝo{wikt_io}, sonorilo{fr_wiktionary_meaning,wikt_io}
 - klozar: fermi{fr_wiktionary_meaning,wikt_io}, ŝtopi{wikt_io}
+- kochenilo: koĉo{fr_wiktionary_meaning}, kverko{bert_embeddings}, salamanko{bert_embeddings}, sekurigi{bert_embeddings}
 - kolono: kojlo{wikt_io}, kolono{fr_wiktionary_meaning,wikt_io}
+- kombato: abato{bert_embeddings}, batalo{bert_embeddings,fr_wiktionary_meaning}, komarko{bert_embeddings}
+- komenco: eko{fr_wiktionary_meaning}, fino{bert_embeddings}, komencis{bert_embeddings}, komenco{bert_embeddings}
+- komputero: komputilo{fr_wiktionary_meaning,wikt_io}, motoro{bert_embeddings}, platformo{bert_embeddings}, programo{bert_embeddings}
+- komuneso: komune{bert_embeddings}, komunismo{bert_embeddings}, komunumaro{bert_embeddings}, komunumo{fr_wiktionary_meaning}
 - konektar: konekti{fr_wiktionary_meaning,wikt_io}, kunigi{wikt_io}
+- konflikto: katastrofo{bert_embeddings}, konflikto{bert_embeddings,fr_wiktionary_meaning}, krizo{bert_embeddings}
+- konkurso: flugo{bert_embeddings}, kandidato{bert_embeddings}, konkurso{bert_embeddings,wikt_eo}
 - konsputar: hui{fr_wiktionary_meaning}, malestimi{wikt_io}
+- konstrukturo: arkitekturo{bert_embeddings}, koncepto{bert_embeddings}, konstruaĵo{wikt_io}, strukturo{bert_embeddings}
+- kontre: kontraste{bert_embeddings}, kontraŭ{wikt_io}, kune{bert_embeddings}, prefere{bert_embeddings}
+- korpo: korpo{bert_embeddings,wikt_io}, korpuso{wikt_io}
 - kosto: marbordo{fr_wiktionary_meaning}, ripo{fr_wiktionary_meaning,wikt_io}
 - kritikar: kritiki{fr_wiktionary_meaning,wikt_io}, prijuĝi{wikt_io}
+- kritiko: dialogo{bert_embeddings}, kritika{bert_embeddings}, kritiko{bert_embeddings}, recenzo{fr_wiktionary_meaning}
+- kromosomo: kromosomo{wikt_eo,wikt_io}, ĥromosomo{wikt_io}
 - krucho: kruĉo{wikt_io}, trinkaĵskatolo{fr_wiktionary_meaning}
-- kulo: fundo{wikt_io}, gluteoj{wikt_io}, pugo{fr_wiktionary_meaning,wikt_io}
+- kulo: fundo{wikt_io}, gluteoj{wikt_io}, pugo{fr_wiktionary_meaning,wikt_eo,wikt_io}
+- kun: kun{bert_embeddings,fr_wiktionary_meaning,wikt_io}, kune{bert_embeddings}, kunigas{bert_embeddings}
+- kuro: kurbo{bert_embeddings}, kuro{bert_embeddings,fr_wiktionary_meaning}, lango{bert_embeddings}
 - kurta: kurta{wikt_io}, mallonga{fr_wiktionary_meaning,wikt_io}
+- kuzo: kazo{bert_embeddings}, kuzo{bert_embeddings,fr_wiktionary_meaning}, pezo{bert_embeddings}
+- l': establis{bert_embeddings}, krei{bert_embeddings}, la{function_words_seed}, ligita{bert_embeddings}
+- la: la{bert_embeddings,function_words_seed,wikt_io}, landa{bert_embeddings}, the{bert_embeddings}
 - leda: malbela{fr_wiktionary_meaning,wikt_io}, malnobla{wikt_io}
 - lenso: lenso{wikt_io}, lento{fr_wiktionary_meaning,wikt_io}
+- libereso: libereco{bert_embeddings,fr_wiktionary_meaning,wikt_io}, liberigi{bert_embeddings}, liberigo{bert_embeddings}
 - lineo: linio{fr_wiktionary_meaning,wikt_io}, vico{fr_wiktionary_meaning}
-- longa: granda{fr_wiktionary_meaning}, longa{wikt_io}
+- liquido: atomo{bert_embeddings}, drogo{bert_embeddings}, likvo{fr_wiktionary_meaning}, molekulo{bert_embeddings}
+- lo: lo{bert_embeddings}, lokita{bert_embeddings}, lokon{bert_embeddings}, tio{wikt_io}
+- longa: granda{fr_wiktionary_meaning}, longa{bert_embeddings,wikt_io}
+- lu: li{wikt_io}, ri{wikt_eo}, ĝi{wikt_eo,wikt_io}, ŝi{wikt_io}, ŝli{fr_wiktionary_meaning}
+- ma: ma{bert_embeddings}, mi{bert_embeddings}, sed{wikt_io}, tial{bert_embeddings}
 - macerar: maceri{fr_wiktionary_meaning,wikt_io}, maceriĝi{wikt_io}
 - magazino: magazeno{wikt_io}, vendejo{fr_wiktionary_meaning}
+- mago: heroo{bert_embeddings}, mago{fr_wiktionary_meaning}, mateo{bert_embeddings}, meso{bert_embeddings}
 - maladeso: malsaneco{wikt_io}, malsano{fr_wiktionary_meaning,wikt_io}
+- malgre: malgraŭ{bert_embeddings,wikt_io}, malmulte{bert_embeddings}, malsupre{bert_embeddings}
 - maligna: malica{wikt_io}, maligna{fr_wiktionary_meaning,wikt_io}
 - manjar: konsumi{wikt_io}, manĝi{fr_wiktionary_meaning,wikt_io}
-- maskula: maskla{wikt_io}, vira{fr_wiktionary_meaning,wikt_io}
+- manuale: administre{bert_embeddings}, hazarde{bert_embeddings}, mane{fr_wiktionary_meaning}, paralele{bert_embeddings}
+- maskula: maskla{wikt_eo,wikt_io}, vira{fr_wiktionary_meaning,wikt_io}
 - mato: mato{fr_wiktionary_meaning,wikt_io}, tapiŝo{fr_wiktionary_meaning}
+- maxim: flankaj{bert_embeddings}, max{bert_embeddings}, plej{wikt_io}, plu{bert_embeddings}
+- me: mi{wikt_eo,wikt_io}, min{fr_wiktionary_meaning}
 - medikamento: kuracilo{fr_wiktionary_meaning}, medikamento{wikt_io}
+- mem: eĉ{wikt_io}, ja{wikt_eo,wikt_io}
+- merlo: carlo{bert_embeddings}, karlo{bert_embeddings}, maron{bert_embeddings}, merlo{fr_wiktionary_meaning}
 - mestiero: metio{wikt_io}, profesio{fr_wiktionary_meaning}
+- metro: metro{bert_embeddings,fr_wiktionary_meaning}, metroa{bert_embeddings}, metroo{bert_embeddings}
+- mezo: meza{bert_embeddings}, meze{bert_embeddings}, mezo{bert_embeddings,fr_wiktionary_meaning}
 - mikra: eta{wikt_io}, malgranda{fr_wiktionary_meaning,wikt_io}
+- min: malpli{wikt_io}, max{bert_embeddings}, min{bert_embeddings}, minado{bert_embeddings}
+- monarkio: monarkio{bert_embeddings,wikt_io}, patriarko{bert_embeddings}, sultano{bert_embeddings}
 - monotona: monotona{fr_wiktionary_meaning}, unutona{wikt_io}
+- montaro: marbordo{bert_embeddings}, montara{bert_embeddings}, montaro{bert_embeddings,wikt_io}
+- mortigar: memorigas{bert_embeddings}, mortigi{bert_embeddings,wikt_io}, mortigis{bert_embeddings}
+- mortigo: liberigo{bert_embeddings}, mortigi{bert_embeddings}, mortigis{bert_embeddings}, murdo{wikt_io}
+- morto: mortas{bert_embeddings}, morto{bert_embeddings,fr_wiktionary_meaning}, morton{bert_embeddings}
 - muevo: laro{wikt_io}, mevo{fr_wiktionary_meaning,wikt_io}
-- muliero: edzino{fr_wiktionary_meaning}, plenaĝulino{wikt_io}, virino{fr_wiktionary_meaning,wikt_io}
-- navo: navo{wikt_io}, ŝipo{fr_wiktionary_meaning,wikt_io}
+- muliero: edzino{fr_wiktionary_meaning}, plenaĝulino{wikt_io}, virino{bert_embeddings,fr_wiktionary_meaning,wikt_io}
+- nam: am{bert_embeddings}, jam{bert_embeddings}, kim{bert_embeddings}, ĉar{wikt_io}
+- naraco: historio{fr_wiktionary_meaning}, komika{bert_embeddings}, manuskripto{bert_embeddings}, programaro{bert_embeddings}
+- naturala: civila{bert_embeddings}, natura{wikt_io}, stabila{bert_embeddings}, teknika{bert_embeddings}
+- navo: navo{bert_embeddings,wikt_io}, ŝipo{fr_wiktionary_meaning,wikt_io}
+- ne: ne{bert_embeddings,wikt_io}, nenio{bert_embeddings}, ni{bert_embeddings}
+- nedependo: reformo{bert_embeddings}, sendependan{bert_embeddings}, sendependeco{wikt_io}, sendependiĝo{bert_embeddings}
 - neglijeo: banvesto{fr_wiktionary_meaning}, negliĝo{wikt_io}
+- nek: loka{bert_embeddings}, nek{bert_embeddings,wikt_io}, nin{bert_embeddings}
+- ni: nenio{bert_embeddings}, ni{bert_embeddings,fr_wiktionary_meaning,wikt_io}, nigran{bert_embeddings}
+- nivo: bazo{bert_embeddings}, modelo{bert_embeddings}, neĝo{fr_wiktionary_meaning}, niveloj{bert_embeddings}
+- no: ne{fr_wiktionary_meaning,wikt_io}, no{bert_embeddings}, nomas{bert_embeddings}, nomita{bert_embeddings}
 - noktuo: noktuo{wikt_io}, strigo{fr_wiktionary_meaning}
+- nulo: fakulo{bert_embeddings}, nenio{wikt_io}, nune{bert_embeddings}, surloke{bert_embeddings}
+- nultempe: intertempe{bert_embeddings}, lastatempe{bert_embeddings}, neniam{wikt_eo}, surloke{bert_embeddings}
+- nulu: fakulo{bert_embeddings}, neniu{wikt_io}, nune{bert_embeddings}, suferas{bert_embeddings}
+- nun: nun{bert_embeddings,wikt_io}, nunan{bert_embeddings}, nuntempe{bert_embeddings}
+- nur: nur{bert_embeddings,wikt_io}, nura{bert_embeddings}, por{bert_embeddings}
+- nutrivo: konservado{bert_embeddings}, nutraĵo{wikt_io}, pruvo{bert_embeddings}, voktejo{bert_embeddings}
 - obsoleta: arkaika{fr_wiktionary_meaning}, malnovmoda{wikt_io}
 - obtenar: akiri{fr_wiktionary_meaning}, havigi{wikt_io}, obteni{wikt_io}
 - oktavo: oktavo{wikt_io}, okto{fr_wiktionary_meaning}
+- oli: ilona{bert_embeddings}, oliver{bert_embeddings}, signifis{bert_embeddings}, ĝiaro{wikt_io}
+- olim: antaŭe{wikt_io}, filinon{bert_embeddings}, iam{wikt_io}, olimpika{bert_embeddings}, olimpiko{bert_embeddings}
+- omna: ĉia{wikt_eo}, ĉio{fr_wiktionary_meaning}, ĉiu{wikt_io}
+- on: on{bert_embeddings}, oni{function_words_seed}, onklo{bert_embeddings}, sur{bert_embeddings}
 - onomatopeo: onomatopeo{wikt_io}, sonimito{fr_wiktionary_meaning}
+- onu: ana{bert_embeddings}, monda{bert_embeddings}, oni{wikt_io}, una{bert_embeddings}
+- originala: aktuala{bert_embeddings}, originala{bert_embeddings}, originalo{wikt_io}, preciza{bert_embeddings}
+- ornivo: arbo{bert_embeddings}, ordo{bert_embeddings}, ornato{fr_wiktionary_meaning}, ornitologo{bert_embeddings}
 - otuso: gufo{fr_wiktionary_meaning}, strigo{wikt_io}
 - palato: palaco{wikt_io}, palato{fr_wiktionary_meaning}
+- palmiero: limigas{bert_embeddings}, oliveira{bert_embeddings}, palmo{fr_wiktionary_meaning}, romio{bert_embeddings}
 - palmo: manplato{fr_wiktionary_meaning,wikt_io}, palmo{wikt_io}, polmo{wikt_io}
+- pando: bendo{bert_embeddings}, lundo{bert_embeddings}, pando{fr_wiktionary_meaning}, vendo{bert_embeddings}
 - paplo: kaĉo{fr_wiktionary_meaning,wikt_io}, pulpo{wikt_io}
 - para: egala{wikt_io}, ekvivalenta{wikt_io}, para{fr_wiktionary_meaning}
 - parentezo: krampo{fr_wiktionary_meaning,wikt_io}, parentezo{wikt_io}
-- persono: homo{fr_wiktionary_meaning}, persono{wikt_io}
+- parento: gepatroj{fr_wiktionary_meaning}, kliento{bert_embeddings}, mentoro{bert_embeddings}, paciento{bert_embeddings}
+- partikulara: aparta{wikt_io}, speciala{bert_embeddings,wikt_io}
+- partoprenar: kunlaboras{bert_embeddings}, partoprenas{bert_embeddings}, partopreni{wikt_io}, partopreno{bert_embeddings}
+- pavoro: aro{bert_embeddings}, hanovro{bert_embeddings}, martiro{bert_embeddings}, timo{fr_wiktionary_meaning}
+- per: ke{bert_embeddings}, per{bert_embeddings,wikt_io}, por{bert_embeddings}
+- perihelio: etiopio{bert_embeddings}, hemisfero{bert_embeddings}, niĝerio{bert_embeddings}, perihelio{fr_wiktionary_meaning}
+- permananta: permanenta{wikt_io}, provizora{bert_embeddings}, provizore{bert_embeddings}, stabila{bert_embeddings}
+- persono: homo{fr_wiktionary_meaning}, persono{bert_embeddings,wikt_io}
+- pianisto: dirigento{bert_embeddings}, komponisto{bert_embeddings}, pianisto{bert_embeddings,wikt_io}
 - pikar: piki{wikt_io}, stebi{fr_wiktionary_meaning}
+- pikturo: arto{bert_embeddings}, figuro{bert_embeddings}, grafikisto{bert_embeddings}, pentrado{wikt_io}
 - plado: pladeto{wikt_io}, plado{wikt_io}, telero{fr_wiktionary_meaning,wikt_io}
+- plana: ebena{wikt_io}, plata{bert_embeddings,wikt_io}
 - plezuro: plezuro{fr_wiktionary_meaning,wikt_io}, ĝojo{wikt_io}
+- plu: pli{wikt_io}, plu{bert_embeddings}, plua{bert_embeddings}, pluaj{bert_embeddings}
+- pluvo: plumaro{bert_embeddings}, pluvas{bert_embeddings}, pluvo{bert_embeddings,fr_wiktionary_meaning}
+- po: en{wikt_io}, je{wikt_eo,wikt_io}, le{bert_embeddings}, po{bert_embeddings}, por{wikt_io}, povu{bert_embeddings}
+- politikisto: ekonomikisto{bert_embeddings}, kritikisto{bert_embeddings}, politikisto{bert_embeddings,wikt_io}
+- por: per{bert_embeddings}, por{bert_embeddings,function_words_seed,wikt_io}, portis{bert_embeddings}
+- pos: es{bert_embeddings}, po{bert_embeddings}, post{wikt_io}, postuloj{bert_embeddings}
 - posedar: havi{wikt_io}, posedi{fr_wiktionary_meaning,wikt_io}
 - presar: premi{wikt_io}, streĉi{fr_wiktionary_meaning}
+- pri: bei{bert_embeddings}, pri{bert_embeddings,wikt_io}, prizono{bert_embeddings}
 - prizar: altetaksi{wikt_io}, ŝati{fr_wiktionary_meaning}
+- pro: por{bert_embeddings}, pro{bert_embeddings,wikt_io}, provoj{bert_embeddings}
+- proceduro: maniero{bert_embeddings}, operacio{bert_embeddings}, procedo{bert_embeddings}, proceduro{fr_wiktionary_meaning}
+- profesionala: amatora{bert_embeddings}, oficiala{bert_embeddings}, profesia{wikt_io}, studenta{bert_embeddings}
+- progreso: evoluo{bert_embeddings}, progreso{bert_embeddings,fr_wiktionary_meaning}, reformo{bert_embeddings}
+- proxim: anoncis{bert_embeddings}, apud{wikt_io}, surloke{bert_embeddings}, trovas{bert_embeddings}
+- pseudonimo: kaŝnomo{wikt_io}, pseŭdonimo{bert_embeddings,wikt_io}
+- pulsado: migrado{bert_embeddings}, plado{bert_embeddings}, pulso{fr_wiktionary_meaning}, rotacio{bert_embeddings}
+- pulsar: pulsi{wikt_io}, puŝi{wikt_eo,wikt_io}
+- quala: honoras{bert_embeddings}, influa{bert_embeddings}, kia{wikt_io}, reala{bert_embeddings}
+- quankam: kvankam{wikt_io}, malgraŭ{bert_embeddings}, samloke{bert_embeddings}, surloke{bert_embeddings}
+- quar: dek{bert_embeddings}, dekstra{bert_embeddings}, kvar{wikt_io}, plurfoje{bert_embeddings}
 - quaresma: kvara{wikt_io}, kvarono{fr_wiktionary_meaning}
 - questionar: demandi{wikt_io}, pridemandi{fr_wiktionary_meaning}
+- qui: dediĉis{bert_embeddings}, ke{bert_embeddings}, kioj{wikt_eo}, kiuj{wikt_io}, signifis{bert_embeddings}
+- quik: dika{bert_embeddings}, kurt{bert_embeddings}, tuj{wikt_io}, venki{bert_embeddings}
+- quin: kiojn{wikt_eo}, kiujn{function_words_seed}
+- radio: radio{bert_embeddings,wikt_io}, radiuso{wikt_io}
+- rango: etendiĝo{wikt_io}, rango{bert_embeddings,wikt_io}, serio{wikt_io}
+- rapideso: rapide{bert_embeddings}, rapideco{bert_embeddings}, rapido{bert_embeddings,fr_wiktionary_meaning}
 - rara: malabunda{fr_wiktionary_meaning}, malofta{wikt_io}, rara{wikt_io}
-- rejo: reĝino{wikt_io}, reĝo{fr_wiktionary_meaning,wikt_io}
+- realismo: realeco{bert_embeddings}, realismo{bert_embeddings,fr_wiktionary_meaning}, realo{bert_embeddings}
+- rejino: regado{bert_embeddings}, rejno{bert_embeddings}, reĝino{wikt_io}, verkistino{bert_embeddings}
+- rejo: reĝino{wikt_io}, reĝo{fr_wiktionary_meaning,wikt_eo,wikt_io}
+- rejulo: duko{bert_embeddings}, regado{bert_embeddings}, rejno{bert_embeddings}, reĝo{wikt_io}
+- rekompenso: estreco{bert_embeddings}, interkonsento{bert_embeddings}, premio{fr_wiktionary_meaning}, saksio-anhalto{bert_embeddings}
+- rekurso: interŝanĝo{bert_embeddings}, konkurso{bert_embeddings}, kreo{bert_embeddings}, uzo{fr_wiktionary_meaning}
 - rentiro: boaco{wikt_io}, rangifero{fr_wiktionary_meaning,wikt_io}
 - revelar: malkaŝi{wikt_io}, revelacii{wikt_io}, riveli{fr_wiktionary_meaning,wikt_io}
 - revenuo: enspezo{wikt_io}, rento{fr_wiktionary_meaning}
+- revuo: asocio{bert_embeddings}, revuo{bert_embeddings,wikt_io}, revuoj{bert_embeddings}
 - rigo: rigilaro{wikt_io}, rigilo{wikt_io}, rigo{fr_wiktionary_meaning}
+- riprodukto: generado{fr_wiktionary_meaning}, kreo{bert_embeddings}, transformi{bert_embeddings}, translokigita{bert_embeddings}
 - rivo: bordo{wikt_io}, digo{wikt_io}, marbordo{fr_wiktionary_meaning}
 - rugo: falto{fr_wiktionary_meaning}, ondeto{wikt_io}, sulketo{wikt_io}
-- saluto: saluto{fr_wiktionary_meaning}, saluton{function_word_override}
+- sa: saint{bert_embeddings}, sana{wikt_io}, se{bert_embeddings}, si{bert_embeddings}
+- salto: monte{bert_embeddings}, paso{bert_embeddings}, salto{bert_embeddings,fr_wiktionary_meaning}
+- saluto: deklaro{bert_embeddings}, konsidero{bert_embeddings}, rigardo{bert_embeddings}, saluto{fr_wiktionary_meaning}, saluton{function_word_override}
+- saneso: denseco{bert_embeddings}, sano{fr_wiktionary_meaning}, senato{bert_embeddings}, suferas{bert_embeddings}
+- sat: alte{bert_embeddings}, mit{bert_embeddings}, sate{wikt_io}, si{bert_embeddings}, sufiĉe{wikt_io}
+- se: se{bert_embeddings,wikt_io}, sepa{bert_embeddings}, sesa{bert_embeddings}
+- segun: laŭ{fr_wiktionary_meaning,wikt_io}, prelegis{bert_embeddings}, priskribas{bert_embeddings}, senato{bert_embeddings}
+- sekureso: defendo{bert_embeddings}, kontrolo{bert_embeddings}, reformo{bert_embeddings}, sekureco{wikt_io}
+- sen: ben{bert_embeddings}, sen{bert_embeddings,fr_wiktionary_meaning,wikt_io}, senjoroj{bert_embeddings}
+- sequanta: okazo{bert_embeddings}, rezultanta{bert_embeddings}, sekreta{bert_embeddings}, sekvanta{wikt_io}
+- serio: floko{wikt_io}, serio{bert_embeddings,wikt_io}
+- signifikanta: atribuita{bert_embeddings}, registrita{bert_embeddings}, reprodukta{bert_embeddings}, signifa{wikt_io}
+- singularo: litero{bert_embeddings}, nomvarianto{bert_embeddings}, singularo{fr_wiktionary_meaning}, sinonimo{bert_embeddings}
 - siorino: damo{fr_wiktionary_meaning}, sinjorino{wikt_io}
-- skolo: lernejo{fr_wiktionary_meaning,wikt_io}, skolo{wikt_io}
+- situeso: situanta{bert_embeddings}, situejo{bert_embeddings}, situo{bert_embeddings,wikt_io}
+- skolo: lernejo{fr_wiktionary_meaning,wikt_io}, skolo{bert_embeddings,wikt_io}
+- skriptisto: grafikisto{bert_embeddings}, kritikisto{bert_embeddings}, muzikisto{bert_embeddings}, verkisto{wikt_io}
+- skultisto: grafikisto{bert_embeddings}, skulptaĵoj{bert_embeddings}, skulptisto{bert_embeddings,wikt_io}
+- societo: asociita{bert_embeddings}, kapeleto{bert_embeddings}, societo{bert_embeddings,wikt_eo}
 - soldar: luti{fr_wiktionary_meaning,wikt_io}, soldi{wikt_io}
+- sorgo: lango{bert_embeddings}, rompo{bert_embeddings}, strio{bert_embeddings}, zorgo{fr_wiktionary_meaning}
+- specaleso: fako{fr_wiktionary_meaning}, profesio{bert_embeddings}, sorto{bert_embeddings}, speco{bert_embeddings}
+- speco: specio{bert_embeddings,wikt_io}, speco{bert_embeddings,wikt_io}
 - spektaklo: spektaklo{fr_wiktionary_meaning,wikt_io}, spektindaĵo{wikt_io}
+- spozino: edzino{wikt_io}, filino{bert_embeddings}, fratino{bert_embeddings}, frato{bert_embeddings}
 - spozo: geedzo{wikt_io}, spozo{fr_wiktionary_meaning,wikt_io}
+- spozulo: edzo{wikt_io}, filino{bert_embeddings}, fratino{bert_embeddings}, frato{bert_embeddings}
+- stadio: stadiono{bert_embeddings,wikt_io}, stadiumo{wikt_io}
 - stando: farto{wikt_io}, ŝtato{fr_wiktionary_meaning}
 - stertorar: grumbli{fr_wiktionary_meaning}, stertori{wikt_io}
+- stipito: benito{bert_embeddings}, komputis{bert_embeddings}, tialo{bert_embeddings}, trunketo{fr_wiktionary_meaning}
+- stopilo: fenila{bert_embeddings}, korko{fr_wiktionary_meaning}, kortumo{bert_embeddings}, nonila{bert_embeddings}
 - strandar: fiaski{fr_wiktionary_meaning}, grundi{wikt_io}
+- striko: brako{bert_embeddings}, striko{bert_embeddings,fr_wiktionary_meaning}, strio{bert_embeddings}
+- su: si{wikt_io}, suden{bert_embeddings}, sumo{bert_embeddings}, supre{bert_embeddings}
+- sub: pod{bert_embeddings}, sub{bert_embeddings,fr_wiktionary_meaning,wikt_io}, subteni{bert_embeddings}
+- submara: suba{bert_embeddings}, submara{wikt_io}, supermara{bert_embeddings}, surbaze{bert_embeddings}
 - sukoza: bongusta{fr_wiktionary_meaning}, sukulento{wikt_io}
+- sunala: formala{bert_embeddings}, giganta{bert_embeddings}, kontinenta{bert_embeddings}, suna{wikt_io}
+- super: super{bert_embeddings,wikt_io}, supera{bert_embeddings}, supermara{bert_embeddings}
+- sur: auf{bert_embeddings}, on{bert_embeddings}, sur{bert_embeddings,wikt_io}
+- suvereneso: demokratia{bert_embeddings}, libereco{bert_embeddings}, sultano{bert_embeddings}, suvereneco{wikt_io}
+- ta: tasko{bert_embeddings}, te{bert_embeddings}, tio{wikt_eo}, to{bert_embeddings}
+- tamen: helpas{bert_embeddings}, praktike{bert_embeddings}, tamen{bert_embeddings,fr_wiktionary_meaning,wikt_io}
+- tekto: forto{bert_embeddings}, kreto{bert_embeddings}, peto{bert_embeddings}, tegmento{fr_wiktionary_meaning}
+- templo: kastelo{bert_embeddings}, monumento{bert_embeddings}, templo{bert_embeddings,fr_wiktionary_meaning}
+- tenar: arton{bert_embeddings}, dennis{bert_embeddings}, teni{fr_wiktionary_meaning}, tial{bert_embeddings}
+- terpomo: malvarmo{bert_embeddings}, terpomo{fr_wiktionary_meaning}, teruelo{bert_embeddings}, varmo{bert_embeddings}
+- timo: limo{bert_embeddings}, pio{bert_embeddings}, timo{bert_embeddings,fr_wiktionary_meaning}
+- tolo: alo{bert_embeddings}, lado{fr_wiktionary_meaning}, tono{bert_embeddings}, toro{bert_embeddings}
+- torso: forstado{bert_embeddings}, korno{bert_embeddings}, tiso{bert_embeddings}, torso{fr_wiktionary_meaning}
+- trabo: trabo{fr_wiktionary_meaning}, trako{bert_embeddings}, tramo{bert_embeddings}, tubo{bert_embeddings}
+- tradicionala: klasika{bert_embeddings}, populara{bert_embeddings}, tradicia{wikt_io}, tradicio{bert_embeddings}
+- tradukar: tradukado{bert_embeddings}, traduki{fr_wiktionary_meaning}, tradukis{bert_embeddings}, tradukisto{bert_embeddings}
+- tradukuro: tradukado{bert_embeddings}, traduki{fr_wiktionary_meaning}, tradukisto{bert_embeddings}, tradukita{bert_embeddings}
+- trans: trans{bert_embeddings,wikt_io}, transdonis{bert_embeddings}, transiris{bert_embeddings}
+- tresto: busto{bert_embeddings}, groto{bert_embeddings}, kulto{bert_embeddings}, stablo{fr_wiktionary_meaning}
+- tri: tri{bert_embeddings,fr_wiktionary_meaning,wikt_io}, trian{bert_embeddings}, tribo{bert_embeddings}
+- triesma: asembleo{bert_embeddings}, escepto{bert_embeddings}, tria{wikt_eo}, ĉampiono{bert_embeddings}
 - trista: malgaja{wikt_io}, melankolia{wikt_io}, morna{fr_wiktionary_meaning}, trista{wikt_io}
+- tro: tre{bert_embeddings}, tro{bert_embeddings,fr_wiktionary_meaning,wikt_io}, troa{bert_embeddings}
+- trumpeto: gitaristo{bert_embeddings}, kapeleto{bert_embeddings}, poetino{bert_embeddings}, trumpeto{fr_wiktionary_meaning}
+- tu: ci{wikt_eo,wikt_io}, vi{wikt_eo}
+- tubo: kurbo{bert_embeddings}, tribo{bert_embeddings}, tubo{bert_embeddings,fr_wiktionary_meaning}
+- turismo: politiko{bert_embeddings}, turisma{bert_embeddings}, turismo{bert_embeddings,wikt_io}
+- ula: iu{wikt_io}, plata{bert_embeddings}, una{bert_embeddings}, une{bert_embeddings}
+- ulo: hugo{bert_embeddings}, io{wikt_eo,wikt_io}, kapablis{bert_embeddings}, kapo{bert_embeddings}
+- ulu: iu{wikt_io}, loka{bert_embeddings}, unu{bert_embeddings}, unusola{bert_embeddings}
+- unesma: anoncis{bert_embeddings}, unesko{bert_embeddings}, unua{wikt_io}, unuigita{bert_embeddings}
+- vakanco: ferioj{fr_wiktionary_meaning}, nuanco{bert_embeddings}, peco{bert_embeddings}, sklaveco{bert_embeddings}
 - veko: krano{fr_wiktionary_meaning}, vekiĝo{wikt_io}
+- vereso: grenejo{bert_embeddings}, realigo{bert_embeddings}, sekureca{bert_embeddings}, vero{fr_wiktionary_meaning}
+- vice: absoluta{bert_embeddings}, anstataŭ{wikt_eo,wikt_io}, torre{bert_embeddings}, vasta{bert_embeddings}
+- violentoza: facila{bert_embeddings}, perforta{wikt_io}, populara{bert_embeddings}, stabila{bert_embeddings}
 - vizelo: mustelo{wikt_io}, vizelo{fr_wiktionary_meaning}, vizono{wikt_io}
-- vortaro: vortaro{fr_wiktionary_meaning,wikt_io}, vortoprovizo{wikt_io}
+- vortaro: instruisto{bert_embeddings}, traduko{bert_embeddings}, vortaro{bert_embeddings,fr_wiktionary_meaning,wikt_io}, vortoprovizo{wikt_io}
+- vortolibro: vortaro{wikt_eo,wikt_io}, vortoprovizo{wikt_io}
 - voyo: trako{wikt_io}, vojo{fr_wiktionary_meaning,wikt_io}
+- ya: ja{bert_embeddings,wikt_io}, jare{bert_embeddings}, jaron{bert_embeddings}
+- ye: en{bert_embeddings}, ene{bert_embeddings}, je{wikt_io}, ke{bert_embeddings}
+- yen: jen{wikt_io}, klara{bert_embeddings}, loka{bert_embeddings}, real{bert_embeddings}
+- yunino: amikino{bert_embeddings}, diino{bert_embeddings}, knabino{fr_wiktionary_meaning}, virino{bert_embeddings}
 - yuro: juro{fr_wiktionary_meaning}, rajto{wikt_io}
+- zero: nul{wikt_eo}, nulo{wikt_io}
