@@ -372,8 +372,11 @@ def build_bidix(entries):
         epo = eo_terms[0]
         
         raw_par = (e.get("morphology") or {}).get("paradigm")
-        
-        key = (lm, epo)
+
+        # Key includes paradigm so noun/adj/verb entries for the same (lemma, epo) pair
+        # are kept as separate bidix entries rather than collapsed — avoids losing e.g.
+        # kat<n>→kato<n> when a noisy adj entry with the same translation wins priority.
+        key = (lm, epo, raw_par or '')
         if key not in best_bidix_entries:
             best_bidix_entries[key] = e
         else:
@@ -441,8 +444,9 @@ def build_bidix(entries):
         p = ET.SubElement(en, "p")
 
         if not raw_par:
-            logging.warning("No paradigm for %s (pos=%s) — defaulting to o__n", clean_lm, pos)
-            raw_par = "o__n"
+            logging.debug("No paradigm for %s (pos=%s) — skipping bidix entry", clean_lm, pos)
+            section.remove(en)
+            continue
 
         ido_tag = map_s_tag(raw_par, pos)
 
