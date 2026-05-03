@@ -29,6 +29,24 @@ _PREP_ART_EPO: Dict[str, str] = {
 _KATEGORIO_RE = re.compile(r'\s*Kategorio:[^\s]+.*$', re.IGNORECASE)
 
 
+# Priority used when a lemma has multiple candidate entries (different sources/POS).
+# Higher = preferred. Closed-class paradigms beat content-class because function
+# words (la, kun, di, me, ke, ...) are commonly polluted by junk a__adj/o__n
+# entries from BERT/fr_wiktionary alignments and would otherwise lose to them.
+def _paradigm_priority(p: str) -> int:
+    if p in ('prn', '__prn'):
+        return 10
+    if p in ('__pr', '__det', '__cnjcoo', '__cnjsub', 'prep_art', '__num'):
+        return 8
+    if p in ('vblex', 'ar__vblex', 'adj', 'a__adj', 'adv', 'e__adv'):
+        return 5
+    if p in ('pr', 'det', 'num', 'cnjcoo', 'cnjsub'):
+        return 3
+    if p in ('o__n', 'n') or not p:
+        return 1
+    return 2
+
+
 def _clean_translation_term(raw: str) -> str:
     """Strip arrow artifacts and Kategorio references from a translation term."""
     term = clean_lemma(raw).strip()
@@ -180,18 +198,7 @@ def build_monodix(entries):
             best_entries[lm] = e
         else:
             old_par = (best_entries[lm].get("morphology") or {}).get("paradigm")
-            # Priority: prn > vblex/adj > others > o__n or None
-            def get_priority(p):
-                if p == 'prn': return 10
-                if p in ('vblex', 'ar__vblex', 'adj', 'a__adj', 'adv', 'e__adv'): return 5
-                if p in ('pr', 'det', 'num', 'cnjcoo', 'cnjsub'): return 3
-                if p in ('o__n', 'n') or not p: return 1
-                return 2
-            
-            if lm == 'me':
-                logging.info(f"DEBUG: best_entries comparison for 'me'. old_par={old_par} (pri={get_priority(old_par)}), new_par={raw_par} (pri={get_priority(raw_par)})")
-
-            if get_priority(raw_par) > get_priority(old_par):
+            if _paradigm_priority(raw_par) > _paradigm_priority(old_par):
                 best_entries[lm] = e
 
     # Sort and collect entries for the section
@@ -381,13 +388,7 @@ def build_bidix(entries):
             best_bidix_entries[key] = e
         else:
             old_par = (best_bidix_entries[key].get("morphology") or {}).get("paradigm")
-            def get_priority(p):
-                if p == 'prn': return 10
-                if p in ('vblex', 'ar__vblex', 'adj', 'a__adj', 'adv', 'e__adv'): return 5
-                if p in ('pr', 'det', 'num', 'cnjcoo', 'cnjsub'): return 3
-                if p in ('o__n', 'n') or not p: return 1
-                return 2
-            if get_priority(raw_par) > get_priority(old_par):
+            if _paradigm_priority(raw_par) > _paradigm_priority(old_par):
                 best_bidix_entries[key] = e
 
     # FINAL deduplication pass for bidix
