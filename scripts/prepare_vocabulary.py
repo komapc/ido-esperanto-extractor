@@ -182,7 +182,10 @@ def _infer_paradigm(entry: Dict[str, Any]) -> Optional[str]:
     if pos in ("adjective", "adj"):
         return "a__adj"
     if pos in ("adverb", "adv"):
-        return "e__adv"
+        # Adverb lemmas in Ido normally end in -e (e__adv strips it).
+        # Irregular invariant adverbs (nun, maxim, plu, kam, min, ja, ...)
+        # need the bare-form __adv paradigm so lt-proc recognizes them.
+        return "e__adv" if lower.endswith("e") else "__adv"
     if pos in ("verb", "vblex"):
         return "ar__vblex"
     if pos in ("preposition", "pr"):
@@ -195,8 +198,12 @@ def _infer_paradigm(entry: Dict[str, Any]) -> Optional[str]:
         return "__det"
     if pos in ("pronoun", "prn"):
         return "__prn"
-    if pos in ("interjection", "ij", "numeral", "num"):
-        return "o__n"
+    if pos in ("interjection", "ij"):
+        return "__ij"
+    if pos in ("numeral", "num"):
+        return "num"
+    if pos in ("prep_art", "prep+art"):
+        return "__prep_art"
     if lower.endswith("a"):
         return "a__adj"
     if lower.endswith("e"):

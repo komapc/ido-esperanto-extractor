@@ -326,10 +326,19 @@ def extract_pos(section: str) -> Optional[str]:
         ("[[kategorio:konjuncioni", "cnjcoo"),
         ("[[kategorio:prepozicioni", "pr"),
         ("[[kategorio:pronomi", "prn"),
+        ("[[kategorio:numeri", "num"),     # numerals (du, un, tri, kin, sis, sep, ok, non, dek, cent, mil, ...)
+        ("[[kategorio:artikli", "det"),    # articles
     ]
     for needle, p in cat_hints:
         if needle in cat_text:
             return p
+
+    # 3.5) Detect prep+article contractions (dal=da+la, del=de+la, dil=di+la,
+    # el=e+la, sil=si+la). io.wiktionary describes these as "kompunda formo
+    # de la prepoziciono X e l'artiklo la" — co-occurrence of "kompunda" with
+    # "prepoziciono" + "artiklo" is the signature.
+    if 'kompunda' in cat_text and 'artiklo' in cat_text and ('prepoziciono' in cat_text or 'prepoziciona' in cat_text):
+        return 'prep_art'
 
     # 4) Semantiko: line — scan for [[pos_keyword]] in the semantics line
     # e.g. "*Semantiko: [[konjunciono]] [[questionala]]" → cnjcoo
@@ -346,6 +355,8 @@ def extract_pos(section: str) -> Optional[str]:
             "verbo": "vblex",
             "adjektivo": "adj",
             "artiklo": "det",
+            "numero": "num", "numerala": "num", "nombro": "num",
+            "partikulo": "ij",  # particles (kam, etc.) — closest to interjection
         }
         for keyword, pos_tag in SEMANTIKO_POS.items():
             if keyword in semantiko_text:

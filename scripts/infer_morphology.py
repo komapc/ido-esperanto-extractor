@@ -59,13 +59,17 @@ def infer_paradigm(entry: Dict[str, Any]) -> Optional[str]:
     if (lower_lemma.endswith("ar") or lower_lemma.endswith("ir")) and not lemma[:1].isupper():
         return "ar__vblex"
 
-    # POS-informed rules (accept both verbose and short-form tags)
+    # POS-informed rules (accept both verbose and short-form tags).
+    # For inflection-shaped paradigms (o__n, a__adj, e__adv, ar__vblex), check
+    # that the lemma actually has the expected ending; if not, fall back to the
+    # invariant paradigm (__adv, __pr, etc.) so short irregular function words
+    # like 'nun', 'maxim', 'plu', 'kam', 'min' get properly recognized.
     if pos in ("noun", "n"):
-        return "o__n"
+        return "o__n"  # all Ido nouns end in -o; no invariant noun paradigm
     if pos in ("adjective", "adj"):
         return "a__adj"
     if pos in ("adverb", "adv"):
-        return "e__adv"
+        return "e__adv" if lower_lemma.endswith("e") else "__adv"
     if pos in ("verb", "vblex"):
         return "ar__vblex"
     if pos in ("preposition", "pr"):
@@ -78,8 +82,12 @@ def infer_paradigm(entry: Dict[str, Any]) -> Optional[str]:
         return "__det"
     if pos in ("pronoun", "prn"):
         return "__prn"
-    if pos in ("interjection", "ij", "numeral", "num"):
-        return "o__n"
+    if pos in ("interjection", "ij"):
+        return "__ij"
+    if pos in ("numeral", "num"):
+        return "num"
+    if pos in ("prep_art", "prep+art"):
+        return "__prep_art"
 
     # Heuristic fallback by endings
     if lower_lemma.endswith("a"):
