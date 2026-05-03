@@ -36,7 +36,7 @@ _KATEGORIO_RE = re.compile(r'\s*Kategorio:[^\s]+.*$', re.IGNORECASE)
 def _paradigm_priority(p: str) -> int:
     if p in ('prn', '__prn'):
         return 10
-    if p in ('__pr', '__det', '__cnjcoo', '__cnjsub', 'prep_art', '__prep_art', '__num', '__adv', '__ij'):
+    if p in ('__pr', '__det', '__cnjcoo', '__cnjsub', 'prep_art', '__prep_art', '__num', 'num', '__adv', '__ij'):
         return 8
     if p in ('vblex', 'ar__vblex', 'adj', 'a__adj', 'adv', 'e__adv'):
         return 5
@@ -224,7 +224,9 @@ def build_monodix(entries):
         par = raw_par
         if raw_par == "adv": par = "__adv"
         elif raw_par == "adj": par = "a__adj"
-        elif raw_par in {"n", "num", "ij"}: par = "o__n"
+        elif raw_par == "num": par = "num"  # numerals: invariant, no inflection paradigm
+        elif raw_par == "ij": par = "__ij"  # interjections: invariant
+        elif raw_par == "n": par = "o__n"
         elif raw_par == "vblex": par = "ar__vblex"
         elif raw_par == 'prep_art': pass
         elif raw_par in {"pr", "det", "prn", "cnjcoo", "cnjsub", "prep", "conj", "article"}:
