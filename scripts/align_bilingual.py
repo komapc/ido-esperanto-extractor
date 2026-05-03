@@ -8,6 +8,36 @@ from typing import Any, Dict, Iterable, List, Tuple
 from _common import read_json, write_json, configure_logging
 
 
+def _io_pos_class(lemma: str) -> str | None:
+    l = (lemma or "").lower()
+    if not l:
+        return None
+    if l.endswith("ar") or l.endswith("ir"):
+        return "v"
+    if l.endswith("o"):
+        return "n"
+    if l.endswith("a"):
+        return "adj"
+    if l.endswith("e"):
+        return "adv"
+    return None
+
+
+def _eo_pos_class(lemma: str) -> str | None:
+    l = (lemma or "").lower()
+    if not l:
+        return None
+    if l.endswith("i"):
+        return "v"
+    if l.endswith("o"):
+        return "n"
+    if l.endswith("a"):
+        return "adj"
+    if l.endswith("e"):
+        return "adv"
+    return None
+
+
 def identical_form_heuristic(io_entries: List[Dict[str, Any]], eo_entries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     # Build index by lemma+pos for quick lookup
     def index_by_lemma_pos(entries: List[Dict[str, Any]]) -> Dict[Tuple[str, str], Dict[str, Any]]:
@@ -178,13 +208,22 @@ def align(io_path: Path, eo_path: Path, out_path: Path, wiki_path: Path | None =
         except Exception:
             via_en_pairs = []
         added_via_en = 0
+        dropped_pos_mismatch = 0
         for pair in via_en_pairs or []:
-            io_term = pair.get('io')
-            eo_term = pair.get('eo')
-            via_word = pair.get('via')
-            confidence = pair.get('confidence', 0.8)
-            
+            io_term = pair.get('lemma_io') or pair.get('io')
+            eo_term = pair.get('lemma_eo') or pair.get('eo')
+            prov0 = (pair.get('provenance') or [{}])[0]
+            sense0 = (pair.get('senses') or [{}])[0]
+            tr0 = (sense0.get('translations') or [{}])[0]
+            via_word = pair.get('via') or prov0.get('page')
+            confidence = pair.get('confidence', tr0.get('confidence', 0.8))
+
             if not io_term or not eo_term:
+                continue
+
+            ip, ep = _io_pos_class(io_term), _eo_pos_class(eo_term)
+            if ip is not None and ep is not None and ip != ep:
+                dropped_pos_mismatch += 1
                 continue
             
             item = {
@@ -211,7 +250,7 @@ def align(io_path: Path, eo_path: Path, out_path: Path, wiki_path: Path | None =
             }
             aligned.append(item)
             added_via_en += 1
-        logging.info("Added %d via-English IO↔EO pairs", added_via_en)
+        logging.info("Added %d via-English IO↔EO pairs (dropped %d for POS-ending mismatch)", added_via_en, dropped_pos_mismatch)
 
     write_json(out_path, aligned)
     logging.info("Wrote %s (%d aligned items)", out_path, len(aligned))
