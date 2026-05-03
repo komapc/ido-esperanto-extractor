@@ -81,6 +81,22 @@ def _normalize(entries: List[Dict[str, Any]]) -> Tuple[List[Dict[str, Any]], Dic
                 cleaned_senses.append(sense)
         e["senses"] = cleaned_senses
 
+        # Case-fold common-noun lemmas: when the harvested Ido lemma starts with
+        # uppercase but the EO translation is lowercase, the entry is a common
+        # noun stored capitalized (e.g. Wiktionary article titles "Interreto").
+        # Lowercase the lemma so lt-proc recognizes mid-sentence usage.
+        # (Proper nouns translate to capitalized EO, so they're left alone.)
+        lm = e["lemma"]
+        if lm and lm[:1].isupper():
+            eo_terms = [
+                (tr.get("term") or "")
+                for s in e["senses"]
+                for tr in s.get("translations", [])
+                if tr.get("lang") == "eo"
+            ]
+            if eo_terms and all(t and t[:1].islower() for t in eo_terms):
+                e["lemma"] = lm[:1].lower() + lm[1:]
+
     # Pass 2: filter invalid
     valid = []
     for e in entries:

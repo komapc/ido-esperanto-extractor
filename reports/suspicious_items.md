@@ -4,22 +4,15 @@
 - bad_schema: 0
 - bad_lemma: 0
 - wiki_low_freq: 0
-- all_tr_removed: 752
-- tr_removed: 616
+- all_tr_removed: 753
+- tr_removed: 617
 
 ## Examples
 - bad_tr_eo: Anciena Testamento -> Malnova Testamento
-- bad_tr_eo: Aprilatrapito -> aprila ŝerco
-- bad_tr_eo: Aprilatrapo -> aprila ŝerco
-- bad_tr_eo: Araba -> la araba
 - bad_tr_eo: Araba maro -> Araba Maro
-- bad_tr_eo: Arabiana -> la araba
 - bad_tr_eo: Arktika oceano -> Arkta Oceano
 - bad_tr_eo: Arktika oceana -> Arkta Oceano
-- bad_tr_eo: Avogadro-fixo -> konstanto de Avogadro
-- bad_tr_eo: Avogadro-nombro -> konstanto de Avogadro
 - bad_tr_eo: Baltika Maro -> Balta Maro
-- bad_tr_eo: Bengala tigro -> bengalia tigro
 - bad_tr_eo: Bielorusiano -> Belorusa lingvo
 - bad_tr_eo: Bielorusiana -> Belorusa lingvo
 - bad_tr_eo: Blanka Domo -> Blanka Domo
@@ -32,28 +25,20 @@
 - bad_tr_eo: Gaza-strio -> Gaza Sektoro
 - bad_tr_eo: Gaza-strio -> Gazaa Sektoro
 - bad_tr_eo: Germana Imperio -> Germano Regno
-- bad_tr_eo: Gotika linguo -> gota lingvo
 - bad_tr_eo: Granda Urso -> Granda Ursino
-- bad_tr_eo: Gregoriala kalendario -> gregoria kalendaro
 - bad_tr_eo: Gulfo di Bengal -> Bengala Golfo
-- bad_tr_eo: Hebrea -> la hebrea lingvo
 - bad_tr_eo: Internaciona fonetik alfabeto -> Internacia Fonetika Alfabeto
 - bad_tr_eo: Internacionala Judicieyo -> Internacia Kortumo
 - bad_tr_eo: Ioannes -> Evangelio laŭ Johano
 - bad_tr_eo: Ioannes|m -> Evangelio laŭ Johano
-- bad_tr_eo: Japoniano -> japana lingvo
 - bad_tr_eo: Kanto -> Alta Kanto de Salomono
 - bad_tr_eo: Kanto|m -> Alta Kanto de Salomono
 - bad_tr_eo: Katolik eklesio -> Katolika Eklesio
-- bad_tr_eo: Klingona linguo -> klingona lingvo
 - bad_tr_eo: Kolda milito -> Malvarma milito
-- bad_tr_eo: Kroatiana -> kroata lingvo
-- bad_tr_eo: Kroatiano -> kroata lingvo
 - bad_tr_eo: L'Internacionalo -> La Internacio
 - bad_tr_eo: Lamenti -> Libro de Lamentoj
 - bad_tr_eo: Lasta Supeo -> Lasta Vespermanĝo
 - bad_tr_eo: Lasta Supeo -> Sankta Vespermanĝo
-- bad_tr_eo: Latinal alfabeto -> latina alfabeto
 - bad_tr_eo: Mondial organizuro pri komerco -> Monda Organizaĵo pri Komerco
 - bad_tr_eo: Mortinta Maro -> Morta Maro
 - bad_tr_eo: Murego di Berlin -> Berlina muro
@@ -73,20 +58,16 @@
 - bad_tr_eo: Reda Maro -> Ruĝa Maro
 - bad_tr_eo: Reda Miluno -> Ruĝa Krescento
 - bad_tr_eo: Republiko Texas -> Respubliko Teksaso
-- bad_tr_eo: Roma ne konstruktesis dum un dio -> ne en unu tago elkreskis Kartago
 - bad_tr_eo: Ruda Placo -> Ruĝa Placo
 - bad_tr_eo: Rusa imperio -> Rusia Imperio
 - bad_tr_eo: Tropiko di Kankro -> Tropiko de Kankro
 - bad_tr_eo: Tropiko di Kaprikorno -> Tropiko de Kaprikorno
 - bad_tr_eo: Turmo di London -> Turo de Londono
-- bad_tr_eo: Unesma Mondo-Milito -> unua mondmilito
 - bad_tr_eo: Unionita Araba Republiko -> Unuiĝinta Araba Respubliko
 - bad_tr_eo: Unionita Nacioni -> Unuiĝintaj Nacioj
 - bad_tr_eo: Unionita Rejio -> Unuiĝinta Reĝlando
 - bad_tr_eo: Unionita Rejio -> Unuiĝinta Regno
 - bad_tr_eo: Venn-diagramo -> Venn-a diagramo
-- bad_tr_eo: Xosa-linguo -> kosa lingvo
-- bad_tr_eo: Yidisha -> la jida lingvo
 - bad_tr_eo: a via aleo -> en loko
 - bad_tr_eo: a via aleo -> iru!
 - bad_tr_eo: absoluta zero -> absoluta nulo
@@ -109,8 +90,12 @@
 - bad_tr_eo: apene -> apenaǔ
 - bad_tr_eo: aplaudar -> aplaǔdi
 - bad_tr_eo: aplikar -> sin proponi por
+- bad_tr_eo: aprilatrapito -> aprila ŝerco
+- bad_tr_eo: aprilatrapo -> aprila ŝerco
 - bad_tr_eo: apud -> kune kun
 - bad_tr_eo: arab -> la araba
+- bad_tr_eo: araba -> la araba
+- bad_tr_eo: arabiana -> la araba
 - bad_tr_eo: arakid-oleo -> arakida oleo
 - bad_tr_eo: archo di kontrato -> Kesto de Interligo
 - bad_tr_eo: archo di kontrato -> Arkeo de Interligo
@@ -123,6 +108,8 @@
 - bad_tr_eo: autoryuro -> aŭtora rajto
 - bad_tr_eo: avan -> antaŭ ol
 - bad_tr_eo: avan -> antaŭ kiam
+- bad_tr_eo: avogadro-fixo -> konstanto de Avogadro
+- bad_tr_eo: avogadro-nombro -> konstanto de Avogadro
 - bad_tr_eo: aymarana linguo -> Ajmara lingvo
 - bad_tr_eo: ba -> ba!
 - bad_tr_eo: balnar -> sin bani
@@ -130,6 +117,7 @@
 - bad_tr_eo: basigar -> malaltigi mallevi
 - bad_tr_eo: bavar -> pogute versi
 - bad_tr_eo: bazolineo -> baza linio
+- bad_tr_eo: bengala tigro -> bengalia tigro
 - bad_tr_eo: bernaklo -> kolringa ansero
 - bad_tr_eo: betravo -> ruĝa beto
 - bad_tr_eo: betravo -> ruĝa beto
@@ -283,14 +271,17 @@
 - bad_tr_eo: glezuro -> diafana farbo
 - bad_tr_eo: globala koldigo -> tutmonda malvarmiĝo
 - bad_tr_eo: globala varmesko -> tutmonda varmiĝo
+- bad_tr_eo: gotika linguo -> gota lingvo
 - bad_tr_eo: gratitudar -> esti dankema al
 - bad_tr_eo: gravitado -> gravitada ondo
+- bad_tr_eo: gregoriala kalendario -> gregoria kalendaro
 - bad_tr_eo: grosa -> dika kaj longa
 - bad_tr_eo: gruvar -> ĝui ritman muzikon
 - bad_tr_eo: hano -> maskla birdo
 - bad_tr_eo: hano -> virseksa birdo
 - bad_tr_eo: hanulo -> maskla birdo
 - bad_tr_eo: hanulo -> virseksa birdo
+- bad_tr_eo: hebrea -> la hebrea lingvo
 - bad_tr_eo: helpar -> help!
 - bad_tr_eo: helpo -> help!
 - bad_tr_eo: hiere -> hieraǔ
@@ -339,6 +330,7 @@
 - bad_tr_eo: irgube -> ie ajn
 - bad_tr_eo: itere -> ankoraŭ unufoje
 - bad_tr_eo: ja lore -> ekde tiam
+- bad_tr_eo: japoniano -> japana lingvo
 - bad_tr_eo: jigolo -> vira amoristo
 - bad_tr_eo: jovdio -> ĵaǔdo
 - bad_tr_eo: ka ne? -> ĉu ne?
@@ -359,6 +351,7 @@
 - bad_tr_eo: klasika muziko -> klasika muziko
 - bad_tr_eo: klinar -> parte duobligi
 - bad_tr_eo: klinar -> kruce dissolvi
+- bad_tr_eo: klingona linguo -> klingona lingvo
 - bad_tr_eo: kolda milito -> malvarma milito
 - bad_tr_eo: kolombulo -> maskla birdo
 - bad_tr_eo: kolombulo -> virseksa birdo
@@ -368,6 +361,9 @@
 - bad_tr_eo: krak -> krak!
 - bad_tr_eo: kreola linguo -> kreola lingvo
 - bad_tr_eo: kreskodisko -> alkreska disko
+- bad_tr_eo: kroatiana -> kroata lingvo
+- bad_tr_eo: kroatiano -> kroata lingvo
+- bad_tr_eo: kroatia -> kroata lingvo
 - bad_tr_eo: krokodilo -> language gathering
 - bad_tr_eo: kroso -> episkopa bastono
 - bad_tr_eo: kroso -> episkopa bastono
@@ -382,6 +378,7 @@
 - bad_tr_eo: la -> des + comp
 - bad_tr_eo: laboristaro -> laborista klaso
 - bad_tr_eo: laktovoyo -> Lakta Vojo
+- bad_tr_eo: latinal alfabeto -> latina alfabeto
 - bad_tr_eo: le -> ju + comp
 - bad_tr_eo: le -> des + comp
 - bad_tr_eo: locionar -> lavi per tualetakvo
@@ -546,6 +543,7 @@
 - bad_tr_eo: revoluciona kalendario -> Franca respublika kalendaro
 - bad_tr_eo: reza -> proksima al surfaco
 - bad_tr_eo: rogo -> brulligno por kremacio
+- bad_tr_eo: roma ne konstruktesis dum un dio -> ne en unu tago elkreskis Kartago
 - bad_tr_eo: ronda tablo -> Ronda Tablo
 - bad_tr_eo: saciar -> satigi minimume
 - bad_tr_eo: sedopapero -> klozeta papero
@@ -610,6 +608,7 @@
 - bad_tr_eo: ula -> iu ajn
 - bad_tr_eo: ula -> iom ajn
 - bad_tr_eo: ultima -> plej lasta
+- bad_tr_eo: unesma Mondo-Milito -> unua mondmilito
 - bad_tr_eo: unesma sokurso -> unua helpo
 - bad_tr_eo: urjar -> esti urĝa
 - bad_tr_eo: utiligar -> plibonigi la uzadon
@@ -623,4 +622,6 @@
 - bad_tr_eo: vicioza cirklo -> malvirta cirklo
 - bad_tr_eo: vigilar -> deĵori por noktogardo
 - bad_tr_eo: vu ipsa -> vi mem
+- bad_tr_eo: xosa-linguo -> kosa lingvo
+- bad_tr_eo: yidisha -> la jida lingvo
 - bad_tr_eo: zoo -> zoologia ĝardeno
