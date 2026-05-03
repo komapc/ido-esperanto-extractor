@@ -145,6 +145,19 @@
         </p>
       </e>
     </pardef>
+    <!-- Digit-form ordinals: 1ma / 16ma / 16-ma → "first" / "sixteenth"
+         Ido attaches -ma (sometimes -esma) to a numeral to form an ordinal.
+         When the base is digits, the surface form is just digit(s) + optional
+         hyphen + 'ma'. -->
+    <pardef n="num_ord_regex">
+      <e>
+        <re>[0-9]+\-?ma</re>
+        <p>
+          <l/>
+          <r><s n="num"/><s n="ord"/></r>
+        </p>
+      </e>
+    </pardef>
     <pardef n="__pr">
       <e>
         <p>

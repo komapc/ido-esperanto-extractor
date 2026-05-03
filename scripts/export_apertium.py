@@ -179,9 +179,12 @@ def build_monodix(entries):
 
 
     section = ET.SubElement(dictionary, "section", id="main", type="standard")
-    # Number passthrough: regex entry must be first in section
+    # Number passthrough: regex entries must be first in section
     _num_sec = ET.SubElement(section, "e")
     ET.SubElement(_num_sec, "par", n="num_regex")
+    # Digit-form ordinals: 1ma, 16ma, 16-ma
+    _num_ord_sec = ET.SubElement(section, "e")
+    ET.SubElement(_num_ord_sec, "par", n="num_ord_regex")
 
     # Deduplicate entries by lemma, prioritizing more specific paradigms over o__n
     best_entries = {}
