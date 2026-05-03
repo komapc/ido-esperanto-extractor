@@ -121,7 +121,15 @@ def align(io_path: Path, eo_path: Path, out_path: Path, wiki_path: Path | None =
         raise ValueError(f"eo_wikt_eo_io.json must contain a list of entries (got {type(eo_entries)})")
 
     aligned = identical_form_heuristic(io_entries, eo_entries)
-    # Pass-through: include IO→EO entries as bilingual items even without EO confirmation
+    # Pass-through: include IO→EO entries as bilingual items even without EO confirmation.
+    # Entries lacking an EO translation but having a valid Ido lemma shape and at least
+    # one non-EO translation are kept too — they contribute to monodix morphological
+    # recognition (lt-proc analysis) but are skipped by the bidix builder (which gates
+    # on EO terms). This is how words like dissendar (in io.wiktionary, no EO target)
+    # become recognizable without manual overrides.
+    _IDO_LEMMA_SHAPE = ("o", "a", "e", "ar", "ir")
+    _IDO_INFLECTION_TAILS = ("as", "is", "os", "us", "ez")  # conjugated forms — not lemmas
+    kept_no_eo = 0
     for io_e in io_entries:
         translations = []
         for s in io_e.get("senses", []) or []:
@@ -139,6 +147,30 @@ def align(io_path: Path, eo_path: Path, out_path: Path, wiki_path: Path | None =
                         "sources": sources,
                     })
         if not translations:
+            # No EO target — keep for monodix only if Ido-shaped and Wiktionary-confirmed
+            # (has at least one translation in another language).
+            lm = (io_e.get("lemma") or "").strip()
+            lower = lm.lower()
+            has_other_tr = any(
+                tr.get("lang") and tr.get("term")
+                for s in (io_e.get("senses") or [])
+                for tr in (s.get("translations") or [])
+            )
+            if not lm or not has_other_tr:
+                continue
+            if lower.endswith(_IDO_INFLECTION_TAILS):
+                continue  # conjugated form, not a lemma
+            if not lower.endswith(_IDO_LEMMA_SHAPE):
+                continue  # non-canonical lemma shape (proper-name leftovers, etc.)
+            item = {
+                "lemma": lm,
+                "pos": io_e.get("pos"),
+                "language": "io",
+                "senses": [],  # no EO target; bidix builder skips empty senses
+                "provenance": list(io_e.get("provenance", []) or []),
+            }
+            aligned.append(item)
+            kept_no_eo += 1
             continue
         item = {
             "lemma": io_e.get("lemma"),
@@ -148,6 +180,8 @@ def align(io_path: Path, eo_path: Path, out_path: Path, wiki_path: Path | None =
             "provenance": list(io_e.get("provenance", []) or []),
         }
         aligned.append(item)
+    if kept_no_eo:
+        logging.info("Kept %d Ido-only entries without EO translation (monodix-only, Wiktionary-confirmed)", kept_no_eo)
     # Include Wikipedia titles (monolingual Ido entries) so they flow downstream
     if wiki_path is not None and wiki_path.exists():
         try:

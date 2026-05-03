@@ -4,8 +4,8 @@
 - bad_schema: 0
 - bad_lemma: 0
 - wiki_low_freq: 0
-- all_tr_removed: 753
-- tr_removed: 617
+- all_tr_removed: 37870
+- tr_removed: 615
 
 ## Examples
 - bad_tr_eo: Anciena Testamento -> Malnova Testamento
@@ -14,7 +14,6 @@
 - bad_tr_eo: Arktika oceana -> Arkta Oceano
 - bad_tr_eo: Baltika Maro -> Balta Maro
 - bad_tr_eo: Bielorusiano -> Belorusa lingvo
-- bad_tr_eo: Bielorusiana -> Belorusa lingvo
 - bad_tr_eo: Blanka Domo -> Blanka Domo
 - bad_tr_eo: Blanka-Monto -> Blanka Monto
 - bad_tr_eo: Desiderius Erasmus de Rotterdam -> Erasmo de Roterdamo
@@ -363,7 +362,6 @@
 - bad_tr_eo: kreskodisko -> alkreska disko
 - bad_tr_eo: kroatiana -> kroata lingvo
 - bad_tr_eo: kroatiano -> kroata lingvo
-- bad_tr_eo: kroatia -> kroata lingvo
 - bad_tr_eo: krokodilo -> language gathering
 - bad_tr_eo: kroso -> episkopa bastono
 - bad_tr_eo: kroso -> episkopa bastono
