@@ -119,14 +119,16 @@ def infer(entries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
             return
         lower = lemma.lower()
         par = (base_entry.get("morphology") or {}).get("paradigm")
-        # noun -> adjective twin
+        # noun -> adjective twin. Lowercase the adj twin so demonym adjectives
+        # (e.g. nederlandana, italiana) match mid-sentence usage in running text;
+        # the noun form remains capitalized when the base is a proper noun.
         if lower.endswith("iano") and par == "o__n":
-            twin = lemma[:-4] + "iana"
+            twin = (lemma[:-4] + "iana").lower()
             if twin not in existing_lemmas:
                 twin_entry = {**base_entry, "lemma": twin, "pos": "adjective", "morphology": {"paradigm": "a__adj", "features": {}}}
                 add_entry(twin_entry)
         elif lower.endswith("ano") and par == "o__n":
-            twin = lemma[:-3] + "ana"
+            twin = (lemma[:-3] + "ana").lower()
             if twin not in existing_lemmas:
                 twin_entry = {**base_entry, "lemma": twin, "pos": "adjective", "morphology": {"paradigm": "a__adj", "features": {}}}
                 add_entry(twin_entry)
@@ -156,13 +158,13 @@ def infer(entries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         lemma = str(e2.get("lemma") or "")
         par2 = (e2.get("morphology") or {}).get("paradigm")
         if lemma and lemma.lower().endswith("ia") and par2 == "o__n":
-            twin = lemma + "na"  # e.g., Germania -> Germaniana
+            twin = (lemma + "na").lower()  # e.g., Germania -> germaniana
             if twin not in existing_lemmas:
                 twin_entry = {**e2, "lemma": twin, "pos": "adjective", "morphology": {"paradigm": "a__adj", "features": {}}}
                 add_entry(twin_entry)
         # Wikipedia proper noun ending with -a noun -> add -ana adjective
         if lemma and has_wikipedia_provenance(e2) and lemma.lower().endswith("a") and par2 == "o__n" and len(lemma) > 3:
-            twin = lemma + "na"
+            twin = (lemma + "na").lower()
             if twin not in existing_lemmas:
                 twin_entry = {**e2, "lemma": twin, "pos": "adjective", "morphology": {"paradigm": "a__adj", "features": {}}}
                 add_entry(twin_entry)
