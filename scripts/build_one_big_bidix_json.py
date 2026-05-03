@@ -55,11 +55,19 @@ _FUNCTION_WORD_OVERRIDES: Dict[str, Dict[str, str]] = {
 # translation quality) — out of scope here, requires either a confidence
 # threshold filter or dropping BERT-only entirely.
 _IDO_LEMMA_RE = re.compile(r'^[a-zA-Z\-]+$')
+# Verb conjugation surface forms (-as/-is/-os/-us/-ez) aren't lemmas — they're
+# inflections of -ar/-ir verbs that the morphology pipeline derives from the
+# verb root via the ar__vblex paradigm. BERT entries like 'esas → havas' are
+# wrong because esas is a conjugation, not a lemma. Capitalized forms (proper
+# nouns like 'Markus', 'Edipus') are excluded by the all-lowercase check.
+_IDO_VERB_INFLECTION_RE = re.compile(r'^[a-z]{2,}(?:as|is|os|us|ez)$')
 
 def _is_valid_ido_lemma(lm: str) -> bool:
     if not lm or len(lm) < 3:
         return False
     if not _IDO_LEMMA_RE.match(lm):
+        return False
+    if len(lm) <= 8 and _IDO_VERB_INFLECTION_RE.match(lm):
         return False
     return True
 

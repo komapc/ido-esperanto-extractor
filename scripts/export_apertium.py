@@ -243,6 +243,18 @@ def build_monodix(entries):
         # Add base entry if not seen
         if clean_lm not in global_seen_lemmas:
             stem = extract_stem(clean_lm, str(par))
+            # Defensive: skip if stem is empty AND paradigm uses suffix
+            # matching (e.g. lemma 'ar' + paradigm 'ar__vblex' yields empty
+            # stem since 'ar'[:-2] == ''). An empty-stem dix entry binds to
+            # paradigm-only paths in lt-comp's transducer, producing
+            # empty-lemma analyses for surface forms like 'esas' that match
+            # paradigm `<l>esas</l>` rules. Such entries are almost always
+            # io.wiktionary "Radiko por:" pages (morphological roots, not
+            # lemmas) — even with the parser-level filter, this keeps the
+            # dix safe against new root pages getting through.
+            _SUFFIX_PARADIGMS = {'ar__vblex', 'ir__vblex', 'o__n', 'a__adj', 'e__adv'}
+            if not stem and str(par) in _SUFFIX_PARADIGMS:
+                continue
             final_list.append({
                 'lm': clean_lm, 'stem': stem, 'par': str(par), 'raw_par': raw_par
             })
@@ -400,7 +412,41 @@ def build_bidix(entries):
     seen_bidix_keys = set()
     deduped_final_bidix = []
     # Sort by Ido lemma, then Epo lemma
-    final_list_bidix = sorted(best_bidix_entries.values(), key=lambda e: (str(e.get("lemma") or "").lower(), str(e.get("lemma") or "")))
+    # Sort by Ido lemma, with translation source quality as the tiebreaker so
+    # Wiktionary-confirmed translations come BEFORE en_wiktionary_via / BERT-
+    # only ones in the .dix file. apertium-lt-proc -b returns the first match,
+    # so the ordering matters: e.g. atmosfero had both 'atmosfero' (correct,
+    # io_wiktionary) and 'etoso' (legitimate but secondary, en_wiktionary_via)
+    # translations and 'etoso' was winning on default insertion order. Quality
+    # buckets (lower = better):
+    #   0  io_wiktionary / eo_wiktionary / fr_wiktionary_meaning / function_word_override
+    #   1  bert + wiktionary corroboration
+    #   2  en_wiktionary_via
+    #   3  bert_embeddings only
+    _LOW_QUAL = frozenset({'bert_embeddings', 'en_wiktionary_via'})
+    def _entry_quality(e):
+        sources = set()
+        for s in e.get('senses') or []:
+            for tr in s.get('translations') or []:
+                if tr.get('lang') == 'eo':
+                    sources.update(tr.get('sources') or [])
+        wikt = sources - _LOW_QUAL
+        bert = 'bert_embeddings' in sources
+        en_via = 'en_wiktionary_via' in sources
+        if wikt:
+            return 1 if bert else 0
+        if en_via:
+            return 2
+        return 3
+
+    final_list_bidix = sorted(
+        best_bidix_entries.values(),
+        key=lambda e: (
+            str(e.get("lemma") or "").lower(),
+            _entry_quality(e),
+            str(e.get("lemma") or ""),
+        ),
+    )
     
     # Process and build final XML here
     _generated_contraction_bases: set = set()
