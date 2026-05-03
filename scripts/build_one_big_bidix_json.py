@@ -36,6 +36,54 @@ _FUNCTION_WORD_OVERRIDES: Dict[str, Dict[str, str]] = {
 }
 
 
+# BERT vocab pre-filter: the source vocab includes a lot of non-Ido garbage
+# (text fragments like "(białystok),", "$28,750", "(1.1", "the", "and", and
+# loanwords from FR/PL/DE that BERT happens to embed near Ido words).
+# These produce confidently-wrong translations because BERT's nearest-neighbor
+# lookup just maps the junk lemma to its closest EO neighbor.
+#
+# Filter rules (drop the entry if the lemma fails any):
+#   - non-empty + length >= 3
+#   - only ASCII letters + hyphen (Ido orthography is plain ASCII a-z; any
+#     non-ASCII letter — é, ñ, ç, ł, ś, etc. — signals a foreign loan)
+#   - no digits, parens, quotes, $, %, /, <, >, etc.
+#
+# Note: this catches *shape* junk only (~13% of BERT vocab). The remaining
+# wrongness from the article audit (~70% of BERT-only translations are
+# semantically wrong) is in *clean-shape lemmas with bad translations*
+# (e.g. donis→domon, kartago→goya). That's a different problem (BERT
+# translation quality) — out of scope here, requires either a confidence
+# threshold filter or dropping BERT-only entirely.
+_IDO_LEMMA_RE = re.compile(r'^[a-zA-Z\-]+$')
+
+def _is_valid_ido_lemma(lm: str) -> bool:
+    if not lm or len(lm) < 3:
+        return False
+    if not _IDO_LEMMA_RE.match(lm):
+        return False
+    return True
+
+
+def _filter_bert_junk(entries: List[Dict[str, Any]], src_path: Path) -> List[Dict[str, Any]]:
+    """Drop BERT entries with non-Ido-shaped lemmas.
+
+    Only filters BERT source files; other sources pass through unchanged.
+    """
+    name = src_path.name
+    if 'bert' not in name.lower():
+        return entries
+    kept, dropped = [], 0
+    for e in entries:
+        lm = e.get('lemma') or ''
+        if _is_valid_ido_lemma(lm):
+            kept.append(e)
+        else:
+            dropped += 1
+    if dropped:
+        logging.info("BERT pre-filter: dropped %d/%d junk-shaped lemmas (parens, digits, non-ASCII diacritics)", dropped, len(entries))
+    return kept
+
+
 def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
     # Load and merge all input files
     entries = []
@@ -44,9 +92,11 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
             logging.info("Loading %s", path)
             data = read_json(path)
             if isinstance(data, dict):
-                entries.extend(data.get('entries', []))
+                file_entries = data.get('entries', [])
             else:
-                entries.extend(data)
+                file_entries = data
+            file_entries = _filter_bert_junk(file_entries, path)
+            entries.extend(file_entries)
         else:
             logging.warning("File not found: %s (skipping)", path)
     # Map: (lemma, pos) -> { 'lemma':.., 'pos':.., 'language':'io', 'morphology':.., 'translations': term -> set(sources), 'provenance': set(sources) }
