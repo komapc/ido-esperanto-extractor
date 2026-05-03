@@ -4,8 +4,8 @@
 - bad_schema: 0
 - bad_lemma: 0
 - wiki_low_freq: 0
-- all_tr_removed: 38068
-- tr_removed: 615
+- all_tr_removed: 37881
+- tr_removed: 590
 
 ## Examples
 - bad_tr_eo: Anciena Testamento -> Malnova Testamento
@@ -15,10 +15,8 @@
 - bad_tr_eo: Baltika Maro -> Balta Maro
 - bad_tr_eo: Bielorusiano -> Belorusa lingvo
 - bad_tr_eo: Blanka Domo -> Blanka Domo
-- bad_tr_eo: Blanka-Monto -> Blanka Monto
 - bad_tr_eo: Desiderius Erasmus de Rotterdam -> Erasmo de Roterdamo
 - bad_tr_eo: Erasmus de Rotterdam -> Erasmo de Roterdamo
-- bad_tr_eo: Erasmus de Rotterdam, Desiderius Erasmus de Rotterdam -> Erasmo de Roterdamo
 - bad_tr_eo: Europana Uniono -> Eŭropa Unio
 - bad_tr_eo: Faero -> Feroaj Insuloj
 - bad_tr_eo: Gaza-strio -> Gaza Sektoro
@@ -29,15 +27,13 @@
 - bad_tr_eo: Internaciona fonetik alfabeto -> Internacia Fonetika Alfabeto
 - bad_tr_eo: Internacionala Judicieyo -> Internacia Kortumo
 - bad_tr_eo: Ioannes -> Evangelio laŭ Johano
-- bad_tr_eo: Ioannes|m -> Evangelio laŭ Johano
 - bad_tr_eo: Kanto -> Alta Kanto de Salomono
-- bad_tr_eo: Kanto|m -> Alta Kanto de Salomono
 - bad_tr_eo: Katolik eklesio -> Katolika Eklesio
 - bad_tr_eo: Kolda milito -> Malvarma milito
 - bad_tr_eo: L'Internacionalo -> La Internacio
 - bad_tr_eo: Lamenti -> Libro de Lamentoj
-- bad_tr_eo: Lasta Supeo -> Lasta Vespermanĝo
 - bad_tr_eo: Lasta Supeo -> Sankta Vespermanĝo
+- bad_tr_eo: Lasta Supeo -> Lasta Vespermanĝo
 - bad_tr_eo: Mondial organizuro pri komerco -> Monda Organizaĵo pri Komerco
 - bad_tr_eo: Mortinta Maro -> Morta Maro
 - bad_tr_eo: Murego di Berlin -> Berlina muro
@@ -64,11 +60,11 @@
 - bad_tr_eo: Turmo di London -> Turo de Londono
 - bad_tr_eo: Unionita Araba Republiko -> Unuiĝinta Araba Respubliko
 - bad_tr_eo: Unionita Nacioni -> Unuiĝintaj Nacioj
-- bad_tr_eo: Unionita Rejio -> Unuiĝinta Reĝlando
 - bad_tr_eo: Unionita Rejio -> Unuiĝinta Regno
+- bad_tr_eo: Unionita Rejio -> Unuiĝinta Reĝlando
 - bad_tr_eo: Venn-diagramo -> Venn-a diagramo
-- bad_tr_eo: a via aleo -> en loko
 - bad_tr_eo: a via aleo -> iru!
+- bad_tr_eo: a via aleo -> en loko
 - bad_tr_eo: absoluta zero -> absoluta nulo
 - bad_tr_eo: acento -> diakrita signo
 - bad_tr_eo: achento -> diakrita signo
@@ -76,7 +72,6 @@
 - bad_tr_eo: adhike -> ĉi tien
 - bad_tr_eo: adhike -> ĉi tie
 - bad_tr_eo: adio -> ĝis la revido
-- bad_tr_eo: adsur -> sur (with -n)
 - bad_tr_eo: aglonazo -> agla nazo
 - bad_tr_eo: alpikaprikorno -> alpa cerambiko
 - bad_tr_eo: altro -> io alia
@@ -84,8 +79,8 @@
 - bad_tr_eo: ambe -> kaj ... kaj
 - bad_tr_eo: amin-acido -> amina acido
 - bad_tr_eo: animalparko -> zoologia ĝardeno
-- bad_tr_eo: ante -> antaŭ ol
 - bad_tr_eo: ante -> antaŭ kiam
+- bad_tr_eo: ante -> antaŭ ol
 - bad_tr_eo: apene -> apenaǔ
 - bad_tr_eo: aplaudar -> aplaǔdi
 - bad_tr_eo: aplikar -> sin proponi por
@@ -96,17 +91,17 @@
 - bad_tr_eo: araba -> la araba
 - bad_tr_eo: arabiana -> la araba
 - bad_tr_eo: arakid-oleo -> arakida oleo
-- bad_tr_eo: archo di kontrato -> Kesto de Interligo
 - bad_tr_eo: archo di kontrato -> Arkeo de Interligo
+- bad_tr_eo: archo di kontrato -> Kesto de Interligo
+- bad_tr_eo: artifical inteligenteso -> artefarita inteligenteco, artefarita intelekto
 - bad_tr_eo: artifical inteligenteso -> artefarita inteligenteco
 - bad_tr_eo: artifical inteligenteso -> artefarita intelekto
-- bad_tr_eo: artifical inteligenteso -> artefarita inteligenteco, artefarita intelekto
 - bad_tr_eo: atmosferala polutajo -> aera poluado
 - bad_tr_eo: atomala nukleo -> atoma nukleo
 - bad_tr_eo: atomobombo -> nuklea bombo
 - bad_tr_eo: autoryuro -> aŭtora rajto
-- bad_tr_eo: avan -> antaŭ ol
 - bad_tr_eo: avan -> antaŭ kiam
+- bad_tr_eo: avan -> antaŭ ol
 - bad_tr_eo: avogadro-fixo -> konstanto de Avogadro
 - bad_tr_eo: avogadro-nombro -> konstanto de Avogadro
 - bad_tr_eo: aymarana linguo -> Ajmara lingvo
@@ -119,14 +114,14 @@
 - bad_tr_eo: bengala tigro -> bengalia tigro
 - bad_tr_eo: bernaklo -> kolringa ansero
 - bad_tr_eo: betravo -> ruĝa beto
-- bad_tr_eo: betravo -> ruĝa beto
-- bad_tr_eo: bijekto -> dissurĵeto, inversigebla funkcio, bijekcio
 - bad_tr_eo: bijekto -> inversigebla funkcio
+- bad_tr_eo: bijekto -> dissurĵeto, inversigebla funkcio, bijekcio
 - bad_tr_eo: bis! -> bis!
+- bad_tr_eo: blanka-Monto -> Blanka Monto
 - bad_tr_eo: bona apetito -> bonan apetiton
 - bad_tr_eo: bona jorno -> bonan tagon
-- bad_tr_eo: bona matino -> bonan tagon
 - bad_tr_eo: bona matino -> bonan matenon
+- bad_tr_eo: bona matino -> bonan tagon
 - bad_tr_eo: bona naskodio -> feliĉan naskiĝtagon
 - bad_tr_eo: bona nokto -> bonan nokton
 - bad_tr_eo: bona vespero -> bonan vesperon
@@ -142,13 +137,11 @@
 - bad_tr_eo: ci -> ĉi tiuj
 - bad_tr_eo: ci -> tiuj ĉi
 - bad_tr_eo: cinetik energio -> kineta energio
-- bad_tr_eo: cirkum -> ĉirkaŭ, kun (2, on one’s person)
 - bad_tr_eo: cirkum -> ĉirkaŭe en
-- bad_tr_eo: cirkume -> ĉirkaŭ, kun (2, on one’s person)
+- bad_tr_eo: cirkum -> ĉirkaŭ, kun (2, on one’s person)
 - bad_tr_eo: cirkume -> ĉirkaŭe en
+- bad_tr_eo: cirkume -> ĉirkaŭ, kun (2, on one’s person)
 - bad_tr_eo: cis -> C diesa
-- bad_tr_eo: ci|p -> ĉi tiuj
-- bad_tr_eo: ci|p -> tiuj ĉi
 - bad_tr_eo: danko -> dankon!
 - bad_tr_eo: dansantino -> dancanto dancisto virdancisto dancistino
 - bad_tr_eo: dansanto -> dancanto dancisto virdancisto dancistino
@@ -160,7 +153,6 @@
 - bad_tr_eo: dansisto -> dancanto dancisto virdancisto dancistino
 - bad_tr_eo: dansistulo -> dancanto dancisto virdancisto dancistino
 - bad_tr_eo: darnar -> ripari nur kudre
-- bad_tr_eo: de -> de, da, el (a glass of water = glaso da akvo)
 - bad_tr_eo: de lore -> ekde tiam
 - bad_tr_eo: de tempo a tempo -> de tempo al tempo
 - bad_tr_eo: debilinterago -> malforta nuklea interago
@@ -194,10 +186,11 @@
 - bad_tr_eo: detrimentar -> esti malprofita al
 - bad_tr_eo: deube -> de kie
 - bad_tr_eo: deube -> el kie
-- bad_tr_eo: di -> de, da, el (a glass of water = glaso da akvo)
 - bad_tr_eo: di -> de or with a construction using the adjectival suffix -a
 - bad_tr_eo: diablo -> diablo kategorio:eo di
 - bad_tr_eo: diafana -> travidebla #Esperanto
+- bad_tr_eo: diafano -> travidebla #Esperanto
+- bad_tr_eo: diafa -> travidebla #Esperanto
 - bad_tr_eo: diakritiko -> diakrita signo
 - bad_tr_eo: dicar -> ni diru
 - bad_tr_eo: difamar -> ataki la honoron aŭ reputacion de
@@ -226,7 +219,6 @@
 - bad_tr_eo: ed -> pro tio
 - bad_tr_eo: edc -> k.t.p
 - bad_tr_eo: edc -> k.c
-- bad_tr_eo: ek -> de, da, el (a glass of water = glaso da akvo)
 - bad_tr_eo: ek -> de or with a construction using the adjectival suffix -a
 - bad_tr_eo: ekino -> mara erinaco
 - bad_tr_eo: elektrokardiogramo -> elektrokardiografiaĵo, elektrokardiogramo
@@ -239,7 +231,7 @@
 - bad_tr_eo: er -> sufikso por indiki iun aŭ foje ion kiu regule aŭ ofte aŭ tipe faras ion
 - bad_tr_eo: eri -> sufikso por establo
 - bad_tr_eo: erste -> ne pli frue ol
-- bad_tr_eo: esar -> use the future tense -os)
+- bad_tr_eo: esar -> iĝi, esti + passive participle -ata, -ita, -ota
 - bad_tr_eo: esar -> esti + active participle -anta, -inta, -onta
 - bad_tr_eo: esk -> ek- . 2. -iĝ
 - bad_tr_eo: eskarolo -> larĝfolia endivio
@@ -247,23 +239,23 @@
 - bad_tr_eo: esm -> sufikso por indiki numer-vorton ordan
 - bad_tr_eo: etapar -> halti je etapo
 - bad_tr_eo: etuyo -> skatolo, kesto, ujo speciala por iu entenaĵo
-- bad_tr_eo: evar -> use the future tense -os)
+- bad_tr_eo: evar -> iĝi, esti + passive participle -ata, -ita, -ota
 - bad_tr_eo: evar -> esti + active participle -anta, -inta, -onta
-- bad_tr_eo: existar -> use the future tense -os)
+- bad_tr_eo: existar -> iĝi, esti + passive participle -ata, -ita, -ota
 - bad_tr_eo: existar -> esti + active participle -anta, -inta, -onta
 - bad_tr_eo: extrema -> plej fora
 - bad_tr_eo: facio -> fronta faco
 - bad_tr_eo: familionomo -> familia nomo
 - bad_tr_eo: fekifar -> fek!
-- bad_tr_eo: feko -> fekaĵo (vulgar)
 - bad_tr_eo: felica nova yaro -> feliĉan novjaron
 - bad_tr_eo: fera kurteno -> fera kurteno
 - bad_tr_eo: festar -> havi ferion
 - bad_tr_eo: fi -> fi!
 - bad_tr_eo: financala merkato -> financa merkato
 - bad_tr_eo: fratulo -> ino fratino
-- bad_tr_eo: fusilhano -> maskla birdo
 - bad_tr_eo: fusilhano -> virseksa birdo
+- bad_tr_eo: fusilhana -> virseksa birdo
+- bad_tr_eo: fusilhano -> maskla birdo
 - bad_tr_eo: genitoro -> patro aŭ patrino
 - bad_tr_eo: glata fusilo -> kartoĉa fusilo
 - bad_tr_eo: glezo -> diafana farbo
@@ -276,25 +268,22 @@
 - bad_tr_eo: gregoriala kalendario -> gregoria kalendaro
 - bad_tr_eo: grosa -> dika kaj longa
 - bad_tr_eo: gruvar -> ĝui ritman muzikon
-- bad_tr_eo: hano -> maskla birdo
 - bad_tr_eo: hano -> virseksa birdo
-- bad_tr_eo: hanulo -> maskla birdo
+- bad_tr_eo: hano -> maskla birdo
 - bad_tr_eo: hanulo -> virseksa birdo
+- bad_tr_eo: hanulo -> maskla birdo
 - bad_tr_eo: hebrea -> la hebrea lingvo
 - bad_tr_eo: helpar -> help!
 - bad_tr_eo: helpo -> help!
 - bad_tr_eo: hiere -> hieraǔ
+- bad_tr_eo: hike -> tie ĉi
 - bad_tr_eo: hike -> ĉi tien
 - bad_tr_eo: hike -> ĉi tie
-- bad_tr_eo: hike -> tie ĉi
 - bad_tr_eo: hike jacas -> ĉi tie ripozas
 - bad_tr_eo: ho -> prefikso montranta periodon en kiu ni nun vivas
-- bad_tr_eo: homocido -> murdo (murder)
 - bad_tr_eo: hueto -> arbara strigo
 - bad_tr_eo: ici -> ĉi tiuj
 - bad_tr_eo: ici -> tiuj ĉi
-- bad_tr_eo: ici|p -> ĉi tiuj
-- bad_tr_eo: ici|p -> tiuj ĉi
 - bad_tr_eo: ilu esas nekoncianta -> li estas senkonscia
 - bad_tr_eo: im -> sufikso -on
 - bad_tr_eo: imanar -> esti imanenta
@@ -309,18 +298,17 @@
 - bad_tr_eo: intelektar -> kompreni per intelekto
 - bad_tr_eo: inter altri -> inter aliaj
 - bad_tr_eo: inverse-horloje -> maldekstrume, livume, kontraŭhorloĝdirekte
-- bad_tr_eo: irez! -> en loko
 - bad_tr_eo: irez! -> iru!
-- bad_tr_eo: irga -> iom da
-- bad_tr_eo: irga -> iu ajn
-- bad_tr_eo: irga -> iom ajn
+- bad_tr_eo: irez! -> en loko
 - bad_tr_eo: irga -> iu ajn
 - bad_tr_eo: irga -> io ajn
+- bad_tr_eo: irga -> iu ajn
+- bad_tr_eo: irga -> iom da
+- bad_tr_eo: irga -> iom ajn
 - bad_tr_eo: irgaloke -> ien ajn
 - bad_tr_eo: irgaloke -> ie ajn
 - bad_tr_eo: irgatempe -> iam ajn
 - bad_tr_eo: irgekande -> kiam ajn
-- bad_tr_eo: irgo -> io ajn
 - bad_tr_eo: irgo -> io ajn
 - bad_tr_eo: irgu -> iu ajn
 - bad_tr_eo: irgu -> kiu ajn
@@ -334,9 +322,6 @@
 - bad_tr_eo: jovdio -> ĵaǔdo
 - bad_tr_eo: ka ne? -> ĉu ne?
 - bad_tr_eo: ka vu bezonas helpo? -> ĉu vi bezonas helpon?
-- bad_tr_eo: kalendario republikala, revoluciona kalendario -> Franca respublika kalendaro, Franca revolucia kalendaro
-- bad_tr_eo: kalendario republikala, revoluciona kalendario -> Franca revolucia kalendaro
-- bad_tr_eo: kalendario republikala, revoluciona kalendario -> Franca respublika kalendaro
 - bad_tr_eo: kariar -> havi karion
 - bad_tr_eo: karibuo -> norda cervo
 - bad_tr_eo: kartuno -> animaciita desegno
@@ -350,10 +335,9 @@
 - bad_tr_eo: klasika muziko -> klasika muziko
 - bad_tr_eo: klinar -> parte duobligi
 - bad_tr_eo: klinar -> kruce dissolvi
-- bad_tr_eo: klingona linguo -> klingona lingvo
 - bad_tr_eo: kolda milito -> malvarma milito
-- bad_tr_eo: kolombulo -> maskla birdo
 - bad_tr_eo: kolombulo -> virseksa birdo
+- bad_tr_eo: kolombulo -> maskla birdo
 - bad_tr_eo: komputocienco -> informa scienco
 - bad_tr_eo: konstitucala monarkio -> konstitucia monarkio
 - bad_tr_eo: koram -> en la ĉeesto de
@@ -363,7 +347,6 @@
 - bad_tr_eo: kroatiana -> kroata lingvo
 - bad_tr_eo: kroatiano -> kroata lingvo
 - bad_tr_eo: krokodilo -> language gathering
-- bad_tr_eo: kroso -> episkopa bastono
 - bad_tr_eo: kroso -> episkopa bastono
 - bad_tr_eo: kuafar -> aranĝi harojn
 - bad_tr_eo: kunesar -> kune esti
@@ -413,7 +396,6 @@
 - bad_tr_eo: me nomesas -> mi nomiĝas
 - bad_tr_eo: me nomesas -> mia nomo estas
 - bad_tr_eo: me odias tu -> mi malamas vin
-- bad_tr_eo: me regretas -> mi bedaŭras (sorrow), mi pardonpetas (remorse), pardonu (remorse)
 - bad_tr_eo: me regretas -> mi bedaŭras
 - bad_tr_eo: me regretas -> mi pardonpetas
 - bad_tr_eo: me subisas AIDS -> mi havas aidoson
@@ -458,10 +440,8 @@
 - bad_tr_eo: ovulo -> 2) ovolo
 - bad_tr_eo: pacar -> esti paca / paco
 - bad_tr_eo: papavero -> papava ruĝo
-- bad_tr_eo: parametro -> kapacito de operacio
 - bad_tr_eo: parametro -> loknombro, kapacito de operacio
-- bad_tr_eo: parametro -op -> kapacito de operacio
-- bad_tr_eo: parametro -op -> loknombro, kapacito de operacio
+- bad_tr_eo: parametro -> kapacito de operacio
 - bad_tr_eo: paravento -> antaŭa glaco
 - bad_tr_eo: partiso -> politiko partio
 - bad_tr_eo: pasajar -> esti pasaĝero
@@ -469,17 +449,17 @@
 - bad_tr_eo: pazar -> paŝi, iri en grandaj paŝoj
 - bad_tr_eo: periodala tabelo -> perioda tabelo
 - bad_tr_eo: permanar -> esti daŭra
-- bad_tr_eo: pilulo -> morgaŭa pilolo
 - bad_tr_eo: pilulo -> antikoncipa pilolo
+- bad_tr_eo: pilulo -> morgaŭa pilolo
 - bad_tr_eo: plear -> muziki per
 - bad_tr_eo: pleigar -> muziki per
-- bad_tr_eo: plu -> pli multaj
-- bad_tr_eo: plu -> pli multe da
 - bad_tr_eo: plu -> pli da
+- bad_tr_eo: plu -> pli multe da
+- bad_tr_eo: plu -> pli multaj
 - bad_tr_eo: plu bona -> pli bona
-- bad_tr_eo: plu multa -> pli multaj
-- bad_tr_eo: plu multa -> pli multe da
 - bad_tr_eo: plu multa -> pli da
+- bad_tr_eo: plu multa -> pli multe da
+- bad_tr_eo: plu multa -> pli multaj
 - bad_tr_eo: plu multe -> pli multaj
 - bad_tr_eo: plu o min -> pli aŭ malpli
 - bad_tr_eo: plump -> bang!
@@ -487,41 +467,41 @@
 - bad_tr_eo: prenomo -> persona nomo
 - bad_tr_eo: prezuntar -> esti trudema
 - bad_tr_eo: prezuntar -> esti aroganta
-- bad_tr_eo: pri -> ĉirkaŭ, kun (2, on one’s person)
 - bad_tr_eo: pri -> ĉirkaŭe en
-- bad_tr_eo: pri -> de, da, el (a glass of water = glaso da akvo)
+- bad_tr_eo: pri -> ĉirkaŭ, kun (2, on one’s person)
 - bad_tr_eo: pri -> de or with a construction using the adjectival suffix -a
+- bad_tr_eo: prizar -> t+
 - bad_tr_eo: pro to -> pro tio
-- bad_tr_eo: pronteskez -> en loko
 - bad_tr_eo: pronteskez -> iru!
+- bad_tr_eo: pronteskez -> en loko
 - bad_tr_eo: proprietajo -> afero posedata
 - bad_tr_eo: prostracar -> esti prostracia
-- bad_tr_eo: proxim -> ĉirkaŭ, kun (2, on one’s person)
-- bad_tr_eo: proxim -> ĉirkaŭe en
 - bad_tr_eo: proxim -> proksime de
-- bad_tr_eo: proxime -> ĉirkaŭ, kun (2, on one’s person)
+- bad_tr_eo: proxim -> ĉirkaŭe en
+- bad_tr_eo: proxim -> ĉirkaŭ, kun (2, on one’s person)
 - bad_tr_eo: proxime -> ĉirkaŭe en
+- bad_tr_eo: proxime -> ĉirkaŭ, kun (2, on one’s person)
+- bad_tr_eo: pruritar -> juki sin
+- bad_tr_eo: prurito -> juki sin
 - bad_tr_eo: publika domeno -> publika havaĵo
 - bad_tr_eo: punsar -> kopii per ŝablono
 - bad_tr_eo: qua tempo esas? -> kioma horo estas?
+- bad_tr_eo: quale -> t+
 - bad_tr_eo: quale tu standas -> kiel vi fartas?
 - bad_tr_eo: quale vu nomesas? -> kiel vi nomiĝas?
 - bad_tr_eo: quale vu nomesas? -> kio estas via nomo?
 - bad_tr_eo: quale vu standas -> kiel vi fartas?
-- bad_tr_eo: quale vu standas? -> kiel vi fartas?
 - bad_tr_eo: quankam -> malgraŭ ke
 - bad_tr_eo: quante vu evas? -> kiom vi aĝas?
 - bad_tr_eo: quo esas ito -> kio estas tio
 - bad_tr_eo: quo esas ito -> kio estas tio?
-- bad_tr_eo: quo esas ito? -> kio estas tio
-- bad_tr_eo: quo esas ito? -> kio estas tio?
-- bad_tr_eo: quo eventas -> kio misas
-- bad_tr_eo: quo eventas -> kio okazas
-- bad_tr_eo: quo eventas -> kiel vi
 - bad_tr_eo: quo eventas -> kiel vi fartas
+- bad_tr_eo: quo eventas -> kio misas
+- bad_tr_eo: quo eventas -> kiel vi
+- bad_tr_eo: quo eventas -> kio okazas
 - bad_tr_eo: quo eventas -> kio estas la problemo
-- bad_tr_eo: quo eventas -> kio okazas, kio estas la problemo, kio misas
 - bad_tr_eo: quo eventas -> kio novas
+- bad_tr_eo: quo eventas -> kio okazas, kio estas la problemo, kio misas
 - bad_tr_eo: quo signifikas …? -> kiu signifas …?
 - bad_tr_eo: racion-epoko -> Klerismo, Jarcento de la Lumoj
 - bad_tr_eo: radotar -> esti mense kaduka
@@ -544,14 +524,12 @@
 - bad_tr_eo: roma ne konstruktesis dum un dio -> ne en unu tago elkreskis Kartago
 - bad_tr_eo: ronda tablo -> Ronda Tablo
 - bad_tr_eo: saciar -> satigi minimume
-- bad_tr_eo: sedopapero -> klozeta papero
 - bad_tr_eo: sedopapero -> neceseja papero
+- bad_tr_eo: sedopapero -> klozeta papero
 - bad_tr_eo: senpilotist aviacilo -> senpilota aviadilo
 - bad_tr_eo: sesgar -> dekolti en krescenta formo
 - bad_tr_eo: sexuala orientalizo -> seksa orientiĝo
 - bad_tr_eo: sika moruo -> sekigita fiŝo
-- bad_tr_eo: silence -> kviete (calmly)
-- bad_tr_eo: silence -> silente (silently)
 - bad_tr_eo: silenco -> silentu!
 - bad_tr_eo: simpla mashino -> simpla maŝino
 - bad_tr_eo: skriptar -> verki librojn
@@ -561,27 +539,25 @@
 - bad_tr_eo: spanyoleto -> fenestra fiksilo
 - bad_tr_eo: sparar -> esti ŝparema
 - bad_tr_eo: splinar -> esti splena
-- bad_tr_eo: staciono -> stacio, stacidomo (building)
 - bad_tr_eo: statuo de Libereso -> statuo de Libereco
 - bad_tr_eo: stuntar -> obstrukci kreskon
 - bad_tr_eo: su-ocidar -> mortigi sin
-- bad_tr_eo: sub -> malpli ol
 - bad_tr_eo: sub -> sude de
+- bad_tr_eo: sub -> malpli ol
 - bad_tr_eo: subjekto -> 2) subjekto
 - bad_tr_eo: subskribar -> skribi sube
-- bad_tr_eo: suffix -os after verbal roots -> os Use the future tense
 - bad_tr_eo: sunala vento -> suna vento
 - bad_tr_eo: supersigno -> diakrita signo
 - bad_tr_eo: supervido -> ĝenerala perspektivo / observo
 - bad_tr_eo: suplikar -> insiste peti
 - bad_tr_eo: surkruto -> acida brasiko
-- bad_tr_eo: surnomo -> doni familinomon
 - bad_tr_eo: surnomo -> familia nomo
+- bad_tr_eo: surnomo -> doni familinomon
 - bad_tr_eo: suskriptar -> konsenti kontribui
 - bad_tr_eo: t.e -> t.e
 - bad_tr_eo: tam balde kam posible -> kiel eble plej baldaŭ, kiel eble plej rapide
-- bad_tr_eo: tam balde kam posible -> kiel eble plej rapide
 - bad_tr_eo: tam balde kam posible -> kiel eble plej baldaŭ
+- bad_tr_eo: tam balde kam posible -> kiel eble plej rapide
 - bad_tr_eo: tante -> por ke
 - bad_tr_eo: teko -> granda tektono
 - bad_tr_eo: telefonez ambulanco -> venigu ambulancon
@@ -591,10 +567,10 @@
 - bad_tr_eo: til balde -> ĝis baldaŭ
 - bad_tr_eo: til rivido -> ĝis revido!
 - bad_tr_eo: til rivido -> ĝis la revido
-- bad_tr_eo: til rivido -> ĝis baldaŭ
 - bad_tr_eo: til rivido -> ĝis baldaŭ ĝis la revido
-- bad_tr_eo: tote ne -> tute ne
+- bad_tr_eo: til rivido -> ĝis baldaŭ
 - bad_tr_eo: tote ne -> ne dankinde
+- bad_tr_eo: tote ne -> tute ne
 - bad_tr_eo: tre -> ĉu vere?
 - bad_tr_eo: triangula prismato -> triangula prismo
 - bad_tr_eo: tropismo -> planta moviĝo
@@ -602,8 +578,8 @@
 - bad_tr_eo: ube esas la latrino -> kie estas la necesejo?
 - bad_tr_eo: ube esas la latrino? -> kie estas la necesejo?
 - bad_tr_eo: uf -> uf!
-- bad_tr_eo: ula -> iom da
 - bad_tr_eo: ula -> iu ajn
+- bad_tr_eo: ula -> iom da
 - bad_tr_eo: ula -> iom ajn
 - bad_tr_eo: ultima -> plej lasta
 - bad_tr_eo: unesma Mondo-Milito -> unua mondmilito
@@ -616,7 +592,6 @@
 - bad_tr_eo: vejetarar -> esti vegetara
 - bad_tr_eo: vers -> direkte al
 - bad_tr_eo: vestizar -> vesti sin
-- bad_tr_eo: vestizar|alt=vestizar su -> vesti sin
 - bad_tr_eo: vicioza cirklo -> malvirta cirklo
 - bad_tr_eo: vigilar -> deĵori por noktogardo
 - bad_tr_eo: vu ipsa -> vi mem

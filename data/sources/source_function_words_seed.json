@@ -97,15 +97,6 @@
       "metadata": {"source_page": "manual", "note": "Ido 'a' = Epo 'al' (to); Wiktionary translation blank"}
     },
     {
-      "lemma": "esas",
-      "source": "function_words_seed",
-      "pos": "verb",
-      "translations": [
-        {"term": "estas", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
-      ],
-      "metadata": {"source_page": "manual", "note": "Ido 'esas' = Epo 'estas' (is/are - present); Wiktionary parser misses EO translation"}
-    },
-    {
       "lemma": "es",
       "source": "function_words_seed",
       "pos": "verb",
@@ -176,15 +167,6 @@
         {"term": "aŭ", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
       ],
       "metadata": {"source_page": "manual", "note": "Ido 'o' = Epo 'aŭ' (or); Wiktionary parser misses EO translation"}
-    },
-    {
-      "lemma": "quin",
-      "source": "function_words_seed",
-      "pos": "pronoun",
-      "translations": [
-        {"term": "kiujn", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
-      ],
-      "metadata": {"source_page": "manual", "note": "Ido 'quin' = Epo 'kiujn' (which/who - plural accusative); not in Wiktionary"}
     }
   ]
 }

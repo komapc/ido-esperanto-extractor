@@ -368,6 +368,68 @@ def extract_pos(section: str) -> Optional[str]:
     return None
 
 
+# Inflected-form detection: io.wiktionary has separate pages for verb conjugations
+# (esas, esis, esos, esez, esus, ...) and noun plurals/declensions, with the
+# Semantiko line explicitly labeling them as forms of another lemma. Examples:
+#   *Semantiko: [[prezenta]] [[formo]] [[de]] [[verbo]] ''[[esar]]''
+#   *Semantiko: [[preterita]] [[formo]] [[de]] [[verbo]] [[krear]]
+#   *Semantiko: [[pluralo]] [[de]] ''[[kato]]''
+# These are NOT real lemmas — they're conjugations. Treating them as lemmas
+# pollutes the dictionary (e.g. compiles esas with ar__vblex paradigm,
+# producing surface forms like esasar, esasas, esasis...). Detect and skip
+# them at parse time.
+_SEMANTIKO_LINE_RE = re.compile(r"\*\s*Semantiko\s*:[^\n]+", re.IGNORECASE)
+_INFLECTED_FORM_RE = re.compile(
+    r"\bform[oi]\s+(?:de|di)\s+(?:la\s+)?(?:verbo|substantivo|adjektivo|adverbo|pronomo)\b",
+    re.IGNORECASE,
+)
+_PLURAL_FORM_RE = re.compile(
+    r"\b(?:pluralo|nominativo|akuzativo|genitivo|dativo)\s+(?:de|di)\b",
+    re.IGNORECASE,
+)
+# Root/morpheme marker: io.wiktionary has pages like "ar" or "ed" that
+# describe morphological roots/affixes ("Radiko por: aro, ara") rather
+# than standalone lemmas. Compiling these into the dix produces entries
+# with empty stems (`<i/>`), which then bind to paradigm-only paths in
+# the lt-comp transducer and produce empty-lemma analyses (e.g. for the
+# der_esar entries, surface "esas" matches `<i/>` + `<l>esas</l>`,
+# yielding `<vblex><der_esar><vblex><pri>` with no lemma — breaks the
+# bidix lookup for legitimate `esar` conjugations).
+_ROOT_MARKER_RE = re.compile(
+    r"^\s*(?:Radiko|Sufixo|Prefixo|Afixo)\b",
+    re.IGNORECASE | re.MULTILINE,
+)
+
+
+def is_inflected_form(text: str) -> bool:
+    """True if the page describes a non-lemma — a conjugation, declension,
+    or root/morpheme — rather than a standalone dictionary lemma.
+
+    Detected patterns (after stripping `[[...]]` link markup):
+    - Semantiko line says "<X> formo de [verbo|substantivo|...]"
+      (e.g. 'prezenta formo de verbo esar' → esas is a verb conjugation)
+    - Semantiko line says "(pluralo|nominativo|akuzativo|...) de"
+      (e.g. 'pluralo de kato' → kati is a noun plural)
+    - Page body has "Radiko por: ..." / "Sufixo ..." / "Prefixo ..."
+      (e.g. 'Radiko por: aro, ara' → ar is a root, not a lemma)
+
+    Such pages should not be harvested as lemmas — the morphology pipeline
+    derives the surface forms from the base lemma's paradigm.
+    """
+    # Strip wiki-link markup once for both Semantiko and root-marker checks
+    cleaned = re.sub(r"\[\[(?:[^\]|]*\|)?([^\]]+)\]\]", r"\1", text)
+    m = _SEMANTIKO_LINE_RE.search(cleaned)
+    if m:
+        sem = m.group(0)
+        if _INFLECTED_FORM_RE.search(sem):
+            return True
+        if _PLURAL_FORM_RE.search(sem):
+            return True
+    if _ROOT_MARKER_RE.search(cleaned):
+        return True
+    return False
+
+
 # OPTIMIZATION: Pre-compile cleaning regexes (10-15% speedup)
 # These patterns remove MediaWiki markup from translation text to extract clean words
 TRANS_TEMPLATE_RE = re.compile(r'\{\{(?:t\+?|trad\+?|l|link|m)\|[^|]+\|([^}]+)[^}]*\}\}')
@@ -605,6 +667,12 @@ def parse_wiktionary(
         section = extract_language_section(text, cfg.source_code)
         # OPTIMIZATION: Early exit if no language section found
         if not section:
+            continue
+        # Skip pages that explicitly mark themselves as inflected forms
+        # ("prezenta formo de verbo esar", "pluralo de kato", etc.) — these
+        # aren't lemmas, they're surface variants that the morphology
+        # pipeline derives from the base lemma.
+        if is_inflected_form(section):
             continue
         pos = extract_pos(section)
         morph_str, inferred_pos = extract_morphology(section, title)
