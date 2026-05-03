@@ -82,10 +82,15 @@ def _normalize(entries: List[Dict[str, Any]]) -> Tuple[List[Dict[str, Any]], Dic
         e["senses"] = cleaned_senses
 
         # Case-fold common-noun lemmas: when the harvested Ido lemma starts with
-        # uppercase but the EO translation is lowercase, the entry is a common
-        # noun stored capitalized (e.g. Wiktionary article titles "Interreto").
-        # Lowercase the lemma so lt-proc recognizes mid-sentence usage.
-        # (Proper nouns translate to capitalized EO, so they're left alone.)
+        # uppercase but is a common-class word, lowercase it so lt-proc recognizes
+        # mid-sentence usage (e.g. Wiktionary article titles "Interreto", or
+        # adjectives like "Germana" that ride proper-noun capitalization).
+        # Two signals — either is sufficient:
+        #   (1) ALL EO translations are lowercase → common noun stored capitalized
+        #   (2) POS is adjective/adverb (closed-form classes for proper-noun adj
+        #       case-rides like Germana, italiana) — even with no EO translation
+        # Proper nouns (Berlin, Mainz) end up tagged pos=noun/None with capital
+        # EO target or no other-lang signal, so they fall through unchanged.
         lm = e["lemma"]
         if lm and lm[:1].isupper():
             eo_terms = [
@@ -94,13 +99,23 @@ def _normalize(entries: List[Dict[str, Any]]) -> Tuple[List[Dict[str, Any]], Dic
                 for tr in s.get("translations", [])
                 if tr.get("lang") == "eo"
             ]
+            should_fold = False
             if eo_terms and all(t and t[:1].islower() for t in eo_terms):
+                should_fold = True
+            elif e.get("pos") in ("adjective", "adj", "adverb", "adv"):
+                # Adj/adv POS marks are closed-form: an "adjective" lemma is
+                # always a common-class word, never a proper noun.
+                should_fold = True
+            if should_fold:
                 e["lemma"] = lm[:1].lower() + lm[1:]
 
     # Pass 2: filter invalid
+    # Pass 2: filter invalid. Entries with empty senses are kept if they have a
+    # valid lemma (monodix-only entries from Wiktionary words without EO targets;
+    # contribute to morphological recognition, skipped by bidix builder).
     valid = []
     for e in entries:
-        if not is_valid_lemma(e.get("lemma", "")) or not e.get("senses"):
+        if not is_valid_lemma(e.get("lemma", "")):
             stats['invalid'] += 1
             continue
         valid.append(e)
