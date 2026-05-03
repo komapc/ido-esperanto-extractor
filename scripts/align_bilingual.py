@@ -149,8 +149,17 @@ def align(io_path: Path, eo_path: Path, out_path: Path, wiki_path: Path | None =
         if not translations:
             # No EO target — keep for monodix only if Ido-shaped and Wiktionary-confirmed
             # (has at least one translation in another language).
+            # Closed-class POS tags (adv/pr/det/prn/num/cnjcoo/cnjsub/ij) bypass the
+            # lemma-shape filter: function words like 'kam', 'nun', 'maxim', 'od', 'an',
+            # 'du', 'un', 'tri' don't have canonical -o/-a/-e/-ar/-ir endings but their
+            # POS is established and they're definitely valid Ido lemmas.
+            _CLOSED_CLASS = {"adv", "pr", "det", "prn", "num", "cnjcoo", "cnjsub", "ij",
+                             "prep_art",
+                             "adverb", "preposition", "determiner", "pronoun", "numeral",
+                             "conjunction", "interjection", "subordinating conjunction"}
             lm = (io_e.get("lemma") or "").strip()
             lower = lm.lower()
+            pos = io_e.get("pos") or ""
             has_other_tr = any(
                 tr.get("lang") and tr.get("term")
                 for s in (io_e.get("senses") or [])
@@ -160,7 +169,7 @@ def align(io_path: Path, eo_path: Path, out_path: Path, wiki_path: Path | None =
                 continue
             if lower.endswith(_IDO_INFLECTION_TAILS):
                 continue  # conjugated form, not a lemma
-            if not lower.endswith(_IDO_LEMMA_SHAPE):
+            if pos not in _CLOSED_CLASS and not lower.endswith(_IDO_LEMMA_SHAPE):
                 continue  # non-canonical lemma shape (proper-name leftovers, etc.)
             item = {
                 "lemma": lm,

@@ -4,7 +4,7 @@
 - bad_schema: 0
 - bad_lemma: 0
 - wiki_low_freq: 0
-- all_tr_removed: 37870
+- all_tr_removed: 38010
 - tr_removed: 615
 
 ## Examples
