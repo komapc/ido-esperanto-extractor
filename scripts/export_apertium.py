@@ -36,7 +36,7 @@ _KATEGORIO_RE = re.compile(r'\s*Kategorio:[^\s]+.*$', re.IGNORECASE)
 def _paradigm_priority(p: str) -> int:
     if p in ('prn', '__prn'):
         return 10
-    if p in ('__pr', '__det', '__cnjcoo', '__cnjsub', 'prep_art', '__num'):
+    if p in ('__pr', '__det', '__cnjcoo', '__cnjsub', 'prep_art', '__prep_art', '__num', '__adv', '__ij'):
         return 8
     if p in ('vblex', 'ar__vblex', 'adj', 'a__adj', 'adv', 'e__adv'):
         return 5
@@ -645,8 +645,12 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
 
     # Merge bidix-only entries into monodix so words with Epo translations
     # but absent from final_vocabulary are still morphologically analyzable.
-    # Index bidix entries by lower-case lemma, preferring entries with non-null POS.
+    # Index bidix entries by lower-case lemma, preferring entries with non-null POS,
+    # and tracking a separate index of function_word_override entries (authoritative
+    # for fundamental closed-class words whose Wiktionary harvest produces wrong
+    # POS/paradigm or multi-word EO targets that get filtered).
     bidix_by_lemma = {}
+    bidix_override_by_lemma = {}
     for be in bidix_entries:
         lm = (be.get('lemma') or '').lower()
         if not lm:
@@ -654,9 +658,18 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
         existing = bidix_by_lemma.get(lm)
         if existing is None or (not existing.get('pos') and be.get('pos')):
             bidix_by_lemma[lm] = be
-    # Upgrade vocab entries that have no pos/paradigm using the bidix entry
+        if any((p.get('source') == 'function_word_override') for p in (be.get('provenance') or [])):
+            bidix_override_by_lemma[lm] = be
+    # Upgrade vocab entries that have no pos/paradigm using the bidix entry,
+    # and force-override pos/morphology when bidix has a function_word_override
+    # entry (it is authoritative for that lemma).
     for ve in entries:
         lm = (ve.get('lemma') or '').lower()
+        ov = bidix_override_by_lemma.get(lm)
+        if ov:
+            ve['pos'] = ov.get('pos')
+            ve['morphology'] = ov.get('morphology') or {}
+            continue
         if not ve.get('pos') and not (ve.get('morphology') or {}).get('paradigm'):
             be = bidix_by_lemma.get(lm)
             if be and be.get('pos'):

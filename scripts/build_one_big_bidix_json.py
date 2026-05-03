@@ -22,13 +22,17 @@ _SHORT_POS: Dict[str, str] = {
 # Translations for function words that have no usable Wiktionary entry.
 # These are kept minimal — one canonical Esperanto equivalent per word.
 _FUNCTION_WORD_OVERRIDES: Dict[str, Dict[str, str]] = {
-    'e':   {'pos': 'cnjcoo',    'eo': 'kaj'},   # and (Wiktionary has it but pipeline misses it)
-    'ed':  {'pos': 'cnjcoo',    'eo': 'kaj'},   # and (before vowels — no standalone Wiktionary entry)
-    'o':   {'pos': 'cnjcoo',    'eo': 'aŭ'},    # or (Wiktionary has it but pipeline misses it)
-    'a':   {'pos': 'pr',        'eo': 'al'},     # to/toward (Wiktionary translation blank)
-    'al':  {'pos': 'pr',        'eo': 'al'},     # a+la contraction, kept as pr to avoid double-article
-    'dal': {'pos': 'prep_art',  'eo': 'de'},     # da + la = from the (contraction)
-    'saluto': {'pos': 'ij',      'eo': 'saluton'}, # greeting
+    'e':    {'pos': 'cnjcoo',   'eo': 'kaj'},   # and (Wiktionary has it but pipeline misses it)
+    'ed':   {'pos': 'cnjcoo',   'eo': 'kaj'},   # and (before vowels — no standalone Wiktionary entry)
+    'o':    {'pos': 'cnjcoo',   'eo': 'aŭ'},    # or (Wiktionary has it but pipeline misses it)
+    'a':    {'pos': 'pr',       'eo': 'al'},    # to/toward (Wiktionary translation blank)
+    'al':   {'pos': 'pr',       'eo': 'al'},    # a+la contraction, kept as pr to avoid double-article
+    'dal':  {'pos': 'prep_art', 'eo': 'de'},    # da + la (contraction); transfer expands to "de la"
+    'dil':  {'pos': 'prep_art', 'eo': 'de'},    # di + la (contraction); io_wiktionary EO is multi-word, filtered upstream
+    'til':  {'pos': 'pr',       'eo': 'ĝis'},   # until — io_wiktionary EO is junk-grade ("ĝis la revido")
+    'quan': {'pos': 'prn',      'eo': 'kiun'},  # accusative of qua; not derived by __prn paradigm
+    'nur':  {'pos': 'adv',      'eo': 'nur', 'paradigm': '__adv'},  # invariant adverb (no -e suffix)
+    'saluto': {'pos': 'ij',     'eo': 'saluton'}, # greeting
 }
 
 
@@ -141,8 +145,9 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
 
     for lemma_lc, info in _FUNCTION_WORD_OVERRIDES.items():
         key = (lemma_lc, info['pos'])
-        # Use _POS_TO_PAR for consistent paradigm names
-        par = _POS_TO_PAR.get(info['pos'], '__' + info['pos'])
+        # Optional explicit paradigm overrides the pos→paradigm mapping
+        # (used for irregular forms like 'nur' where pos='adv' but paradigm must be '__adv', not 'e__adv').
+        par = info.get('paradigm') or _POS_TO_PAR.get(info['pos'], '__' + info['pos'])
         
         # Always ensure the entry exists with correct morphology and translation
         if key not in by_key:
@@ -157,6 +162,9 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
         by_key[key]['morphology'] = {'paradigm': par, 'features': {}}
         # Inject or override translation
         by_key[key]['_eo_terms'][info['eo']] = {'function_word_override'}
+        # Mark provenance so downstream consumers (e.g. export_apertium monodix
+        # builder) can recognize this lemma as authoritatively overridden.
+        by_key[key]['_all_sources'].add('function_word_override')
     for rec in by_key.values():
         if not (rec.get('morphology') or {}).get('paradigm'):
             par = _infer_paradigm(rec)
