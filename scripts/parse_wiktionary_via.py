@@ -186,21 +186,54 @@ def parse_french_wiktionary_via(dump_path: Path, output_path: Path, progress_eve
     logging.info("Wrote %s (%d via pairs)", output_path, len(results))
 
 
-def build_english_via_pairs(io_file: Path, eo_file: Path, output_path: Path, progress_every: int = 1) -> None:
+def _load_io_pos_map(io_processed_path: Path) -> dict:
+    """Build {lemma: pos} from io_wiktionary_processed.json so via-pivot
+    output can carry the right POS instead of pos=None.
+
+    Without this, every (lemma, pos=None) pair from via-pivot collides
+    with the (lemma, real_pos) record in build_one_big_bidix_json,
+    creating duplicate bidix entries that fight at translation time
+    (e.g. atmosfero → etoso vs atmosfero → atmosfero).
+    """
+    pos_map: dict = {}
+    if not io_processed_path.exists():
+        logging.warning("io_wiktionary_processed.json not found at %s — via-pivot will emit pos=None", io_processed_path)
+        return pos_map
+    data = read_json(io_processed_path)
+    entries = data.get('entries', data) if isinstance(data, dict) else data
+    for e in entries or []:
+        lm = (e.get('lemma') or '').strip()
+        pos = e.get('pos')
+        if lm and pos:
+            pos_map.setdefault(lm.lower(), pos)
+    logging.info("Loaded %d Ido lemma→POS mappings from io_wiktionary_processed.json", len(pos_map))
+    return pos_map
+
+
+def build_english_via_pairs(io_file: Path, eo_file: Path, output_path: Path, progress_every: int = 1, io_pos_path: Path | None = None) -> None:
     """Build IO↔EO pairs by matching English words with both translations."""
     logging.info("Building IO↔EO pairs via English Wiktionary")
     logging.info(f"IO source: {io_file}")
     logging.info(f"EO source: {eo_file}")
     logging.info(f"Output: {output_path}")
-    
-    # Load data
+
+    # Load data — accept both bare list and {'metadata', 'entries'} wrapper
+    def _entries(path):
+        d = read_json(path)
+        return d.get('entries', d) if isinstance(d, dict) else d
+
     logging.info("Loading English→Ido translations...")
-    io_entries = read_json(io_file)
+    io_entries = _entries(io_file)
     logging.info(f"Loaded {len(io_entries)} entries")
-    
+
     logging.info("Loading English→Esperanto translations...")
-    eo_entries = read_json(eo_file)
+    eo_entries = _entries(eo_file)
     logging.info(f"Loaded {len(eo_entries)} entries")
+
+    # POS map: Ido lemma → pos, sourced from io_wiktionary_processed.json
+    if io_pos_path is None:
+        io_pos_path = io_file.parent / "io_wiktionary_processed.json"
+    io_pos_map = _load_io_pos_map(io_pos_path)
     
     # Build translation maps
     logging.info("Building translation maps...")
@@ -235,12 +268,13 @@ def build_english_via_pairs(io_file: Path, eo_file: Path, output_path: Path, pro
             eo_translations = list(set(eo_map[english_word]))  # Remove duplicates
             
             for io_term in io_translations:
+                io_pos = io_pos_map.get(io_term.lower())
                 for eo_term in eo_translations:
                     results.append({
                         'id': f"en_via:{english_word}",
                         'lemma_io': io_term,
                         'lemma_eo': eo_term,
-                        'pos': None,
+                        'pos': io_pos,  # propagated from io_wiktionary_processed.json when available
                         'language_io': 'io',
                         'language_eo': 'eo',
                         'senses': [{

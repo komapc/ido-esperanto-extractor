@@ -271,7 +271,11 @@ def align(io_path: Path, eo_path: Path, out_path: Path, wiki_path: Path | None =
             
             item = {
                 "lemma": io_term,
-                "pos": None,  # POS not known for via translations
+                # POS is now populated by parse_wiktionary_via.py from
+                # io_wiktionary_processed.json (so via-pivot pairs merge
+                # cleanly with their io_wiktionary counterparts in build_bidix
+                # rather than creating a parallel pos=None record).
+                "pos": pair.get('pos'),
                 "language": "io",
                 "senses": [{
                     "senseId": None,
