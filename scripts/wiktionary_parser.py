@@ -543,7 +543,10 @@ def extract_translations_anywhere(wikitext: str, target_code: str) -> List[List[
 
 # Compiled pattern for Tradukoj (translations) section header in Esperanto Wiktionary
 # Matches headers like "===Tradukoj===" or "====Tradukoj===="
-TRADUKOJ_HDR_RE = re.compile(r"^===+\s*Tradukoj\s*===+\s*$", re.IGNORECASE | re.MULTILINE)
+# EO Wiktionary uses both bare `====Tradukoj====` and template-wrapped
+# `===={{Tradukoj}}====` headers (the latter is the modern template-based
+# style and is far more common in the current dump). Match either.
+TRADUKOJ_HDR_RE = re.compile(r"^===+\s*(?:\{\{)?Tradukoj(?:\}\})?\s*===+\s*$", re.IGNORECASE | re.MULTILINE)
 
 # Compiled pattern for finding next section boundary (any level 2+ heading)
 # Used to extract the Tradukoj section content
