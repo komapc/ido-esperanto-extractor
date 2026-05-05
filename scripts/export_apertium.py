@@ -732,6 +732,35 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
     mono_entries = entries + extra
     logging.info(f"Monodix: {len(entries)} vocab + {len(extra)} bidix-only = {len(mono_entries)} total")
 
+    # Feminine-shadow guard: drop monodix entries `lemma<n>` (paradigm o__n)
+    # with empty senses when `lemma + 'ino'` is also a noun lemma with
+    # translations. Without this, apertium-ido's o__n feminine `-ino` paradigm
+    # makes input `Origino` analyze as feminine of `Origo` and fall through
+    # to a no-translation `@Orig<n><f>` lookup → output truncates to `Orig`.
+    _has_translations_lemmas = set()
+    for e in mono_entries:
+        lm = (e.get('lemma') or '').lower()
+        if not lm:
+            continue
+        if any(t for s in (e.get('senses') or []) for t in (s.get('translations') or [])):
+            _has_translations_lemmas.add(lm)
+    pre_count = len(mono_entries)
+    filtered = []
+    drop_count = 0
+    for e in mono_entries:
+        lm = (e.get('lemma') or '').lower()
+        par = (e.get('morphology') or {}).get('paradigm')
+        senses = e.get('senses') or []
+        has_tr = any(s.get('translations') for s in senses)
+        if (par == 'o__n' and lm.endswith('o') and not has_tr
+                and (lm[:-1] + 'ino') in _has_translations_lemmas):
+            drop_count += 1
+            continue
+        filtered.append(e)
+    if drop_count:
+        logging.info(f"Monodix feminine-shadow guard: dropped {drop_count} entries")
+    mono_entries = filtered
+
     mono = build_monodix(mono_entries)
     write_xml_file(mono, out_monodix)
 

@@ -275,15 +275,52 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
     # BERT translations are low-priority: skip them for lemmas that already have Wiktionary coverage.
     _BERT_SOURCES = frozenset({'bert_embeddings'})
 
+    # Build set of lemmas with translations from io_wiktionary specifically.
+    # Used by the feminine-shadow guard below: when both 'origo' and 'origino'
+    # are listed by io_wiktionary, and only 'origino' has actual translations,
+    # apertium-ido's o__n feminine `-ino` derivation creates a spurious
+    # `Orig<n><f>` analysis path that hits BERT's wrong translation. en_via /
+    # fr_via attestations don't qualify here — for genuine person nouns
+    # (`dano`/`danino`, `franco`/`francino`) both forms are correctly attested
+    # via en_wiktionary_via and the feminine derivation is real.
+    _io_wikt_lemmas = set()
+    for (_lm, _pos), rec in by_key.items():
+        for srcs in rec['_eo_terms'].values():
+            if 'io_wiktionary' in srcs:
+                _io_wikt_lemmas.add(_lm)
+                break
+
     # Materialize final structure: senses with EO-only translations; keep multi-provenance per translation
     out: List[Dict[str, Any]] = []
     for (_lm, _pos), rec in sorted(by_key.items(), key=lambda kv: (kv[0][0], kv[0][1])):
         # Wiktionary wins: if any translation comes from a non-BERT source, drop BERT-only translations.
         has_wikt = any(srcs - _BERT_SOURCES for srcs in rec['_eo_terms'].values())
+        # Feminine-shadow guard: when this entry is `lemma<n>` with paradigm
+        # `o__n` and `lemma + 'ino'` is Wiktionary-attested, drop ALL BERT
+        # translations. Apertium-Ido's o__n paradigm has a feminine `-ino`
+        # derivation, so a spurious `origo<n>` would let `Origino` analyze as
+        # `Orig<f>` and hit the wrong BERT entry.
+        is_feminine_shadow = (
+            (rec.get('morphology') or {}).get('paradigm') == 'o__n'
+            and _lm.endswith('o')
+            and (_lm[:-1] + 'ino') in _io_wikt_lemmas
+            and not has_wikt
+        )
+        # When the feminine-shadow rule applies and dropping BERT translations
+        # would leave the entry empty, drop the entry entirely so the monodix
+        # builder also excludes it. Otherwise apertium-ido keeps `<e lm="origo">`
+        # in the monodix and the spurious `Orig<n><f>` analysis still produces
+        # a no-translation fallback (output: `Orig` instead of `Origino`).
+        if is_feminine_shadow:
+            non_bert = [t for t, s in rec['_eo_terms'].items() if (s - _BERT_SOURCES)]
+            if not non_bert:
+                continue
         translations: List[Dict[str, Any]] = []
         for term, srcs in rec['_eo_terms'].items():
             if has_wikt and not (srcs - _BERT_SOURCES):
                 continue  # skip BERT-only translation when Wiktionary has coverage
+            if is_feminine_shadow and not (srcs - _BERT_SOURCES):
+                continue  # skip BERT-only translation that competes with longer Wikt -ino lemma
             translations.append({
                 'lang': 'eo',
                 'term': term,
