@@ -173,6 +173,11 @@ def _infer_paradigm(entry: Dict[str, Any]) -> Optional[str]:
     if lower.endswith(DEMONYM_ADJ_SUFFIXES):
         return "a__adj"
     if lower.endswith("ia") and len(lemma) > 3:
+        # Country names ending -ia are nouns by default (Italia, Hispania, ...)
+        # but the same form can be a demonym adjective ("Abisinia" = "Abyssinian").
+        # Respect an explicit adjective tag when set.
+        if pos in ("adjective", "adj"):
+            return "a__adj"
         return "o__n"
     # Ido verb endings are definitive — override noisy POS tags from fr_wikt etc.
     if (lower.endswith("ar") or lower.endswith("ir")) and not lemma[:1].isupper():

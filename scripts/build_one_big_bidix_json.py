@@ -158,6 +158,39 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
         pos = _SHORT_POS.get((e.get('pos') or '').strip(), (e.get('pos') or '').strip())
         if not lemma or not lemma[0].isalpha() or re.search(r'[(),;:!@#$%^&*\[\]{}|<>?/\\]', lemma):
             continue
+        # POS sanity: Ido lemma endings are reliable. If the source POS
+        # contradicts the ending, override from the ending. This catches
+        # legacy inputs (e.g. fr_wikt_meanings.json hard-coded pos='adjective'
+        # for all entries regardless of -o/-a/-e/-ar).
+        ll = lemma.lower()
+        morphology = e.get('morphology') or {}
+        pos_overridden = False
+        if ll.endswith('o') and pos and pos not in ('n', 'np'):
+            pos = 'n'; pos_overridden = True
+        elif ll.endswith('ar') and len(ll) > 3 and pos and pos != 'vblex':
+            pos = 'vblex'; pos_overridden = True
+        elif ll.endswith('a') and not ll.endswith('ia') and pos and pos != 'adj':
+            pos = 'adj'; pos_overridden = True
+        elif ll.endswith('e') and len(ll) > 2 and pos and pos != 'adv':
+            pos = 'adv'; pos_overridden = True
+        # When we override the POS, the source's paradigm is also stale
+        # (e.g. fr_wikt_meanings always supplies o__n regardless). Clear it
+        # so the downstream _infer_paradigm() picks one matching the new POS.
+        if pos_overridden:
+            morphology = {}
+        # Same idea even when POS wasn't overridden: if upstream sent us a
+        # paradigm whose POS-implication contradicts the entry's POS, drop
+        # the paradigm. e.g. lemma=abisinia, pos=adj, paradigm=o__n.
+        else:
+            par = (morphology or {}).get('paradigm')
+            if par == 'o__n' and pos == 'adj':
+                morphology = {}
+            elif par == 'a__adj' and pos == 'n':
+                morphology = {}
+            elif par == 'e__adv' and pos in ('n', 'adj'):
+                morphology = {}
+            elif par == 'ar__vblex' and pos in ('n', 'adj', 'adv'):
+                morphology = {}
         key = (lemma.lower(), pos.lower())
         rec = by_key.get(key)
         if rec is None:
@@ -165,7 +198,7 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
                 'lemma': lemma,
                 'pos': pos or None,
                 'language': 'io',
-                'morphology': (e.get('morphology') or {}),
+                'morphology': morphology,
                 '_eo_terms': {},  # term -> set(sources)
                 '_all_sources': set(),
             }
