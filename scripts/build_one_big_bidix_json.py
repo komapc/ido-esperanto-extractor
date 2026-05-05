@@ -203,6 +203,13 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
                 '_all_sources': set(),
             }
             by_key[key] = rec
+        else:
+            # Common nouns (pos n/adj/adv/vblex) should be lowercase. If
+            # multiple sources mix `Aglo` and `aglo`, lowercase wins so the
+            # bidix stem matches what apertium-ido analyzer outputs for
+            # lowercase user input. Proper nouns (np) keep original case.
+            if pos in ('n', 'adj', 'adv', 'vblex') and lemma.islower() and not rec['lemma'].islower():
+                rec['lemma'] = lemma
         # Accumulate sources
         for s in sources_from_prov(e.get('provenance')):
             rec['_all_sources'].add(s)
