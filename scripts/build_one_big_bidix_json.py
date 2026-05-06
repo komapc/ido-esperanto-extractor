@@ -31,7 +31,6 @@ _FUNCTION_WORD_OVERRIDES: Dict[str, Dict[str, str]] = {
     'dil':  {'pos': 'prep_art', 'eo': 'de'},    # di + la (contraction); io_wiktionary EO is multi-word, filtered upstream
     'til':  {'pos': 'pr',       'eo': 'ĝis'},   # until — io_wiktionary EO is junk-grade ("ĝis la revido")
     'quan': {'pos': 'prn',      'eo': 'kiun'},  # accusative of qua; not derived by __prn paradigm
-    'nur':  {'pos': 'adv',      'eo': 'nur', 'paradigm': '__adv'},  # invariant adverb (no -e suffix)
     'saluto': {'pos': 'ij',     'eo': 'saluton'}, # greeting
 }
 
