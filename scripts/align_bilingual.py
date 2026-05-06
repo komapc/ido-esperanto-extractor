@@ -106,7 +106,10 @@ def identical_form_heuristic(io_entries: List[Dict[str, Any]], eo_entries: List[
     return aligned
 
 
-def align(io_path: Path, eo_path: Path, out_path: Path, wiki_path: Path | None = None, via_en_path: Path | None = None) -> None:
+def align(io_path: Path, eo_path: Path, out_path: Path,
+          wiki_path: Path | None = None,
+          via_en_path: Path | None = None,
+          via_fr_path: Path | None = None) -> None:
     logging.info("Aligning bilingual dictionaries: %s + %s", io_path, eo_path)
     io_data = read_json(io_path)
     eo_data = read_json(eo_path)
@@ -299,6 +302,58 @@ def align(io_path: Path, eo_path: Path, out_path: Path, wiki_path: Path | None =
             added_via_en += 1
         logging.info("Added %d via-English IO↔EO pairs (dropped %d for POS-ending mismatch)", added_via_en, dropped_pos_mismatch)
 
+    # Add via-French bilingual pairs (if available). Same structure as via-en;
+    # produced by `parse_wiktionary_via.py --source fr`.
+    if via_fr_path is not None and via_fr_path.exists():
+        try:
+            via_fr_pairs = read_json(via_fr_path)
+        except Exception:
+            via_fr_pairs = []
+        added_via_fr = 0
+        dropped_pos_mismatch_fr = 0
+        for pair in via_fr_pairs or []:
+            io_term = pair.get('lemma_io') or pair.get('io')
+            eo_term = pair.get('lemma_eo') or pair.get('eo')
+            prov0 = (pair.get('provenance') or [{}])[0]
+            sense0 = (pair.get('senses') or [{}])[0]
+            tr0 = (sense0.get('translations') or [{}])[0]
+            via_word = pair.get('via') or prov0.get('page')
+            confidence = pair.get('confidence', tr0.get('confidence', 0.8))
+
+            if not io_term or not eo_term:
+                continue
+
+            ip, ep = _io_pos_class(io_term), _eo_pos_class(eo_term)
+            if ip is not None and ep is not None and ip != ep:
+                dropped_pos_mismatch_fr += 1
+                continue
+
+            item = {
+                "lemma": io_term,
+                "pos": pair.get('pos'),
+                "language": "io",
+                "senses": [{
+                    "senseId": None,
+                    "gloss": f"via French: {via_word}" if via_word else None,
+                    "translations": [{
+                        "lang": "eo",
+                        "term": eo_term,
+                        "confidence": confidence,
+                        "source": "fr_wiktionary_via",
+                        "sources": ["fr_wiktionary_via"],
+                        "via": via_word
+                    }]
+                }],
+                "provenance": [{
+                    "source": "fr_wiktionary_via",
+                    "page": via_word,
+                    "rev": None
+                }],
+            }
+            aligned.append(item)
+            added_via_fr += 1
+        logging.info("Added %d via-French IO↔EO pairs (dropped %d for POS-ending mismatch)", added_via_fr, dropped_pos_mismatch_fr)
+
     write_json(out_path, aligned)
     logging.info("Wrote %s (%d aligned items)", out_path, len(aligned))
 
@@ -309,12 +364,13 @@ def main(argv: Iterable[str]) -> int:
     ap.add_argument("--eo", type=Path, default=Path(__file__).resolve().parents[1] / "work/eo_wikt_eo_io.json")
     ap.add_argument("--wiki", type=Path, default=Path(__file__).resolve().parents[1] / "work/io_wiki_vocab.json")
     ap.add_argument("--via-en", type=Path, default=Path(__file__).resolve().parents[1] / "work/bilingual_via_en.json", help="Via-English bilingual pairs")
+    ap.add_argument("--via-fr", type=Path, default=Path(__file__).resolve().parents[1] / "work/fr_wikt_via.json", help="Via-French bilingual pairs")
     ap.add_argument("--out", type=Path, default=Path(__file__).resolve().parents[1] / "work/bilingual_raw.json")
     ap.add_argument("-v", "--verbose", action="count", default=0)
     args = ap.parse_args(list(argv))
 
     configure_logging(args.verbose)
-    align(args.io, args.eo, args.out, args.wiki, args.via_en)
+    align(args.io, args.eo, args.out, args.wiki, args.via_en, args.via_fr)
     return 0
 
 
