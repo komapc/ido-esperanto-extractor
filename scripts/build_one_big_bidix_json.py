@@ -162,10 +162,17 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
         # contradicts the ending, override from the ending. This catches
         # legacy inputs (e.g. fr_wikt_meanings.json hard-coded pos='adjective'
         # for all entries regardless of -o/-a/-e/-ar).
+        # Closed-class POS tags are protected from override — words like
+        # 'la' (det), 'da' (pr), 'kad' (cnjcoo) are short and end in vowels
+        # but they are NOT inflectable content words.
+        _CLOSED_CLASS = {'det', 'pr', 'prn', 'cnjcoo', 'cnjsub', 'ij', 'num',
+                          'np', 'prep_art', 'rel'}
         ll = lemma.lower()
         morphology = e.get('morphology') or {}
         pos_overridden = False
-        if ll.endswith('o') and pos and pos not in ('n', 'np'):
+        if pos in _CLOSED_CLASS:
+            pass  # Don't override closed-class POS based on ending
+        elif ll.endswith('o') and pos and pos not in ('n', 'np'):
             pos = 'n'; pos_overridden = True
         elif ll.endswith('ar') and len(ll) > 3 and pos and pos != 'vblex':
             pos = 'vblex'; pos_overridden = True
