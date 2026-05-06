@@ -364,6 +364,10 @@ def main(argv: Iterable[str]) -> int:
         # (replaces the old bilingual_with_morph.json + source_io_wiktionary.json pair)
         base_path / 'work/final_vocabulary.json',
         base_path / 'work/fr_wikt_meanings.json',
+        # Wikipedia interlanguage links (io→eo article-title pairs).
+        # Useful for proper nouns, places, and concepts that have Wikipedia
+        # articles in both languages but no Wiktionary entry.
+        base_path / 'work/io_eo_langlinks.json',
         # Function words whose EO translations the live parser cannot extract from the Wiktionary dump.
         # Keep this list minimal — entries here override BERT but lose to any live Wiktionary extraction.
         base_path / 'data/sources/source_function_words_seed.json',
