@@ -1,23 +1,14 @@
 {
   "metadata": {
     "source_name": "function_words_seed",
-    "version": "1.1",
+    "version": "1.2",
     "generation_date": "2026-04-30",
-    "description": "Manually curated Ido function words that are missing from Wiktionary or whose Wiktionary translations cannot be extracted by the parser. Keep this list minimal — add an entry only when the pipeline provably fails to produce the translation.",
+    "description": "Manually curated Ido function words that are missing from Wiktionary or whose Wiktionary translations cannot be extracted by the parser. Keep this list minimal — add an entry only when the pipeline provably fails to produce the translation. Reduced from 17 to 10: removed la/de/por/da/di/vu/kad which io.wiktionary covers correctly after PR #110 (closed-class POS protection).",
     "statistics": {
-      "total_entries": 19
+      "total_entries": 10
     }
   },
   "entries": [
-    {
-      "lemma": "la",
-      "source": "function_words_seed",
-      "pos": "determiner",
-      "translations": [
-        {"term": "la", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
-      ],
-      "metadata": {"source_page": "manual", "note": "Definite article; Wiktionary parser misses EO translation"}
-    },
     {
       "lemma": "l'",
       "source": "function_words_seed",
@@ -26,9 +17,17 @@
         "paradigm": "__det"
       },
       "translations": [
-        {"term": "la", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+        {
+          "term": "la",
+          "lang": "eo",
+          "confidence": 1.0,
+          "source": "function_words_seed"
+        }
       ],
-      "metadata": {"source_page": "manual", "note": "Elided article before vowels; no standalone Wiktionary entry"}
+      "metadata": {
+        "source_page": "manual",
+        "note": "Elided article before vowels; no standalone Wiktionary entry"
+      }
     },
     {
       "lemma": "l",
@@ -38,135 +37,153 @@
         "paradigm": "__det"
       },
       "translations": [
-        {"term": "la", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+        {
+          "term": "la",
+          "lang": "eo",
+          "confidence": 1.0,
+          "source": "function_words_seed"
+        }
       ],
-      "metadata": {"source_page": "manual", "note": "Contracted article token; no standalone Wiktionary entry"}
-    },
-    {
-      "lemma": "de",
-      "source": "function_words_seed",
-      "pos": "preposition",
-      "translations": [
-        {"term": "de", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
-      ],
-      "metadata": {"source_page": "manual", "note": "Wiktionary parser misses EO translation"}
-    },
-    {
-      "lemma": "por",
-      "source": "function_words_seed",
-      "pos": "preposition",
-      "translations": [
-        {"term": "por", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
-      ],
-      "metadata": {"source_page": "manual", "note": "Wiktionary parser misses EO translation"}
-    },
-    {
-      "lemma": "da",
-      "source": "function_words_seed",
-      "pos": "preposition",
-      "translations": [
-        {"term": "de", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
-      ],
-      "metadata": {"source_page": "manual", "note": "Ido 'da' = Epo 'de' (of, by agent); Wiktionary parser misses EO translation"}
-    },
-    {
-      "lemma": "di",
-      "source": "function_words_seed",
-      "pos": "preposition",
-      "translations": [
-        {"term": "de", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
-      ],
-      "metadata": {"source_page": "manual", "note": "Ido 'di' = Epo 'de' (of, possessive); Wiktionary parser misses EO translation"}
+      "metadata": {
+        "source_page": "manual",
+        "note": "Contracted article token; no standalone Wiktionary entry"
+      }
     },
     {
       "lemma": "kom",
       "source": "function_words_seed",
       "pos": "preposition",
       "translations": [
-        {"term": "kiel", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+        {
+          "term": "kiel",
+          "lang": "eo",
+          "confidence": 1.0,
+          "source": "function_words_seed"
+        }
       ],
-      "metadata": {"source_page": "manual", "note": "Ido 'kom' = Epo 'kiel' (as, like); Wiktionary parser misses EO translation"}
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'kom' = Epo 'kiel' (as, like); Wiktionary parser misses EO translation"
+      }
     },
     {
       "lemma": "a",
       "source": "function_words_seed",
       "pos": "preposition",
       "translations": [
-        {"term": "al", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+        {
+          "term": "al",
+          "lang": "eo",
+          "confidence": 1.0,
+          "source": "function_words_seed"
+        }
       ],
-      "metadata": {"source_page": "manual", "note": "Ido 'a' = Epo 'al' (to); Wiktionary translation blank"}
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'a' = Epo 'al' (to); Wiktionary translation blank"
+      }
     },
     {
       "lemma": "es",
       "source": "function_words_seed",
       "pos": "verb",
       "translations": [
-        {"term": "esti", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+        {
+          "term": "esti",
+          "lang": "eo",
+          "confidence": 1.0,
+          "source": "function_words_seed"
+        }
       ],
-      "metadata": {"source_page": "manual", "note": "Ido 'es' root = Epo 'esti' (to be); not a standalone Wiktionary entry"}
-    },
-    {
-      "lemma": "vu",
-      "source": "function_words_seed",
-      "pos": "pronoun",
-      "translations": [
-        {"term": "vi", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
-      ],
-      "metadata": {"source_page": "manual", "note": "Ido 'vu' = Epo 'vi' (you singular); Wiktionary parser misses EO translation"}
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'es' root = Epo 'esti' (to be); not a standalone Wiktionary entry"
+      }
     },
     {
       "lemma": "il",
       "source": "function_words_seed",
       "pos": "pronoun",
       "translations": [
-        {"term": "li", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+        {
+          "term": "li",
+          "lang": "eo",
+          "confidence": 1.0,
+          "source": "function_words_seed"
+        }
       ],
-      "metadata": {"source_page": "manual", "note": "Ido 'il' = Epo 'li' (he); not in Wiktionary with EO translation"}
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'il' = Epo 'li' (he); not in Wiktionary with EO translation"
+      }
     },
     {
       "lemma": "el",
       "source": "function_words_seed",
       "pos": "pronoun",
       "translations": [
-        {"term": "ŝi", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+        {
+          "term": "ŝi",
+          "lang": "eo",
+          "confidence": 1.0,
+          "source": "function_words_seed"
+        }
       ],
-      "metadata": {"source_page": "manual", "note": "Ido 'el' = Epo 'ŝi' (she); not in Wiktionary with EO translation"}
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'el' = Epo 'ŝi' (she); not in Wiktionary with EO translation"
+      }
     },
     {
       "lemma": "ol",
       "source": "function_words_seed",
       "pos": "pronoun",
       "translations": [
-        {"term": "ĝi", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+        {
+          "term": "ĝi",
+          "lang": "eo",
+          "confidence": 1.0,
+          "source": "function_words_seed"
+        }
       ],
-      "metadata": {"source_page": "manual", "note": "Ido 'ol' = Epo 'ĝi' (it); not in Wiktionary with EO translation"}
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'ol' = Epo 'ĝi' (it); not in Wiktionary with EO translation"
+      }
     },
     {
       "lemma": "on",
       "source": "function_words_seed",
       "pos": "pronoun",
       "translations": [
-        {"term": "oni", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+        {
+          "term": "oni",
+          "lang": "eo",
+          "confidence": 1.0,
+          "source": "function_words_seed"
+        }
       ],
-      "metadata": {"source_page": "manual", "note": "Ido 'on' = Epo 'oni' (one, impersonal); not in Wiktionary with EO translation"}
-    },
-    {
-      "lemma": "kad",
-      "source": "function_words_seed",
-      "pos": "conjunction",
-      "translations": [
-        {"term": "ĉu", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
-      ],
-      "metadata": {"source_page": "manual", "note": "Ido 'kad' = Epo 'ĉu' (question particle); Wiktionary parser misses EO translation"}
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'on' = Epo 'oni' (one, impersonal); not in Wiktionary with EO translation"
+      }
     },
     {
       "lemma": "o",
       "source": "function_words_seed",
       "pos": "conjunction",
       "translations": [
-        {"term": "aŭ", "lang": "eo", "confidence": 1.0, "source": "function_words_seed"}
+        {
+          "term": "aŭ",
+          "lang": "eo",
+          "confidence": 1.0,
+          "source": "function_words_seed"
+        }
       ],
-      "metadata": {"source_page": "manual", "note": "Ido 'o' = Epo 'aŭ' (or); Wiktionary parser misses EO translation"}
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'o' = Epo 'aŭ' (or); Wiktionary parser misses EO translation"
+      }
     }
   ]
 }
