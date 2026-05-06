@@ -197,11 +197,18 @@ def align(io_path: Path, eo_path: Path, out_path: Path,
     # Include Wikipedia titles (monolingual Ido entries) so they flow downstream
     if wiki_path is not None and wiki_path.exists():
         try:
-            wiki_entries = read_json(wiki_path)
+            wiki_data = read_json(wiki_path)
+            # Handle both list-of-entries and {'entries': [...]} formats
+            if isinstance(wiki_data, dict):
+                wiki_entries = wiki_data.get('entries', [])
+            else:
+                wiki_entries = wiki_data
         except Exception:
             wiki_entries = []
         added = 0
         for we in wiki_entries or []:
+            if not isinstance(we, dict):
+                continue
             if (we.get("language") or "") != "io":
                 continue
             item = {
@@ -362,7 +369,7 @@ def main(argv: Iterable[str]) -> int:
     ap = argparse.ArgumentParser(description="Align IO→EO and EO→IO wiktionary outputs")
     ap.add_argument("--io", type=Path, default=Path(__file__).resolve().parents[1] / "work/io_wikt_io_eo.json")
     ap.add_argument("--eo", type=Path, default=Path(__file__).resolve().parents[1] / "work/eo_wikt_eo_io.json")
-    ap.add_argument("--wiki", type=Path, default=Path(__file__).resolve().parents[1] / "work/io_wiki_vocab.json")
+    ap.add_argument("--wiki", type=Path, default=Path(__file__).resolve().parents[1] / "work/io_wikipedia_processed.json")
     ap.add_argument("--via-en", type=Path, default=Path(__file__).resolve().parents[1] / "work/bilingual_via_en.json", help="Via-English bilingual pairs")
     ap.add_argument("--via-fr", type=Path, default=Path(__file__).resolve().parents[1] / "work/fr_wikt_via.json", help="Via-French bilingual pairs")
     ap.add_argument("--out", type=Path, default=Path(__file__).resolve().parents[1] / "work/bilingual_raw.json")
