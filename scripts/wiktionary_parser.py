@@ -552,10 +552,14 @@ TRADUKOJ_HDR_RE = re.compile(r"^===+\s*(?:\{\{)?Tradukoj(?:\}\})?\s*===+\s*$", r
 # Used to extract the Tradukoj section content
 NEXT_HEADING_RE = re.compile(r"^==[^=].*?$|^===+\s*[^=].*?$", re.MULTILINE)
 
-# OPTIMIZATION: Pre-compile Tradukoj Ido translation patterns
-# These extract Ido translations from the Tradukoj section using various formats
+# OPTIMIZATION: Pre-compile Tradukoj Ido translation patterns.
+# These extract Ido translations from the Tradukoj section using various formats.
+# EO Wiktionary uses BOTH the language code 'io' (in templates like {{t|io|...}})
+# AND the language name 'Ido' (in human-readable bullet lists like '* Ido: [[term]]').
+# Both must be matched.
 TRADUKOJ_IDO_PATTERNS = [
     re.compile(r"\*\s*\{\{io\}\}\s*[:\.-]\s*(.+)$", re.IGNORECASE | re.MULTILINE),
+    re.compile(r"\*\s*Ido\s*[:\.\-=]\s*(.+)$", re.IGNORECASE | re.MULTILINE),  # language name (most common in eo.wikt)
     re.compile(r"\*\s*io\s*[:\.-]\s*(.+)$", re.IGNORECASE | re.MULTILINE),
     re.compile(r"\{\{t\+?\|io\|([^}]+)", re.IGNORECASE),
     re.compile(r"\{\{trad\+?\|io\|([^}]+)", re.IGNORECASE),
