@@ -47,7 +47,6 @@ def main(argv: Iterable[str]) -> int:
     base_dir = Path(__file__).resolve().parents[1]
     input_paths = args.input or [
         base_dir / "work/final_vocabulary.json",
-        base_dir / "work/fr_wikt_meanings.json",
     ]
     inputs: List[List[Dict[str, Any]]] = []
     for p in input_paths:

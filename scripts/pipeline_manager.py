@@ -323,7 +323,16 @@ def main(argv):
           "--progress-every", "1000"],
          "Extract via French translations",
          None),
-        
+
+        # Stage 11b: Wikipedia interlanguage links (io_title <-> eo_title pairs).
+        # Fast (<1 min): joins iowiki XML page table with langlinks SQL dump,
+        # filters to vocabulary-shaped pairs. Adds ~14k entries to bidix that
+        # have Wikipedia articles in both languages but no Wiktionary entry.
+        ("wikipedia_langlinks",
+         ["python3", "scripts/parse_wikipedia_langlinks.py"],
+         "Extract io↔eo pairs from Wikipedia interlanguage links",
+         None),
+
         # Stage 12: Prepare vocabulary (normalize + morphology + filter in one pass)
         ("prepare_vocabulary",
          ["python3", "scripts/prepare_vocabulary.py", "--wiki-top-n", "1000"],

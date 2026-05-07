@@ -363,7 +363,6 @@ def main(argv: Iterable[str]) -> int:
         # prepare_vocabulary.py output: normalized + morphology-inferred + filtered
         # (replaces the old bilingual_with_morph.json + source_io_wiktionary.json pair)
         base_path / 'work/final_vocabulary.json',
-        base_path / 'work/fr_wikt_meanings.json',
         # Wikipedia interlanguage links (io→eo article-title pairs).
         # Useful for proper nouns, places, and concepts that have Wikipedia
         # articles in both languages but no Wiktionary entry.
