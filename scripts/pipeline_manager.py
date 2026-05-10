@@ -333,6 +333,16 @@ def main(argv):
          "Extract io↔eo pairs from Wikipedia interlanguage links",
          None),
 
+        # Stage 11c: Wikidata labels (io+eo labeled items → io↔eo pairs).
+        # Queries the Wikidata SPARQL endpoint for all items with labels in
+        # both Ido and Esperanto, then fetches aliases. Adds common nouns,
+        # scientific terms, and concepts absent from Wiktionary/Wikipedia.
+        # Requires internet access; skips gracefully if SPARQL is unavailable.
+        ("wikidata_labels",
+         ["python3", "scripts/parse_wikidata_labels.py", "-v"],
+         "Extract io↔eo pairs from Wikidata labels",
+         None),
+
         # Stage 12: Prepare vocabulary (normalize + morphology + filter in one pass)
         ("prepare_vocabulary",
          ["python3", "scripts/prepare_vocabulary.py", "--wiki-top-n", "1000"],

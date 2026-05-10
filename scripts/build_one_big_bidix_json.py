@@ -367,6 +367,10 @@ def main(argv: Iterable[str]) -> int:
         # Useful for proper nouns, places, and concepts that have Wikipedia
         # articles in both languages but no Wiktionary entry.
         base_path / 'work/io_eo_langlinks.json',
+        # Wikidata item labels: items with both io and eo labels/aliases.
+        # Complements langlinks with common nouns, scientific terms, and items
+        # that have Wikidata entries but no Wikipedia article in both languages.
+        base_path / 'work/io_eo_wikidata.json',
         # Function words whose EO translations the live parser cannot extract from the Wiktionary dump.
         # Keep this list minimal — entries here override BERT but lose to any live Wiktionary extraction.
         base_path / 'data/sources/source_function_words_seed.json',
