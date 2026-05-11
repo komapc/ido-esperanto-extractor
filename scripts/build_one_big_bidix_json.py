@@ -327,6 +327,13 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
                 continue  # skip BERT-only translation when Wiktionary has coverage
             if is_feminine_shadow and not (srcs - _BERT_SOURCES):
                 continue  # skip BERT-only translation that competes with longer Wikt -ino lemma
+            # Suppress non-cognate BERT-only translations. BERT at 0.99 still
+            # aligns adjectives/nouns by POS distributional patterns rather than
+            # semantics, producing noise like mortala→serioza, agresiva→efektiva.
+            # Keep BERT only when the eo term is a cognate of the io lemma
+            # (shared 4-char prefix), e.g. abunde→abunde, adapto→adapto.
+            if not (srcs - _BERT_SOURCES) and term[:4].lower() != _lm[:4].lower():
+                continue
             translations.append({
                 'lang': 'eo',
                 'term': term,
