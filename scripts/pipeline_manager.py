@@ -343,6 +343,18 @@ def main(argv):
          "Extract io↔eo pairs from Wikidata labels",
          None),
 
+        # Stage 11d: eo.wiki langlinks (eo_title → io_title, eo-perspective).
+        # Mirrors stage 11b but from eo.wiki's side. eo.wiki has ~625k pages
+        # vs io.wiki's ~70k, but the io↔eo article intersection is fixed so
+        # overlap with stage 11b is high (~98%). Adds ~300 novel pairs not
+        # captured by the io-side pass.
+        # Requires: data/raw/eowiki-latest-langlinks.sql.gz (129 MB)
+        #           data/raw/eowiki-latest-page.sql.gz (28 MB)
+        ("eowiki_langlinks",
+         ["python3", "scripts/parse_wikipedia_langlinks.py", "--source-wiki", "eo"],
+         "Extract io↔eo pairs from eo.wiki interlanguage links",
+         None),
+
         # Stage 12: Prepare vocabulary (normalize + morphology + filter in one pass)
         ("prepare_vocabulary",
          ["python3", "scripts/prepare_vocabulary.py", "--wiki-top-n", "1000"],

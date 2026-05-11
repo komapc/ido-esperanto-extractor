@@ -367,6 +367,9 @@ def main(argv: Iterable[str]) -> int:
         # Useful for proper nouns, places, and concepts that have Wikipedia
         # articles in both languages but no Wiktionary entry.
         base_path / 'work/io_eo_langlinks.json',
+        # eo.wiki langlinks (eo→io perspective). ~98% overlap with io_eo_langlinks;
+        # adds ~300 novel pairs that the io-side pass misses.
+        base_path / 'work/eo_io_langlinks.json',
         # Wikidata item labels: items with both io and eo labels/aliases.
         # Complements langlinks with common nouns, scientific terms, and items
         # that have Wikidata entries but no Wikipedia article in both languages.
