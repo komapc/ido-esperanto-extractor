@@ -79,13 +79,9 @@ def _sparql_request(query: str) -> list[dict]:
                 data = json.loads(resp.read())
                 return data["results"]["bindings"]
         except urllib.error.HTTPError as e:
-            if e.code == 429:
-                logger.warning("Rate-limited (429); sleeping %.0fs (attempt %d/%d)",
-                               delay, attempt + 1, MAX_RETRIES)
-                time.sleep(delay)
-                delay = min(delay * 2, 120)
-            elif e.code == 503:
-                logger.warning("WDQS 503; sleeping %.0fs", delay)
+            if e.code in (429, 500, 502, 503):
+                logger.warning("WDQS %d; sleeping %.0fs (attempt %d/%d)",
+                               e.code, delay, attempt + 1, MAX_RETRIES)
                 time.sleep(delay)
                 delay = min(delay * 2, 120)
             else:
