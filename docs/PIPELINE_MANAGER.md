@@ -1,214 +1,74 @@
 # Pipeline Manager
 
-## Overview
-
-The Pipeline Manager provides stage-based resumability for the Ido-Esperanto extractor pipeline. It tracks the completion status of each stage, allows resuming from failures, and provides visual progress tracking.
-
-## Features
-
-- **Resumability**: Resume from any stage after interruption
-- **State Tracking**: Tracks completion status, errors, and timestamps
-- **Error Handling**: Stops on failure and shows how to resume
-- **Progress Visualization**: Status command shows pipeline progress
-- **Force Regeneration**: Option to regenerate all stages regardless of completion
+Runs the extraction pipeline with per-stage state tracking, so interrupted runs
+can resume from the failed stage rather than starting over.
 
 ## Usage
 
-### Basic Usage
-
-Run the complete pipeline:
 ```bash
-make all              # Uses pipeline manager by default
-# or
-make regenerate-managed
-```
+# Full pipeline (~2 hours)
+python3 scripts/pipeline_manager.py
 
-### Show Status
-
-Check current pipeline status:
-```bash
-make pipeline-status
-# or
+# Check status
 python3 scripts/pipeline_manager.py --status
-```
 
-### Resume from Failure
+# Resume from a specific stage
+python3 scripts/pipeline_manager.py --stage <stage_name>
 
-If a stage fails, you can resume from that stage:
-```bash
-make STAGE=wiktionary_en_io
-# or
-python3 scripts/pipeline_manager.py --stage wiktionary_en_io
-```
-
-### Force Regeneration
-
-Force regeneration of all stages (ignore completed):
-```bash
-make FORCE=1
-# or
+# Force re-run all stages
 python3 scripts/pipeline_manager.py --force
 ```
 
-### Combine Options
+## Stages
 
-Resume from a specific stage with force flag:
-```bash
-make FORCE=1 STAGE=normalize
-# or
-python3 scripts/pipeline_manager.py --force --stage normalize
-```
+| # | Stage | Script | Key output |
+|---|-------|--------|------------|
+| 1 | `download_dumps` | `download_dumps.sh` | `data/raw/*.gz` |
+| 2 | `wiktionary_io` | `process_wiktionary_two_stage.py --source io` | `work/io_wiktionary_processed.json` |
+| 3 | `wiktionary_eo` | `process_wiktionary_two_stage.py --source eo` | `work/eo_wiktionary_processed.json` |
+| 4 | `copy_for_alignment` | *(inline)* | `work/io_wikt_io_eo.json` |
+| 5 | `wiktionary_fr` | `parse_wiktionary_fr.py` | `work/fr_wikt_io_xx.json` |
+| 6 | `wikipedia` | `process_wikipedia_two_stage.py` | `work/io_wikipedia_processed.json` |
+| 7 | `wikipedia_frequency` | `build_frequency_io_wiki.py` | `work/io_wiki_frequency.json` |
+| 8 | `wiktionary_en` | `parse_wiktionary_en.py` | `work/en_wikt_en_both.json` |
+| 9 | `via_english` | `parse_wiktionary_via.py --source en` | `work/bilingual_via_en.json` |
+| 10 | `align_bilingual` | `align_bilingual.py` | `work/bilingual_raw.json` |
+| 11 | `via_french` | `parse_wiktionary_via.py --source fr` | `work/bilingual_via_fr.json` |
+| 11b | `wikipedia_langlinks` | `parse_wikipedia_langlinks.py` | `work/io_eo_langlinks.json` |
+| 11c | `wikidata_labels` | `parse_wikidata_labels.py` | `work/io_eo_wikidata.json` |
+| 11d | `eowiki_langlinks` | `parse_wikipedia_langlinks.py --source-wiki eo` | `work/eo_io_langlinks.json` |
+| 12 | `prepare_vocabulary` | `prepare_vocabulary.py` | `work/final_vocabulary.json` |
+| 13 | `build_monolingual` | `build_monolingual.py` | `dist/ido_dictionary.json` |
+| 14 | `build_big_bidix` | `build_one_big_bidix_json.py` | `dist/bidix_big.json` |
+| 15 | `report_coverage` | `report_coverage.py` | `reports/frequency_coverage.md` |
+| 16 | `export_apertium` | `export_apertium.py` | `dist/*.dix` |
+| 17 | `report_stats` | `report_stats.py` | `reports/stats_summary.md` |
+| 18 | `report_dump_coverage` | `report_io_dump_coverage.py` | `reports/io_dump_coverage.md` |
+| 19 | `report_conflicts` | `report_conflicts.py` | `reports/bidix_conflicts.md` |
+| 20 | `report_big_bidix_stats` | `report_big_bidix_stats.py` | `reports/big_bidix_stats.md` |
+| 21 | `build_web_index` | `build_web_index.py` | `dist/web_index.json` |
+| 22 | `export_vortaro` | `export_vortaro.py` | `dist/vortaro_dictionary.json` |
 
-## Pipeline Stages
+## State file
 
-The pipeline consists of 25 stages:
+State is stored in `work/pipeline_state.json`. Stage statuses: `pending`,
+`running`, `completed`, `failed`.
 
-1. **download_dumps** - Download Wikimedia dumps
-2. **wiktionary_io** - Process Ido Wiktionary (two-stage)
-3. **wiktionary_eo** - Process Esperanto Wiktionary (two-stage)
-4. **copy_for_alignment** - Copy processed files for alignment
-5. **wiktionary_fr** - Parse French Wiktionary
-6. **wikipedia** - Process Wikipedia dump (two-stage)
-7. **wikipedia_frequency** - Build Wikipedia frequency data
-8. **wiktionary_en_io** - Parse English Wiktionary (IO)
-9. **wiktionary_en_eo** - Parse English Wiktionary (EO)
-10. **via_english** - Extract via English translations
-11. **align_bilingual** - Align bilingual entries
-12. **via_french** - Extract via French translations
-13. **normalize** - Normalize entries
-14. **infer_morphology** - Infer morphology
-15. **filter** - Filter and validate entries
-16. **final_preparation** - Final preparation
-17. **build_monolingual** - Build monolingual dictionaries
-18. **build_big_bidix** - Build one big bilingual dictionary
-19. **report_coverage** - Report coverage statistics
-20. **export_apertium** - Export to Apertium XML
-21. **report_stats** - Report general statistics
-22. **report_dump_coverage** - Report dump coverage
-23. **report_conflicts** - Report conflicts
-24. **report_big_bidix_stats** - Report big bidix statistics
-25. **build_web_index** - Build web index
-
-## State File
-
-The pipeline state is stored in `work/pipeline_state.json`:
-
-```json
-{
-  "stages": {
-    "wiktionary_io": {
-      "name": "wiktionary_io",
-      "status": "completed",
-      "output": null,
-      "error": null,
-      "start_time": "2025-10-25T10:00:00",
-      "end_time": "2025-10-25T10:05:00"
-    }
-  },
-  "last_update": "2025-10-25T10:05:00"
-}
-```
-
-### Stage Statuses
-
-- **pending** - Not yet executed
-- **running** - Currently executing
-- **completed** - Successfully completed
-- **failed** - Failed with error
-- **skipped** - Skipped due to missing prerequisites
-
-## Error Handling
-
-When a stage fails:
-1. The pipeline stops immediately
-2. The failed stage is marked with error details
-3. State is saved to `work/pipeline_state.json`
-4. Instructions are shown for resuming
-
-Example error message:
-```
-Stage 'wiktionary_en_io' failed: Command failed
-Pipeline stopped at stage 'wiktionary_en_io'
-To resume, run: python3 scripts/pipeline_manager.py --stage wiktionary_en_io
-```
-
-## Migration from Legacy Pipeline
-
-The legacy `make regenerate` command still works but doesn't use the pipeline manager. New code should use `make all` or `make regenerate-managed`.
-
-### Comparison
-
-| Feature | Legacy `regenerate` | New `regenerate-managed` |
-|---------|-------------------|-------------------------|
-| Resumability | No | Yes |
-| Error recovery | No | Yes |
-| Progress tracking | No | Yes |
-| State persistence | No | Yes |
-| Skip completed | No | Yes |
-
-## Integration with Skip Flags
-
-The pipeline manager doesn't directly support the old skip flags (`SKIP_DOWNLOAD`, `SKIP_EN_WIKT`, etc.). If you need to skip stages, you can:
-
-1. Use the legacy `make regenerate mode` with skip flags
-2. Manually delete the completed stage from `work/pipeline_state.json`
-3. Add conditional stage execution to the pipeline manager
-
-## Examples
-
-### Full Pipeline Run
-```bash
-make all
-```
-
-### Resume After Failure
-```bash
-# Check status
-make pipeline-status
-
-# Resume from failed stage
-make STAGE=wiktionary_en_io
-```
-
-### Force Regeneration
-```bash
-make FORCE=1
-```
-
-### Run Specific Stages Only
-```bash
-# Run from stage X to stage Y
-make STAGE=normalize           # Runs normalize and all subsequent stages
-```
-
-## Troubleshooting
-
-### State File Corrupted
-If the state file becomes corrupted:
+If the state file becomes corrupted, delete it and start over:
 ```bash
 rm work/pipeline_state.json
-make all  # Start fresh
+python3 scripts/pipeline_manager.py
 ```
 
-### Stage Shows "Completed" But Needs Re-running
+## Gotcha: stale export_apertium
+
+The pipeline manager tracks stage completion by timestamp. If you rebuild
+`dist/bidix_big.json` manually (e.g. by re-running `build_one_big_bidix_json.py`
+directly), the `export_apertium` stage still shows "completed" from the previous
+run and will be skipped.
+
+Always re-run export after a manual bidix rebuild:
 ```bash
-make FORCE=1  # Regenerate all stages
-# or
-make STAGE=<stage_name> FORCE=1  # Regenerate specific stage
+python3 scripts/export_apertium.py
+python3 scripts/export_vortaro.py
 ```
-
-### Want to Skip Certain Stages
-Use the legacy pipeline with skip flags:
-```bash
-make regenerate SKIP_EN_WIKT=1 SKIP_FR_WIKT=1
-```
-
-## Future Enhancements
-
-Potential improvements:
-- Parallel stage execution where possible
-- Graph-based dependency resolution
-- Better error reporting and recovery suggestions
-- Web UI for monitoring pipeline progress
-- Metrics and timing statistics per stage
-
