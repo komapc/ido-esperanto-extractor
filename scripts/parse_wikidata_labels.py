@@ -93,15 +93,22 @@ def _sparql_request(query: str) -> list[dict]:
     raise RuntimeError(f"SPARQL query failed after {MAX_RETRIES} attempts")
 
 
-def iter_io_eo_items(page_size: int = PAGE_SIZE) -> Iterator[tuple[str, str, str]]:
-    """Yield (qid, io_label, eo_label) for all Wikidata items with both labels."""
+def iter_io_items(page_size: int = PAGE_SIZE) -> Iterator[tuple[str, str]]:
+    """Yield (qid, io_label) for Wikidata items linked from io.wikipedia.
+
+    Uses schema:isPartOf <https://io.wikipedia.org/> as a selective index
+    (bounded set of ~70k items) instead of scanning all rdfs:label triples,
+    which triggers WDQS 429 rate-limiting. eo label is fetched per-item via
+    the entity API (fetch_entity).
+    """
     offset = 0
     total = 0
     while True:
         query = f"""
-SELECT ?item ?ioLabel ?eoLabel WHERE {{
+SELECT DISTINCT ?item ?ioLabel WHERE {{
+  ?article schema:about ?item ;
+           schema:isPartOf <https://io.wikipedia.org/> .
   ?item rdfs:label ?ioLabel . FILTER(LANG(?ioLabel) = "io")
-  ?item rdfs:label ?eoLabel . FILTER(LANG(?eoLabel) = "eo")
 }}
 ORDER BY ?item
 LIMIT {page_size}
@@ -114,8 +121,7 @@ OFFSET {offset}
         for row in rows:
             qid = row["item"]["value"].rsplit("/", 1)[-1]
             io_label = row["ioLabel"]["value"].strip()
-            eo_label = row["eoLabel"]["value"].strip()
-            yield qid, io_label, eo_label
+            yield qid, io_label
         total += len(rows)
         logger.info("  → %d rows this page (%d total so far)", len(rows), total)
         if len(rows) < page_size:
@@ -124,8 +130,11 @@ OFFSET {offset}
         time.sleep(1.0)  # be polite between pages
 
 
-def fetch_aliases(qid: str) -> tuple[list[str], list[str]]:
-    """Return (io_aliases, eo_aliases) for a Wikidata item via the entity API."""
+def fetch_entity(qid: str) -> tuple[str | None, list[str], list[str]]:
+    """Return (eo_label, io_aliases, eo_aliases) via the entity API.
+
+    eo_label is None when the item has no Esperanto label.
+    """
     url = ENTITY_API.format(qid=qid)
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     delay = BASE_DELAY
@@ -134,10 +143,11 @@ def fetch_aliases(qid: str) -> tuple[list[str], list[str]]:
             with urllib.request.urlopen(req, timeout=30) as resp:
                 data = json.loads(resp.read())
             item = data["entities"].get(qid, {})
+            eo_lbl = item.get("labels", {}).get("eo", {}).get("value", "").strip() or None
             aliases = item.get("aliases", {})
             io_al = [a["value"].strip() for a in aliases.get("io", [])]
             eo_al = [a["value"].strip() for a in aliases.get("eo", [])]
-            return io_al, eo_al
+            return eo_lbl, io_al, eo_al
         except urllib.error.HTTPError as e:
             if e.code in (429, 503):
                 logger.debug("Entity API %d for %s; sleeping %.0fs", e.code, qid, delay)
@@ -145,11 +155,11 @@ def fetch_aliases(qid: str) -> tuple[list[str], list[str]]:
                 delay = min(delay * 2, 60)
             else:
                 logger.debug("Entity API error %d for %s", e.code, qid)
-                return [], []
+                return None, [], []
         except Exception as e:
             logger.debug("Entity API failed for %s: %s", qid, e)
-            return [], []
-    return [], []
+            return None, [], []
+    return None, [], []
 
 
 def build_entry(io_lemma: str, eo_terms: list[str], qid: str) -> dict:
@@ -187,12 +197,12 @@ def main(argv: list[str] | None = None) -> int:
     # Track by io lemma to merge multiple eo terms for the same Ido word
     by_io: dict[str, dict] = {}   # io_lemma -> entry dict
 
-    logger.info("Querying Wikidata SPARQL for items with io+eo labels …")
+    logger.info("Querying Wikidata SPARQL for items with io labels …")
     seen_qids: set[str] = set()
     pages = 0
 
     try:
-        for qid, io_label, eo_label in iter_io_eo_items():
+        for qid, io_label in iter_io_items():
             pages += 1
             if args.dry_run and pages > PAGE_SIZE:
                 logger.info("--dry-run: stopping after first page")
@@ -200,7 +210,15 @@ def main(argv: list[str] | None = None) -> int:
 
             if not _is_valid_io_lemma(io_label):
                 continue
-            if not _is_valid_eo_term(eo_label):
+
+            # Always call entity API: get eo label + aliases in one request.
+            # --no-aliases suppresses alias processing but we still need the
+            # eo label, so the API call happens regardless.
+            eo_label, io_al, eo_al = fetch_entity(qid)
+            if args.no_aliases:
+                io_al, eo_al = [], []
+
+            if not eo_label or not _is_valid_eo_term(eo_label):
                 continue
 
             seen_qids.add(qid)
@@ -208,29 +226,27 @@ def main(argv: list[str] | None = None) -> int:
 
             # Collect eo terms: primary label first
             eo_terms: list[str] = [eo_label]
+            for t in eo_al:
+                if _is_valid_eo_term(t) and t not in eo_terms:
+                    eo_terms.append(t)
 
-            if not args.no_aliases:
-                io_al, eo_al = fetch_aliases(qid)
-                for t in eo_al:
-                    if _is_valid_eo_term(t) and t not in eo_terms:
-                        eo_terms.append(t)
-                for io_alias in io_al:
-                    if not _is_valid_io_lemma(io_alias):
-                        continue
-                    ak = io_alias.lower()
-                    if ak not in by_io:
-                        by_io[ak] = build_entry(io_alias, eo_terms, qid)
-                    else:
-                        existing = {
-                            tr["term"]
-                            for s in by_io[ak]["senses"]
-                            for tr in s["translations"]
-                        }
-                        for t in eo_terms:
-                            if t not in existing:
-                                by_io[ak]["senses"][0]["translations"].append(
-                                    {"lang": "eo", "term": t, "confidence": 0.9, "source": SOURCE_TAG}
-                                )
+            for io_alias in io_al:
+                if not _is_valid_io_lemma(io_alias):
+                    continue
+                ak = io_alias.lower()
+                if ak not in by_io:
+                    by_io[ak] = build_entry(io_alias, eo_terms, qid)
+                else:
+                    existing = {
+                        tr["term"]
+                        for s in by_io[ak]["senses"]
+                        for tr in s["translations"]
+                    }
+                    for t in eo_terms:
+                        if t not in existing:
+                            by_io[ak]["senses"][0]["translations"].append(
+                                {"lang": "eo", "term": t, "confidence": 0.9, "source": SOURCE_TAG}
+                            )
 
             if io_key not in by_io:
                 by_io[io_key] = build_entry(io_label, eo_terms, qid)
