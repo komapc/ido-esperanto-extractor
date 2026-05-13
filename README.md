@@ -77,7 +77,7 @@ On conflict, higher-priority sources win; lower-priority translations are droppe
 | `eo_wiktionary` | Esperanto Wiktionary → Ido translations | 200 |
 | `bert_embeddings` | XLM-RoBERTa cross-lingual alignment (cognates only, ≥0.99) | — |
 | `function_word_override` | Seeded closed-class words | 10 |
-| `wikidata_labels` | Wikidata items with io+eo labels (requires WDQS) | pending |
+| `wikidata_labels` | Wikidata items with io+eo labels (dump + wbgetentities API) | pending |
 
 `bert_embeddings` applies a 4-character prefix cognate guard: only Esperanto translations
 sharing the first 4 letters with the Ido lemma are kept, preventing distributional

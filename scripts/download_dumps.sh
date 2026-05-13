@@ -23,6 +23,7 @@ declare -a URLS=(
   "https://dumps.wikimedia.org/frwiktionary/latest/frwiktionary-latest-pages-articles.xml.bz2"
   "https://dumps.wikimedia.org/iowiki/latest/iowiki-latest-pages-articles.xml.bz2"
   "https://dumps.wikimedia.org/iowiki/latest/iowiki-latest-langlinks.sql.gz"
+  "https://dumps.wikimedia.org/iowiki/latest/iowiki-latest-page_props.sql.gz"
 )
 
 echo "Downloading dumps to ${RAW_DIR}..."

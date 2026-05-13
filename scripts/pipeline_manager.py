@@ -334,10 +334,10 @@ def main(argv):
          None),
 
         # Stage 11c: Wikidata labels (io+eo labeled items → io↔eo pairs).
-        # Queries the Wikidata SPARQL endpoint for all items with labels in
-        # both Ido and Esperanto, then fetches aliases. Adds common nouns,
-        # scientific terms, and concepts absent from Wiktionary/Wikipedia.
-        # Requires internet access; skips gracefully if SPARQL is unavailable.
+        # Parses iowiki-latest-page_props.sql.gz (local dump) to get QIDs for
+        # all io.wiki pages, then batch-fetches labels+aliases via the Wikidata
+        # wbgetentities API (50 QIDs/call, ~23 min for ~70k items). No SPARQL.
+        # Requires: data/raw/iowiki-latest-page_props.sql.gz (from download_dumps.sh)
         ("wikidata_labels",
          ["python3", "scripts/parse_wikidata_labels.py", "-v"],
          "Extract io↔eo pairs from Wikidata labels",
