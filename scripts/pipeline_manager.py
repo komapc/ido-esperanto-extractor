@@ -355,6 +355,16 @@ def main(argv):
          "Extract io↔eo pairs from eo.wiki interlanguage links",
          None),
 
+        # Stage 11e: Morphological expansion (derive forms from known bidix pairs).
+        # Generates forms like facado→farado from known facar→fari, validated
+        # against the io.wiki frequency corpus. Fast (~3s). Runs after bidix
+        # sources are collected but before build_big_bidix.
+        # Requires: dist/bidix_big.json, work/io_wiki_frequency.json
+        ("morphological_expansion",
+         ["python3", "scripts/build_morphological_expansion.py"],
+         "Generate morphological derivations from known bidix pairs",
+         None),
+
         # Stage 12: Prepare vocabulary (normalize + morphology + filter in one pass)
         ("prepare_vocabulary",
          ["python3", "scripts/prepare_vocabulary.py", "--wiki-top-n", "1000"],
