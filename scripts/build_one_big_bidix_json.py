@@ -381,6 +381,9 @@ def main(argv: Iterable[str]) -> int:
         # Complements langlinks with common nouns, scientific terms, and items
         # that have Wikidata entries but no Wikipedia article in both languages.
         base_path / 'work/io_eo_wikidata.json',
+        # Morphological expansion: derived forms (e.g. abasata→malaltigata) from
+        # known verb/noun pairs. Only includes forms validated in io.wiki corpus.
+        base_path / 'work/io_eo_morphological.json',
         # Function words whose EO translations the live parser cannot extract from the Wiktionary dump.
         # Keep this list minimal — entries here override BERT but lose to any live Wiktionary extraction.
         base_path / 'data/sources/source_function_words_seed.json',
