@@ -32,20 +32,27 @@ def compute_stats(final_path: Path, mono_path: Path, io_wikt_path: Path, eo_wikt
         if any(isinstance(p, dict) and ("source" not in p) for p in prov):
             missing_source_field += 1
 
-    # Final dictionary split by source
-    keys = ["io_wiktionary", "eo_wiktionary", "io_wikipedia", "whitelist"]
-    final_by_source = {k: 0 for k in keys}
+    # Final dictionary split by source (dynamic — all observed sources)
+    all_final_sources: Set[str] = set()
     for e in final:
-        for k in keys:
-            if any(k in s for s in provenance_sources(e)):
-                final_by_source[k] += 1
+        all_final_sources |= provenance_sources(e)
+    all_final_sources.discard("")
+    final_by_source = {k: 0 for k in sorted(all_final_sources)}
+    for e in final:
+        for s in provenance_sources(e):
+            if s in final_by_source:
+                final_by_source[s] += 1
 
-    # Monolingual Ido split by source
-    mono_by_source = {k: 0 for k in keys}
+    # Monolingual Ido split by source (dynamic)
+    all_mono_sources: Set[str] = set()
     for e in mono:
-        for k in keys:
-            if any(k in s for s in provenance_sources(e)):
-                mono_by_source[k] += 1
+        all_mono_sources |= provenance_sources(e)
+    all_mono_sources.discard("")
+    mono_by_source = {k: 0 for k in sorted(all_mono_sources)}
+    for e in mono:
+        for s in provenance_sources(e):
+            if s in mono_by_source:
+                mono_by_source[s] += 1
 
     # Wiktionary translation counts
     io_to_eo = 0
@@ -64,14 +71,18 @@ def compute_stats(final_path: Path, mono_path: Path, io_wikt_path: Path, eo_wikt
     # Wikipedia/Wikidata additions
     wiki_any = 0
     wiki_only = 0
+    wikidata_count = 0
     for e in final:
         srcs = provenance_sources(e)
-        has_wiki = any("wikipedia" in s for s in srcs)
+        has_wiki = any("wikipedia" in s and "wikidata" not in s for s in srcs)
+        has_wikidata = any("wikidata" in s for s in srcs)
         has_wikt = any("wiktionary" in s for s in srcs)
         if has_wiki:
             wiki_any += 1
             if not has_wikt:
                 wiki_only += 1
+        if has_wikidata:
+            wikidata_count += 1
 
     # Coverage metrics for Ido entries without EO translations
     no_eo_total = 0
@@ -109,7 +120,7 @@ def compute_stats(final_path: Path, mono_path: Path, io_wikt_path: Path, eo_wikt
         "monolingual_total": len(mono),
         "monolingual_by_source": mono_by_source,
         "translations_from_wiktionaries": {"io_to_eo": io_to_eo, "eo_to_io": eo_to_io},
-        "wikipedia_additions": {"any_wikipedia": wiki_any, "wikipedia_only": wiki_only, "wikidata": 0},
+        "wikipedia_additions": {"any_wikipedia": wiki_any, "wikipedia_only": wiki_only, "wikidata": wikidata_count},
         "coverage_no_eo": {
             "ido_entries_without_eo": no_eo_total,
             "with_any_other_translation": no_eo_any_other,
@@ -125,10 +136,10 @@ def render_markdown(stats: Dict[str, Any]) -> str:
     a(f"- Final entries: {stats['final_total']}")
     a(f"- Monolingual Ido entries: {stats['monolingual_total']}\n")
     a("## Final by Source")
-    for k, v in stats["final_by_source"].items():
+    for k, v in sorted(stats["final_by_source"].items(), key=lambda x: -x[1]):
         a(f"- {k}: {v}")
     a("\n## Monolingual Ido by Source")
-    for k, v in stats["monolingual_by_source"].items():
+    for k, v in sorted(stats["monolingual_by_source"].items(), key=lambda x: -x[1]):
         a(f"- {k}: {v}")
     a("\n## Wiktionary Translations")
     a(f"- IO→EO: {stats['translations_from_wiktionaries']['io_to_eo']}")
@@ -147,7 +158,7 @@ def render_markdown(stats: Dict[str, Any]) -> str:
 
 def main(argv: Iterable[str]) -> int:
     ap = argparse.ArgumentParser(description="Compute and report dictionary statistics")
-    ap.add_argument("--final", type=Path, default=Path(__file__).resolve().parents[1] / "work/final_vocabulary.json")
+    ap.add_argument("--final", type=Path, default=Path(__file__).resolve().parents[1] / "dist/bidix_big.json")
     ap.add_argument("--mono", type=Path, default=Path(__file__).resolve().parents[1] / "dist/ido_dictionary.json")
     ap.add_argument("--io-wikt", type=Path, default=Path(__file__).resolve().parents[1] / "work/io_wikt_io_eo.json")
     ap.add_argument("--eo-wikt", type=Path, default=Path(__file__).resolve().parents[1] / "work/eo_wikt_eo_io.json")

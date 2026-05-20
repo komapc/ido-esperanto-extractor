@@ -1,31 +1,37 @@
 # Dictionary Statistics
 
-- Final entries: 7771
-- Monolingual Ido entries: 8751
+- Final entries: 97812
+- Monolingual Ido entries: 46700
 
 ## Final by Source
-- io_wiktionary: 7583
-- eo_wiktionary: 296
-- io_wikipedia: 0
-- whitelist: 0
+- io_wiktionary: 44393
+- eowiki_langlinks: 18116
+- wikipedia_langlinks: 17866
+- io_wikipedia: 14310
+- wikidata_labels: 11574
+- en_wiktionary_via: 4512
+- morphological_expansion: 3709
+- fr_wiktionary_via: 1043
+- eo_wiktionary: 200
+- function_word_override: 10
 
 ## Monolingual Ido by Source
-- io_wiktionary: 7578
-- eo_wiktionary: 281
-- io_wikipedia: 0
-- whitelist: 0
+- io_wiktionary: 44542
+- fr_wiktionary_meaning: 1001
+- en_wiktionary_via: 968
+- eo_wiktionary: 193
 
 ## Wiktionary Translations
-- IO→EO: 8302
-- EO→IO: 205
+- IO→EO: 8296
+- EO→IO: 202
 
 ## Wikipedia/Wikidata Additions
-- any_wikipedia: 0
-- wikipedia_only: 0
-- wikidata: 0
+- any_wikipedia: 32176
+- wikipedia_only: 30763
+- wikidata: 11574
 
 ## Coverage: Ido entries without EO translations
-- no_EO_translation: 120
+- no_EO_translation: 60815
 - with_any_other_translation: 0
 - with_english_translation: 0
 
