@@ -7,10 +7,17 @@ known pair (e.g. facar→fari), we can reliably derive:
   io_root+ado  → eo_root+ado   (verbal noun:      facado→farado)
   io_root+anto → eo_root+anto  (present agent:    facanto→faranto)
   io_root+ita  → eo_root+ita   (past passive adj: facita→farita)
+  io_root+anta → eo_root+anta  (present act. adj: facanta→faranta)
+  io_root+ante → eo_root+ante  (present act. adv: facante→farante)
   ...
 
-The same logic applies to noun→adjective/adverb pairs:
-  io_noun_root+a → eo_noun_root+a  (hundo→hundo  ⟹  hunda→hunda)
+The same logic applies to noun→adjective/adverb/quality-noun pairs:
+  io_noun_root+a   → eo_noun_root+a    (hundo→hundo  ⟹  hunda→hunda)
+  io_noun_root+eso → eo_noun_root+eco  (hundo→hundo  ⟹  hundeso→hundeco)
+
+And to adjective→adverb/quality-noun/person pairs:
+  io_adj_root+e    → eo_adj_root+e     (bela→bela  ⟹  bele→bele)
+  io_adj_root+eso  → eo_adj_root+eco   (bela→bela  ⟹  beleso→beleco)
 
 Generated forms are validated against io.wiki's word frequency list (only forms
 that actually appear in Ido texts are kept).
@@ -43,13 +50,23 @@ SOURCE_TAG = "morphological_expansion"
 # All Ido verb classes (-ar/-ir/-or) map to Eo infinitive (-i).
 VERB_DERIVATIONS: list[tuple[str, str, str]] = [
     ("ado",   "ado",   "n"),    # nominalization: act of V-ing
-    ("anto",  "anto",  "n"),    # present active agent
-    ("into",  "into",  "n"),    # past active agent
-    ("onto",  "onto",  "n"),    # future active agent
-    ("ata",   "ata",   "adj"),  # present passive participle
-    ("ita",   "ita",   "adj"),  # past passive participle
-    ("ota",   "ota",   "adj"),  # future passive participle
+    ("anto",  "anto",  "n"),    # present active agent (noun)
+    ("into",  "into",  "n"),    # past active agent (noun)
+    ("onto",  "onto",  "n"),    # future active agent (noun)
+    ("anta",  "anta",  "adj"),  # present active participle (adj)
+    ("inta",  "inta",  "adj"),  # past active participle (adj)
+    ("onta",  "onta",  "adj"),  # future active participle (adj)
+    ("ante",  "ante",  "adv"),  # present active participle (adv)
+    ("inte",  "inte",  "adv"),  # past active participle (adv)
+    ("onte",  "onte",  "adv"),  # future active participle (adv)
+    ("ata",   "ata",   "adj"),  # present passive participle (adj)
+    ("ita",   "ita",   "adj"),  # past passive participle (adj)
+    ("ota",   "ota",   "adj"),  # future passive participle (adj)
+    ("ate",   "ate",   "adv"),  # present passive participle (adv)
+    ("ite",   "ite",   "adv"),  # past passive participle (adv)
+    ("ote",   "ote",   "adv"),  # future passive participle (adv)
     ("ema",   "ema",   "adj"),  # prone-to adjective
+    ("emo",   "emo",   "n"),    # tendency/disposition noun: studemo→studemo
     ("inda",  "inda",  "adj"),  # worthy-of adjective
     ("ilo",   "ilo",   "n"),    # instrument/tool
     ("ejo",   "ejo",   "n"),    # place for
@@ -62,6 +79,8 @@ NOUN_DERIVATIONS: list[tuple[str, str, str]] = [
     ("e",    "e",    "adv"),   # adverb form
     ("aro",  "aro",  "n"),     # collection / group
     ("ejo",  "ejo",  "n"),     # place for
+    ("emo",  "emo",  "n"),     # tendency/passion: muzikemo→muzikemo
+    ("eso",  "eco",  "n"),     # quality noun: hundeso→hundeco
     ("ino",  "ino",  "n"),     # feminine form
     ("isto", "isto", "n"),     # professional
     ("ismo", "ismo", "n"),     # ideology / -ism
@@ -70,10 +89,24 @@ NOUN_DERIVATIONS: list[tuple[str, str, str]] = [
     ("ego",  "ego",  "n"),     # augmentative
 ]
 
+# Derivations from adjective roots (IO adj ends in -a, root = stem without -a).
+ADJ_DERIVATIONS: list[tuple[str, str, str]] = [
+    ("eso",  "eco",  "n"),    # quality noun: beleso→beleco, rapideso→rapideco
+    ("e",    "e",    "adv"),  # adverb: bele→bele, grande→grande
+    ("ulo",  "ulo",  "n"),    # person with quality: bonulo→bonulo
+    ("ino",  "ino",  "n"),    # female person with quality: belino→belino
+]
+
 _IO_VERB_RE = re.compile(r"^(.{2,}?)(ar|ir|or)$")
 _EO_VERB_RE = re.compile(r"^(.{2,})i$")
 _IO_NOUN_RE = re.compile(r"^(.{2,})o$")
 _EO_NOUN_RE = re.compile(r"^(.{2,})o$")
+_IO_ADJ_RE  = re.compile(r"^(.{2,})a$")
+_EO_ADJ_RE  = re.compile(r"^(.{2,})a$")
+
+# Suffixes that indicate a root is already a derived/participial form — skip those
+# to avoid chaining derivations (e.g. studanta→root studant→studanteso would be wrong).
+_DERIVED_ROOT_RE = re.compile(r"(ar|ir|or|as|is|os|us|ez|ant|int|ont|at|it|ot|em|ind)$")
 
 
 def _io_verb_root(word: str) -> str | None:
@@ -89,8 +122,7 @@ def _eo_verb_root(word: str) -> str | None:
 def _io_noun_root(word: str) -> str | None:
     m = _IO_NOUN_RE.match(word)
     r = m.group(1).lower() if m else None
-    # exclude words that look like verb forms accidentally ending in -o
-    if r and re.search(r"(ar|ir|or|as|is|os|us|ez)$", r):
+    if r and _DERIVED_ROOT_RE.search(r):
         return None
     return r
 
@@ -98,7 +130,23 @@ def _io_noun_root(word: str) -> str | None:
 def _eo_noun_root(word: str) -> str | None:
     m = _EO_NOUN_RE.match(word)
     r = m.group(1).lower() if m else None
-    if r and re.search(r"(ar|ir|or|as|is|os|us)$", r):
+    if r and _DERIVED_ROOT_RE.search(r):
+        return None
+    return r
+
+
+def _io_adj_root(word: str) -> str | None:
+    m = _IO_ADJ_RE.match(word)
+    r = m.group(1).lower() if m else None
+    if r and _DERIVED_ROOT_RE.search(r):
+        return None
+    return r
+
+
+def _eo_adj_root(word: str) -> str | None:
+    m = _EO_ADJ_RE.match(word)
+    r = m.group(1).lower() if m else None
+    if r and _DERIVED_ROOT_RE.search(r):
         return None
     return r
 
@@ -154,6 +202,26 @@ def iter_noun_pairs(bidix: list[dict]) -> Iterator[tuple[str, str, str, str]]:
                     yield lm, eo, io_root, eo_root
 
 
+def iter_adj_pairs(bidix: list[dict]) -> Iterator[tuple[str, str, str, str]]:
+    """Yield (io_adj, eo_adj, io_root, eo_root) for adjective pairs in bidix."""
+    for entry in bidix:
+        lm = entry["lemma"]
+        if not _is_common_word(lm):
+            continue
+        io_root = _io_adj_root(lm)
+        if not io_root:
+            continue
+        senses = entry.get("senses") or []
+        for sense in senses:
+            for tr in sense.get("translations") or []:
+                eo = tr.get("term", "")
+                if not _is_common_word(eo):
+                    continue
+                eo_root = _eo_adj_root(eo)
+                if eo_root:
+                    yield lm, eo, io_root, eo_root
+
+
 def build_entry(io_lemma: str, eo_term: str, pos: str, source_pair: str) -> dict:
     return {
         "lemma": io_lemma,
@@ -176,7 +244,7 @@ def build_entry(io_lemma: str, eo_term: str, pos: str, source_pair: str) -> dict
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     base = Path(__file__).resolve().parents[1]
-    ap.add_argument("--bidix",     type=Path, default=base / "dist/bidix_big.json")
+    ap.add_argument("--bidix",     type=Path, default=base / "work/final_vocabulary.json")
     ap.add_argument("--wiki-freq", type=Path, default=base / "work/io_wiki_frequency.json")
     ap.add_argument("--out",       type=Path, default=base / "work/io_eo_morphological.json")
     ap.add_argument("--dry-run",   action="store_true")
@@ -255,6 +323,35 @@ def main(argv: list[str] | None = None) -> int:
     logger.info("Noun derivations: %d new, %d already in bidix, %d not in wiki",
                 noun_kept, noun_skipped_dup, noun_skipped_vocab)
 
+    # --- Adjective derivations ---
+    adj_kept = adj_skipped_dup = adj_skipped_vocab = 0
+    seen_adj_pairs: set[tuple[str, str, str]] = set()
+
+    for io_a, eo_a, io_r, eo_r in iter_adj_pairs(bidix):
+        for io_suf, eo_suf, pos in ADJ_DERIVATIONS:
+            key = (io_r, eo_r, io_suf)
+            if key in seen_adj_pairs:
+                continue
+            seen_adj_pairs.add(key)
+
+            io_d = io_r + io_suf
+            eo_d = eo_r + eo_suf
+            if io_d in bidix_lemmas:
+                adj_skipped_dup += 1
+                continue
+            if io_d not in wiki_vocab:
+                adj_skipped_vocab += 1
+                continue
+            src = f"{io_a}→{eo_a}"
+            if io_d not in by_io:
+                by_io[io_d] = {}
+            if eo_d not in by_io[io_d]:
+                by_io[io_d][eo_d] = (pos, src)
+                adj_kept += 1
+
+    logger.info("Adj derivations: %d new, %d already in bidix, %d not in wiki",
+                adj_kept, adj_skipped_dup, adj_skipped_vocab)
+
     # Build output entries: merge multiple eo translations for same io lemma
     out: list[dict] = []
     for io_d, eo_map in sorted(by_io.items()):
@@ -276,8 +373,8 @@ def main(argv: list[str] | None = None) -> int:
             "provenance": [{"source": SOURCE_TAG, "page": src}],
         })
 
-    total = verb_kept + noun_kept
-    logger.info("Total new entries: %d (verb: %d, noun: %d)", total, verb_kept, noun_kept)
+    total = verb_kept + noun_kept + adj_kept
+    logger.info("Total new entries: %d (verb: %d, noun: %d, adj: %d)", total, verb_kept, noun_kept, adj_kept)
 
     if args.dry_run:
         logger.info("--dry-run: first 20 entries:")

@@ -1,6 +1,6 @@
 # Dictionary Statistics
 
-- Final entries: 97812
+- Final entries: 98778
 - Monolingual Ido entries: 46700
 
 ## Final by Source
@@ -9,8 +9,8 @@
 - wikipedia_langlinks: 17866
 - io_wikipedia: 14310
 - wikidata_labels: 11574
+- morphological_expansion: 5543
 - en_wiktionary_via: 4512
-- morphological_expansion: 3709
 - fr_wiktionary_via: 1043
 - eo_wiktionary: 200
 - function_word_override: 10
@@ -31,7 +31,7 @@
 - wikidata: 11574
 
 ## Coverage: Ido entries without EO translations
-- no_EO_translation: 60815
+- no_EO_translation: 60257
 - with_any_other_translation: 0
 - with_english_translation: 0
 
