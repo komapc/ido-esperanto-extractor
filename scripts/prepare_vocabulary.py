@@ -51,7 +51,9 @@ def _clean_eo_term(raw: str) -> str:
     term = (raw or '').strip()
     if any(x in term for x in ['|', '{', '}', 'bgcolor']):
         return ''
-    term = re.sub(r"\s*Kategorio:[^\s]+.*$", "", term)
+    term = re.sub(r"^\d+\)\s*", "", term)                          # "2) ovario" → "ovario"
+    term = re.sub(r"\s*[Kk]ategorio:[^\s]+.*$", "", term, flags=re.IGNORECASE)
+    term = re.sub(r"\s*#\S+", "", term)                            # "travidebla #Esperanto" → "travidebla"
     if '*' in term:
         return ''
     term = re.sub(r"\s+", " ", term).strip()
