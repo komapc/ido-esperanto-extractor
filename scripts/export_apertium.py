@@ -456,6 +456,15 @@ def build_bidix(entries):
         raw_par = (e.get("morphology") or {}).get("paradigm") or None
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
 
+        # Chemical-symbol guard: two-char XY lemmas (e.g. "Ca", "Fe", "Na") from
+        # wikidata_labels get inferred as a__adj because they end in 'a', producing
+        # stem "C" which collides with sentence-initial `ca<adj>` (Ido demonstrative).
+        # Skip them when there is no explicit POS to confirm they are adjectives.
+        if (len(clean_lm) == 2 and clean_lm[0].isupper() and clean_lm[1].islower()
+                and raw_par == 'a__adj' and pos is None):
+            logging.debug("Skipping chemical-symbol-shaped bidix entry: %s", clean_lm)
+            continue
+
         # Prep-article contractions: generate 1-to-1 base_prep<pr><def> mapping.
         # Must be checked before eo_terms collection since these entries have no
         # stored translations — their Epo equivalent is in _PREP_ART_EPO.
