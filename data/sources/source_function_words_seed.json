@@ -1,11 +1,11 @@
 {
   "metadata": {
     "source_name": "function_words_seed",
-    "version": "1.2",
-    "generation_date": "2026-04-30",
-    "description": "Manually curated Ido function words that are missing from Wiktionary or whose Wiktionary translations cannot be extracted by the parser. Keep this list minimal — add an entry only when the pipeline provably fails to produce the translation. Reduced from 17 to 10: removed la/de/por/da/di/vu/kad which io.wiktionary covers correctly after PR #110 (closed-class POS protection).",
+    "version": "1.3",
+    "generation_date": "2026-05-21",
+    "description": "Manually curated Ido function words that are missing from Wiktionary or whose Wiktionary translations cannot be extracted by the parser. Keep this list minimal — add an entry only when the pipeline provably fails to produce the translation. Reduced from 17 to 10: removed la/de/por/da/di/vu/kad which io.wiktionary covers correctly after PR #110 (closed-class POS protection). Added ca→tiu: io_wikipedia entry has empty senses, absent from io.wiktionary.",
     "statistics": {
-      "total_entries": 10
+      "total_entries": 11
     }
   },
   "entries": [
@@ -183,6 +183,26 @@
       "metadata": {
         "source_page": "manual",
         "note": "Ido 'o' = Epo 'aŭ' (or); Wiktionary parser misses EO translation"
+      }
+    },
+    {
+      "lemma": "ca",
+      "source": "function_words_seed",
+      "pos": "adj",
+      "morphology": {
+        "paradigm": "a__adj"
+      },
+      "translations": [
+        {
+          "term": "tiu",
+          "lang": "eo",
+          "confidence": 1.0,
+          "source": "function_words_seed"
+        }
+      ],
+      "metadata": {
+        "source_page": "manual",
+        "note": "Ido 'ca' = Epo 'tiu' (that/this, demonstrative adj); absent from io.wiktionary; io_wikipedia entry has empty senses"
       }
     }
   ]
