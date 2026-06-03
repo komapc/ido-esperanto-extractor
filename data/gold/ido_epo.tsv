@@ -1,0 +1,169 @@
+# Ido -> Esperanto gold evaluation set (v2, 2026-06-03)
+# Format: ido<TAB>reference_eo<TAB>tags(comma-separated)
+# References are the linguistically CORRECT Esperanto, NOT current engine output.
+# Kept short and phenomenon-targeted so the reference is unambiguous.
+# Phenomenon tags: pronoun, possessive, correlative, tense, mood, participle,
+#   agreement, accusative, plural, preposition, conjunction, reflexive,
+#   comparative, negation, question, number, adverb, function, basic
+#
+# === basic SVO / sanity ===
+La suno brilas.	La suno brilas.	basic
+La hundo dormas.	La hundo dormas.	basic
+Me amas la hundo.	Mi amas la hundon.	basic,accusative,pronoun
+Me drinkas aquo.	Mi trinkas akvon.	basic,accusative
+La bela ucelo kantas.	La bela birdo kantas.	basic,agreement
+Hodie esas bela dio.	Hodiaŭ estas bela tago.	basic,function
+La filmo esas mala.	La filmo estas malbona.	basic
+#
+# === personal pronouns: subject ===
+Me venas.	Mi venas.	pronoun
+Tu havas libro.	Vi havas libron.	pronoun,accusative
+Vu parolas.	Vi parolas.	pronoun
+Il dormas.	Li dormas.	pronoun
+El kantas.	Ŝi kantas.	pronoun
+Ol esas granda.	Ĝi estas granda.	pronoun
+Lu laboras.	Li laboras.	pronoun
+Ni iras.	Ni iras.	pronoun
+Vi venas.	Vi venas.	pronoun
+Li dormas.	Ili dormas.	pronoun
+On dicas ke yes.	Oni diras ke jes.	pronoun
+#
+# === personal pronouns: object (EO accusative) ===
+Me vidas tu.	Mi vidas vin.	pronoun,accusative
+El amas me.	Ŝi amas min.	pronoun,accusative
+Ni konocas lu.	Ni konas lin.	pronoun,accusative
+Me vokas vu.	Mi vokas vin.	pronoun,accusative
+Lu helpas ni.	Li helpas nin.	pronoun,accusative
+Me vidas el.	Mi vidas ŝin.	pronoun,accusative
+Tu prenas ol.	Vi prenas ĝin.	pronoun,accusative
+#
+# === possessives ===
+Mea libro esas nova.	Mia libro estas nova.	possessive,agreement
+Tua domo esas bela.	Via domo estas bela.	possessive
+Lua nomo esas Mario.	Lia nomo estas Mario.	possessive
+Elua hararo esas longa.	Ŝia hararo estas longa.	possessive
+Ilua domo esas granda.	Lia domo estas granda.	possessive
+Olua koloro esas blua.	Ĝia koloro estas blua.	possessive
+Nia urbo esas mikra.	Nia urbo estas malgranda.	possessive
+Vua filio esas yuna.	Via infano estas juna.	possessive
+Lia domo esas granda.	Ilia domo estas granda.	possessive
+#
+# === correlatives / tabelvortoj ===
+Omna homi laboras.	Ĉiuj homoj laboras.	correlative,plural
+Omno esas bona.	Ĉio estas bona.	correlative
+Omnu venis.	Ĉiu venis.	correlative
+Ula homo venas.	Iu homo venas.	correlative
+Ulo esas hike.	Io estas ĉi tie.	correlative
+Ulu frapas.	Iu frapas.	correlative
+Nula homo venas.	Neniu homo venas.	correlative
+Nulo eventis.	Nenio okazis.	correlative
+Nulu respondis.	Neniu respondis.	correlative
+Ca domo esas granda.	Ĉi tiu domo estas granda.	correlative
+Ta domo esas mikra.	Tiu domo estas malgranda.	correlative
+To esas vera.	Tio estas vera.	correlative
+Quo eventas?	Kio okazas?	correlative,question
+La homo qua venas esas mea amiko.	La homo kiu venas estas mia amiko.	correlative,pronoun
+La libro quan me lektas esas bona.	La libro kiun mi legas estas bona.	correlative,accusative
+Kande tu venos?	Kiam vi venos?	correlative,tense,question
+Lore me komprenis.	Tiam mi komprenis.	correlative
+Ube esas la domo?	Kie estas la domo?	correlative,question
+Ibe esas la domo.	Tie estas la domo.	correlative
+Quale tu facas to?	Kiel vi faras tion?	correlative,question
+Tale me pensas.	Tiel mi pensas.	correlative
+Il nultempe venas.	Li neniam venas.	correlative
+Quante kustas to?	Kiom kostas tio?	correlative,question
+#
+# === verb tense / mood (systematic) ===
+Me manjas.	Mi manĝas.	tense
+Me manjis.	Mi manĝis.	tense
+Me manjos.	Mi manĝos.	tense
+Me manjus.	Mi manĝus.	mood
+Manjez!	Manĝu!	mood
+Tu parolas.	Vi parolas.	tense
+Tu parolis.	Vi parolis.	tense
+Tu parolos.	Vi parolos.	tense
+Tu parolus.	Vi parolus.	mood
+Parolez!	Parolu!	mood
+Ni laboros morge.	Ni laboros morgaŭ.	tense,function
+Li venis hiere.	Ili venis hieraŭ.	tense,pronoun,function
+Elu venos morge.	Ŝi venos morgaŭ.	tense,pronoun
+Ni irez!	Ni iru!	mood,pronoun
+Me volas ke tu venez.	Mi volas ke vi venu.	mood
+#
+# === participles ===
+La dormanta hundo esas hike.	La dormanta hundo estas ĉi tie.	participle
+La rompita vazo esas sur la tablo.	La rompita vazo estas sur la tablo.	participle,preposition
+La venonta semano esos varma.	La venonta semajno estos varma.	participle,tense
+Me lektas skribita letro.	Mi legas skribitan leteron.	participle,accusative,agreement
+#
+# === agreement / accusative / plural ===
+Me vidas la granda domo.	Mi vidas la grandan domon.	agreement,accusative
+La hundi kuras.	La hundoj kuras.	plural
+Me havas du bela libri.	Mi havas du belajn librojn.	plural,agreement,accusative
+Granda hundi kuras.	Grandaj hundoj kuras.	plural,agreement
+Me havas blanka domo.	Mi havas blankan domon.	agreement,accusative
+La grandega urbi esas bela.	La grandegaj urboj estas belaj.	plural,agreement
+Me vidas kin steli.	Mi vidas kvin stelojn.	plural,accusative,number
+#
+# === prepositions ===
+Me iras a la urbo.	Mi iras al la urbo.	preposition
+La libro di Maria esas hike.	La libro de Maria estas ĉi tie.	preposition,function
+La domo esas en la urbo.	La domo estas en la urbo.	preposition
+Me laboras por vu.	Mi laboras por vi.	preposition,pronoun
+La kato esas sur la tablo.	La kato estas sur la tablo.	preposition
+La hundo esas sub la lito.	La hundo estas sub la lito.	preposition
+Me venas kun mea amiko.	Mi venas kun mia amiko.	preposition,possessive
+Me venas per treno.	Mi venas per trajno.	preposition
+Ni parolas pri la libro.	Ni parolas pri la libro.	preposition
+Il sidas inter du homi.	Li sidas inter du homoj.	preposition,plural
+Me restos hike til lundi.	Mi restos ĉi tie ĝis lundo.	preposition,function,tense
+#
+# === reflexive ===
+Il venas kun sua amiko.	Li venas kun sia amiko.	reflexive,possessive,preposition
+El lavas su.	Ŝi lavas sin.	reflexive,accusative
+Il vidas su en la spegulo.	Li vidas sin en la spegulo.	reflexive,accusative,preposition
+Li prizas sua domo.	Ili ŝatas sian domon.	reflexive,possessive,accusative
+#
+# === comparatives ===
+Ca domo esas plu granda kam ta.	Ĉi tiu domo estas pli granda ol tiu.	comparative,correlative
+Lu esas la maxim alta homo.	Li estas la plej alta homo.	comparative
+Me esas tam forta kam tu.	Mi estas tiel forta kiel vi.	comparative,pronoun
+Ica libro esas min chera kam ita.	Ĉi tiu libro estas malpli kara ol tiu.	comparative
+#
+# === negation ===
+Me ne savas.	Mi ne scias.	negation
+Il ne venis.	Li ne venis.	negation,pronoun
+Ni nultempe vidis lu.	Ni neniam vidis lin.	negation,correlative,accusative
+Nulu komprenas me.	Neniu komprenas min.	negation,correlative,accusative
+#
+# === questions ===
+Kad vu venas?	Ĉu vi venas?	question
+Qua esas tu?	Kiu estas vi?	question,pronoun
+Ube tu esas?	Kie vi estas?	question
+Pro quo tu ploras?	Kial vi ploras?	question
+Quo esas to?	Kio estas tio?	question,correlative
+#
+# === numbers ===
+Me havas du fratuli.	Mi havas du fratojn.	number,accusative,plural
+Esas dek homi en la chambro.	Estas dek homoj en la ĉambro.	number,plural,preposition
+La hundo havas quar gambi.	La hundo havas kvar krurojn.	number,accusative,plural
+Tri pueri ludas.	Tri infanoj ludas.	number,plural
+#
+# === adverbs ===
+Il kuras rapide.	Li kuras rapide.	adverb,pronoun
+El kantas bele.	Ŝi kantas bele.	adverb,pronoun
+Me parolas bone.	Mi parolas bone.	adverb
+#
+# === common function words ===
+Me volas venar ma me ne povas.	Mi volas veni sed mi ne povas.	function,negation
+Anke me venas.	Ankaŭ mi venas.	function,pronoun
+Il esas ja hike.	Li estas jam ĉi tie.	function
+Ni ankore laboras.	Ni ankoraŭ laboras.	function
+Me nur volas helpar.	Mi nur volas helpi.	function
+El esas tro yuna.	Ŝi estas tro juna.	function,pronoun
+El esas tre bela.	Ŝi estas tre bela.	function,pronoun
+Pano ed aquo.	Pano kaj akvo.	conjunction
+Me e tu venas.	Mi kaj vi venas.	conjunction,pronoun
+Pano o aquo.	Pano aŭ akvo.	conjunction
+Hiere me esis hike.	Hieraŭ mi estis ĉi tie.	function,tense
+Morge ni iros.	Morgaŭ ni iros.	function,tense
