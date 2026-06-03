@@ -122,6 +122,17 @@ def map_s_tag(par: str | None, pos: str | None) -> str | None:
     return None
 
 
+# Personal pronouns that form a possessive (Ido lemma + 'a' -> EO pronoun + 'a',
+# e.g. mea->mia, elua->ŝia, sua->sia). The EO side is derived from each pronoun's
+# own sourced translation — no hardcoded Ido→EO possessive map.
+# NOTE: this inventory is the only remaining hardcoded closed-class list here;
+# TODO source it from the Wiktionary Ido pronoun-table parser (FLOW_REVIEW.md,
+# deferred together with `il`).
+_PERSONAL_PRONOUNS = frozenset({
+    'me', 'tu', 'vu', 'lu', 'elu', 'ilu', 'olu', 'ni', 'vi', 'li', 'su',
+})
+
+
 def build_monodix(entries):
     dictionary = ET.Element("dictionary")
     alphabet = ET.SubElement(dictionary, "alphabet")
@@ -206,12 +217,6 @@ def build_monodix(entries):
 
     # Sort and collect entries for the section
     final_list = []
-    _PRON_POSS = {
-        'me': 'me', 'tu': 'tu', 'vu': 'vu', 'lu': 'lu',
-        'elu': 'elu', 'ilu': 'ilu', 'olu': 'olu',
-        'ni': 'ni', 'vi': 'vi', 'li': 'li',
-        'ili': 'ili', 'eli': 'eli', 'oli': 'oli'
-    }
 
     # Track all lemmas added to prevent any duplicates
     global_seen_lemmas = set()
@@ -260,12 +265,14 @@ def build_monodix(entries):
             })
             global_seen_lemmas.add(clean_lm)
 
-        # Add possessive if needed and not seen
-        if str(raw_par).strip('_') == 'prn' and clean_lm.lower() in _PRON_POSS:
+        # Add possessive if needed and not seen.
+        # a__adj prepends the lemma's -a, so the stem is the bare pronoun
+        # (me -> i="me" + "a" = surface "mea"); using poss_lm here yielded "meaa".
+        if str(raw_par).strip('_') == 'prn' and clean_lm.lower() in _PERSONAL_PRONOUNS:
             poss_lm = clean_lm + 'a'
             if poss_lm not in global_seen_lemmas:
                 final_list.append({
-                    'lm': poss_lm, 'stem': poss_lm, 'par': "a__adj", 'raw_par': "adj"
+                    'lm': poss_lm, 'stem': clean_lm, 'par': "a__adj", 'raw_par': "adj"
                 })
                 global_seen_lemmas.add(poss_lm)
 
@@ -511,21 +518,18 @@ def build_bidix(entries):
 
         ido_tag = map_s_tag(raw_par, pos)
 
-        # Pronoun possessive derivation: me -> mea (mia), ni -> nia (nia)
-        # Handle this as an adjective entry: stem + <adj> -> epo_stem + 'a' + <adj>
-        # We use a mapping from Ido to Esperanto possessive stems.
-        _PRON_TO_EPO_POSS = {
-            'me': 'mi', 'tu': 'vi', 'vu': 'vi', 'lu': 'li',
-            'elu': 'ŝi', 'ilu': 'li', 'olu': 'ĝi',
-            'ni': 'ni', 'vi': 'vi', 'li': 'ili'
-        }
+        # Pronoun possessive derivation: me -> mea (mia), elu -> elua (ŝia).
+        # Adjective entry: lemma+'a' <adj> -> EO-pronoun+'a' <adj>. The EO stem is
+        # the pronoun's own sourced translation (epo), so no hardcoded Ido→EO map.
         lm_lower = clean_lm.lower()
-        if str(raw_par).strip('_') == 'prn' and lm_lower in _PRON_TO_EPO_POSS:
-            epo_poss_stem = _PRON_TO_EPO_POSS[lm_lower]
+        if str(raw_par).strip('_') == 'prn' and lm_lower in _PERSONAL_PRONOUNS and epo:
+            epo_poss_stem = epo
             e_poss = ET.SubElement(section, "e")
             p_poss = ET.SubElement(e_poss, "p")
+            # Left is the a__adj STEM (the bare pronoun), matching the analyser's
+            # lemma for the possessive surface: 'mea' -> me<adj>, 'sua' -> su<adj>.
             l_poss = ET.SubElement(p_poss, "l")
-            l_poss.text = clean_lm + 'a'
+            l_poss.text = clean_lm
             ET.SubElement(l_poss, "s", n="adj").tail = ""
             r_poss = ET.SubElement(p_poss, "r")
             r_poss.text = epo_poss_stem + 'a'
