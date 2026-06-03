@@ -197,6 +197,13 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
                 morphology = {}
             elif par == 'ar__vblex' and pos in ('n', 'adj', 'adv'):
                 morphology = {}
+        # Closed-class function words (pronouns, determiners, prepositions,
+        # conjunctions, interjections) are never proper nouns — force the lemma
+        # lowercase so a capitalized source variant (e.g. io_wiktionary 'Vu',
+        # which carries the __prn paradigm + 'vi' translation) merges with the
+        # analyser's lowercase form instead of producing an unmatched bidix entry.
+        if pos and pos.lower() in ('prn', 'det', 'pr', 'cnjcoo', 'cnjsub', 'ij'):
+            lemma = lemma.lower()
         key = (lemma.lower(), pos.lower())
         rec = by_key.get(key)
         if rec is None:
