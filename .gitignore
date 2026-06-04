@@ -58,3 +58,6 @@ data/sources/*.json
 !data/sources/source_*.json.example  # Keep example files
 # Eval harness: per-run detail artifact (regenerated each run; trend table is committed)
 reports/quality_latest.md
+
+# Drift report (regenerated each predeploy-check)
+reports/dict_diff.md

@@ -16,15 +16,35 @@ SKIP_WIKI ?= 0
 FORCE ?= 0
 STAGE ?=
 
-.PHONY: all regenerate regenerate-fast regenerate-minimal regenerate-managed clean freq wikt_io wikt_eo wikt_io-stage1 wikt_io-stage2 wikt_eo-stage1 wikt_eo-stage2 wikt_en wiki wiki-stage1 wiki-stage2 align report big_bidix conflicts big_bidix_stats web stats dump_coverage compare test pipeline-status
+.PHONY: all regenerate regenerate-fast regenerate-minimal regenerate-managed clean-rebuild predeploy-check clean freq wikt_io wikt_eo wikt_io-stage1 wikt_io-stage2 wikt_eo-stage1 wikt_eo-stage2 wikt_en wiki wiki-stage1 wiki-stage2 align report big_bidix conflicts big_bidix_stats web stats dump_coverage compare test pipeline-status
+
+# Consumer language-pair repo (deployed dicts live here) — used by predeploy-check.
+PAIR ?= ../apertium-ido-epo
 
 all: regenerate-managed
 
-# Pipeline-managed regeneration (with resumability)
+# Pipeline-managed regeneration (resumability + content-aware invalidation).
 regenerate-managed:
 	$(PY) scripts/pipeline_manager.py \
 	  $(if $(filter 1,$(FORCE)),--force) \
 	  $(if $(STAGE),--stage $(STAGE))
+
+# Force the dict-critical tail (bidix -> dix -> vortaro) from existing work/, then
+# show what a deploy would change. Use after editing build/export/conflict code.
+clean-rebuild:
+	$(PY) scripts/build_one_big_bidix_json.py
+	$(PY) scripts/export_apertium.py
+	$(PY) scripts/export_vortaro.py
+	@$(MAKE) --no-print-directory predeploy-check
+
+# Drift gate: diff freshly-built dist against the deployed consumer dict, writing
+# reports/dict_diff.md, so drift (e.g. di->de becoming di->antau) is reviewed
+# before `core/deploy.sh`, not shipped blind.
+predeploy-check:
+	-$(PY) scripts/dict_diff.py \
+	  $(PAIR)/apertium-ido-epo.ido-epo.dix \
+	  $(DIST)/apertium-ido-epo.ido-epo.dix \
+	  --report $(REPORTS)/dict_diff.md
 
 # Full regeneration with all sources (legacy, non-resumable)
 regenerate:
