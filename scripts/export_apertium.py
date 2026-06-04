@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Dict, Iterable
 
 from _common import read_json, ensure_dir, configure_logging, clean_lemma
+from conflict_resolution import pick_best
 import xml.etree.ElementTree as ET
 
 
@@ -316,6 +317,34 @@ def build_monodix(entries):
     return dictionary
 
 
+def _eo_candidates(e):
+    """Ordered (term, [sources]) EO candidates for an entry, deduped by term.
+
+    Order is preserved (eo_translations then senses) so it doubles as the
+    insertion-order tiebreak for conflict_resolution.pick_best.
+    """
+    order, by_term = [], {}
+
+    def add(raw_term, sources):
+        term = _clean_translation_term(str(raw_term))
+        if not term:
+            return
+        if term not in by_term:
+            by_term[term] = set()
+            order.append(term)
+        by_term[term].update(s for s in (sources or []) if s)
+
+    for t in (e.get("eo_translations") or []):
+        if t:
+            add(t, [])
+    for s in e.get("senses") or []:
+        for tr in s.get("translations") or []:
+            if tr.get("lang") == "eo" and tr.get("term"):
+                srcs = tr.get("sources") or ([tr["source"]] if tr.get("source") else [])
+                add(tr["term"], srcs)
+    return [(t, sorted(by_term[t])) for t in order]
+
+
 def build_bidix(entries):
 
     dictionary = ET.Element("dictionary")
@@ -383,25 +412,13 @@ def build_bidix(entries):
         if not lm:
             continue
         
-        # Collect EO translations
-        eo_terms = []
-        if "eo_translations" in e and isinstance(e["eo_translations"], list):
-            for raw_term in e["eo_translations"]:
-                term = _clean_translation_term(str(raw_term))
-                if term and term not in eo_terms:
-                    eo_terms.append(term)
-        for s in e.get("senses", []) or []:
-            for tr in s.get("translations", []) or []:
-                if tr.get("lang") == "eo":
-                    raw_term = tr.get("term")
-                    if raw_term:
-                        term = _clean_translation_term(str(raw_term))
-                        if term and term not in eo_terms:
-                            eo_terms.append(term)
-        if not eo_terms:
+        # Collect EO candidates and pick the winner deterministically (source rank
+        # + insertion order) instead of the old order-dependent eo_terms[0].
+        cands = _eo_candidates(e)
+        if not cands:
             continue
-        epo = eo_terms[0]
-        
+        epo = pick_best(cands)
+
         raw_par = (e.get("morphology") or {}).get("paradigm")
 
         # Key includes paradigm so noun/adj/verb entries for the same (lemma, epo) pair
@@ -493,20 +510,11 @@ def build_bidix(entries):
                 ET.SubElement(r2, "s", n="def").tail = ""
             continue
 
-        # Get translation (already filtered in pre-pass)
-        eo_terms = []
-        if "eo_translations" in e and isinstance(e["eo_translations"], list):
-             eo_terms = [_clean_translation_term(str(t)) for t in e["eo_translations"] if t]
-        if not eo_terms:
-            for s in e.get("senses", []) or []:
-                for tr in s.get("translations", []) or []:
-                    if tr.get("lang") == "eo" and tr.get("term"):
-                        term = _clean_translation_term(str(tr["term"]))
-                        if term and term not in eo_terms:
-                            eo_terms.append(term)
-        if not eo_terms:
+        # Get translation: deterministic winner (already filtered in pre-pass).
+        cands = _eo_candidates(e)
+        if not cands:
             continue
-        epo = eo_terms[0]
+        epo = pick_best(cands)
 
         en = ET.SubElement(section, "e")
         p = ET.SubElement(en, "p")
