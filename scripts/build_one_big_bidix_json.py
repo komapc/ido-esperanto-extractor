@@ -19,8 +19,12 @@ _SHORT_POS: Dict[str, str] = {
 }
 
 
-# Translations for function words that have no usable Wiktionary entry.
-# These are kept minimal — one canonical Esperanto equivalent per word.
+# Translations for closed-class function words the pipeline provably fails to
+# extract correctly. Kept minimal — one canonical Esperanto equivalent each.
+# Empirically verified NECESSARY (2026-06-04): removing any of these and
+# rebuilding regresses the word (the correct EO is absent or loses to noise) —
+# see scripts/dict_diff.py / the P4 audit. Pipeline-gap cases ("Wiktionary has
+# it but pipeline misses it") could be retired later by fixing extraction.
 _FUNCTION_WORD_OVERRIDES: Dict[str, Dict[str, str]] = {
     'e':    {'pos': 'cnjcoo',   'eo': 'kaj'},   # and (Wiktionary has it but pipeline misses it)
     'ed':   {'pos': 'cnjcoo',   'eo': 'kaj'},   # and (before vowels — no standalone Wiktionary entry)
