@@ -401,6 +401,15 @@ _ROOT_MARKER_RE = re.compile(
 )
 
 
+# A page can carry BOTH a "(radiko)" root section and a real lemma section, e.g.
+# 'amar' = "==I {{io}} (radiko)==" + "==II {{io}} (verbo)==". The root marker must
+# NOT skip such a page (it dropped common verbs like amar/imaginar/donar) — only
+# skip when the page is PURELY a root/affix with no POS section.
+_LEMMA_SECTION_RE = re.compile(
+    r"\((?:verbo|substantivo|adjektivo|adverbo|pronomo|prepoziciono|"
+    r"konjunciono|numero|interjeciono|artiklo)\)", re.IGNORECASE)
+
+
 def is_inflected_form(text: str) -> bool:
     """True if the page describes a non-lemma — a conjugation, declension,
     or root/morpheme — rather than a standalone dictionary lemma.
@@ -425,7 +434,7 @@ def is_inflected_form(text: str) -> bool:
             return True
         if _PLURAL_FORM_RE.search(sem):
             return True
-    if _ROOT_MARKER_RE.search(cleaned):
+    if _ROOT_MARKER_RE.search(cleaned) and not _LEMMA_SECTION_RE.search(cleaned):
         return True
     return False
 
