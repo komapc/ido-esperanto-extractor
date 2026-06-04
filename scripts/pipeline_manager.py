@@ -11,8 +11,10 @@ Usage:
 """
 
 import argparse
+import hashlib
 import json
 import logging
+import re
 import sys
 import subprocess
 from dataclasses import dataclass, asdict
@@ -21,6 +23,73 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 from _common import configure_logging
+
+_SCRIPTS_DIR = Path(__file__).resolve().parent
+_REPO_DIR = _SCRIPTS_DIR.parent
+_IMPORT_RE = re.compile(r'^\s*(?:from\s+([\w.]+)\s+import|import\s+([\w.]+))', re.MULTILINE)
+# Scripts invoked as subprocesses are named as string literals (e.g. the two-stage
+# wrapper references "parse_wiktionary_stage1.py"); follow those too so the chain
+# reaches their imports (wiktionary_parser.py, …).
+_PYFILE_RE = re.compile(r'["\']([\w./-]+\.py)["\']')
+
+
+def _resolve_local_module(mod: str) -> Optional[Path]:
+    """Map a dotted module name to a file under scripts/, or None if not local."""
+    rel = mod.replace('.', '/')
+    for cand in (_SCRIPTS_DIR / f'{rel}.py', _SCRIPTS_DIR / rel / '__init__.py'):
+        if cand.exists():
+            return cand
+    return None
+
+
+def _collect_code_files(command: List[str]) -> List[Path]:
+    """The scripts named in a command plus their transitive local imports.
+
+    Lets a stage's fingerprint capture changes to helper modules it imports
+    (e.g. editing wiktionary_parser.py invalidates every parse stage that
+    imports it), not just the directly-invoked script.
+    """
+    seen: set = set()
+    out: List[Path] = []
+    stack = [(_REPO_DIR / a) for a in command if a.endswith('.py')]
+    while stack:
+        f = stack.pop()
+        f = f if f.exists() else _SCRIPTS_DIR / Path(f).name
+        if not f.exists() or f in seen:
+            continue
+        seen.add(f)
+        out.append(f)
+        try:
+            text = f.read_text(encoding='utf-8')
+        except OSError:
+            continue
+        for m in _IMPORT_RE.finditer(text):
+            dep = _resolve_local_module(m.group(1) or m.group(2))
+            if dep and dep not in seen:
+                stack.append(dep)
+        for m in _PYFILE_RE.finditer(text):
+            cand = _SCRIPTS_DIR / Path(m.group(1)).name
+            if cand.exists() and cand not in seen:
+                stack.append(cand)
+    return sorted(out)
+
+
+def stage_fingerprint(command: List[str]) -> str:
+    """Short content hash of a stage's code (scripts + transitive local imports).
+
+    For inline (`-c`) or shell commands with no .py file, the command text
+    itself is hashed so edits to inline logic still invalidate the stage.
+    """
+    files = _collect_code_files(command)
+    h = hashlib.sha256()
+    if not files:
+        h.update(repr(command).encode())
+    for f in files:
+        h.update(f.name.encode())
+        h.update(b'\0')
+        h.update(f.read_bytes())
+        h.update(b'\0')
+    return h.hexdigest()[:16]
 
 
 @dataclass
@@ -32,6 +101,7 @@ class StageState:
     error: Optional[str] = None
     start_time: Optional[str] = None
     end_time: Optional[str] = None
+    code_fingerprint: Optional[str] = None  # hash of stage code at completion
     
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -93,18 +163,22 @@ class PipelineManager:
             return self.state.stages[stage_name].status
         return 'pending'
     
-    def _run_stage(self, stage_name: str, command: List[str], 
-                   description: str, skip_conditions: Optional[List[str]] = None) -> bool:
+    def _run_stage(self, stage_name: str, command: List[str],
+                   description: str, skip_conditions: Optional[List[str]] = None,
+                   force_rerun: bool = False) -> Tuple[bool, bool]:
         """Run a single pipeline stage with resumability.
-        
+
+        Args:
+            force_rerun: re-run even if completed/unchanged (an upstream stage re-ran).
+
         Returns:
-            True if stage completed successfully, False otherwise
+            (success, ran) — `ran` is False when the stage was skipped.
         """
         # Check skip conditions
         if skip_conditions:
             for condition_file in skip_conditions:
                 if not Path(condition_file).exists():
-                    logging.info("Skipping stage '%s': condition file missing: %s", 
+                    logging.info("Skipping stage '%s': condition file missing: %s",
                                 stage_name, condition_file)
                     self.state.stages[stage_name] = StageState(
                         name=stage_name,
@@ -113,13 +187,27 @@ class PipelineManager:
                         end_time=datetime.now().isoformat()
                     )
                     self._save_state()
-                    return True
-        
-        # Check if already completed
-        if self._get_stage_status(stage_name) == 'completed' and not self.force:
-            logging.info("Stage '%s' already completed, skipping", stage_name)
-            return True
-        
+                    return True, False
+
+        current_fp = stage_fingerprint(command)
+
+        # Check if already completed — content-aware: a stage stays skipped only
+        # if its code fingerprint is unchanged and no upstream stage re-ran.
+        stored = self.state.stages.get(stage_name)
+        if stored and stored.status == 'completed' and not self.force and not force_rerun:
+            if stored.code_fingerprint is None:
+                # Legacy state (pre-fingerprinting): start tracking without
+                # forcing a rebuild; future code edits will be detected.
+                stored.code_fingerprint = current_fp
+                self._save_state()
+                logging.info("Stage '%s' already completed (fingerprint stamped), skipping", stage_name)
+                return True, False
+            if stored.code_fingerprint == current_fp:
+                logging.info("Stage '%s' already completed, skipping", stage_name)
+                return True, False
+            logging.info("Stage '%s' code changed (%s → %s) — re-running",
+                         stage_name, stored.code_fingerprint, current_fp)
+
         # Mark as running
         self.state.stages[stage_name] = StageState(
             name=stage_name,
@@ -127,13 +215,13 @@ class PipelineManager:
             start_time=datetime.now().isoformat()
         )
         self._save_state()
-        
+
         # Run the command
         logging.info("=" * 60)
         logging.info("Running stage: %s", stage_name)
         logging.info("Description: %s", description)
         logging.info("=" * 60)
-        
+
         try:
             result = subprocess.run(command, check=True, capture_output=False)
             # Mark as completed
@@ -141,12 +229,13 @@ class PipelineManager:
                 name=stage_name,
                 status='completed',
                 start_time=self.state.stages[stage_name].start_time,
-                end_time=datetime.now().isoformat()
+                end_time=datetime.now().isoformat(),
+                code_fingerprint=current_fp
             )
             self._save_state()
             logging.info("Stage '%s' completed successfully", stage_name)
-            return True
-            
+            return True, True
+
         except subprocess.CalledProcessError as e:
             # Mark as failed
             self.state.stages[stage_name] = StageState(
@@ -158,7 +247,7 @@ class PipelineManager:
             )
             self._save_state()
             logging.error("Stage '%s' failed: %s", stage_name, e)
-            return False
+            return False, True
     
     def run_pipeline(self, stages: List[Tuple[str, List[str], str, Optional[List[str]]]], 
                      start_from: Optional[str] = None):
@@ -169,7 +258,10 @@ class PipelineManager:
             start_from: Stage name to resume from (None = start from beginning)
         """
         found_start = start_from is None
-        
+        # Once any stage re-runs, its outputs change, so every downstream stage
+        # must re-run too — even if its own code is unchanged.
+        invalidate_rest = False
+
         for stage_name, command, description, skip_conditions in stages:
             # Skip until we reach the starting stage
             if not found_start:
@@ -178,10 +270,13 @@ class PipelineManager:
                 else:
                     logging.info("Skipping stage '%s' (before start point)", stage_name)
                     continue
-            
+
             # Run the stage
-            success = self._run_stage(stage_name, command, description, skip_conditions)
-            
+            success, ran = self._run_stage(stage_name, command, description,
+                                           skip_conditions, force_rerun=invalidate_rest)
+            if ran:
+                invalidate_rest = True
+
             if not success:
                 logging.error("Pipeline stopped at stage '%s'", stage_name)
                 logging.error("To resume, run: python3 scripts/pipeline_manager.py --stage %s", stage_name)
