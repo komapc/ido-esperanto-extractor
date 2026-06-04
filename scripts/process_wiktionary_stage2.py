@@ -65,6 +65,10 @@ def process_wiktionary_entries(filtered_path: Path, out_path: Path, source_code:
             }
         }
         
+        # Carry the variant-form marker for the post-pass below.
+        if entry.get('form_of'):
+            processed_entry['form_of'] = str(entry['form_of']).lower()
+
         # Track statistics
         pos = processed_entry['pos']
         stats['by_pos'][pos] = stats['by_pos'].get(pos, 0) + 1
@@ -78,6 +82,35 @@ def process_wiktionary_entries(filtered_path: Path, out_path: Path, source_code:
         processed_entries.append(processed_entry)
         stats['valid_entries'] += 1
     
+    # Resolve variant forms: a "(kurta) formo de X" page (e.g. the pronoun
+    # il = short form of ilu) carries no translation of its own, so inherit the
+    # base lemma's Esperanto translation. Both are in this same source.
+    eo_by_lemma: Dict[str, List[str]] = {}
+    for pe in processed_entries:
+        terms = [t['term'] for s in pe.get('senses', []) for t in s.get('translations', [])
+                 if t.get('lang') == 'eo' and t.get('term')]
+        if terms:
+            eo_by_lemma.setdefault(pe['lemma'].lower(), []).extend(terms)
+    inherited = 0
+    for pe in processed_entries:
+        base = pe.pop('form_of', None)
+        if not base:
+            continue
+        if any(t.get('lang') == 'eo' for s in pe.get('senses', []) for t in s.get('translations', [])):
+            continue  # variant already has its own EO translation
+        base_terms = list(dict.fromkeys(eo_by_lemma.get(base, [])))
+        if not base_terms:
+            continue
+        pe['senses'].append({
+            'senseId': None,
+            'gloss': f'variant of {base}',
+            'translations': [{'lang': 'eo', 'term': t, 'confidence': 0.6,
+                              'source': f'{source_code}_wiktionary'} for t in base_terms],
+        })
+        inherited += 1
+    if inherited:
+        logging.info("  - Variant forms resolved (inherited base translation): %d", inherited)
+
     # Sort by lemma
     processed_entries.sort(key=lambda x: x['lemma'].lower())
     
