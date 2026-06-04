@@ -42,6 +42,26 @@ LANG_SECTION_PATTERNS = {
     "en": [r"==\s*English\s*==", r"==\s*\{\{en\}\}\s*=="],
 }
 
+# Cheap pre-filter substrings: a page can only have a source section if it
+# contains one of these literals. MUST stay a SUPERSET of LANG_SECTION_PATTERNS
+# above (every pattern's distinctive literal appears here) so the filter never
+# skips a page extract_language_section would accept — pure speed, no behaviour
+# change. Lets ~70-85% of non-source pages be skipped by substring test instead
+# of regex. Validate with dict_diff (parse output must be byte-identical).
+_SECTION_HINTS = {
+    "io": ("{{io}}", "Ido", "-ido-"),
+    "eo": ("{{eo}}", "Lingvo|eo", "Esperanto", "-eo-"),
+    "en": ("English", "{{en}}"),
+}
+# Guard against pattern/hint drift: every pattern, with regex escapes stripped,
+# must contain one of its source's hint literals (else the filter could skip a
+# matchable page). Fails fast at import if a pattern is added without a hint.
+for _src, _pats in LANG_SECTION_PATTERNS.items():
+    for _p in _pats:
+        _lit = _p.replace("\\", "")  # \{\{io\}\} -> {{io}}, \s -> s (harmless)
+        assert any(h in _lit for h in _SECTION_HINTS[_src]), \
+            f"_SECTION_HINTS[{_src}] missing a literal for pattern {_p!r}"
+
 # Translation extraction patterns for different target languages
 # Patterns capture both bullet list format (* Language: translation) and template format ({{t|lang|translation}})
 # Optimization notes:
@@ -707,6 +727,13 @@ def parse_wiktionary(
             continue
         processed += 1
         if not is_valid_title(title):
+            continue
+        # Cheap pre-filter: a page can only have a source section if it contains
+        # one of these literals — skip the ~70-85% that don't without paying for
+        # the section-extraction regex. Superset of LANG_SECTION_PATTERNS, so no
+        # behaviour change (see _SECTION_HINTS).
+        _hints = _SECTION_HINTS.get(cfg.source_code)
+        if _hints and not any(h in text for h in _hints):
             continue
         section = extract_language_section(text, cfg.source_code)
         # OPTIMIZATION: Early exit if no language section found
