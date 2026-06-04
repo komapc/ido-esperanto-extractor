@@ -430,6 +430,34 @@ def is_inflected_form(text: str) -> bool:
     return False
 
 
+# Variant-form detection: io.wiktionary marks short/alternative forms as
+# "(kurta) formo de [[X]]" where X is a real lemma — NOT a POS keyword like
+# verbo/pronomo (those are inflections, already caught by is_inflected_form).
+# E.g. the pronoun page 'il' = "Plu kurta formo de ilu" → il should inherit
+# ilu's translation (li). Returns the base lemma X, or None.
+# Skip filler tokens between "de" and the real base lemma: io.wiktionary writes
+# both "formo de [[ilu]]" and "(kurta) formo de la vorto [[ito]]" / "formo de
+# vorto [[e]]" — without skipping "(la )(vorto )" the regex would wrongly capture
+# the literal word "vorto".
+_VARIANT_FORM_RE = re.compile(
+    r"\bform[oi]\s+(?:de|di)\s+(?:(?:la|l'|vorto)\s+)*([a-z]+)\b", re.IGNORECASE
+)
+_VARIANT_FORM_EXCLUDE = {
+    "verbo", "verbi", "substantivo", "substantivi", "adjektivo", "adverbo",
+    "pronomo", "artiklo", "numero", "la", "vorto", "vorti",
+}
+
+
+def detect_variant_base(text: str) -> Optional[str]:
+    """Base lemma for a '(kurta) formo de [[X]]' variant page, else None."""
+    cleaned = re.sub(r"\[\[(?:[^\]|]*\|)?([^\]]+)\]\]", r"\1", text).replace("''", "")
+    m = _VARIANT_FORM_RE.search(cleaned)
+    if not m:
+        return None
+    base = m.group(1).lower()
+    return None if base in _VARIANT_FORM_EXCLUDE else base
+
+
 # OPTIMIZATION: Pre-compile cleaning regexes (10-15% speedup)
 # These patterns remove MediaWiki markup from translation text to extract clean words
 TRANS_TEMPLATE_RE = re.compile(r'\{\{(?:t\+?|trad\+?|l|link|m)\|[^|]+\|([^}]+)[^}]*\}\}')
@@ -682,6 +710,9 @@ def parse_wiktionary(
         if is_inflected_form(section):
             continue
         pos = extract_pos(section)
+        # Variant short/alternative form ("il" = kurta formo de "ilu") — inherits
+        # the base lemma's translation at merge time (io.wiktionary only).
+        variant_base = detect_variant_base(section) if cfg.source_code == "io" else None
         morph_str, inferred_pos = extract_morphology(section, title)
         # Use inferred POS from morphology if extract_pos didn't find one
         if not pos and inferred_pos:
@@ -707,7 +738,7 @@ def parse_wiktionary(
             translations = extract_translations_anywhere(text, cfg.target_code)
         # Allow entries that have EN/FR (or IO/EO on EN pages) even if no direct target translations
         has_extras = bool(en_trans_lists or fr_trans_lists or io_from_en or eo_from_en)
-        if not translations and not has_extras:
+        if not translations and not has_extras and not variant_base:
             continue
         entry: Dict[str, Any] = {
             "id": f"{cfg.source_code}:{title}:{pos or 'x'}",
@@ -717,6 +748,9 @@ def parse_wiktionary(
             "senses": [],
             "provenance": [{"source": f"{cfg.source_code}_wiktionary", "page": title, "rev": None}],
         }
+        # Variant form inherits its base lemma's translation downstream (merge step).
+        if variant_base and variant_base != title.lower():
+            entry["form_of"] = variant_base
         # Add morphology if extracted
         if morph_str:
             # Store both raw morphology and inferred paradigm for merge script
