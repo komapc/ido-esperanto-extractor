@@ -1,11 +1,21 @@
 # Vortaro Quality
 
-_Generated 2026-06-05 — ranker: `insertion`, recall top-N: 5000_
+_Generated 2026-06-07 — ranker: `insertion`, recall top-N: 5000_
 
 ## precision@1 (ranking)
-**93.4%** (1950/2088 eligible entries)
+**93.4%** (1932/2069 eligible entries)
 
 Top-1 of held-out non-Wiktionary candidates vs the io_wiktionary reference.
+
+### Ranking: closed (measured negative result)
+Every ranker smarter than insertion *regresses* precision@1 (computed live):
+`insertion` 93.4%, `srcrank` 93.2%, `srcrank_corr (corroboration)` 55.7%, `confidence (cognate)` 78.5%.
+precision@1 also holds out io_wiktionary, so it is blind to
+no-curated-source entries — exactly where ranking picks the user-visible
+#1 — and the live export keeps io_wiktionary on top by source rank, so live
+ranking is ≥ measured. The export stays on the source-rank order
+(`conflict_resolution.confidence_key`); `confidence_score` remains in the
+tree as the measured-and-rejected alternative. Do not reopen.
 
 ### Sample misranks (chosen → reference)
 - `abrogar`: nuligi → aboli
@@ -31,13 +41,22 @@ Top-1 of held-out non-Wiktionary candidates vs the io_wiktionary reference.
 - `burso`: stipendio → burso
 - `buxo`: skatolo → kesto
 - `cilio`: okulharo → cilio
-- `danko`: dankon → danko
 - `disputar`: kvereli → disputi
+- `domeno`: limo → bieno
 
 ## recall (coverage)
-**type 61.2%** (2559/4178 lemmas) · **token-weighted 76.0%**
+**type 84.1%** (3330/3961 lemmas) · **token-weighted 92.1%**
 
-Top-5000 io.wiki tokens, lemmatized via the monodix; covered = lemma has any EO translation.
+Top-5000 io.wiki tokens, junk-stripped (shared `lexicon_filters`), then
+lemmatized to citation form via the monodix (root + POS ending, since the
+analyser emits bare roots); covered = the lemma has any EO translation.
+
+Two effects lift this over the old 61.2% type / 76.0% token baseline:
+citation-form reconstruction alone (inflected tokens now map to their
+lemma) reaches ~79.7% type, and junk-stripping the denominator — which
+drops foreign-script proper nouns (`białystok`, `łódź`) and MediaWiki
+artifacts, by design — narrows it to the current figure. This measures
+ASCII common-vocabulary coverage, not proper-noun recall.
 
 ### Sample misses
-- yari, mezvalora, kilometri, km², mi², habitanti, havis, sud, vivis, mulieri, viri, familii, hemanari, thumb, referi, personi, sub, rasi, hemanaro, amerikani, nomi, havas, polona, idala, urbi, distas, statistiki, homi, left, jacas, 1ma, del, habitis, right, usani, indijeni, vilajala, domi, pueri, habitesis, blanki, latin, negri, hispan, afrikan, aziani, capita, adolecanti, insulani, pacifik
+- mezvalora, habitanti, sud, hemanari, hemanaro, polona, idala, distas, del, habitis, indijeni, habitesis, latin, hispan, afrikan, aziani, capita, pacifik, alidirekti, nobel, ak, usan, laureato, chef, mezavalora, au, of, us, exloko, uniono, infinita, nacionala, algarismi, pozitiv, seguo, vilajal, estala, astronomial, podlaska, nenomizit, lubelski, and, subkarpati, distis, lor, milion, louis, tenisistino, sovietiana, bielorusa

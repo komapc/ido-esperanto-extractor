@@ -96,3 +96,54 @@ def dedupe_eo_candidates(lemma: str, candidates: Sequence[Candidate]) -> List[Ca
             if s not in srcs[key]:
                 srcs[key].append(s)
     return [(_prefer_casing(forms[k], lemma), srcs[k]) for k in order]
+
+
+# --------------------------------------------------------------------------- #
+# EO-candidate dedup (inflected forms)
+# --------------------------------------------------------------------------- #
+# Esperanto regular inflection on the same lexeme: plural -j, accusative -n,
+# both -jn. wikidata_labels in particular leaks the plural of a noun alongside
+# the noun itself (`urbo` + `urboj`).
+_EO_INFLECTION_SUFFIXES = ("jn", "j", "n")  # longest first
+
+
+def fold_inflected_eo_duplicates(candidates: Sequence[Candidate]) -> List[Candidate]:
+    """Fold an EO candidate that is the -j/-n/-jn inflection of another candidate
+    present in the same entry into that base (e.g. `urbo` + `urboj` -> `urbo`).
+
+    The base must itself be a candidate of the entry, so this never merges two
+    distinct lexemes — only a word with its own plural/accusative. The surviving
+    spelling is the base form; sources are unioned; order is the first-seen order
+    of the resolved (base) terms. Robust to the inflected form preceding the base.
+    """
+    cands = list(candidates)
+    bases = {t.casefold() for t, _ in cands}
+
+    def resolve(term: str) -> str:
+        key = term.casefold()
+        for suf in _EO_INFLECTION_SUFFIXES:
+            if key.endswith(suf):
+                stem = key[: -len(suf)]
+                # Only nouns (-o) and adjectives (-a) take same-lexeme -j/-n/-jn.
+                # Requiring the base to end in o/a excludes directional adverbs
+                # (`nenie`/`nenien`, `ree`/`reen`) and pronouns, which are distinct
+                # lexemes that merely look like an accusative of one another.
+                if stem and stem != key and stem[-1] in "oa" and stem in bases:
+                    return stem
+        return key
+
+    order: List[str] = []                 # resolved keys, first-seen order
+    term_for: dict[str, str] = {}         # resolved key -> surviving spelling (base)
+    srcs: dict[str, List[str]] = {}       # resolved key -> merged sources
+    for term, sources in cands:
+        rkey = resolve(term)
+        if rkey not in srcs:
+            order.append(rkey)
+            srcs[rkey] = []
+            term_for[rkey] = term
+        if term.casefold() == rkey:       # this IS the base — prefer its spelling
+            term_for[rkey] = term
+        for s in sources:
+            if s not in srcs[rkey]:
+                srcs[rkey].append(s)
+    return [(term_for[k], srcs[k]) for k in order]

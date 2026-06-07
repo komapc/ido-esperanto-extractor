@@ -6,7 +6,8 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 from _common import read_json, write_json, configure_logging
 from infer_morphology import infer_paradigm as _infer_paradigm
-from lexicon_filters import is_junk_lemma, dedupe_eo_candidates
+from lexicon_filters import (
+    is_junk_lemma, dedupe_eo_candidates, fold_inflected_eo_duplicates)
 import re
 
 
@@ -357,9 +358,14 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
         # the Ido lemma (lowercase common noun → lowercase gloss; Aachen→Akeno
         # keeps the capital). Collapses the 'Lifto'/'lifto' duplicate pairs the
         # candidate audit found and fixes the capitalised-first-gloss ordering.
+        # Then fold any candidate that is the -j/-n/-jn inflection of another
+        # candidate of the same entry into its base (e.g. wikidata's `urboj`
+        # alongside `urbo`), merging sources onto the base form.
         rec['_eo_terms'] = {
-            term: set(srcs) for term, srcs in dedupe_eo_candidates(
-                rec['lemma'], [(t, sorted(s)) for t, s in rec['_eo_terms'].items()])
+            term: set(srcs) for term, srcs in fold_inflected_eo_duplicates(
+                dedupe_eo_candidates(
+                    rec['lemma'],
+                    [(t, sorted(s)) for t, s in rec['_eo_terms'].items()]))
         }
         # Wiktionary wins: if any translation comes from a non-BERT source, drop BERT-only translations.
         has_wikt = any(srcs - _BERT_SOURCES for srcs in rec['_eo_terms'].values())

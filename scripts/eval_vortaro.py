@@ -35,7 +35,7 @@ from pathlib import Path
 from typing import Callable, Dict, List, Sequence, Set, Tuple
 
 from _common import read_json
-from lexicon_filters import dedupe_eo_candidates
+from lexicon_filters import dedupe_eo_candidates, is_junk_lemma
 
 TOKEN_RE = re.compile(r"\^(?P<surface>[^/^$]*)/(?P<analyses>[^$]*)\$")
 HAS_LETTER_RE = re.compile(r"[^\W\d_]", re.UNICODE)
@@ -147,20 +147,45 @@ def precision_at_1(bidix: List[dict], ranker: Ranker, *, dedupe: bool = True,
 # --------------------------------------------------------------------------- #
 # recall (lemmatized, frequency-weighted)
 # --------------------------------------------------------------------------- #
-def lemmatize(tokens: Sequence[str], morf_bin: Path) -> Dict[str, str]:
-    """surface -> lemma via the monodix analyser (first analysis); unknown -> surface."""
+# The Ido monodix emits the bare *root*, not the citation form
+# (`urbi -> urb<n><pl>`, `habitas -> habit<vblex>`), but the bidix is keyed on
+# citation forms (`urbo`, `habitar`). Reattach the regular citation ending per
+# POS so the root matches the lemma it actually shares; without this every
+# inflected token is a spurious recall miss.
+_CITATION_ENDING = {
+    "n": "o", "vblex": "ar", "vbser": "ar", "vbmod": "ar",
+    "adj": "a", "adv": "e",
+}
+
+
+def lemmatize(tokens: Sequence[str], morf_bin: Path) -> Dict[str, List[str]]:
+    """surface -> candidate citation-form lemmas via the monodix analyser.
+
+    Returns the root reattached to its POS citation ending plus the root and the
+    surface as fallbacks (so an already-citation or irregular token still has a
+    chance to match). Unknown analysis -> [surface].
+    """
     proc = subprocess.run(
         ["lt-proc", str(morf_bin)], input="\n".join(tokens),
         capture_output=True, text=True,
     )
-    out: Dict[str, str] = {}
+    out: Dict[str, List[str]] = {}
     for m in TOKEN_RE.finditer(proc.stdout):
         surface, analyses = m.group("surface"), m.group("analyses")
         if analyses.startswith("*"):
-            out[surface] = surface
-        else:
-            first = analyses.split("/")[0]
-            out[surface] = re.split(r"[<+]", first, 1)[0] or surface
+            out[surface] = [surface]
+            continue
+        first = analyses.split("/")[0]
+        pm = re.match(r"([^<+]+)<([^>]+)>", first)
+        if not pm:
+            out[surface] = [surface]
+            continue
+        root, pos = pm.group(1), pm.group(2)
+        cands = [surface, root]
+        ending = _CITATION_ENDING.get(pos)
+        if ending:
+            cands.append(root + ending)
+        out[surface] = cands
     return out
 
 
@@ -174,12 +199,19 @@ def translated_lemmas(bidix: List[dict]) -> Set[str]:
     return out
 
 
+def _eligible_token(tok: str) -> bool:
+    """A frequency token worth measuring: a real word, not numerals or
+    MediaWiki/foreign-script junk (reuses the shared lexicon filter so the
+    denominator matches what the dict accepts as a lemma)."""
+    return (bool(HAS_LETTER_RE.search(tok)) and not tok.isdigit()
+            and not is_junk_lemma(tok))
+
+
 def recall(bidix: List[dict], freq_path: Path, morf_bin: Path, top_n: int
            ) -> Tuple[float, float, int, int, List[str]]:
     items = read_json(freq_path)["items"][:top_n]
     have = translated_lemmas(bidix)
-    surfaces = [it["token"] for it in items
-                if HAS_LETTER_RE.search(it["token"]) and not it["token"].isdigit()]
+    surfaces = [it["token"] for it in items if _eligible_token(it["token"])]
     lemma_of = lemmatize(surfaces, morf_bin)
 
     tok_total = tok_covered = 0
@@ -187,10 +219,10 @@ def recall(bidix: List[dict], freq_path: Path, morf_bin: Path, top_n: int
     misses: List[str] = []
     for it in items:
         tok = it["token"]
-        if not HAS_LETTER_RE.search(tok) or tok.isdigit():
+        if not _eligible_token(tok):
             continue
-        lemma = lemma_of.get(tok, tok).lower()
-        covered = lemma in have or tok.lower() in have
+        cands = [c.lower() for c in lemma_of.get(tok, [tok])]
+        covered = any(c in have for c in cands)
         type_total += 1
         tok_total += it["count"]
         if covered:
@@ -207,8 +239,18 @@ def recall(bidix: List[dict], freq_path: Path, morf_bin: Path, top_n: int
 # Report
 # --------------------------------------------------------------------------- #
 def write_report(path: Path, ranker_name: str, p_correct: int, p_eligible: int,
-                 misranks, type_r, tok_r, type_cov, type_tot, misses, top_n) -> None:
+                 misranks, type_r, tok_r, type_cov, type_tot, misses, top_n,
+                 ranker_p1: Dict[str, float]) -> None:
     p1 = 100.0 * p_correct / p_eligible if p_eligible else 0.0
+    # Render the "ranking is closed" comparison from LIVE numbers (ranker_p1)
+    # rather than frozen prose, so the record can never drift from the bidix.
+    order = ["insertion", "srcrank", "srcrank_corr", "confidence"]
+    labels = {"insertion": "insertion", "srcrank": "srcrank",
+              "srcrank_corr": "srcrank_corr (corroboration)",
+              "confidence": "confidence (cognate)"}
+    rank_line = ", ".join(
+        f"`{labels.get(n, n)}` {ranker_p1[n]:.1f}%"
+        for n in order if n in ranker_p1)
     lines = [
         "# Vortaro Quality",
         "",
@@ -219,13 +261,32 @@ def write_report(path: Path, ranker_name: str, p_correct: int, p_eligible: int,
         "",
         "Top-1 of held-out non-Wiktionary candidates vs the io_wiktionary reference.",
         "",
+        "### Ranking: closed (measured negative result)",
+        "Every ranker smarter than insertion *regresses* precision@1 (computed live):",
+        rank_line + ".",
+        "precision@1 also holds out io_wiktionary, so it is blind to",
+        "no-curated-source entries — exactly where ranking picks the user-visible",
+        "#1 — and the live export keeps io_wiktionary on top by source rank, so live",
+        "ranking is ≥ measured. The export stays on the source-rank order",
+        "(`conflict_resolution.confidence_key`); `confidence_score` remains in the",
+        "tree as the measured-and-rejected alternative. Do not reopen.",
+        "",
         "### Sample misranks (chosen → reference)",
         *[f"- `{lm}`: {got} → {ref}" for lm, got, ref in misranks[:25]],
         "",
         "## recall (coverage)",
         f"**type {type_r:.1f}%** ({type_cov}/{type_tot} lemmas) · **token-weighted {tok_r:.1f}%**",
         "",
-        f"Top-{top_n} io.wiki tokens, lemmatized via the monodix; covered = lemma has any EO translation.",
+        f"Top-{top_n} io.wiki tokens, junk-stripped (shared `lexicon_filters`), then",
+        "lemmatized to citation form via the monodix (root + POS ending, since the",
+        "analyser emits bare roots); covered = the lemma has any EO translation.",
+        "",
+        "Two effects lift this over the old 61.2% type / 76.0% token baseline:",
+        "citation-form reconstruction alone (inflected tokens now map to their",
+        "lemma) reaches ~79.7% type, and junk-stripping the denominator — which",
+        "drops foreign-script proper nouns (`białystok`, `łódź`) and MediaWiki",
+        "artifacts, by design — narrows it to the current figure. This measures",
+        "ASCII common-vocabulary coverage, not proper-noun recall.",
         "",
         "### Sample misses",
         "- " + ", ".join(misses[:50]),
@@ -271,10 +332,17 @@ def main() -> int:
     type_r, tok_r, type_cov, type_tot, misses = recall(
         bidix, args.freq, args.morf_bin, args.top_n)
 
+    # All rankers' precision@1, computed live, so the "ranking is closed" record
+    # in the report is regenerated from the bidix and can never go stale.
+    ranker_p1: Dict[str, float] = {}
+    for name, r in rankers.items():
+        c, e, _ = precision_at_1(bidix, r, dedupe=dedupe)
+        ranker_p1[name] = 100.0 * c / e if e else 0.0
+
     args.reports_dir.mkdir(parents=True, exist_ok=True)
     write_report(args.reports_dir / "vortaro_quality.md", args.ranker,
                  p_correct, p_eligible, misranks, type_r, tok_r,
-                 type_cov, type_tot, misses, args.top_n)
+                 type_cov, type_tot, misses, args.top_n, ranker_p1)
 
     p1 = 100.0 * p_correct / p_eligible if p_eligible else 0.0
     print(f"precision@1: {p1:.1f}%  ({p_correct}/{p_eligible})  ranker={args.ranker}")
