@@ -3,52 +3,12 @@
     "source_name": "function_words_seed",
     "version": "1.3",
     "generation_date": "2026-05-21",
-    "description": "Manually curated Ido function words that are missing from Wiktionary or whose Wiktionary translations cannot be extracted by the parser. Keep this list minimal — add an entry only when the pipeline provably fails to produce the translation. Retired il/el (2026-06-04): now extracted from io.wiktionary via formo-de variant parsing (#121). Remaining entries empirically verified necessary — removing any regresses the word (pipeline fails to extract).",
+    "description": "Manually curated Ido function words that are missing from Wiktionary or whose Wiktionary translations cannot be extracted by the parser. Keep this list minimal — add an entry only when the pipeline provably fails to produce the translation. Retired il/el (2026-06-04): now extracted from io.wiktionary via formo-de variant parsing (#121). Retired l'/l (2026-06-07): the elided article is handled idiomatically in export_apertium.py as an analysis-only monodix entry (l' -> la<det>), so no standalone l'/l lemma is needed. Remaining entries empirically verified necessary — removing any regresses the word (pipeline fails to extract).",
     "statistics": {
-      "total_entries": 9
+      "total_entries": 7
     }
   },
   "entries": [
-    {
-      "lemma": "l'",
-      "source": "function_words_seed",
-      "pos": "determiner",
-      "morphology": {
-        "paradigm": "__det"
-      },
-      "translations": [
-        {
-          "term": "la",
-          "lang": "eo",
-          "confidence": 1.0,
-          "source": "function_words_seed"
-        }
-      ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Elided article before vowels; no standalone Wiktionary entry"
-      }
-    },
-    {
-      "lemma": "l",
-      "source": "function_words_seed",
-      "pos": "determiner",
-      "morphology": {
-        "paradigm": "__det"
-      },
-      "translations": [
-        {
-          "term": "la",
-          "lang": "eo",
-          "confidence": 1.0,
-          "source": "function_words_seed"
-        }
-      ],
-      "metadata": {
-        "source_page": "manual",
-        "note": "Contracted article token; no standalone Wiktionary entry"
-      }
-    },
     {
       "lemma": "kom",
       "source": "function_words_seed",
