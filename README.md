@@ -83,16 +83,33 @@ On conflict, higher-priority sources win; lower-priority translations are droppe
 sharing the first 4 letters with the Ido lemma are kept, preventing distributional
 alignment noise (e.g. `mortala→serioza`).
 
+`morphological_expansion` derives io↔eo pairs from known root pairs via the shared Ido/Esperanto
+affix system (`opakeso→opakeco`, `oficale→oficiale`), gated to forms attested in io.wiki frequency.
+
+## Quality & Evaluation
+
+Two metrics gate changes to the lexicon — run them before deploying.
+
+- **Vortaro quality** — `make vortaro-eval` (`scripts/eval_vortaro.py`) → `reports/vortaro_quality.md`:
+  precision@1 (top gloss vs a held-out `io_wiktionary` reference) + lemmatized recall over the
+  top-5000 io.wiki tokens. The signal for any change to vocabulary generation.
+- **Translation quality** — `scripts/eval_translation.py` → `reports/quality_trend.md`: chrF + coverage
+  against the 130-sentence gold set (`data/gold/ido_epo.tsv`). Must stay flat-or-up on any bidix change.
+- **Shared cleaning** — `scripts/lexicon_filters.py` (junk-lemma drop + case-variant dedup) runs inside
+  `build_one_big_bidix_json.py`, so the monodix, bidix, and vortaro all benefit.
+- **Blast-radius diffs** — `scripts/conflict_winner_diff.py` (which MT winners would change) and
+  `make predeploy-check` (`scripts/dict_diff.py`: fresh dist vs deployed) review changes before deploy.
+
 ## Outputs
 
 | File | Description | Current size |
 |------|-------------|-------------|
-| `dist/bidix_big.json` | Full bilingual dictionary (JSON) | 91,071 entries |
-| `dist/apertium-ido.ido.dix` | Ido monodix (lttoolbox XML) | 101,561 entries |
-| `dist/apertium-ido-epo.ido-epo.dix` | Ido–Esperanto bidix (lttoolbox XML) | 86,816 entries |
+| `dist/bidix_big.json` | Full bilingual dictionary (JSON) | ~92,800 entries |
+| `dist/apertium-ido.ido.dix` | Ido monodix (lttoolbox XML) | ~98,900 entries |
+| `dist/apertium-ido-epo.ido-epo.dix` | Ido–Esperanto bidix (lttoolbox XML) | ~103,600 entries |
 | `dist/ido_dictionary.json` | Ido monolingual dictionary (JSON) | — |
 | `dist/esperanto_dictionary.json` | Esperanto monolingual dictionary (JSON) | — |
-| `dist/vortaro_dictionary.json` | Vortaro web dictionary | 28,901 entries |
+| `dist/vortaro_dictionary.json` | Vortaro web dictionary | ~36,600 entries |
 
 ## Deploy
 
