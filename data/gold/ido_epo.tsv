@@ -1,10 +1,13 @@
-# Ido -> Esperanto gold evaluation set (v2, 2026-06-03)
+# Ido -> Esperanto gold evaluation set (v3, 2026-06-07)
 # Format: ido<TAB>reference_eo<TAB>tags(comma-separated)
 # References are the linguistically CORRECT Esperanto, NOT current engine output.
 # Kept short and phenomenon-targeted so the reference is unambiguous.
-# Phenomenon tags: pronoun, possessive, correlative, tense, mood, participle,
-#   agreement, accusative, plural, preposition, conjunction, reflexive,
-#   comparative, negation, question, number, adverb, function, basic
+# Real-text rows (tag: wikipedia) are sourced from Ido Wikipedia featured
+# articles (Benjamin Franklin, Prato) and kept to clean, short sentences.
+# Phenomenon tags: pronoun, possessive, correlative, relative, tense, mood,
+#   participle, passive, agreement, accusative, plural, preposition, conjunction,
+#   reflexive, comparative, negation, question, number, adverb, function,
+#   elision, article, basic, wikipedia
 #
 # === basic SVO / sanity ===
 La suno brilas.	La suno brilas.	basic
@@ -72,6 +75,13 @@ Quale tu facas to?	Kiel vi faras tion?	correlative,question
 Tale me pensas.	Tiel mi pensas.	correlative
 Il nultempe venas.	Li neniam venas.	correlative
 Quante kustas to?	Kiom kostas tio?	correlative,question
+Co esas nova.	Ĉi tio estas nova.	correlative
+#
+# === relative clauses (qua / quan / di qua) ===
+La homo qua laboras esas felica.	La homo kiu laboras estas feliĉa.	relative,correlative
+La libri quin me lektas esas bona.	La libroj kiujn mi legas estas bonaj.	relative,accusative,plural,agreement
+Me ne konocas la urbo di qua tu venas.	Mi ne konas la urbon de kiu vi venas.	relative,preposition,accusative
+La viro qua dormas esas mea patro.	La viro kiu dormas estas mia patro.	relative,possessive
 #
 # === verb tense / mood (systematic) ===
 Me manjas.	Mi manĝas.	tense
@@ -95,6 +105,12 @@ La dormanta hundo esas hike.	La dormanta hundo estas ĉi tie.	participle
 La rompita vazo esas sur la tablo.	La rompita vazo estas sur la tablo.	participle,preposition
 La venonta semano esos varma.	La venonta semajno estos varma.	participle,tense
 Me lektas skribita letro.	Mi legas skribitan leteron.	participle,accusative,agreement
+#
+# === passive voice (-es-) ===
+La domo konstruktesas.	La domo estas konstruata.	passive,participle,tense
+La pordo apertesas.	La pordo estas malfermata.	passive,participle,tense
+La letro skribesis.	La letero estis skribita.	passive,participle,tense
+La urbo destruktesis dum la milito.	La urbo estis detruita dum la milito.	passive,participle,tense,preposition
 #
 # === agreement / accusative / plural ===
 Me vidas la granda domo.	Mi vidas la grandan domon.	agreement,accusative
@@ -148,6 +164,7 @@ Me havas du fratuli.	Mi havas du fratojn.	number,accusative,plural
 Esas dek homi en la chambro.	Estas dek homoj en la ĉambro.	number,plural,preposition
 La hundo havas quar gambi.	La hundo havas kvar krurojn.	number,accusative,plural
 Tri pueri ludas.	Tri infanoj ludas.	number,plural
+Me vidas tri blanka hundi.	Mi vidas tri blankajn hundojn.	number,accusative,plural,agreement
 #
 # === adverbs ===
 Il kuras rapide.	Li kuras rapide.	adverb,pronoun
@@ -167,4 +184,14 @@ Me e tu venas.	Mi kaj vi venas.	conjunction,pronoun
 Pano o aquo.	Pano aŭ akvo.	conjunction
 Hiere me esis hike.	Hieraŭ mi estis ĉi tie.	function,tense
 Morge ni iros.	Morgaŭ ni iros.	function,tense
+#
+# === elision of the article (l') ===
 L'urbo esas granda.	La urbo estas granda.	elision,article
+Me vidas l'amiko.	Mi vidas la amikon.	elision,article,accusative
+Me lektis l'artiklo.	Mi legis la artikolon.	elision,article,accusative,tense
+#
+# === real text: Ido Wikipedia featured articles ===
+Benjamin Franklin esis Usana politikisto ed inventisto.	Benjamin Franklin estis usona politikisto kaj inventisto.	wikipedia,tense,conjunction
+Ilu inventis parafulmino en 1749.	Li inventis fulmoŝirmilon en 1749.	wikipedia,tense,accusative,pronoun,number
+Stepo trovesas en Central Azia.	Stepo troviĝas en Centra Azio.	wikipedia,preposition
+Franklin esis un ek la fondinti di Usa.	Franklin estis unu el la fondintoj de Usono.	wikipedia,plural,preposition
