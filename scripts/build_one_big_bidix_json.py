@@ -6,6 +6,7 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 from _common import read_json, write_json, configure_logging
 from infer_morphology import infer_paradigm as _infer_paradigm
+from lexicon_filters import is_junk_lemma, dedupe_eo_candidates
 import re
 
 
@@ -173,6 +174,24 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
         ll = lemma.lower()
         morphology = e.get('morphology') or {}
         pos_overridden = False
+        # Missing/empty POS: infer from the (reliable) Ido lemma ending so the
+        # merge key is consistent. Otherwise a zero-EO entry stored with no POS
+        # (key=('bakilo','')) never unifies with the morphological-expansion
+        # entry that carries its EO gloss (key=('bakilo','n')), forking a
+        # duplicate instead of attaching the translation.
+        # Restricted to lowercase lemmas: capitalized langlink/wikidata entries
+        # may be proper nouns (Nauvoo, Korea) — inferring 'n'/'adj' there would
+        # recase them via the lowercasing rule below and break capitalized MT
+        # lookup. All morphological-expansion recall targets are lowercase.
+        if not pos and lemma[:1].islower():
+            if ll.endswith('ar') and len(ll) > 3:
+                pos = 'vblex'; pos_overridden = True
+            elif ll.endswith('o'):
+                pos = 'n'; pos_overridden = True
+            elif ll.endswith('a') and not ll.endswith('ia'):
+                pos = 'adj'; pos_overridden = True
+            elif ll.endswith('e') and len(ll) > 2:
+                pos = 'adv'; pos_overridden = True
         if pos in _CLOSED_CLASS:
             pass  # Don't override closed-class POS based on ending
         elif ll.endswith('o') and pos and pos not in ('n', 'np'):
@@ -310,6 +329,19 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
     # Materialize final structure: senses with EO-only translations; keep multi-provenance per translation
     out: List[Dict[str, Any]] = []
     for (_lm, _pos), rec in sorted(by_key.items(), key=lambda kv: (kv[0][0], kv[0][1])):
+        # Drop non-lexical junk lemmas (foreign-script spellings leaked from
+        # langlink/wikidata titles, MediaWiki artifacts, numeric ordinals) so they
+        # never reach the monodix or the vortaro. See scripts/lexicon_filters.py.
+        if is_junk_lemma(rec['lemma']):
+            continue
+        # Merge EO candidates that differ only by letter-case, casing driven by
+        # the Ido lemma (lowercase common noun → lowercase gloss; Aachen→Akeno
+        # keeps the capital). Collapses the 'Lifto'/'lifto' duplicate pairs the
+        # candidate audit found and fixes the capitalised-first-gloss ordering.
+        rec['_eo_terms'] = {
+            term: set(srcs) for term, srcs in dedupe_eo_candidates(
+                rec['lemma'], [(t, sorted(s)) for t, s in rec['_eo_terms'].items()])
+        }
         # Wiktionary wins: if any translation comes from a non-BERT source, drop BERT-only translations.
         has_wikt = any(srcs - _BERT_SOURCES for srcs in rec['_eo_terms'].values())
         # Feminine-shadow guard: when this entry is `lemma<n>` with paradigm

@@ -71,3 +71,49 @@ def pick_best(candidates: Sequence[Tuple[str, Sequence[str]]],
     best_i = min(range(len(candidates)),
                  key=lambda i: confidence_key(candidates[i][0], candidates[i][1], i, table))
     return candidates[best_i][0]
+
+
+# --------------------------------------------------------------------------- #
+# Vortaro display ranking — richer than the MT winner (pick_best stays minimal).
+#
+# The vortaro shows every candidate, so a confidently-wrong #1 only mis-orders a
+# list a human reads — but ordering is the whole point, so it is still vetted by
+# the misses (false-friend set), not just by precision@1 (eval_vortaro.py).
+#
+# Built incrementally so each signal's contribution is measurable:
+#   source reliability  (dominant) — the SOURCE_RANK tiers above
+#   corroboration       — how many distinct sources independently agree
+#   cognate proximity   — Ido↔Esperanto are highly cognate, so the candidate
+#                         closest to the lemma is usually the right primary gloss
+#                         (`aceptar`→akcepti, not the paraphrase ricevi). Capped so
+#                         it breaks ties / nudges adjacent ranks but never overrides
+#                         a strong reliability gap (guards false friends).
+# --------------------------------------------------------------------------- #
+from difflib import SequenceMatcher  # noqa: E402
+
+_CORROBORATION_CAP = 4
+_COGNATE_WEIGHT = 6.0
+
+
+def cognate_proximity(lemma: str, term: str) -> float:
+    """0..1 string similarity of the Ido lemma and an Esperanto candidate."""
+    if not lemma or not term:
+        return 0.0
+    return SequenceMatcher(None, lemma.casefold(), term.casefold()).ratio()
+
+
+def confidence_score(term: str, sources: Sequence[str], lemma: str = "", *,
+                     use_corroboration: bool = True, use_cognate: bool = True,
+                     table: Dict[str, int] = SOURCE_RANK_BASELINE) -> float:
+    """Vortaro ranking score (higher = better). Pure function of the candidate.
+
+    Source reliability dominates (rank gap weighted ×10); corroboration and
+    cognate proximity are secondary tie-breakers. Toggle the latter two to
+    measure each signal's marginal contribution.
+    """
+    score = -10.0 * source_rank(sources, table)
+    if use_corroboration:
+        score += min(len(set(sources)), _CORROBORATION_CAP)
+    if use_cognate and lemma:
+        score += _COGNATE_WEIGHT * cognate_proximity(lemma, term)
+    return score
