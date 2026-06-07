@@ -36,8 +36,18 @@ _FUNCTION_WORD_OVERRIDES: Dict[str, Dict[str, str]] = {
     'dil':  {'pos': 'prep_art', 'eo': 'de'},    # di + la (contraction); io_wiktionary EO is multi-word, filtered upstream
     'til':  {'pos': 'pr',       'eo': 'ĝis'},   # until — io_wiktionary EO is junk-grade ("ĝis la revido")
     'quan': {'pos': 'prn',      'eo': 'kiun'},  # accusative of qua; not derived by __prn paradigm
+    'qui':  {'pos': 'prn',      'eo': 'kiuj'},  # plural relative/interrogative pronoun
+    'quo':  {'pos': 'prn',      'eo': 'kio'},   # interrogative "what" (NOT a noun — see _IDO_REL_INT_PRN)
     'saluto': {'pos': 'ij',     'eo': 'saluton'}, # greeting
 }
+
+# Ido relative/interrogative correlative pronouns (the qu- series). These are
+# closed-class, but ending-based POS inference mis-tags them ('quo' -> noun
+# because it ends in -o, 'qua' -> adj). Critically, 'quo' as a noun generates
+# 'qui' as its plural, so 'qui' is then mis-analysed as qu<n><pl> (→ "kio")
+# instead of the pronoun "kiuj". Force the whole series to prn so the spurious
+# noun/adjective paradigms (and their inflected forms) are never built.
+_IDO_REL_INT_PRN = {'qua', 'qui', 'quo', 'quan', 'quin', 'quon'}
 
 
 # BERT vocab pre-filter: the source vocab includes a lot of non-Ido garbage
@@ -174,6 +184,12 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
         ll = lemma.lower()
         morphology = e.get('morphology') or {}
         pos_overridden = False
+        # Closed-class qu- pronoun series: force prn (overriding any source POS
+        # and the ending-based inference below) and drop the stale paradigm so
+        # _infer_paradigm picks __prn. Prevents the quo<n>→qui<n><pl> mis-analysis.
+        if ll in _IDO_REL_INT_PRN:
+            pos = 'prn'
+            morphology = {}
         # Missing/empty POS: infer from the (reliable) Ido lemma ending so the
         # merge key is consistent. Otherwise a zero-EO entry stored with no POS
         # (key=('bakilo','')) never unifies with the morphological-expansion
