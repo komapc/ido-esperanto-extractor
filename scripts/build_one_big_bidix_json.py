@@ -38,6 +38,8 @@ _FUNCTION_WORD_OVERRIDES: Dict[str, Dict[str, str]] = {
     'quan': {'pos': 'prn',      'eo': 'kiun'},  # accusative of qua; not derived by __prn paradigm
     'qui':  {'pos': 'prn',      'eo': 'kiuj'},  # plural relative/interrogative pronoun
     'quo':  {'pos': 'prn',      'eo': 'kio'},   # interrogative "what" (NOT a noun — see _IDO_REL_INT_PRN)
+    'di qua': {'pos': 'prn',    'eo': 'de kiu'},  # relative "of/from which"; io_wikt gloss "kies" is only the possessive sense
+    'di qui': {'pos': 'prn',    'eo': 'de kiuj'}, # plural
     'saluto': {'pos': 'ij',     'eo': 'saluton'}, # greeting
 }
 
@@ -47,7 +49,8 @@ _FUNCTION_WORD_OVERRIDES: Dict[str, Dict[str, str]] = {
 # 'qui' as its plural, so 'qui' is then mis-analysed as qu<n><pl> (→ "kio")
 # instead of the pronoun "kiuj". Force the whole series to prn so the spurious
 # noun/adjective paradigms (and their inflected forms) are never built.
-_IDO_REL_INT_PRN = {'qua', 'qui', 'quo', 'quan', 'quin', 'quon'}
+_IDO_REL_INT_PRN = {'qua', 'qui', 'quo', 'quan', 'quin', 'quon',
+                    'di qua', 'di qui', 'di quo'}
 
 
 # BERT vocab pre-filter: the source vocab includes a lot of non-Ido garbage
