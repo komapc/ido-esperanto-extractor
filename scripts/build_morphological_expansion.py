@@ -254,8 +254,18 @@ def main(argv: list[str] | None = None) -> int:
 
     logger.info("Loading bidix: %s", args.bidix)
     bidix = json.loads(args.bidix.read_text())
-    bidix_lemmas = {e["lemma"].lower() for e in bidix}
-    logger.info("  %d bidix entries", len(bidix))
+    # Skip a derived form only if it ALREADY HAS an EO translation — not merely
+    # because the lemma exists. Many derivable forms (bakilo, opakeso, peskisto)
+    # are present as zero-EO monodix lemmas; attaching their morphological EO
+    # gloss is exactly the recall win. The wiki_vocab gate below still applies.
+    def _has_eo(e: dict) -> bool:
+        return any(
+            tr.get("lang") == "eo" and tr.get("term")
+            for s in (e.get("senses") or [])
+            for tr in (s.get("translations") or [])
+        )
+    lemmas_with_eo = {e["lemma"].lower() for e in bidix if _has_eo(e)}
+    logger.info("  %d bidix entries (%d with an EO translation)", len(bidix), len(lemmas_with_eo))
 
     logger.info("Loading io.wiki vocabulary: %s", args.wiki_freq)
     wiki_vocab = load_wiki_vocab(args.wiki_freq)
@@ -278,7 +288,7 @@ def main(argv: list[str] | None = None) -> int:
 
             io_d = io_r + io_suf
             eo_d = eo_r + eo_suf
-            if io_d in bidix_lemmas:
+            if io_d in lemmas_with_eo:
                 verb_skipped_dup += 1
                 continue
             if io_d not in wiki_vocab:
@@ -307,7 +317,7 @@ def main(argv: list[str] | None = None) -> int:
 
             io_d = io_r + io_suf
             eo_d = eo_r + eo_suf
-            if io_d in bidix_lemmas:
+            if io_d in lemmas_with_eo:
                 noun_skipped_dup += 1
                 continue
             if io_d not in wiki_vocab:
@@ -336,7 +346,7 @@ def main(argv: list[str] | None = None) -> int:
 
             io_d = io_r + io_suf
             eo_d = eo_r + eo_suf
-            if io_d in bidix_lemmas:
+            if io_d in lemmas_with_eo:
                 adj_skipped_dup += 1
                 continue
             if io_d not in wiki_vocab:

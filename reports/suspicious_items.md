@@ -2,599 +2,2009 @@
 
 ## Stats
 - bad_schema: 0
-- bad_lemma: 0
-- wiki_low_freq: 0
-- all_tr_removed: 37881
-- tr_removed: 590
+- bad_lemma: 1
+- wiki_low_freq: 38735
+- all_tr_removed: 64542
+- tr_removed: 601
 
 ## Examples
-- bad_tr_eo: Anciena Testamento -> Malnova Testamento
-- bad_tr_eo: Araba maro -> Araba Maro
-- bad_tr_eo: Arktika oceano -> Arkta Oceano
-- bad_tr_eo: Arktika oceana -> Arkta Oceano
-- bad_tr_eo: Baltika Maro -> Balta Maro
-- bad_tr_eo: Bielorusiano -> Belorusa lingvo
-- bad_tr_eo: Blanka Domo -> Blanka Domo
-- bad_tr_eo: Desiderius Erasmus de Rotterdam -> Erasmo de Roterdamo
-- bad_tr_eo: Erasmus de Rotterdam -> Erasmo de Roterdamo
-- bad_tr_eo: Europana Uniono -> Eŭropa Unio
-- bad_tr_eo: Faero -> Feroaj Insuloj
-- bad_tr_eo: Gaza-strio -> Gazaa Sektoro
-- bad_tr_eo: Gaza-strio -> Gaza Sektoro
-- bad_tr_eo: Germana Imperio -> Germano Regno
-- bad_tr_eo: Granda Urso -> Granda Ursino
-- bad_tr_eo: Gulfo di Bengal -> Bengala Golfo
-- bad_tr_eo: Internaciona fonetik alfabeto -> Internacia Fonetika Alfabeto
-- bad_tr_eo: Internacionala Judicieyo -> Internacia Kortumo
-- bad_tr_eo: Ioannes -> Evangelio laŭ Johano
-- bad_tr_eo: Kanto -> Alta Kanto de Salomono
-- bad_tr_eo: Katolik eklesio -> Katolika Eklesio
-- bad_tr_eo: Kolda milito -> Malvarma milito
-- bad_tr_eo: L'Internacionalo -> La Internacio
-- bad_tr_eo: Lamenti -> Libro de Lamentoj
-- bad_tr_eo: Lasta Supeo -> Lasta Vespermanĝo
-- bad_tr_eo: Lasta Supeo -> Sankta Vespermanĝo
-- bad_tr_eo: Mondial organizuro pri komerco -> Monda Organizaĵo pri Komerco
-- bad_tr_eo: Mortinta Maro -> Morta Maro
-- bad_tr_eo: Murego di Berlin -> Berlina muro
-- bad_tr_eo: Nigra Maro -> Nigra Maro
-- bad_tr_eo: Nord-Atlantikal Uniono -> Nord-Atlantika Traktat-Organizaĵo
-- bad_tr_eo: Nord-Korea -> Koreio Norda
-- bad_tr_eo: Nord-Korea -> Koreujo Norda
-- bad_tr_eo: Norda Maro -> Norda Maro
-- bad_tr_eo: Nova Testamento -> Nova Testamento
-- bad_tr_eo: Oceano Pacifiko -> Pacifika Oceano
-- bad_tr_eo: Ora Rivo -> Ora Bordo
-- bad_tr_eo: Otoman imperio -> Otomana Imperio
-- bad_tr_eo: Pater -> Patro nia
-- bad_tr_eo: Persiana gulfo -> Persa Golfo
-- bad_tr_eo: Reda Krecento -> Ruĝa Krescento
-- bad_tr_eo: Reda Kruco -> Ruĝa Kruco
-- bad_tr_eo: Reda Maro -> Ruĝa Maro
-- bad_tr_eo: Reda Miluno -> Ruĝa Krescento
-- bad_tr_eo: Republiko Texas -> Respubliko Teksaso
-- bad_tr_eo: Ruda Placo -> Ruĝa Placo
-- bad_tr_eo: Rusa imperio -> Rusia Imperio
-- bad_tr_eo: Tropiko di Kankro -> Tropiko de Kankro
-- bad_tr_eo: Tropiko di Kaprikorno -> Tropiko de Kaprikorno
-- bad_tr_eo: Turmo di London -> Turo de Londono
-- bad_tr_eo: Unionita Araba Republiko -> Unuiĝinta Araba Respubliko
-- bad_tr_eo: Unionita Nacioni -> Unuiĝintaj Nacioj
-- bad_tr_eo: Unionita Rejio -> Unuiĝinta Reĝlando
-- bad_tr_eo: Unionita Rejio -> Unuiĝinta Regno
-- bad_tr_eo: Venn-diagramo -> Venn-a diagramo
-- bad_tr_eo: a via aleo -> en loko
-- bad_tr_eo: a via aleo -> iru!
-- bad_tr_eo: absoluta zero -> absoluta nulo
-- bad_tr_eo: acento -> diakrita signo
-- bad_tr_eo: achento -> diakrita signo
-- bad_tr_eo: adavane -> antaǔen
-- bad_tr_eo: adhike -> ĉi tie
-- bad_tr_eo: adhike -> ĉi tien
-- bad_tr_eo: adio -> ĝis la revido
-- bad_tr_eo: aglonazo -> agla nazo
-- bad_tr_eo: alpikaprikorno -> alpa cerambiko
-- bad_tr_eo: altro -> io alia
-- bad_tr_eo: altro -> alia afero
-- bad_tr_eo: ambe -> kaj ... kaj
-- bad_tr_eo: amin-acido -> amina acido
-- bad_tr_eo: animalparko -> zoologia ĝardeno
-- bad_tr_eo: ante -> antaŭ kiam
-- bad_tr_eo: ante -> antaŭ ol
-- bad_tr_eo: apene -> apenaǔ
-- bad_tr_eo: aplaudar -> aplaǔdi
-- bad_tr_eo: aplikar -> sin proponi por
-- bad_tr_eo: aprilatrapito -> aprila ŝerco
-- bad_tr_eo: aprilatrapo -> aprila ŝerco
-- bad_tr_eo: apud -> kune kun
-- bad_tr_eo: arab -> la araba
-- bad_tr_eo: araba -> la araba
-- bad_tr_eo: arabiana -> la araba
-- bad_tr_eo: arakid-oleo -> arakida oleo
-- bad_tr_eo: archo di kontrato -> Arkeo de Interligo
-- bad_tr_eo: archo di kontrato -> Kesto de Interligo
-- bad_tr_eo: artifical inteligenteso -> artefarita intelekto
-- bad_tr_eo: artifical inteligenteso -> artefarita inteligenteco
-- bad_tr_eo: artifical inteligenteso -> artefarita inteligenteco, artefarita intelekto
-- bad_tr_eo: atmosferala polutajo -> aera poluado
-- bad_tr_eo: atomala nukleo -> atoma nukleo
-- bad_tr_eo: atomobombo -> nuklea bombo
-- bad_tr_eo: autoryuro -> aŭtora rajto
-- bad_tr_eo: avan -> antaŭ kiam
-- bad_tr_eo: avan -> antaŭ ol
-- bad_tr_eo: avogadro-fixo -> konstanto de Avogadro
-- bad_tr_eo: avogadro-nombro -> konstanto de Avogadro
-- bad_tr_eo: aymarana linguo -> Ajmara lingvo
-- bad_tr_eo: ba -> ba!
-- bad_tr_eo: balnar -> sin bani
-- bad_tr_eo: bankokonto -> banka konto
-- bad_tr_eo: basigar -> malaltigi mallevi
-- bad_tr_eo: bavar -> pogute versi
-- bad_tr_eo: bazolineo -> baza linio
-- bad_tr_eo: bengala tigro -> bengalia tigro
-- bad_tr_eo: bernaklo -> kolringa ansero
-- bad_tr_eo: betravo -> ruĝa beto
-- bad_tr_eo: bijekto -> inversigebla funkcio
-- bad_tr_eo: bijekto -> dissurĵeto, inversigebla funkcio, bijekcio
-- bad_tr_eo: bis! -> bis!
-- bad_tr_eo: blanka-Monto -> Blanka Monto
-- bad_tr_eo: bona apetito -> bonan apetiton
-- bad_tr_eo: bona jorno -> bonan tagon
-- bad_tr_eo: bona matino -> bonan tagon
-- bad_tr_eo: bona matino -> bonan matenon
-- bad_tr_eo: bona naskodio -> feliĉan naskiĝtagon
-- bad_tr_eo: bona nokto -> bonan nokton
-- bad_tr_eo: bona vespero -> bonan vesperon
-- bad_tr_eo: bona voyajo -> bonan vojaĝon
-- bad_tr_eo: bruna linco -> rufa linko
-- bad_tr_eo: c.e -> t.e
-- bad_tr_eo: canokte -> hodiaŭ nokte
-- bad_tr_eo: cavespere -> hodiaŭ nokte
-- bad_tr_eo: centrala banko -> centra banko
-- bad_tr_eo: cezarala operaco -> cezara operacio
-- bad_tr_eo: chao -> ĝis la revido
-- bad_tr_eo: charo -> armea ĉaro
-- bad_tr_eo: ci -> ĉi tiuj
-- bad_tr_eo: ci -> tiuj ĉi
-- bad_tr_eo: cinetik energio -> kineta energio
-- bad_tr_eo: cirkum -> ĉirkaŭ, kun (2, on one’s person)
-- bad_tr_eo: cirkum -> ĉirkaŭe en
-- bad_tr_eo: cirkume -> ĉirkaŭ, kun (2, on one’s person)
-- bad_tr_eo: cirkume -> ĉirkaŭe en
-- bad_tr_eo: cis -> C diesa
-- bad_tr_eo: danko -> dankon!
-- bad_tr_eo: dansantino -> dancanto dancisto virdancisto dancistino
-- bad_tr_eo: dansanto -> dancanto dancisto virdancisto dancistino
-- bad_tr_eo: dansantulo -> dancanto dancisto virdancisto dancistino
-- bad_tr_eo: danserino -> dancanto dancisto virdancisto dancistino
-- bad_tr_eo: dansero -> dancanto dancisto virdancisto dancistino
-- bad_tr_eo: danserulo -> dancanto dancisto virdancisto dancistino
-- bad_tr_eo: dansistino -> dancanto dancisto virdancisto dancistino
-- bad_tr_eo: dansisto -> dancanto dancisto virdancisto dancistino
-- bad_tr_eo: dansistulo -> dancanto dancisto virdancisto dancistino
-- bad_tr_eo: darnar -> ripari nur kudre
-- bad_tr_eo: de lore -> ekde tiam
-- bad_tr_eo: de tempo a tempo -> de tempo al tempo
-- bad_tr_eo: debilinterago -> malforta nuklea interago
-- bad_tr_eo: deceptar -> trompi la esperojn de
-- bad_tr_eo: dek ed ok -> dek ok
-- bad_tr_eo: dek-e-du -> dek du
-- bad_tr_eo: dek-e-kin -> dek kvin
-- bad_tr_eo: dek-e-non -> dek naŭ
-- bad_tr_eo: dek-e-quar -> dek kvar
-- bad_tr_eo: dek-e-sep -> dek sep
-- bad_tr_eo: dek-e-sis -> dek ses
-- bad_tr_eo: dek-e-tri -> dek tri
-- bad_tr_eo: dek-e-un -> dek unu
-- bad_tr_eo: del -> de la
-- bad_tr_eo: deliktar -> fari delikton
-- bad_tr_eo: dementerio -> psikiatria hospitalo, frenezulejo
-- bad_tr_eo: dementerio -> psikiatria hospitalo
-- bad_tr_eo: demokrata socialismo -> demokrata socialismo
-- bad_tr_eo: demokratio -> demokratia ŝtatformo, demokratio
-- bad_tr_eo: demokratio -> demokratia ŝtatformo
-- bad_tr_eo: depos -> de kiam
-- bad_tr_eo: depose -> de kiam
-- bad_tr_eo: depose -> ekde tiam
-- bad_tr_eo: depresar -> premi malsupren
-- bad_tr_eo: dermatito -> atopia dermito
-- bad_tr_eo: des -> prefikso mal
-- bad_tr_eo: desankragar -> levi la ankron
-- bad_tr_eo: desfido -> malfidoeaspa muiníne
-- bad_tr_eo: desub -> de sub
-- bad_tr_eo: detektivo -> policana detektivo
-- bad_tr_eo: detrimentar -> esti malprofita al
-- bad_tr_eo: deube -> el kie
-- bad_tr_eo: deube -> de kie
-- bad_tr_eo: di -> de or with a construction using the adjectival suffix -a
-- bad_tr_eo: diablo -> diablo kategorio:eo di
-- bad_tr_eo: diafana -> travidebla #Esperanto
-- bad_tr_eo: diafano -> travidebla #Esperanto
-- bad_tr_eo: diafa -> travidebla #Esperanto
-- bad_tr_eo: diakritiko -> diakrita signo
-- bad_tr_eo: dicar -> ni diru
-- bad_tr_eo: difamar -> ataki la honoron aŭ reputacion de
-- bad_tr_eo: diktatoreso dil proletariaro -> diktatoreco de la proletaro
-- bad_tr_eo: dil -> de la
-- bad_tr_eo: disho -> manĝaĵo preparita
-- bad_tr_eo: diskursar -> doni diskurson
-- bad_tr_eo: distar -> esti malproksima
-- bad_tr_eo: doktorino -> doktoro, virdoktoro doktorino
-- bad_tr_eo: doktoro -> doktoro, virdoktoro doktorino
-- bad_tr_eo: doktorulo -> doktoro, virdoktoro doktorino
-- bad_tr_eo: dolcacha -> afekte milda
-- bad_tr_eo: domeno -> sfero de ago aŭ influo
-- bad_tr_eo: domestika -> loĝanta kun homoj
-- bad_tr_eo: dormeyo -> studenta loĝejo
-- bad_tr_eo: driblar -> pogute versi
-- bad_tr_eo: dupo -> trompito naiva
-- bad_tr_eo: e cetere -> kaj tiel plu
-- bad_tr_eo: e ceteri -> kaj tiel plu
-- bad_tr_eo: e-adreso -> komputilreta poŝto
-- bad_tr_eo: e-letro -> komputilreta poŝto
-- bad_tr_eo: e-posto -> komputilreta poŝto
-- bad_tr_eo: ecelar -> esti bonega
-- bad_tr_eo: ecesar -> havi eksceson
-- bad_tr_eo: ed -> sufikso por enhavaĵo de
-- bad_tr_eo: ed -> pro tio
-- bad_tr_eo: edc -> k.t.p
-- bad_tr_eo: edc -> k.c
-- bad_tr_eo: ek -> de or with a construction using the adjectival suffix -a
-- bad_tr_eo: ekino -> mara erinaco
-- bad_tr_eo: elektrokardiogramo -> elektrokardiografiaĵo, elektrokardiogramo
-- bad_tr_eo: elektroposto -> komputilreta poŝto
-- bad_tr_eo: elu esas nekoncianta -> ŝi estas senkonscia
-- bad_tr_eo: en -> ĝis post
-- bad_tr_eo: enboxa pupeo -> matrjoŝka pupo
-- bad_tr_eo: entuziasmar -> esti entuziasma
-- bad_tr_eo: equivalar -> esti ekvivalenta
-- bad_tr_eo: er -> sufikso por indiki iun aŭ foje ion kiu regule aŭ ofte aŭ tipe faras ion
-- bad_tr_eo: eri -> sufikso por establo
-- bad_tr_eo: erste -> ne pli frue ol
-- bad_tr_eo: esar -> iĝi, esti + passive participle -ata, -ita, -ota
-- bad_tr_eo: esar -> esti + active participle -anta, -inta, -onta
-- bad_tr_eo: esk -> ek- . 2. -iĝ
-- bad_tr_eo: eskarolo -> larĝfolia endivio
-- bad_tr_eo: eskrokar -> friponi, ŝteli per trompo aŭ ruzo
-- bad_tr_eo: esm -> sufikso por indiki numer-vorton ordan
-- bad_tr_eo: etapar -> halti je etapo
-- bad_tr_eo: etuyo -> skatolo, kesto, ujo speciala por iu entenaĵo
-- bad_tr_eo: evar -> iĝi, esti + passive participle -ata, -ita, -ota
-- bad_tr_eo: evar -> esti + active participle -anta, -inta, -onta
-- bad_tr_eo: existar -> iĝi, esti + passive participle -ata, -ita, -ota
-- bad_tr_eo: existar -> esti + active participle -anta, -inta, -onta
-- bad_tr_eo: extrema -> plej fora
-- bad_tr_eo: facio -> fronta faco
-- bad_tr_eo: familionomo -> familia nomo
-- bad_tr_eo: fekifar -> fek!
-- bad_tr_eo: felica nova yaro -> feliĉan novjaron
-- bad_tr_eo: fera kurteno -> fera kurteno
-- bad_tr_eo: festar -> havi ferion
-- bad_tr_eo: fi -> fi!
-- bad_tr_eo: financala merkato -> financa merkato
-- bad_tr_eo: fratulo -> ino fratino
-- bad_tr_eo: fusilhano -> virseksa birdo
-- bad_tr_eo: fusilhana -> virseksa birdo
-- bad_tr_eo: fusilhano -> maskla birdo
-- bad_tr_eo: genitoro -> patro aŭ patrino
-- bad_tr_eo: glata fusilo -> kartoĉa fusilo
-- bad_tr_eo: glezo -> diafana farbo
-- bad_tr_eo: glezuro -> diafana farbo
-- bad_tr_eo: globala koldigo -> tutmonda malvarmiĝo
-- bad_tr_eo: globala varmesko -> tutmonda varmiĝo
-- bad_tr_eo: gotika linguo -> gota lingvo
-- bad_tr_eo: gratitudar -> esti dankema al
-- bad_tr_eo: gravitado -> gravitada ondo
-- bad_tr_eo: gregoriala kalendario -> gregoria kalendaro
-- bad_tr_eo: grosa -> dika kaj longa
-- bad_tr_eo: gruvar -> ĝui ritman muzikon
-- bad_tr_eo: hano -> virseksa birdo
-- bad_tr_eo: hano -> maskla birdo
-- bad_tr_eo: hanulo -> virseksa birdo
-- bad_tr_eo: hanulo -> maskla birdo
-- bad_tr_eo: hebrea -> la hebrea lingvo
-- bad_tr_eo: helpar -> help!
-- bad_tr_eo: helpo -> help!
-- bad_tr_eo: hiere -> hieraǔ
-- bad_tr_eo: hike -> tie ĉi
-- bad_tr_eo: hike -> ĉi tie
-- bad_tr_eo: hike -> ĉi tien
-- bad_tr_eo: hike jacas -> ĉi tie ripozas
-- bad_tr_eo: ho -> prefikso montranta periodon en kiu ni nun vivas
-- bad_tr_eo: hueto -> arbara strigo
-- bad_tr_eo: ici -> ĉi tiuj
-- bad_tr_eo: ici -> tiuj ĉi
-- bad_tr_eo: ilu esas nekoncianta -> li estas senkonscia
-- bad_tr_eo: im -> sufikso -on
-- bad_tr_eo: imanar -> esti imanenta
-- bad_tr_eo: impresiono -> impresionista verko
-- bad_tr_eo: indijar -> esti senhava kaj bezonata
-- bad_tr_eo: informatiko -> informa scienco
-- bad_tr_eo: ingranar -> ŝovi rapidumlevilon
-- bad_tr_eo: inherar -> esti propra
-- bad_tr_eo: injeniar -> uzi sian inĝenion por
-- bad_tr_eo: insidiar -> meti kaptilon
-- bad_tr_eo: integrigita cirkuito -> integra cirkvito
-- bad_tr_eo: intelektar -> kompreni per intelekto
-- bad_tr_eo: inter altri -> inter aliaj
-- bad_tr_eo: inverse-horloje -> maldekstrume, livume, kontraŭhorloĝdirekte
-- bad_tr_eo: irez! -> en loko
-- bad_tr_eo: irez! -> iru!
-- bad_tr_eo: irga -> iu ajn
-- bad_tr_eo: irga -> io ajn
-- bad_tr_eo: irga -> iu ajn
-- bad_tr_eo: irga -> iom da
-- bad_tr_eo: irga -> iom ajn
-- bad_tr_eo: irgaloke -> ie ajn
-- bad_tr_eo: irgaloke -> ien ajn
-- bad_tr_eo: irgatempe -> iam ajn
-- bad_tr_eo: irgekande -> kiam ajn
-- bad_tr_eo: irgo -> io ajn
-- bad_tr_eo: irgu -> iu ajn
-- bad_tr_eo: irgu -> kiu ajn
-- bad_tr_eo: irgu -> iu ajn
-- bad_tr_eo: irgube -> ie ajn
-- bad_tr_eo: irgube -> ien ajn
-- bad_tr_eo: itere -> ankoraŭ unufoje
-- bad_tr_eo: ja lore -> ekde tiam
-- bad_tr_eo: japoniano -> japana lingvo
-- bad_tr_eo: jigolo -> vira amoristo
-- bad_tr_eo: jovdio -> ĵaǔdo
-- bad_tr_eo: ka ne? -> ĉu ne?
-- bad_tr_eo: ka vu bezonas helpo? -> ĉu vi bezonas helpon?
-- bad_tr_eo: kariar -> havi karion
-- bad_tr_eo: karibuo -> norda cervo
-- bad_tr_eo: kartuno -> animaciita desegno
-- bad_tr_eo: kauzo -> kaǔzo
-- bad_tr_eo: kayero -> notlibra komputilo
-- bad_tr_eo: ke -> por ke
-- bad_tr_eo: kelko -> kelke da
-- bad_tr_eo: kemiala ligilo -> kemia ligo
-- bad_tr_eo: kiasmo -> figuron de parolado en kiu elementoj estas aranĝitaj en transversa formon
-- bad_tr_eo: kisez me -> kisu min
-- bad_tr_eo: klasika muziko -> klasika muziko
-- bad_tr_eo: klinar -> parte duobligi
-- bad_tr_eo: klinar -> kruce dissolvi
-- bad_tr_eo: kolda milito -> malvarma milito
-- bad_tr_eo: kolombulo -> virseksa birdo
-- bad_tr_eo: kolombulo -> maskla birdo
-- bad_tr_eo: komputocienco -> informa scienco
-- bad_tr_eo: konstitucala monarkio -> konstitucia monarkio
-- bad_tr_eo: koram -> en la ĉeesto de
-- bad_tr_eo: krak -> krak!
-- bad_tr_eo: kreola linguo -> kreola lingvo
-- bad_tr_eo: kreskodisko -> alkreska disko
-- bad_tr_eo: kroatiana -> kroata lingvo
-- bad_tr_eo: kroatiano -> kroata lingvo
-- bad_tr_eo: krokodilo -> language gathering
-- bad_tr_eo: kroso -> episkopa bastono
-- bad_tr_eo: kuafar -> aranĝi harojn
-- bad_tr_eo: kunesar -> kune esti
-- bad_tr_eo: kurta cirkuito -> kurta cirkvito
-- bad_tr_eo: l'una l'altra -> unu al la alia
-- bad_tr_eo: l'una l'altra -> unu la alian
-- bad_tr_eo: l'uni l'altri -> unu al la alia
-- bad_tr_eo: l'uni l'altri -> unu la alian
-- bad_tr_eo: la -> ju + comp
-- bad_tr_eo: la -> des + comp
-- bad_tr_eo: laboristaro -> laborista klaso
-- bad_tr_eo: laktovoyo -> Lakta Vojo
-- bad_tr_eo: latinal alfabeto -> latina alfabeto
-- bad_tr_eo: le -> ju + comp
-- bad_tr_eo: le -> des + comp
-- bad_tr_eo: locionar -> lavi per tualetakvo
-- bad_tr_eo: lojeyo -> intertempa loĝejo
-- bad_tr_eo: lor -> okaze de
-- bad_tr_eo: lor -> en la tempo de
-- bad_tr_eo: lupo -> grandiga vitro
-- bad_tr_eo: l’altra -> unu la alian
-- bad_tr_eo: l’una -> unu la alian
-- bad_tr_eo: l’una l’altra -> unu la alian
-- bad_tr_eo: madeleno -> konkoforma kuketo
-- bad_tr_eo: magnetala feldo -> magneta kampo
-- bad_tr_eo: magnezio -> magnezia oksido
-- bad_tr_eo: maxim -> pli bona
-- bad_tr_eo: maxim mala -> la plej malbona
-- bad_tr_eo: me amas tu -> mi amas vin
-- bad_tr_eo: me amas vu -> mi amas vin
-- bad_tr_eo: me amoras tu -> mi amas vin
-- bad_tr_eo: me durstas -> mi soifas
-- bad_tr_eo: me esas -> mi estas
-- bad_tr_eo: me esas ateisto -> mi estas ateisto
-- bad_tr_eo: me esas kolda -> mi malvarmas
-- bad_tr_eo: me esis violacita -> mi estas seksatencita
-- bad_tr_eo: me fatigesas -> mi estas laca
-- bad_tr_eo: me havas questiono -> mi havas demandon
-- bad_tr_eo: me hungras -> mi estas malsata
-- bad_tr_eo: me hungras -> mi malsatas
-- bad_tr_eo: me morteskas -> mi mortas
-- bad_tr_eo: me ne komprenas -> mi ne komprenas
-- bad_tr_eo: me ne manjas karno -> mi ne manĝas viandon
-- bad_tr_eo: me ne parolas Angliana -> mi ne parolas Esperanton
-- bad_tr_eo: me ne parolas Angliana -> mi ne parolas la anglan
-- bad_tr_eo: me ne savas -> mi ne scias
-- bad_tr_eo: me nomesas -> mi nomiĝas
-- bad_tr_eo: me nomesas -> mia nomo estas
-- bad_tr_eo: me odias tu -> mi malamas vin
-- bad_tr_eo: me regretas -> mi pardonpetas
-- bad_tr_eo: me regretas -> mi bedaŭras
-- bad_tr_eo: me subisas AIDS -> mi havas aidoson
-- bad_tr_eo: me subisas kancero -> mi havas kanceron
-- bad_tr_eo: mea kondomo ruptis -> mia kondomo rompiĝis
-- bad_tr_eo: mea kulpo -> mia kulpo
-- bad_tr_eo: mem ke -> malgraŭ ke
-- bad_tr_eo: menajerio -> zoologia ĝardeno
-- bad_tr_eo: mercero -> mercera komerco
-- bad_tr_eo: metropoliteno -> subtera fervojo
-- bad_tr_eo: mieltempo -> miela monato
-- bad_tr_eo: mikrafingro -> malgranda fingro
-- bad_tr_eo: minoritata linguo -> minoritata lingvo
-- bad_tr_eo: mistelo -> blanka visko
-- bad_tr_eo: moneto -> konata mono
-- bad_tr_eo: muar -> defali kaj kreski
-- bad_tr_eo: narkotar -> esti narkotata
-- bad_tr_eo: ne -> ne + jussive
-- bad_tr_eo: ne dankinde -> ne dankinde
-- bad_tr_eo: ne dankinde -> tute ne
-- bad_tr_eo: nek … nek -> nek … nek
-- bad_tr_eo: nepluse -> ne plu
-- bad_tr_eo: nexta -> plej proxima
-- bad_tr_eo: nexta -> tuj sekva
-- bad_tr_eo: nexta -> tuj posta
-- bad_tr_eo: ni ipsa -> ni mem
-- bad_tr_eo: nigra truo -> nigra truo
-- bad_tr_eo: nuna stando -> ĝisnuna stato
-- bad_tr_eo: obeza -> tro grasa
-- bad_tr_eo: ocidar su -> mortigi sin
-- bad_tr_eo: okulo po okulo e dento po dento -> denton pro dento
-- bad_tr_eo: okulo po okulo e dento po dento -> okulon pro okulo
-- bad_tr_eo: olim -> iam estis
-- bad_tr_eo: omna du -> kaj ... kaj
-- bad_tr_eo: omni du -> kaj ... kaj
-- bad_tr_eo: oportar -> esti necesa
-- bad_tr_eo: orelofingro -> malgranda fingro
-- bad_tr_eo: orko -> granda orcino
-- bad_tr_eo: os -> os Use the future tense
-- bad_tr_eo: ostentar -> parade elmeti
-- bad_tr_eo: ovario -> 2) ovario
-- bad_tr_eo: ovulo -> 2) ovolo
-- bad_tr_eo: pacar -> esti paca / paco
-- bad_tr_eo: papavero -> papava ruĝo
-- bad_tr_eo: parametro -> kapacito de operacio
-- bad_tr_eo: parametro -> loknombro, kapacito de operacio
-- bad_tr_eo: paravento -> antaŭa glaco
-- bad_tr_eo: partiso -> politiko partio
-- bad_tr_eo: pasajar -> esti pasaĝero
-- bad_tr_eo: patato -> dolĉa terpomo
-- bad_tr_eo: pazar -> paŝi, iri en grandaj paŝoj
-- bad_tr_eo: periodala tabelo -> perioda tabelo
-- bad_tr_eo: permanar -> esti daŭra
-- bad_tr_eo: pilulo -> morgaŭa pilolo
-- bad_tr_eo: pilulo -> antikoncipa pilolo
-- bad_tr_eo: plear -> muziki per
-- bad_tr_eo: pleigar -> muziki per
-- bad_tr_eo: plu -> pli multaj
-- bad_tr_eo: plu -> pli multe da
-- bad_tr_eo: plu -> pli da
-- bad_tr_eo: plu bona -> pli bona
-- bad_tr_eo: plu multa -> pli multaj
-- bad_tr_eo: plu multa -> pli multe da
-- bad_tr_eo: plu multa -> pli da
-- bad_tr_eo: plu multe -> pli multaj
-- bad_tr_eo: plu o min -> pli aŭ malpli
-- bad_tr_eo: plump -> bang!
-- bad_tr_eo: po -> en prezo de
-- bad_tr_eo: prenomo -> persona nomo
-- bad_tr_eo: prezuntar -> esti trudema
-- bad_tr_eo: prezuntar -> esti aroganta
-- bad_tr_eo: pri -> ĉirkaŭ, kun (2, on one’s person)
-- bad_tr_eo: pri -> ĉirkaŭe en
-- bad_tr_eo: pri -> de or with a construction using the adjectival suffix -a
-- bad_tr_eo: prizar -> t+
-- bad_tr_eo: pro to -> pro tio
-- bad_tr_eo: pronteskez -> en loko
-- bad_tr_eo: pronteskez -> iru!
-- bad_tr_eo: proprietajo -> afero posedata
-- bad_tr_eo: prostracar -> esti prostracia
-- bad_tr_eo: proxim -> proksime de
-- bad_tr_eo: proxim -> ĉirkaŭ, kun (2, on one’s person)
-- bad_tr_eo: proxim -> ĉirkaŭe en
-- bad_tr_eo: proxime -> ĉirkaŭ, kun (2, on one’s person)
-- bad_tr_eo: proxime -> ĉirkaŭe en
-- bad_tr_eo: pruritar -> juki sin
-- bad_tr_eo: prurito -> juki sin
-- bad_tr_eo: publika domeno -> publika havaĵo
-- bad_tr_eo: punsar -> kopii per ŝablono
-- bad_tr_eo: qua tempo esas? -> kioma horo estas?
-- bad_tr_eo: quale -> t+
-- bad_tr_eo: quale tu standas -> kiel vi fartas?
-- bad_tr_eo: quale vu nomesas? -> kio estas via nomo?
-- bad_tr_eo: quale vu nomesas? -> kiel vi nomiĝas?
-- bad_tr_eo: quale vu standas -> kiel vi fartas?
-- bad_tr_eo: quankam -> malgraŭ ke
-- bad_tr_eo: quante vu evas? -> kiom vi aĝas?
-- bad_tr_eo: quo esas ito -> kio estas tio
-- bad_tr_eo: quo esas ito -> kio estas tio?
-- bad_tr_eo: quo eventas -> kio misas
-- bad_tr_eo: quo eventas -> kio novas
-- bad_tr_eo: quo eventas -> kio okazas
-- bad_tr_eo: quo eventas -> kio estas la problemo
-- bad_tr_eo: quo eventas -> kiel vi
-- bad_tr_eo: quo eventas -> kiel vi fartas
-- bad_tr_eo: quo eventas -> kio okazas, kio estas la problemo, kio misas
-- bad_tr_eo: quo signifikas …? -> kiu signifas …?
-- bad_tr_eo: racion-epoko -> Klerismo, Jarcento de la Lumoj
-- bad_tr_eo: radotar -> esti mense kaduka
-- bad_tr_eo: rankorar -> havi rankoron
-- bad_tr_eo: ransono -> elaĉeta mono
-- bad_tr_eo: rejulo Arthur -> reĝo Arturo
-- bad_tr_eo: rekursar -> sin turni al
-- bad_tr_eo: remorkero -> trenšipo
-- bad_tr_eo: rentiro -> norda cervo
-- bad_tr_eo: repastar -> preni manĝon
-- bad_tr_eo: repugnar -> produkti grandan antipation en
-- bad_tr_eo: requizitajo -> rekviziciita aĵo
-- bad_tr_eo: resortisar -> esti sub la jurisdikcio / aŭtoritateco
-- bad_tr_eo: restorar -> manĝeti, doni manĝaĵon kaj trinkaĵon por konsumo
-- bad_tr_eo: revoluciona kalendario -> Franca respublika kalendaro
-- bad_tr_eo: revoluciona kalendario -> Franca revolucia kalendaro
-- bad_tr_eo: revoluciona kalendario -> Franca respublika kalendaro, Franca revolucia kalendaro
-- bad_tr_eo: reza -> proksima al surfaco
-- bad_tr_eo: rogo -> brulligno por kremacio
-- bad_tr_eo: roma ne konstruktesis dum un dio -> ne en unu tago elkreskis Kartago
-- bad_tr_eo: ronda tablo -> Ronda Tablo
-- bad_tr_eo: saciar -> satigi minimume
-- bad_tr_eo: sedopapero -> klozeta papero
-- bad_tr_eo: sedopapero -> neceseja papero
-- bad_tr_eo: senpilotist aviacilo -> senpilota aviadilo
-- bad_tr_eo: sesgar -> dekolti en krescenta formo
-- bad_tr_eo: sexuala orientalizo -> seksa orientiĝo
-- bad_tr_eo: sika moruo -> sekigita fiŝo
-- bad_tr_eo: silenco -> silentu!
-- bad_tr_eo: simpla mashino -> simpla maŝino
-- bad_tr_eo: skriptar -> verki librojn
-- bad_tr_eo: sociala stando -> socia statuso
-- bad_tr_eo: somnolar -> esti dormema
-- bad_tr_eo: sovaja kapro -> alpa kapro
-- bad_tr_eo: spanyoleto -> fenestra fiksilo
-- bad_tr_eo: sparar -> esti ŝparema
-- bad_tr_eo: splinar -> esti splena
-- bad_tr_eo: statuo de Libereso -> statuo de Libereco
-- bad_tr_eo: stuntar -> obstrukci kreskon
-- bad_tr_eo: su-ocidar -> mortigi sin
-- bad_tr_eo: sub -> sude de
-- bad_tr_eo: sub -> malpli ol
-- bad_tr_eo: subjekto -> 2) subjekto
-- bad_tr_eo: subskribar -> skribi sube
-- bad_tr_eo: sunala vento -> suna vento
-- bad_tr_eo: supersigno -> diakrita signo
-- bad_tr_eo: supervido -> ĝenerala perspektivo / observo
-- bad_tr_eo: suplikar -> insiste peti
-- bad_tr_eo: surkruto -> acida brasiko
-- bad_tr_eo: surnomo -> doni familinomon
-- bad_tr_eo: surnomo -> familia nomo
-- bad_tr_eo: suskriptar -> konsenti kontribui
-- bad_tr_eo: t.e -> t.e
-- bad_tr_eo: tam balde kam posible -> kiel eble plej rapide
-- bad_tr_eo: tam balde kam posible -> kiel eble plej baldaŭ
-- bad_tr_eo: tam balde kam posible -> kiel eble plej baldaŭ, kiel eble plej rapide
-- bad_tr_eo: tante -> por ke
-- bad_tr_eo: teko -> granda tektono
-- bad_tr_eo: telefonez ambulanco -> venigu ambulancon
-- bad_tr_eo: tembakan bersahabat -> amika pafo
-- bad_tr_eo: terpoma skarabeo -> terpoma skarabo
-- bad_tr_eo: til -> ĝis la revido
-- bad_tr_eo: til balde -> ĝis baldaŭ
-- bad_tr_eo: til rivido -> ĝis revido!
-- bad_tr_eo: til rivido -> ĝis la revido
-- bad_tr_eo: til rivido -> ĝis baldaŭ ĝis la revido
-- bad_tr_eo: til rivido -> ĝis baldaŭ
-- bad_tr_eo: tote ne -> ne dankinde
-- bad_tr_eo: tote ne -> tute ne
-- bad_tr_eo: tre -> ĉu vere?
-- bad_tr_eo: triangula prismato -> triangula prismo
-- bad_tr_eo: tropismo -> planta moviĝo
-- bad_tr_eo: tu ipsa -> vi mem
-- bad_tr_eo: ube esas la latrino -> kie estas la necesejo?
-- bad_tr_eo: ube esas la latrino? -> kie estas la necesejo?
-- bad_tr_eo: uf -> uf!
-- bad_tr_eo: ula -> iu ajn
-- bad_tr_eo: ula -> iom da
-- bad_tr_eo: ula -> iom ajn
-- bad_tr_eo: ultima -> plej lasta
-- bad_tr_eo: unesma Mondo-Milito -> unua mondmilito
-- bad_tr_eo: unesma sokurso -> unua helpo
-- bad_tr_eo: urjar -> esti urĝa
-- bad_tr_eo: utiligar -> plibonigi la uzadon
-- bad_tr_eo: uzufruktar -> havi uzrajton
-- bad_tr_eo: vacino -> bova pokso
-- bad_tr_eo: vaskulo -> sanga vaskulo
-- bad_tr_eo: vejetarar -> esti vegetara
-- bad_tr_eo: vers -> direkte al
-- bad_tr_eo: vestizar -> vesti sin
-- bad_tr_eo: vicioza cirklo -> malvirta cirklo
-- bad_tr_eo: vigilar -> deĵori por noktogardo
-- bad_tr_eo: vu ipsa -> vi mem
-- bad_tr_eo: xosa-linguo -> kosa lingvo
-- bad_tr_eo: yidisha -> la jida lingvo
-- bad_tr_eo: zoo -> zoologia ĝardeno
+- wiki_low_freq: 0 (nombro)
+- wiki_low_freq: 0 (yaro)
+- wiki_low_freq: 0xDEADBEEF
+- wiki_low_freq: 1 (nombro)
+- wiki_low_freq: 10-i Blok Post
+- wiki_low_freq: 1000 (nombro)
+- wiki_low_freq: 1000 Piazzia
+- wiki_low_freq: 1000 milii
+- wiki_low_freq: 1001 (nombro)
+- wiki_low_freq: 1002 (nombro)
+- wiki_low_freq: 1003 (nombro)
+- wiki_low_freq: 1003 Lilofee
+- wiki_low_freq: 1004 (nombro)
+- wiki_low_freq: 1005 (nombro)
+- wiki_low_freq: 1006 (nombro)
+- wiki_low_freq: 1007 (nombro)
+- wiki_low_freq: 1008 (nombro)
+- wiki_low_freq: 1009 (nombro)
+- wiki_low_freq: 1009 Sirene
+- wiki_low_freq: 101 (nombro)
+- wiki_low_freq: 101 Helena
+- wiki_low_freq: 1010 (nombro)
+- wiki_low_freq: 1010 Marlene
+- wiki_low_freq: 1011 (nombro)
+- wiki_low_freq: 1011 Laodamia
+- wiki_low_freq: 1012 (nombro)
+- wiki_low_freq: 1012 Sarema
+- wiki_low_freq: 1013 (nombro)
+- wiki_low_freq: 1014 (nombro)
+- wiki_low_freq: 1014 Semphyra
+- wiki_low_freq: 1015 (nombro)
+- wiki_low_freq: 1015 Christa
+- wiki_low_freq: 1016 (nombro)
+- wiki_low_freq: 1016 Anitra
+- wiki_low_freq: 1017 (nombro)
+- wiki_low_freq: 1018 (nombro)
+- wiki_low_freq: 1018 Arnolda
+- wiki_low_freq: 1019 (nombro)
+- wiki_low_freq: 1019 Strackea
+- wiki_low_freq: 102 (nombro)
+- wiki_low_freq: 1020 (nombro)
+- wiki_low_freq: 1020 Arcadia
+- wiki_low_freq: 1021 (nombro)
+- wiki_low_freq: 1022 (nombro)
+- wiki_low_freq: 1023 (nombro)
+- wiki_low_freq: 1024 (nombro)
+- wiki_low_freq: 1025 (nombro)
+- wiki_low_freq: 1025 Riema
+- wiki_low_freq: 1026 (nombro)
+- wiki_low_freq: 1026 Ingrid
+- wiki_low_freq: 1027 (nombro)
+- wiki_low_freq: 1028 (nombro)
+- wiki_low_freq: 1029 (nombro)
+- wiki_low_freq: 103 (nombro)
+- wiki_low_freq: 1030 (nombro)
+- wiki_low_freq: 1031 (nombro)
+- wiki_low_freq: 1032 (nombro)
+- wiki_low_freq: 1033 (nombro)
+- wiki_low_freq: 1034 (nombro)
+- wiki_low_freq: 103422 Laurisirén
+- wiki_low_freq: 1035 (nombro)
+- wiki_low_freq: 1035 Amata
+- wiki_low_freq: 1036 (nombro)
+- wiki_low_freq: 1036 Ganimedes
+- wiki_low_freq: 1037 (nombro)
+- wiki_low_freq: 1038 (nombro)
+- wiki_low_freq: 1039 (nombro)
+- wiki_low_freq: 104 (nombro)
+- wiki_low_freq: 1040 (nombro)
+- wiki_low_freq: 1041 (nombro)
+- wiki_low_freq: 1041 Asta
+- wiki_low_freq: 1042 (nombro)
+- wiki_low_freq: 1042 Amazone
+- wiki_low_freq: 1043 (nombro)
+- wiki_low_freq: 1043 Beate
+- wiki_low_freq: 1044 (nombro)
+- wiki_low_freq: 1044 Teutonia
+- wiki_low_freq: 1045 (nombro)
+- wiki_low_freq: 1046 (nombro)
+- wiki_low_freq: 1047 (nombro)
+- wiki_low_freq: 1047 Geisha
+- wiki_low_freq: 1048 (nombro)
+- wiki_low_freq: 1048 Feodosia
+- wiki_low_freq: 1049 (nombro)
+- wiki_low_freq: 1049 Gotho
+- wiki_low_freq: 105 (nombro)
+- wiki_low_freq: 1050 (nombro)
+- wiki_low_freq: 1050 Meta
+- wiki_low_freq: 1051 (nombro)
+- wiki_low_freq: 1051 Merope
+- wiki_low_freq: 1052 (nombro)
+- wiki_low_freq: 1053 (nombro)
+- wiki_low_freq: 1054 (nombro)
+- wiki_low_freq: 1054 Forsytia
+- wiki_low_freq: 1055 (nombro)
+- wiki_low_freq: 1056 (nombro)
+- wiki_low_freq: 1056 Azalea
+- wiki_low_freq: 1057 (nombro)
+- wiki_low_freq: 1058 (nombro)
+- wiki_low_freq: 1059 (nombro)
+- wiki_low_freq: 106 (nombro)
+- wiki_low_freq: 1060 (nombro)
+- wiki_low_freq: 1060 Magnolia
+- wiki_low_freq: 1061 (nombro)
+- wiki_low_freq: 1061 Paeonia
+- wiki_low_freq: 1062 (nombro)
+- wiki_low_freq: 1063 (nombro)
+- wiki_low_freq: 1063 Aquilegia
+- wiki_low_freq: 1064 (nombro)
+- wiki_low_freq: 1064 Aethusa
+- wiki_low_freq: 1065 (nombro)
+- wiki_low_freq: 1066 (nombro)
+- wiki_low_freq: 1066 Lobelia
+- wiki_low_freq: 1067 (nombro)
+- wiki_low_freq: 1067 Lunaria
+- wiki_low_freq: 1068 (nombro)
+- wiki_low_freq: 1069 (nombro)
+- wiki_low_freq: 107 (nombro)
+- wiki_low_freq: 1070 (nombro)
+- wiki_low_freq: 1070 Tunica
+- wiki_low_freq: 1071 (nombro)
+- wiki_low_freq: 1072 (nombro)
+- wiki_low_freq: 1072 Malva
+- wiki_low_freq: 1073 (nombro)
+- wiki_low_freq: 1074 (nombro)
+- wiki_low_freq: 1075 (nombro)
+- wiki_low_freq: 1076 (nombro)
+- wiki_low_freq: 1076 Viola
+- wiki_low_freq: 1077 (nombro)
+- wiki_low_freq: 1077 Campanula
+- wiki_low_freq: 1078 (nombro)
+- wiki_low_freq: 1078 Mentha
+- wiki_low_freq: 1079 (nombro)
+- wiki_low_freq: 108 (nombro)
+- wiki_low_freq: 1080 (nombro)
+- wiki_low_freq: 1080 Orchis
+- wiki_low_freq: 1081 (nombro)
+- wiki_low_freq: 1081 Reseda
+- wiki_low_freq: 1082 (nombro)
+- wiki_low_freq: 1082 Pirola
+- wiki_low_freq: 1083 (nombro)
+- wiki_low_freq: 1083 Salvia
+- wiki_low_freq: 1084 (nombro)
+- wiki_low_freq: 1085 (nombro)
+- wiki_low_freq: 1085 Amaryllis
+- wiki_low_freq: 1086 (nombro)
+- wiki_low_freq: 1087 (nombro)
+- wiki_low_freq: 1087 Arabis
+- wiki_low_freq: 1088 (nombro)
+- wiki_low_freq: 1089 (nombro)
+- wiki_low_freq: 109 (nombro)
+- wiki_low_freq: 1090 (nombro)
+- wiki_low_freq: 1091 (nombro)
+- wiki_low_freq: 1091 Spiraea
+- wiki_low_freq: 1092 (nombro)
+- wiki_low_freq: 1092 Lilium
+- wiki_low_freq: 1093 (nombro)
+- wiki_low_freq: 1094 (nombro)
+- wiki_low_freq: 1095 (nombro)
+- wiki_low_freq: 1095 Tulipa
+- wiki_low_freq: 1096 (nombro)
+- wiki_low_freq: 1097 (nombro)
+- wiki_low_freq: 1097 Vicia
+- wiki_low_freq: 1098 (nombro)
+- wiki_low_freq: 1099 (nombro)
+- wiki_low_freq: 10th Legion Championship Fighting
+- wiki_low_freq: 110 (nombro)
+- wiki_low_freq: 1100 (nombro)
+- wiki_low_freq: 1100 Arnica
+- wiki_low_freq: 1101 (nombro)
+- wiki_low_freq: 1101 Clematis
+- wiki_low_freq: 1102 (nombro)
+- wiki_low_freq: 1103 (nombro)
+- wiki_low_freq: 1103 Sequoia
+- wiki_low_freq: 1104 (nombro)
+- wiki_low_freq: 1104 Syringa
+- wiki_low_freq: 1105 (nombro)
+- wiki_low_freq: 1105 Fragaria
+- wiki_low_freq: 1106 (nombro)
+- wiki_low_freq: 1106 Cydonia
+- wiki_low_freq: 1107 (nombro)
+- wiki_low_freq: 1108 (nombro)
+- wiki_low_freq: 1108 Demeter
+- wiki_low_freq: 1109 (nombro)
+- wiki_low_freq: 1109 Tata
+- wiki_low_freq: 111 (nombro)
+- wiki_low_freq: 1110 (nombro)
+- wiki_low_freq: 1111 (nombro)
+- wiki_low_freq: 1111 Reinmuthia
+- wiki_low_freq: 1112 (nombro)
+- wiki_low_freq: 1113 (nombro)
+- wiki_low_freq: 1114 (nombro)
+- wiki_low_freq: 1115 (nombro)
+- wiki_low_freq: 1116 (nombro)
+- wiki_low_freq: 1117 (nombro)
+- wiki_low_freq: 1118 (nombro)
+- wiki_low_freq: 1119 (nombro)
+- wiki_low_freq: 1119 Euboea
+- wiki_low_freq: 112 (nombro)
+- wiki_low_freq: 1120 (nombro)
+- wiki_low_freq: 1120 Cannonia
+- wiki_low_freq: 1121 (nombro)
+- wiki_low_freq: 1122 (nombro)
+- wiki_low_freq: 1123 (nombro)
+- wiki_low_freq: 1124 (nombro)
+- wiki_low_freq: 1125 (nombro)
+- wiki_low_freq: 1126 (nombro)
+- wiki_low_freq: 1126 Otero
+- wiki_low_freq: 1127 (nombro)
+- wiki_low_freq: 1128 (nombro)
+- wiki_low_freq: 1129 (nombro)
+- wiki_low_freq: 113 (nombro)
+- wiki_low_freq: 1130 (nombro)
+- wiki_low_freq: 1130 Skuld
+- wiki_low_freq: 1131 (nombro)
+- wiki_low_freq: 1131 Porzia
+- wiki_low_freq: 1132 (nombro)
+- wiki_low_freq: 1133 (nombro)
+- wiki_low_freq: 1134 (nombro)
+- wiki_low_freq: 1135 (nombro)
+- wiki_low_freq: 1136 (nombro)
+- wiki_low_freq: 1137 (nombro)
+- wiki_low_freq: 1138 (nombro)
+- wiki_low_freq: 1138 Attica
+- wiki_low_freq: 1139 (nombro)
+- wiki_low_freq: 114 (nombro)
+- wiki_low_freq: 1140 (nombro)
+- wiki_low_freq: 1141 (nombro)
+- wiki_low_freq: 1142 (nombro)
+- wiki_low_freq: 1142 Aetolia
+- wiki_low_freq: 1143 (nombro)
+- wiki_low_freq: 1143 Odiseus
+- wiki_low_freq: 1144 (nombro)
+- wiki_low_freq: 1144 Oda
+- wiki_low_freq: 1145 (nombro)
+- wiki_low_freq: 11451 Aarongolden
+- wiki_low_freq: 1146 (nombro)
+- wiki_low_freq: 1147 (nombro)
+- wiki_low_freq: 1148 (nombro)
+- wiki_low_freq: 1149 (nombro)
+- wiki_low_freq: 115 (nombro)
+- wiki_low_freq: 1150 (nombro)
+- wiki_low_freq: 1150 Ahaya
+- wiki_low_freq: 1151 (nombro)
+- wiki_low_freq: 1151 Itaka
+- wiki_low_freq: 1152 (nombro)
+- wiki_low_freq: 1152 Pawona
+- wiki_low_freq: 1153 (nombro)
+- wiki_low_freq: 1154 (nombro)
+- wiki_low_freq: 1154 Astronomio
+- wiki_low_freq: 1155 (nombro)
+- wiki_low_freq: 1155 Aënna
+- wiki_low_freq: 1156 (nombro)
+- wiki_low_freq: 1156 Kira
+- wiki_low_freq: 1157 (nombro)
+- wiki_low_freq: 1157 Arabia
+- wiki_low_freq: 1158 (nombro)
+- wiki_low_freq: 1159 (nombro)
+- wiki_low_freq: 1159 Granada
+- wiki_low_freq: 116 (nombro)
+- wiki_low_freq: 1160 (nombro)
+- wiki_low_freq: 1160 Iliria
+- wiki_low_freq: 1161 (nombro)
+- wiki_low_freq: 1161 Tesalia
+- wiki_low_freq: 1162 (nombro)
+- wiki_low_freq: 1162 Larisa
+- wiki_low_freq: 1163 (nombro)
+- wiki_low_freq: 1163 Saga
+- wiki_low_freq: 1164 (nombro)
+- wiki_low_freq: 1164 Kobolda
+- wiki_low_freq: 1165 (nombro)
+- wiki_low_freq: 1166 (nombro)
+- wiki_low_freq: 1167 (nombro)
+- wiki_low_freq: 1168 (nombro)
+- wiki_low_freq: 1169 (nombro)
+- wiki_low_freq: 117 (nombro)
+- wiki_low_freq: 1170 (nombro)
+- wiki_low_freq: 1171 (nombro)
+- wiki_low_freq: 1172 (nombro)
+- wiki_low_freq: 1172 Eneyas
+- wiki_low_freq: 1173 (nombro)
+- wiki_low_freq: 1173 Anhises
+- wiki_low_freq: 1174 (nombro)
+- wiki_low_freq: 1174 Marmara
+- wiki_low_freq: 1175 (nombro)
+- wiki_low_freq: 1175 Margo
+- wiki_low_freq: 1176 (nombro)
+- wiki_low_freq: 1177 (nombro)
+- wiki_low_freq: 1178 (nombro)
+- wiki_low_freq: 11780 Thunder Bay
+- wiki_low_freq: 11785 Migaic
+- wiki_low_freq: 1179 (nombro)
+- wiki_low_freq: 118 (nombro)
+- wiki_low_freq: 1180 (nombro)
+- wiki_low_freq: 1180 Rita
+- wiki_low_freq: 1181 (nombro)
+- wiki_low_freq: 1182 (nombro)
+- wiki_low_freq: 1182 Ilona
+- wiki_low_freq: 1183 (nombro)
+- wiki_low_freq: 1183 Jutta
+- wiki_low_freq: 1184 (nombro)
+- wiki_low_freq: 1184 Gaya
+- wiki_low_freq: 1185 (nombro)
+- wiki_low_freq: 1186 (nombro)
+- wiki_low_freq: 1187 (nombro)
+- wiki_low_freq: 1187 Afra
+- wiki_low_freq: 1188 (nombro)
+- wiki_low_freq: 1189 (nombro)
+- wiki_low_freq: 119 (nombro)
+- wiki_low_freq: 1190 (nombro)
+- wiki_low_freq: 1191 (nombro)
+- wiki_low_freq: 1192 (nombro)
+- wiki_low_freq: 1193 (nombro)
+- wiki_low_freq: 1194 (nombro)
+- wiki_low_freq: 1195 (nombro)
+- wiki_low_freq: 1196 (nombro)
+- wiki_low_freq: 1197 (nombro)
+- wiki_low_freq: 1198 (nombro)
+- wiki_low_freq: 1198 Atlantis
+- wiki_low_freq: 1199 (nombro)
+- wiki_low_freq: 12-pazala programo
+- wiki_low_freq: 120 (nombro)
+- wiki_low_freq: 1200 (nombro)
+- wiki_low_freq: 1200 Imperatrix
+- wiki_low_freq: 1201 (nombro)
+- wiki_low_freq: 1201 Strenua
+- wiki_low_freq: 1202 (nombro)
+- wiki_low_freq: 1203 (nombro)
+- wiki_low_freq: 1204 (nombro)
+- wiki_low_freq: 1204 Renzia
+- wiki_low_freq: 1205 (nombro)
+- wiki_low_freq: 1205 Ebella
+- wiki_low_freq: 1206 (nombro)
+- wiki_low_freq: 1206 Numerowia
+- wiki_low_freq: 1207 (nombro)
+- wiki_low_freq: 1207 Ostenia
+- wiki_low_freq: 1208 (nombro)
+- wiki_low_freq: 1209 (nombro)
+- wiki_low_freq: 121 (nombro)
+- wiki_low_freq: 121 Hermione
+- wiki_low_freq: 1210 (nombro)
+- wiki_low_freq: 1211 (nombro)
+- wiki_low_freq: 1212 (nombro)
+- wiki_low_freq: 1213 (nombro)
+- wiki_low_freq: 1214 (nombro)
+- wiki_low_freq: 1215 (nombro)
+- wiki_low_freq: 1216 (nombro)
+- wiki_low_freq: 1217 (nombro)
+- wiki_low_freq: 1218 (nombro)
+- wiki_low_freq: 1219 (nombro)
+- wiki_low_freq: 122 (nombro)
+- wiki_low_freq: 1220 (nombro)
+- wiki_low_freq: 1221 (nombro)
+- wiki_low_freq: 1222 (nombro)
+- wiki_low_freq: 1223 (nombro)
+- wiki_low_freq: 1224 (nombro)
+- wiki_low_freq: 1225 (nombro)
+- wiki_low_freq: 1226 (nombro)
+- wiki_low_freq: 1227 (nombro)
+- wiki_low_freq: 1228 (nombro)
+- wiki_low_freq: 1229 (nombro)
+- wiki_low_freq: 123 (nombro)
+- wiki_low_freq: 1230 (nombro)
+- wiki_low_freq: 1231 (nombro)
+- wiki_low_freq: 1232 (nombro)
+- wiki_low_freq: 1233 (nombro)
+- wiki_low_freq: 1234 (nombro)
+- wiki_low_freq: 1235 (nombro)
+- wiki_low_freq: 1236 (nombro)
+- wiki_low_freq: 1237 (nombro)
+- wiki_low_freq: 1238 (nombro)
+- wiki_low_freq: 1239 (nombro)
+- wiki_low_freq: 124 (nombro)
+- wiki_low_freq: 1240 (nombro)
+- wiki_low_freq: 1241 (nombro)
+- wiki_low_freq: 1242 (nombro)
+- wiki_low_freq: 1243 (nombro)
+- wiki_low_freq: 1244 (nombro)
+- wiki_low_freq: 1245 (nombro)
+- wiki_low_freq: 1246 (nombro)
+- wiki_low_freq: 1247 (nombro)
+- wiki_low_freq: 1248 (nombro)
+- wiki_low_freq: 1249 (nombro)
+- wiki_low_freq: 1250 (nombro)
+- wiki_low_freq: 1251 (nombro)
+- wiki_low_freq: 1252 (nombro)
+- wiki_low_freq: 1253 (nombro)
+- wiki_low_freq: 1254 (nombro)
+- wiki_low_freq: 1255 (nombro)
+- wiki_low_freq: 12553 Aaronritter
+- wiki_low_freq: 1256 (nombro)
+- wiki_low_freq: 1257 (nombro)
+- wiki_low_freq: 1258 (nombro)
+- wiki_low_freq: 1259 (nombro)
+- wiki_low_freq: 126 (nombro)
+- wiki_low_freq: 1260 (nombro)
+- wiki_low_freq: 1261 (nombro)
+- wiki_low_freq: 1262 (nombro)
+- wiki_low_freq: 1263 (nombro)
+- wiki_low_freq: 1264 (nombro)
+- wiki_low_freq: 1265 (nombro)
+- wiki_low_freq: 1266 (nombro)
+- wiki_low_freq: 1267 (nombro)
+- wiki_low_freq: 1268 (nombro)
+- wiki_low_freq: 1269 (nombro)
+- wiki_low_freq: 127 (nombro)
+- wiki_low_freq: 1270 (nombro)
+- wiki_low_freq: 1271 (nombro)
+- wiki_low_freq: 1272 (nombro)
+- wiki_low_freq: 1273 (nombro)
+- wiki_low_freq: 1274 (nombro)
+- wiki_low_freq: 1275 (nombro)
+- wiki_low_freq: 1276 (nombro)
+- wiki_low_freq: 1277 (nombro)
+- wiki_low_freq: 1278 (nombro)
+- wiki_low_freq: 1279 (nombro)
+- wiki_low_freq: 128 (nombro)
+- wiki_low_freq: 1280 (nombro)
+- wiki_low_freq: 1281 (nombro)
+- wiki_low_freq: 1282 (nombro)
+- wiki_low_freq: 1283 (nombro)
+- wiki_low_freq: 1284 (nombro)
+- wiki_low_freq: 1285 (nombro)
+- wiki_low_freq: 1286 (nombro)
+- wiki_low_freq: 1287 (nombro)
+- wiki_low_freq: 1288 (nombro)
+- wiki_low_freq: 1289 (nombro)
+- wiki_low_freq: 129 (nombro)
+- wiki_low_freq: 1290 (nombro)
+- wiki_low_freq: 1291 (nombro)
+- wiki_low_freq: 1292 (nombro)
+- wiki_low_freq: 1293 (nombro)
+- wiki_low_freq: 1294 (nombro)
+- wiki_low_freq: 1295 (nombro)
+- wiki_low_freq: 1296 (nombro)
+- wiki_low_freq: 1297 (nombro)
+- wiki_low_freq: 1298 (nombro)
+- wiki_low_freq: 1299 (nombro)
+- wiki_low_freq: 130 (nombro)
+- wiki_low_freq: 1300 (nombro)
+- wiki_low_freq: 1301 (nombro)
+- wiki_low_freq: 1302 (nombro)
+- wiki_low_freq: 1303 (nombro)
+- wiki_low_freq: 1304 (nombro)
+- wiki_low_freq: 1305 (nombro)
+- wiki_low_freq: 1306 (nombro)
+- wiki_low_freq: 1307 (nombro)
+- wiki_low_freq: 1308 (nombro)
+- wiki_low_freq: 1309 (nombro)
+- wiki_low_freq: 131 (nombro)
+- wiki_low_freq: 1310 (nombro)
+- wiki_low_freq: 1311 (nombro)
+- wiki_low_freq: 1312 (nombro)
+- wiki_low_freq: 1313 (nombro)
+- wiki_low_freq: 1314 (nombro)
+- wiki_low_freq: 1315 (nombro)
+- wiki_low_freq: 1316 (nombro)
+- wiki_low_freq: 1317 (nombro)
+- wiki_low_freq: 1318 (nombro)
+- wiki_low_freq: 1319 (nombro)
+- wiki_low_freq: 132 (nombro)
+- wiki_low_freq: 1320 (nombro)
+- wiki_low_freq: 1321 (nombro)
+- wiki_low_freq: 1322 (nombro)
+- wiki_low_freq: 1323 (nombro)
+- wiki_low_freq: 1324 (nombro)
+- wiki_low_freq: 1325 (nombro)
+- wiki_low_freq: 1326 (nombro)
+- wiki_low_freq: 1327 (nombro)
+- wiki_low_freq: 1328 (nombro)
+- wiki_low_freq: 1329 (nombro)
+- wiki_low_freq: 133 (nombro)
+- wiki_low_freq: 1330 (nombro)
+- wiki_low_freq: 1331 (nombro)
+- wiki_low_freq: 1332 (nombro)
+- wiki_low_freq: 1333 (nombro)
+- wiki_low_freq: 1334 (nombro)
+- wiki_low_freq: 1335 (nombro)
+- wiki_low_freq: 1336 (nombro)
+- wiki_low_freq: 1337 (nombro)
+- wiki_low_freq: 1338 (nombro)
+- wiki_low_freq: 1339 (nombro)
+- wiki_low_freq: 134 (nombro)
+- wiki_low_freq: 1340 (nombro)
+- wiki_low_freq: 1341 (nombro)
+- wiki_low_freq: 1342 (nombro)
+- wiki_low_freq: 1343 (nombro)
+- wiki_low_freq: 1344 (nombro)
+- wiki_low_freq: 1345 (nombro)
+- wiki_low_freq: 1346 (nombro)
+- wiki_low_freq: 1347 (nombro)
+- wiki_low_freq: 1348 (nombro)
+- wiki_low_freq: 1349 (nombro)
+- wiki_low_freq: 135 (nombro)
+- wiki_low_freq: 1350 (nombro)
+- wiki_low_freq: 1351 (nombro)
+- wiki_low_freq: 1352 (nombro)
+- wiki_low_freq: 1353 (nombro)
+- wiki_low_freq: 1354 (nombro)
+- wiki_low_freq: 1355 (nombro)
+- wiki_low_freq: 1356 (nombro)
+- wiki_low_freq: 1357 (nombro)
+- wiki_low_freq: 1358 (nombro)
+- wiki_low_freq: 1359 (nombro)
+- wiki_low_freq: 136 (nombro)
+- wiki_low_freq: 1360 (nombro)
+- wiki_low_freq: 1361 (nombro)
+- wiki_low_freq: 1362 (nombro)
+- wiki_low_freq: 1363 (nombro)
+- wiki_low_freq: 1364 (nombro)
+- wiki_low_freq: 1365 (nombro)
+- wiki_low_freq: 1366 (nombro)
+- wiki_low_freq: 1367 (nombro)
+- wiki_low_freq: 1368 (nombro)
+- wiki_low_freq: 1369 (nombro)
+- wiki_low_freq: 137 (nombro)
+- wiki_low_freq: 1370 (nombro)
+- wiki_low_freq: 1371 (nombro)
+- wiki_low_freq: 1372 (nombro)
+- wiki_low_freq: 1373 (nombro)
+- wiki_low_freq: 1374 (nombro)
+- wiki_low_freq: 1375 (nombro)
+- wiki_low_freq: 1376 (nombro)
+- wiki_low_freq: 1377 (nombro)
+- wiki_low_freq: 1378 (nombro)
+- wiki_low_freq: 1379 (nombro)
+- wiki_low_freq: 138 (nombro)
+- wiki_low_freq: 1380 (nombro)
+- wiki_low_freq: 1381 (nombro)
+- wiki_low_freq: 1382 (nombro)
+- wiki_low_freq: 1383 (nombro)
+- wiki_low_freq: 1384 (nombro)
+- wiki_low_freq: 1385 (nombro)
+- wiki_low_freq: 1386 (nombro)
+- wiki_low_freq: 1387 (nombro)
+- wiki_low_freq: 1388 (nombro)
+- wiki_low_freq: 1389 (nombro)
+- wiki_low_freq: 139 (nombro)
+- wiki_low_freq: 1390 (nombro)
+- wiki_low_freq: 1390 Abastumani
+- wiki_low_freq: 1391 (nombro)
+- wiki_low_freq: 1391 Carelia
+- wiki_low_freq: 1392 (nombro)
+- wiki_low_freq: 13928 Aaronrogers
+- wiki_low_freq: 1393 (nombro)
+- wiki_low_freq: 1394 (nombro)
+- wiki_low_freq: 1395 (nombro)
+- wiki_low_freq: 1396 (nombro)
+- wiki_low_freq: 1397 (nombro)
+- wiki_low_freq: 1398 (nombro)
+- wiki_low_freq: 1398 Donnera
+- wiki_low_freq: 1399 (nombro)
+- wiki_low_freq: 140 (nombro)
+- wiki_low_freq: 1400 (nombro)
+- wiki_low_freq: 1401 (nombro)
+- wiki_low_freq: 1402 (nombro)
+- wiki_low_freq: 1403 (nombro)
+- wiki_low_freq: 1404 (nombro)
+- wiki_low_freq: 1405 (nombro)
+- wiki_low_freq: 1405 Sibelius
+- wiki_low_freq: 1406 (nombro)
+- wiki_low_freq: 1406 Komppa
+- wiki_low_freq: 1407 (nombro)
+- wiki_low_freq: 1407 Lindelöf
+- wiki_low_freq: 1408 (nombro)
+- wiki_low_freq: 1409 (nombro)
+- wiki_low_freq: 141 (nombro)
+- wiki_low_freq: 1410 (nombro)
+- wiki_low_freq: 1411 (nombro)
+- wiki_low_freq: 1412 (nombro)
+- wiki_low_freq: 1413 (nombro)
+- wiki_low_freq: 1414 (nombro)
+- wiki_low_freq: 1415 (nombro)
+- wiki_low_freq: 1416 (nombro)
+- wiki_low_freq: 1417 (nombro)
+- wiki_low_freq: 1418 (nombro)
+- wiki_low_freq: 1419 (nombro)
+- wiki_low_freq: 142 (nombro)
+- wiki_low_freq: 1420 (nombro)
+- wiki_low_freq: 1421 (nombro)
+- wiki_low_freq: 1421 Esperanto
+- wiki_low_freq: 1422 (nombro)
+- wiki_low_freq: 1423 (nombro)
+- wiki_low_freq: 1424 (nombro)
+- wiki_low_freq: 1424 Sundmania
+- wiki_low_freq: 1425 (nombro)
+- wiki_low_freq: 1425 Tuorla
+- wiki_low_freq: 1426 (nombro)
+- wiki_low_freq: 1427 (nombro)
+- wiki_low_freq: 1428 (nombro)
+- wiki_low_freq: 1429 (nombro)
+- wiki_low_freq: 143 (nombro)
+- wiki_low_freq: 1430 (nombro)
+- wiki_low_freq: 1431 (nombro)
+- wiki_low_freq: 1432 (nombro)
+- wiki_low_freq: 1433 (nombro)
+- wiki_low_freq: 1434 (nombro)
+- wiki_low_freq: 1435 (nombro)
+- wiki_low_freq: 1436 (nombro)
+- wiki_low_freq: 1437 (nombro)
+- wiki_low_freq: 1438 (nombro)
+- wiki_low_freq: 1439 (nombro)
+- wiki_low_freq: 144 (nombro)
+- wiki_low_freq: 1440 (nombro)
+- wiki_low_freq: 1441 (nombro)
+- wiki_low_freq: 1442 (nombro)
+- wiki_low_freq: 1443 (nombro)
+- wiki_low_freq: 1444 (nombro)
+- wiki_low_freq: 1445 (nombro)
+- wiki_low_freq: 1446 (nombro)
+- wiki_low_freq: 1446 Sillanpää
+- wiki_low_freq: 1447 (nombro)
+- wiki_low_freq: 1447 Utra
+- wiki_low_freq: 1448 (nombro)
+- wiki_low_freq: 1448 Lindbladia
+- wiki_low_freq: 1449 (nombro)
+- wiki_low_freq: 1449 Virtanen
+- wiki_low_freq: 145 (nombro)
+- wiki_low_freq: 1450 (nombro)
+- wiki_low_freq: 1450 Raimonda
+- wiki_low_freq: 1451 (nombro)
+- wiki_low_freq: 1451 Granö
+- wiki_low_freq: 1452 (nombro)
+- wiki_low_freq: 1453 (nombro)
+- wiki_low_freq: 1453 Fennia
+- wiki_low_freq: 1454 (nombro)
+- wiki_low_freq: 1454 Kalevala
+- wiki_low_freq: 1455 (nombro)
+- wiki_low_freq: 1456 (nombro)
+- wiki_low_freq: 1457 (nombro)
+- wiki_low_freq: 1458 (nombro)
+- wiki_low_freq: 1459 (nombro)
+- wiki_low_freq: 146 (nombro)
+- wiki_low_freq: 1460 (nombro)
+- wiki_low_freq: 1460 Haltia
+- wiki_low_freq: 1461 (nombro)
+- wiki_low_freq: 1462 (nombro)
+- wiki_low_freq: 1462 Zamenhof
+- wiki_low_freq: 1463 (nombro)
+- wiki_low_freq: 1463 Nordenmarkia
+- wiki_low_freq: 1464 (nombro)
+- wiki_low_freq: 1465 (nombro)
+- wiki_low_freq: 1465 Autonoma
+- wiki_low_freq: 1466 (nombro)
+- wiki_low_freq: 1467 (nombro)
+- wiki_low_freq: 1468 (nombro)
+- wiki_low_freq: 1469 (nombro)
+- wiki_low_freq: 147 (nombro)
+- wiki_low_freq: 1470 (nombro)
+- wiki_low_freq: 1471 (nombro)
+- wiki_low_freq: 1471 Tornio
+- wiki_low_freq: 1472 (nombro)
+- wiki_low_freq: 1472 Muonio
+- wiki_low_freq: 1473 (nombro)
+- wiki_low_freq: 1473 Ounas
+- wiki_low_freq: 1474 (nombro)
+- wiki_low_freq: 1475 (nombro)
+- wiki_low_freq: 1475 Yalta
+- wiki_low_freq: 1476 (nombro)
+- wiki_low_freq: 1477 (nombro)
+- wiki_low_freq: 1477 Bonsdorffia
+- wiki_low_freq: 1478 (nombro)
+- wiki_low_freq: 1478 Vihuri
+- wiki_low_freq: 1479 (nombro)
+- wiki_low_freq: 1479 Inkeri
+- wiki_low_freq: 148 (nombro)
+- wiki_low_freq: 1480 (nombro)
+- wiki_low_freq: 1480 Aunus
+- wiki_low_freq: 1481 (nombro)
+- wiki_low_freq: 1482 (nombro)
+- wiki_low_freq: 1483 (nombro)
+- wiki_low_freq: 1483 Hakoila
+- wiki_low_freq: 1484 (nombro)
+- wiki_low_freq: 1485 (nombro)
+- wiki_low_freq: 1486 (nombro)
+- wiki_low_freq: 1487 (nombro)
+- wiki_low_freq: 1488 (nombro)
+- wiki_low_freq: 1488 Aura
+- wiki_low_freq: 1489 (nombro)
+- wiki_low_freq: 149 (nombro)
+- wiki_low_freq: 1490 (nombro)
+- wiki_low_freq: 1491 (nombro)
+- wiki_low_freq: 1492 (nombro)
+- wiki_low_freq: 1492 Oppolzer
+- wiki_low_freq: 1493 (nombro)
+- wiki_low_freq: 1494 (nombro)
+- wiki_low_freq: 1494 Savo
+- wiki_low_freq: 1495 (nombro)
+- wiki_low_freq: 1495 Helsinki
+- wiki_low_freq: 1496 (nombro)
+- wiki_low_freq: 1496 Turku
+- wiki_low_freq: 1497 (nombro)
+- wiki_low_freq: 1497 Tampere
+- wiki_low_freq: 1498 (nombro)
+- wiki_low_freq: 1498 Lahti
+- wiki_low_freq: 1499 (nombro)
+- wiki_low_freq: 1499 Pori
+- wiki_low_freq: 1500 (nombro)
+- wiki_low_freq: 1500 Jyväskylä
+- wiki_low_freq: 1501 (nombro)
+- wiki_low_freq: 1501 Baade
+- wiki_low_freq: 1502 (nombro)
+- wiki_low_freq: 1503 (nombro)
+- wiki_low_freq: 1503 Kuopio
+- wiki_low_freq: 1504 (nombro)
+- wiki_low_freq: 1504 Lappeenranta
+- wiki_low_freq: 1505 (nombro)
+- wiki_low_freq: 1506 (nombro)
+- wiki_low_freq: 1507 (nombro)
+- wiki_low_freq: 1507 Vaasa
+- wiki_low_freq: 1508 (nombro)
+- wiki_low_freq: 1508 Kemi
+- wiki_low_freq: 1509 (nombro)
+- wiki_low_freq: 151 (nombro)
+- wiki_low_freq: 1510 (nombro)
+- wiki_low_freq: 1511 (nombro)
+- wiki_low_freq: 1512 (nombro)
+- wiki_low_freq: 1512 Oulu
+- wiki_low_freq: 1513 (nombro)
+- wiki_low_freq: 1514 (nombro)
+- wiki_low_freq: 1515 (nombro)
+- wiki_low_freq: 1516 (nombro)
+- wiki_low_freq: 1517 (nombro)
+- wiki_low_freq: 1518 (nombro)
+- wiki_low_freq: 1518 Rovaniemi
+- wiki_low_freq: 1519 (nombro)
+- wiki_low_freq: 1519 Kajaani
+- wiki_low_freq: 152 (nombro)
+- wiki_low_freq: 1520 (nombro)
+- wiki_low_freq: 1520 Imatra
+- wiki_low_freq: 1521 (nombro)
+- wiki_low_freq: 1521 Seinäjoki
+- wiki_low_freq: 1522 (nombro)
+- wiki_low_freq: 1522 Kokkola
+- wiki_low_freq: 1523 (nombro)
+- wiki_low_freq: 1523 Pieksämäki
+- wiki_low_freq: 1524 (nombro)
+- wiki_low_freq: 1524 Joensuu
+- wiki_low_freq: 1525 (nombro)
+- wiki_low_freq: 1525 Savonlinna
+- wiki_low_freq: 1526 (nombro)
+- wiki_low_freq: 1526 Mikkeli
+- wiki_low_freq: 1527 (nombro)
+- wiki_low_freq: 1527 Malmquista
+- wiki_low_freq: 1528 (nombro)
+- wiki_low_freq: 152830 Dinkinesh
+- wiki_low_freq: 1529 (nombro)
+- wiki_low_freq: 1529 Oterma
+- wiki_low_freq: 153 (nombro)
+- wiki_low_freq: 1530 (nombro)
+- wiki_low_freq: 1530 Rantaseppä
+- wiki_low_freq: 1531 (nombro)
+- wiki_low_freq: 1532 (nombro)
+- wiki_low_freq: 1532 Inari
+- wiki_low_freq: 1533 (nombro)
+- wiki_low_freq: 1533 Saimaa
+- wiki_low_freq: 1534 (nombro)
+- wiki_low_freq: 1534 Näsi
+- wiki_low_freq: 1535 (nombro)
+- wiki_low_freq: 1535 Päijänne
+- wiki_low_freq: 1536 (nombro)
+- wiki_low_freq: 1536 Pielinen
+- wiki_low_freq: 1537 (nombro)
+- wiki_low_freq: 1538 (nombro)
+- wiki_low_freq: 1539 (nombro)
+- wiki_low_freq: 154 (nombro)
+- wiki_low_freq: 1540 (nombro)
+- wiki_low_freq: 1540 Kevola
+- wiki_low_freq: 1541 (nombro)
+- wiki_low_freq: 1541 Estonia
+- wiki_low_freq: 1542 (nombro)
+- wiki_low_freq: 1542 Schalén
+- wiki_low_freq: 1543 (nombro)
+- wiki_low_freq: 1544 (nombro)
+- wiki_low_freq: 1544 Vinterhansenia
+- wiki_low_freq: 1545 (nombro)
+- wiki_low_freq: 1545 Thernöe
+- wiki_low_freq: 1546 (nombro)
+- wiki_low_freq: 1547 (nombro)
+- wiki_low_freq: 1548 (nombro)
+- wiki_low_freq: 1548 Palomaa
+- wiki_low_freq: 1549 (nombro)
+- wiki_low_freq: 1549 Mikko
+- wiki_low_freq: 155 (nombro)
+- wiki_low_freq: 1550 (nombro)
+- wiki_low_freq: 1551 (nombro)
+- wiki_low_freq: 1551 Argelander
+- wiki_low_freq: 1552 (nombro)
+- wiki_low_freq: 1552 Bessel
+- wiki_low_freq: 1553 (nombro)
+- wiki_low_freq: 1554 (nombro)
+- wiki_low_freq: 1555 (nombro)
+- wiki_low_freq: 1556 (nombro)
+- wiki_low_freq: 1557 (nombro)
+- wiki_low_freq: 1558 (nombro)
+- wiki_low_freq: 1558 Järnefelt
+- wiki_low_freq: 1559 (nombro)
+- wiki_low_freq: 1559 Kustaanheimo
+- wiki_low_freq: 156 (nombro)
+- wiki_low_freq: 1560 (nombro)
+- wiki_low_freq: 1561 (nombro)
+- wiki_low_freq: 1562 (nombro)
+- wiki_low_freq: 1563 (nombro)
+- wiki_low_freq: 1564 (nombro)
+- wiki_low_freq: 1565 (nombro)
+- wiki_low_freq: 1566 (nombro)
+- wiki_low_freq: 1566 Ikaros
+- wiki_low_freq: 1567 (nombro)
+- wiki_low_freq: 1567 Alikoski
+- wiki_low_freq: 1568 (nombro)
+- wiki_low_freq: 1569 (nombro)
+- wiki_low_freq: 157 (nombro)
+- wiki_low_freq: 1570 (nombro)
+- wiki_low_freq: 1571 (nombro)
+- wiki_low_freq: 1572 (nombro)
+- wiki_low_freq: 1573 (nombro)
+- wiki_low_freq: 1573 Väisälä
+- wiki_low_freq: 1574 (nombro)
+- wiki_low_freq: 1575 (nombro)
+- wiki_low_freq: 1576 (nombro)
+- wiki_low_freq: 1577 (nombro)
+- wiki_low_freq: 1578 (nombro)
+- wiki_low_freq: 1579 (nombro)
+- wiki_low_freq: 158 (nombro)
+- wiki_low_freq: 1580 (nombro)
+- wiki_low_freq: 1581 (nombro)
+- wiki_low_freq: 1581 Abanderada
+- wiki_low_freq: 1582 (nombro)
+- wiki_low_freq: 1583 (nombro)
+- wiki_low_freq: 1584 (nombro)
+- wiki_low_freq: 1585 (nombro)
+- wiki_low_freq: 1586 (nombro)
+- wiki_low_freq: 1586 Thiele
+- wiki_low_freq: 1587 (nombro)
+- wiki_low_freq: 1588 (nombro)
+- wiki_low_freq: 1589 (nombro)
+- wiki_low_freq: 159 (nombro)
+- wiki_low_freq: 1590 (nombro)
+- wiki_low_freq: 1590 Tsiolkovskaja
+- wiki_low_freq: 1591 (nombro)
+- wiki_low_freq: 1592 (nombro)
+- wiki_low_freq: 1593 (nombro)
+- wiki_low_freq: 1594 (nombro)
+- wiki_low_freq: 1595 (nombro)
+- wiki_low_freq: 1596 (nombro)
+- wiki_low_freq: 1597 (nombro)
+- wiki_low_freq: 1598 (nombro)
+- wiki_low_freq: 1599 (nombro)
+- wiki_low_freq: 160 (nombro)
+- wiki_low_freq: 1600 (nombro)
+- wiki_low_freq: 1601 (nombro)
+- wiki_low_freq: 1602 (nombro)
+- wiki_low_freq: 1603 (nombro)
+- wiki_low_freq: 1604 (nombro)
+- wiki_low_freq: 1605 (nombro)
+- wiki_low_freq: 1606 (nombro)
+- wiki_low_freq: 1607 (nombro)
+- wiki_low_freq: 1608 (nombro)
+- wiki_low_freq: 1609 (nombro)
+- wiki_low_freq: 161 (nombro)
+- wiki_low_freq: 1610 (nombro)
+- wiki_low_freq: 1610 Mirnaya
+- wiki_low_freq: 1611 (nombro)
+- wiki_low_freq: 1612 (nombro)
+- wiki_low_freq: 1613 (nombro)
+- wiki_low_freq: 1614 (nombro)
+- wiki_low_freq: 1615 (nombro)
+- wiki_low_freq: 1616 (nombro)
+- wiki_low_freq: 1617 (nombro)
+- wiki_low_freq: 1618 (nombro)
+- wiki_low_freq: 1619 (nombro)
+- wiki_low_freq: 162 (nombro)
+- wiki_low_freq: 1620 (nombro)
+- wiki_low_freq: 1621 (nombro)
+- wiki_low_freq: 1622 (nombro)
+- wiki_low_freq: 1623 (nombro)
+- wiki_low_freq: 1624 (nombro)
+- wiki_low_freq: 1625 (nombro)
+- wiki_low_freq: 1626 (nombro)
+- wiki_low_freq: 1627 (nombro)
+- wiki_low_freq: 1628 (nombro)
+- wiki_low_freq: 1629 (nombro)
+- wiki_low_freq: 163 (nombro)
+- wiki_low_freq: 1630 (nombro)
+- wiki_low_freq: 1631 (nombro)
+- wiki_low_freq: 1631 Kopff
+- wiki_low_freq: 1632 (nombro)
+- wiki_low_freq: 1633 (nombro)
+- wiki_low_freq: 1634 (nombro)
+- wiki_low_freq: 1635 (nombro)
+- wiki_low_freq: 1636 (nombro)
+- wiki_low_freq: 1637 (nombro)
+- wiki_low_freq: 1638 (nombro)
+- wiki_low_freq: 1639 (nombro)
+- wiki_low_freq: 164 (nombro)
+- wiki_low_freq: 1640 (nombro)
+- wiki_low_freq: 1641 (nombro)
+- wiki_low_freq: 1642 (nombro)
+- wiki_low_freq: 1642 Hill
+- wiki_low_freq: 1643 (nombro)
+- wiki_low_freq: 1644 (nombro)
+- wiki_low_freq: 1645 (nombro)
+- wiki_low_freq: 1646 (nombro)
+- wiki_low_freq: 1646 Rosseland
+- wiki_low_freq: 1647 (nombro)
+- wiki_low_freq: 1648 (nombro)
+- wiki_low_freq: 1648 Shajna
+- wiki_low_freq: 1649 (nombro)
+- wiki_low_freq: 165 (nombro)
+- wiki_low_freq: 1650 (nombro)
+- wiki_low_freq: 1651 (nombro)
+- wiki_low_freq: 1652 (nombro)
+- wiki_low_freq: 1653 (nombro)
+- wiki_low_freq: 1654 (nombro)
+- wiki_low_freq: 1655 (nombro)
+- wiki_low_freq: 1656 (nombro)
+- wiki_low_freq: 1656 Suomi
+- wiki_low_freq: 1657 (nombro)
+- wiki_low_freq: 1658 (nombro)
+- wiki_low_freq: 1659 (nombro)
+- wiki_low_freq: 1659 Punkaharju
+- wiki_low_freq: 166 (nombro)
+- wiki_low_freq: 1660 (nombro)
+- wiki_low_freq: 1661 (nombro)
+- wiki_low_freq: 1662 (nombro)
+- wiki_low_freq: 1663 (nombro)
+- wiki_low_freq: 1664 (nombro)
+- wiki_low_freq: 1665 (nombro)
+- wiki_low_freq: 1666 (nombro)
+- wiki_low_freq: 1667 (nombro)
+- wiki_low_freq: 1668 (nombro)
+- wiki_low_freq: 1669 (nombro)
+- wiki_low_freq: 167 (nombro)
+- wiki_low_freq: 1670 (nombro)
+- wiki_low_freq: 1671 (nombro)
+- wiki_low_freq: 1672 (nombro)
+- wiki_low_freq: 1673 (nombro)
+- wiki_low_freq: 1674 (nombro)
+- wiki_low_freq: 1675 (nombro)
+- wiki_low_freq: 1676 (nombro)
+- wiki_low_freq: 1677 (nombro)
+- wiki_low_freq: 1677 Tycho Brahe
+- wiki_low_freq: 1678 (nombro)
+- wiki_low_freq: 1678 Hveen
+- wiki_low_freq: 1679 (nombro)
+- wiki_low_freq: 1679 Nevanlinna
+- wiki_low_freq: 168 (nombro)
+- wiki_low_freq: 1680 (nombro)
+- wiki_low_freq: 1681 (nombro)
+- wiki_low_freq: 1682 (nombro)
+- wiki_low_freq: 1683 (nombro)
+- wiki_low_freq: 1684 (nombro)
+- wiki_low_freq: 1685 (nombro)
+- wiki_low_freq: 1686 (nombro)
+- wiki_low_freq: 1687 (nombro)
+- wiki_low_freq: 1688 (nombro)
+- wiki_low_freq: 1689 (nombro)
+- wiki_low_freq: 169 (nombro)
+- wiki_low_freq: 1690 (nombro)
+- wiki_low_freq: 1691 (nombro)
+- wiki_low_freq: 1692 (nombro)
+- wiki_low_freq: 1693 (nombro)
+- wiki_low_freq: 1694 (nombro)
+- wiki_low_freq: 1695 (nombro)
+- wiki_low_freq: 1695 Walbeck
+- wiki_low_freq: 1696 (nombro)
+- wiki_low_freq: 1696 Nurmela
+- wiki_low_freq: 1697 (nombro)
+- wiki_low_freq: 1697 Koskenniemi
+- wiki_low_freq: 1698 (nombro)
+- wiki_low_freq: 1699 (nombro)
+- wiki_low_freq: 1699 Honkasalo
+- wiki_low_freq: 170 (nombro)
+- wiki_low_freq: 1700 (nombro)
+- wiki_low_freq: 1701 (nombro)
+- wiki_low_freq: 1702 (nombro)
+- wiki_low_freq: 1703 (nombro)
+- wiki_low_freq: 1704 (nombro)
+- wiki_low_freq: 1704 Wachmann
+- wiki_low_freq: 1705 (nombro)
+- wiki_low_freq: 1705 Tapio
+- wiki_low_freq: 1706 (nombro)
+- wiki_low_freq: 1707 (nombro)
+- wiki_low_freq: 1708 (nombro)
+- wiki_low_freq: 1709 (nombro)
+- wiki_low_freq: 171 (nombro)
+- wiki_low_freq: 1710 (nombro)
+- wiki_low_freq: 1711 (nombro)
+- wiki_low_freq: 1712 (nombro)
+- wiki_low_freq: 1713 (nombro)
+- wiki_low_freq: 1714 (nombro)
+- wiki_low_freq: 1715 (nombro)
+- wiki_low_freq: 1715 Salli
+- wiki_low_freq: 1716 (nombro)
+- wiki_low_freq: 1717 (nombro)
+- wiki_low_freq: 1718 (nombro)
+- wiki_low_freq: 1719 (nombro)
+- wiki_low_freq: 172 (nombro)
+- wiki_low_freq: 1720 (nombro)
+- wiki_low_freq: 1721 (nombro)
+- wiki_low_freq: 1722 (nombro)
+- wiki_low_freq: 1723 (nombro)
+- wiki_low_freq: 1723 Klemola
+- wiki_low_freq: 1724 (nombro)
+- wiki_low_freq: 1725 (nombro)
+- wiki_low_freq: 1726 (nombro)
+- wiki_low_freq: 1727 (nombro)
+- wiki_low_freq: 1728 (nombro)
+- wiki_low_freq: 1729 (nombro)
+- wiki_low_freq: 173 (nombro)
+- wiki_low_freq: 1730 (nombro)
+- wiki_low_freq: 1731 (nombro)
+- wiki_low_freq: 1732 (nombro)
+- wiki_low_freq: 1733 (nombro)
+- wiki_low_freq: 1734 (nombro)
+- wiki_low_freq: 1735 (nombro)
+- wiki_low_freq: 1736 (nombro)
+- wiki_low_freq: 1737 (nombro)
+- wiki_low_freq: 1738 (nombro)
+- wiki_low_freq: 1739 (nombro)
+- wiki_low_freq: 174 (nombro)
+- wiki_low_freq: 1740 (nombro)
+- wiki_low_freq: 1740 Paavo Nurmi
+- wiki_low_freq: 1741 (nombro)
+- wiki_low_freq: 1742 (nombro)
+- wiki_low_freq: 1743 (nombro)
+- wiki_low_freq: 1744 (nombro)
+- wiki_low_freq: 1745 (nombro)
+- wiki_low_freq: 1746 (nombro)
+- wiki_low_freq: 1747 (nombro)
+- wiki_low_freq: 1748 (nombro)
+- wiki_low_freq: 1749 (nombro)
+- wiki_low_freq: 175 (nombro)
+- wiki_low_freq: 1750 (nombro)
+- wiki_low_freq: 1751 (nombro)
+- wiki_low_freq: 1752 (nombro)
+- wiki_low_freq: 1753 (nombro)
+- wiki_low_freq: 1754 (nombro)
+- wiki_low_freq: 1755 (nombro)
+- wiki_low_freq: 1756 (nombro)
+- wiki_low_freq: 1757 (nombro)
+- wiki_low_freq: 1757 Porvoo
+- wiki_low_freq: 1758 (nombro)
+- wiki_low_freq: 1758 Naantali
+- wiki_low_freq: 1759 (nombro)
+- wiki_low_freq: 176 (nombro)
+- wiki_low_freq: 1760 (nombro)
+- wiki_low_freq: 1761 (nombro)
+- wiki_low_freq: 1762 (nombro)
+- wiki_low_freq: 1763 (nombro)
+- wiki_low_freq: 1764 (nombro)
+- wiki_low_freq: 1765 (nombro)
+- wiki_low_freq: 1766 (nombro)
+- wiki_low_freq: 1767 (nombro)
+- wiki_low_freq: 1768 (nombro)
+- wiki_low_freq: 1769 (nombro)
+- wiki_low_freq: 177 (nombro)
+- wiki_low_freq: 1770 (nombro)
+- wiki_low_freq: 1771 (nombro)
+- wiki_low_freq: 1772 (nombro)
+- wiki_low_freq: 1773 (nombro)
+- wiki_low_freq: 1774 (nombro)
+- wiki_low_freq: 1775 (nombro)
+- wiki_low_freq: 1776 (nombro)
+- wiki_low_freq: 1777 (nombro)
+- wiki_low_freq: 1778 (nombro)
+- wiki_low_freq: 1779 (nombro)
+- wiki_low_freq: 178 (nombro)
+- wiki_low_freq: 1780 (nombro)
+- wiki_low_freq: 1781 (nombro)
+- wiki_low_freq: 1782 (nombro)
+- wiki_low_freq: 1783 (nombro)
+- wiki_low_freq: 1784 (nombro)
+- wiki_low_freq: 1785 (nombro)
+- wiki_low_freq: 1786 (nombro)
+- wiki_low_freq: 1786 Raahe
+- wiki_low_freq: 1787 (nombro)
+- wiki_low_freq: 1788 (nombro)
+- wiki_low_freq: 1789 (nombro)
+- wiki_low_freq: 179 (nombro)
+- wiki_low_freq: 1790 (nombro)
+- wiki_low_freq: 1791 (nombro)
+- wiki_low_freq: 1792 (nombro)
+- wiki_low_freq: 1793 (nombro)
+- wiki_low_freq: 1794 (nombro)
+- wiki_low_freq: 1795 (nombro)
+- wiki_low_freq: 1796 (nombro)
+- wiki_low_freq: 1796 Riga
+- wiki_low_freq: 1797 (nombro)
+- wiki_low_freq: 1798 (nombro)
+- wiki_low_freq: 1799 (nombro)
+- wiki_low_freq: 180 (nombro)
+- wiki_low_freq: 1800 (nombro)
+- wiki_low_freq: 1801 (nombro)
+- wiki_low_freq: 1802 (nombro)
+- wiki_low_freq: 1803 (nombro)
+- wiki_low_freq: 1804 (nombro)
+- wiki_low_freq: 1805 (nombro)
+- wiki_low_freq: 1806 (nombro)
+- wiki_low_freq: 1807 (nombro)
+- wiki_low_freq: 1808 (nombro)
+- wiki_low_freq: 1809 (nombro)
+- wiki_low_freq: 181 (nombro)
+- wiki_low_freq: 1810 (nombro)
+- wiki_low_freq: 1811 (nombro)
+- wiki_low_freq: 1812 (nombro)
+- wiki_low_freq: 1813 (nombro)
+- wiki_low_freq: 1814 (nombro)
+- wiki_low_freq: 1815 (nombro)
+- wiki_low_freq: 1816 (nombro)
+- wiki_low_freq: 1817 (nombro)
+- wiki_low_freq: 1818 (nombro)
+- wiki_low_freq: 1819 (nombro)
+- wiki_low_freq: 182 (nombro)
+- wiki_low_freq: 1820 (nombro)
+- wiki_low_freq: 1821 (nombro)
+- wiki_low_freq: 1822 (nombro)
+- wiki_low_freq: 1823 (nombro)
+- wiki_low_freq: 1824 (nombro)
+- wiki_low_freq: 1825 (nombro)
+- wiki_low_freq: 1826 (nombro)
+- wiki_low_freq: 1827 (nombro)
+- wiki_low_freq: 1828 (nombro)
+- wiki_low_freq: 1829 (nombro)
+- wiki_low_freq: 183 (nombro)
+- wiki_low_freq: 1830 (nombro)
+- wiki_low_freq: 1831 (nombro)
+- wiki_low_freq: 1832 (nombro)
+- wiki_low_freq: 1833 (nombro)
+- wiki_low_freq: 1834 (nombro)
+- wiki_low_freq: 1835 (nombro)
+- wiki_low_freq: 1836 (nombro)
+- wiki_low_freq: 1837 (nombro)
+- wiki_low_freq: 1838 (nombro)
+- wiki_low_freq: 1839 (nombro)
+- wiki_low_freq: 184 (nombro)
+- wiki_low_freq: 1840 (nombro)
+- wiki_low_freq: 1841 (nombro)
+- wiki_low_freq: 1842 (nombro)
+- wiki_low_freq: 1843 (nombro)
+- wiki_low_freq: 1844 (nombro)
+- wiki_low_freq: 1845 (nombro)
+- wiki_low_freq: 1846 (nombro)
+- wiki_low_freq: 1847 (nombro)
+- wiki_low_freq: 1848 (nombro)
+- wiki_low_freq: 1849 (nombro)
+- wiki_low_freq: 185 (nombro)
+- wiki_low_freq: 1850 (nombro)
+- wiki_low_freq: 1851 (nombro)
+- wiki_low_freq: 1852 (nombro)
+- wiki_low_freq: 1853 (nombro)
+- wiki_low_freq: 1854 (nombro)
+- wiki_low_freq: 1855 (nombro)
+- wiki_low_freq: 1856 (nombro)
+- wiki_low_freq: 1857 (nombro)
+- wiki_low_freq: 1858 (nombro)
+- wiki_low_freq: 1859 (nombro)
+- wiki_low_freq: 186 (nombro)
+- wiki_low_freq: 1860 (nombro)
+- wiki_low_freq: 1861 (nombro)
+- wiki_low_freq: 1862 (nombro)
+- wiki_low_freq: 1863 (nombro)
+- wiki_low_freq: 1864 (nombro)
+- wiki_low_freq: 1865 (nombro)
+- wiki_low_freq: 1866 (nombro)
+- wiki_low_freq: 1867 (nombro)
+- wiki_low_freq: 1868 (nombro)
+- wiki_low_freq: 1869 (nombro)
+- wiki_low_freq: 187 (nombro)
+- wiki_low_freq: 1870 (nombro)
+- wiki_low_freq: 1871 (nombro)
+- wiki_low_freq: 1872 (nombro)
+- wiki_low_freq: 1873 (nombro)
+- wiki_low_freq: 1874 (nombro)
+- wiki_low_freq: 1875 (nombro)
+- wiki_low_freq: 1876 (nombro)
+- wiki_low_freq: 1877 (nombro)
+- wiki_low_freq: 1878 (nombro)
+- wiki_low_freq: 1879 (nombro)
+- wiki_low_freq: 188 (nombro)
+- wiki_low_freq: 1880 (nombro)
+- wiki_low_freq: 1881 (nombro)
+- wiki_low_freq: 1882 (nombro)
+- wiki_low_freq: 1882 Rauma
+- wiki_low_freq: 1883 (nombro)
+- wiki_low_freq: 1883 Rimito
+- wiki_low_freq: 1884 (nombro)
+- wiki_low_freq: 1885 (nombro)
+- wiki_low_freq: 1886 (nombro)
+- wiki_low_freq: 1887 (nombro)
+- wiki_low_freq: 1888 (nombro)
+- wiki_low_freq: 1889 (nombro)
+- wiki_low_freq: 189 (nombro)
+- wiki_low_freq: 1890 (nombro)
+- wiki_low_freq: 1891 (nombro)
+- wiki_low_freq: 1892 (nombro)
+- wiki_low_freq: 1893 (nombro)
+- wiki_low_freq: 1894 (nombro)
+- wiki_low_freq: 1895 (nombro)
+- wiki_low_freq: 1896 (nombro)
+- wiki_low_freq: 1897 (nombro)
+- wiki_low_freq: 1898 (nombro)
+- wiki_low_freq: 1899 (nombro)
+- wiki_low_freq: 190 (nombro)
+- wiki_low_freq: 1900 (nombro)
+- wiki_low_freq: 1901 (nombro)
+- wiki_low_freq: 1902 (nombro)
+- wiki_low_freq: 1903 (nombro)
+- wiki_low_freq: 1904 (nombro)
+- wiki_low_freq: 1905 (nombro)
+- wiki_low_freq: 1906 (nombro)
+- wiki_low_freq: 1907 (nombro)
+- wiki_low_freq: 1907 Rudneva
+- wiki_low_freq: 1909 (nombro)
+- wiki_low_freq: 191 (nombro)
+- wiki_low_freq: 1915 (nombro)
+- wiki_low_freq: 192 (nombro)
+- wiki_low_freq: 193 (nombro)
+- wiki_low_freq: 194 (nombro)
+- wiki_low_freq: 195 (nombro)
+- wiki_low_freq: 196 (nombro)
+- wiki_low_freq: 197 (nombro)
+- wiki_low_freq: 198 (nombro)
+- wiki_low_freq: 199 (nombro)
+- wiki_low_freq: 1X Technologies
+- wiki_low_freq: 2 (nombro)
+- wiki_low_freq: 2 Pallas
+- wiki_low_freq: 2 Unlimited
+- wiki_low_freq: 2001, spacal odiseo
+- wiki_low_freq: 201 (nombro)
+- wiki_low_freq: 202 (nombro)
+- wiki_low_freq: 203 (nombro)
+- wiki_low_freq: 204 (nombro)
+- wiki_low_freq: 205 (nombro)
+- wiki_low_freq: 206 (nombro)
+- wiki_low_freq: 2064 Thomsen
+- wiki_low_freq: 2067 Aksnes
+- wiki_low_freq: 207 (nombro)
+- wiki_low_freq: 208 (nombro)
+- wiki_low_freq: 20813 Aakashshah
+- wiki_low_freq: 209 (nombro)
+- wiki_low_freq: 2091 Sampo
+- wiki_low_freq: 2096 Väinö
+- wiki_low_freq: 210 (nombro)
+- wiki_low_freq: 2107 Ilmari
+- wiki_low_freq: 2108 Otto Schmidt
+- wiki_low_freq: 211 (nombro)
+- wiki_low_freq: 211 Isolda
+- wiki_low_freq: 212 (nombro)
+- wiki_low_freq: 213 (nombro)
+- wiki_low_freq: 214 (nombro)
+- wiki_low_freq: 2149 Schwambraniya
+- wiki_low_freq: 215 (nombro)
+- wiki_low_freq: 2159 Kukkamäki
+- wiki_low_freq: 216 (nombro)
+- wiki_low_freq: 2164 Lyalya
+- wiki_low_freq: 217 (nombro)
+- wiki_low_freq: 218 (nombro)
+- wiki_low_freq: 2180 Marjaleena
+- wiki_low_freq: 219 (nombro)
+- wiki_low_freq: 21933 Aaronrozon
+- wiki_low_freq: 2194 Arpola
+- wiki_low_freq: 2195 Tengström
+- wiki_low_freq: 220 (nombro)
+- wiki_low_freq: 2204 Lyyli
+- wiki_low_freq: 221 (nombro)
+- wiki_low_freq: 222 (nombro)
+- wiki_low_freq: 223 (nombro)
+- wiki_low_freq: 224 (nombro)
+- wiki_low_freq: 2243 Lönnrot
+- wiki_low_freq: 225 (nombro)
+- wiki_low_freq: 2257 Kaarina
+- wiki_low_freq: 2258 Viipuri
+- wiki_low_freq: 226 (nombro)
+- wiki_low_freq: 2268 Szmytowna
+- wiki_low_freq: 227 (nombro)
+- wiki_low_freq: 228 (nombro)
+- wiki_low_freq: 229 (nombro)
+- wiki_low_freq: 2291 Kevo
+- wiki_low_freq: 2292 Seili
+- wiki_low_freq: 2299 Hanko
+- wiki_low_freq: 230 (nombro)
+- wiki_low_freq: 231 (nombro)
+- wiki_low_freq: 232 (nombro)
+- wiki_low_freq: 2325 Chernih
+- wiki_low_freq: 233 (nombro)
+- wiki_low_freq: 2332 Kalm
+- wiki_low_freq: 2333 Porthan
+- wiki_low_freq: 234 (nombro)
+- wiki_low_freq: 235 (nombro)
+- wiki_low_freq: 236 (nombro)
+- wiki_low_freq: 2366 Aaryn
+- wiki_low_freq: 237 (nombro)
+- wiki_low_freq: 2379 Heiskanen
+- wiki_low_freq: 238 (nombro)
+- wiki_low_freq: 239 (nombro)
+- wiki_low_freq: 2397 Lappajärvi
+- wiki_low_freq: 240 (nombro)
+- wiki_low_freq: 241 (nombro)
+- wiki_low_freq: 242 (nombro)
+- wiki_low_freq: 243 (nombro)
+- wiki_low_freq: 244 (nombro)
+- wiki_low_freq: 245 (nombro)
+- wiki_low_freq: 2454 Olaus Magnus
+- wiki_low_freq: 246 (nombro)
+- wiki_low_freq: 2464 Nordenskiöld
+- wiki_low_freq: 247 (nombro)
+- wiki_low_freq: 2479 Sodankylä
+- wiki_low_freq: 248 (nombro)
+- wiki_low_freq: 2486 Metsähovi
+- wiki_low_freq: 2487 Juhani
+- wiki_low_freq: 249 (nombro)
+- wiki_low_freq: 2501 Lohja
+- wiki_low_freq: 2502 Nummela
+- wiki_low_freq: 251 (nombro)
+- wiki_low_freq: 2512 Tavastia
+- wiki_low_freq: 252 (nombro)
+- wiki_low_freq: 253 (nombro)
+- wiki_low_freq: 2535 Hämeenlinna
+- wiki_low_freq: 254 (nombro)
+- wiki_low_freq: 255 (nombro)
+- wiki_low_freq: 256 (nombro)
+- wiki_low_freq: 257 (nombro)
+- wiki_low_freq: 2573 Hannu Olavi
+- wiki_low_freq: 258 (nombro)
+- wiki_low_freq: 259 (nombro)
+- wiki_low_freq: 260 (nombro)
+- wiki_low_freq: 261 (nombro)
+- wiki_low_freq: 262 (nombro)
+- wiki_low_freq: 263 (nombro)
+- wiki_low_freq: 2638 Gadolin
+- wiki_low_freq: 2639 Planman
+- wiki_low_freq: 264 (nombro)
+- wiki_low_freq: 2640 Hällström
+- wiki_low_freq: 265 (nombro)
+- wiki_low_freq: 266 (nombro)
+- wiki_low_freq: 267 (nombro)
+- wiki_low_freq: 2671 Abhazia
+- wiki_low_freq: 2676 Aarhus
+- wiki_low_freq: 2678 Aavasaksa
+- wiki_low_freq: 2679 Kittisvaara
+- wiki_low_freq: 268 (nombro)
+- wiki_low_freq: 269 (nombro)
+- wiki_low_freq: 2690 Ristiina
+- wiki_low_freq: 27-Klubo
+- wiki_low_freq: 270 (nombro)
+- wiki_low_freq: 271 (nombro)
+- wiki_low_freq: 2714 Matti
+- wiki_low_freq: 2715 Mielikki
+- wiki_low_freq: 2716 Tuulikki
+- wiki_low_freq: 2717 Tellervo
+- wiki_low_freq: 272 (nombro)
+- wiki_low_freq: 2722 Abalakin
+- wiki_low_freq: 273 (nombro)
+- wiki_low_freq: 2733 Hamina
+- wiki_low_freq: 2737 Kotka
+- wiki_low_freq: 274 (nombro)
+- wiki_low_freq: 275 (nombro)
+- wiki_low_freq: 2750 Loviisa
+- wiki_low_freq: 276 (nombro)
+- wiki_low_freq: 277 (nombro)
+- wiki_low_freq: 2774 Tenojoki
+- wiki_low_freq: 278 (nombro)
+- wiki_low_freq: 279 (nombro)
+- wiki_low_freq: 280 (nombro)
+- wiki_low_freq: 2802 Weisell
+- wiki_low_freq: 2803 Vilho
+- wiki_low_freq: 2804 Yrjö
+- wiki_low_freq: 2805 Kalle
+- wiki_low_freq: 281 (nombro)
+- wiki_low_freq: 282 (nombro)
+- wiki_low_freq: 2820 Iisalmi
+- wiki_low_freq: 2826 Ahti
+- wiki_low_freq: 2827 Vellamo
+- wiki_low_freq: 2828 Iku-Turso
+- wiki_low_freq: 283 (nombro)
+- wiki_low_freq: 284 (nombro)
+- wiki_low_freq: 2840 Kallavesi
+- wiki_low_freq: 2841 Puijo
+- wiki_low_freq: 2846 Ylppö
+- wiki_low_freq: 285 (nombro)
+- wiki_low_freq: 2857 NOT
+- wiki_low_freq: 286 (nombro)
+- wiki_low_freq: 287 (nombro)
+- wiki_low_freq: 288 (nombro)
+- wiki_low_freq: 2885 Palva
+- wiki_low_freq: 289 (nombro)
+- wiki_low_freq: 2898 Neuvo
+- wiki_low_freq: 290 (nombro)
+- wiki_low_freq: 291 (nombro)
+- wiki_low_freq: 2911 Miahelena
+- wiki_low_freq: 2912 Lapalma
+- wiki_low_freq: 292 (nombro)
+- wiki_low_freq: 293 (nombro)
+- wiki_low_freq: 294 (nombro)
+- wiki_low_freq: 2946 Muchachos
+- wiki_low_freq: 295 (nombro)
+- wiki_low_freq: 296 (nombro)
+- wiki_low_freq: 2962 Otto
+- wiki_low_freq: 297 (nombro)
+- wiki_low_freq: 2972 Niilo
+- wiki_low_freq: 298 (nombro)
+- wiki_low_freq: 2988 Korhonen
+- wiki_low_freq: 299 (nombro)
+- wiki_low_freq: 3 (nombro)
+- wiki_low_freq: 300 (nombro)
+- wiki_low_freq: 301 (nombro)
+- wiki_low_freq: 302 (nombro)
+- wiki_low_freq: 303 (nombro)
+- wiki_low_freq: 3037 Alku
+- wiki_low_freq: 304 (nombro)
+- wiki_low_freq: 305 (nombro)
+- wiki_low_freq: 306 (nombro)
+- wiki_low_freq: 307 (nombro)
+- wiki_low_freq: 308 (nombro)
+- wiki_low_freq: 309 (nombro)
+- wiki_low_freq: 3099 Hergenrother
+- wiki_low_freq: 310 (nombro)
+- wiki_low_freq: 311 (nombro)
+- wiki_low_freq: 312 (nombro)
+- wiki_low_freq: 313 (nombro)
+- wiki_low_freq: 3132 Landgraf
+- wiki_low_freq: 314 (nombro)
+- wiki_low_freq: 315 (nombro)
+- wiki_low_freq: 316 (nombro)
+- wiki_low_freq: 3166 Klondike
+- wiki_low_freq: 317 (nombro)
+- wiki_low_freq: 318 (nombro)
+- wiki_low_freq: 319 (nombro)
+- wiki_low_freq: 3192 A'Hearn
+- wiki_low_freq: 320 (nombro)
+- wiki_low_freq: 321 (nombro)
+- wiki_low_freq: 3212 Agricola
+- wiki_low_freq: 322 (nombro)
+- wiki_low_freq: 3223 Forsius
+- wiki_low_freq: 323 (nombro)
+- wiki_low_freq: 324 (nombro)
+- wiki_low_freq: 325 (nombro)
+- wiki_low_freq: 326 (nombro)
+- wiki_low_freq: 327 (nombro)
+- wiki_low_freq: 3272 Tillandz
+- wiki_low_freq: 3277 Aaronson
+- wiki_low_freq: 328 (nombro)
+- wiki_low_freq: 3281 Maupertuis
+- wiki_low_freq: 329 (nombro)
+- wiki_low_freq: 330 (nombro)
+- wiki_low_freq: 331 (nombro)
+- wiki_low_freq: 332 (nombro)
+- wiki_low_freq: 333 (nombro)
+- wiki_low_freq: 334 (nombro)
+- wiki_low_freq: 335 (nombro)
+- wiki_low_freq: 336 (nombro)
+- wiki_low_freq: 337 (nombro)
+- wiki_low_freq: 338 (nombro)
+- wiki_low_freq: 3381 Mikkola
+- wiki_low_freq: 339 (nombro)
+- wiki_low_freq: 340 (nombro)
+- wiki_low_freq: 341 (nombro)
+- wiki_low_freq: 342 (nombro)
+- wiki_low_freq: 343 (nombro)
+- wiki_low_freq: 344 (nombro)
+- wiki_low_freq: 345 (nombro)
+- wiki_low_freq: 346 (nombro)
+- wiki_low_freq: 347 (nombro)
+- wiki_low_freq: 348 (nombro)
+- wiki_low_freq: 3480 Abante
+- wiki_low_freq: 349 (nombro)
+- wiki_low_freq: 3497 Innanen
+- wiki_low_freq: 350 (nombro)
+- wiki_low_freq: 351 (nombro)
+- wiki_low_freq: 352 (nombro)
+- wiki_low_freq: 3522 Becker
+- wiki_low_freq: 352214 Szczecin
+- wiki_low_freq: 353 (nombro)
+- wiki_low_freq: 354 (nombro)
+- wiki_low_freq: 355 (nombro)
+- wiki_low_freq: 356 (nombro)
+- wiki_low_freq: 357 (nombro)
+- wiki_low_freq: 358 (nombro)
+- wiki_low_freq: 359 (nombro)
+- wiki_low_freq: 3597 Kakkuri
+- wiki_low_freq: 360 (nombro)
+- wiki_low_freq: 3606 Pohjola
+- wiki_low_freq: 361 (nombro)
+- wiki_low_freq: 362 (nombro)
+- wiki_low_freq: 363 (nombro)
+- wiki_low_freq: 364 (nombro)
+- wiki_low_freq: 365 (nombro)
+- wiki_low_freq: 3654 AAS
+- wiki_low_freq: 366 (nombro)
+- wiki_low_freq: 367 (nombro)
+- wiki_low_freq: 368 (nombro)
+- wiki_low_freq: 369 (nombro)
+- wiki_low_freq: 370 (nombro)
+- wiki_low_freq: 371 (nombro)
+- wiki_low_freq: 372 (nombro)
+- wiki_low_freq: 373 (nombro)
+- wiki_low_freq: 374 (nombro)
+- wiki_low_freq: 375 (nombro)
+- wiki_low_freq: 376 (nombro)
+- wiki_low_freq: 377 (nombro)
+- wiki_low_freq: 3776 Vartiovuori
+- wiki_low_freq: 378 (nombro)
+- wiki_low_freq: 379 (nombro)
+- wiki_low_freq: 380 (nombro)
+- wiki_low_freq: 381 (nombro)
+- wiki_low_freq: 3811 Karma
+- wiki_low_freq: 382 (nombro)
+- wiki_low_freq: 383 (nombro)
+- wiki_low_freq: 384 (nombro)
+- wiki_low_freq: 385 (nombro)
+- wiki_low_freq: 386 (nombro)
+- wiki_low_freq: 387 (nombro)
+- wiki_low_freq: 388 (nombro)
+- wiki_low_freq: 389 (nombro)
+- wiki_low_freq: 3892 Dezsö
+- wiki_low_freq: 3897 Louhi
+- wiki_low_freq: 390 (nombro)
+- wiki_low_freq: 391 (nombro)
+- wiki_low_freq: 392 (nombro)
+- wiki_low_freq: 393 (nombro)
+- wiki_low_freq: 394 (nombro)
+- wiki_low_freq: 395 (nombro)
+- wiki_low_freq: 396 (nombro)
+- wiki_low_freq: 397 (nombro)
+- wiki_low_freq: 398 (nombro)
+- wiki_low_freq: 399 (nombro)
+- wiki_low_freq: 4 (nombro)
+- wiki_low_freq: 4 Non Blondes
+- wiki_low_freq: 4-quadrato
+- wiki_low_freq: 400 (nombro)
+- wiki_low_freq: 4001 Ptolemeo
+- wiki_low_freq: 4002 Shinagawa
+- wiki_low_freq: 4003 Schumann
+- wiki_low_freq: 4004 Listyev
+- wiki_low_freq: 4005 Dyagilev
+- wiki_low_freq: 4006 Sandler
+- wiki_low_freq: 4007 Euryalos
+- wiki_low_freq: 4008 Corbin
+- wiki_low_freq: 4009 Drobishevski
+- wiki_low_freq: 401 (nombro)
+- wiki_low_freq: 4010 Nikolski
+- wiki_low_freq: 4011 Baharev
+- wiki_low_freq: 4012 Geballe
+- wiki_low_freq: 4013 Ogiria
+- wiki_low_freq: 4014 Heizman
+- wiki_low_freq: 4015 Wilson-Harrington
+- wiki_low_freq: 4016 Sambre
+- wiki_low_freq: 4017 Disneya
+- wiki_low_freq: 4018 Bratislava
+- wiki_low_freq: 4019 Klavetter
+- wiki_low_freq: 402 (nombro)
+- wiki_low_freq: 4020 Dominique
+- wiki_low_freq: 4021 Dancey
+- wiki_low_freq: 4022 Nonna
+- wiki_low_freq: 4023 Jarník
+- wiki_low_freq: 4024 Ronan
+- wiki_low_freq: 4025 Ridley
+- wiki_low_freq: 4026 Beet
+- wiki_low_freq: 4027 Mitton
+- wiki_low_freq: 4028 Pancratz
+- wiki_low_freq: 4029 Bridges
+- wiki_low_freq: 403 (nombro)
+- wiki_low_freq: 4030 Archenhold
+- wiki_low_freq: 4031 Mueller
+- wiki_low_freq: 4032 Chapligin
+- wiki_low_freq: 4033 Yatsugatake
+- wiki_low_freq: 4034 Vishnu
+- wiki_low_freq: 4035 Thestor
+- wiki_low_freq: 4036 Whitehouse
+- wiki_low_freq: 4037 Ikeya
+- wiki_low_freq: 4038 Kristina
+- wiki_low_freq: 4039 Souseki
+- wiki_low_freq: 404 (nombro)
+- wiki_low_freq: 4040 Purcell
+- wiki_low_freq: 4041 Miyamotoyohko
+- wiki_low_freq: 4042 Ohotsk
+- wiki_low_freq: 4043 Perolof
+- wiki_low_freq: 4044 Erikhøg
+- wiki_low_freq: 4045 Lowengrub
+- wiki_low_freq: 4046 Swain
+- wiki_low_freq: 4047 Chang’E
+- wiki_low_freq: 4048 Samwestfall
+- wiki_low_freq: 4049 Noragal
+- wiki_low_freq: 405 (nombro)
+- wiki_low_freq: 4050 Mebailey
+- wiki_low_freq: 4051 Hatanaka
+- wiki_low_freq: 4052 Crovisier
+- wiki_low_freq: 4053 Cherkasov
+- wiki_low_freq: 4054 Turnov
+- wiki_low_freq: 4055 Magellan
+- wiki_low_freq: 4056 Timwarner
+- wiki_low_freq: 4057 Demophon
+- wiki_low_freq: 4058 Cecilgreen
+- wiki_low_freq: 4059 Balder
+- wiki_low_freq: 406 (nombro)
+- wiki_low_freq: 4060 Deipilo
+- wiki_low_freq: 4061 Martelli
+- wiki_low_freq: 4062 Schiaparelli
+- wiki_low_freq: 4063 Euforbo
+- wiki_low_freq: 4064 Marjorie
+- wiki_low_freq: 4065 Meinel
+- wiki_low_freq: 4066 Haapavesi
+- wiki_low_freq: 4067 Mihelson
+- wiki_low_freq: 4068 Menesteo
+- wiki_low_freq: 4069 Blakee
+- wiki_low_freq: 407 (nombro)
+- wiki_low_freq: 4070 Rozov
+- wiki_low_freq: 4071 Rostovdon
+- wiki_low_freq: 4072 Yayoi
+- wiki_low_freq: 4073 Ruianzhongxue
+- wiki_low_freq: 4074 Sharkov
+- wiki_low_freq: 4075 Sviridov
+- wiki_low_freq: 4076 Dörffel
+- wiki_low_freq: 4077 Asuka
+- wiki_low_freq: 4078 Polakis
+- wiki_low_freq: 4079 Britten
+- wiki_low_freq: 408 (nombro)
+- wiki_low_freq: 4080 Galinski
+- wiki_low_freq: 4081 Tippett
+- wiki_low_freq: 4082 Swann
+- wiki_low_freq: 4083 Jody
+- wiki_low_freq: 4084 Hollis
+- wiki_low_freq: 4085 Weir
+- wiki_low_freq: 4086 Podalirius
+- wiki_low_freq: 4087 Pärt
+- wiki_low_freq: 4088 Baggesen
+- wiki_low_freq: 4089 Galbraith
+- wiki_low_freq: 409 (nombro)
+- wiki_low_freq: 4090 Říšehvězd
+- wiki_low_freq: 4091 Lowe
+- wiki_low_freq: 4092 Týr
+- wiki_low_freq: 4093 Bennett
+- wiki_low_freq: 4094 Aoshima
+- wiki_low_freq: 4095 Ishizuchisan
+- wiki_low_freq: 4096 Kushiro
+- wiki_low_freq: 4097 Tsurugisan
+- wiki_low_freq: 4098 Thraen
+- wiki_low_freq: 4099 Wiggins
+- wiki_low_freq: 410 (nombro)
+- wiki_low_freq: 4100 Sumiko
+- wiki_low_freq: 4101 Ruikou
+- wiki_low_freq: 4103 Chahine
+- wiki_low_freq: 4104 Alu
+- wiki_low_freq: 4105 Tsia
+- wiki_low_freq: 4106 Nada
+- wiki_low_freq: 4107 Rufino
+- wiki_low_freq: 4108 Rakos
+- wiki_low_freq: 4109 Anohin
+- wiki_low_freq: 411 (nombro)
+- wiki_low_freq: 4110 Keats
+- wiki_low_freq: 4111 Lamy
+- wiki_low_freq: 4112 Hrabal
+- wiki_low_freq: 4114 Jasnorzewska
+- wiki_low_freq: 4115 Peternorton
+- wiki_low_freq: 4116 Elachi
+- wiki_low_freq: 4117 Wilke
+- wiki_low_freq: 4118 Sveta
+- wiki_low_freq: 4119 Miles
+- wiki_low_freq: 412 (nombro)
+- wiki_low_freq: 4120 Denoyelle
+- wiki_low_freq: 4121 Carlin
+- wiki_low_freq: 4122 Ferrari
+- wiki_low_freq: 4123 Tarsila
+- wiki_low_freq: 4124 Herriot
+- wiki_low_freq: 4125 Lew Allen
+- wiki_low_freq: 4126 Mashu
+- wiki_low_freq: 4127 Kyogoku
+- wiki_low_freq: 4128 UKSTU
+- wiki_low_freq: 4129 Richelen
+- wiki_low_freq: 413 (nombro)
+- wiki_low_freq: 4130 Ramanujan
+- wiki_low_freq: 4131 Stasik
+- wiki_low_freq: 4132 Bartók
+- wiki_low_freq: 4133 Heureka
+- wiki_low_freq: 4134 Schütz
+- wiki_low_freq: 4135 Svetlanov
+- wiki_low_freq: 4136 Artmane
+- wiki_low_freq: 4137 Crabtree
+- wiki_low_freq: 4138 Kalchas
+- wiki_low_freq: 4139 Ulyanin
+- wiki_low_freq: 414 (nombro)
+- wiki_low_freq: 4140 Branham
+- wiki_low_freq: 4141 Nintanlena
+- wiki_low_freq: 4142 Dersu-Uzala
+- wiki_low_freq: 4143 Huziak
+- wiki_low_freq: 4144 Vladvasilyev
+- wiki_low_freq: 4145 Maximova
+- wiki_low_freq: 4146 Rudolfinum
+- wiki_low_freq: 4147 Lennon
+- wiki_low_freq: 4148 McCartney
+- wiki_low_freq: 4149 Harrison
+- wiki_low_freq: 415 (nombro)
+- wiki_low_freq: 4150 Starr
+- wiki_low_freq: 4151 Alanhale
+- wiki_low_freq: 4152 Weber
+- wiki_low_freq: 4153 Roburnham
+- wiki_low_freq: 4154 Rumsey
+- wiki_low_freq: 4155 Watanabe
+- wiki_low_freq: 4156 Okadanoboru
+- wiki_low_freq: 4157 Izu
+- wiki_low_freq: 4158 Santini
+- wiki_low_freq: 4159 Freeman
+- wiki_low_freq: 416 (nombro)
+- wiki_low_freq: 4160 Sabrina-John
+- wiki_low_freq: 4161 Amasis
+- wiki_low_freq: 4162 SAF
+- wiki_low_freq: 4163 Saaremaa
+- wiki_low_freq: 4164 Shilov
+- wiki_low_freq: 4165 Didkovski
+- wiki_low_freq: 4166 Pontryagin
+- wiki_low_freq: 4167 Riemann
+- wiki_low_freq: 4168 Millan
+- wiki_low_freq: 4169 Celsius
+- wiki_low_freq: 417 (nombro)
+- wiki_low_freq: 4170 Semmelweis
+- wiki_low_freq: 4171 Carrasco
+- wiki_low_freq: 4172 Rochefort
+- wiki_low_freq: 4173 Thicksten
+- wiki_low_freq: 4174 Pikulia
+- wiki_low_freq: 4175 Billbaum
+- wiki_low_freq: 4176 Sudek
+- wiki_low_freq: 4177 Kohman
+- wiki_low_freq: 4178 Mimeyev
+- wiki_low_freq: 4179 Toutatis
+- wiki_low_freq: 418 (nombro)
+- wiki_low_freq: 4180 Anaxagoras
+- wiki_low_freq: 4181 Kivi
+- wiki_low_freq: 4182 Mount Locke
+- wiki_low_freq: 4183 Cuno
+- wiki_low_freq: 4184 Berdyayev
+- wiki_low_freq: 4185 Phystech
+- wiki_low_freq: 4186 Tamashima
+- wiki_low_freq: 4187 Shulnazaria
+- wiki_low_freq: 4188 Kitej
+- wiki_low_freq: 4189 Sayany
+- wiki_low_freq: 419 (nombro)
+- wiki_low_freq: 4190 Kvasnica
+- wiki_low_freq: 4191 Assesse
+- wiki_low_freq: 4192 Breysacher
+- wiki_low_freq: 4193 Salanave
+- wiki_low_freq: 4194 Sweitzer
+- wiki_low_freq: 4195 Esambayev
+- wiki_low_freq: 4196 Shuya
+- wiki_low_freq: 4197 Morfeus
+- wiki_low_freq: 4198 Panthera
+- wiki_low_freq: 4199 Andreyev
+- wiki_low_freq: 420 (kanabo-kulturo)
+- wiki_low_freq: 420 (nombro)
+- wiki_low_freq: 4200 Shizukagozen
+- wiki_low_freq: 4201 Orosz
+- wiki_low_freq: 4202 Minitti
+- wiki_low_freq: 4203 Brucato
+- wiki_low_freq: 4204 Barsig
+- wiki_low_freq: 4206 Verulamium
+- wiki_low_freq: 4207 Chernova
+- wiki_low_freq: 4208 Kiselev
+- wiki_low_freq: 4209 Briggs
+- wiki_low_freq: 421 (nombro)
+- wiki_low_freq: 4210 Isobelthompson
+- wiki_low_freq: 4211 Rosniblett
+- wiki_low_freq: 4212 Sansyu-Asuke
+- wiki_low_freq: 4213 Njord
+- wiki_low_freq: 4214 Veralynn
+- wiki_low_freq: 4215 Kamo
+- wiki_low_freq: 4216 Neunkirchen
+- wiki_low_freq: 4217 Engelhardt
+- wiki_low_freq: 4218 Demottoni
+- wiki_low_freq: 4219 Nakamura
+- wiki_low_freq: 422 (nombro)
+- wiki_low_freq: 4220 Flood
+- wiki_low_freq: 4221 Picasso
+- wiki_low_freq: 4222 Nancita
+- wiki_low_freq: 4223 Shikoku
+- wiki_low_freq: 4224 Susa
+- wiki_low_freq: 4225 Hobart
+- wiki_low_freq: 4226 Damiaan
+- wiki_low_freq: 4227 Kaali
+- wiki_low_freq: 4228 Nemiro
+- wiki_low_freq: 4229 Plevickaya
+- wiki_low_freq: 423 (nombro)
+- wiki_low_freq: 4231 Fireman
+- wiki_low_freq: 4232 Aparicio
+- wiki_low_freq: 4233 Palchikov
+- wiki_low_freq: 4234 Yevtushenko
+- wiki_low_freq: 4235 Tatishchev
+- wiki_low_freq: 4236 Lidov
+- wiki_low_freq: 4237 Raushenbah
+- wiki_low_freq: 4238 Audrey
+- wiki_low_freq: 4239 Goodman
+- wiki_low_freq: 424 (nombro)
+- wiki_low_freq: 4240 Grün
+- wiki_low_freq: 4241 Pappalardo
+- wiki_low_freq: 4242 Brecher
+- wiki_low_freq: 4243 Nankivell
+- wiki_low_freq: 4244 Zaharchenko
+- wiki_low_freq: 4245 Nairc
+- wiki_low_freq: 4246 Telemann
+- wiki_low_freq: 4247 Grahamsmith
+- wiki_low_freq: 4248 Ranald
+- wiki_low_freq: 4249 Křemže
+- wiki_low_freq: 425 (nombro)
+- wiki_low_freq: 4250 Perun
+- wiki_low_freq: 4251 Kavasch
+- wiki_low_freq: 4252 Godwin
+- wiki_low_freq: 4253 Märker
+- wiki_low_freq: 4254 Kamél
+- wiki_low_freq: 4255 Spacewatch
+- wiki_low_freq: 4256 Kagamigawa
+- wiki_low_freq: 4257 Ubasti
+- wiki_low_freq: 4258 Ryazanov
+- wiki_low_freq: 4259 McCoy
+- wiki_low_freq: 426 (nombro)
+- wiki_low_freq: 4260 Yanai
+- wiki_low_freq: 4261 Gekko
+- wiki_low_freq: 4262 DeVorkin
+- wiki_low_freq: 4263 Abashiri
+- wiki_low_freq: 4264 Karljosephine
+- wiki_low_freq: 4265 Kani
+- wiki_low_freq: 4266 Waltari
+- wiki_low_freq: 4267 Basner
+- wiki_low_freq: 4268 Grebenikov
+- wiki_low_freq: 4269 Bogado
+- wiki_low_freq: 427 (nombro)
+- wiki_low_freq: 4270 Juanvictoria
+- wiki_low_freq: 4271 Novosibirsk
+- wiki_low_freq: 4272 Entsuji
+- wiki_low_freq: 4273 Dunhuang
+- wiki_low_freq: 4274 Karamanov
+- wiki_low_freq: 4275 Bogustafson
+- wiki_low_freq: 4276 Clifford
+- wiki_low_freq: 4277 Holubov
+- wiki_low_freq: 4278 Harvey
+- wiki_low_freq: 428 (nombro)
+- wiki_low_freq: 4280 Simonenko
+- wiki_low_freq: 4281 Pounds
+- wiki_low_freq: 4282 Endate
+- wiki_low_freq: 4283 Stöffler
+- wiki_low_freq: 4284 Kaho
+- wiki_low_freq: 4285 Hulkower
+- wiki_low_freq: 4286 Rubcov
+- wiki_low_freq: 4287 Třísov
+- wiki_low_freq: 4288 Tokyotech
+- wiki_low_freq: 4289 Biwako
+- wiki_low_freq: 429 (nombro)
+- wiki_low_freq: 4290 Heisei
+- wiki_low_freq: 4291 Kodaihasu
+- wiki_low_freq: 4292 Aoba
+- wiki_low_freq: 4293 Masumi
+- wiki_low_freq: 4294 Horatius
+- wiki_low_freq: 4295 Wisse
+- wiki_low_freq: 4297 Eichhorn
+- wiki_low_freq: 4298 Jorgenúnez
+- wiki_low_freq: 4299 WIYN
+- wiki_low_freq: 430 (nombro)
+- wiki_low_freq: 4300 Marg Edmondson
+- wiki_low_freq: 4301 Boyden
+- wiki_low_freq: 4302 Markeyev
+- wiki_low_freq: 4303 Savicki
+- wiki_low_freq: 4304 Geichenko
+- wiki_low_freq: 4305 Clapton
+- wiki_low_freq: 4306 Dunayevski
+- wiki_low_freq: 4307 Cherepashchuk
+- wiki_low_freq: 4308 Magarach
+- wiki_low_freq: 4309 Marvin
+- wiki_low_freq: 431 (nombro)
+- wiki_low_freq: 4310 Strömholm
+- wiki_low_freq: 4311 Zguridi
+- wiki_low_freq: 4312 Knacke
+- wiki_low_freq: 4313 Bouchet
+- wiki_low_freq: 4314 Dervan
+- wiki_low_freq: 4315 Pronik
+- wiki_low_freq: 4316 Babinkova
+- wiki_low_freq: 4317 Garibaldi
+- wiki_low_freq: 4318 Baťa
+- wiki_low_freq: 4319 Jackierobinson
+- wiki_low_freq: 432 (nombro)
+- wiki_low_freq: 4320 Jarosewich
+- wiki_low_freq: 4321 Zero
+- wiki_low_freq: 4322 Billjackson
+- wiki_low_freq: 4323 Hortulus
+- wiki_low_freq: 4324 Bickel
+- wiki_low_freq: 4325 Guest
+- wiki_low_freq: 4326 McNally
+- wiki_low_freq: 4327 Ries
+- wiki_low_freq: 4328 Valina
+- wiki_low_freq: 4329 Miró
+- wiki_low_freq: 433 (nombro)
+- wiki_low_freq: 4330 Vivaldi
+- wiki_low_freq: 4331 Hubbard
+- wiki_low_freq: 4332 Milton
+- wiki_low_freq: 4333 Sinton
+- wiki_low_freq: 4334 Foo
+- wiki_low_freq: 4335 Verona
+- wiki_low_freq: 4336 Jasniewicz
+- wiki_low_freq: 4337 Arecibo
+- wiki_low_freq: 4338 Velez
+- wiki_low_freq: 4339 Almamater
+- wiki_low_freq: 434 (nombro)
+- wiki_low_freq: 4340 Dence
+- wiki_low_freq: 4341 Poseidon
+- wiki_low_freq: 4342 Freud
+- wiki_low_freq: 4343 Tetsuya
+- wiki_low_freq: 4344 Buxtehude
+- wiki_low_freq: 4345 Rachmaninoff
+- wiki_low_freq: 4346 Whitney
+- wiki_low_freq: 4347 Reger
+- wiki_low_freq: 4348 Polidamas
+- wiki_low_freq: 435 (nombro)
+- wiki_low_freq: 436 (nombro)
+- wiki_low_freq: 437 (nombro)
+- wiki_low_freq: 438 (nombro)
+- wiki_low_freq: 439 (nombro)
+- wiki_low_freq: 440 (nombro)
+- wiki_low_freq: 441 (nombro)
+- wiki_low_freq: 442 (nombro)
+- wiki_low_freq: 443 (nombro)
+- wiki_low_freq: 444 (nombro)
+- wiki_low_freq: 445 (nombro)
+- wiki_low_freq: 446 (nombro)
+- wiki_low_freq: 4466 Abai
+- wiki_low_freq: 447 (nombro)
+- wiki_low_freq: 448 (nombro)
+- wiki_low_freq: 449 (nombro)
+- wiki_low_freq: 450 (nombro)
+- wiki_low_freq: 451 (nombro)
+- wiki_low_freq: 4512 Sinuhe
+- wiki_low_freq: 452 (nombro)
+- wiki_low_freq: 453 (nombro)
+- wiki_low_freq: 454 (nombro)
+- wiki_low_freq: 455 (nombro)
+- wiki_low_freq: 456 (nombro)
+- wiki_low_freq: 457 (nombro)
+- wiki_low_freq: 458 (nombro)
+- wiki_low_freq: 459 (nombro)
+- wiki_low_freq: 460 (nombro)
+- wiki_low_freq: 461 (nombro)
+- wiki_low_freq: 462 (nombro)
+- wiki_low_freq: 463 (nombro)
+- wiki_low_freq: 464 (nombro)
+- wiki_low_freq: 465 (nombro)
+- wiki_low_freq: 466 (nombro)
+- wiki_low_freq: 467 (nombro)
+- wiki_low_freq: 468 (nombro)
+- wiki_low_freq: 469 (nombro)
+- wiki_low_freq: 470 (nombro)
+- wiki_low_freq: 471 (nombro)
+- wiki_low_freq: 472 (nombro)
+- wiki_low_freq: 473 (nombro)
+- wiki_low_freq: 474 (nombro)
+- wiki_low_freq: 475 (nombro)
+- wiki_low_freq: 476 (nombro)
+- wiki_low_freq: 477 (nombro)
+- wiki_low_freq: 478 (nombro)
+- wiki_low_freq: 479 (nombro)
+- wiki_low_freq: 480 (nombro)
+- wiki_low_freq: 481 (nombro)
+- wiki_low_freq: 482 (nombro)
+- wiki_low_freq: 483 (nombro)
+- wiki_low_freq: 484 (nombro)
+- wiki_low_freq: 485 (nombro)
+- wiki_low_freq: 486 (nombro)
+- wiki_low_freq: 487 (nombro)
+- wiki_low_freq: 488 (nombro)
+- wiki_low_freq: 489 (nombro)
+- wiki_low_freq: 490 (nombro)
+- wiki_low_freq: 491 (nombro)
+- wiki_low_freq: 492 (nombro)
+- wiki_low_freq: 493 (nombro)
+- wiki_low_freq: 494 (nombro)
+- wiki_low_freq: 495 (nombro)
+- wiki_low_freq: 496 (nombro)
+- wiki_low_freq: 497 (nombro)
+- wiki_low_freq: 498 (nombro)
+- wiki_low_freq: 499 (nombro)
+- wiki_low_freq: 4Paradigm
+- wiki_low_freq: 5 (nombro)
+- wiki_low_freq: 5-quadrato
+- wiki_low_freq: 5000 (nombro)
+- wiki_low_freq: 501 (nombro)
+- wiki_low_freq: 502 (nombro)
+- wiki_low_freq: 503 (nombro)
+- wiki_low_freq: 504 (nombro)
+- wiki_low_freq: 505 (nombro)
+- wiki_low_freq: 506 (nombro)
+- wiki_low_freq: 507 (nombro)
+- wiki_low_freq: 5073 Junttura
+- wiki_low_freq: 508 (nombro)
+- wiki_low_freq: 509 (nombro)
+- wiki_low_freq: 510 (nombro)
+- wiki_low_freq: 511 (nombro)
+- wiki_low_freq: 512 (nombro)
+- wiki_low_freq: 513 (nombro)
+- wiki_low_freq: 514 (nombro)
+- wiki_low_freq: 515 (nombro)
+- wiki_low_freq: 5153 Gierasch
+- wiki_low_freq: 516 (nombro)
+- wiki_low_freq: 517 (nombro)
+- wiki_low_freq: 518 (nombro)
+- wiki_low_freq: 519 (nombro)

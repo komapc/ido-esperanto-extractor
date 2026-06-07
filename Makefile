@@ -146,6 +146,11 @@ align:
 report:
 	$(PY) scripts/report_coverage.py --top 5000
 
+# Vortaro quality signal: precision@1 (held-out io_wiktionary) + lemmatized recall
+# → reports/vortaro_quality.md. The gate for any change to vocabulary generation.
+vortaro-eval:
+	$(PY) scripts/eval_vortaro.py
+
 big_bidix:
 	$(PY) scripts/build_one_big_bidix_json.py
 
