@@ -7,7 +7,7 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple
 from _common import read_json, write_json, configure_logging
 from infer_morphology import infer_paradigm as _infer_paradigm
 from lexicon_filters import (
-    is_junk_lemma, dedupe_eo_candidates, fold_inflected_eo_duplicates)
+    is_junk_lemma, is_junk_verb, dedupe_eo_candidates, fold_inflected_eo_duplicates)
 import re
 
 
@@ -353,6 +353,12 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
         # langlink/wikidata titles, MediaWiki artifacts, numeric ordinals) so they
         # never reach the monodix or the vortaro. See scripts/lexicon_filters.py.
         if is_junk_lemma(rec['lemma']):
+            continue
+        # Single-letter-stem verbs (par/car/ir...) over-generate common words as
+        # spurious conjugations (p+os="pos" hijacks the preposition). See
+        # lexicon_filters.is_junk_verb.
+        if is_junk_verb(rec['lemma'], rec.get('pos'),
+                        (rec.get('morphology') or {}).get('paradigm')):
             continue
         # Merge EO candidates that differ only by letter-case, casing driven by
         # the Ido lemma (lowercase common noun → lowercase gloss; Aachen→Akeno
