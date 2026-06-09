@@ -55,6 +55,27 @@ def is_junk_lemma(lemma: str) -> bool:
     return any(rx.match(lemma) for rx in _NUMERIC_JUNK_RES)
 
 
+def is_junk_verb(lemma: str, pos=None, paradigm: str = "") -> bool:
+    """True for single-letter-stem verbs (par/car/mar/ir/ar...).
+
+    Real Ido -ar/-ir/-or verbs have a stem of >= 2 chars. A 3-char "verb" like
+    `par` (or bare `ar`/`ir`) yields a <=1-char stem whose ar__vblex paradigm
+    over-generates common words as spurious conjugations — e.g. p+os = "pos"
+    hijacks the preposition pos->post (giving "par"). These leak from
+    io_wiktionary mis-parses + BERT cognate noise (par->par, car->car).
+    Used by both build_one_big_bidix_json (bidix) and export_apertium (monodix
+    vocab) so the junk verb is dropped on both paths.
+    """
+    lm = (lemma or "").strip().lower()
+    if not lm:
+        return False
+    is_verb = pos == "vblex" or (paradigm or "").endswith("__vblex")
+    if not is_verb:
+        return False
+    stem = lm[:-2] if lm[-2:] in ("ar", "ir", "or") else lm
+    return len(stem) <= 1
+
+
 # --------------------------------------------------------------------------- #
 # EO-candidate dedup (case variants), with lemma-driven casing
 # --------------------------------------------------------------------------- #

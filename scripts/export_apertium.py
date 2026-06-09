@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Dict, Iterable
 
 from _common import read_json, ensure_dir, configure_logging, clean_lemma
+from lexicon_filters import is_junk_verb
 from conflict_resolution import pick_best
 import xml.etree.ElementTree as ET
 
@@ -751,6 +752,14 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
     existing_lemmas = {(e.get('lemma') or '').lower() for e in entries}
     extra = [e for e in bidix_entries if (e.get('lemma') or '').lower() not in existing_lemmas]
     mono_entries = entries + extra
+    # Drop single-letter-stem junk verbs (par/car/ir...) that leak from
+    # final_vocabulary too — their ar__vblex paradigm over-generates "pos" etc.
+    before = len(mono_entries)
+    mono_entries = [e for e in mono_entries
+                    if not is_junk_verb(e.get('lemma'), e.get('pos'),
+                                        (e.get('morphology') or {}).get('paradigm'))]
+    if before != len(mono_entries):
+        logging.info(f"Dropped {before - len(mono_entries)} single-letter-stem junk verbs")
     logging.info(f"Monodix: {len(entries)} vocab + {len(extra)} bidix-only = {len(mono_entries)} total")
 
     # Feminine-shadow guard: drop monodix entries `lemma<n>` (paradigm o__n)
