@@ -76,6 +76,12 @@ VERB_DERIVATIONS: list[tuple[str, str, str]] = [
 # Derivations from noun roots.
 NOUN_DERIVATIONS: list[tuple[str, str, str]] = [
     ("a",    "a",    "adj"),   # adjective form
+    # Ido relational/qualitative noun→adjective suffixes map to the bare Eo
+    # adjective (-a): nacionala→nacia, historiala→historia, envidioza→envia.
+    # These analyse to a flat <adj> lemma (nacional<adj>) with no bidix entry, so
+    # the audit of the 100 longest articles found them untranslated (@nacional).
+    ("ala",  "a",    "adj"),   # relational adjective: X-ala (pertaining to X)
+    ("oza",  "a",    "adj"),   # qualitative adjective: X-oza (full of / -ous)
     ("e",    "e",    "adv"),   # adverb form
     ("aro",  "aro",  "n"),     # collection / group
     ("ejo",  "ejo",  "n"),     # place for
