@@ -6,11 +6,15 @@ collect all unknown/failed tokens, group by error type, ignore proper nouns.
 Usage: python3 audit_100_articles.py
 """
 import bz2
+import os
 import re
 import subprocess
 import sys
 import xml.etree.ElementTree as ET
 from collections import defaultdict
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from lexicon_filters import is_junk_lemma  # MediaWiki/numeric artifact predicate
 
 DUMP = "data/raw/iowiki-latest-pages-articles.xml.bz2"
 APERTIUM_DIR = "/home/mark/projects/apertium-dev/apertium-ido-epo"
@@ -31,13 +35,14 @@ def clean_wikitext(raw):
     t = _RE_TABLE.sub('', raw)
     t = _RE_REF.sub('', t)
     t = _RE_TEMPLATE.sub('', t)
+    # Strip File/Image/Imajo links BEFORE the generic link regex — otherwise the
+    # generic regex keeps the pipe-separated image params ("thumb|left|320px|caption")
+    # as plain text, leaking thumb/left/right/px into the unknown-word counts.
+    t = re.sub(r'\[\[(?:File|Image|Imajo):[^\]]*\]\]', '', t, flags=re.IGNORECASE)
     t = _RE_LINK.sub(r'\1', t)
     t = _RE_HTML.sub('', t)
     t = _RE_HEADING.sub('', t)
     t = re.sub(r"'{2,}", '', t)
-    t = re.sub(r'\[\[File:[^\]]*\]\]', '', t, flags=re.IGNORECASE)
-    t = re.sub(r'\[\[Image:[^\]]*\]\]', '', t, flags=re.IGNORECASE)
-    t = re.sub(r'\[\[Imajo:[^\]]*\]\]', '', t, flags=re.IGNORECASE)
     t = re.sub(r'^\*.*$', '', t, flags=re.MULTILINE)
     t = re.sub(r'^\|.*$', '', t, flags=re.MULTILINE)
     t = re.sub(r'^\!.*$', '', t, flags=re.MULTILINE)
@@ -77,10 +82,21 @@ def iter_articles(path, min_words, limit):
 
 
 def translate_text(text, apertium_dir, pair):
-    """Run text through apertium, return raw output."""
+    """Run text through the analysis+bidix stages, return marker-bearing output.
+
+    The full `apertium -d` mode strips */@ markers (final `lt-proc -n -g`), so we
+    run the marker-preserving prefix of the pipeline: sed elision -> analyse ->
+    pretransfer -> bidix lookup. `*word` = unknown (absent from monodix),
+    `@word` = analysed but no Esperanto translation in the bidix.
+    """
+    cmd = (
+        r"sed -u -e 's/l\x27/la\x20/g' -e 's/L\x27/La\x20/g' "
+        f"| lt-proc '{apertium_dir}/{pair}.automorf.bin' "
+        "| apertium-pretransfer -n "
+        f"| lt-proc -b '{apertium_dir}/{pair}.autobil.bin'"
+    )
     result = subprocess.run(
-        ['apertium', '-d', apertium_dir, pair],
-        input=text, capture_output=True, text=True, timeout=60
+        cmd, input=text, capture_output=True, text=True, shell=True, timeout=120
     )
     return result.stdout
 
@@ -155,11 +171,11 @@ def main():
         at_here = defaultdict(int)
 
         for tok in stars:
-            if not is_proper_noun(tok, propn_set):
+            if not is_proper_noun(tok, propn_set) and not is_junk_lemma(tok):
                 star_tokens[tok] += 1
                 star_here[tok] += 1
         for tok in ats:
-            if not is_proper_noun(tok, propn_set):
+            if not is_proper_noun(tok, propn_set) and not is_junk_lemma(tok):
                 at_tokens[tok] += 1
                 at_here[tok] += 1
 

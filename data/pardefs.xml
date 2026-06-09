@@ -33,6 +33,12 @@
            EO equivalent uses -aĵo (handled in transfer rules / EO morphology). -->
       <e><p><l>ajo</l><r><s n="n"/><s n="der_aj"/><s n="n"/><s n="sg"/><s n="nom"/></r></p></e>
       <e><p><l>aji</l><r><s n="n"/><s n="der_aj"/><s n="n"/><s n="pl"/><s n="nom"/></r></p></e>
+      <!-- Collective from nouns: mont+aro → montaro (mountain range), hom+aro → homaro
+           (humanity), person+aro → personaro (personnel). EO collective is also -aro,
+           generated compositionally by apertium-epo, so the right side carries the EO
+           collective lemma (montaro<n>) and <sg/pl><nom> passes through. -->
+      <e><p><l>aro</l><r><s n="n"/><s n="der_aro"/><s n="n"/><s n="sg"/><s n="nom"/></r></p></e>
+      <e><p><l>ari</l><r><s n="n"/><s n="der_aro"/><s n="n"/><s n="pl"/><s n="nom"/></r></p></e>
     </pardef>
     <pardef n="a__adj">
       <e>
