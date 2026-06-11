@@ -31,6 +31,12 @@ from typing import Dict, Iterable, Sequence, Tuple
 SOURCE_RANK_BASELINE: Dict[str, int] = {
     'function_word_override': 0,
     'function_words_seed': 0,
+    # Structured closed-class tables (parse_closed_class.py): pronoun comparison
+    # table + correlative grid. Authoritative for its small lemma set, so it
+    # shares the top tier. Its *qualified* twin ('closed_class_tables_qualified',
+    # cells the source page itself footnotes as theoretical, e.g. tu→ci¹) is
+    # deliberately NOT listed → default rank, never outranks live extractions.
+    'closed_class_tables': 0,
     'io_wiktionary': 1,
     'eo_wiktionary': 1,
     'fr_wiktionary_meaning': 1,

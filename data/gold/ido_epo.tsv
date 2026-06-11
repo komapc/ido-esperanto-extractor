@@ -1,4 +1,4 @@
-# Ido -> Esperanto gold evaluation set (v3, 2026-06-07)
+# Ido -> Esperanto gold evaluation set (v4, 2026-06-10)
 # Format: ido<TAB>reference_eo<TAB>tags(comma-separated)
 # References are the linguistically CORRECT Esperanto, NOT current engine output.
 # Kept short and phenomenon-targeted so the reference is unambiguous.
@@ -7,7 +7,7 @@
 # Phenomenon tags: pronoun, possessive, correlative, relative, tense, mood,
 #   participle, passive, agreement, accusative, plural, preposition, conjunction,
 #   reflexive, comparative, negation, question, number, adverb, function,
-#   elision, article, basic, wikipedia
+#   elision, article, basic, wikipedia, predicate, copula, quantifier, derivation
 #
 # === basic SVO / sanity ===
 La suno brilas.	La suno brilas.	basic
@@ -189,6 +189,32 @@ Morge ni iros.	Morgaŭ ni iros.	function,tense
 L'urbo esas granda.	La urbo estas granda.	elision,article
 Me vidas l'amiko.	Mi vidas la amikon.	elision,article,accusative
 Me lektis l'artiklo.	Mi legis la artikolon.	elision,article,accusative,tense
+#
+# === predicate agreement: plural-pronoun / copula subjects (t1x #147/#148/#151) ===
+Li esas felica.	Ili estas feliĉaj.	pronoun,agreement,predicate
+Ni esas forta.	Ni estas fortaj.	pronoun,agreement,predicate
+Ni restas felica.	Ni restas feliĉaj.	pronoun,agreement,predicate,copula
+El divenas richa.	Ŝi fariĝas riĉa.	pronoun,copula
+Li semblas saja.	Ili ŝajnas saĝaj.	pronoun,agreement,predicate,copula
+#
+# === quantifier + noun agreement (kelka/multa/diversa/cetera, t1x #143) ===
+Kelka homi venis.	Kelkaj homoj venis.	agreement,plural,quantifier
+Multa pueri kantas.	Multaj infanoj kantas.	agreement,plural,quantifier
+Kelka yuna pueri ludas.	Kelkaj junaj infanoj ludas.	agreement,plural,quantifier
+#
+# === multi-modifier / derived-noun NPs (t1x #149/#150) ===
+La yuna lernanti lektas.	La junaj lernantoj legas.	agreement,plural,derivation
+La granda blanka domi esas nova.	La grandaj blankaj domoj estas novaj.	agreement,plural,predicate
+La nova lernanti esas yuna.	La novaj lernantoj estas junaj.	agreement,plural,predicate,derivation
+Longa promenadi esas agrabla.	Longaj promenadoj estas agrablaj.	agreement,plural,predicate,derivation
+La homi qui laboras esas felica.	La homoj kiuj laboras estas feliĉaj.	relative,agreement,plural,predicate
+#
+# === -aro collectives (der_aro, extractor #137) ===
+La montaro esas alta.	La montaro estas alta.	derivation
+Me studias la vortaro.	Mi studas la vortaron.	derivation,accusative
+#
+# === prepositional reflexive ===
+Il parolas pri su.	Li parolas pri si.	reflexive,preposition,pronoun
 #
 # === real text: Ido Wikipedia featured articles ===
 Benjamin Franklin esis Usana politikisto ed inventisto.	Benjamin Franklin estis usona politikisto kaj inventisto.	wikipedia,tense,conjunction

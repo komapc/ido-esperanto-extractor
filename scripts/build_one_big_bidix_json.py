@@ -37,8 +37,8 @@ _FUNCTION_WORD_OVERRIDES: Dict[str, Dict[str, str]] = {
     'dil':  {'pos': 'prep_art', 'eo': 'de'},    # di + la (contraction); io_wiktionary EO is multi-word, filtered upstream
     'til':  {'pos': 'pr',       'eo': 'ĝis'},   # until — io_wiktionary EO is junk-grade ("ĝis la revido")
     'quan': {'pos': 'prn',      'eo': 'kiun'},  # accusative of qua; not derived by __prn paradigm
-    'qui':  {'pos': 'prn',      'eo': 'kiuj'},  # plural relative/interrogative pronoun
-    'quo':  {'pos': 'prn',      'eo': 'kio'},   # interrogative "what" (NOT a noun — see _IDO_REL_INT_PRN)
+    # qui→kiuj and quo→kio RETIRED 2026-06-10: now supplied by the
+    # closed_class_tables source (correlative grid, parse_closed_class.py).
     'di qua': {'pos': 'prn',    'eo': 'de kiu'},  # relative "of/from which"; io_wikt gloss "kies" is only the possessive sense
     'di qui': {'pos': 'prn',    'eo': 'de kiuj'}, # plural
     'saluto': {'pos': 'ij',     'eo': 'saluton'}, # greeting
@@ -319,12 +319,23 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
         # Mark provenance so downstream consumers (e.g. export_apertium monodix
         # builder) can recognize this lemma as authoritatively overridden.
         by_key[key]['_all_sources'].add('function_word_override')
+    # Closed-class POS must take their paradigm from the POS, never from the
+    # lemma ending: ending inference gives quo<prn> the o__n noun paradigm,
+    # which resurrects the spurious qu<n>/qui<n><pl> analyses the
+    # _IDO_REL_INT_PRN fix exists to prevent. (The function-word overrides used
+    # to mask this by force-writing morphology after the loop; retiring them
+    # exposed it.)
+    _CLOSED_CLASS_PAR = {'pr', 'det', 'prn', 'cnjcoo', 'cnjsub', 'ij', 'prep_art'}
     for rec in by_key.values():
         if not (rec.get('morphology') or {}).get('paradigm'):
-            par = _infer_paradigm(rec)
-            if not par:
-                # infer_morphology expects verbose POS; fall back to short-form map
-                par = _POS_TO_PAR.get(str(rec.get('pos') or ''))
+            pos_s = str(rec.get('pos') or '')
+            if pos_s in _CLOSED_CLASS_PAR:
+                par = _POS_TO_PAR.get(pos_s)
+            else:
+                par = _infer_paradigm(rec)
+                if not par:
+                    # infer_morphology expects verbose POS; fall back to short-form map
+                    par = _POS_TO_PAR.get(pos_s)
             if par:
                 rec['morphology'] = {'paradigm': par, 'features': {}}
 
@@ -458,6 +469,10 @@ def main(argv: Iterable[str]) -> int:
         # Morphological expansion: derived forms (e.g. abasata→malaltigata) from
         # known verb/noun pairs. Only includes forms validated in io.wiki corpus.
         base_path / 'work/io_eo_morphological.json',
+        # Closed-class pairs from structured wiki tables (pronoun comparison
+        # table + correlative grid, parse_closed_class.py). Rank 0 for the
+        # unqualified source name — fixes correlative winners (omna→ĉiu).
+        base_path / 'work/closed_class.json',
         # Function words whose EO translations the live parser cannot extract from the Wiktionary dump.
         # Keep this list minimal — entries here override BERT but lose to any live Wiktionary extraction.
         base_path / 'data/sources/source_function_words_seed.json',

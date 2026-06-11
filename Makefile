@@ -82,6 +82,7 @@ ifneq ($(SKIP_FR_MEANINGS),1)
 endif
 	$(PY) scripts/prepare_vocabulary.py --wiki-top-n 1000
 	$(PY) scripts/build_monolingual.py
+	$(PY) scripts/parse_closed_class.py -v
 	$(PY) scripts/build_one_big_bidix_json.py
 	$(PY) scripts/report_coverage.py --top 5000
 	$(PY) scripts/export_apertium.py

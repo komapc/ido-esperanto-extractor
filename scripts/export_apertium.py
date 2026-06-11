@@ -744,7 +744,13 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
         existing = bidix_by_lemma.get(lm)
         if existing is None or (not existing.get('pos') and be.get('pos')):
             bidix_by_lemma[lm] = be
-        if any((p.get('source') == 'function_word_override') for p in (be.get('provenance') or [])):
+        # closed_class_tables (structured pronoun/correlative tables, rank-0
+        # source) shares the function-word override's monodix authority: the
+        # open Wiktionary harvest gives these lemmas wrong POS/paradigms
+        # (quo → o__n noun, resurrecting the spurious qu<n> analyses). The
+        # *_qualified twin deliberately does NOT qualify.
+        if any((p.get('source') in ('function_word_override', 'closed_class_tables'))
+               for p in (be.get('provenance') or [])):
             bidix_override_by_lemma[lm] = be
     # Upgrade vocab entries that have no pos/paradigm using the bidix entry,
     # and force-override pos/morphology when bidix has a function_word_override
