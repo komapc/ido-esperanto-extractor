@@ -40,6 +40,11 @@ HAS_LETTER_RE = re.compile(r"[^\W\d_]", re.UNICODE)
 # Metrics
 # --------------------------------------------------------------------------- #
 def _char_ngrams(text: str, n: int) -> list[str]:
+    # Strip Apertium meta-markers (*=unknown, @=bidix-gap, #=gen-fail) — they are
+    # display annotations, not part of the translation, so they must not perturb
+    # chrF. (The pipeline now preserves "*"/"@" for the frontend; coverage is
+    # measured separately via the analyser, so chrF stays purely linguistic.)
+    text = text.translate({0x2A: None, 0x40: None, 0x23: None})
     s = re.sub(r"\s+", " ", text.strip().lower())
     return [s[i : i + n] for i in range(len(s) - n + 1)] if len(s) >= n else []
 
