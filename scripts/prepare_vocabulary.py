@@ -44,7 +44,16 @@ def _is_valid_eo_term(term: str) -> bool:
         return False
     if ',' in term:
         return False
-    return bool(ALLOWED_EO_CHARS_RE.match(term))
+    # Allow at most one space (two-word EO terms): legitimate multiword
+    # translations like 'ĉi tie', 'tiu ĉi', 'iu ajn', 'de la' were rejected
+    # here while build_one_big's clean_term (and the langlinks/wikidata/seed
+    # sources that bypass this filter) already accept ≤2-word terms — this
+    # filter being stricter than the shared merge was an inconsistency, not a
+    # policy. 3+ words are still rejected (definitions, not translations).
+    words = term.split(' ')
+    if len(words) > 2:
+        return False
+    return all(ALLOWED_EO_CHARS_RE.match(w) for w in words)
 
 
 def _clean_eo_term(raw: str) -> str:
