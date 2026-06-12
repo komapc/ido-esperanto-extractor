@@ -141,7 +141,7 @@ def build_monodix(entries):
     alphabet.text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     # Define sdefs for monolingual dictionary
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_ala", "der_aro", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra", "der_aj"]:
+    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def", "sent", "der_pres", "der_act", "der_qual", "der_oz", "der_ala", "der_aro", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra", "der_aj"]:
         ET.SubElement(sdefs, "sdef", n=s)
     # Load pardefs from external file instead of hardcoding
     pardefs_path = Path(__file__).resolve().parents[1] / "data/pardefs.xml"
@@ -198,6 +198,22 @@ def build_monodix(entries):
     # Digit-form ordinals: 1ma, 16ma, 16-ma
     _num_ord_sec = ET.SubElement(section, "e")
     ET.SubElement(_num_ord_sec, "par", n="num_ord_regex")
+
+    # Sentence punctuation as real lexical units (inconditional section).
+    # Without these the analyzer passes '.'/'?'/'!' through as blanks, so t1x
+    # patterns match ACROSS sentence boundaries ("Il dormas. Bela kato venas."
+    # → the vblex+adj+nom transitive rule fired across the period, yielding
+    # "Belan katon venas."). A <sent> LU breaks token adjacency at the
+    # boundary. Clause punctuation (, ; :) is deliberately left as blanks —
+    # rules legitimately match across it (adj , adj nom chains).
+    punct_section = ET.SubElement(dictionary, "section", id="punct", type="inconditional")
+    for mark in (".", "?", "!", "…"):
+        pe = ET.SubElement(punct_section, "e")
+        pp = ET.SubElement(pe, "p")
+        ET.SubElement(pp, "l").text = mark
+        pr = ET.SubElement(pp, "r")
+        pr.text = mark
+        ET.SubElement(pr, "s", n="sent")
 
     # Deduplicate entries by lemma, prioritizing more specific paradigms over o__n
     best_entries = {}
@@ -352,7 +368,7 @@ def build_bidix(entries):
     alphabet = ET.SubElement(dictionary, "alphabet")
     alphabet.text = "abcdefghijklmnopqrstuvwxyzĉĝĥĵŝŭABCDEFGHIJKLMNOPQRSTUVWXYZĈĜĤĴŜŬ"
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "vbtr", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp3", "ppres", "p1", "p2", "p3", "ciph", "np", "def", "der_pres", "der_act", "der_qual", "der_oz", "der_ala", "der_aro", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra", "der_aj"]:
+    for s in ["n", "adj", "adv", "vblex", "vbtr", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp3", "ppres", "p1", "p2", "p3", "ciph", "np", "def", "sent", "der_pres", "der_act", "der_qual", "der_oz", "der_ala", "der_aro", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra", "der_aj"]:
         ET.SubElement(sdefs, "sdef", n=s)
     # Structural pardefs: regex-based rules that are independent of vocabulary data
     pardefs = ET.SubElement(dictionary, "pardefs")
@@ -401,6 +417,19 @@ def build_bidix(entries):
     # Regex number passthrough: maps Ido digits → same digits in Esperanto
     _num_sec = ET.SubElement(section, "e")
     ET.SubElement(_num_sec, "par", n="num_regex")
+
+    # Identity mappings for the sentence-punctuation LUs emitted by the
+    # monodix punct section (see build_monodix) — without them lt-proc -b
+    # marks every period '@'.
+    for mark in (".", "?", "!", "…"):
+        pe = ET.SubElement(section, "e")
+        pp = ET.SubElement(pe, "p")
+        pl = ET.SubElement(pp, "l")
+        pl.text = mark
+        ET.SubElement(pl, "s", n="sent")
+        pr = ET.SubElement(pp, "r")
+        pr.text = mark
+        ET.SubElement(pr, "s", n="sent")
 
     # Use top-level map_s_tag
 
