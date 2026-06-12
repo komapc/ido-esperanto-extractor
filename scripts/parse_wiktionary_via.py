@@ -88,11 +88,20 @@ def extract_translations_for_meaning(text: str, meaning_num: int) -> Dict[str, L
     return translations
 
 
-def parse_french_wiktionary_via(dump_path: Path, output_path: Path, progress_every: int = 1) -> None:
+def parse_french_wiktionary_via(dump_path: Path, output_path: Path, progress_every: int = 1,
+                                io_pos_path: Path | None = None) -> None:
     """Parse French Wiktionary for via-specific IO/EO translations."""
     logging.info("Parsing French Wiktionary for via translations")
     logging.info(f"Input: {dump_path}")
     logging.info(f"Output: {output_path}")
+
+    # POS propagation, same as the EN via path: a null POS prevents the pair
+    # from unifying with the typed (lemma, pos) entry in build_one_big — e.g.
+    # fr_via 'tam'→tiel sat in a ('tam', None) entry forever while the empty
+    # ('tam', 'adv') io_wiktionary twin starved.
+    if io_pos_path is None:
+        io_pos_path = output_path.parent / "io_wiktionary_processed.json"
+    io_pos_map = _load_io_pos_map(io_pos_path)
     
     results = []
     processed = 0
@@ -148,7 +157,7 @@ def parse_french_wiktionary_via(dump_path: Path, output_path: Path, progress_eve
                                         'id': f"fr_via:{title}:{via_data['via_num']}",
                                         'lemma_io': io_term,
                                         'lemma_eo': eo_term,
-                                        'pos': None,
+                                        'pos': io_pos_map.get(io_term.lower()),
                                         'language_io': 'io',
                                         'language_eo': 'eo',
                                         'senses': [{
