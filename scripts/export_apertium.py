@@ -358,6 +358,30 @@ def _demote_eo_feminine(order, ido_lemma):
     return [t for t in order if t not in fem] + [t for t in order if t in fem]
 
 
+def _demote_eo_inchoative(order, ido_lemma):
+    """Demote an Esperanto inchoative/middle (-iĝi) candidate below its base (-i)
+    verb when both are present, so a plain transitive Ido verb does not pick the
+    -iĝi gloss. The pivots list both because the English/French infinitive is
+    ambiguous: komencar -> [komenciĝi, komenci] must resolve to `komenci` (not
+    `komenciĝi`); likewise finar -> fini, movar -> movi.
+
+    Only fires when the -iĝi candidate is literally the inchoative of another
+    candidate (base = stem+"i" is present), so a verb whose only gloss is -iĝi is
+    untouched; restricted to verb infinitives and skipped for Ido inchoatives
+    (-eskar), where the Esperanto -iĝi is the correct reading. Mirrors
+    _demote_eo_feminine; pick_best uses insertion order as its tiebreak.
+    """
+    low = (ido_lemma or "").casefold()
+    if not low.endswith(("ar", "ir", "or")) or low.endswith("eskar"):
+        return order
+    present = {t.casefold() for t in order}
+    incho = {t for t in order
+             if t.casefold().endswith("iĝi") and t.casefold()[:-3] + "i" in present}
+    if not incho:
+        return order
+    return [t for t in order if t not in incho] + [t for t in order if t in incho]
+
+
 def _eo_candidates(e):
     """Ordered (term, [sources]) EO candidates for an entry, deduped by term.
 
@@ -384,6 +408,7 @@ def _eo_candidates(e):
                 srcs = tr.get("sources") or ([tr["source"]] if tr.get("source") else [])
                 add(tr["term"], srcs)
     order = _demote_eo_feminine(order, e.get("lemma"))
+    order = _demote_eo_inchoative(order, e.get("lemma"))
     return [(t, sorted(by_term[t])) for t in order]
 
 
