@@ -31,6 +31,8 @@ _FUNCTION_WORD_OVERRIDES: Dict[str, Dict[str, str]] = {
     'e':    {'pos': 'cnjcoo',   'eo': 'kaj'},   # and (Wiktionary has it but pipeline misses it)
     'ed':   {'pos': 'cnjcoo',   'eo': 'kaj'},   # and (before vowels — no standalone Wiktionary entry)
     'o':    {'pos': 'cnjcoo',   'eo': 'aŭ'},    # or (Wiktionary has it but pipeline misses it)
+    'od':   {'pos': 'cnjcoo',   'eo': 'aŭ'},    # or (before vowels — euphonic variant of 'o', mirrors 'ed'; Wiktionary leaves pos null)
+    'cent': {'pos': 'num',      'eo': 'cent'},  # hundred (io_wiktionary mis-tags it <ij>)
     'a':    {'pos': 'pr',       'eo': 'al'},    # to/toward (Wiktionary translation blank)
     'al':   {'pos': 'pr',       'eo': 'al'},    # a+la contraction, kept as pr to avoid double-article
     'dal':  {'pos': 'prep_art', 'eo': 'de'},    # da + la (contraction); transfer expands to "de la"
