@@ -281,6 +281,23 @@ def parse_correlative_grid(wikitext: str, revid: str) -> List[Dict]:
                              "row": label or "(determiner)",
                              "cell": lemma + "→" + eo},
                         ))
+                    # Proximal ic- series: Ido distinguishes ita (that, distal)
+                    # from ica (this, proximal); Esperanto has no proximal
+                    # correlative and expresses it as the ti- series + the
+                    # particle ĉi. Derive ica/ico/ici from the distal it- forms
+                    # (col 1, "it" prefix) → "ĉi " + the ti- gloss, emitted as a
+                    # prn with a multiword target (like the attested ici→"tiuj ĉi";
+                    # the bidix already supports multiword <r>). Short t-/c- forms
+                    # are skipped — "ci" collides with the personal pronoun ci.
+                    if col == 1 and lemma.startswith("it"):
+                        prox = "ic" + lemma[2:]
+                        entries.append(make_entry(
+                            prox, "prn", "ĉi " + eo, SOURCE,
+                            {"page": PAGE_GRAMMAR, "revid": revid,
+                             "table": "Tabelo plu granda",
+                             "row": label or "(determiner)",
+                             "cell": prox + "→ĉi " + eo},
+                        ))
         break
     return entries
 
