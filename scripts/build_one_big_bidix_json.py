@@ -55,6 +55,17 @@ _FUNCTION_WORD_OVERRIDES: Dict[str, Dict[str, str]] = {
 _IDO_REL_INT_PRN = {'qua', 'qui', 'quo', 'quan', 'quin', 'quon',
                     'di qua', 'di qui', 'di quo'}
 
+# Closed-class demonstrative DETERMINERS (singular: ita/ta distal, ica proximal).
+# Force adj so they analyse as it<adj>/ic<adj> and route through the corr_u+nom
+# agreement rule (ita domi -> tiuj domoj) exactly like omna -> ĉiu, rather than
+# as <prn> (which blocks agreement AND collides with the verb+pronoun object
+# rule). The correlative grid emits each as both the determiner row (adj) and
+# the individuo row (prn); forcing adj merges the prn entry into the adj one.
+# The plural forms (iti/ti/ici) and the -o thing-forms (ito/ico/to -> tio) keep
+# their prn reading — they are standalone pronouns, already correct. (The
+# proximal ica is added once Stage B supplies its ic<adj>->tiu bidix entry.)
+_IDO_DEM_DET = {'ita', 'ta'}
+
 
 # BERT vocab pre-filter: the source vocab includes a lot of non-Ido garbage
 # (text fragments like "(białystok),", "$28,750", "(1.1", "the", "and", and
@@ -195,6 +206,11 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
         # _infer_paradigm picks __prn. Prevents the quo<n>→qui<n><pl> mis-analysis.
         if ll in _IDO_REL_INT_PRN:
             pos = 'prn'
+            morphology = {}
+        # Closed-class demonstrative determiners: force adj (overriding the
+        # individuo-row prn) so they analyse as it<adj> and agree via corr_u+nom.
+        elif ll in _IDO_DEM_DET:
+            pos = 'adj'
             morphology = {}
         # Missing/empty POS: infer from the (reliable) Ido lemma ending so the
         # merge key is consistent. Otherwise a zero-EO entry stored with no POS
