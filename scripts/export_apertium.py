@@ -334,6 +334,30 @@ def build_monodix(entries):
     return dictionary
 
 
+def _demote_eo_feminine(order, ido_lemma):
+    """Demote an Esperanto feminine (-ino) candidate below its non-feminine base
+    when both are present, so a gender-NEUTRAL Ido noun does not pick the feminine
+    Esperanto gloss. Ido marks the feminine explicitly (-ino), so a bare Ido word
+    like `habitanto` is neutral and must map to `loĝanto`, not `loĝantino` (the
+    en_wiktionary pivot lists both because English "inhabitant" is gender-neutral).
+
+    Only fires when the -ino candidate is literally the feminine of another
+    candidate (base = stem+"o" is present), so root-final -ino words (maŝino,
+    vitamino) are untouched; skipped when the Ido lemma is itself feminine-marked
+    (-ino/-ina), where the Esperanto -ino is correct. pick_best uses insertion
+    order as its tiebreak, so reordering is the idiomatic lever.
+    """
+    low = (ido_lemma or "").casefold()
+    if low.endswith("ino") or low.endswith("ina"):
+        return order
+    present = {t.casefold() for t in order}
+    fem = {t for t in order
+           if t.casefold().endswith("ino") and t.casefold()[:-3] + "o" in present}
+    if not fem:
+        return order
+    return [t for t in order if t not in fem] + [t for t in order if t in fem]
+
+
 def _eo_candidates(e):
     """Ordered (term, [sources]) EO candidates for an entry, deduped by term.
 
@@ -359,6 +383,7 @@ def _eo_candidates(e):
             if tr.get("lang") == "eo" and tr.get("term"):
                 srcs = tr.get("sources") or ([tr["source"]] if tr.get("source") else [])
                 add(tr["term"], srcs)
+    order = _demote_eo_feminine(order, e.get("lemma"))
     return [(t, sorted(by_term[t])) for t in order]
 
 
