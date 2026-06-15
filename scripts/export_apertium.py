@@ -9,6 +9,7 @@ from _common import read_json, ensure_dir, configure_logging, clean_lemma
 from lexicon_filters import is_junk_verb
 from conflict_resolution import pick_best
 import xml.etree.ElementTree as ET
+from xml.sax.saxutils import quoteattr
 
 
 # Maps contraction surface form → base preposition lemma (used by monodix/bidix).
@@ -56,20 +57,93 @@ def _clean_translation_term(raw: str) -> str:
     return term
 
 
-def write_xml_file(elem: ET.Element, output_path: Path) -> None:
-    """Write Apertium XML with declaration (no indentation to avoid breaking lt-proc)."""
-    # Add XML declaration
-    xml_declaration = b'<?xml version="1.0" encoding="UTF-8"?>\n'
+# Container tags whose direct children each go on their own indented line.
+# Everything else (notably <e>, <sdef>, <alphabet>) is serialised inline so that
+# NO whitespace is ever introduced inside <l>/<r>/<i>/<g>/<b> text — that would
+# corrupt surface forms. Indentation only ever appears *between* elements, which
+# lttoolbox ignores (this matches the layout of the official Apertium dictionaries).
+_BLOCK_TAGS = {"dictionary", "sdefs", "pardefs", "pardef", "section"}
 
-    # Write to file
-    with open(output_path, 'wb') as f:
-        f.write(xml_declaration)
-        content = ET.tostring(elem, encoding="utf-8")
-        # Remove spaces before self-closing tags (e.g., <s n="n" /> -> <s n="n"/>)
-        # This is CRITICAL for lt-proc compatibility
-        content = content.replace(b' />', b'/>')
-        f.write(content)
-        f.write(b'\n')
+
+def _serialize_inline(elem: ET.Element) -> str:
+    """One <e>/<sdef>/… element on a single line, lt-proc-safe."""
+    s = ET.tostring(elem, encoding="unicode")
+    # <s n="n" /> -> <s n="n"/> : CRITICAL for lt-proc compatibility.
+    return s.replace(" />", "/>").strip()
+
+
+def _write_elem(elem: ET.Element, indent: str, out: list) -> None:
+    if elem.tag in _BLOCK_TAGS and len(elem):
+        attrs = "".join(f" {k}={quoteattr(v)}" for k, v in elem.attrib.items())
+        out.append(f"{indent}<{elem.tag}{attrs}>")
+        for child in elem:
+            _write_elem(child, indent + "  ", out)
+        out.append(f"{indent}</{elem.tag}>")
+    else:
+        out.append(indent + _serialize_inline(elem))
+
+
+def write_xml_file(elem: ET.Element, output_path: Path, header_comment: str = None) -> None:
+    """Write Apertium XML, pretty-printed one entry per line (human-readable and
+    diffable, as Apertium trunk requires) without breaking lt-proc. An optional
+    header_comment is emitted in the XML prolog (it must not contain '--')."""
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>']
+    if header_comment:
+        assert "--" not in header_comment, "XML comments may not contain '--'"
+        lines.append("<!--\n" + header_comment.strip("\n") + "\n-->")
+    _write_elem(elem, "", lines)
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines))
+        f.write("\n")
+
+# Documentation of the language-specific derivation symbols (sdefs) used by both
+# dictionaries, emitted into each .dix header so the custom tags are auditable —
+# a requirement for upstreaming to official Apertium. Ido and Esperanto share a
+# regular, productive suffix system; these symbols tag the derived analyses so
+# the bilingual dictionary can map each Ido derivation to its Esperanto form.
+_DERIVATION_DOC = """\
+  Language-specific symbols — Ido productive derivational morphology
+  (symbol  =  Ido suffix  ->  Esperanto output; example verb 'krear', noun 'monto'):
+
+    der_act   Ido -ad-  action noun             krear    -> kreado     [n]
+    der_pres  Ido -ant- agent / present noun     krear    -> kreanto    [n]
+    der_past  Ido -int- past noun                krear    -> kreinto    [n]
+    der_ppra  Ido -ant- active present participle krear   -> kreanta    [adj]
+    der_ppa   Ido -int- active past participle    krear   -> kreinta    [adj]
+    der_pprs  Ido -at-  passive present participle krear  -> kreata     [adj]
+    der_ppas  Ido -it-  passive past participle   krear   -> kreita     [adj]
+    der_pfut  Ido -ot-  passive future participle krear   -> kreota     [adj]
+    der_qual  Ido -es-  abstract quality (from adj) bona  -> boneco     [n]
+    der_ala   Ido -al-  relational adjective      ekonomio -> ekonomia  [adj]
+    der_oz    Ido -oz-  'full of' adjective       sukceso  -> sukcesa   [adj]
+    der_aro   Ido -ar-  collective noun           monto    -> montaro   [n]
+    der_aj    Ido -aj-  concrete manifestation    (monodix analysis only)
+    der_izar  Ido -iz-  'provide with' verb       (monodix analysis only)
+    der_esar  Ido -es-  passive verb formant      (monodix analysis only)
+"""
+
+_MONODIX_HEADER = """\
+  apertium-ido: Ido morphological dictionary.
+
+  AUTO-GENERATED — do not edit by hand. Regenerate with the
+  ido-esperanto-extractor pipeline (scripts/export_apertium.py). Lexical data is
+  derived from Wiktionary, Wikipedia/Wikidata interwiki links and a cognate
+  aligner; see the extractor for per-entry provenance. Sources are CC BY-SA;
+  this dictionary is GPL-3.0.
+
+""" + _DERIVATION_DOC
+
+_BIDIX_HEADER = """\
+  apertium-ido-epo: Ido <-> Esperanto bilingual dictionary.
+
+  AUTO-GENERATED — do not edit by hand. Regenerate with the
+  ido-esperanto-extractor pipeline (build_one_big_bidix_json.py then
+  scripts/export_apertium.py). Lexical data is derived from Wiktionary,
+  Wikipedia/Wikidata interwiki links and a cognate aligner; see the extractor
+  for per-entry provenance. Sources are CC BY-SA; this dictionary is GPL-3.0.
+
+""" + _DERIVATION_DOC
+
 
 def load_pardefs_from_file(pardefs_path: Path) -> ET.Element:
     """Load paradigm definitions from an XML file."""
@@ -890,11 +964,11 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
     mono_entries = filtered
 
     mono = build_monodix(mono_entries)
-    write_xml_file(mono, out_monodix)
+    write_xml_file(mono, out_monodix, header_comment=_MONODIX_HEADER)
 
     logging.info(f"Building bilingual dictionary from {len(bidix_entries)} entries")
     bidi = build_bidix(bidix_entries)
-    write_xml_file(bidi, out_bidix)
+    write_xml_file(bidi, out_bidix, header_comment=_BIDIX_HEADER)
     logging.info("Exported Apertium XML: %s, %s", out_monodix, out_bidix)
 
 
