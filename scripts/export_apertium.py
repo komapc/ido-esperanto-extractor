@@ -208,6 +208,75 @@ _PERSONAL_PRONOUNS = frozenset({
     'me', 'tu', 'vu', 'lu', 'elu', 'ilu', 'olu', 'ni', 'vi', 'li', 'su',
 })
 
+# apertium-epo lemmatises the Esperanto personal pronouns as `prpers` with
+# person/gender/number features (NOT as their surface form mi/ci/li/…), and its
+# morphology only emits/accepts that paradigm. The ido→epo direction already
+# bridges this in the .t1x (prn_to_subj / prn_to_obj map the bidix lemma →
+# prpers + case). But epo→ido has no such path: apertium-epo analyses "mi" as
+# `prpers<prn>…`, which the bidix never lists, so personal pronouns come out
+# untranslated (@prpers). The two tables below add the epo→ido (RL) bidix
+# entries that close that gap. This is closed-class grammatical morphology (the
+# prpers paradigm is fixed by apertium-epo), not vocabulary.
+#   surface -> (person, gender, number)  [apertium-epo prpers core features]
+_EO_PRPERS_FEATS = {
+    'mi':  ('p1', 'mf', 'sg'),
+    'ni':  ('p1', 'mf', 'pl'),
+    'ci':  ('p2', 'mf', 'sp'),
+    'vi':  ('p2', 'mf', 'sp'),
+    'li':  ('p3', 'm',  'sg'),
+    'ŝi':  ('p3', 'f',  'sg'),
+    'ĝi':  ('p3', 'nt', 'sg'),
+    'ili': ('p3', 'mf', 'pl'),
+}
+# epo→ido needs ONE deterministic Ido pronoun per prpers feature-form (several
+# Ido forms share a target — il/ilu/lu all → li; tu/vu/vi all → EO vi). Each
+# feature tuple (person, gender, number) must appear once or biltrans returns an
+# ambiguous reading. EO `vi`/`ci` share (p2,mf,sp): the gold corpus maps EO vi ↔
+# Ido tu in the large majority, so p2 → tu. Canonical subject forms below; all
+# generate cleanly in apertium-ido.
+_EO_TO_IDO_PRN = {
+    'mi': 'me', 'ni': 'ni', 'vi': 'tu',
+    'li': 'il', 'ŝi': 'el', 'ĝi': 'ol', 'ili': 'li',
+}
+
+
+def _emit_prpers_rl_entries(section):
+    """Emit the epo→ido (RL-only) personal-pronoun entries once: every prpers
+    surface analysis apertium-epo can produce (subject, nominative, accusative,
+    object) → the canonical Ido pronoun. RL-only so they never compete with the
+    LR generation entries emitted per Ido pronoun in the main loop."""
+    for eo_surf, ido_prn in _EO_TO_IDO_PRN.items():
+        pers, gen, num = _EO_PRPERS_FEATS[eo_surf]
+        # The forms apertium-epo emits (the first surviving reading after CG +
+        # pretransfer is what reaches biltrans): nom/acc/obj are gender-specific.
+        # The subject reading is gender-specific for ŝi/ĝi but apertium-epo also
+        # emits a gender-underspecified `subj … mf …` reading for the masculine
+        # "li" (its default-gender 3sg) — add that ONLY for masculine, or el/ol
+        # would collide with il on `subj p3 mf sg`.
+        forms = [
+            ('subj', pers, gen, num),
+            (pers, gen, num, 'nom'),
+            (pers, gen, num, 'acc'),
+            ('obj', pers, gen, num),
+        ]
+        if gen == 'm':
+            forms.insert(1, ('subj', pers, 'mf', num))
+        seen = set()
+        for form in forms:
+            if form in seen:
+                continue
+            seen.add(form)
+            e_rl = ET.SubElement(section, "e")
+            e_rl.set("r", "RL")
+            p_rl = ET.SubElement(e_rl, "p")
+            l_rl = ET.SubElement(p_rl, "l")
+            l_rl.text = ido_prn
+            ET.SubElement(l_rl, "s", n="prn").tail = ""
+            r_rl = ET.SubElement(p_rl, "r")
+            r_rl.text = "prpers"
+            for t in ("prn",) + form:
+                ET.SubElement(r_rl, "s", n=t).tail = ""
+
 
 def build_monodix(entries):
     dictionary = ET.Element("dictionary")
@@ -492,7 +561,7 @@ def build_bidix(entries):
     alphabet = ET.SubElement(dictionary, "alphabet")
     alphabet.text = "abcdefghijklmnopqrstuvwxyzĉĝĥĵŝŭABCDEFGHIJKLMNOPQRSTUVWXYZĈĜĤĴŜŬ"
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "vbtr", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp3", "ppres", "p1", "p2", "p3", "ciph", "np", "def", "sent", "der_pres", "der_act", "der_qual", "der_oz", "der_ala", "der_aro", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra", "der_aj"]:
+    for s in ["n", "adj", "adv", "vblex", "vbtr", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp3", "ppres", "p1", "p2", "p3", "subj", "obj", "m", "f", "mf", "nt", "ciph", "np", "def", "sent", "der_pres", "der_act", "der_qual", "der_oz", "der_ala", "der_aro", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra", "der_aj"]:
         ET.SubElement(sdefs, "sdef", n=s)
     # Structural pardefs: regex-based rules that are independent of vocabulary data
     pardefs = ET.SubElement(dictionary, "pardefs")
@@ -858,6 +927,10 @@ def build_bidix(entries):
                     r_iz.text = epo_verb
                     ET.SubElement(r_iz, "s", n="vblex").tail = ""
                     ET.SubElement(r_iz, "s", n=tense).tail = ""
+
+    # epo→ido personal-pronoun entries (prpers → canonical Ido pronoun), emitted
+    # once. RL-only, so they never compete with the per-pronoun LR entries above.
+    _emit_prpers_rl_entries(section)
     return dictionary
 
 
