@@ -278,6 +278,37 @@ def _emit_prpers_rl_entries(section):
                 ET.SubElement(r_rl, "s", n=t).tail = ""
 
 
+# apertium-epo classifies the copula and a set of intransitive/inchoative verbs
+# (esti, veni, resti, okazi, ŝajni, iĝi, fariĝi, …) as `vbser`, NOT `vblex`. The
+# bidix tags every verb `vblex`, so in epo→ido those verbs never match biltrans
+# and come out untranslated (@esti). The ido→epo direction is unaffected (Ido
+# `esar` is `es<vblex>`), so we add an epo→ido (RL-only) bidix entry mapping the
+# `vbser` reading → the Ido verb, leaving the bidirectional `vblex` entry intact.
+# The authoritative class list is apertium-epo's own monodix (the verbs whose
+# paradigm emits <s n="vbser"/>); not a hardcoded list.
+_EO_EPO_DIX = Path(__file__).resolve().parents[2] / "apertium-epo/apertium-epo.epo.dix"
+
+
+def _load_eo_vbser_lemmas(dix_path: Path = _EO_EPO_DIX) -> set:
+    """Single-word Esperanto verb lemmas apertium-epo conjugates as `vbser`."""
+    if not dix_path.exists():
+        logging.warning("apertium-epo monodix not found at %s — skipping vbser "
+                        "verb-class bidix entries (epo→ido copula stays @).", dix_path)
+        return set()
+    try:
+        root = ET.parse(dix_path).getroot()
+    except ET.ParseError as e:
+        logging.warning("Could not parse %s (%s) — skipping vbser entries.", dix_path, e)
+        return set()
+    vbser_pars = {pd.get("n") for pd in root.iter("pardef")
+                  if any(s.get("n") == "vbser" for s in pd.iter("s"))}
+    lemmas = {e.get("lm") for e in root.iter("e")
+              if e.get("lm") and " " not in e.get("lm")
+              and any(p.get("n") in vbser_pars for p in e.findall("par"))}
+    logging.info("Loaded %d apertium-epo vbser verb lemmas for epo→ido bidix.", len(lemmas))
+    return lemmas
+
+
 def build_monodix(entries):
     dictionary = ET.Element("dictionary")
     alphabet = ET.SubElement(dictionary, "alphabet")
@@ -557,11 +588,13 @@ def _eo_candidates(e):
 
 def build_bidix(entries):
 
+    eo_vbser = _load_eo_vbser_lemmas()
+
     dictionary = ET.Element("dictionary")
     alphabet = ET.SubElement(dictionary, "alphabet")
     alphabet.text = "abcdefghijklmnopqrstuvwxyzĉĝĥĵŝŭABCDEFGHIJKLMNOPQRSTUVWXYZĈĜĤĴŜŬ"
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "vbtr", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp3", "ppres", "p1", "p2", "p3", "subj", "obj", "m", "f", "mf", "nt", "ciph", "np", "def", "sent", "der_pres", "der_act", "der_qual", "der_oz", "der_ala", "der_aro", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra", "der_aj"]:
+    for s in ["n", "adj", "adv", "vblex", "vbtr", "vbser", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp3", "ppres", "p1", "p2", "p3", "subj", "obj", "m", "f", "mf", "nt", "ciph", "np", "def", "sent", "der_pres", "der_act", "der_qual", "der_oz", "der_ala", "der_aro", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra", "der_aj"]:
         ET.SubElement(sdefs, "sdef", n=s)
     # Structural pardefs: regex-based rules that are independent of vocabulary data
     pardefs = ET.SubElement(dictionary, "pardefs")
@@ -791,6 +824,24 @@ def build_bidix(entries):
             s_elem = ET.SubElement(r, "s")
             s_elem.set("n", t)
             s_elem.tail = ""
+
+        # epo→ido vbser fix: apertium-epo conjugates the copula + some
+        # intransitive/inchoative verbs as `vbser` (not `vblex`), so the bidix's
+        # `epo<vblex>` never matches them in epo→ido (@esti). Add an RL-only twin
+        # mapping `epo<vbser>` → the same Ido verb. RL-only leaves ido→epo (which
+        # uses the bidirectional `vblex` entry above) untouched. The epo→ido t1x
+        # already converts the vbser tense (pres→pri), and EO generation accepts
+        # vbser, so the matching ido→epo path keeps working.
+        if l_tags == ['vblex'] and epo in eo_vbser:
+            e_vs = ET.SubElement(section, "e")
+            e_vs.set("r", "RL")
+            p_vs = ET.SubElement(e_vs, "p")
+            l_vs = ET.SubElement(p_vs, "l")
+            l_vs.text = stem
+            ET.SubElement(l_vs, "s", n="vblex").tail = ""
+            r_vs = ET.SubElement(p_vs, "r")
+            r_vs.text = epo
+            ET.SubElement(r_vs, "s", n="vbser").tail = ""
 
         # Productive derivational morphology: generate bilingual entries for
         # derived forms of known stems so any stem in the dict gets derivations free.
