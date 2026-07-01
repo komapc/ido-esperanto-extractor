@@ -195,18 +195,20 @@ class PipelineManager:
         # if its code fingerprint is unchanged and no upstream stage re-ran.
         stored = self.state.stages.get(stage_name)
         if stored and stored.status == 'completed' and not self.force and not force_rerun:
-            if stored.code_fingerprint is None:
-                # Legacy state (pre-fingerprinting): start tracking without
-                # forcing a rebuild; future code edits will be detected.
-                stored.code_fingerprint = current_fp
-                self._save_state()
-                logging.info("Stage '%s' already completed (fingerprint stamped), skipping", stage_name)
-                return True, False
-            if stored.code_fingerprint == current_fp:
+            if stored.code_fingerprint is not None and stored.code_fingerprint == current_fp:
                 logging.info("Stage '%s' already completed, skipping", stage_name)
                 return True, False
-            logging.info("Stage '%s' code changed (%s → %s) — re-running",
-                         stage_name, stored.code_fingerprint, current_fp)
+            if stored.code_fingerprint is None:
+                # Missing/legacy fingerprint (e.g. state predates the
+                # fingerprinting feature, or was written by an older version):
+                # treat as STALE, not trusted. We cannot know whether the code
+                # changed since this state was recorded, so re-run to be safe
+                # and establish a verified baseline fingerprint.
+                logging.info("Stage '%s' has no recorded code fingerprint (legacy state) — "
+                             "treating as stale and re-running", stage_name)
+            else:
+                logging.info("Stage '%s' code changed (%s → %s) — re-running",
+                             stage_name, stored.code_fingerprint, current_fp)
 
         # Mark as running
         self.state.stages[stage_name] = StageState(
