@@ -76,11 +76,12 @@ ifneq ($(SKIP_EN_WIKT),1)
 	$(PY) scripts/parse_wiktionary_en.py --input $(RAW)/enwiktionary-latest-pages-articles.xml.bz2 --out $(WORK)/en_wikt_en_both.json --target both --progress-every 10000 -v
 	$(PY) scripts/parse_wiktionary_via.py --source en --io-input $(WORK)/en_wikt_en_both.json --eo-input $(WORK)/en_wikt_en_both.json --out $(WORK)/bilingual_via_en.json --progress-every 1000
 endif
-	$(PY) scripts/align_bilingual.py
 ifneq ($(SKIP_FR_MEANINGS),1)
 	$(PY) scripts/parse_wiktionary_via.py --source fr --progress-every 1000
 endif
+	$(PY) scripts/align_bilingual.py
 	$(PY) scripts/prepare_vocabulary.py --wiki-top-n 1000
+	$(PY) scripts/build_morphological_expansion.py
 	$(PY) scripts/build_monolingual.py
 	$(PY) scripts/parse_closed_class.py -v
 	$(PY) scripts/build_one_big_bidix_json.py
