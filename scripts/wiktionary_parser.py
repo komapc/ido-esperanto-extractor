@@ -609,6 +609,62 @@ def extract_translations_anywhere(wikitext: str, target_code: str) -> List[List[
     return extract_translations(wikitext or "", target_code)
 
 
+# English Wiktionary wraps each sense's translation table in
+# {{trans-top|gloss}}...{{trans-bottom}}, with an optional {{trans-mid}} column
+# break INSIDE that pair (harmless — it's plain text within the captured span,
+# not a boundary). Splitting on these lets an io/eo pivot pairing stay scoped
+# to one sense of a polysemous page instead of cross-producing every io term
+# on the page with every eo term (the bug this fixes: en.wiktionary "light"
+# paired trov's "discover" sense's io term with the "illuminate" sense's eo
+# term, giving trovar -> lumigi).
+_TRANS_BLOCK_RE = re.compile(
+    r"\{\{(?:check)?trans-top(?:\|([^}]*))?\}\}(.*?)\{\{trans-bottom\}\}",
+    re.DOTALL,
+)
+
+
+def split_translation_blocks(section: str) -> List[Tuple[Optional[str], str]]:
+    """Split an English Wiktionary section into (gloss, block_text) chunks at
+    trans-top/trans-bottom boundaries. Text outside any such pair (leftover,
+    e.g. a malformed page missing trans-bottom, or content before/after the
+    translation tables) becomes its own (None, text) chunk — callers must key
+    it by its own position in this list, not by the shared None gloss, or
+    every leftover-only term would cross-pair with every other leftover term
+    (see extract_translations_with_blocks).
+    """
+    if not section:
+        return []
+    blocks: List[Tuple[Optional[str], str]] = []
+    pos = 0
+    for m in _TRANS_BLOCK_RE.finditer(section):
+        if m.start() > pos:
+            blocks.append((None, section[pos:m.start()]))
+        gloss = (m.group(1) or "").split("}}", 1)[0].strip() or None
+        blocks.append((gloss, m.group(2)))
+        pos = m.end()
+    if pos < len(section):
+        blocks.append((None, section[pos:]))
+    return blocks
+
+
+def extract_translations_with_blocks(section: str, target_code: str) -> List[Tuple[int, List[str]]]:
+    """Like extract_translations, but scoped per trans-top/trans-bottom block.
+
+    Returns (block_index, syns) pairs. block_index is a real int for every
+    chunk, INCLUDING leftover text outside any block — never None — so a
+    leftover-sourced term can never cross-pair with a term from a different
+    sense's block, or with another leftover term from an unrelated part of
+    the page. Used only for cfg.source_code == "en" in parse_wiktionary();
+    build_english_via_pairs (parse_wiktionary_via.py) keys io_map/eo_map by
+    (lemma, block_index) so pairing stays within one sense.
+    """
+    out: List[Tuple[int, List[str]]] = []
+    for idx, (_gloss, block) in enumerate(split_translation_blocks(section)):
+        for syns in extract_translations(block, target_code):
+            out.append((idx, syns))
+    return out
+
+
 # Compiled pattern for Tradukoj (translations) section header in Esperanto Wiktionary
 # Matches headers like "===Tradukoj===" or "====Tradukoj===="
 # EO Wiktionary uses both bare `====Tradukoj====` and template-wrapped
@@ -771,11 +827,13 @@ def parse_wiktionary(
         if not skip_pivot and cfg.source_code in {"io", "eo"}:
             en_trans_lists = extract_translations(section, "en")
             fr_trans_lists = extract_translations(section, "fr")
-        io_from_en: List[List[str]] = []
-        eo_from_en: List[List[str]] = []
+        # Sense-scoped (block_index, syns) pairs — NOT flat lists — so the via
+        # pairer can keep io/eo terms from crossing between senses (Fix A).
+        io_from_en: List[Tuple[int, List[str]]] = []
+        eo_from_en: List[Tuple[int, List[str]]] = []
         if not skip_pivot and cfg.source_code == "en":
-            io_from_en = extract_translations(section, "io")
-            eo_from_en = extract_translations(section, "eo")
+            io_from_en = extract_translations_with_blocks(section, "io")
+            eo_from_en = extract_translations_with_blocks(section, "eo")
         # Fallback heuristics for EO→IO: scan whole page if section yielded nothing
         if cfg.source_code == "eo" and not translations:
             # 1) Tradukoj block
@@ -835,18 +893,20 @@ def parse_wiktionary(
                     "gloss": None,
                     "translations": [{"lang": "fr", "term": t, "confidence": 0.5, "source": f"{cfg.source_code}_wiktionary"} for t in syns]
                 })
-        # Add IO/EO captured on English pages
+        # Add IO/EO captured on English pages, tagged with the real block
+        # index they came from (never None — see extract_translations_with_blocks)
+        # so build_english_via_pairs only cross-pairs same-sense terms.
         if io_from_en:
-            for syns in io_from_en:
+            for block_idx, syns in io_from_en:
                 entry["senses"].append({
-                    "senseId": None,
+                    "senseId": block_idx,
                     "gloss": None,
                     "translations": [{"lang": "io", "term": t, "confidence": 0.6, "source": f"{cfg.source_code}_wiktionary"} for t in syns]
                 })
         if eo_from_en:
-            for syns in eo_from_en:
+            for block_idx, syns in eo_from_en:
                 entry["senses"].append({
-                    "senseId": None,
+                    "senseId": block_idx,
                     "gloss": None,
                     "translations": [{"lang": "eo", "term": t, "confidence": 0.6, "source": f"{cfg.source_code}_wiktionary"} for t in syns]
                 })
