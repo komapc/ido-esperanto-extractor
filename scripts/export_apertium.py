@@ -38,6 +38,7 @@ from typing import Dict, Iterable
 from _common import read_json, ensure_dir, configure_logging, clean_lemma
 from lexicon_filters import is_junk_verb
 from conflict_resolution import pick_best
+from prepare_vocabulary import _SHORT_POS, infer_paradigm
 import xml.etree.ElementTree as ET
 from xml.sax.saxutils import quoteattr
 
@@ -219,7 +220,8 @@ def map_s_tag(par: str | None, pos: str | None) -> str | None:
         return "vblex"
     if par == "num":
         return "num"
-    if par in ("__pr", "__det", "__prn", "__cnjcoo", "__cnjsub", "__ij"):
+    if par in ("__pr", "__det", "__prn", "__cnjcoo", "__cnjsub", "__ij",
+               "pr", "det", "prn", "cnjcoo", "cnjsub", "ij"):
         return par.replace("__", "")
 
     # Map raw pos for function words as fallback
@@ -465,6 +467,7 @@ def build_monodix(entries):
         clean_lm = lm
         raw_par = (e.get("morphology") or {}).get("paradigm")
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
+        pos = _SHORT_POS.get(pos, pos)
         if not raw_par: raw_par = "o__n"
 
         # Expand paradigm
@@ -750,11 +753,7 @@ def build_bidix(entries):
             if _paradigm_priority(raw_par) > _paradigm_priority(old_par):
                 best_bidix_entries[key] = e
 
-    # --- Phase 2: order for emission. (seen_bidix_keys / deduped_final_bidix
-    # below are vestigial — assigned, never read.)
-    # FINAL deduplication pass for bidix
-    seen_bidix_keys = set()
-    deduped_final_bidix = []
+    # --- Phase 2: order for emission.
     # Sort by Ido lemma, with translation source quality as the tiebreaker so
     # Wiktionary-confirmed translations come BEFORE en_wiktionary_via / BERT-
     # only ones in the .dix file. apertium-lt-proc -b returns the first match,
@@ -801,6 +800,12 @@ def build_bidix(entries):
         clean_lm = str(e.get("lemma")).strip()
         raw_par = (e.get("morphology") or {}).get("paradigm") or None
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
+        if not raw_par:
+            # Same fallback build_one_big_bidix_json.py's Phase 4 applies:
+            # a record that reaches here paradigm-less gets exactly what
+            # prepare_vocabulary.infer_paradigm would have given it, instead
+            # of being silently dropped.
+            raw_par = infer_paradigm(e)
 
         # Chemical-symbol guard: two-char XY lemmas (e.g. "Ca", "Fe", "Na") from
         # wikidata_labels get inferred as a__adj because they end in 'a', producing
@@ -962,25 +967,11 @@ def build_bidix(entries):
                 r_der.text = epo  # Epo verb lemma (e.g. 'krei'), not a suffix combo
                 ET.SubElement(r_der, "s", n=epo_vtag).tail = ""
                 ET.SubElement(r_der, "s", n=epo_ptag).tail = ""
-            # -esar: kreesar → passive construction; t1x vbpasv rule produces "esti<tense> + verb<pp>"
-            # Right side carries the base Epo lemma so clip side="tl" part="lem" returns it
-            # DISABLED since 309ba89 (2026-04-19); that commit records no reason.
-            # The der_esar sdef is still declared above, so the tag stays valid
-            # but no entry ever emits it. Delete or re-enable deliberately.
-            if False:
-                for tense in ['inf', 'pri', 'pii', 'fti', 'cni', 'imp']:
-                    e_es = ET.SubElement(section, "e")
-                    p_es = ET.SubElement(e_es, "p")
-                    l_es = ET.SubElement(p_es, "l")
-                    l_es.text = stem
-                    ET.SubElement(l_es, "s", n="vblex").tail = ""
-                    ET.SubElement(l_es, "s", n="der_esar").tail = ""
-                    ET.SubElement(l_es, "s", n="vblex").tail = ""
-                    ET.SubElement(l_es, "s", n=tense).tail = ""
-                    r_es = ET.SubElement(p_es, "r")
-                    r_es.text = epo
-                    ET.SubElement(r_es, "s", n="vblex").tail = ""
-                    ET.SubElement(r_es, "s", n=tense).tail = ""
+            # No bidix entries for -esar (der_esar) derivations: the monodix
+            # analyses them, but the pair emission was switched off in 309ba89
+            # (2026-04-19) without a recorded reason, and the disabled code was
+            # removed later. `git show 309ba89 -- scripts/export_apertium.py`
+            # has the last live version if this is ever re-enabled.
         elif raw_par == 'a__adj' and epo and epo.endswith('a') and ' ' not in epo:
             epo_stem = epo[:-1]  # 'bona' → 'bon'
             e_der = ET.SubElement(section, "e")
@@ -1030,25 +1021,8 @@ def build_bidix(entries):
             r_aro = ET.SubElement(p_aro, "r")
             r_aro.text = epo_stripped + 'aro'
             ET.SubElement(r_aro, "s", n="n").tail = ""
-            # -izar suffix: nom+izar → nomizar (to name); Epo: strip -o, add -i
-            # Emit all tenses so the bidix covers nomizar/nomizas/nomizis/...
-            # DISABLED since 309ba89 (2026-04-19) — was live before that commit,
-            # which records no reason. Same situation as der_esar above.
-            if False and epo.endswith('o'):
-                epo_verb = epo[:-1] + 'i'  # 'nomo' → 'nomi'
-                for tense in ['inf', 'pri', 'pii', 'fti', 'cni', 'imp']:
-                    e_iz = ET.SubElement(section, "e")
-                    p_iz = ET.SubElement(e_iz, "p")
-                    l_iz = ET.SubElement(p_iz, "l")
-                    l_iz.text = stem
-                    ET.SubElement(l_iz, "s", n="n").tail = ""
-                    ET.SubElement(l_iz, "s", n="der_izar").tail = ""
-                    ET.SubElement(l_iz, "s", n="vblex").tail = ""
-                    ET.SubElement(l_iz, "s", n=tense).tail = ""
-                    r_iz = ET.SubElement(p_iz, "r")
-                    r_iz.text = epo_verb
-                    ET.SubElement(r_iz, "s", n="vblex").tail = ""
-                    ET.SubElement(r_iz, "s", n=tense).tail = ""
+            # No bidix entries for -izar (der_izar) derivations either; same
+            # history as der_esar above (disabled in 309ba89, code since removed).
 
     # epo→ido personal-pronoun entries (prpers → canonical Ido pronoun), emitted
     # once. RL-only, so they never compete with the per-pronoun LR entries above.

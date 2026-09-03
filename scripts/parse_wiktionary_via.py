@@ -32,68 +32,58 @@ IO_TRANS_RE = re.compile(r'\{\{T\|io\}\}\s*:\s*\{\{trad\+?\|io\|([^}|]+)')
 EO_TRANS_RE = re.compile(r'\{\{T\|eo\}\}\s*:\s*\{\{trad\+?\|eo\|([^}|]+)')
 
 
+# Trailing sense number(s) on a trad-début gloss: "Meuble|1" or "Travail|1, 2".
+_TRAD_SENSE_NUM_RE = re.compile(r'\|\s*(\d+)(?:\s*,\s*\d+)*\s*$')
+
+
 def extract_french_via_translations(text: str) -> List[Dict[str, Any]]:
-    """Extract via translations from French Wiktionary text."""
+    """One record per {{trad-début|gloss}}…{{trad-fin}} block that carries
+    both an Ido and an Esperanto translation.
+
+    The trad block is fr.wiktionary's per-sense unit: each one opens with the
+    sense gloss (optionally suffixed `|N`, the sense number) and lists that
+    sense's translations. Pairing io × eo *within* a block is what makes the
+    pivot sound; pairing across blocks would join the military 'siège'
+    (siejo) with the furniture one (seĝo). Blocks with only one side
+    contribute nothing: there is no evidence the two words share a sense.
+
+    `via_num` is the block's own `|N` when present, else its ordinal on the
+    page. `definition` is the gloss with that suffix stripped.
+    """
     via_translations = []
-    
-    # Look for numbered list items in French section
-    meaning_pattern = r'^#\s+(.+?)(?=^#|^===|^==|\Z)'
-    
-    meaning_num = 1
-    for match in re.finditer(meaning_pattern, text, re.MULTILINE | re.DOTALL):
-        definition = match.group(1).strip()
-        
-        # Clean up definition (remove examples, citations, etc.)
-        definition = re.sub(r'\([^)]*\)', '', definition).strip()
-        if len(definition) < 3:
+
+    for ordinal, match in enumerate(TRAD_SECTION_RE.finditer(text), start=1):
+        gloss, section_text = match.group(1), match.group(2)
+
+        io_terms = _clean_terms(IO_TRANS_RE.findall(section_text))
+        eo_terms = _clean_terms(EO_TRANS_RE.findall(section_text))
+        if not (io_terms and eo_terms):
             continue
-            
-        # Extract translations for this meaning
-        translations = extract_translations_for_meaning(text, meaning_num)
-        
-        if translations['io'] and translations['eo']:
-            via_translations.append({
-                'via_num': meaning_num,
-                'definition': definition,
-                'io_translations': translations['io'],
-                'eo_translations': translations['eo']
-            })
-        meaning_num += 1
-    
+
+        num_match = _TRAD_SENSE_NUM_RE.search(gloss)
+        via_num = int(num_match.group(1)) if num_match else ordinal
+        definition = _TRAD_SENSE_NUM_RE.sub('', gloss).strip()
+
+        via_translations.append({
+            'via_num': via_num,
+            'definition': definition,
+            'io_translations': io_terms,
+            'eo_translations': eo_terms,
+        })
+
     return via_translations
 
 
-def extract_translations_for_meaning(text: str, meaning_num: int) -> Dict[str, List[str]]:
-    """Return every Ido/Esperanto translation on the page — NOT per meaning.
-
-    `meaning_num` is accepted but unused: the regex collects all
-    {{trad-début}}…{{trad-fin}} blocks on the page, so a polysemous French
-    word contributes the same io/eo union to each of its numbered senses.
-    The `via_num` the caller records is therefore cosmetic provenance, and
-    cross-sense pairs (io from sense 1 × eo from sense 2) are possible.
-    Doing this properly means slicing `text` to the sense's own trad block.
-    """
-    translations = {'io': [], 'eo': []}
-    
-    # Look for trad-début sections
-    trad_sections = re.findall(r'\{\{trad-début\|([^}]+)\}\}(.*?)\{\{trad-fin\}\}', text, re.DOTALL)
-    
-    for via_desc, section_text in trad_sections:
-        # Look for Ido and Esperanto translations in this section
-        io_matches = IO_TRANS_RE.findall(section_text)
-        eo_matches = EO_TRANS_RE.findall(section_text)
-        
-        for match in io_matches:
-            translation = match.strip()
-            if translation and len(translation) > 1:
-                translations['io'].append(translation)
-        
-        for match in eo_matches:
-            translation = match.strip()
-            if translation and len(translation) > 1:
-                translations['eo'].append(translation)
-    
-    return translations
+def _clean_terms(matches: List[str]) -> List[str]:
+    """Strip and dedupe (order-preserving) the terms one trad block lists."""
+    seen: Set[str] = set()
+    out: List[str] = []
+    for m in matches:
+        term = m.strip()
+        if len(term) > 1 and term not in seen:
+            seen.add(term)
+            out.append(term)
+    return out
 
 
 def parse_french_wiktionary_via(dump_path: Path, output_path: Path, progress_every: int = 1,

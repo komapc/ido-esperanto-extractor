@@ -27,7 +27,15 @@ from export_apertium import build_monodix, build_bidix
 # ---------------------------------------------------------------------------
 
 def _bidix_entries(entries):
-    """Build bilingual dix and return list of (l_text, l_tags, r_text, r_tags) tuples."""
+    """Build bilingual dix and return list of (l_text, l_tags, r_text, r_tags)
+    tuples for just the entries derived from the given `entries` list.
+
+    build_bidix() also unconditionally emits structural fixtures on every
+    call — punctuation identity mappings and the epo->ido prpers pronoun
+    bridge (_emit_prpers_rl_entries) — regardless of input, so a lemma-based
+    filter is needed to isolate what this call's entries actually produced.
+    """
+    input_lemmas = {e.get('lemma') for e in entries}
     tree = build_bidix(entries)
     section = tree.find('.//section[@id="main"]')
     result = []
@@ -38,6 +46,8 @@ def _bidix_entries(entries):
         l = p.find('l')
         r = p.find('r')
         l_text = l.text or ''
+        if l_text not in input_lemmas:
+            continue
         l_tags = [s.get('n') for s in l.findall('s')]
         r_text = r.text or '' if r is not None else ''
         r_tags = [s.get('n') for s in r.findall('s')] if r is not None else []
