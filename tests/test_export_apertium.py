@@ -17,7 +17,7 @@ from xml.etree import ElementTree as ET
 # Add parent directory to path to import the module
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'scripts'))
 
-from export_apertium import build_monodix, build_bidix
+from export_apertium import build_monodix, build_bidix, _load_eo_generatable_lemmas, _EO_PRPERS_FEATS
 
 
 def test_new_format_entries_without_language_field():
@@ -117,12 +117,12 @@ def test_entries_with_null_lemma_are_skipped():
     entries = [
         {"lemma": None, "pos": "noun", "eo_translations": ["test"]},
         {"pos": "noun", "eo_translations": ["test2"]},  # No lemma field
-        {"lemma": "validword", "pos": "noun", "eo_translations": ["valid"]},
+        {"lemma": "validword", "pos": "noun", "eo_translations": ["birdo"]},
     ]
-    
+
     result = build_bidix(entries)
     xml_str = ET.tostring(result, encoding='unicode')
-    
+
     assert 'validword' in xml_str
     # Invalid entries should not cause crash
 
@@ -146,8 +146,10 @@ def test_entries_without_translations_are_skipped():
 def test_large_entry_set():
     """Test that export handles large number of entries (regression for production data)."""
     # Simulate production-scale data: 14,481 entries
+    # eo_translations must be a real, generatable EO lemma (the bidix
+    # generatability gate filters out synthetic per-index terms like "vorto0").
     entries = [
-        {"lemma": f"word{i}", "pos": "noun", "eo_translations": [f"vorto{i}"]}
+        {"lemma": f"word{i}", "pos": "noun", "eo_translations": ["vorto"]}
         for i in range(14481)
     ]
     
@@ -192,6 +194,42 @@ def test_dict_with_entries_key():
     xml_str = ET.tostring(result, encoding='unicode')
     
     assert 'hundo' in xml_str
+
+
+def test_generatable_lemmas_include_closed_class_personal_pronouns():
+    """Regression: apertium-epo analyses/generates mi/ni/ci/vi/li/ŝi/ĝi/ili via
+    the `prpers` paradigm, not individual <e lm="..."> monodix entries, so a
+    naive lm= scan wrongly treats them as ungeneratable and drops the ido->epo
+    li<prn> -> ili<prn> bidix entry (caught by comparing a fresh export against
+    the previously-deployed dictionary, which still had it)."""
+    valid = _load_eo_generatable_lemmas()
+    if valid is None:
+        return  # sibling apertium-epo checkout unavailable in this environment
+    for pronoun in _EO_PRPERS_FEATS:
+        assert pronoun in valid, f"{pronoun!r} missing from the generatability gate"
+
+
+def test_generatable_lemmas_include_genuine_multiword_phrases():
+    """Regression: a multi-word candidate backed by its own <e lm="tie ĉi">
+    monodix entry (with a real <b/> between components) IS generatable and
+    must not be excluded just because it contains a space — that would drop
+    hik<adv> -> "tie ĉi" (Ido's single-word "hike" vs Esperanto's two-word
+    "tie ĉi") and leave it untranslated (@hik)."""
+    valid = _load_eo_generatable_lemmas()
+    if valid is None:
+        return
+    assert 'tie ĉi' in valid
+
+
+def test_pronoun_bidix_entry_survives_the_generatability_gate():
+    entries = [
+        {"lemma": "li", "pos": "prn",
+         "morphology": {"paradigm": "li__prn"},
+         "eo_translations": ["ili"]},
+    ]
+    result = build_bidix(entries)
+    xml_str = ET.tostring(result, encoding='unicode')
+    assert '<l>li<s n="prn" /></l><r>ili<s n="prn" /></r>' in xml_str
 
 
 if __name__ == "__main__":

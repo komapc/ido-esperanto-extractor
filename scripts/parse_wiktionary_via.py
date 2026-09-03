@@ -242,38 +242,52 @@ def build_english_via_pairs(io_file: Path, eo_file: Path, output_path: Path, pro
         io_pos_path = io_file.parent / "io_wiktionary_processed.json"
     io_pos_map = _load_io_pos_map(io_pos_path)
     
-    # Build translation maps
+    # Build translation maps, keyed by (english_word, senseId) — NOT just the
+    # english word — so io/eo terms only cross-pair when they come from the
+    # same trans-top/trans-bottom block on the page (wiktionary_parser.py's
+    # split_translation_blocks). senseId is a real int for every block,
+    # including leftover text outside any block, EXCEPT the flat io-lang
+    # senses parse_wiktionary() also adds at senseId=None (target_code="io"
+    # for every en-source entry) — those stay keyed under None and can never
+    # match an eo_map entry, since eo terms only ever come from block-scoped
+    # extraction and so always carry a real int senseId. Without this
+    # per-sense split, a polysemous page like "light" cross-paired its "to
+    # find by chance" io term with its unrelated "to illuminate" eo term
+    # (trovar -> lumigi).
     logging.info("Building translation maps...")
-    io_map = defaultdict(list)  # English word -> [IO translations]
-    eo_map = defaultdict(list)  # English word -> [EO translations]
-    
+    io_map = defaultdict(list)  # (english_word, senseId) -> [IO translations]
+    eo_map = defaultdict(list)  # (english_word, senseId) -> [EO translations]
+
     for entry in io_entries:
         lemma = entry.get('lemma', '')
         for sense in entry.get('senses', []):
+            sense_id = sense.get('senseId')
             for trans in sense.get('translations', []):
                 if trans.get('lang') == 'io':
-                    io_map[lemma].append(trans['term'])
-    
+                    io_map[(lemma, sense_id)].append(trans['term'])
+
     for entry in eo_entries:
         lemma = entry.get('lemma', '')
         for sense in entry.get('senses', []):
+            sense_id = sense.get('senseId')
             for trans in sense.get('translations', []):
                 if trans.get('lang') == 'eo':
-                    eo_map[lemma].append(trans['term'])
-    
+                    eo_map[(lemma, sense_id)].append(trans['term'])
+
     # Find matches and create bilingual pairs
     logging.info("Finding matches...")
     results = []
     matches_found = 0
-    
+
     start_time = time.time()
     last_progress_time = start_time
-    
-    for english_word in io_map:
-        if english_word in eo_map:
-            io_translations = list(set(io_map[english_word]))  # Remove duplicates
-            eo_translations = list(set(eo_map[english_word]))  # Remove duplicates
-            
+
+    for key in io_map:
+        if key in eo_map:
+            english_word, _sense_id = key
+            io_translations = list(set(io_map[key]))  # Remove duplicates
+            eo_translations = list(set(eo_map[key]))  # Remove duplicates
+
             for io_term in io_translations:
                 io_pos = io_pos_map.get(io_term.lower())
                 for eo_term in eo_translations:
@@ -298,15 +312,15 @@ def build_english_via_pairs(io_file: Path, eo_file: Path, output_path: Path, pro
                         }]
                     })
                     matches_found += 1
-            
+
             # Progress logging
             current_time = time.time()
             time_since_last = current_time - last_progress_time
-            
+
             if matches_found % progress_every == 0 or time_since_last >= 60:
                 elapsed = current_time - start_time
                 rate = matches_found / elapsed if elapsed > 0 else 0
-                logging.info("Found %d matches so far (%.1f matches/sec, %.1f min elapsed)", 
+                logging.info("Found %d matches so far (%.1f matches/sec, %.1f min elapsed)",
                            matches_found, rate, elapsed/60)
                 last_progress_time = current_time
     

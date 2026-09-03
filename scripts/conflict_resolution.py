@@ -24,7 +24,7 @@ below the pivots fixes those — vet the change with scripts/conflict_winner_dif
 """
 from __future__ import annotations
 
-from typing import Dict, Iterable, Sequence, Tuple
+from typing import Dict, Iterable, Optional, Sequence, Set, Tuple
 
 # (a) determinism-preserving ranks: io/eo Wiktionary share the top Wiktionary tier,
 # matching the existing _entry_quality policy — only the *order-dependence* is removed.
@@ -72,10 +72,24 @@ def confidence_key(term: str, sources: Sequence[str], index: int,
 
 
 def pick_best(candidates: Sequence[Tuple[str, Sequence[str]]],
-              table: Dict[str, int] = SOURCE_RANK_BASELINE) -> str:
-    """candidates: [(term, [sources]), …] in insertion order → winning term."""
-    best_i = min(range(len(candidates)),
-                 key=lambda i: confidence_key(candidates[i][0], candidates[i][1], i, table))
+              table: Dict[str, int] = SOURCE_RANK_BASELINE,
+              valid: Optional[Set[str]] = None) -> Optional[str]:
+    """candidates: [(term, [sources]), …] in insertion order → winning term.
+
+    `valid`, when given, is a casefolded set of terms the target monodix can
+    actually generate (see export_apertium._load_eo_generatable_lemmas). A
+    candidate not in it is excluded from ranking — this is a generatability
+    gate, not a quality signal, so it runs before source rank rather than
+    being folded into the table. Returns None when every candidate is
+    filtered out (caller must skip the entry rather than emit a dead form);
+    `valid=None` preserves the old unfiltered behaviour.
+    """
+    pool = range(len(candidates))
+    if valid is not None:
+        pool = [i for i in pool if candidates[i][0].casefold() in valid]
+        if not pool:
+            return None
+    best_i = min(pool, key=lambda i: confidence_key(candidates[i][0], candidates[i][1], i, table))
     return candidates[best_i][0]
 
 
