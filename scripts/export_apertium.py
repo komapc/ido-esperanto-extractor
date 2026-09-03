@@ -206,6 +206,95 @@ def extract_stem(lemma: str, paradigm: str) -> str:
     return lemma
 
 
+# Suffix -> (paradigm the ROOT must carry, POS category the derived form
+# itself belongs to). Every entry in data/pardefs.xml's o__n/a__adj/
+# ar__vblex paradigms bakes these derivational continuations in directly
+# (der_ala/der_oz/der_aro/der_qual/der_pres/der_act/der_past/der_ppra/
+# der_pfut) — they are NOT opt-in per word, so ANY root with a working
+# translation and the matching paradigm already produces this surface form,
+# with a working translation, unconditionally. See _drop_derivation_shadowed_entries.
+_DERIVATION_SHADOW_SUFFIXES = {
+    'ala':  ('o__n', 'adj'),
+    'oza':  ('o__n', 'adj'),
+    'aro':  ('o__n', 'n'),
+    'eso':  ('a__adj', 'n'),
+    'anto': ('ar__vblex', 'n'),
+    'ado':  ('ar__vblex', 'n'),
+    'into': ('ar__vblex', 'n'),
+    'anta': ('ar__vblex', 'adj'),
+    'ota':  ('ar__vblex', 'adj'),
+}
+_ROOT_STRIP_LEN = {'o__n': 1, 'a__adj': 1, 'ar__vblex': 2}
+
+
+def _has_eo_translation(e) -> bool:
+    for s in e.get('senses') or []:
+        for t in s.get('translations') or []:
+            if t.get('lang') == 'eo' and t.get('term'):
+                return True
+    return bool(e.get('eo_translations'))
+
+
+def _drop_derivation_shadowed_entries(mono_entries, bidix_entries):
+    """Drop translationless entries whose surface form duplicates another
+    entry's productive derivation, which already carries a working
+    translation.
+
+    e.g. io_wiktionary has a page for "envidioza" (adj) with no EO gloss.
+    "envidio" (n, -> envio) already carries the o__n paradigm, which bakes
+    in a der_oz reading for free: envidi+oza -> envidioza, translating to
+    "envia" via the generic derivation machinery in build_bidix. Keeping
+    the empty-gloss atomic "envidioza" entry in the monodix makes lt-proc
+    emit BOTH analyses for the same surface form; bidix lookup takes
+    whichever comes first, and often that's the translationless one — a
+    real, working translation exists one reading over, but never gets
+    used (@envidioz instead of envia). Since the derivation is
+    unconditional, dropping the dead duplicate never loses analysis
+    coverage — the derivational reading already covers the exact same
+    surface form.
+
+    Gated on the dead entry's own POS matching the derived category (adj
+    vs n) as a safety check against an unrelated word coincidentally
+    sharing a suffix.
+
+    The translated-root set is built from `bidix_entries` (bidix_big.json),
+    not `mono_entries`: build_bidix() itself reads translations from
+    `bidix_entries`, and final_vocabulary.json's own copy of a root lemma
+    frequently carries empty `senses` (its translation lives only on the
+    bidix-format twin) — checking `mono_entries` here missed real roots
+    like "envidio" (envio, from wikidata_labels) entirely.
+    """
+    roots = set()  # (root_paradigm, stem_lower) for every TRANSLATED root
+    for e in bidix_entries:
+        par = (e.get('morphology') or {}).get('paradigm')
+        strip = _ROOT_STRIP_LEN.get(par)
+        lm = e.get('lemma') or ''
+        if strip and len(lm) > strip and _has_eo_translation(e):
+            roots.add((par, lm[:-strip].lower()))
+
+    kept, dropped = [], 0
+    for e in mono_entries:
+        if _has_eo_translation(e):
+            kept.append(e)
+            continue
+        lm_lc = (e.get('lemma') or '').lower()
+        pos = e.get('pos') or map_s_tag((e.get('morphology') or {}).get('paradigm'), None)
+        shadowed = False
+        for suffix, (root_par, derived_pos) in _DERIVATION_SHADOW_SUFFIXES.items():
+            if (lm_lc.endswith(suffix) and pos == derived_pos
+                    and (root_par, lm_lc[:-len(suffix)]) in roots):
+                shadowed = True
+                break
+        if shadowed:
+            dropped += 1
+        else:
+            kept.append(e)
+    if dropped:
+        logging.info(f"Dropped {dropped} translationless entries shadowed by an "
+                      "existing derivation (e.g. envidioza shadowing envidi+der_oz)")
+    return kept
+
+
 def map_s_tag(par: str | None, pos: str | None) -> str | None:
     if not par:
         return pos if pos in ("pr", "det", "prn", "cnjcoo", "cnjsub", "ij") else None
@@ -1220,6 +1309,7 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
                                         (e.get('morphology') or {}).get('paradigm'))]
     if before != len(mono_entries):
         logging.info(f"Dropped {before - len(mono_entries)} single-letter-stem junk verbs")
+    mono_entries = _drop_derivation_shadowed_entries(mono_entries, bidix_entries)
     logging.info(f"Monodix: {len(entries)} vocab + {len(extra)} bidix-only = {len(mono_entries)} total")
 
     # --- Phase 2: monodix-only drops. These are entries that are harmless in
