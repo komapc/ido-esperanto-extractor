@@ -409,24 +409,20 @@ def main(argv):
          "Extract via English translations",
          ["work/en_wikt_en_both.json"]),
         
-        # Stage 10: Align bilingual
-        # ORDERING HAZARD: align_bilingual.py also ingests work/fr_wikt_via.json
-        # (guarded by .exists(), so no error), but that file is written by
-        # stage 11 below. On a clean rebuild the French pivot pairs are
-        # silently missing from bilingual_raw.json until the NEXT full run, and
-        # forward-only invalidation never re-runs this stage to pick them up.
-        # Fix = move via_french above this stage (validate with a full regen).
-        ("align_bilingual",
-         ["python3", "scripts/align_bilingual.py"],
-         "Align bilingual entries",
-         None),
-        
-        # Stage 11: Via French
+        # Stage 10: Via French. Must precede align_bilingual: writes
+        # work/fr_wikt_via.json, which align_bilingual.py reads (and silently
+        # skips when absent).
         ("via_french",
          ["python3", "scripts/parse_wiktionary_via.py",
           "--source", "fr",
           "--progress-every", "1000"],
          "Extract via French translations",
+         None),
+
+        # Stage 11: Align bilingual (union of all per-source pair streams)
+        ("align_bilingual",
+         ["python3", "scripts/align_bilingual.py"],
+         "Align bilingual entries",
          None),
 
         # Stage 11b: Wikipedia interlanguage links (io_title <-> eo_title pairs).
@@ -460,21 +456,6 @@ def main(argv):
          "Extract io↔eo pairs from eo.wiki interlanguage links",
          None),
 
-        # Stage 11e: Morphological expansion (derive forms from known root pairs).
-        # Generates forms like facado→farado from known facar→fari, validated
-        # against the io.wiki frequency corpus. Fast (~3s).
-        # Reads:  work/final_vocabulary.json (the script's --bidix default) and
-        #         work/io_wiki_frequency.json.
-        # ORDERING HAZARD: final_vocabulary.json is written by prepare_vocabulary
-        # (stage 12, below). After `make clean` this stage crashes with
-        # FileNotFoundError; on an incremental run it silently derives from
-        # the PREVIOUS run's vocabulary. Fix = move it after stage 12 and
-        # before build_big_bidix (validate with a full regen).
-        ("morphological_expansion",
-         ["python3", "scripts/build_morphological_expansion.py"],
-         "Generate morphological derivations from known bidix pairs",
-         None),
-
         # Stage 11f: Closed-class structured tables (roadmap #2).
         # Extracts the pronoun comparison table ("Komparo inter Ido ed
         # Esperanto") and the correlative grid ("Gramatiko di Ido") from the
@@ -491,6 +472,16 @@ def main(argv):
         ("prepare_vocabulary",
          ["python3", "scripts/prepare_vocabulary.py", "--wiki-top-n", "1000"],
          "Prepare vocabulary (normalize + morphology + filter)",
+         None),
+
+        # Stage 12b: Morphological expansion (derive forms from known root pairs).
+        # Generates forms like facado→farado from known facar→fari, validated
+        # against the io.wiki frequency corpus. Fast (~3s).
+        # Must follow prepare_vocabulary: reads work/final_vocabulary.json
+        # (the script's --bidix default) and work/io_wiki_frequency.json.
+        ("morphological_expansion",
+         ["python3", "scripts/build_morphological_expansion.py"],
+         "Generate morphological derivations from known bidix pairs",
          None),
 
         # Stage 16: Build monolingual
