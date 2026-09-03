@@ -172,7 +172,7 @@ dump_coverage:
 	$(PY) scripts/report_io_dump_coverage.py
 
 test:
-	$(PY) run_tests.py
+	$(PY) -m pytest tests/ -q
 
 pipeline-status:
 	$(PY) scripts/pipeline_manager.py --status

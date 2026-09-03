@@ -115,9 +115,9 @@ def test_mixed_format_entries():
 def test_entries_with_null_lemma_are_skipped():
     """Test that entries with null or missing lemma are skipped."""
     entries = [
-        {"lemma": None, "eo_translations": ["test"]},
-        {"eo_translations": ["test2"]},  # No lemma field
-        {"lemma": "validword", "eo_translations": ["valid"]},
+        {"lemma": None, "pos": "noun", "eo_translations": ["test"]},
+        {"pos": "noun", "eo_translations": ["test2"]},  # No lemma field
+        {"lemma": "validword", "pos": "noun", "eo_translations": ["valid"]},
     ]
     
     result = build_bidix(entries)
@@ -147,7 +147,7 @@ def test_large_entry_set():
     """Test that export handles large number of entries (regression for production data)."""
     # Simulate production-scale data: 14,481 entries
     entries = [
-        {"lemma": f"word{i}", "eo_translations": [f"vorto{i}"]}
+        {"lemma": f"word{i}", "pos": "noun", "eo_translations": [f"vorto{i}"]}
         for i in range(14481)
     ]
     
