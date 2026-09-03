@@ -9,7 +9,7 @@ from pathlib import Path
 import sys
 sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
 
-from filter_and_validate import is_valid_lemma
+from _common import is_valid_lemma
 
 
 class TestWiktionarySimple(unittest.TestCase):
@@ -24,8 +24,10 @@ class TestWiktionarySimple(unittest.TestCase):
         
         # Invalid lemmas
         self.assertFalse(is_valid_lemma(''))
-        self.assertFalse(is_valid_lemma('Template:test'))
-        self.assertFalse(is_valid_lemma('very_long_lemma_that_should_be_filtered_out'))
+        self.assertFalse(is_valid_lemma('[[unresolved]]'))
+        self.assertFalse(is_valid_lemma('123'))
+        # Namespace prefixes (Template:, Category:, ...) are filtered upstream
+        # in parse_wiktionary_stage1.py, not by is_valid_lemma itself.
     
     def test_help_output(self):
         """Test that help output works."""
