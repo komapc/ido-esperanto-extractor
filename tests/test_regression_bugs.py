@@ -18,7 +18,7 @@ from xml.etree import ElementTree as ET
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'scripts'))
 
 from _common import clean_lemma
-from infer_morphology import infer_paradigm
+from prepare_vocabulary import infer_paradigm
 from export_apertium import build_monodix, build_bidix
 
 
