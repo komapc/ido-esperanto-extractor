@@ -26,6 +26,8 @@ from _common import configure_logging
 
 _SCRIPTS_DIR = Path(__file__).resolve().parent
 _REPO_DIR = _SCRIPTS_DIR.parent
+# Static regex scan: misses importlib/__import__ dynamic imports, so a stage whose
+# dependency is loaded that way can be fingerprinted as unchanged after an edit.
 _IMPORT_RE = re.compile(r'^\s*(?:from\s+([\w.]+)\s+import|import\s+([\w.]+))', re.MULTILINE)
 # Scripts invoked as subprocesses are named as string literals (e.g. the two-stage
 # wrapper references "parse_wiktionary_stage1.py"); follow those too so the chain

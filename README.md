@@ -49,6 +49,8 @@ Defined in `scripts/pipeline_manager.py`. Each stage is skipped if already compl
 | 11b | `wikipedia_langlinks` | `parse_wikipedia_langlinks.py` | `work/io_eo_langlinks.json` |
 | 11c | `wikidata_labels` | `parse_wikidata_labels.py` | `work/io_eo_wikidata.json` |
 | 11d | `eowiki_langlinks` | `parse_wikipedia_langlinks.py --source-wiki eo` | `work/eo_io_langlinks.json` |
+| 11e | `morphological_expansion` | `build_morphological_expansion.py` | derived forms merged into `dist/bidix_big.json` |
+| 11f | `closed_class_tables` | `parse_closed_class.py` | pronoun/correlative pairs merged into `dist/bidix_big.json` |
 | 12 | `prepare_vocabulary` | `prepare_vocabulary.py` | `work/final_vocabulary.json` |
 | 13 | `build_monolingual` | `build_monolingual.py` | `dist/ido_dictionary.json` |
 | 14 | `build_big_bidix` | `build_one_big_bidix_json.py` | `dist/bidix_big.json` |
