@@ -38,6 +38,7 @@ from typing import Dict, Iterable
 from _common import read_json, ensure_dir, configure_logging, clean_lemma
 from lexicon_filters import is_junk_verb
 from conflict_resolution import pick_best
+from prepare_vocabulary import _SHORT_POS, infer_paradigm
 import xml.etree.ElementTree as ET
 from xml.sax.saxutils import quoteattr
 
@@ -219,7 +220,8 @@ def map_s_tag(par: str | None, pos: str | None) -> str | None:
         return "vblex"
     if par == "num":
         return "num"
-    if par in ("__pr", "__det", "__prn", "__cnjcoo", "__cnjsub", "__ij"):
+    if par in ("__pr", "__det", "__prn", "__cnjcoo", "__cnjsub", "__ij",
+               "pr", "det", "prn", "cnjcoo", "cnjsub", "ij"):
         return par.replace("__", "")
 
     # Map raw pos for function words as fallback
@@ -465,6 +467,7 @@ def build_monodix(entries):
         clean_lm = lm
         raw_par = (e.get("morphology") or {}).get("paradigm")
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
+        pos = _SHORT_POS.get(pos, pos)
         if not raw_par: raw_par = "o__n"
 
         # Expand paradigm
@@ -797,6 +800,12 @@ def build_bidix(entries):
         clean_lm = str(e.get("lemma")).strip()
         raw_par = (e.get("morphology") or {}).get("paradigm") or None
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
+        if not raw_par:
+            # Same fallback build_one_big_bidix_json.py's Phase 4 applies:
+            # a record that reaches here paradigm-less gets exactly what
+            # prepare_vocabulary.infer_paradigm would have given it, instead
+            # of being silently dropped.
+            raw_par = infer_paradigm(e)
 
         # Chemical-symbol guard: two-char XY lemmas (e.g. "Ca", "Fe", "Na") from
         # wikidata_labels get inferred as a__adj because they end in 'a', producing

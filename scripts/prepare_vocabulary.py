@@ -34,6 +34,34 @@ _SHORT_POS: Dict[str, str] = {
     "interjection": "ij", "numeral": "num",
 }
 
+# Ido's closed-class function words: a small, fixed, enumerable set (Ido adds
+# no new prepositions/conjunctions/determiners over time, unlike its open
+# noun/verb/adjective classes, which must keep coming from real sources).
+# io_wiktionary tags these inconsistently — often with a missing/generic POS
+# ("conjunction" for both true coordinators and subordinators alike) or no
+# POS at all, so the ending-based heuristics below misclassify them by their
+# surface form alone (che/ye end in -e -> e__adv; pro ends in -o -> o__n).
+# Checked before both the pos-based and ending-based rules, since lemma
+# identity alone is sufficient for a closed class.
+#
+# 'ke' also has a real source-level fix now (wiktionary_parser.py detects
+# its Semantiko line's own "[[konjunciono]] [[subordinala]]" marker) — kept
+# here too as a defense-in-depth safety net for callers that pass an entry
+# with pos=None. 'kande' has no such marker in its own Wiktionary entry
+# (tagged "relativa konjunciono", a genuinely different, unmarked case), so
+# it can only be fixed here, in the closed-class table. Same root cause as
+# the apertium-ido-epo transfer-grammar fix for ke/se/kad/... (PR #193) —
+# that fix corrects the symptom downstream in the transfer grammar; this
+# corrects the classification at its source.
+_CLOSED_CLASS_PARADIGMS: Dict[str, str] = {
+    'che': 'pr', 'ye': 'pr', 'segun': 'pr', 'apud': 'pr', 'pro': 'pr',
+    'da': 'pr', 'di': 'pr',
+    'dil': 'prep_art', 'dal': 'prep_art',
+    'ke': 'cnjsub', 'kande': 'cnjsub',
+    'e': 'cnjcoo', 'o': 'cnjcoo', 'ma': 'cnjcoo',
+    'la': 'det',
+}
+
 
 # ---------------------------------------------------------------------------
 # Step 1: Normalize  (was normalize_entries.py)
@@ -179,6 +207,8 @@ def infer_paradigm(entry: Dict[str, Any]) -> Optional[str]:
     pos = entry.get("pos")
     if not lemma:
         return None
+    if lemma in _CLOSED_CLASS_PARADIGMS:
+        return _CLOSED_CLASS_PARADIGMS[lemma]
     lower = lemma.lower()
 
     if re.match(r'^\d+(\.\d+)?$', lemma):
