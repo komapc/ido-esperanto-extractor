@@ -232,6 +232,21 @@ def test_pronoun_bidix_entry_survives_the_generatability_gate():
     assert '<l>li<s n="prn" /></l><r>ili<s n="prn" /></r>' in xml_str
 
 
+def test_generatable_lemmas_include_correlative_plural_and_case_forms():
+    """Regression: apertium-epo's correlative words (kiu/tiu/...) are irregular
+    closed-class entries — each inflected surface form (kiuj, kiujn, kiun, kioj,
+    kion, ...) is spelled out directly as its own <e><p><l>SURFACE</l>...</p></e>
+    pair with no shared lm= to scan. A pure lm= scan only ever finds the bare
+    singular "kiu"/"kio", so the plural/accusative forms looked ungeneratable,
+    dropping the ido->epo qui<prn> -> kiuj<prn> bidix entry entirely even
+    though the closed_class_tables source already has the correct mapping."""
+    valid = _load_eo_generatable_lemmas()
+    if valid is None:
+        return
+    for form in ('kiuj', 'kiujn', 'kiun', 'kioj', 'kion'):
+        assert form in valid, f"{form!r} missing from the generatability gate"
+
+
 if __name__ == "__main__":
     print("Running export_apertium tests...")
     

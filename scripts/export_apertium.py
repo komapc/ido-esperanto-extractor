@@ -370,11 +370,36 @@ def _load_eo_generatable_lemmas(dix_path: Path = _EO_EPO_DIX) -> Optional[set]:
     # no backing monodix entry and no <b/> — already non-functional before
     # this gate existed, confirmed those never worked via a live apertium run).
     lemmas = {lm.casefold() for e in root.iter("e") if (lm := e.get("lm"))}
-    # Esperanto personal pronouns (mi/ni/ci/vi/li/ŝi/ĝi/ili) are analysed and
-    # generated via apertium-epo's `prpers` paradigm (person+gender+number
-    # features), NOT via individual <e lm="..."> entries — see
-    # _EO_PRPERS_FEATS above. Without this, the gate wrongly treats "ili" as
-    # ungeneratable and drops the ido→epo li<prn> -> ili<prn> bidix entry.
+
+    # Irregular closed classes (personal pronouns, correlatives — kiu/kiuj/
+    # kiujn/tiu/tiuj/…) aren't built from an <i>stem</i><par/> paradigm at
+    # all: apertium-epo spells out each inflected surface form directly as
+    # its own <e><p><l>SURFACE</l><r>lemma+tags</r></p></e> pair, usually
+    # with no lm= attribute (there's no single "citation lemma" — see the
+    # <e><p><l>kiuj</l>… entries under the `main` section). A pure lm= scan
+    # is blind to every one of these surface forms. <l> text here is exactly
+    # what lt-comp emits as the generator's output, so it's read directly
+    # from apertium-epo's own source rather than hand-listing forms — <b/>
+    # (used for multi-word entries like "al<b/>mi") becomes a literal space.
+    def _l_text(l_elem):
+        parts = [l_elem.text or ""]
+        for child in l_elem:
+            if child.tag == "b":
+                parts.append(" ")
+            parts.append(child.tail or "")
+        return "".join(parts).strip()
+
+    for section in root.findall("section"):
+        for e in section.iter("e"):
+            for l_elem in e.iter("l"):
+                text = _l_text(l_elem)
+                if text:
+                    lemmas.add(text.casefold())
+
+    # Kept as defense-in-depth: harmless if already covered by the <p><l>
+    # scan above, but guards against a differently-structured apertium-epo
+    # dix (e.g. a future version moving prpers to a real paradigm) silently
+    # reopening the pronoun blind spot this table was added to close.
     lemmas |= set(_EO_PRPERS_FEATS)
     logging.info("Loaded %d apertium-epo monodix lemmas for the bidix generatability gate.",
                  len(lemmas))

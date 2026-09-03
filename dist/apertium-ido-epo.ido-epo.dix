@@ -658,6 +658,8 @@
     <e><p><l>aceptist<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>akceptista<s n="adj"/></r></p></e>
     <e><p><l>aceptist<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>akceptista<s n="adj"/></r></p></e>
     <e><p><l>aceptist<s n="n"/><s n="der_aro"/><s n="n"/></l><r>akceptistaro<s n="n"/></r></p></e>
+    <e><p><l>aceptit<s n="adj"/></l><r>akceptita<s n="adj"/></r></p></e>
+    <e><p><l>aceptit<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>akceptiteco<s n="n"/></r></p></e>
     <e><p><l>acerb<s n="adj"/></l><r>acerba<s n="adj"/></r></p></e>
     <e><p><l>acerb<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>acerbeco<s n="n"/></r></p></e>
     <e><p><l>acer<s n="n"/></l><r>acero<s n="n"/></r></p></e>
@@ -11973,6 +11975,7 @@
     <e><p><l>chuv<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>moneda<s n="adj"/></r></p></e>
     <e><p><l>chuv<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>moneda<s n="adj"/></r></p></e>
     <e><p><l>chuv<s n="n"/><s n="der_aro"/><s n="n"/></l><r>monedaro<s n="n"/></r></p></e>
+    <e><p><l>ci<s n="prn"/></l><r>ĉi tiuj<s n="prn"/></r></p></e>
     <e><p><l>cianid<s n="n"/></l><r>cianido<s n="n"/></r></p></e>
     <e><p><l>cianid<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>cianida<s n="adj"/></r></p></e>
     <e><p><l>cianid<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>cianida<s n="adj"/></r></p></e>
@@ -13442,7 +13445,10 @@
     <e><p><l>dejur<s n="vblex"/><s n="der_pprs"/><s n="adj"/></l><r>deĵori<s n="vbtr"/><s n="ppres"/></r></p></e>
     <e><p><l>dek<s n="num"/></l><r>dek<s n="num"/></r></p></e>
     <e><p><l>dek ed ok<s n="n"/></l><r>dek ok<s n="n"/></r></p></e>
-    <e><p><l>dek-e-du<s n="n"/></l><r>dek du<s n="n"/></r></p></e>
+    <e><p><l>dek-e-du<s n="n"/></l><r>dekdu<s n="n"/></r></p></e>
+    <e><p><l>dek-e-du<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>dekdua<s n="adj"/></r></p></e>
+    <e><p><l>dek-e-du<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>dekdua<s n="adj"/></r></p></e>
+    <e><p><l>dek-e-du<s n="n"/><s n="der_aro"/><s n="n"/></l><r>dekduaro<s n="n"/></r></p></e>
     <e><p><l>dek-e-kin<s n="n"/></l><r>dek kvin<s n="n"/></r></p></e>
     <e><p><l>dek-e-non<s n="n"/></l><r>dek naŭ<s n="n"/></r></p></e>
     <e><p><l>dek-e-quar<s n="n"/></l><r>dek kvar<s n="n"/></r></p></e>
@@ -14829,7 +14835,7 @@
     <e><p><l>dezolat<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>afliktateco<s n="n"/></r></p></e>
     <e><p><l>di<s n="pr"/></l><r>de<s n="pr"/></r></p></e>
     <e><p><l>di qua<s n="prn"/></l><r>de kiu<s n="prn"/></r></p></e>
-    <e><p><l>di qui<s n="prn"/></l><r>kies<s n="prn"/></r></p></e>
+    <e><p><l>di qui<s n="prn"/></l><r>de kiuj<s n="prn"/></r></p></e>
     <e><p><l>di<s n="adj"/></l><r>taga<s n="adj"/></r></p></e>
     <e><p><l>di<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>tageco<s n="n"/></r></p></e>
     <e><p><l>Diabet<s n="n"/></l><r>Diabeto<s n="n"/></r></p></e>
@@ -21841,6 +21847,7 @@
     <e><p><l>fal<s n="n"/><s n="der_aro"/><s n="n"/></l><r>mortaro<s n="n"/></r></p></e>
     <e><p><l>fals<s n="adj"/></l><r>falsa<s n="adj"/></r></p></e>
     <e><p><l>fals<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>falseco<s n="n"/></r></p></e>
+    <e><p><l>Falsa amik<s n="n"/></l><r>Falsaj amikoj<s n="n"/></r></p></e>
     <e><p><l>fals<s n="adv"/></l><r>false<s n="adv"/></r></p></e>
     <e><p><l>falses<s n="n"/></l><r>falseco<s n="n"/></r></p></e>
     <e><p><l>falses<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>falseca<s n="adj"/></r></p></e>
@@ -29708,6 +29715,7 @@
     <e><p><l>Hippotigris<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>zebra<s n="adj"/></r></p></e>
     <e><p><l>Hippotigris<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>zebra<s n="adj"/></r></p></e>
     <e><p><l>Hippotigris<s n="n"/><s n="der_aro"/><s n="n"/></l><r>zebraro<s n="n"/></r></p></e>
+    <e><p><l>Hiragan<s n="adj"/></l><r>Rondaj kanaoj<s n="adj"/></r></p></e>
     <e><p><l>Hirudine<s n="adj"/></l><r>Hirudo<s n="adj"/></r></p></e>
     <e><p><l>Hirund<s n="n"/></l><r>Hirundo<s n="n"/></r></p></e>
     <e><p><l>Hirund<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Hirunda<s n="adj"/></r></p></e>
@@ -29928,6 +29936,7 @@
     <e><p><l>Homala sexual aktives<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Seksumada<s n="adj"/></r></p></e>
     <e><p><l>Homala sexual aktives<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Seksumada<s n="adj"/></r></p></e>
     <e><p><l>Homala sexual aktives<s n="n"/><s n="der_aro"/><s n="n"/></l><r>Seksumadaro<s n="n"/></r></p></e>
+    <e><p><l>Homala yuri<s n="n"/></l><r>Homaj rajtoj<s n="n"/></r></p></e>
     <e><p><l>Homaranism<s n="n"/></l><r>Homaranismo<s n="n"/></r></p></e>
     <e><p><l>Homaranism<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Homaranisma<s n="adj"/></r></p></e>
     <e><p><l>Homaranism<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Homaranisma<s n="adj"/></r></p></e>
@@ -30423,6 +30432,7 @@
     <e><p><l>IBM<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>IBMa<s n="adj"/></r></p></e>
     <e><p><l>IBM<s n="n"/><s n="der_aro"/><s n="n"/></l><r>IBMaro<s n="n"/></r></p></e>
     <e><p><l>ica<s n="prn"/></l><r>ĉi tiu<s n="prn"/></r></p></e>
+    <e><p><l>ici<s n="prn"/></l><r>ĉi tiuj<s n="prn"/></r></p></e>
     <e><p><l>ico<s n="prn"/></l><r>ĉi tio<s n="prn"/></r></p></e>
     <e><p><l>id<s n="adj"/></l><r>ida<s n="adj"/></r></p></e>
     <e><p><l>id<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>ideco<s n="n"/></r></p></e>
@@ -31352,6 +31362,7 @@
     <e><p><l>indij<s n="vblex"/><s n="der_pprs"/><s n="adj"/></l><r>manki<s n="vbtr"/><s n="ppres"/></r></p></e>
     <e><p><l>indijen<s n="adj"/></l><r>indiĝena<s n="adj"/></r></p></e>
     <e><p><l>indijen<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>indiĝeneco<s n="n"/></r></p></e>
+    <e><p><l>Indijena populi<s n="n"/></l><r>Indiĝenaj popoloj<s n="n"/></r></p></e>
     <e><p><l>Indijen<s n="n"/></l><r>Indiĝeno<s n="n"/></r></p></e>
     <e><p><l>Indijen<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Indiĝena<s n="adj"/></r></p></e>
     <e><p><l>Indijen<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Indiĝena<s n="adj"/></r></p></e>
@@ -33141,6 +33152,7 @@
     <e><p><l>irgatemp<s n="adv"/></l><r>iam ajn<s n="adv"/></r></p></e>
     <e><p><l>irg<s n="adv"/></l><r>iel ajn<s n="adv"/></r></p></e>
     <e><p><l>irgekand<s n="adv"/></l><r>kiam ajn<s n="adv"/></r></p></e>
+    <e><p><l>irgi<s n="prn"/></l><r>iuj ajn<s n="prn"/></r></p></e>
     <e><p><l>irg<s n="n"/></l><r>io ajn<s n="n"/></r></p></e>
     <e><p><l>irgo<s n="prn"/></l><r>io ajn<s n="prn"/></r></p></e>
     <e><p><l>irgu<s n="prn"/></l><r>iu ajn<s n="prn"/></r></p></e>
@@ -33342,6 +33354,7 @@
     <e><p><l>iter<s n="vblex"/><s n="der_ppa"/><s n="adj"/></l><r>ripeti<s n="vblex"/><s n="pp3"/></r></p></e>
     <e><p><l>iter<s n="vblex"/><s n="der_pprs"/><s n="adj"/></l><r>ripeti<s n="vbtr"/><s n="ppres"/></r></p></e>
     <e><p><l>iter<s n="adv"/></l><r>ree<s n="adv"/></r></p></e>
+    <e><p><l>iti<s n="prn"/></l><r>tiuj<s n="prn"/></r></p></e>
     <e><p><l>ito<s n="prn"/></l><r>tio<s n="prn"/></r></p></e>
     <e><p><l>Iulius Caesar<s n="n"/></l><r>Julio Cezaro<s n="n"/></r></p></e>
     <e><p><l>ivan<s n="adj"/></l><r>ivan<s n="adj"/></r></p></e>
@@ -36408,6 +36421,7 @@
     <e><p><l>Katafalk<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Katafalka<s n="adj"/></r></p></e>
     <e><p><l>Katafalk<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Katafalka<s n="adj"/></r></p></e>
     <e><p><l>Katafalk<s n="n"/><s n="der_aro"/><s n="n"/></l><r>Katafalkaro<s n="n"/></r></p></e>
+    <e><p><l>Katakan<s n="adj"/></l><r>Strekaj kanaoj<s n="adj"/></r></p></e>
     <e><p><l>Katakomb<s n="n"/></l><r>Katakombo<s n="n"/></r></p></e>
     <e><p><l>Katakomb<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Katakomba<s n="adj"/></r></p></e>
     <e><p><l>Katakomb<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Katakomba<s n="adj"/></r></p></e>
@@ -53537,6 +53551,7 @@
     <e><p><l>nulaspec<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>nenieco<s n="n"/></r></p></e>
     <e><p><l>nulatemp<s n="adv"/></l><r>neniam<s n="adv"/></r></p></e>
     <e><p><l>nul<s n="adv"/></l><r>neniel<s n="adv"/></r></p></e>
+    <e><p><l>nuli<s n="prn"/></l><r>neniuj<s n="prn"/></r></p></e>
     <e><p><l>nulig<s n="vblex"/></l><r>nuligi<s n="vblex"/></r></p></e>
     <e><p><l>nulig<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>nuliganto<s n="n"/></r></p></e>
     <e><p><l>nulig<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>nuligado<s n="n"/></r></p></e>
@@ -63171,7 +63186,7 @@
     <e><p><l>quali<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>koturna<s n="adj"/></r></p></e>
     <e><p><l>quali<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>koturna<s n="adj"/></r></p></e>
     <e><p><l>quali<s n="n"/><s n="der_aro"/><s n="n"/></l><r>koturnaro<s n="n"/></r></p></e>
-    <e><p><l>quan<s n="prn"/></l><r>kiu<s n="prn"/></r></p></e>
+    <e><p><l>quan<s n="prn"/></l><r>kiun<s n="prn"/></r></p></e>
     <e><p><l>quankam<s n="cnjcoo"/></l><r>kvankam<s n="cnjcoo"/></r></p></e>
     <e><p><l>quant<s n="adj"/></l><r>kiom<s n="adj"/></r></p></e>
     <e><p><l>quantesm<s n="adj"/></l><r>kioma<s n="adj"/></r></p></e>
@@ -63322,6 +63337,7 @@
     <e><p><l>questor<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>trezorista<s n="adj"/></r></p></e>
     <e><p><l>questor<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>trezorista<s n="adj"/></r></p></e>
     <e><p><l>questor<s n="n"/><s n="der_aro"/><s n="n"/></l><r>trezoristaro<s n="n"/></r></p></e>
+    <e><p><l>qui<s n="prn"/></l><r>kiuj<s n="prn"/></r></p></e>
     <e><p><l>quiet<s n="adj"/></l><r>kvieta<s n="adj"/></r></p></e>
     <e><p><l>quiet<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>kvieteco<s n="n"/></r></p></e>
     <e><p><l>quiet<s n="adv"/></l><r>kviete<s n="adv"/></r></p></e>
@@ -63334,6 +63350,7 @@
     <e><p><l>Quik-komunikil<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Tujmesaĝila<s n="adj"/></r></p></e>
     <e><p><l>Quik-komunikil<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Tujmesaĝila<s n="adj"/></r></p></e>
     <e><p><l>Quik-komunikil<s n="n"/><s n="der_aro"/><s n="n"/></l><r>Tujmesaĝilaro<s n="n"/></r></p></e>
+    <e><p><l>quin<s n="prn"/></l><r>kiojn<s n="prn"/></r></p></e>
     <e><p><l>Quincy<s n="n"/></l><r>Quincy<s n="n"/></r></p></e>
     <e><p><l>Quincy<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Quincya<s n="adj"/></r></p></e>
     <e><p><l>Quincy<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Quincya<s n="adj"/></r></p></e>
@@ -63422,6 +63439,7 @@
     <e><p><l>Quocient<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Kvocienta<s n="adj"/></r></p></e>
     <e><p><l>Quocient<s n="n"/><s n="der_aro"/><s n="n"/></l><r>Kvocientaro<s n="n"/></r></p></e>
     <e><p><l>quociento<s n="num"/></l><r>kvociento<s n="num"/></r></p></e>
+    <e><p><l>quon<s n="prn"/></l><r>kion<s n="prn"/></r></p></e>
     <e><p><l>quoniam<s n="cnjcoo"/></l><r>ĉar<s n="cnjcoo"/></r></p></e>
     <e><p><l>quorumo<s n="num"/></l><r>kvorumo<s n="num"/></r></p></e>
     <e><p><l>quot<s n="n"/></l><r>kvoto<s n="n"/></r></p></e>
@@ -76484,6 +76502,7 @@
     <e><p><l>Thukydides<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Tucidida<s n="adj"/></r></p></e>
     <e><p><l>Thukydides<s n="n"/><s n="der_aro"/><s n="n"/></l><r>Tucididaro<s n="n"/></r></p></e>
     <e><p><l>Thunder Bay<s n="n"/></l><r>Thunder Bay<s n="n"/></r></p></e>
+    <e><p><l>ti<s n="prn"/></l><r>tiuj<s n="prn"/></r></p></e>
     <e><p><l>ti<s n="adj"/></l><r>tia<s n="adj"/></r></p></e>
     <e><p><l>ti<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>tieco<s n="n"/></r></p></e>
     <e><p><l>tiamanier<s n="adv"/></l><r>tiamaniere<s n="adv"/></r></p></e>
@@ -78503,7 +78522,7 @@
     <e><p><l>Ulex<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Uleksa<s n="adj"/></r></p></e>
     <e><p><l>Ulex<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Uleksa<s n="adj"/></r></p></e>
     <e><p><l>Ulex<s n="n"/><s n="der_aro"/><s n="n"/></l><r>Uleksaro<s n="n"/></r></p></e>
-    <e><p><l>uli<s n="prn"/></l><r>iu<s n="prn"/></r></p></e>
+    <e><p><l>uli<s n="prn"/></l><r>iuj<s n="prn"/></r></p></e>
     <e><p><l>ullok<s n="adv"/></l><r>ie<s n="adv"/></r></p></e>
     <e><p><l>ulmanier<s n="adv"/></l><r>iel<s n="adv"/></r></p></e>
     <e><p><l>Ulm<s n="n"/></l><r>Ulmo<s n="n"/></r></p></e>
@@ -80929,6 +80948,7 @@
     <e><p><l>vin<s n="n"/><s n="der_aro"/><s n="n"/></l><r>vinaro<s n="n"/></r></p></e>
     <e><p><l>vintral<s n="adj"/></l><r>vintra<s n="adj"/></r></p></e>
     <e><p><l>vintral<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>vintreco<s n="n"/></r></p></e>
+    <e><p><l>Vintrala Olimpiala Ludi<s n="n"/></l><r>Vintraj Olimpikoj<s n="n"/></r></p></e>
     <e><p><l>Vintr<s n="n"/></l><r>Vintro<s n="n"/></r></p></e>
     <e><p><l>Vintr<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Vintra<s n="adj"/></r></p></e>
     <e><p><l>Vintr<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Vintra<s n="adj"/></r></p></e>
