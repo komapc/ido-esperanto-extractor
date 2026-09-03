@@ -1,46 +1,46 @@
 # BIG BIDIX Statistics
-- Total entries: 93281
+- Total entries: 93247
 
 ## Entries per source (entry-level provenance)
 - closed_class_tables: 85
 - closed_class_tables_qualified: 2
 - en_wiktionary_via: 4508
-- fr_wiktionary_via: 462
+- fr_wiktionary_via: 275
 - function_word_override: 14
 - ll: 16519
-- morphological_expansion: 10133
+- morphological_expansion: 10109
 - wiki: 28358
-- wikidata_labels: 11268
+- wikidata_labels: 11247
 - wikt_eo: 200
 - wikt_io: 44343
 
 ## Entries with any translation-level source (EO)
-- bert_embeddings: 5110
+- bert_embeddings: 5101
 - closed_class_tables: 85
 - closed_class_tables_qualified: 2
 - en_wiktionary_via: 7601
-- fr_wiktionary_via: 510
+- fr_wiktionary_via: 276
 - function_word_override: 14
 - function_words_seed: 3
 - ll: 14334
-- morphological_expansion: 16495
+- morphological_expansion: 16130
 - wiki: 14151
-- wikidata_labels: 16510
+- wikidata_labels: 16264
 - wikt_eo: 206
 - wikt_io: 8396
 
 ## EO translation pairs by source (counts)
-- bert_embeddings: 5110
+- bert_embeddings: 5101
 - closed_class_tables: 85
 - closed_class_tables_qualified: 2
 - en_wiktionary_via: 7601
-- fr_wiktionary_via: 510
+- fr_wiktionary_via: 276
 - function_word_override: 14
 - function_words_seed: 3
 - ll: 14334
-- morphological_expansion: 16495
+- morphological_expansion: 16130
 - wiki: 14151
-- wikidata_labels: 16510
+- wikidata_labels: 16264
 - wikt_eo: 206
 - wikt_io: 8396
 
