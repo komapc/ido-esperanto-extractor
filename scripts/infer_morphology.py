@@ -1,4 +1,23 @@
 #!/usr/bin/env python3
+"""Paradigm inference for Ido lemmas — LEGACY module, mostly superseded.
+
+Status (2026-09 audit): the standalone stage this file implemented
+(normalise → infer → filter, via `main()`) was folded into
+prepare_vocabulary.py, which carries its own near-copy of `infer_paradigm`,
+`maybe_add_demonym_twin` and the demonym/toponym twin logic. Nothing in
+pipeline_manager.py or the Makefile runs this file. Its only live use is
+`build_one_big_bidix_json.py`, which imports `infer_paradigm()` for records
+that reach the merge with no paradigm.
+
+The two copies have already drifted. This file's `-ia` rule returns `o__n`
+unconditionally; prepare_vocabulary._infer_paradigm respects an explicit
+adj POS for the same ending. Consequence: build_one_big_bidix_json.py clears
+the paradigm of `abisinia<adj>` (its own documented example) and then
+re-infers it HERE as `o__n`, so the entry is exported as a noun anyway.
+Fix one copy and you must fix the other — or drop this file's inference and
+import prepare_vocabulary's. `_SHORT_POS` is likewise triplicated (here,
+prepare_vocabulary.py, build_one_big_bidix_json.py).
+"""
 import argparse
 import logging
 import re

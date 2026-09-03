@@ -1,4 +1,34 @@
 #!/usr/bin/env python3
+"""Export bidix_big.json (+ final_vocabulary.json) to Apertium .dix XML.
+
+Two outputs, copied verbatim into the consumer repos by core/deploy.sh:
+  * apertium-ido.ido.dix          — Ido monodix (analyser + generator)
+  * apertium-ido-epo.ido-epo.dix  — io↔eo bilingual dictionary
+
+This is the ONLY place a translation winner is chosen: build_bidix() calls
+conflict_resolution.pick_best() on each entry's candidate list. A change to
+source ranking is therefore a re-export, not a rebuild of bidix_big.json.
+
+Several things in the .dix are generated here rather than harvested. Each is
+there because of a property of the Apertium toolchain, not of the data:
+  * Derivational entries (the der_* sdefs) for every verb/noun/adj stem —
+    Ido and Esperanto share the suffix system, so `stem<vblex><der_pres><n>`
+    → `epostem+anto<n>` is coverage for free. See _DERIVATION_DOC.
+  * Prep+article contractions (dal/del/dil/el/sil) as single LUs, because
+    lt-proc -b cannot emit multi-token output.
+  * Sentence punctuation as <sent> LUs, so t1x rules stop matching across
+    sentence boundaries.
+  * epo→ido bridges: prpers RL entries (_emit_prpers_rl_entries) and vbser
+    twins (_load_eo_vbser_lemmas reads apertium-epo's own dix rather than
+    hardcoding the list), so the reverse direction matches apertium-epo's
+    tagset instead of ours.
+  * Feminine-shadow and inchoative demotion, so a gender-neutral or
+    non-inchoative Ido lemma is not exported against the derived EO form.
+
+The XML is written by a custom serializer (_write_elem / write_xml_file),
+not ET.tostring: lt-comp reads whitespace inside <l>/<r> as part of the
+lexical string, and the `<s n="x"/>` spelling must be exact.
+"""
 import argparse
 import logging
 import re
@@ -310,6 +340,14 @@ def _load_eo_vbser_lemmas(dix_path: Path = _EO_EPO_DIX) -> set:
 
 
 def build_monodix(entries):
+    """Ido monodix. One <e> per lemma; the paradigm does all the inflection.
+
+    The interesting decisions are (a) which of several same-lemma records
+    wins — the one with the most specific paradigm, since o__n is the default
+    that every unknown falls into; and (b) the stem/paradigm expansion, which
+    must agree exactly with what build_bidix() emits on the <l> side or
+    analysis and lookup silently diverge.
+    """
     dictionary = ET.Element("dictionary")
     alphabet = ET.SubElement(dictionary, "alphabet")
     alphabet.text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -389,6 +427,8 @@ def build_monodix(entries):
         pr.text = mark
         ET.SubElement(pr, "s", n="sent")
 
+    # --- Phase 1: one record per lemma. Lemma alone is the key (not lemma+POS)
+    # because a monodix can hold only one analysis path per surface stem.
     # Deduplicate entries by lemma, prioritizing more specific paradigms over o__n
     best_entries = {}
     for e in entries:
@@ -413,6 +453,11 @@ def build_monodix(entries):
     # Track all lemmas added to prevent any duplicates
     global_seen_lemmas = set()
 
+    # --- Phase 2: resolve each record to (stem, paradigm). Raw paradigm names
+    # from the sources are a mix of short POS tags and real pardef names; this
+    # is the single normalisation point, so the mapping here must match
+    # data/pardefs.xml exactly. Pronoun possessives are added as extra
+    # a__adj entries here because they have no source record of their own.
     # Step 1: Pre-process best entries and their possessives
     for lm, e in best_entries.items():
         clean_lm = lm
@@ -471,6 +516,8 @@ def build_monodix(entries):
     # Sort final list by lemma
     final_list.sort(key=lambda x: (x['lm'].lower(), x['lm']))
 
+    # --- Phase 3: emit XML. Sorted by lemma so the .dix diff between regens
+    # is reviewable (dict_diff.py depends on stable ordering).
     for item in final_list:
         clean_lm = item['lm']
         stem = item['stem']
@@ -587,6 +634,14 @@ def _eo_candidates(e):
 
 
 def build_bidix(entries):
+    """io↔eo bidix. Picks the EO winner per entry, then generates derivations.
+
+    Two ordering facts drive the structure. lt-proc -b returns the FIRST
+    matching entry, so within a lemma the order of <e> elements is the
+    tiebreak — that is why entries are sorted by source quality before
+    emission. And derivational entries are emitted right after their base
+    entry so a stem's whole family stays together in the file.
+    """
 
     eo_vbser = _load_eo_vbser_lemmas()
 
@@ -659,6 +714,9 @@ def build_bidix(entries):
 
     # Use top-level map_s_tag
 
+    # --- Phase 1: pick the EO winner per source record and collapse records
+    # that agree on (lemma, winner, paradigm). Unlike the monodix, POS/paradigm
+    # IS part of the key: kato<n>→kato and kata<adj>→kata are both wanted.
     # Deduplicate entries by (lemma, epo_translation), prioritizing more specific paradigms
     best_bidix_entries = {}
     for e in entries:
@@ -688,10 +746,11 @@ def build_bidix(entries):
             if _paradigm_priority(raw_par) > _paradigm_priority(old_par):
                 best_bidix_entries[key] = e
 
+    # --- Phase 2: order for emission. (seen_bidix_keys / deduped_final_bidix
+    # below are vestigial — assigned, never read.)
     # FINAL deduplication pass for bidix
     seen_bidix_keys = set()
     deduped_final_bidix = []
-    # Sort by Ido lemma, then Epo lemma
     # Sort by Ido lemma, with translation source quality as the tiebreaker so
     # Wiktionary-confirmed translations come BEFORE en_wiktionary_via / BERT-
     # only ones in the .dix file. apertium-lt-proc -b returns the first match,
@@ -728,6 +787,9 @@ def build_bidix(entries):
         ),
     )
     
+    # --- Phase 3: emit. Per entry: guards (chemical symbols, contractions),
+    # the base <e>, then the family of generated entries that hang off it
+    # (possessive, vbser twin, derivations).
     # Process and build final XML here
     _generated_contraction_bases: set = set()
 
@@ -898,6 +960,9 @@ def build_bidix(entries):
                 ET.SubElement(r_der, "s", n=epo_ptag).tail = ""
             # -esar: kreesar → passive construction; t1x vbpasv rule produces "esti<tense> + verb<pp>"
             # Right side carries the base Epo lemma so clip side="tl" part="lem" returns it
+            # DISABLED since 309ba89 (2026-04-19); that commit records no reason.
+            # The der_esar sdef is still declared above, so the tag stays valid
+            # but no entry ever emits it. Delete or re-enable deliberately.
             if False:
                 for tense in ['inf', 'pri', 'pii', 'fti', 'cni', 'imp']:
                     e_es = ET.SubElement(section, "e")
@@ -963,6 +1028,8 @@ def build_bidix(entries):
             ET.SubElement(r_aro, "s", n="n").tail = ""
             # -izar suffix: nom+izar → nomizar (to name); Epo: strip -o, add -i
             # Emit all tenses so the bidix covers nomizar/nomizas/nomizis/...
+            # DISABLED since 309ba89 (2026-04-19) — was live before that commit,
+            # which records no reason. Same situation as der_esar above.
             if False and epo.endswith('o'):
                 epo_verb = epo[:-1] + 'i'  # 'nomo' → 'nomi'
                 for tense in ['inf', 'pri', 'pii', 'fti', 'cni', 'imp']:
@@ -986,9 +1053,16 @@ def build_bidix(entries):
 
 
 def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: Path, out_bidix: Path) -> None:
+    """Orchestrate: reconcile the two inputs, then build both dictionaries.
+
+    The monodix must be able to ANALYSE every word the bidix can TRANSLATE,
+    or lookup hits an unknown-word `*` before it ever reaches the bidix. So
+    the vocabulary is unioned with the bidix-only lemmas, and bidix entries
+    that carry a closed-class authority override the vocabulary's POS.
+    """
     ensure_dir(out_monodix.parent)
     data = read_json(entries_path)
-    
+
     # Handle both old format (list) and new format (dict with "entries" key)
     if isinstance(data, dict) and 'entries' in data:
         entries = data['entries']
@@ -1006,6 +1080,7 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
     else:
         bidix_entries = bidix_data
 
+    # --- Phase 1: reconcile vocabulary against bidix (union + POS authority).
     # Merge bidix-only entries into monodix so words with Epo translations
     # but absent from final_vocabulary are still morphologically analyzable.
     # Index bidix entries by lower-case lemma, preferring entries with non-null POS,
@@ -1058,6 +1133,8 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
         logging.info(f"Dropped {before - len(mono_entries)} single-letter-stem junk verbs")
     logging.info(f"Monodix: {len(entries)} vocab + {len(extra)} bidix-only = {len(mono_entries)} total")
 
+    # --- Phase 2: monodix-only drops. These are entries that are harmless in
+    # bidix_big.json but would create a wrong analysis path once compiled.
     # Feminine-shadow guard: drop monodix entries `lemma<n>` (paradigm o__n)
     # with empty senses when `lemma + 'ino'` is also a noun lemma with
     # translations. Without this, apertium-ido's o__n feminine `-ino` paradigm
@@ -1087,6 +1164,7 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
         logging.info(f"Monodix feminine-shadow guard: dropped {drop_count} entries")
     mono_entries = filtered
 
+    # --- Phase 3: build and write both dictionaries.
     mono = build_monodix(mono_entries)
     write_xml_file(mono, out_monodix, header_comment=_MONODIX_HEADER)
 

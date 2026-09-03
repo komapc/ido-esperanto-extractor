@@ -1,4 +1,33 @@
 #!/usr/bin/env python3
+"""Build work/bilingual_raw.json: the union of every Ido-keyed candidate stream.
+
+Despite the name, only `identical_form_heuristic` does any *aligning*
+(io.wikt entry ↔ eo.wikt entry with the same lemma+POS). The rest of
+`align()` is concatenation: each stream is appended as-is, keyed by Ido
+lemma, and the real merge/dedup happens later in build_one_big_bidix_json.py.
+Duplicates across streams are therefore expected and harmless here.
+
+Streams, in order (see the `--- Stream N` markers in align()):
+  1. identical-form io↔eo Wiktionary matches
+  2. io.wikt entries passed through — with an EO gloss, or gloss-less but
+     Ido-shaped and attested in some other language (monodix-only, so words
+     like `dissendar` become analysable without a manual entry)
+  3. io.wikipedia titles (monodix-only)
+  4. eo.wikt entries inverted: each Ido translation on an EO page becomes
+     an Ido record whose gloss is the EO page lemma
+  5. via-English pivot pairs   (work/bilingual_via_en.json)
+  6. via-French pivot pairs    (work/fr_wikt_via.json)
+
+Streams 5–6 are skipped when their file is absent — silently, not as an
+error. That interacts badly with pipeline_manager's stage order: this script
+is stage 10 but `parse_wiktionary_via.py --source fr` (which writes
+fr_wikt_via.json) is stage 11, so on a clean rebuild stream 6 is empty and
+the French pairs only enter bilingual_raw.json on the *second* full run.
+
+The `confidence` values attached to translations here (0.5 / 0.6 / 0.8) are
+not a conflict signal: build_one_big_bidix_json.py drops them and keeps only
+the source set, and conflict_resolution.py ranks by source.
+"""
 import argparse
 import sys
 import logging
@@ -123,7 +152,11 @@ def align(io_path: Path, eo_path: Path, out_path: Path,
     if not isinstance(eo_entries, list):
         raise ValueError(f"eo_wikt_eo_io.json must contain a list of entries (got {type(eo_entries)})")
 
+    # --- Stream 1: io.wikt ↔ eo.wikt entries with identical lemma+POS. This
+    # is the only step in this function that actually *aligns* two sides.
     aligned = identical_form_heuristic(io_entries, eo_entries)
+    # --- Stream 2: every io.wikt entry, passed through unaligned. Overlap
+    # with stream 1 is expected; build_one_big_bidix_json.py merges by key.
     # Pass-through: include IO→EO entries as bilingual items even without EO confirmation.
     # Entries lacking an EO translation but having a valid Ido lemma shape and at least
     # one non-EO translation are kept too — they contribute to monodix morphological
@@ -194,6 +227,7 @@ def align(io_path: Path, eo_path: Path, out_path: Path,
         aligned.append(item)
     if kept_no_eo:
         logging.info("Kept %d Ido-only entries without EO translation (monodix-only, Wiktionary-confirmed)", kept_no_eo)
+    # --- Stream 3: io.wikipedia titles. No gloss — monodix coverage only.
     # Include Wikipedia titles (monolingual Ido entries) so they flow downstream
     if wiki_path is not None and wiki_path.exists():
         try:
@@ -222,6 +256,10 @@ def align(io_path: Path, eo_path: Path, out_path: Path,
             added += 1
         logging.info("Added %d Wikipedia title entries", added)
 
+    # --- Stream 4: eo.wikt pages, inverted. An EO page listing Ido
+    # translations x, y becomes two Ido records (x→EO, y→EO). This is how
+    # eo_wiktionary reaches the bidix at all: the pipeline is Ido-keyed, so
+    # EO-side knowledge has to be re-expressed as Ido lemmas.
     # Flip EO→IO: create IO entries from EO pages (EO Wiktionary)
     added_flipped = 0
     for eo_e in eo_entries:
@@ -254,6 +292,10 @@ def align(io_path: Path, eo_path: Path, out_path: Path,
             added_flipped += 1
     logging.info("Added %d flipped EO→IO items", added_flipped)
 
+    # --- Stream 5: via-English pivot pairs. The POS-ending mismatch check is
+    # the only quality gate a pivot pair gets before the merge: an English
+    # word with an Ido noun and an Esperanto verb as translations is a
+    # different sense on each side, not a translation pair.
     # Add via-English bilingual pairs (if available)
     if via_en_path is not None and via_en_path.exists():
         try:
@@ -309,6 +351,9 @@ def align(io_path: Path, eo_path: Path, out_path: Path,
             added_via_en += 1
         logging.info("Added %d via-English IO↔EO pairs (dropped %d for POS-ending mismatch)", added_via_en, dropped_pos_mismatch)
 
+    # --- Stream 6: via-French pivot pairs. NOTE: the producer is pipeline
+    # stage 11, this script is stage 10, so on a clean rebuild this file does
+    # not exist yet and the stream is silently empty (see module docstring).
     # Add via-French bilingual pairs (if available). Same structure as via-en;
     # produced by `parse_wiktionary_via.py --source fr`.
     if via_fr_path is not None and via_fr_path.exists():

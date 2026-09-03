@@ -1,4 +1,35 @@
 #!/usr/bin/env python3
+"""Merge every io→eo source into one candidate list: dist/bidix_big.json.
+
+Role in the pipeline (stage `build_big_bidix`): this is where the independently
+harvested sources stop being separate files and become ONE record per Ido
+(lemma, POS). Everything downstream — export_apertium (the .dix files),
+export_vortaro (the web dictionary), the eval/diff gates — reads only this.
+
+Inputs are the per-source JSON files listed in main() (Wiktionary vocabulary,
+io/eo Wikipedia langlinks, Wikidata labels, morphological expansion, the
+closed-class tables, the function-word seed, BERT pairs). Each is optional: a
+missing file is a warning, not an error, so a partial regen still exports.
+
+What this file deliberately does NOT do: choose a winner. Every surviving EO
+candidate is kept together with the set of sources that proposed it, and
+conflict_resolution.pick_best() runs at export time. That way a change to
+source ranking is a re-export, never a rebuild of this file. Per-translation
+`confidence` numbers from upstream are dropped for the same reason — the
+source set is the only conflict signal (see conflict_resolution.py for why).
+
+Invariants the rest of the pipeline relies on:
+  * Merge key is (lemma.lower(), short POS tag). POS is normalised first and,
+    where the source is missing or contradicts the Ido ending, inferred or
+    overridden from the ending — otherwise the same word arriving from two
+    sources forks into two records and the gloss never attaches to the one
+    carrying the paradigm.
+  * Every record leaves with a morphology.paradigm.
+  * Closed-class lemmas are lowercase and carry a POS-derived paradigm, never
+    an ending-derived one.
+  * A BERT-only translation survives only when no other source covers the
+    lemma AND it is a cognate of the Ido lemma.
+"""
 import argparse
 import logging
 from pathlib import Path
@@ -124,7 +155,9 @@ def _filter_bert_junk(entries: List[Dict[str, Any]], src_path: Path) -> List[Dic
 
 
 def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
-    # Load and merge all input files
+    # --- Phase 1: load. Concatenate all source files into one flat list. The
+    # only per-source filtering here is the BERT junk pre-filter; everything
+    # else is source-agnostic and happens on the merged records below.
     entries = []
     for path in entries_paths:
         if path.exists():
@@ -180,6 +213,11 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
             return ''
         return t
 
+    # --- Phase 2: normalise each entry's (lemma, POS) and fold it into by_key.
+    # The POS/paradigm sanitising in this loop exists because the merge key
+    # must be identical across sources for the same word; a source that ships
+    # a wrong POS (or none) would otherwise create a parallel record instead
+    # of contributing its translations to the real one.
     for e in entries:
         # Allow entries without a language field (source_io_wiktionary.json format)
         lang_field = e.get('language')
@@ -307,7 +345,10 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
                 if src:
                     cur.add(src)
 
-    # Inject function-word overrides for words absent from all sources.
+    # --- Phase 3: closed-class overrides. These run AFTER the merge so they
+    # win regardless of what any source said (they replace the whole EO term
+    # set, not just add to it). Marked with the `function_word_override`
+    # source so export_apertium can treat the lemma as authoritative.
     _POS_TO_PAR: Dict[str, str] = {
         'n': 'o__n', 'adj': 'a__adj', 'adv': 'e__adv', 'vblex': 'ar__vblex',
         'pr': '__pr', 'det': '__det', 'prn': '__prn',
@@ -337,6 +378,8 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
         # Mark provenance so downstream consumers (e.g. export_apertium monodix
         # builder) can recognize this lemma as authoritatively overridden.
         by_key[key]['_all_sources'].add('function_word_override')
+    # --- Phase 4: guarantee every record has a paradigm. Two routes: closed
+    # class → fixed table keyed by POS; open class → infer_morphology.
     # Closed-class POS must take their paradigm from the POS, never from the
     # lemma ending: ending inference gives quo<prn> the o__n noun paradigm,
     # which resurrects the spurious qu<n>/qui<n><pl> analyses the
@@ -350,6 +393,11 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
             if pos_s in _CLOSED_CLASS_PAR:
                 par = _POS_TO_PAR.get(pos_s)
             else:
+                # KNOWN DRIFT: infer_morphology.infer_paradigm is a stale
+                # copy of prepare_vocabulary._infer_paradigm. Its `-ia` rule
+                # ignores POS, so the `abisinia<adj>` paradigm cleared in
+                # Phase 2 comes back here as o__n and exports as a noun.
+                # See the infer_morphology.py module docstring.
                 par = _infer_paradigm(rec)
                 if not par:
                     # infer_morphology expects verbose POS; fall back to short-form map
@@ -357,6 +405,9 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
             if par:
                 rec['morphology'] = {'paradigm': par, 'features': {}}
 
+    # --- Phase 5: precompute the lemma sets the per-record filters below need
+    # (feminine-shadow guard needs to know which -ino lemmas io_wiktionary
+    # attests; that is a whole-dictionary question, not a per-record one).
     # BERT translations are low-priority: skip them for lemmas that already have Wiktionary coverage.
     _BERT_SOURCES = frozenset({'bert_embeddings'})
 
@@ -375,6 +426,12 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
                 _io_wikt_lemmas.add(_lm)
                 break
 
+    # --- Phase 6: per-record filtering and materialisation. Order matters:
+    # junk-lemma/junk-verb drop the whole record; case/inflection folding
+    # collapses candidates; THEN the BERT rules decide which candidates stay.
+    # The BERT rules are all "when is a low-rank source allowed to speak":
+    # never if a better source covers the lemma, never if it would shadow a
+    # Wiktionary -ino form, and otherwise only for cognates.
     # Materialize final structure: senses with EO-only translations; keep multi-provenance per translation
     out: List[Dict[str, Any]] = []
     for (_lm, _pos), rec in sorted(by_key.items(), key=lambda kv: (kv[0][0], kv[0][1])):

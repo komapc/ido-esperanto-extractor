@@ -64,7 +64,15 @@ def extract_french_via_translations(text: str) -> List[Dict[str, Any]]:
 
 
 def extract_translations_for_meaning(text: str, meaning_num: int) -> Dict[str, List[str]]:
-    """Extract Ido and Esperanto translations for a specific meaning."""
+    """Return every Ido/Esperanto translation on the page — NOT per meaning.
+
+    `meaning_num` is accepted but unused: the regex collects all
+    {{trad-début}}…{{trad-fin}} blocks on the page, so a polysemous French
+    word contributes the same io/eo union to each of its numbered senses.
+    The `via_num` the caller records is therefore cosmetic provenance, and
+    cross-sense pairs (io from sense 1 × eo from sense 2) are possible.
+    Doing this properly means slicing `text` to the sense's own trad block.
+    """
     translations = {'io': [], 'eo': []}
     
     # Look for trad-début sections
