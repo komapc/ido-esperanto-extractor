@@ -36,20 +36,15 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 from _common import read_json, write_json, configure_logging
-from infer_morphology import infer_paradigm as _infer_paradigm
+from prepare_vocabulary import infer_paradigm as _infer_paradigm, _SHORT_POS
 from lexicon_filters import (
     is_junk_lemma, is_junk_verb, dedupe_eo_candidates, fold_inflected_eo_duplicates)
 import re
 
 
-# Normalize verbose Wiktionary POS names to short Apertium tags so that all
-# entries in bidix_big.json carry a consistent POS regardless of source.
-_SHORT_POS: Dict[str, str] = {
-    "noun": "n", "adjective": "adj", "adverb": "adv", "verb": "vblex",
-    "preposition": "pr", "conjunction": "cnjcoo",
-    "subordinating conjunction": "cnjsub", "determiner": "det", "pronoun": "prn",
-    "interjection": "ij", "numeral": "num",
-}
+# _SHORT_POS (imported above from prepare_vocabulary) maps verbose Wiktionary
+# POS names to short Apertium tags so that every entry in bidix_big.json
+# carries a consistent POS regardless of source.
 
 
 # Translations for closed-class function words the pipeline provably fails to
@@ -379,7 +374,10 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
         # builder) can recognize this lemma as authoritatively overridden.
         by_key[key]['_all_sources'].add('function_word_override')
     # --- Phase 4: guarantee every record has a paradigm. Two routes: closed
-    # class → fixed table keyed by POS; open class → infer_morphology.
+    # class → fixed table keyed by POS; open class → the same
+    # prepare_vocabulary.infer_paradigm that stage 12 applies, so a record
+    # that arrives paradigm-less (or had it cleared in Phase 2) gets exactly
+    # what prepare_vocabulary would have given it.
     # Closed-class POS must take their paradigm from the POS, never from the
     # lemma ending: ending inference gives quo<prn> the o__n noun paradigm,
     # which resurrects the spurious qu<n>/qui<n><pl> analyses the
@@ -393,14 +391,9 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
             if pos_s in _CLOSED_CLASS_PAR:
                 par = _POS_TO_PAR.get(pos_s)
             else:
-                # KNOWN DRIFT: infer_morphology.infer_paradigm is a stale
-                # copy of prepare_vocabulary._infer_paradigm. Its `-ia` rule
-                # ignores POS, so the `abisinia<adj>` paradigm cleared in
-                # Phase 2 comes back here as o__n and exports as a noun.
-                # See the infer_morphology.py module docstring.
                 par = _infer_paradigm(rec)
                 if not par:
-                    # infer_morphology expects verbose POS; fall back to short-form map
+                    # Ending/POS inference gave nothing: fall back to the POS table.
                     par = _POS_TO_PAR.get(pos_s)
             if par:
                 rec['morphology'] = {'paradigm': par, 'features': {}}

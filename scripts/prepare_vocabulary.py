@@ -168,7 +168,13 @@ def _has_wikipedia_provenance(entry: Dict[str, Any]) -> bool:
     return False
 
 
-def _infer_paradigm(entry: Dict[str, Any]) -> Optional[str]:
+def infer_paradigm(entry: Dict[str, Any]) -> Optional[str]:
+    """Paradigm for an entry from its lemma ending and POS tag.
+
+    Public: also imported by build_one_big_bidix_json.py, so that records
+    reaching the merge without a paradigm get the same answer this stage
+    gives. Keep it the single copy of these rules.
+    """
     lemma = str(entry.get("lemma") or "")
     pos = entry.get("pos")
     if not lemma:
@@ -272,7 +278,7 @@ def _infer_morphology(entries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         out.append(e)
 
     for e in entries:
-        par = _infer_paradigm(e)
+        par = infer_paradigm(e)
         morph = {"paradigm": par, "features": {}}
         raw_pos = e.get("pos")
         norm_pos = _SHORT_POS.get(str(raw_pos or ''), raw_pos)
