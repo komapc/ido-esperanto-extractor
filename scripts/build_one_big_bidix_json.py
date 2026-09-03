@@ -61,9 +61,13 @@ _FUNCTION_WORD_OVERRIDES: Dict[str, Dict[str, str]] = {
     'cent': {'pos': 'num',      'eo': 'cent'},  # hundred (io_wiktionary mis-tags it <ij>)
     'a':    {'pos': 'pr',       'eo': 'al'},    # to/toward (Wiktionary translation blank)
     'al':   {'pos': 'pr',       'eo': 'al'},    # a+la contraction, kept as pr to avoid double-article
-    'dal':  {'pos': 'prep_art', 'eo': 'de'},    # da + la (contraction); transfer expands to "de la"
-    'dil':  {'pos': 'prep_art', 'eo': 'de'},    # di + la (contraction); io_wiktionary EO is multi-word, filtered upstream
-    'del':  {'pos': 'prep_art', 'eo': 'de'},    # de + la (contraction); same io_wiktionary multi-word-gloss issue as dal/dil
+    # dil/del RETIRED 2026-09-03: both have a real io_wiktionary gloss ("de
+    # la") — export_apertium.py's _reduce_prep_art_contraction() now unwraps
+    # any prep_art "X la" candidate to "X" generically, so the .t1x prep-art
+    # transfer rule can re-expand it. 'dal' dropped outright (not retired):
+    # it has ZERO source data anywhere in work/*.json, so its old entry here
+    # was fabricated, not a pipeline-gap fix — until a real source exists,
+    # 'dal' has no bidix translation.
     'til':  {'pos': 'pr',       'eo': 'ĝis'},   # until — io_wiktionary EO is junk-grade ("ĝis la revido")
     'quan': {'pos': 'prn',      'eo': 'kiun'},  # accusative of qua; not derived by __prn paradigm
     # qui→kiuj and quo→kio RETIRED 2026-06-10: now supplied by the

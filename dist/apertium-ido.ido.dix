@@ -18330,7 +18330,6 @@
     <e lm="Dakota, Minnesotana"><i>Dakota, Minnesotan</i><par n="a__adj"/></e>
     <e lm="Daktili"><i>Daktili</i><par n="o__n"/></e>
     <e lm="daktilo"><i>daktil</i><par n="o__n"/></e>
-    <e lm="dal"><i>dal</i><par n="__prep_art"/></e>
     <e lm="Dalai-lamao"><i>Dalai-lama</i><par n="o__n"/></e>
     <e lm="dalay"><i>dalay</i><par n="o__n"/></e>
     <e lm="Dalay Lama"><i>Dalay Lama</i><par n="o__n"/></e>
@@ -21171,7 +21170,7 @@
     <e lm="diktatoro"><i>diktator</i><par n="o__n"/></e>
     <e lm="diktita"><i>diktit</i><par n="a__adj"/></e>
     <e lm="dikto"><i>dikt</i><par n="o__n"/></e>
-    <e lm="dil"><i>dil</i><par n="__prep_art"/></e>
+    <e lm="di"><p><l>dil</l><r>di<s n="pr"/><s n="def"/></r></p></e>
     <e lm="dilatado"><i>dilatad</i><par n="o__n"/></e>
     <e lm="dilatanta"><i>dilatant</i><par n="a__adj"/></e>
     <e lm="dilatar"><i>dilat</i><par n="ar__vblex"/></e>
