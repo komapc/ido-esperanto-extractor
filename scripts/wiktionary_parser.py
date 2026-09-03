@@ -326,6 +326,17 @@ def extract_pos(section: str) -> Optional[str]:
         except Exception:
             pass
 
+    # 2.5) Subordinating conjunctions: io.wiktionary's Semantiko line marks
+    # these explicitly, e.g. "*Semantiko: [[konjunciono]] [[subordinala]]."
+    # for 'ke'. Must run before the generic Konjuncioni category hint below,
+    # which would otherwise collapse every conjunction (coordinating and
+    # subordinating alike) to cnjcoo.
+    semantiko_m_early = re.search(r'\*\s*Semantiko\s*:[^\n]+', text, re.IGNORECASE)
+    if semantiko_m_early:
+        semantiko_early = semantiko_m_early.group(0).lower()
+        if 'konjunciono' in semantiko_early and 'subordin' in semantiko_early:
+            return 'cnjsub'
+
     # 3) Category-based hints (English or Esperanto labels)
     cat_text = text.lower()
     cat_hints = [
