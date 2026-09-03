@@ -673,6 +673,29 @@ def _demote_eo_inchoative(order, ido_lemma):
     return [t for t in order if t not in incho] + [t for t in order if t in incho]
 
 
+def _reduce_prep_art_contraction(term):
+    """Unwrap a prep+article contraction's source gloss to the bare preposition.
+
+    Esperanto doesn't contract prepositions with "la" the way Ido does (dal =
+    da+la, dil = di+la, del = de+la), so io_wiktionary correctly glosses these
+    as the two-word phrase "X la" — that's not a source error. But the bidix
+    <r> slot wants one lexical unit, and apertium-ido-epo.ido-epo.t1x already
+    has a generic "prep-art contraction expansion" rule that fires on ANY
+    prep_art entry, clips whatever single word is there, and reattaches "la"
+    at generation time. So reducing "de la" -> "de" here is a mechanical
+    unwrap of the source's own data (the caller already established this
+    entry is a contraction), not an added fact — it lets the existing
+    transfer rule do the rest, generically, for any prep_art contraction.
+
+    Only called for entries already classified prep_art — see is_prep_art
+    in _eo_candidates.
+    """
+    parts = term.split()
+    if len(parts) == 2 and parts[1] == "la":
+        return parts[0]
+    return term
+
+
 def _eo_candidates(e):
     """Ordered (term, [sources]) EO candidates for an entry, deduped by term.
 
@@ -680,9 +703,17 @@ def _eo_candidates(e):
     insertion-order tiebreak for conflict_resolution.pick_best.
     """
     order, by_term = [], {}
+    # POS can arrive as pos="prep_art" directly (e.g. del, whose io_wiktionary
+    # entry carries the tag) or only as morphology.paradigm="prep_art" (e.g.
+    # dil, whose raw pos is null and gets classified downstream by
+    # prepare_vocabulary.py's _CLOSED_CLASS_PARADIGMS table) — check both.
+    is_prep_art = (e.get("pos") == "prep_art"
+                   or (e.get("morphology") or {}).get("paradigm") == "prep_art")
 
     def add(raw_term, sources):
         term = _clean_translation_term(str(raw_term))
+        if is_prep_art:
+            term = _reduce_prep_art_contraction(term)
         if not term:
             return
         if term not in by_term:

@@ -12739,7 +12739,6 @@
     <e><p><l>daktil<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>daktila<s n="adj"/></r></p></e>
     <e><p><l>daktil<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>daktila<s n="adj"/></r></p></e>
     <e><p><l>daktil<s n="n"/><s n="der_aro"/><s n="n"/></l><r>daktilaro<s n="n"/></r></p></e>
-    <e><p><l>dal</l><r>de</r></p></e>
     <e><p><l>dali<s n="adj"/></l><r>dalia<s n="adj"/></r></p></e>
     <e><p><l>dali<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>dalieco<s n="n"/></r></p></e>
     <e><p><l>Dali<s n="n"/></l><r>Dalio<s n="n"/></r></p></e>
@@ -15285,7 +15284,7 @@
     <e><p><l>diktator<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>diktatora<s n="adj"/></r></p></e>
     <e><p><l>diktator<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>diktatora<s n="adj"/></r></p></e>
     <e><p><l>diktator<s n="n"/><s n="der_aro"/><s n="n"/></l><r>diktatoraro<s n="n"/></r></p></e>
-    <e><p><l>dil</l><r>de</r></p></e>
+    <e><p><l>di<s n="pr"/><s n="def"/></l><r>de<s n="pr"/><s n="def"/></r></p></e>
     <e><p><l>dilat<s n="vblex"/></l><r>dilati<s n="vblex"/></r></p></e>
     <e><p><l>dilat<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>dilatanto<s n="n"/></r></p></e>
     <e><p><l>dilat<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>dilatado<s n="n"/></r></p></e>
