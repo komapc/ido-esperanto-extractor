@@ -17236,6 +17236,10 @@
     <e><p><l>centaur<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>centaŭra<s n="adj"/></r></p></e>
     <e><p><l>centaur<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>centaŭra<s n="adj"/></r></p></e>
     <e><p><l>centaur<s n="n"/><s n="der_aro"/><s n="n"/></l><r>centaŭraro<s n="n"/></r></p></e>
+    <e><p><l>centi<s n="n"/></l><r>centi<s n="n"/></r></p></e>
+    <e><p><l>centi<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>centia<s n="adj"/></r></p></e>
+    <e><p><l>centi<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>centia<s n="adj"/></r></p></e>
+    <e><p><l>centi<s n="n"/><s n="der_aro"/><s n="n"/></l><r>centiaro<s n="n"/></r></p></e>
     <e><p><l>Centifoli<s n="n"/></l><r>Centfolia rozo<s n="n"/></r></p></e>
     <e><p><l>centimetr<s n="adj"/></l><r>centimetra<s n="adj"/></r></p></e>
     <e><p><l>centimetr<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>centimetreco<s n="n"/></r></p></e>
@@ -23756,6 +23760,7 @@
     <e><p><l>diktator<s n="n"/><s n="der_aro"/><s n="n"/></l><r>diktatoraro<s n="n"/></r></p></e>
     <e><p><l>diktit<s n="adj"/></l><r>diktita<s n="adj"/></r></p></e>
     <e><p><l>diktit<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>diktiteco<s n="n"/></r></p></e>
+    <e><p><l>di<s n="pr"/><s n="def"/></l><r>de<s n="pr"/><s n="def"/></r></p></e>
     <e><p><l>dil</l><r>de</r></p></e>
     <e><p><l>dilat<s n="vblex"/></l><r>dilati<s n="vblex"/></r></p></e>
     <e><p><l>dilat<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>dilatanto<s n="n"/></r></p></e>
@@ -28676,6 +28681,10 @@
     <e><p><l>Emocosimbol<s n="n"/><s n="der_aro"/><s n="n"/></l><r>Miensimbolaro<s n="n"/></r></p></e>
     <e><p><l>emocoz<s n="adj"/></l><r>emocia<s n="adj"/></r></p></e>
     <e><p><l>emocoz<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>emocieco<s n="n"/></r></p></e>
+    <e><p><l>emoji<s n="n"/></l><r>emoĝio<s n="n"/></r></p></e>
+    <e><p><l>emoji<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>emoĝia<s n="adj"/></r></p></e>
+    <e><p><l>emoji<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>emoĝia<s n="adj"/></r></p></e>
+    <e><p><l>emoji<s n="n"/><s n="der_aro"/><s n="n"/></l><r>emoĝiaro<s n="n"/></r></p></e>
     <e><p><l>empati<s n="n"/></l><r>simpatio<s n="n"/></r></p></e>
     <e><p><l>empati<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>simpatia<s n="adj"/></r></p></e>
     <e><p><l>empati<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>simpatia<s n="adj"/></r></p></e>
