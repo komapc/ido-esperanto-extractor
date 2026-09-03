@@ -428,7 +428,9 @@ def build_monodix(entries):
         ET.SubElement(pr, "s", n="sent")
 
     # --- Phase 1: one record per lemma. Lemma alone is the key (not lemma+POS)
-    # because a monodix can hold only one analysis path per surface stem.
+    # by design: when sources disagree on a word's paradigm we emit the most
+    # specific one rather than a homograph pair, since the extra analysis
+    # would be noise from a wrong source, not real ambiguity.
     # Deduplicate entries by lemma, prioritizing more specific paradigms over o__n
     best_entries = {}
     for e in entries:
@@ -517,7 +519,7 @@ def build_monodix(entries):
     final_list.sort(key=lambda x: (x['lm'].lower(), x['lm']))
 
     # --- Phase 3: emit XML. Sorted by lemma so the .dix diff between regens
-    # is reviewable (dict_diff.py depends on stable ordering).
+    # is reviewable.
     for item in final_list:
         clean_lm = item['lm']
         stem = item['stem']
@@ -715,8 +717,10 @@ def build_bidix(entries):
     # Use top-level map_s_tag
 
     # --- Phase 1: pick the EO winner per source record and collapse records
-    # that agree on (lemma, winner, paradigm). Unlike the monodix, POS/paradigm
-    # IS part of the key: kato<n>→kato and kata<adj>→kata are both wanted.
+    # that agree on (lemma, winner, paradigm). Unlike the monodix, paradigm IS
+    # part of the key: a good o__n record and a noisy a__adj record for the
+    # same (lemma, winner) stay separate, so the noisy one cannot win the
+    # priority contest and erase the real noun entry.
     # Deduplicate entries by (lemma, epo_translation), prioritizing more specific paradigms
     best_bidix_entries = {}
     for e in entries:

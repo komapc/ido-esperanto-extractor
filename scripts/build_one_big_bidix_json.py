@@ -25,8 +25,8 @@ Invariants the rest of the pipeline relies on:
     sources forks into two records and the gloss never attaches to the one
     carrying the paradigm.
   * Every record leaves with a morphology.paradigm.
-  * Closed-class lemmas are lowercase and carry a POS-derived paradigm, never
-    an ending-derived one.
+  * Closed-class lemmas are lowercase and, when they arrive without a
+    paradigm, get one derived from the POS rather than the lemma ending.
   * A BERT-only translation survives only when no other source covers the
     lemma AND it is a cognate of the Ido lemma.
 """

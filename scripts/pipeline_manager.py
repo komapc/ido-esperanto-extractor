@@ -415,8 +415,7 @@ def main(argv):
         # stage 11 below. On a clean rebuild the French pivot pairs are
         # silently missing from bilingual_raw.json until the NEXT full run, and
         # forward-only invalidation never re-runs this stage to pick them up.
-        # Fix = move via_french above this stage; needs a full regen to
-        # validate, so it is not done in the comments-only PR that added this.
+        # Fix = move via_french above this stage (validate with a full regen).
         ("align_bilingual",
          ["python3", "scripts/align_bilingual.py"],
          "Align bilingual entries",
@@ -464,15 +463,13 @@ def main(argv):
         # Stage 11e: Morphological expansion (derive forms from known root pairs).
         # Generates forms like facado→farado from known facar→fari, validated
         # against the io.wiki frequency corpus. Fast (~3s).
-        # Reads:  work/final_vocabulary.json (the script's --bidix default —
-        #         NOT dist/bidix_big.json as previously stated here) and
+        # Reads:  work/final_vocabulary.json (the script's --bidix default) and
         #         work/io_wiki_frequency.json.
         # ORDERING HAZARD: final_vocabulary.json is written by prepare_vocabulary
         # (stage 12, below). After `make clean` this stage crashes with
         # FileNotFoundError; on an incremental run it silently derives from
-        # the PREVIOUS run's vocabulary. Should sit after stage 12 and before
-        # build_big_bidix. Not reordered in the comments-only PR (needs a
-        # full regen to validate).
+        # the PREVIOUS run's vocabulary. Fix = move it after stage 12 and
+        # before build_big_bidix (validate with a full regen).
         ("morphological_expansion",
          ["python3", "scripts/build_morphological_expansion.py"],
          "Generate morphological derivations from known bidix pairs",

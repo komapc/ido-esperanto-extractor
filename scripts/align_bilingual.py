@@ -19,10 +19,9 @@ Streams, in order (see the `--- Stream N` markers in align()):
   6. via-French pivot pairs    (work/fr_wikt_via.json)
 
 Streams 5–6 are skipped when their file is absent — silently, not as an
-error. That interacts badly with pipeline_manager's stage order: this script
-is stage 10 but `parse_wiktionary_via.py --source fr` (which writes
-fr_wikt_via.json) is stage 11, so on a clean rebuild stream 6 is empty and
-the French pairs only enter bilingual_raw.json on the *second* full run.
+error. So "the via-French pairs are missing" is not diagnosable from this
+script's output: check that the producer (`parse_wiktionary_via.py
+--source fr`) is ordered BEFORE this stage in pipeline_manager.py.
 
 The `confidence` values attached to translations here (0.5 / 0.6 / 0.8) are
 not a conflict signal: build_one_big_bidix_json.py drops them and keeps only
@@ -351,9 +350,9 @@ def align(io_path: Path, eo_path: Path, out_path: Path,
             added_via_en += 1
         logging.info("Added %d via-English IO↔EO pairs (dropped %d for POS-ending mismatch)", added_via_en, dropped_pos_mismatch)
 
-    # --- Stream 6: via-French pivot pairs. NOTE: the producer is pipeline
-    # stage 11, this script is stage 10, so on a clean rebuild this file does
-    # not exist yet and the stream is silently empty (see module docstring).
+    # --- Stream 6: via-French pivot pairs. Silently empty when the file is
+    # absent — if that happens, the producer stage is ordered after this one
+    # (see module docstring).
     # Add via-French bilingual pairs (if available). Same structure as via-en;
     # produced by `parse_wiktionary_via.py --source fr`.
     if via_fr_path is not None and via_fr_path.exists():
