@@ -63,6 +63,7 @@ _FUNCTION_WORD_OVERRIDES: Dict[str, Dict[str, str]] = {
     'al':   {'pos': 'pr',       'eo': 'al'},    # a+la contraction, kept as pr to avoid double-article
     'dal':  {'pos': 'prep_art', 'eo': 'de'},    # da + la (contraction); transfer expands to "de la"
     'dil':  {'pos': 'prep_art', 'eo': 'de'},    # di + la (contraction); io_wiktionary EO is multi-word, filtered upstream
+    'del':  {'pos': 'prep_art', 'eo': 'de'},    # de + la (contraction); same io_wiktionary multi-word-gloss issue as dal/dil
     'til':  {'pos': 'pr',       'eo': 'ĝis'},   # until — io_wiktionary EO is junk-grade ("ĝis la revido")
     'quan': {'pos': 'prn',      'eo': 'kiun'},  # accusative of qua; not derived by __prn paradigm
     # qui→kiuj and quo→kio RETIRED 2026-06-10: now supplied by the
