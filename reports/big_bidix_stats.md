@@ -1,5 +1,5 @@
 # BIG BIDIX Statistics
-- Total entries: 93273
+- Total entries: 93281
 
 ## Entries per source (entry-level provenance)
 - closed_class_tables: 85
@@ -8,7 +8,7 @@
 - fr_wiktionary_via: 462
 - function_word_override: 14
 - ll: 16519
-- morphological_expansion: 10121
+- morphological_expansion: 10133
 - wiki: 28358
 - wikidata_labels: 11268
 - wikt_eo: 200
@@ -23,7 +23,7 @@
 - function_word_override: 14
 - function_words_seed: 3
 - ll: 14334
-- morphological_expansion: 16440
+- morphological_expansion: 16495
 - wiki: 14151
 - wikidata_labels: 16510
 - wikt_eo: 206
@@ -38,7 +38,7 @@
 - function_word_override: 14
 - function_words_seed: 3
 - ll: 14334
-- morphological_expansion: 16440
+- morphological_expansion: 16495
 - wiki: 14151
 - wikidata_labels: 16510
 - wikt_eo: 206
