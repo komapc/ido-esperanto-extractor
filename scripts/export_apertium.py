@@ -177,14 +177,16 @@ _BIDIX_HEADER = """\
 
 
 def load_pardefs_from_file(pardefs_path: Path) -> ET.Element:
-    """Load paradigm definitions from an XML file."""
-    try:
-        tree = ET.parse(pardefs_path)
-        return tree.getroot()
-    except Exception as e:
-        logging.error(f"Failed to load pardefs from {pardefs_path}: {e}")
-        # Return empty pardefs element if file load fails
-        return ET.Element("pardefs")
+    """Load paradigm definitions from an XML file.
+
+    Raises on a parse error rather than silently degrading to an empty
+    <pardefs/> element: that fallback previously let a malformed
+    data/pardefs.xml produce a "successful" export with every <par n="..."/>
+    reference in the dix left dangling, which only surfaces later as an
+    opaque `Undefined paradigm` error from lt-comp during `make`.
+    """
+    tree = ET.parse(pardefs_path)
+    return tree.getroot()
 
 
 def extract_stem(lemma: str, paradigm: str) -> str:
@@ -509,7 +511,7 @@ def build_monodix(entries):
     alphabet.text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     # Define sdefs for monolingual dictionary
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def", "sent", "der_pres", "der_act", "der_qual", "der_oz", "der_ala", "der_aro", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra", "der_aj"]:
+    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def", "sent", "der_pres", "der_act", "der_qual", "der_oz", "der_ala", "der_aro", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra", "der_aj", "der_onto", "der_onta"]:
         ET.SubElement(sdefs, "sdef", n=s)
     # Load pardefs from external file instead of hardcoding
     pardefs_path = Path(__file__).resolve().parents[1] / "data/pardefs.xml"
@@ -841,7 +843,7 @@ def build_bidix(entries):
     alphabet = ET.SubElement(dictionary, "alphabet")
     alphabet.text = "abcdefghijklmnopqrstuvwxyzĉĝĥĵŝŭABCDEFGHIJKLMNOPQRSTUVWXYZĈĜĤĴŜŬ"
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "vbtr", "vbser", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp3", "ppres", "p1", "p2", "p3", "subj", "obj", "m", "f", "mf", "nt", "ciph", "np", "def", "sent", "der_pres", "der_act", "der_qual", "der_oz", "der_ala", "der_aro", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra", "der_aj"]:
+    for s in ["n", "adj", "adv", "vblex", "vbtr", "vbser", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp2", "pp3", "ppres", "p1", "p2", "p3", "subj", "obj", "m", "f", "mf", "nt", "ciph", "np", "def", "sent", "der_pres", "der_act", "der_qual", "der_oz", "der_ala", "der_aro", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra", "der_aj", "der_onto", "der_onta"]:
         ET.SubElement(sdefs, "sdef", n=s)
     # Structural pardefs: regex-based rules that are independent of vocabulary data
     pardefs = ET.SubElement(dictionary, "pardefs")
@@ -1118,7 +1120,12 @@ def build_bidix(entries):
         # Right: epo_form<n> — remaining <sg><nom> etc. pass through from input.
         if raw_par == 'ar__vblex' and epo and epo.endswith('i') and ' ' not in epo:
             epo_stem = epo[:-1]  # 'krei' → 'kre'
-            # Noun-form derivations: -anto, -ado, -into (der tag + n)
+            # Noun-form derivations: -anto, -ado, -into (der tag + n).
+            # No bidix entry for -onto (der_onto, future agent noun): apertium-epo's
+            # generator rejects the -onto ending unconditionally for ANY verb stem
+            # (confirmed: #kreonto, #kuronto, #manĝonto, #dormonto all fail lt-proc -g,
+            # while -anto/-into/-ado all succeed generically) -- same class of gap as
+            # der_izar/der_esar/der_aj below. The monodix still analyses -onto words.
             for der_tag, epo_suffix in [('der_pres', 'anto'), ('der_act', 'ado'), ('der_past', 'into')]:
                 e_der = ET.SubElement(section, "e")
                 p_der = ET.SubElement(e_der, "p")
@@ -1152,6 +1159,7 @@ def build_bidix(entries):
                 ('der_ppas', 'vblex', 'pp'),
                 ('der_ppa',  'vblex', 'pp3'),
                 ('der_pprs', 'vbtr',  'ppres'),
+                ('der_onta', 'vblex', 'pp2'),
             ]:
                 e_der = ET.SubElement(section, "e")
                 p_der = ET.SubElement(e_der, "p")
