@@ -132,6 +132,20 @@
       <!-- Future-active participle (adj): kre+onta → kreonta (about to create); needs
            <sg> (no <nom>), since apertium-epo's pp2 tag rejects <nom>, same as pp3 above. -->
       <e><p><l>onta</l><r><s n="vblex"/><s n="der_onta"/><s n="adj"/><s n="sg"/></r></p></e>
+      <!-- Participial adverbs (gerunds): kre+ante → kreante (while creating),
+           kre+inte → kreinte (having created). Adverbs are invariant in both
+           Ido and Epo, so no further tags are needed. Epo generates these via
+           its own <ger>/<gerpast> tags, see build_bidix. -->
+      <e><p><l>ante</l><r><s n="vblex"/><s n="der_ante"/><s n="adv"/></r></p></e>
+      <e><p><l>inte</l><r><s n="vblex"/><s n="der_inte"/><s n="adv"/></r></p></e>
+      <!-- Remaining participial adverbs (future-active, and all 3 passive) are
+           NOT generatable by apertium-epo for any verb stem (confirmed:
+           #kuronte/#manĝonte, #kurate/#kurite/#kurote all fail lt-proc -g),
+           so monodix analysis only, no bidix pair (see build_bidix). -->
+      <e><p><l>onte</l><r><s n="vblex"/><s n="der_onte"/><s n="adv"/></r></p></e>
+      <e><p><l>ate</l><r><s n="vblex"/><s n="der_ate"/><s n="adv"/></r></p></e>
+      <e><p><l>ite</l><r><s n="vblex"/><s n="der_ite"/><s n="adv"/></r></p></e>
+      <e><p><l>ote</l><r><s n="vblex"/><s n="der_ote"/><s n="adv"/></r></p></e>
       <!-- Passive verb derivation: kre+esar → kreesar (to be created); Epo: krei+ĝi = kreiĝi -->
       <e><p><l>esar</l><r><s n="vblex"/><s n="der_esar"/><s n="vblex"/><s n="inf"/></r></p></e>
       <e><p><l>esas</l><r><s n="vblex"/><s n="der_esar"/><s n="vblex"/><s n="pri"/></r></p></e>

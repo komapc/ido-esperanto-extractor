@@ -225,6 +225,9 @@ _DERIVATION_SHADOW_SUFFIXES = {
     'into': ('ar__vblex', 'n'),
     'anta': ('ar__vblex', 'adj'),
     'ota':  ('ar__vblex', 'adj'),
+    'onta': ('ar__vblex', 'adj'),
+    'ante': ('ar__vblex', 'adv'),
+    'inte': ('ar__vblex', 'adv'),
 }
 _ROOT_STRIP_LEN = {'o__n': 1, 'a__adj': 1, 'ar__vblex': 2}
 
@@ -511,7 +514,7 @@ def build_monodix(entries):
     alphabet.text = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     # Define sdefs for monolingual dictionary
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def", "sent", "der_pres", "der_act", "der_qual", "der_oz", "der_ala", "der_aro", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra", "der_aj", "der_onto", "der_onta"]:
+    for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def", "sent", "der_pres", "der_act", "der_qual", "der_oz", "der_ala", "der_aro", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra", "der_aj", "der_onto", "der_onta", "der_ante", "der_inte", "der_onte", "der_ate", "der_ite", "der_ote"]:
         ET.SubElement(sdefs, "sdef", n=s)
     # Load pardefs from external file instead of hardcoding
     pardefs_path = Path(__file__).resolve().parents[1] / "data/pardefs.xml"
@@ -843,7 +846,7 @@ def build_bidix(entries):
     alphabet = ET.SubElement(dictionary, "alphabet")
     alphabet.text = "abcdefghijklmnopqrstuvwxyzĉĝĥĵŝŭABCDEFGHIJKLMNOPQRSTUVWXYZĈĜĤĴŜŬ"
     sdefs = ET.SubElement(dictionary, "sdefs")
-    for s in ["n", "adj", "adv", "vblex", "vbtr", "vbser", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp2", "pp3", "ppres", "p1", "p2", "p3", "subj", "obj", "m", "f", "mf", "nt", "ciph", "np", "def", "sent", "der_pres", "der_act", "der_qual", "der_oz", "der_ala", "der_aro", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra", "der_aj", "der_onto", "der_onta"]:
+    for s in ["n", "adj", "adv", "vblex", "vbtr", "vbser", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp2", "pp3", "ppres", "ger", "gerpast", "p1", "p2", "p3", "subj", "obj", "m", "f", "mf", "nt", "ciph", "np", "def", "sent", "der_pres", "der_act", "der_qual", "der_oz", "der_ala", "der_aro", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra", "der_aj", "der_onto", "der_onta", "der_ante", "der_inte", "der_onte", "der_ate", "der_ite", "der_ote"]:
         ET.SubElement(sdefs, "sdef", n=s)
     # Structural pardefs: regex-based rules that are independent of vocabulary data
     pardefs = ET.SubElement(dictionary, "pardefs")
@@ -1171,6 +1174,26 @@ def build_bidix(entries):
                 r_der = ET.SubElement(p_der, "r")
                 r_der.text = epo  # Epo verb lemma (e.g. 'krei'), not a suffix combo
                 ET.SubElement(r_der, "s", n=epo_vtag).tail = ""
+                ET.SubElement(r_der, "s", n=epo_ptag).tail = ""
+            # Participial adverbs (gerunds): der_ante(-ante)/der_inte(-inte) route
+            # through Epo's own <ger>/<gerpast> tags, generatable for any verb stem
+            # (kuri<vblex><ger> -> kurante), same generator-route as der_onta above.
+            # Adverbs are invariant in both languages, so no extra tags either side.
+            # No bidix entries for der_onte(-onte)/der_ate(-ate)/der_ite(-ite)/
+            # der_ote(-ote): apertium-epo cannot generate any of these for any verb
+            # stem (confirmed empirically) -- monodix analysis only, like der_izar/
+            # der_esar/der_aj/der_onto.
+            for der_tag, epo_ptag in [('der_ante', 'ger'), ('der_inte', 'gerpast')]:
+                e_der = ET.SubElement(section, "e")
+                p_der = ET.SubElement(e_der, "p")
+                l_der = ET.SubElement(p_der, "l")
+                l_der.text = stem
+                ET.SubElement(l_der, "s", n="vblex").tail = ""
+                ET.SubElement(l_der, "s", n=der_tag).tail = ""
+                ET.SubElement(l_der, "s", n="adv").tail = ""
+                r_der = ET.SubElement(p_der, "r")
+                r_der.text = epo  # Epo verb lemma (e.g. 'krei'), not a suffix combo
+                ET.SubElement(r_der, "s", n="vblex").tail = ""
                 ET.SubElement(r_der, "s", n=epo_ptag).tail = ""
             # No bidix entries for -esar (der_esar) derivations: the monodix
             # analyses them, but the pair emission was switched off in 309ba89
