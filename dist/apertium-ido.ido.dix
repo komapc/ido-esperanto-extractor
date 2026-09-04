@@ -89,6 +89,12 @@
     <sdef n="der_aj"/>
     <sdef n="der_onto"/>
     <sdef n="der_onta"/>
+    <sdef n="der_ante"/>
+    <sdef n="der_inte"/>
+    <sdef n="der_onte"/>
+    <sdef n="der_ate"/>
+    <sdef n="der_ite"/>
+    <sdef n="der_ote"/>
   </sdefs>
   <pardefs>
     <pardef n="o__n">
@@ -198,6 +204,12 @@
       <e><p><l>ota</l><r><s n="vblex"/><s n="der_pfut"/><s n="adj"/><s n="sg"/><s n="nom"/></r></p></e>
       <e><p><l>anta</l><r><s n="vblex"/><s n="der_ppra"/><s n="adj"/><s n="sg"/><s n="nom"/></r></p></e>
       <e><p><l>onta</l><r><s n="vblex"/><s n="der_onta"/><s n="adj"/><s n="sg"/></r></p></e>
+      <e><p><l>ante</l><r><s n="vblex"/><s n="der_ante"/><s n="adv"/></r></p></e>
+      <e><p><l>inte</l><r><s n="vblex"/><s n="der_inte"/><s n="adv"/></r></p></e>
+      <e><p><l>onte</l><r><s n="vblex"/><s n="der_onte"/><s n="adv"/></r></p></e>
+      <e><p><l>ate</l><r><s n="vblex"/><s n="der_ate"/><s n="adv"/></r></p></e>
+      <e><p><l>ite</l><r><s n="vblex"/><s n="der_ite"/><s n="adv"/></r></p></e>
+      <e><p><l>ote</l><r><s n="vblex"/><s n="der_ote"/><s n="adv"/></r></p></e>
       <e><p><l>esar</l><r><s n="vblex"/><s n="der_esar"/><s n="vblex"/><s n="inf"/></r></p></e>
       <e><p><l>esas</l><r><s n="vblex"/><s n="der_esar"/><s n="vblex"/><s n="pri"/></r></p></e>
       <e><p><l>esis</l><r><s n="vblex"/><s n="der_esar"/><s n="vblex"/><s n="pii"/></r></p></e>
@@ -3651,7 +3663,6 @@
     <e lm="abuja"><i>abuj</i><par n="a__adj"/></e>
     <e lm="abulio"><i>abuli</i><par n="o__n"/></e>
     <e lm="abundanta"><i>abundant</i><par n="a__adj"/></e>
-    <e lm="abundante"><i>abundant</i><par n="e__adv"/></e>
     <e lm="abundar"><i>abund</i><par n="ar__vblex"/></e>
     <e lm="abunde"><i>abund</i><par n="e__adv"/></e>
     <e lm="abundeganta"><i>abundegant</i><par n="a__adj"/></e>
@@ -3970,7 +3981,6 @@
     <e lm="Adhemar Ferreira da Silvana"><i>Adhemar Ferreira da Silvan</i><par n="a__adj"/></e>
     <e lm="adheme"><i>adhem</i><par n="e__adv"/></e>
     <e lm="adheranta"><i>adherant</i><par n="a__adj"/></e>
-    <e lm="adherante"><i>adherant</i><par n="e__adv"/></e>
     <e lm="adheranto"><i>adherant</i><par n="o__n"/></e>
     <e lm="adherar"><i>adher</i><par n="ar__vblex"/></e>
     <e lm="adherema"><i>adherem</i><par n="a__adj"/></e>
@@ -4552,7 +4562,6 @@
     <e lm="agame"><i>agam</i><par n="e__adv"/></e>
     <e lm="Agamemnon"><i>Agamemnon</i><par n="o__n"/></e>
     <e lm="Agana"><i>Agan</i><par n="a__adj"/></e>
-    <e lm="agante"><i>agant</i><par n="e__adv"/></e>
     <e lm="aganto"><i>agant</i><par n="o__n"/></e>
     <e lm="agapo"><i>agap</i><par n="o__n"/></e>
     <e lm="agar"><i>ag</i><par n="ar__vblex"/></e>
@@ -4953,7 +4962,6 @@
     <e lm="akomodo"><i>akomod</i><par n="o__n"/></e>
     <e lm="akompana"><i>akompan</i><par n="a__adj"/></e>
     <e lm="akompanadar"><i>akompanad</i><par n="ar__vblex"/></e>
-    <e lm="akompanante"><i>akompanant</i><par n="e__adv"/></e>
     <e lm="akompanantino"><i>akompanantin</i><par n="o__n"/></e>
     <e lm="akompanantulo"><i>akompanantul</i><par n="o__n"/></e>
     <e lm="akompanar"><i>akompan</i><par n="ar__vblex"/></e>
@@ -6040,7 +6048,6 @@
     <e lm="Altura, Minnesota"><i>Altura, Minnesota</i><par n="o__n"/></e>
     <e lm="Altura, Minnesotana"><i>Altura, Minnesotan</i><par n="a__adj"/></e>
     <e lm="Altus, Oklahomana"><i>Altus, Oklahoman</i><par n="a__adj"/></e>
-    <e lm="aludante"><i>aludant</i><par n="e__adv"/></e>
     <e lm="aludar"><i>alud</i><par n="ar__vblex"/></e>
     <e lm="aludata"><i>aludat</i><par n="a__adj"/></e>
     <e lm="aludita"><i>aludit</i><par n="a__adj"/></e>
@@ -9406,7 +9413,6 @@
     <e lm="atra"><i>atr</i><par n="a__adj"/></e>
     <e lm="atraktabas"><i>atraktabas</i><par n="ar__vblex"/></e>
     <e lm="atraktanta"><i>atraktant</i><par n="a__adj"/></e>
-    <e lm="atraktante"><i>atraktant</i><par n="e__adv"/></e>
     <e lm="atraktar"><i>atrakt</i><par n="ar__vblex"/></e>
     <e lm="atraktata"><i>atraktat</i><par n="a__adj"/></e>
     <e lm="atraktebla"><i>atraktebl</i><par n="a__adj"/></e>
@@ -9836,7 +9842,6 @@
     <e lm="avana"><i>avan</i><par n="a__adj"/></e>
     <e lm="avanajo"><i>avanaj</i><par n="o__n"/></e>
     <e lm="avanbrakio"><i>avanbraki</i><par n="o__n"/></e>
-    <e lm="avancante"><i>avancant</i><par n="e__adv"/></e>
     <e lm="avancar"><i>avanc</i><par n="ar__vblex"/></e>
     <e lm="avancata"><i>avancat</i><par n="a__adj"/></e>
     <e lm="avancena"><i>avancen</i><par n="a__adj"/></e>
@@ -11154,7 +11159,6 @@
     <e lm="bazalta"><i>bazalt</i><par n="a__adj"/></e>
     <e lm="bazalto"><i>bazalt</i><par n="o__n"/></e>
     <e lm="bazanta"><i>bazant</i><par n="a__adj"/></e>
-    <e lm="bazante"><i>bazant</i><par n="e__adv"/></e>
     <e lm="Bazar"><i>Baz</i><par n="ar__vblex"/></e>
     <e lm="bazaro"><i>bazar</i><par n="o__n"/></e>
     <e lm="bazatra"><i>bazatr</i><par n="a__adj"/></e>
@@ -11169,7 +11173,6 @@
     <e lm="bazilisko"><i>bazilisk</i><par n="o__n"/></e>
     <e lm="bazilo"><i>bazil</i><par n="o__n"/></e>
     <e lm="Bazine, Kansas"><i>Bazine, Kansas</i><par n="o__n"/></e>
-    <e lm="bazinte"><i>bazint</i><par n="e__adv"/></e>
     <e lm="bazizar"><i>baziz</i><par n="ar__vblex"/></e>
     <e lm="bazo"><i>baz</i><par n="o__n"/></e>
     <e lm="bazoedro"><i>bazoedr</i><par n="o__n"/></e>
@@ -13517,7 +13520,6 @@
     <e lm="brilanta"><i>brilant</i><par n="a__adj"/></e>
     <e lm="brilanta-kolora"><i>brilanta-kolora</i><par n="o__n"/></e>
     <e lm="brilantajo"><i>brilantaj</i><par n="o__n"/></e>
-    <e lm="brilante"><i>brilant</i><par n="e__adv"/></e>
     <e lm="brilanteblanka"><i>brilanteblank</i><par n="a__adj"/></e>
     <e lm="brilanto"><i>brilant</i><par n="o__n"/></e>
     <e lm="brilar"><i>bril</i><par n="ar__vblex"/></e>
@@ -15085,7 +15087,6 @@
     <e lm="celata"><i>celat</i><par n="a__adj"/></e>
     <e lm="celate"><i>celat</i><par n="e__adv"/></e>
     <e lm="cele"><i>cel</i><par n="e__adv"/></e>
-    <e lm="celebrante"><i>celebrant</i><par n="e__adv"/></e>
     <e lm="celebrar"><i>celebr</i><par n="ar__vblex"/></e>
     <e lm="celebrario"><i>celebrari</i><par n="o__n"/></e>
     <e lm="celebrata"><i>celebrat</i><par n="a__adj"/></e>
@@ -15511,7 +15512,6 @@
     <e lm="chagreneso"><i>chagrenes</i><par n="o__n"/></e>
     <e lm="chagrenetigar"><i>chagrenetig</i><par n="ar__vblex"/></e>
     <e lm="chagreneto"><i>chagrenet</i><par n="o__n"/></e>
-    <e lm="chagrenigante"><i>chagrenigant</i><par n="e__adv"/></e>
     <e lm="chagrenigar"><i>chagrenig</i><par n="ar__vblex"/></e>
     <e lm="chagreno"><i>chagren</i><par n="o__n"/></e>
     <e lm="Chaikovski"><i>Chaikovski</i><par n="o__n"/></e>
@@ -16644,7 +16644,6 @@
     <e lm="cirkoncizito"><i>cirkoncizit</i><par n="o__n"/></e>
     <e lm="cirkoncizo"><i>cirkonciz</i><par n="o__n"/></e>
     <e lm="cirkondajo"><i>cirkondaj</i><par n="o__n"/></e>
-    <e lm="cirkondante"><i>cirkondant</i><par n="e__adv"/></e>
     <e lm="cirkondar"><i>cirkond</i><par n="ar__vblex"/></e>
     <e lm="cirkondata"><i>cirkondat</i><par n="a__adj"/></e>
     <e lm="cirkonde"><i>cirkond</i><par n="e__adv"/></e>
@@ -18049,7 +18048,6 @@
     <e lm="Dardanos (filiulo di Zeus)"><i>Dardanos (filiulo di Zeus)</i><par n="o__n"/></e>
     <e lm="dardo"><i>dard</i><par n="o__n"/></e>
     <e lm="dardoza"><i>dardoz</i><par n="a__adj"/></e>
-    <e lm="darfante"><i>darfant</i><par n="e__adv"/></e>
     <e lm="darfar"><i>darf</i><par n="ar__vblex"/></e>
     <e lm="darfo"><i>darf</i><par n="o__n"/></e>
     <e lm="Darfur, Minnesota"><i>Darfur, Minnesota</i><par n="o__n"/></e>
@@ -18248,7 +18246,6 @@
     <e lm="Daytona Beach, Floridana"><i>Daytona Beach, Floridan</i><par n="a__adj"/></e>
     <e lm="Dayville, Oregon"><i>Dayville, Oregon</i><par n="o__n"/></e>
     <e lm="dazlanta"><i>dazlant</i><par n="a__adj"/></e>
-    <e lm="dazlante"><i>dazlant</i><par n="e__adv"/></e>
     <e lm="dazlar"><i>dazl</i><par n="ar__vblex"/></e>
     <e lm="dazlesko"><i>dazlesk</i><par n="o__n"/></e>
     <e lm="dazlo"><i>dazl</i><par n="o__n"/></e>
@@ -18411,7 +18408,6 @@
     <e lm="decendo"><i>decend</i><par n="o__n"/></e>
     <e lm="decendolineo"><i>decendoline</i><par n="o__n"/></e>
     <e lm="decens-ordino"><i>decens-ordin</i><par n="o__n"/></e>
-    <e lm="decensante"><i>decensant</i><par n="e__adv"/></e>
     <e lm="decensar"><i>decens</i><par n="ar__vblex"/></e>
     <e lm="decenseyo"><i>decensey</i><par n="o__n"/></e>
     <e lm="decensigar"><i>decensig</i><par n="ar__vblex"/></e>
@@ -18596,7 +18592,6 @@
     <e lm="defore"><i>defor</i><par n="e__adv"/></e>
     <e lm="deforest"><i>deforest</i><par n="o__n"/></e>
     <e lm="DeForest Kelley"><i>DeForest Kelley</i><par n="o__n"/></e>
-    <e lm="deformante"><i>deformant</i><par n="e__adv"/></e>
     <e lm="deformar"><i>deform</i><par n="ar__vblex"/></e>
     <e lm="deformata"><i>deformat</i><par n="a__adj"/></e>
     <e lm="deformebla"><i>deformebl</i><par n="a__adj"/></e>
@@ -18876,7 +18871,6 @@
     <e lm="delimita"><i>delimit</i><par n="a__adj"/></e>
     <e lm="deliquecar"><i>deliquec</i><par n="ar__vblex"/></e>
     <e lm="deliqueco"><i>deliquec</i><par n="o__n"/></e>
-    <e lm="delirante"><i>delirant</i><par n="e__adv"/></e>
     <e lm="delirar"><i>delir</i><par n="ar__vblex"/></e>
     <e lm="deliratra"><i>deliratr</i><par n="a__adj"/></e>
     <e lm="deliro"><i>delir</i><par n="o__n"/></e>
@@ -18914,7 +18908,6 @@
     <e lm="demagogo"><i>demagog</i><par n="o__n"/></e>
     <e lm="demanda"><i>demand</i><par n="a__adj"/></e>
     <e lm="demandanta"><i>demandant</i><par n="a__adj"/></e>
-    <e lm="demandante"><i>demandant</i><par n="e__adv"/></e>
     <e lm="demandanto"><i>demandant</i><par n="o__n"/></e>
     <e lm="demandar"><i>demand</i><par n="ar__vblex"/></e>
     <e lm="demandata"><i>demandat</i><par n="a__adj"/></e>
@@ -19132,7 +19125,6 @@
     <e lm="deontologio"><i>deontologi</i><par n="o__n"/></e>
     <e lm="deoservo"><i>deoserv</i><par n="o__n"/></e>
     <e lm="departala"><i>departal</i><par n="a__adj"/></e>
-    <e lm="departante"><i>departant</i><par n="e__adv"/></e>
     <e lm="departar"><i>depart</i><par n="ar__vblex"/></e>
     <e lm="departementi"><i>departementi</i><par n="o__n"/></e>
     <e lm="departeyo"><i>departey</i><par n="o__n"/></e>
@@ -19142,13 +19134,11 @@
     <e lm="Departmento di Stato di Usa"><i>Departmento di Stato di Usa</i><par n="o__n"/></e>
     <e lm="Departmento di Stato di Usana"><i>Departmento di Stato di Usan</i><par n="a__adj"/></e>
     <e lm="departo"><i>depart</i><par n="o__n"/></e>
-    <e lm="departonta"><i>departont</i><par n="a__adj"/></e>
     <e lm="departopronta"><i>departopronta</i><par n="o__n"/></e>
     <e lm="departopunto"><i>departopunt</i><par n="o__n"/></e>
     <e lm="departosignalo"><i>departosignal</i><par n="o__n"/></e>
     <e lm="Depeche Mode"><i>Depeche Mode</i><par n="o__n"/></e>
     <e lm="dependa"><i>depend</i><par n="a__adj"/></e>
-    <e lm="dependante"><i>dependant</i><par n="e__adv"/></e>
     <e lm="dependar"><i>depend</i><par n="ar__vblex"/></e>
     <e lm="dependata"><i>dependat</i><par n="a__adj"/></e>
     <e lm="Dependata e nedependata variebli"><i>Dependata e nedependata variebli</i><par n="o__n"/></e>
@@ -20741,7 +20731,6 @@
     <e lm="direcione"><i>direcion</i><par n="e__adv"/></e>
     <e lm="direciono"><i>direcion</i><par n="o__n"/></e>
     <e lm="direktabis"><i>direktabis</i><par n="ar__vblex"/></e>
-    <e lm="direktante"><i>direktant</i><par n="e__adv"/></e>
     <e lm="direktar"><i>direkt</i><par n="ar__vblex"/></e>
     <e lm="direktata"><i>direktat</i><par n="a__adj"/></e>
     <e lm="direkte"><i>direkt</i><par n="e__adv"/></e>
@@ -21014,7 +21003,6 @@
     <e lm="distiliva"><i>distiliv</i><par n="a__adj"/></e>
     <e lm="distilo"><i>distil</i><par n="o__n"/></e>
     <e lm="distiluro"><i>distilur</i><par n="o__n"/></e>
-    <e lm="distingante"><i>distingant</i><par n="e__adv"/></e>
     <e lm="distingar"><i>disting</i><par n="ar__vblex"/></e>
     <e lm="distingata"><i>distingat</i><par n="a__adj"/></e>
     <e lm="distinge"><i>disting</i><par n="e__adv"/></e>
@@ -22028,7 +22016,6 @@
     <e lm="divergante"><i>divergant</i><par n="e__adv"/></e>
     <e lm="divergar"><i>diverg</i><par n="ar__vblex"/></e>
     <e lm="divergigar"><i>divergig</i><par n="ar__vblex"/></e>
-    <e lm="diverginte"><i>divergint</i><par n="e__adv"/></e>
     <e lm="divergo"><i>diverg</i><par n="o__n"/></e>
     <e lm="diversa"><i>diversa</i><par n="num"/></e>
     <e lm="diversaforma"><i>diversaform</i><par n="a__adj"/></e>
@@ -22330,7 +22317,6 @@
     <e lm="dolorar"><i>dolor</i><par n="ar__vblex"/></e>
     <e lm="Dolores del Río"><i>Dolores del Rí</i><par n="o__n"/></e>
     <e lm="doloreto"><i>doloret</i><par n="o__n"/></e>
-    <e lm="dolorigante"><i>dolorigant</i><par n="e__adv"/></e>
     <e lm="dolorigar"><i>dolorig</i><par n="ar__vblex"/></e>
     <e lm="dolorigo"><i>dolorig</i><par n="o__n"/></e>
     <e lm="dolorinta"><i>dolorint</i><par n="a__adj"/></e>
@@ -22401,7 +22387,6 @@
     <e lm="domigar"><i>domig</i><par n="ar__vblex"/></e>
     <e lm="dominacachar"><i>dominacach</i><par n="ar__vblex"/></e>
     <e lm="dominacado"><i>dominacad</i><par n="o__n"/></e>
-    <e lm="dominacante"><i>dominacant</i><par n="e__adv"/></e>
     <e lm="dominacantino"><i>dominacantin</i><par n="o__n"/></e>
     <e lm="dominacar"><i>dominac</i><par n="ar__vblex"/></e>
     <e lm="dominacata"><i>dominacat</i><par n="a__adj"/></e>
@@ -23207,7 +23192,6 @@
     <e lm="Durant, Iowa"><i>Durant, Iowa</i><par n="o__n"/></e>
     <e lm="Durant, Iowana"><i>Durant, Iowan</i><par n="a__adj"/></e>
     <e lm="Durant, Oklahomana"><i>Durant, Oklahoman</i><par n="a__adj"/></e>
-    <e lm="durante"><i>durant</i><par n="e__adv"/></e>
     <e lm="durar"><i>dur</i><par n="ar__vblex"/></e>
     <e lm="Durban"><i>Durban</i><par n="o__n"/></e>
     <e lm="dure"><i>dur</i><par n="e__adv"/></e>
@@ -23230,7 +23214,6 @@
     <e lm="durive"><i>duriv</i><par n="e__adv"/></e>
     <e lm="durkheim"><i>durkheim</i><par n="o__n"/></e>
     <e lm="duro"><i>dur</i><par n="o__n"/></e>
-    <e lm="duronta"><i>duront</i><par n="a__adj"/></e>
     <e lm="duronte"><i>duront</i><par n="e__adv"/></e>
     <e lm="durovaloro"><i>durovalor</i><par n="o__n"/></e>
     <e lm="durstar"><i>durst</i><par n="ar__vblex"/></e>
@@ -23458,7 +23441,6 @@
     <e lm="Ecaterina Visnevscaiana"><i>Ecaterina Visnevscaian</i><par n="a__adj"/></e>
     <e lm="ecb"><i>ecb</i><par n="o__n"/></e>
     <e lm="ecelanta"><i>ecelant</i><par n="a__adj"/></e>
-    <e lm="ecelante"><i>ecelant</i><par n="e__adv"/></e>
     <e lm="ecelar"><i>ecel</i><par n="ar__vblex"/></e>
     <e lm="ecelenco"><i>ecelenc</i><par n="o__n"/></e>
     <e lm="ecelinta"><i>ecelint</i><par n="a__adj"/></e>
@@ -23824,7 +23806,6 @@
     <e lm="egarar"><i>egar</i><par n="ar__vblex"/></e>
     <e lm="egarda"><i>egard</i><par n="a__adj"/></e>
     <e lm="egardanta"><i>egardant</i><par n="a__adj"/></e>
-    <e lm="egardante"><i>egardant</i><par n="e__adv"/></e>
     <e lm="egardar"><i>egard</i><par n="ar__vblex"/></e>
     <e lm="egardata"><i>egardat</i><par n="a__adj"/></e>
     <e lm="egarde"><i>egard</i><par n="e__adv"/></e>
@@ -24939,7 +24920,6 @@
     <e lm="embusko"><i>embusk</i><par n="o__n"/></e>
     <e lm="Emelle, Alabama"><i>Emelle, Alabama</i><par n="o__n"/></e>
     <e lm="Emelle, Alabamana"><i>Emelle, Alabaman</i><par n="a__adj"/></e>
-    <e lm="emendante"><i>emendant</i><par n="e__adv"/></e>
     <e lm="emendar"><i>emend</i><par n="ar__vblex"/></e>
     <e lm="emendebla"><i>emendebl</i><par n="a__adj"/></e>
     <e lm="emenderio"><i>emenderi</i><par n="o__n"/></e>
@@ -25073,7 +25053,6 @@
     <e lm="emoceskar"><i>emocesk</i><par n="ar__vblex"/></e>
     <e lm="emocesko"><i>emocesk</i><par n="o__n"/></e>
     <e lm="emoceso"><i>emoces</i><par n="o__n"/></e>
-    <e lm="emocigante"><i>emocigant</i><par n="e__adv"/></e>
     <e lm="emocigar"><i>emocig</i><par n="ar__vblex"/></e>
     <e lm="emocinta"><i>emocint</i><par n="a__adj"/></e>
     <e lm="emoco"><i>emoc</i><par n="o__n"/></e>
@@ -26038,7 +26017,6 @@
     <e lm="esame"><i>esam</i><par n="e__adv"/></e>
     <e lm="esamifar"><i>esamif</i><par n="ar__vblex"/></e>
     <e lm="esamo"><i>esam</i><par n="o__n"/></e>
-    <e lm="esante"><i>esant</i><par n="e__adv"/></e>
     <e lm="esar"><i>es</i><par n="ar__vblex"/></e>
     <e lm="esayeto"><i>esayet</i><par n="o__n"/></e>
     <e lm="esayisto"><i>esayist</i><par n="o__n"/></e>
@@ -26173,7 +26151,6 @@
     <e lm="esmon"><i>esmon</i><par n="o__n"/></e>
     <e lm="eso"><i>es</i><par n="o__n"/></e>
     <e lm="esomaniero"><i>esomanier</i><par n="o__n"/></e>
-    <e lm="esonta"><i>esont</i><par n="a__adj"/></e>
     <e lm="esonte"><i>esont</i><par n="e__adv"/></e>
     <e lm="esor"><i>esor</i><par n="o__n"/></e>
     <e lm="esotera"><i>esoter</i><par n="a__adj"/></e>
@@ -26808,7 +26785,6 @@
     <e lm="eventinta"><i>eventint</i><par n="a__adj"/></e>
     <e lm="eventita"><i>eventit</i><par n="a__adj"/></e>
     <e lm="evento"><i>event</i><par n="o__n"/></e>
-    <e lm="eventonta"><i>eventont</i><par n="a__adj"/></e>
     <e lm="eventontajo"><i>eventontaj</i><par n="o__n"/></e>
     <e lm="eventonte"><i>eventont</i><par n="e__adv"/></e>
     <e lm="eventuala"><i>eventual</i><par n="a__adj"/></e>
@@ -26855,7 +26831,6 @@
     <e lm="evolucio"><i>evoluci</i><par n="o__n"/></e>
     <e lm="evoluciona"><i>evolucion</i><par n="a__adj"/></e>
     <e lm="Evolucionala psikologio"><i>Evolucionala psikologi</i><par n="o__n"/></e>
-    <e lm="evolucionante"><i>evolucionant</i><par n="e__adv"/></e>
     <e lm="evolucionar"><i>evolucion</i><par n="ar__vblex"/></e>
     <e lm="evolucionigar"><i>evolucionig</i><par n="ar__vblex"/></e>
     <e lm="evolucioninta"><i>evolucionint</i><par n="a__adj"/></e>
@@ -27150,7 +27125,6 @@
     <e lm="expediero"><i>expedier</i><par n="o__n"/></e>
     <e lm="expediita"><i>expediit</i><par n="a__adj"/></e>
     <e lm="expedio"><i>expedi</i><par n="o__n"/></e>
-    <e lm="expektante"><i>expektant</i><par n="e__adv"/></e>
     <e lm="expektar"><i>expekt</i><par n="ar__vblex"/></e>
     <e lm="expektata"><i>expektat</i><par n="a__adj"/></e>
     <e lm="expektate"><i>expektat</i><par n="e__adv"/></e>
@@ -27564,7 +27538,6 @@
     <e lm="facita"><i>facit</i><par n="a__adj"/></e>
     <e lm="facite"><i>facit</i><par n="e__adv"/></e>
     <e lm="fack"><i>fack</i><par n="o__n"/></e>
-    <e lm="faconta"><i>facont</i><par n="a__adj"/></e>
     <e lm="facundo"><i>facund</i><par n="o__n"/></e>
     <e lm="Fado"><i>Fad</i><par n="o__n"/></e>
     <e lm="faerana"><i>faeran</i><par n="a__adj"/></e>
@@ -29412,7 +29385,6 @@
     <e lm="Flu-brodkasto"><i>Flu-brodkast</i><par n="o__n"/></e>
     <e lm="flu-brodkasto"><i>flu-brodkast</i><par n="o__n"/></e>
     <e lm="fluajo"><i>fluaj</i><par n="o__n"/></e>
-    <e lm="fluante"><i>fluant</i><par n="e__adv"/></e>
     <e lm="fluar"><i>flu</i><par n="ar__vblex"/></e>
     <e lm="flue"><i>flu</i><par n="e__adv"/></e>
     <e lm="fluego"><i>flueg</i><par n="o__n"/></e>
@@ -29801,7 +29773,6 @@
     <e lm="forlasita"><i>forlasit</i><par n="a__adj"/></e>
     <e lm="forlinea"><i>forline</i><par n="a__adj"/></e>
     <e lm="forma"><i>form</i><par n="a__adj"/></e>
-    <e lm="formacante"><i>formacant</i><par n="e__adv"/></e>
     <e lm="formacar"><i>formac</i><par n="ar__vblex"/></e>
     <e lm="formacata"><i>formacat</i><par n="a__adj"/></e>
     <e lm="formacesar"><i>formaces</i><par n="ar__vblex"/></e>
@@ -31604,7 +31575,6 @@
     <e lm="gapo"><i>gap</i><par n="o__n"/></e>
     <e lm="garado"><i>garad</i><par n="o__n"/></e>
     <e lm="garantianta"><i>garantiant</i><par n="a__adj"/></e>
-    <e lm="garantiante"><i>garantiant</i><par n="e__adv"/></e>
     <e lm="garantiar"><i>garanti</i><par n="ar__vblex"/></e>
     <e lm="garantiata"><i>garantiat</i><par n="a__adj"/></e>
     <e lm="garantiesar"><i>garanties</i><par n="ar__vblex"/></e>
@@ -38306,7 +38276,6 @@
     <e lm="improvizita"><i>improvizit</i><par n="a__adj"/></e>
     <e lm="improvizo"><i>improviz</i><par n="o__n"/></e>
     <e lm="improvizuro"><i>improvizur</i><par n="o__n"/></e>
-    <e lm="impulsante"><i>impulsant</i><par n="e__adv"/></e>
     <e lm="impulsar"><i>impuls</i><par n="ar__vblex"/></e>
     <e lm="impulsata"><i>impulsat</i><par n="a__adj"/></e>
     <e lm="impulsate"><i>impulsat</i><par n="e__adv"/></e>
@@ -39482,7 +39451,6 @@
     <e lm="intermilitanta"><i>intermilitant</i><par n="a__adj"/></e>
     <e lm="intermilitanto"><i>intermilitant</i><par n="o__n"/></e>
     <e lm="intermitado"><i>intermitad</i><par n="o__n"/></e>
-    <e lm="intermitante"><i>intermitant</i><par n="e__adv"/></e>
     <e lm="intermitar"><i>intermit</i><par n="ar__vblex"/></e>
     <e lm="intermite"><i>intermit</i><par n="e__adv"/></e>
     <e lm="intermiteso"><i>intermites</i><par n="o__n"/></e>
@@ -39999,7 +39967,6 @@
     <e lm="Iranana lingui"><i>Iranana lingui</i><par n="o__n"/></e>
     <e lm="Iranana Revoluciono"><i>Iranana Revolucion</i><par n="o__n"/></e>
     <e lm="Iranano"><i>Iranan</i><par n="o__n"/></e>
-    <e lm="irante"><i>irant</i><par n="e__adv"/></e>
     <e lm="irar"><i>ir</i><par n="ar__vblex"/></e>
     <e lm="irata"><i>irat</i><par n="a__adj"/></e>
     <e lm="irc"><i>irc</i><par n="o__n"/></e>
@@ -40268,7 +40235,6 @@
     <e lm="Itatiaiana"><i>Itatiaian</i><par n="a__adj"/></e>
     <e lm="itera"><i>iter</i><par n="a__adj"/></e>
     <e lm="iterala"><i>iteral</i><par n="a__adj"/></e>
-    <e lm="iterante"><i>iterant</i><par n="e__adv"/></e>
     <e lm="iterar"><i>iter</i><par n="ar__vblex"/></e>
     <e lm="iterata"><i>iterat</i><par n="a__adj"/></e>
     <e lm="iterate"><i>iterat</i><par n="e__adv"/></e>
@@ -41052,7 +41018,6 @@
     <e lm="Jelonka"><i>Jelonk</i><par n="a__adj"/></e>
     <e lm="jelonka"><i>jelonk</i><par n="a__adj"/></e>
     <e lm="jelozio"><i>jelozi</i><par n="o__n"/></e>
-    <e lm="jemante"><i>jemant</i><par n="e__adv"/></e>
     <e lm="jemar"><i>jem</i><par n="ar__vblex"/></e>
     <e lm="jemela"><i>jemel</i><par n="a__adj"/></e>
     <e lm="jemelo"><i>jemel</i><par n="o__n"/></e>
@@ -41541,7 +41506,6 @@
     <e lm="jokachero"><i>jokacher</i><par n="o__n"/></e>
     <e lm="jokajo"><i>jokaj</i><par n="o__n"/></e>
     <e lm="jokala"><i>jokal</i><par n="a__adj"/></e>
-    <e lm="jokante"><i>jokant</i><par n="e__adv"/></e>
     <e lm="jokar"><i>jok</i><par n="ar__vblex"/></e>
     <e lm="jokema"><i>jokem</i><par n="a__adj"/></e>
     <e lm="jokemo"><i>jokem</i><par n="o__n"/></e>
@@ -45458,7 +45422,6 @@
     <e lm="kofunciono"><i>kofuncion</i><par n="o__n"/></e>
     <e lm="kogyo"><i>kogy</i><par n="o__n"/></e>
     <e lm="kohabito"><i>kohabit</i><par n="o__n"/></e>
-    <e lm="koherante"><i>koherant</i><par n="e__adv"/></e>
     <e lm="koherar"><i>koher</i><par n="ar__vblex"/></e>
     <e lm="koherema"><i>koherem</i><par n="a__adj"/></e>
     <e lm="koherero"><i>koherer</i><par n="o__n"/></e>
@@ -46034,7 +45997,6 @@
     <e lm="komencala"><i>komencal</i><par n="a__adj"/></e>
     <e lm="komencale"><i>komencal</i><par n="e__adv"/></e>
     <e lm="komencanta"><i>komencant</i><par n="a__adj"/></e>
-    <e lm="komencante"><i>komencant</i><par n="e__adv"/></e>
     <e lm="komencar"><i>komenc</i><par n="ar__vblex"/></e>
     <e lm="komencata"><i>komencat</i><par n="a__adj"/></e>
     <e lm="komence"><i>komenc</i><par n="e__adv"/></e>
@@ -46624,7 +46586,6 @@
     <e lm="konceptivo"><i>konceptiv</i><par n="o__n"/></e>
     <e lm="koncepto"><i>koncept</i><par n="o__n"/></e>
     <e lm="konceptomaniero"><i>konceptomanier</i><par n="o__n"/></e>
-    <e lm="koncernante"><i>koncernant</i><par n="e__adv"/></e>
     <e lm="koncernar"><i>koncern</i><par n="ar__vblex"/></e>
     <e lm="koncernata"><i>koncernat</i><par n="a__adj"/></e>
     <e lm="koncernato"><i>koncernat</i><par n="o__n"/></e>
@@ -47123,7 +47084,6 @@
     <e lm="konsento"><i>konsent</i><par n="o__n"/></e>
     <e lm="konsequajo"><i>konsequaj</i><par n="o__n"/></e>
     <e lm="konsequantajo"><i>konsequantaj</i><par n="o__n"/></e>
-    <e lm="konsequante"><i>konsequant</i><par n="e__adv"/></e>
     <e lm="konsequar"><i>konsequ</i><par n="ar__vblex"/></e>
     <e lm="konseque"><i>konsequ</i><par n="e__adv"/></e>
     <e lm="konsequema"><i>konsequem</i><par n="a__adj"/></e>
@@ -47157,7 +47117,6 @@
     <e lm="konsidera"><i>konsider</i><par n="a__adj"/></e>
     <e lm="konsideradar"><i>konsiderad</i><par n="ar__vblex"/></e>
     <e lm="konsideranta"><i>konsiderant</i><par n="a__adj"/></e>
-    <e lm="konsiderante"><i>konsiderant</i><par n="e__adv"/></e>
     <e lm="konsiderar"><i>konsider</i><par n="ar__vblex"/></e>
     <e lm="konsiderata"><i>konsiderat</i><par n="a__adj"/></e>
     <e lm="konsiderema"><i>konsiderem</i><par n="a__adj"/></e>
@@ -47390,7 +47349,6 @@
     <e lm="kontaminita"><i>kontaminit</i><par n="a__adj"/></e>
     <e lm="kontamino"><i>kontamin</i><par n="o__n"/></e>
     <e lm="kontanta"><i>kontant</i><par n="a__adj"/></e>
-    <e lm="kontante"><i>kontant</i><par n="e__adv"/></e>
     <e lm="kontantuyo"><i>kontantuy</i><par n="o__n"/></e>
     <e lm="kontar"><i>kont</i><par n="ar__vblex"/></e>
     <e lm="kontata"><i>kontat</i><par n="a__adj"/></e>
@@ -47723,7 +47681,6 @@
     <e lm="konvekto"><i>konvekt</i><par n="o__n"/></e>
     <e lm="konvenajo"><i>konvenaj</i><par n="o__n"/></e>
     <e lm="konvenanta"><i>konvenant</i><par n="a__adj"/></e>
-    <e lm="konvenante"><i>konvenant</i><par n="e__adv"/></e>
     <e lm="konvenar"><i>konven</i><par n="ar__vblex"/></e>
     <e lm="konvenata"><i>konvenat</i><par n="a__adj"/></e>
     <e lm="konvencionale"><i>konvencional</i><par n="e__adv"/></e>
@@ -48508,7 +48465,6 @@
     <e lm="kreda"><i>kred</i><par n="a__adj"/></e>
     <e lm="kredado"><i>kredad</i><par n="o__n"/></e>
     <e lm="kredajo"><i>kredaj</i><par n="o__n"/></e>
-    <e lm="kredante"><i>kredant</i><par n="e__adv"/></e>
     <e lm="kredantulo"><i>kredantul</i><par n="o__n"/></e>
     <e lm="kredar"><i>kred</i><par n="ar__vblex"/></e>
     <e lm="kredata"><i>kredat</i><par n="a__adj"/></e>
@@ -48612,7 +48568,6 @@
     <e lm="kreskabis"><i>kreskabis</i><par n="ar__vblex"/></e>
     <e lm="kreskadar"><i>kreskad</i><par n="ar__vblex"/></e>
     <e lm="kreskajo"><i>kreskaj</i><par n="o__n"/></e>
-    <e lm="kreskante"><i>kreskant</i><par n="e__adv"/></e>
     <e lm="kreskar"><i>kresk</i><par n="ar__vblex"/></e>
     <e lm="kreskeskar"><i>kreskesk</i><par n="ar__vblex"/></e>
     <e lm="kreskesko"><i>kreskesk</i><par n="o__n"/></e>
@@ -50052,7 +50007,6 @@
     <e lm="laborabis"><i>laborabis</i><par n="ar__vblex"/></e>
     <e lm="laboradar"><i>laborad</i><par n="ar__vblex"/></e>
     <e lm="Laborajo"><i>Laboraj</i><par n="o__n"/></e>
-    <e lm="laborante"><i>laborant</i><par n="e__adv"/></e>
     <e lm="laborar"><i>labor</i><par n="ar__vblex"/></e>
     <e lm="laboratoriala"><i>laboratorial</i><par n="a__adj"/></e>
     <e lm="laboratoriisto"><i>laboratoriist</i><par n="o__n"/></e>
@@ -50668,7 +50622,6 @@
     <e lm="lanoreziduo"><i>lanorezidu</i><par n="o__n"/></e>
     <e lm="lansana"><i>lansan</i><par n="a__adj"/></e>
     <e lm="lansanta"><i>lansant</i><par n="a__adj"/></e>
-    <e lm="lansante"><i>lansant</i><par n="e__adv"/></e>
     <e lm="lansar"><i>lans</i><par n="ar__vblex"/></e>
     <e lm="lansata"><i>lansat</i><par n="a__adj"/></e>
     <e lm="lansate"><i>lansat</i><par n="e__adv"/></e>
@@ -59328,7 +59281,6 @@
     <e lm="Morton, Minnesota"><i>Morton, Minnesota</i><par n="o__n"/></e>
     <e lm="Morton, Minnesotana"><i>Morton, Minnesotan</i><par n="a__adj"/></e>
     <e lm="Mortons Gap, Kentucky"><i>Mortons Gap, Kentucky</i><par n="o__n"/></e>
-    <e lm="mortonta"><i>mortont</i><par n="a__adj"/></e>
     <e lm="mortonto"><i>mortont</i><par n="o__n"/></e>
     <e lm="mortopuniso"><i>mortopunis</i><par n="o__n"/></e>
     <e lm="mortopunto"><i>mortopunt</i><par n="o__n"/></e>
@@ -60815,7 +60767,6 @@
     <e lm="Natalya Sergeyevna Kudryavcevana"><i>Natalya Sergeyevna Kudryavcevan</i><par n="a__adj"/></e>
     <e lm="Natalya Vladimirovna Sindeyevana"><i>Natalya Vladimirovna Sindeyevan</i><par n="a__adj"/></e>
     <e lm="natanta"><i>natant</i><par n="a__adj"/></e>
-    <e lm="natante"><i>natant</i><par n="e__adv"/></e>
     <e lm="natar"><i>nat</i><par n="ar__vblex"/></e>
     <e lm="Natasha Farinéana"><i>Natasha Farinéan</i><par n="a__adj"/></e>
     <e lm="Natasha Henstridge"><i>Natasha Henstridge</i><par n="o__n"/></e>
@@ -61369,7 +61320,6 @@
     <e lm="nefruktifera"><i>nefruktifer</i><par n="a__adj"/></e>
     <e lm="nefumero"><i>nefumer</i><par n="o__n"/></e>
     <e lm="negala"><i>negal</i><par n="a__adj"/></e>
-    <e lm="negante"><i>negant</i><par n="e__adv"/></e>
     <e lm="negar"><i>neg</i><par n="ar__vblex"/></e>
     <e lm="Negaso Gidadana"><i>Negaso Gidadan</i><par n="a__adj"/></e>
     <e lm="negastigema"><i>negastigem</i><par n="a__adj"/></e>
@@ -63930,7 +63880,6 @@
     <e lm="ocierigar"><i>ocierig</i><par n="ar__vblex"/></e>
     <e lm="ociero"><i>ocier</i><par n="o__n"/></e>
     <e lm="ocilala"><i>ocilal</i><par n="a__adj"/></e>
-    <e lm="ocilante"><i>ocilant</i><par n="e__adv"/></e>
     <e lm="ocilar"><i>ocil</i><par n="ar__vblex"/></e>
     <e lm="ociletar"><i>ocilet</i><par n="ar__vblex"/></e>
     <e lm="ociligar"><i>ocilig</i><par n="ar__vblex"/></e>
@@ -64289,7 +64238,6 @@
     <e lm="oldega"><i>oldeg</i><par n="a__adj"/></e>
     <e lm="oldesar"><i>oldes</i><par n="ar__vblex"/></e>
     <e lm="oldeskanta"><i>oldeskant</i><par n="a__adj"/></e>
-    <e lm="oldeskante"><i>oldeskant</i><par n="e__adv"/></e>
     <e lm="oldeskar"><i>oldesk</i><par n="ar__vblex"/></e>
     <e lm="oldeskinta"><i>oldeskint</i><par n="a__adj"/></e>
     <e lm="oldesko"><i>oldesk</i><par n="o__n"/></e>
@@ -67040,7 +66988,6 @@
     <e lm="parolofakultato"><i>parolofakultat</i><par n="o__n"/></e>
     <e lm="parolofilmo"><i>parolofilm</i><par n="o__n"/></e>
     <e lm="parolomaniero"><i>parolomanier</i><par n="o__n"/></e>
-    <e lm="parolonta"><i>parolont</i><par n="a__adj"/></e>
     <e lm="parolotalento"><i>parolotalent</i><par n="o__n"/></e>
     <e lm="parolotubo"><i>parolotub</i><par n="o__n"/></e>
     <e lm="paroloyuro"><i>paroloyur</i><par n="o__n"/></e>
@@ -69019,7 +68966,6 @@
     <e lm="pikadar"><i>pikad</i><par n="ar__vblex"/></e>
     <e lm="pikadoro"><i>pikador</i><par n="o__n"/></e>
     <e lm="pikanta"><i>pikant</i><par n="a__adj"/></e>
-    <e lm="pikante"><i>pikant</i><par n="e__adv"/></e>
     <e lm="pikantoza"><i>pikantoz</i><par n="a__adj"/></e>
     <e lm="pikar"><i>pik</i><par n="ar__vblex"/></e>
     <e lm="pikardia"><i>pikardi</i><par n="a__adj"/></e>
@@ -71106,7 +71052,6 @@
     <e lm="Pozicionala nombrosistemo"><i>Pozicionala nombrosistem</i><par n="o__n"/></e>
     <e lm="poziciono"><i>pozicion</i><par n="o__n"/></e>
     <e lm="pozinta"><i>pozint</i><par n="a__adj"/></e>
-    <e lm="pozinte"><i>pozint</i><par n="e__adv"/></e>
     <e lm="pozisto"><i>pozist</i><par n="o__n"/></e>
     <e lm="pozita"><i>pozit</i><par n="a__adj"/></e>
     <e lm="pozitiva"><i>pozitiv</i><par n="a__adj"/></e>
@@ -71277,7 +71222,6 @@
     <e lm="predicita"><i>predicit</i><par n="a__adj"/></e>
     <e lm="predico"><i>predic</i><par n="o__n"/></e>
     <e lm="predikanta"><i>predikant</i><par n="a__adj"/></e>
-    <e lm="predikante"><i>predikant</i><par n="e__adv"/></e>
     <e lm="predikar"><i>predik</i><par n="ar__vblex"/></e>
     <e lm="predikata"><i>predikat</i><par n="a__adj"/></e>
     <e lm="Predikatala logiko"><i>Predikatala logik</i><par n="o__n"/></e>
@@ -71616,7 +71560,6 @@
     <e lm="preventiva"><i>preventiv</i><par n="a__adj"/></e>
     <e lm="prevento"><i>prevent</i><par n="o__n"/></e>
     <e lm="previdado"><i>previdad</i><par n="o__n"/></e>
-    <e lm="previdante"><i>previdant</i><par n="e__adv"/></e>
     <e lm="previdar"><i>previd</i><par n="ar__vblex"/></e>
     <e lm="previdebla"><i>previdebl</i><par n="a__adj"/></e>
     <e lm="previdebleso"><i>previdebles</i><par n="o__n"/></e>
@@ -72025,7 +71968,6 @@
     <e lm="profitinda"><i>profitind</i><par n="a__adj"/></e>
     <e lm="profitinta"><i>profitint</i><par n="a__adj"/></e>
     <e lm="profito"><i>profit</i><par n="o__n"/></e>
-    <e lm="profitonta"><i>profitont</i><par n="a__adj"/></e>
     <e lm="profitoquanto"><i>profitoquant</i><par n="o__n"/></e>
     <e lm="profitoze"><i>profitoz</i><par n="e__adv"/></e>
     <e lm="profumo"><i>profum</i><par n="o__n"/></e>
@@ -73633,7 +73575,6 @@
     <e lm="quankam"><i>quankam</i><par n="__cnjcoo"/></e>
     <e lm="quanta"><i>quant</i><par n="a__adj"/></e>
     <e lm="quantafoye"><i>quantafoye</i><par n="a__adj"/></e>
-    <e lm="quante"><i>quant</i><par n="e__adv"/></e>
     <e lm="quante vu evas?"><i>quante vu evas?</i><par n="o__n"/></e>
     <e lm="quantesala"><i>quantesal</i><par n="a__adj"/></e>
     <e lm="quantesale"><i>quantesal</i><par n="e__adv"/></e>
@@ -74835,7 +74776,6 @@
     <e lm="reflekteto"><i>reflektet</i><par n="o__n"/></e>
     <e lm="reflektigo"><i>reflektig</i><par n="o__n"/></e>
     <e lm="reflektilo"><i>reflektil</i><par n="o__n"/></e>
-    <e lm="reflektinte"><i>reflektint</i><par n="e__adv"/></e>
     <e lm="reflektita"><i>reflektit</i><par n="a__adj"/></e>
     <e lm="reflektiva"><i>reflektiv</i><par n="a__adj"/></e>
     <e lm="reflekto"><i>reflekt</i><par n="o__n"/></e>
@@ -74927,7 +74867,6 @@
     <e lm="reganto"><i>regant</i><par n="o__n"/></e>
     <e lm="regardado"><i>regardad</i><par n="o__n"/></e>
     <e lm="regardanta"><i>regardant</i><par n="a__adj"/></e>
-    <e lm="regardante"><i>regardant</i><par n="e__adv"/></e>
     <e lm="regardar"><i>regard</i><par n="ar__vblex"/></e>
     <e lm="regardata"><i>regardat</i><par n="a__adj"/></e>
     <e lm="regarde"><i>regard</i><par n="e__adv"/></e>
@@ -75082,7 +75021,6 @@
     <e lm="regolisoaquo"><i>regolisoaqu</i><par n="o__n"/></e>
     <e lm="regolisopasto"><i>regolisopast</i><par n="o__n"/></e>
     <e lm="regolo"><i>regol</i><par n="o__n"/></e>
-    <e lm="regresante"><i>regresant</i><par n="e__adv"/></e>
     <e lm="regresar"><i>regres</i><par n="ar__vblex"/></e>
     <e lm="regresema"><i>regresem</i><par n="a__adj"/></e>
     <e lm="regresemo"><i>regresem</i><par n="o__n"/></e>
@@ -75408,7 +75346,6 @@
     <e lm="remarketo"><i>remarket</i><par n="o__n"/></e>
     <e lm="remarkigar"><i>remarkig</i><par n="ar__vblex"/></e>
     <e lm="remarkinda"><i>remarkind</i><par n="a__adj"/></e>
-    <e lm="remarkinte"><i>remarkint</i><par n="e__adv"/></e>
     <e lm="remarkita"><i>remarkit</i><par n="a__adj"/></e>
     <e lm="remarko"><i>remark</i><par n="o__n"/></e>
     <e lm="Rembrandt van Rijn"><i>Rembrandt van Rijn</i><par n="o__n"/></e>
@@ -75908,7 +75845,6 @@
     <e lm="resta"><i>rest</i><par n="a__adj"/></e>
     <e lm="restadar"><i>restad</i><par n="ar__vblex"/></e>
     <e lm="restajo"><i>restaj</i><par n="o__n"/></e>
-    <e lm="restante"><i>restant</i><par n="e__adv"/></e>
     <e lm="restanto"><i>restant</i><par n="o__n"/></e>
     <e lm="restar"><i>rest</i><par n="ar__vblex"/></e>
     <e lm="restaurachar"><i>restaurach</i><par n="ar__vblex"/></e>
@@ -76388,7 +76324,6 @@
     <e lm="riadmisar"><i>riadmis</i><par n="ar__vblex"/></e>
     <e lm="riadmiso"><i>riadmis</i><par n="o__n"/></e>
     <e lm="riafirmis"><i>riafirmis</i><par n="ar__vblex"/></e>
-    <e lm="riagante"><i>riagant</i><par n="e__adv"/></e>
     <e lm="riagar"><i>riag</i><par n="ar__vblex"/></e>
     <e lm="riaglutinar"><i>riaglutin</i><par n="ar__vblex"/></e>
     <e lm="riagrafagar"><i>riagrafag</i><par n="ar__vblex"/></e>
@@ -77143,7 +77078,6 @@
     <e lm="risizar"><i>risiz</i><par n="ar__vblex"/></e>
     <e lm="riska"><i>risk</i><par n="a__adj"/></e>
     <e lm="riskajo"><i>riskaj</i><par n="o__n"/></e>
-    <e lm="riskante"><i>riskant</i><par n="e__adv"/></e>
     <e lm="riskar"><i>risk</i><par n="ar__vblex"/></e>
     <e lm="riske"><i>risk</i><par n="e__adv"/></e>
     <e lm="riskema"><i>riskem</i><par n="a__adj"/></e>
@@ -79011,7 +78945,6 @@
     <e lm="salta"><i>salt</i><par n="a__adj"/></e>
     <e lm="saltadar"><i>saltad</i><par n="ar__vblex"/></e>
     <e lm="saltado"><i>saltad</i><par n="o__n"/></e>
-    <e lm="saltante"><i>saltant</i><par n="e__adv"/></e>
     <e lm="saltar"><i>salt</i><par n="ar__vblex"/></e>
     <e lm="salte"><i>salt</i><par n="e__adv"/></e>
     <e lm="saltego"><i>salteg</i><par n="o__n"/></e>
@@ -79738,7 +79671,6 @@
     <e lm="Savoya-stati"><i>Savoya-stati</i><par n="o__n"/></e>
     <e lm="Savoyana"><i>Savoyan</i><par n="a__adj"/></e>
     <e lm="Savoyano"><i>Savoyan</i><par n="o__n"/></e>
-    <e lm="savurante"><i>savurant</i><par n="e__adv"/></e>
     <e lm="savurar"><i>savur</i><par n="ar__vblex"/></e>
     <e lm="savurero"><i>savurer</i><par n="o__n"/></e>
     <e lm="savuro"><i>savur</i><par n="o__n"/></e>
@@ -80106,7 +80038,6 @@
     <e lm="selektajo"><i>selektaj</i><par n="o__n"/></e>
     <e lm="selektala"><i>selektal</i><par n="a__adj"/></e>
     <e lm="selektanta"><i>selektant</i><par n="a__adj"/></e>
-    <e lm="selektante"><i>selektant</i><par n="e__adv"/></e>
     <e lm="selektar"><i>selekt</i><par n="ar__vblex"/></e>
     <e lm="selektata"><i>selektat</i><par n="a__adj"/></e>
     <e lm="selekte"><i>selekt</i><par n="e__adv"/></e>
@@ -80169,7 +80100,6 @@
     <e lm="semar"><i>sem</i><par n="ar__vblex"/></e>
     <e lm="Semarang"><i>Semarang</i><par n="o__n"/></e>
     <e lm="semata"><i>semat</i><par n="a__adj"/></e>
-    <e lm="semblante"><i>semblant</i><par n="e__adv"/></e>
     <e lm="semblar"><i>sembl</i><par n="ar__vblex"/></e>
     <e lm="semble"><i>sembl</i><par n="e__adv"/></e>
     <e lm="sembligar"><i>semblig</i><par n="ar__vblex"/></e>
@@ -80705,7 +80635,6 @@
     <e lm="sequado"><i>sequad</i><par n="o__n"/></e>
     <e lm="sequanta"><i>sequant</i><par n="a__adj"/></e>
     <e lm="sequantajo"><i>sequantaj</i><par n="o__n"/></e>
-    <e lm="sequante"><i>sequant</i><par n="e__adv"/></e>
     <e lm="sequar"><i>sequ</i><par n="ar__vblex"/></e>
     <e lm="sequata"><i>sequat</i><par n="a__adj"/></e>
     <e lm="seque"><i>sequ</i><par n="e__adv"/></e>
@@ -81075,7 +81004,6 @@
     <e lm="shampunajo"><i>shampunaj</i><par n="o__n"/></e>
     <e lm="shampunar"><i>shampun</i><par n="ar__vblex"/></e>
     <e lm="shampuno"><i>shampun</i><par n="o__n"/></e>
-    <e lm="shancelante"><i>shancelant</i><par n="e__adv"/></e>
     <e lm="shancelar"><i>shancel</i><par n="ar__vblex"/></e>
     <e lm="shancelema"><i>shancelem</i><par n="a__adj"/></e>
     <e lm="shanceligar"><i>shancelig</i><par n="ar__vblex"/></e>
@@ -81847,7 +81775,6 @@
     <e lm="simulachar"><i>simulach</i><par n="ar__vblex"/></e>
     <e lm="simulado"><i>simulad</i><par n="o__n"/></e>
     <e lm="simulala"><i>simulal</i><par n="a__adj"/></e>
-    <e lm="simulante"><i>simulant</i><par n="e__adv"/></e>
     <e lm="simular"><i>simul</i><par n="ar__vblex"/></e>
     <e lm="simulata"><i>simulat</i><par n="a__adj"/></e>
     <e lm="simulero"><i>simuler</i><par n="o__n"/></e>
@@ -82852,7 +82779,6 @@
     <e lm="Solano"><i>Solan</i><par n="o__n"/></e>
     <e lm="solano"><i>solan</i><par n="o__n"/></e>
     <e lm="soldado"><i>soldad</i><par n="o__n"/></e>
-    <e lm="soldante"><i>soldant</i><par n="e__adv"/></e>
     <e lm="soldanto"><i>soldant</i><par n="o__n"/></e>
     <e lm="soldar"><i>sold</i><par n="ar__vblex"/></e>
     <e lm="soldata"><i>soldat</i><par n="a__adj"/></e>
@@ -83281,7 +83207,6 @@
     <e lm="sparadrapo"><i>sparadrap</i><par n="o__n"/></e>
     <e lm="sparajo"><i>sparaj</i><par n="o__n"/></e>
     <e lm="sparanta"><i>sparant</i><par n="a__adj"/></e>
-    <e lm="sparante"><i>sparant</i><par n="e__adv"/></e>
     <e lm="sparar"><i>spar</i><par n="ar__vblex"/></e>
     <e lm="sparebla"><i>sparebl</i><par n="a__adj"/></e>
     <e lm="sparegar"><i>spareg</i><par n="ar__vblex"/></e>
@@ -83841,7 +83766,6 @@
     <e lm="stabo"><i>stab</i><par n="o__n"/></e>
     <e lm="stabosako"><i>stabosak</i><par n="o__n"/></e>
     <e lm="stacado"><i>stacad</i><par n="o__n"/></e>
-    <e lm="stacante"><i>stacant</i><par n="e__adv"/></e>
     <e lm="stacar"><i>stac</i><par n="ar__vblex"/></e>
     <e lm="stacata"><i>stacat</i><par n="a__adj"/></e>
     <e lm="stacemo"><i>stacem</i><par n="o__n"/></e>
@@ -85407,7 +85331,6 @@
     <e lm="subvesto"><i>subvest</i><par n="o__n"/></e>
     <e lm="subviduro"><i>subvidur</i><par n="o__n"/></e>
     <e lm="suceava"><i>suceav</i><par n="a__adj"/></e>
-    <e lm="sucedante"><i>sucedant</i><par n="e__adv"/></e>
     <e lm="sucedar"><i>suced</i><par n="ar__vblex"/></e>
     <e lm="sucedata"><i>sucedat</i><par n="a__adj"/></e>
     <e lm="sucede"><i>suced</i><par n="e__adv"/></e>
@@ -85952,7 +85875,6 @@
     <e lm="suplementa"><i>suplement</i><par n="a__adj"/></e>
     <e lm="suplemente"><i>suplement</i><par n="e__adv"/></e>
     <e lm="suplemento"><i>suplement</i><par n="o__n"/></e>
-    <e lm="suplikante"><i>suplikant</i><par n="e__adv"/></e>
     <e lm="suplikar"><i>suplik</i><par n="ar__vblex"/></e>
     <e lm="supliko"><i>suplik</i><par n="o__n"/></e>
     <e lm="suplikoletro"><i>suplikoletr</i><par n="o__n"/></e>
@@ -86198,7 +86120,6 @@
     <e lm="susteno"><i>susten</i><par n="o__n"/></e>
     <e lm="sustracionajo"><i>sustracionaj</i><par n="o__n"/></e>
     <e lm="sustracionanta"><i>sustracionant</i><par n="a__adj"/></e>
-    <e lm="sustracionante"><i>sustracionant</i><par n="e__adv"/></e>
     <e lm="sustracionar"><i>sustracion</i><par n="ar__vblex"/></e>
     <e lm="sustracionita"><i>sustracionit</i><par n="a__adj"/></e>
     <e lm="sustraciono"><i>sustracion</i><par n="o__n"/></e>
@@ -87376,7 +87297,6 @@
     <e lm="tenaliagar"><i>tenaliag</i><par n="ar__vblex"/></e>
     <e lm="tenalio"><i>tenali</i><par n="o__n"/></e>
     <e lm="tenanta"><i>tenant</i><par n="a__adj"/></e>
-    <e lm="tenante"><i>tenant</i><par n="e__adv"/></e>
     <e lm="tenanto"><i>tenant</i><par n="o__n"/></e>
     <e lm="tenar"><i>ten</i><par n="ar__vblex"/></e>
     <e lm="tenaro"><i>tenar</i><par n="o__n"/></e>
@@ -88152,7 +88072,6 @@
     <e lm="tima"><i>tim</i><par n="a__adj"/></e>
     <e lm="Timandra"><i>Timandr</i><par n="a__adj"/></e>
     <e lm="timanta"><i>timant</i><par n="a__adj"/></e>
-    <e lm="timante"><i>timant</i><par n="e__adv"/></e>
     <e lm="timar"><i>tim</i><par n="ar__vblex"/></e>
     <e lm="timata"><i>timat</i><par n="a__adj"/></e>
     <e lm="timbalo"><i>timbal</i><par n="o__n"/></e>
@@ -89896,7 +89815,6 @@
     <e lm="Tuscumbia, Alabamana"><i>Tuscumbia, Alabaman</i><par n="a__adj"/></e>
     <e lm="tushale"><i>tushal</i><par n="e__adv"/></e>
     <e lm="tushanta"><i>tushant</i><par n="a__adj"/></e>
-    <e lm="tushante"><i>tushant</i><par n="e__adv"/></e>
     <e lm="tushar"><i>tush</i><par n="ar__vblex"/></e>
     <e lm="tushata"><i>tushat</i><par n="a__adj"/></e>
     <e lm="tushebla"><i>tushebl</i><par n="a__adj"/></e>
@@ -90566,7 +90484,6 @@
     <e lm="urinovazo"><i>urinovaz</i><par n="o__n"/></e>
     <e lm="urjanta"><i>urjant</i><par n="a__adj"/></e>
     <e lm="Urjanta medicinala servadi"><i>Urjanta medicinala servadi</i><par n="o__n"/></e>
-    <e lm="urjante"><i>urjant</i><par n="e__adv"/></e>
     <e lm="urjanteso"><i>urjantes</i><par n="o__n"/></e>
     <e lm="urjanteso-situaciono"><i>urjanteso-situacion</i><par n="o__n"/></e>
     <e lm="urjanteso-stando"><i>urjanteso-stand</i><par n="o__n"/></e>
@@ -91138,7 +91055,6 @@
     <e lm="varsita"><i>varsit</i><par n="a__adj"/></e>
     <e lm="varso"><i>vars</i><par n="o__n"/></e>
     <e lm="varta"><i>vart</i><par n="a__adj"/></e>
-    <e lm="vartante"><i>vartant</i><par n="e__adv"/></e>
     <e lm="vartar"><i>vart</i><par n="ar__vblex"/></e>
     <e lm="varte"><i>vart</i><par n="e__adv"/></e>
     <e lm="varteyo"><i>vartey</i><par n="o__n"/></e>
@@ -91440,7 +91356,6 @@
     <e lm="venlo"><i>venl</i><par n="o__n"/></e>
     <e lm="Venn-diagramo"><i>Venn-diagram</i><par n="o__n"/></e>
     <e lm="veno"><i>ven</i><par n="o__n"/></e>
-    <e lm="venonta"><i>venont</i><par n="a__adj"/></e>
     <e lm="vent-areo"><i>vent-are</i><par n="o__n"/></e>
     <e lm="Vent-energio"><i>Vent-energi</i><par n="o__n"/></e>
     <e lm="venta"><i>vent</i><par n="a__adj"/></e>
@@ -91906,7 +91821,6 @@
     <e lm="Vidalia, Georgia"><i>Vidalia, Georgia</i><par n="o__n"/></e>
     <e lm="Vidalia, Georgiana"><i>Vidalia, Georgian</i><par n="a__adj"/></e>
     <e lm="vidamo"><i>vidam</i><par n="o__n"/></e>
-    <e lm="vidante"><i>vidant</i><par n="e__adv"/></e>
     <e lm="vidar"><i>vid</i><par n="ar__vblex"/></e>
     <e lm="vidata"><i>vidat</i><par n="a__adj"/></e>
     <e lm="vidatesar"><i>vidates</i><par n="ar__vblex"/></e>
