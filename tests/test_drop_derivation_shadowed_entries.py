@@ -21,7 +21,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'scripts'))
 
-from export_apertium import _drop_derivation_shadowed_entries
+from export_apertium import (
+    _drop_derivation_shadowed_entries,
+    _DERIVATION_SHADOW_SUFFIXES,
+)
 
 
 def _root(lemma, paradigm, translated):
@@ -103,3 +106,67 @@ def test_entries_with_real_translations_are_never_dropped():
     result = _drop_derivation_shadowed_entries(mono_entries, bidix_entries)
     lemmas = {e["lemma"] for e in result}
     assert "envidioza" in lemmas
+
+
+def test_all_ar_vblex_participle_suffixes_are_covered():
+    # Every adjective/adverb/noun suffix ar__vblex's pardef bakes in for a
+    # verb derivation must have a shadow-guard entry -- a gap here is exactly
+    # how the "konstruktita" bug (below) went unnoticed: der_ppas ("ita")
+    # existed and worked in build_bidix long before anyone added it here.
+    for suffix in ('anto', 'ado', 'into', 'onto', 'anta', 'inta', 'ita',
+                   'ata', 'ota', 'onta', 'ante', 'inte', 'onte', 'ate',
+                   'ite', 'ote'):
+        assert suffix in _DERIVATION_SHADOW_SUFFIXES, (
+            f"-{suffix} is a real ar__vblex derivation suffix with no "
+            "shadow-guard entry -- a translationless lexicalized entry "
+            "with this ending can silently shadow the productive reading")
+
+
+def test_leaked_inflected_translation_does_not_block_shadow_drop():
+    # bert_embeddings/morphological_expansion can leak an INFLECTED surface
+    # form (e.g. "konstruita", the participle) as the gloss for an atomic
+    # "konstruktita" entry -- a translation string IS present, so the old
+    # _has_eo_translation check alone kept the entry, but "konstruita" is
+    # not an independent generatable EO lemma (only reachable via the verb
+    # "konstrui"'s own <pp> generation route), so it never got a live bidix
+    # entry either. eo_generatable must cause this dead entry to be dropped
+    # in favor of the productive der_ppas reading, same as an empty gloss
+    # would.
+    mono_entries = [
+        _root("konstruktar", "ar__vblex", translated=False),
+        {"lemma": "konstruktita", "pos": "adj", "morphology": {"paradigm": "a__adj"},
+         "senses": [{"translations": [{"lang": "eo", "term": "konstruita"}]}]},
+    ]
+    bidix_entries = [
+        {"lemma": "konstruktar", "pos": "vblex", "morphology": {"paradigm": "ar__vblex"},
+         "senses": [{"translations": [{"lang": "eo", "term": "konstrui"}]}]},
+    ]
+    # "konstruita" (inflected participle) is NOT in the generatable set;
+    # "konstrui" (the base verb lemma) is.
+    eo_generatable = {"konstrui"}
+
+    result = _drop_derivation_shadowed_entries(mono_entries, bidix_entries, eo_generatable)
+    lemmas = {e["lemma"] for e in result}
+    assert "konstruktita" not in lemmas, (
+        "a translation string that fails the generatability gate must not "
+        "protect a dead entry from the shadow-guard")
+
+
+def test_generatable_translation_still_protects_entry():
+    # Sanity check for the same helper: a real, independently generatable
+    # translation must still be kept even when it happens to share a suffix
+    # with a derivation pattern.
+    mono_entries = [
+        _root("kreskar", "ar__vblex", translated=False),
+        {"lemma": "vinita", "pos": "adj", "morphology": {"paradigm": "a__adj"},
+         "senses": [{"translations": [{"lang": "eo", "term": "vinita"}]}]},
+    ]
+    bidix_entries = [
+        {"lemma": "kreskar", "pos": "vblex", "morphology": {"paradigm": "ar__vblex"},
+         "senses": [{"translations": [{"lang": "eo", "term": "kreski"}]}]},
+    ]
+    eo_generatable = {"kreski", "vinita"}
+
+    result = _drop_derivation_shadowed_entries(mono_entries, bidix_entries, eo_generatable)
+    lemmas = {e["lemma"] for e in result}
+    assert "vinita" in lemmas

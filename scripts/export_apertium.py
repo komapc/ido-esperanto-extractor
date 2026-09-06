@@ -223,11 +223,19 @@ _DERIVATION_SHADOW_SUFFIXES = {
     'anto': ('ar__vblex', 'n'),
     'ado':  ('ar__vblex', 'n'),
     'into': ('ar__vblex', 'n'),
+    'onto': ('ar__vblex', 'n'),
     'anta': ('ar__vblex', 'adj'),
+    'inta': ('ar__vblex', 'adj'),
+    'ita':  ('ar__vblex', 'adj'),
+    'ata':  ('ar__vblex', 'adj'),
     'ota':  ('ar__vblex', 'adj'),
     'onta': ('ar__vblex', 'adj'),
     'ante': ('ar__vblex', 'adv'),
     'inte': ('ar__vblex', 'adv'),
+    'onte': ('ar__vblex', 'adv'),
+    'ate':  ('ar__vblex', 'adv'),
+    'ite':  ('ar__vblex', 'adv'),
+    'ote':  ('ar__vblex', 'adv'),
 }
 _ROOT_STRIP_LEN = {'o__n': 1, 'a__adj': 1, 'ar__vblex': 2}
 
@@ -240,7 +248,30 @@ def _has_eo_translation(e) -> bool:
     return bool(e.get('eo_translations'))
 
 
-def _drop_derivation_shadowed_entries(mono_entries, bidix_entries):
+def _has_working_eo_translation(e, eo_generatable) -> bool:
+    """Like _has_eo_translation, but also requires at least one candidate
+    apertium-epo can actually generate.
+
+    Source data can carry a translation string that build_bidix's own
+    generatability gate (_load_eo_generatable_lemmas) will reject outright —
+    e.g. bert_embeddings/morphological_expansion leaking an inflected
+    surface form like "konstruita" (a participle, not an independent
+    generatable EO lemma) as the gloss for an atomic "konstruktita" entry.
+    _has_eo_translation alone says yes (there IS a translation string), so
+    the shadow-guard kept the entry — but it never gets a live bidix entry
+    either, so it's still just as dead as an empty-gloss entry, and still
+    wins the ambiguous first-match analysis over the real der_ppas
+    derivation (@konstruktit instead of konstruita). eo_generatable=None
+    (monodix-unavailable case) degrades to the plain has-translation check.
+    """
+    if not _has_eo_translation(e):
+        return False
+    if eo_generatable is None:
+        return True
+    return any(term.casefold() in eo_generatable for term, _ in _eo_candidates(e))
+
+
+def _drop_derivation_shadowed_entries(mono_entries, bidix_entries, eo_generatable=None):
     """Drop translationless entries whose surface form duplicates another
     entry's productive derivation, which already carries a working
     translation.
@@ -268,18 +299,26 @@ def _drop_derivation_shadowed_entries(mono_entries, bidix_entries):
     frequently carries empty `senses` (its translation lives only on the
     bidix-format twin) — checking `mono_entries` here missed real roots
     like "envidio" (envio, from wikidata_labels) entirely.
+
+    "Translationless" here means _has_working_eo_translation, not merely
+    _has_eo_translation: a candidate string that build_bidix's own
+    generatability gate would reject (an inflected surface form leaked by a
+    source like bert_embeddings/morphological_expansion) never produces a
+    live bidix entry, so it is exactly as dead as an empty-gloss entry —
+    see _has_working_eo_translation's docstring for the motivating case
+    (konstruktita).
     """
     roots = set()  # (root_paradigm, stem_lower) for every TRANSLATED root
     for e in bidix_entries:
         par = (e.get('morphology') or {}).get('paradigm')
         strip = _ROOT_STRIP_LEN.get(par)
         lm = e.get('lemma') or ''
-        if strip and len(lm) > strip and _has_eo_translation(e):
+        if strip and len(lm) > strip and _has_working_eo_translation(e, eo_generatable):
             roots.add((par, lm[:-strip].lower()))
 
     kept, dropped = [], 0
     for e in mono_entries:
-        if _has_eo_translation(e):
+        if _has_working_eo_translation(e, eo_generatable):
             kept.append(e)
             continue
         lm_lc = (e.get('lemma') or '').lower()
@@ -1340,7 +1379,8 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
                                         (e.get('morphology') or {}).get('paradigm'))]
     if before != len(mono_entries):
         logging.info(f"Dropped {before - len(mono_entries)} single-letter-stem junk verbs")
-    mono_entries = _drop_derivation_shadowed_entries(mono_entries, bidix_entries)
+    mono_entries = _drop_derivation_shadowed_entries(
+        mono_entries, bidix_entries, eo_generatable=_load_eo_generatable_lemmas())
     logging.info(f"Monodix: {len(entries)} vocab + {len(extra)} bidix-only = {len(mono_entries)} total")
 
     # --- Phase 2: monodix-only drops. These are entries that are harmless in
