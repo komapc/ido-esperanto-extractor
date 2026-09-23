@@ -91,11 +91,24 @@ def process_wiktionary_entries(filtered_path: Path, out_path: Path, source_code:
                  if t.get('lang') == 'eo' and t.get('term')]
         if terms:
             eo_by_lemma.setdefault(pe['lemma'].lower(), []).extend(terms)
+    # A variant page often has no POS header either (ka = variant of kad);
+    # it is the same word, so it takes the base's POS. Only an unambiguous
+    # base POS is inherited.
+    pos_by_lemma: Dict[str, set] = {}
+    for pe in processed_entries:
+        if pe.get('pos'):
+            pos_by_lemma.setdefault(pe['lemma'].lower(), set()).add(pe['pos'])
     inherited = 0
+    pos_inherited = 0
     for pe in processed_entries:
         base = pe.pop('form_of', None)
         if not base:
             continue
+        base_pos = pos_by_lemma.get(base, set())
+        if not pe.get('pos') and len(base_pos) == 1:
+            pe['pos'] = next(iter(base_pos))
+            pe['id'] = f"{source_code}:{pe['lemma']}:{pe['pos']}"
+            pos_inherited += 1
         if any(t.get('lang') == 'eo' for s in pe.get('senses', []) for t in s.get('translations', [])):
             continue  # variant already has its own EO translation
         base_terms = list(dict.fromkeys(eo_by_lemma.get(base, [])))
@@ -110,6 +123,8 @@ def process_wiktionary_entries(filtered_path: Path, out_path: Path, source_code:
         inherited += 1
     if inherited:
         logging.info("  - Variant forms resolved (inherited base translation): %d", inherited)
+    if pos_inherited:
+        logging.info("  - Variant forms without POS given the base's POS: %d", pos_inherited)
 
     # Sort by lemma
     processed_entries.sort(key=lambda x: x['lemma'].lower())
