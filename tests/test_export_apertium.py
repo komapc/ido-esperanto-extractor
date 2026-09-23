@@ -286,3 +286,28 @@ if __name__ == "__main__":
     
     sys.exit(0 if failed == 0 else 1)
 
+
+
+def test_resolve_eo_side_closed_class():
+    """Closed-class <r> sides take apertium-epo's generatable reading; open-class
+    words and suppletive paradigm lemmas (prpers) keep the default."""
+    from export_apertium import resolve_eo_side
+    readings = {
+        'ĉu': [('ĉu', ['cnjadv']), ('ĉu', ['adv', 'itg'])],
+        'kion': [('kio', ['prn', 'itg', 'sg', 'acc'])],
+        'tio': [('tio', ['prn', 'tn', 'sg', 'nom'])],
+        'ol': [('ol', ['cnjsub'])],
+        'hundo': [('hundo', ['n', 'sg', 'nom'])],
+        'kaj': [('kaj', ['cnjcoo'])],
+        'li': [('prpers', ['prn', 'subj', 'p3', 'm', 'sg'])],
+    }
+    assert resolve_eo_side('ĉu', 'adj', readings) == ('ĉu', ['adv', 'itg'])
+    assert resolve_eo_side('ĉu', 'cnjcoo', readings) == ('ĉu', ['cnjadv'])
+    assert resolve_eo_side('kion', 'prn', readings) == ('kio', ['prn', 'itg', 'sg', 'acc'])
+    assert resolve_eo_side('tio', 'prn', readings) == ('tio', ['prn', 'tn', 'sg', 'nom'])
+    assert resolve_eo_side('ol', 'adv', readings) == ('ol', ['cnjsub'])
+    assert resolve_eo_side('hundo', 'n', readings) is None      # open class, same POS
+    assert resolve_eo_side('kaj', 'cnjcoo', readings) is None   # already exact
+    assert resolve_eo_side('li', 'prn', readings) is None       # prpers: bridged by t1x
+    assert resolve_eo_side('nekonata', 'adj', readings) is None
+    assert resolve_eo_side('tio', 'prn', {}) is None            # analyser unavailable
