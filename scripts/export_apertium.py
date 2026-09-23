@@ -623,6 +623,10 @@ def _load_eo_readings(surfaces: Iterable[str], automorf: Path = _EO_AUTOMORF) ->
         ok = {(srf, i) for (srf, i, _), g in zip(flat, gen)
               if g.strip().lower() == srf.lower()}
         out = {srf: [r for i, r in enumerate(rs) if (srf, i) in ok] for srf, rs in out.items()}
+    else:
+        logging.warning("apertium-epo generator not found at %s — skipping EO-side "
+                        "tag resolution (unfiltered readings could emit '#').", autogen)
+        return {}
     logging.info("Loaded apertium-epo analyses for %d EO surfaces (EO-side tag resolution).",
                  len(out))
     return out
