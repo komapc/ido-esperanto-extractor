@@ -31,6 +31,7 @@ lexical string, and the `<s n="x"/>` spelling must be exact.
 """
 import argparse
 import logging
+import os
 import re
 from pathlib import Path
 from typing import Dict, Iterable, Optional
@@ -539,6 +540,136 @@ def _load_eo_generatable_lemmas(dix_path: Path = _EO_EPO_DIX) -> Optional[set]:
     return lemmas
 
 
+# --------------------------------------------------------------------------- #
+# EO-side tag resolution (closed-class generation gap)
+# --------------------------------------------------------------------------- #
+# The bidix <r> side copies the Ido-side POS tag. That is right for open-class
+# words (kato<n>, bona<adj>: the Ido analysis supplies number/case), but wrong
+# for closed-class words, where apertium-epo either uses a different POS or
+# needs subcategory tags the Ido side never has:
+#   ka<adj>   -> ĉu<adj>     but apertium-epo only has ĉu<cnjadv|cnjsub|adv.itg>
+#   to<prn>   -> tio<prn>    but apertium-epo needs tio<prn><tn><sg><nom>
+#   quon<prn> -> kion<prn>   but apertium-epo's lemma is kio<prn><itg><sg><acc>
+# Every one generates '#…'. The lemma-only generatability gate cannot see this
+# (the lemma exists), so the fix is to take the <r> lemma+tags from
+# apertium-epo's OWN analysis of the chosen Esperanto surface form. Which of
+# several readings is used is decided by a POS-compatibility order keyed on
+# the Ido tag (a rule over tag classes, not a word list).
+_EO_AUTOMORF = Path(__file__).resolve().parents[2] / "apertium-epo/epo.automorf.bin"
+
+# Open-class POS whose inflection the Ido analysis supplies: keep the Ido tag
+# whenever apertium-epo has a reading with the same POS.
+_OPEN_POS = {"n", "adj", "vblex", "np", "num"}
+# Target POS apertium-epo may use for a closed-class word, in preference order
+# per Ido-side tag. Only readings whose first tag is listed are eligible.
+_EO_POS_COMPAT = {
+    "prn":    ("prn", "det", "predet", "adv", "n"),
+    "det":    ("det", "prn", "predet"),
+    "adj":    ("det", "prn", "predet", "adv", "cnjadv", "cnjsub"),
+    "adv":    ("adv", "cnjadv", "cnjsub", "cnjcoo", "pr", "det", "prn"),
+    "cnjsub": ("cnjsub", "cnjadv", "adv", "cnjcoo"),
+    "cnjcoo": ("cnjcoo", "cnjsub", "cnjadv", "adv"),
+    "pr":     ("pr", "adv"),
+    "ij":     ("ij", "adv"),
+}
+
+
+def _load_eo_readings(surfaces: Iterable[str], automorf: Path = _EO_AUTOMORF) -> Dict[str, list]:
+    """{surface: [(lemma, [tags…]), …]} from apertium-epo's compiled analyser,
+    in lt-proc's own reading order. Empty dict (→ resolution skipped) when the
+    analyser isn't built, matching the optional-input policy of the gate."""
+    import subprocess
+    # Single words only (resolve_eo_side skips multiword); letters/hyphen so
+    # nothing needs escaping in lt-proc's stream format.
+    surfaces = sorted({s for s in surfaces if s and re.fullmatch(r"[^\W\d_]+(?:-[^\W\d_]+)*", s)})
+    if not automorf.exists():
+        logging.warning("apertium-epo analyser not found at %s — skipping EO-side "
+                        "tag resolution (closed-class words may generate '#').", automorf)
+        return {}
+    try:
+        res = subprocess.run(["lt-proc", "-z", str(automorf)],
+                             input="\0".join(surfaces) + "\0", capture_output=True,
+                             text=True, check=True)
+    except (OSError, subprocess.CalledProcessError) as e:
+        logging.warning("lt-proc failed on %s (%s) — skipping EO-side tag resolution.",
+                        automorf, e)
+        return {}
+    out: Dict[str, list] = {}
+    for lu in re.findall(r"\^(.*?)\$", res.stdout):
+        surface, *analyses = lu.split("/")
+        readings = []
+        for a in analyses:
+            if a.startswith(("*", "@", "#")):
+                continue
+            m = re.match(r"([^<]*)((?:<[^>]+>)+)$", a)
+            if m:
+                readings.append((m.group(1), re.findall(r"<([^>]+)>", m.group(2))))
+        if readings and surface not in out:
+            out[surface] = readings
+    # Keep only readings apertium-epo can generate back to the same surface:
+    # analysis-only tags (number `sp` on la/tiu) would otherwise emit '#…'.
+    autogen = automorf.with_name("epo.autogen.bin")
+    if autogen.exists():
+        flat = [(srf, i, f"^{lem}<{'><'.join(tags)}>$")
+                for srf, rs in out.items() for i, (lem, tags) in enumerate(rs)]
+        try:
+            gen = subprocess.run(["lt-proc", "-z", "-g", str(autogen)],
+                                 input="\0".join(x[2] for x in flat) + "\0",
+                                 capture_output=True, text=True, check=True).stdout.split("\0")
+        except (OSError, subprocess.CalledProcessError) as e:
+            logging.warning("lt-proc -g failed on %s (%s) — skipping EO-side tag resolution.",
+                            autogen, e)
+            return {}
+        ok = {(srf, i) for (srf, i, _), g in zip(flat, gen)
+              if g.strip().lower() == srf.lower()}
+        out = {srf: [r for i, r in enumerate(rs) if (srf, i) in ok] for srf, rs in out.items()}
+    else:
+        logging.warning("apertium-epo generator not found at %s — skipping EO-side "
+                        "tag resolution (unfiltered readings could emit '#').", autogen)
+        return {}
+    logging.info("Loaded apertium-epo analyses for %d EO surfaces (EO-side tag resolution).",
+                 len(out))
+    return out
+
+
+def resolve_eo_side(epo: str, ido_tag: Optional[str], readings: Dict[str, list]):
+    """Return (lemma, tags) for the bidix <r> side, or None to keep the
+    default (epo, [ido_tag]).
+
+    Keeps the default when apertium-epo agrees with it — an open-class Ido tag
+    with a same-POS reading, or a closed-class reading that is exactly the
+    bare tag. Otherwise returns the first apertium-epo reading (lt-proc order)
+    of the most preferred compatible POS; its lemma may differ from the
+    surface (kion → kio<prn><itg><sg><acc>).
+    """
+    if not ido_tag or " " in epo:
+        return None
+    rs = readings.get(epo)
+    if not rs:
+        return None
+    same_pos = [r for r in rs if r[1] and r[1][0] == ido_tag]
+    if ido_tag in _OPEN_POS and same_pos:
+        return None
+    if any(r[1] == [ido_tag] and r[0] == epo for r in same_pos):
+        return None
+    for pos in _EO_POS_COMPAT.get(ido_tag, ()):
+        for lemma, tags in rs:
+            if tags and tags[0] == pos and _same_lexeme(lemma, epo):
+                return lemma, tags
+    return None
+
+
+def _same_lexeme(lemma: str, surface: str) -> bool:
+    """True when the reading's lemma is an inflection of the surface's own
+    stem (kio/kion, tiu/tiuj, barba/barbe), not a suppletive paradigm name
+    such as apertium-epo's `prpers` for mi/li/ŝi — those are bridged by the
+    .t1x prn_to_* macros and must keep their surface lemma."""
+    if not lemma:
+        return False
+    common = len(os.path.commonprefix([lemma.lower(), surface.lower()]))
+    return common >= min(len(lemma), len(surface)) - 1
+
+
 def build_monodix(entries):
     """Ido monodix. One <e> per lemma; the paradigm does all the inflection.
 
@@ -880,6 +1011,8 @@ def build_bidix(entries):
     eo_vbser = _load_eo_vbser_lemmas()
     eo_generatable = _load_eo_generatable_lemmas()
     ungeneratable_skips = 0
+    eo_readings = _load_eo_readings(eo_generatable or ())
+    eo_side_resolved = 0
 
     dictionary = ET.Element("dictionary")
     alphabet = ET.SubElement(dictionary, "alphabet")
@@ -1128,11 +1261,23 @@ def build_bidix(entries):
             s_elem.set("n", t)
             s_elem.tail = ""
 
-        # Right (Esperanto)
+        # Right (Esperanto). Default: same tags as the left side. For words
+        # whose Ido tag apertium-epo can't generate under that lemma
+        # (closed-class: ĉu, tio, kion, ol, …), take lemma+tags from
+        # apertium-epo's own analysis of the surface — see resolve_eo_side.
+        # Personal pronouns are skipped: the .t1x prn_to_subj/prn_to_obj
+        # macros already map them onto apertium-epo's prpers paradigm.
         r = ET.SubElement(p, "r")
-        r.text = epo
-        # Use the same tags as left side for single-word translations
-        for t in l_tags:
+        r_lemma, r_tags = epo, l_tags
+        if lm_lower not in _PERSONAL_PRONOUNS:
+            resolved = resolve_eo_side(epo, ido_tag, eo_readings)
+            if resolved:
+                r_lemma, r_tags = resolved
+                eo_side_resolved += 1
+                logging.debug("EO-side resolved: %s<%s> → %s<%s>", epo, ido_tag,
+                              r_lemma, "><".join(r_tags))
+        r.text = r_lemma
+        for t in r_tags:
             s_elem = ET.SubElement(r, "s")
             s_elem.set("n", t)
             s_elem.tail = ""
@@ -1294,6 +1439,14 @@ def build_bidix(entries):
     # epo→ido personal-pronoun entries (prpers → canonical Ido pronoun), emitted
     # once. RL-only, so they never compete with the per-pronoun LR entries above.
     _emit_prpers_rl_entries(section)
+    # Declare every symbol actually used — the EO-side resolution brings in
+    # apertium-epo subcategory tags (tn, itg, dem, cnjadv, …) not listed above.
+    declared = {sd.get("n") for sd in sdefs}
+    for used in sorted({s_el.get("n") for s_el in section.iter("s")} - declared):
+        ET.SubElement(sdefs, "sdef", n=used)
+    if eo_side_resolved:
+        logging.info("Bidix EO-side resolution: %d entries take lemma/tags from "
+                     "apertium-epo's analysis.", eo_side_resolved)
     if eo_generatable is not None and ungeneratable_skips:
         logging.info("Bidix generatability gate: skipped %d entries whose only "
                      "candidates apertium-epo cannot generate.", ungeneratable_skips)

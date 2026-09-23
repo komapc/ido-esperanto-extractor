@@ -264,7 +264,7 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
                 pos = 'vblex'; pos_overridden = True
             elif ll.endswith('o'):
                 pos = 'n'; pos_overridden = True
-            elif ll.endswith('a') and not ll.endswith('ia'):
+            elif ll.endswith('a') and not ll.endswith('ia') and len(ll) > 2:
                 pos = 'adj'; pos_overridden = True
             elif ll.endswith('e') and len(ll) > 2:
                 pos = 'adv'; pos_overridden = True
@@ -274,7 +274,9 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
             pos = 'n'; pos_overridden = True
         elif ll.endswith('ar') and len(ll) > 3 and pos and pos != 'vblex':
             pos = 'vblex'; pos_overridden = True
-        elif ll.endswith('a') and not ll.endswith('ia') and pos and pos != 'adj':
+        # len > 2 (as for -e): a one-letter "stem" (ja, ya, ka) is not an
+        # inflected content word, so the ending says nothing about its POS.
+        elif ll.endswith('a') and not ll.endswith('ia') and len(ll) > 2 and pos and pos != 'adj':
             pos = 'adj'; pos_overridden = True
         elif ll.endswith('e') and len(ll) > 2 and pos and pos != 'adv':
             pos = 'adv'; pos_overridden = True
