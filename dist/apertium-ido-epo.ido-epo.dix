@@ -28138,6 +28138,7 @@
     <e><p><l>Gazprom<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Gazproma<s n="adj"/></r></p></e>
     <e><p><l>Gazprom<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Gazproma<s n="adj"/></r></p></e>
     <e><p><l>Gazprom<s n="n"/><s n="der_aro"/><s n="n"/></l><r>Gazpromaro<s n="n"/></r></p></e>
+    <e><p><l>g<s n="adv"/></l><r>germaniumo<s n="adv"/></r></p></e>
     <e><p><l>ge<s n="adv"/></l><r>gea<s n="adv"/></r></p></e>
     <e><p><l>geisha<s n="ij"/></l><r>gejŝo<s n="ij"/></r></p></e>
     <e><p><l>Geizer<s n="n"/></l><r>Gejsero<s n="n"/></r></p></e>
@@ -47082,6 +47083,7 @@
     <e><p><l>laz<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>laza<s n="adj"/></r></p></e>
     <e><p><l>laz<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>laza<s n="adj"/></r></p></e>
     <e><p><l>laz<s n="n"/><s n="der_aro"/><s n="n"/></l><r>lazaro<s n="n"/></r></p></e>
+    <e><p><l>l<s n="adv"/></l><r>la<s n="adv"/></r></p></e>
     <e><p><l>Le Mans<s n="n"/></l><r>Le Mans<s n="n"/></r></p></e>
     <e><p><l>Lecion<s n="n"/></l><r>Leciono<s n="n"/></r></p></e>
     <e><p><l>Lecion<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Leciona<s n="adj"/></r></p></e>
@@ -51107,6 +51109,7 @@
     <e><p><l>mazurk<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>mazurka<s n="adj"/></r></p></e>
     <e><p><l>mazurk<s n="n"/><s n="der_aro"/><s n="n"/></l><r>mazurkaro<s n="n"/></r></p></e>
     <e><p><l>McKenzi<s n="adv"/></l><r>McKenzie<s n="adv"/></r></p></e>
+    <e><p><l>m<s n="adv"/></l><r>mi<s n="adv"/></r></p></e>
     <e><p><l>me<s n="prn"/></l><r>mi<s n="prn"/></r></p></e>
     <e><p><l>me<s n="adj"/></l><r>mia<s n="adj"/></r></p></e>
     <e><p><l>me pregas<s n="n"/></l><r>bonvolu<s n="n"/></r></p></e>
@@ -83205,7 +83208,7 @@
     <e><p><l>trut<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>truta<s n="adj"/></r></p></e>
     <e><p><l>trut<s n="n"/><s n="der_aro"/><s n="n"/></l><r>trutaro<s n="n"/></r></p></e>
     <e><p><l>tu<s n="prn"/></l><r>ci<s n="prn"/></r></p></e>
-    <e><p><l>tu<s n="adj"/></l><r>cia<s n="adj"/></r></p></e>
+    <e><p><l>tu<s n="adj"/></l><r>via<s n="adj"/></r></p></e>
     <e><p><l>Tualetey<s n="n"/></l><r>Necesejo<s n="n"/></r></p></e>
     <e><p><l>Tualetey<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Neceseja<s n="adj"/></r></p></e>
     <e><p><l>Tualetey<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Neceseja<s n="adj"/></r></p></e>

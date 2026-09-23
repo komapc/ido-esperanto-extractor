@@ -256,11 +256,12 @@ def infer_paradigm(entry: Dict[str, Any]) -> Optional[str]:
         return "num"
     if pos in ("prep_art", "prep+art"):
         return "__prep_art"
-    # len > 2: a one-letter "stem" (ka, ja) says nothing about the POS —
-    # same guard as the ending-based POS inference in build_one_big_bidix_json.
+    # len > 2: a one-letter "stem" before -a (ka, ja, ya) is a particle, not an
+    # adjective. -e allows it for lowercase words (n-e: ne is a genuine adverb),
+    # but a capitalized two-letter -e is a chemical symbol (Ce, Se, Te, Xe).
     if lower.endswith("a") and len(lower) > 2:
         return "a__adj"
-    if lower.endswith("e") and len(lower) > 2:
+    if lower.endswith("e") and (len(lower) > 2 or lemma.islower()):
         return "e__adv"
     if lower.endswith("o"):
         return "o__n"

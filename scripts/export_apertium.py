@@ -1123,6 +1123,22 @@ def build_bidix(entries):
             if _paradigm_priority(raw_par) > _paradigm_priority(old_par):
                 best_bidix_entries[key] = e
 
+    # Possessive-stem candidates per personal pronoun, merged across all of
+    # the lemma's records (sources may split them: tu → ci | ci, vi).
+    poss_cands: Dict[str, list] = {}
+    for e in entries:
+        lm_lc = str(e.get("lemma") or "").strip().lower()
+        if lm_lc not in _PERSONAL_PRONOUNS:
+            continue
+        pool = poss_cands.setdefault(lm_lc, [])
+        for term, srcs in _eo_candidates(e):
+            for i, (t, ss) in enumerate(pool):
+                if t == term:
+                    pool[i] = (t, sorted(set(ss) | set(srcs)))
+                    break
+            else:
+                pool.append((term, sorted(srcs)))
+
     # --- Phase 2: order for emission.
     # Sort by Ido lemma, with translation source quality as the tiebreaker so
     # Wiktionary-confirmed translations come BEFORE en_wiktionary_via / BERT-
@@ -1231,8 +1247,21 @@ def build_bidix(entries):
         # Adjective entry: lemma+'a' <adj> -> EO-pronoun+'a' <adj>. The EO stem is
         # the pronoun's own sourced translation (epo), so no hardcoded Ido→EO map.
         lm_lower = clean_lm.lower()
+        # The possessive must be one apertium-epo really generates: tu's pronoun
+        # record says 'ci', but 'cia' doesn't exist there (the lemma gate can't
+        # tell — ci is a lemma). Keep the entry's own winner when its X+'a'
+        # round-trips; otherwise take the best of the lemma's candidates from
+        # ALL its records (eo_wiktionary also lists 'vi') whose X+'a' does.
+        # None → no possessive entry rather than '#cia'.
+        epo_poss_stem = None
         if str(raw_par).strip('_') == 'prn' and lm_lower in _PERSONAL_PRONOUNS and epo:
-            epo_poss_stem = epo
+            if not eo_readings or (epo + 'a') in eo_readings:
+                epo_poss_stem = epo
+            else:
+                pool = poss_cands.get(lm_lower, [])
+                epo_poss_stem = pick_best(
+                    pool, valid={t.casefold() for t, _ in pool if (t + 'a') in eo_readings})
+        if epo_poss_stem:
             e_poss = ET.SubElement(section, "e")
             p_poss = ET.SubElement(e_poss, "p")
             # Left is the a__adj STEM (the bare pronoun), matching the analyser's
