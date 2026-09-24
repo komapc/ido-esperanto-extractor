@@ -386,7 +386,9 @@ def extract_pos(section: str) -> Optional[str]:
             "verbo": "vblex",
             "adjektivo": "adj",
             "artiklo": "det",
-            "numero": "num", "numerala": "num", "nombro": "num",
+            # no numeral keywords: numerals are tagged by [[Kategorio:Numeri]]
+            # (step 3), while "nombro"/"numero" in a Semantiko line are only
+            # ever definition words (kalkular, kelka, kupro … all came out num)
             "partikulo": "ij",  # particles (kam, etc.) — closest to interjection
         }
         for keyword, pos_tag in SEMANTIKO_POS.items():
@@ -479,12 +481,22 @@ def is_inflected_form(text: str) -> bool:
 # both "formo de [[ilu]]" and "(kurta) formo de la vorto [[ito]]" / "formo de
 # vorto [[e]]" — without skipping "(la )(vorto )" the regex would wrongly capture
 # the literal word "vorto".
+# A real variant page qualifies the form: "kurta/plurala/akuzativa/pasiva/
+# neutra formo de X" (also the "kurte" misspelling). Without that qualifier the
+# phrase is a DESCRIPTION of a shape — "en formo di palmo" (palmeto), "la formo
+# di globeto" (guto), "formo di vorto qua indikas…" (dualo) — and must not make
+# the page a variant of X. Hence the required 4+-letter -a/-e word before formo
+# (which also rules out the article "la formo").
+# Grammatical nouns between "de" and the base are skipped too: "formo de la
+# prepoziciono ad" (a), "formo de la plurala pronomo ici" (ci).
 _VARIANT_FORM_RE = re.compile(
-    r"\bform[oi]\s+(?:de|di)\s+(?:(?:la|l'|vorto)\s+)*([a-z]+)\b", re.IGNORECASE
+    r"\b[a-z]{3,}[ae]\s+form[oi]\s+(?:de|di)\s+"
+    r"(?:(?:la|l'|vorto|prepoziciono|pronomo|plurala|singulara)\s+)*([a-z]+)\b",
+    re.IGNORECASE,
 )
 _VARIANT_FORM_EXCLUDE = {
     "verbo", "verbi", "substantivo", "substantivi", "adjektivo", "adverbo",
-    "pronomo", "artiklo", "numero", "la", "vorto", "vorti",
+    "pronomo", "artiklo", "numero", "la", "vorto", "vorti", "sufixo", "prefixo",
 }
 
 
