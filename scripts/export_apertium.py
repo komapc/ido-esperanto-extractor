@@ -659,6 +659,43 @@ def resolve_eo_side(epo: str, ido_tag: Optional[str], readings: Dict[str, list])
     return None
 
 
+# Open-class Ido tag → apertium-epo POS a winner should analyse as. t1x emits
+# the Ido tag on the EO side, so a candidate without such a reading only
+# generates as '#' (endormiĝi is vbntr-only, eŭropana an adjective, logike an
+# adverb). Ido determiners are tagged adj but translate to EO determiner
+# pronouns (omna → ĉiu, which t1x's corr_u rules re-tag), hence det/prn.
+# adv is not filtered: its EO equivalents span too many closed classes.
+_WINNER_POS = {"n": ("n", "np"), "np": ("np", "n"),
+               "adj": ("adj", "det", "prn", "predet"), "vblex": ("vblex",)}
+
+
+def pos_valid(cands, ido_tag: Optional[str], eo_generatable: Optional[set],
+              readings: Dict[str, list]) -> Optional[set]:
+    """Narrow pick_best's `valid` set to generatable candidates that apertium-epo
+    analyses with the Ido entry's POS. Candidates it did not analyse
+    (multiword, or no readings loaded) are not judged. When none qualifies
+    the plain generatability set is returned, so no entry is lost."""
+    want = _WINNER_POS.get(ido_tag or "")
+    if not want or not readings:
+        return eo_generatable
+    ok = set()
+    for term, _ in cands:
+        k = term.casefold()
+        if eo_generatable is not None and k not in eo_generatable:
+            continue
+        rs = readings.get(k)
+        if rs is None or any(tags and tags[0] in want for _, tags in rs):
+            ok.add(k)
+    return ok or eo_generatable
+
+
+def _entry_ido_tag(e) -> Optional[str]:
+    """The Ido tag the bidix entry will carry (same fallback as the emit loop)."""
+    raw_par = (e.get("morphology") or {}).get("paradigm") or infer_paradigm(e)
+    pos = e.get("pos") if isinstance(e.get("pos"), str) else None
+    return map_s_tag(raw_par, pos) if raw_par else None
+
+
 def _same_lexeme(lemma: str, surface: str) -> bool:
     """True when the reading's lemma is an inflection of the surface's own
     stem (kio/kion, tiu/tiuj, barba/barbe), not a suppletive paradigm name
@@ -1105,7 +1142,8 @@ def build_bidix(entries):
         cands = _eo_candidates(e)
         if not cands:
             continue
-        epo = pick_best(cands, valid=eo_generatable)
+        epo = pick_best(cands, valid=pos_valid(cands, _entry_ido_tag(e),
+                                               eo_generatable, eo_readings))
         if epo is None:
             ungeneratable_skips += 1
             continue
@@ -1229,7 +1267,8 @@ def build_bidix(entries):
         cands = _eo_candidates(e)
         if not cands:
             continue
-        epo = pick_best(cands, valid=eo_generatable)
+        epo = pick_best(cands, valid=pos_valid(cands, _entry_ido_tag(e),
+                                               eo_generatable, eo_readings))
         if epo is None:
             continue
 

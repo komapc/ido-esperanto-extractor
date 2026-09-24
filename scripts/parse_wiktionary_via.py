@@ -285,8 +285,8 @@ def build_english_via_pairs(io_file: Path, eo_file: Path, output_path: Path, pro
     for key in io_map:
         if key in eo_map:
             english_word, _sense_id = key
-            io_translations = list(set(io_map[key]))  # Remove duplicates
-            eo_translations = list(set(eo_map[key]))  # Remove duplicates
+            io_translations = list(dict.fromkeys(io_map[key]))  # dedupe, keep page order (a set made tie-breaks vary per run)
+            eo_translations = list(dict.fromkeys(eo_map[key]))  # dedupe, keep page order
 
             for io_term in io_translations:
                 io_pos = io_pos_map.get(io_term.lower())

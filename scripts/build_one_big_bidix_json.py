@@ -213,6 +213,19 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
             return ''
         return t
 
+    # Closed-class POS attested for a lemma by any source record (quar = num in
+    # io.wiktionary). A POS-less record of the same lemma (eo_wiktionary's
+    # kvar→quar) takes it instead of a guess from the ending — otherwise the
+    # -ar rule below makes the numeral a verb, and 'quante' is analysed as its
+    # gerund (qu<vblex><der_ante> → '#kvar'). Only an unambiguous POS.
+    _closed_pos_by_lemma: Dict[str, set] = {}
+    for e in entries:
+        if e.get('language') not in (None, 'io'):
+            continue
+        p0 = _SHORT_POS.get((e.get('pos') or '').strip(), (e.get('pos') or '').strip())
+        if p0 in {'det', 'pr', 'prn', 'cnjcoo', 'cnjsub', 'ij', 'num'}:
+            _closed_pos_by_lemma.setdefault((e.get('lemma') or '').strip().lower(), set()).add(p0)
+
     # --- Phase 2: normalise each entry's (lemma, POS) and fold it into by_key.
     # The POS/paradigm sanitising in this loop exists because the merge key
     # must be identical across sources for the same word; a source that ships
@@ -268,6 +281,13 @@ def build_big_bidix(entries_paths: List[Path]) -> List[Dict[str, Any]]:
                 pos = 'adj'; pos_overridden = True
             elif ll.endswith('e') and len(ll) > 2:
                 pos = 'adv'; pos_overridden = True
+            # the ending guess yields to an attested closed-class POS; records
+            # with no ending guess stay as they were (lu's POS-less ĝi/ri
+            # records must not start outvoting io.wiktionary's own li)
+            if pos_overridden and len(_closed_pos_by_lemma.get(ll, ())) == 1:
+                pos = next(iter(_closed_pos_by_lemma[ll]))
+                pos_overridden = False
+                morphology = {}
         if pos in _CLOSED_CLASS:
             pass  # Don't override closed-class POS based on ending
         elif ll.endswith('o') and pos and pos not in ('n', 'np'):

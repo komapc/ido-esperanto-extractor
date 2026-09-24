@@ -386,7 +386,9 @@ def extract_pos(section: str) -> Optional[str]:
             "verbo": "vblex",
             "adjektivo": "adj",
             "artiklo": "det",
-            "numero": "num", "numerala": "num", "nombro": "num",
+            # no numeral keywords: numerals are tagged by [[Kategorio:Numeri]]
+            # (step 3), while "nombro"/"numero" in a Semantiko line are only
+            # ever definition words (kalkular, kelka, kupro … all came out num)
             "partikulo": "ij",  # particles (kam, etc.) — closest to interjection
         }
         for keyword, pos_tag in SEMANTIKO_POS.items():
@@ -479,12 +481,22 @@ def is_inflected_form(text: str) -> bool:
 # both "formo de [[ilu]]" and "(kurta) formo de la vorto [[ito]]" / "formo de
 # vorto [[e]]" — without skipping "(la )(vorto )" the regex would wrongly capture
 # the literal word "vorto".
+# A real variant page qualifies the form: "kurta/plurala/akuzativa/pasiva/
+# neutra formo de X" (also the "kurte" misspelling). Without that qualifier the
+# phrase is a DESCRIPTION of a shape — "en formo di palmo" (palmeto), "la formo
+# di globeto" (guto), "formo di vorto qua indikas…" (dualo) — and must not make
+# the page a variant of X. Hence the required 4+-letter -a/-e word before formo
+# (which also rules out the article "la formo").
+# Grammatical nouns between "de" and the base are skipped too: "formo de la
+# prepoziciono ad" (a), "formo de la plurala pronomo ici" (ci).
 _VARIANT_FORM_RE = re.compile(
-    r"\bform[oi]\s+(?:de|di)\s+(?:(?:la|l'|vorto)\s+)*([a-z]+)\b", re.IGNORECASE
+    r"\b[a-z]{3,}[ae]\s+form[oi]\s+(?:de|di)\s+"
+    r"(?:(?:la|l'|vorto|prepoziciono|pronomo|plurala|singulara)\s+)*([a-z]+)\b",
+    re.IGNORECASE,
 )
 _VARIANT_FORM_EXCLUDE = {
     "verbo", "verbi", "substantivo", "substantivi", "adjektivo", "adverbo",
-    "pronomo", "artiklo", "numero", "la", "vorto", "vorti",
+    "pronomo", "artiklo", "numero", "la", "vorto", "vorti", "sufixo", "prefixo",
 }
 
 
@@ -732,6 +744,38 @@ def extract_tradukoj_io(section_or_page: str) -> List[List[str]]:
 
 
 def iter_pages(xml_path: Path) -> Iterator[Tuple[str, str, str]]:
+    """Yield (title, ns, text) from a dump, brought up to date by its overlay.
+
+    ``fetch_wiktionary_overlay.py`` stores pages edited after the dump's
+    snapshot as ``<dump>.overlay.json``; when present, those pages replace
+    their dump version, new ones are appended and deleted ones are skipped.
+    """
+    overlay_file = xml_path.with_name(xml_path.name + ".overlay.json")
+    if not overlay_file.exists():
+        yield from _iter_dump_pages(xml_path)
+        return
+    if overlay_file.stat().st_mtime < xml_path.stat().st_mtime:
+        # fetched for an older dump: its pages could roll back newer ones
+        logging.warning("Ignoring %s: older than the dump; re-run "
+                        "fetch_wiktionary_overlay.py", overlay_file.name)
+        yield from _iter_dump_pages(xml_path)
+        return
+    overlay = json.loads(overlay_file.read_text(encoding="utf-8"))
+    pending = dict(overlay.get("pages", {}))
+    logging.info("Applying %s: %d pages changed since %s",
+                 overlay_file.name, len(pending), overlay.get("since"))
+    for title, ns, text in _iter_dump_pages(xml_path):
+        page = pending.pop(title, None)
+        if page is None:
+            yield title, ns, text
+        elif not page.get("deleted"):
+            yield title, page.get("ns", ns), page.get("text", "")
+    for title, page in pending.items():
+        if not page.get("deleted"):
+            yield title, page.get("ns", "0"), page.get("text", "")
+
+
+def _iter_dump_pages(xml_path: Path) -> Iterator[Tuple[str, str, str]]:
     if _lxml_etree is not None:
         # lxml path: binary stream, tag filter fires only on <page> — 2-5x faster than stdlib ET
         import bz2, gzip

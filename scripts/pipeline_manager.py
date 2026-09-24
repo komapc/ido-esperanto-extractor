@@ -352,6 +352,12 @@ def main(argv):
          "Download Wikimedia dumps",
          None),
         
+        # Stage 1b: pages edited on io.wiktionary since the dump's snapshot
+        ("wiktionary_io_overlay",
+         ["python3", "scripts/fetch_wiktionary_overlay.py", "--lang", "io"],
+         "Fetch io.wiktionary edits newer than the dump (overlay)",
+         None),
+
         # Stage 2: Ido Wiktionary
         ("wiktionary_io",
          ["python3", "scripts/process_wiktionary_two_stage.py", "--source", "io", "--target", "eo", "--force"],

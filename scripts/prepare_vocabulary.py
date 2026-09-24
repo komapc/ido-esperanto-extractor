@@ -227,7 +227,11 @@ def infer_paradigm(entry: Dict[str, Any]) -> Optional[str]:
             return "a__adj"
         return "o__n"
     # Ido verb endings are definitive — override noisy POS tags from fr_wikt etc.
-    if (lower.endswith("ar") or lower.endswith("ir")) and not lemma[:1].isupper():
+    # Not a closed-class POS, though: quar is the numeral "four", not a verb.
+    if ((lower.endswith("ar") or lower.endswith("ir")) and not lemma[:1].isupper()
+            and pos not in ("num", "numeral", "prn", "pronoun", "pr", "preposition",
+                            "det", "determiner", "cnjcoo", "cnjsub", "conjunction",
+                            "ij", "interjection")):
         return "ar__vblex"
     if pos in ("noun", "n"):
         return "o__n"
