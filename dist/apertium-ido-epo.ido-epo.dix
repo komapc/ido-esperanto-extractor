@@ -65446,18 +65446,18 @@
     <e><p><l>prizant<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>ŝatanta<s n="adj"/></r></p></e>
     <e><p><l>prizant<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>ŝatanta<s n="adj"/></r></p></e>
     <e><p><l>prizant<s n="n"/><s n="der_aro"/><s n="n"/></l><r>ŝatantaro<s n="n"/></r></p></e>
-    <e><p><l>priz<s n="vblex"/></l><r>plaĉi<s n="vblex"/></r></p></e>
-    <e><p><l>priz<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>plaĉanto<s n="n"/></r></p></e>
-    <e><p><l>priz<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>plaĉado<s n="n"/></r></p></e>
-    <e><p><l>priz<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>plaĉinto<s n="n"/></r></p></e>
-    <e><p><l>priz<s n="vblex"/><s n="der_ppra"/><s n="adj"/></l><r>plaĉanta<s n="adj"/></r></p></e>
-    <e><p><l>priz<s n="vblex"/><s n="der_pfut"/><s n="adj"/></l><r>plaĉota<s n="adj"/></r></p></e>
-    <e><p><l>priz<s n="vblex"/><s n="der_ppas"/><s n="adj"/></l><r>plaĉi<s n="vblex"/><s n="pp"/></r></p></e>
-    <e><p><l>priz<s n="vblex"/><s n="der_ppa"/><s n="adj"/></l><r>plaĉi<s n="vblex"/><s n="pp3"/></r></p></e>
-    <e><p><l>priz<s n="vblex"/><s n="der_pprs"/><s n="adj"/></l><r>plaĉi<s n="vbtr"/><s n="ppres"/></r></p></e>
-    <e><p><l>priz<s n="vblex"/><s n="der_onta"/><s n="adj"/></l><r>plaĉi<s n="vblex"/><s n="pp2"/></r></p></e>
-    <e><p><l>priz<s n="vblex"/><s n="der_ante"/><s n="adv"/></l><r>plaĉi<s n="vblex"/><s n="ger"/></r></p></e>
-    <e><p><l>priz<s n="vblex"/><s n="der_inte"/><s n="adv"/></l><r>plaĉi<s n="vblex"/><s n="gerpast"/></r></p></e>
+    <e><p><l>priz<s n="vblex"/></l><r>ŝati<s n="vblex"/></r></p></e>
+    <e><p><l>priz<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>ŝatanto<s n="n"/></r></p></e>
+    <e><p><l>priz<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>ŝatado<s n="n"/></r></p></e>
+    <e><p><l>priz<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>ŝatinto<s n="n"/></r></p></e>
+    <e><p><l>priz<s n="vblex"/><s n="der_ppra"/><s n="adj"/></l><r>ŝatanta<s n="adj"/></r></p></e>
+    <e><p><l>priz<s n="vblex"/><s n="der_pfut"/><s n="adj"/></l><r>ŝatota<s n="adj"/></r></p></e>
+    <e><p><l>priz<s n="vblex"/><s n="der_ppas"/><s n="adj"/></l><r>ŝati<s n="vblex"/><s n="pp"/></r></p></e>
+    <e><p><l>priz<s n="vblex"/><s n="der_ppa"/><s n="adj"/></l><r>ŝati<s n="vblex"/><s n="pp3"/></r></p></e>
+    <e><p><l>priz<s n="vblex"/><s n="der_pprs"/><s n="adj"/></l><r>ŝati<s n="vbtr"/><s n="ppres"/></r></p></e>
+    <e><p><l>priz<s n="vblex"/><s n="der_onta"/><s n="adj"/></l><r>ŝati<s n="vblex"/><s n="pp2"/></r></p></e>
+    <e><p><l>priz<s n="vblex"/><s n="der_ante"/><s n="adv"/></l><r>ŝati<s n="vblex"/><s n="ger"/></r></p></e>
+    <e><p><l>priz<s n="vblex"/><s n="der_inte"/><s n="adv"/></l><r>ŝati<s n="vblex"/><s n="gerpast"/></r></p></e>
     <e><p><l>prizat<s n="adj"/></l><r>ŝatata<s n="adj"/></r></p></e>
     <e><p><l>prizat<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>ŝatateco<s n="n"/></r></p></e>
     <e><p><l>prizat<s n="adv"/></l><r>amata<s n="adv"/></r></p></e>
@@ -70428,6 +70428,18 @@
     <e><p><l>retropren<s n="vblex"/><s n="der_onta"/><s n="adj"/></l><r>repreni<s n="vblex"/><s n="pp2"/></r></p></e>
     <e><p><l>retropren<s n="vblex"/><s n="der_ante"/><s n="adv"/></l><r>repreni<s n="vblex"/><s n="ger"/></r></p></e>
     <e><p><l>retropren<s n="vblex"/><s n="der_inte"/><s n="adv"/></l><r>repreni<s n="vblex"/><s n="gerpast"/></r></p></e>
+    <e><p><l>retroven<s n="vblex"/></l><r>reveni<s n="vblex"/></r></p></e>
+    <e><p><l>retroven<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>revenanto<s n="n"/></r></p></e>
+    <e><p><l>retroven<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>revenado<s n="n"/></r></p></e>
+    <e><p><l>retroven<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>reveninto<s n="n"/></r></p></e>
+    <e><p><l>retroven<s n="vblex"/><s n="der_ppra"/><s n="adj"/></l><r>revenanta<s n="adj"/></r></p></e>
+    <e><p><l>retroven<s n="vblex"/><s n="der_pfut"/><s n="adj"/></l><r>revenota<s n="adj"/></r></p></e>
+    <e><p><l>retroven<s n="vblex"/><s n="der_ppas"/><s n="adj"/></l><r>reveni<s n="vblex"/><s n="pp"/></r></p></e>
+    <e><p><l>retroven<s n="vblex"/><s n="der_ppa"/><s n="adj"/></l><r>reveni<s n="vblex"/><s n="pp3"/></r></p></e>
+    <e><p><l>retroven<s n="vblex"/><s n="der_pprs"/><s n="adj"/></l><r>reveni<s n="vbtr"/><s n="ppres"/></r></p></e>
+    <e><p><l>retroven<s n="vblex"/><s n="der_onta"/><s n="adj"/></l><r>reveni<s n="vblex"/><s n="pp2"/></r></p></e>
+    <e><p><l>retroven<s n="vblex"/><s n="der_ante"/><s n="adv"/></l><r>reveni<s n="vblex"/><s n="ger"/></r></p></e>
+    <e><p><l>retroven<s n="vblex"/><s n="der_inte"/><s n="adv"/></l><r>reveni<s n="vblex"/><s n="gerpast"/></r></p></e>
     <e><p><l>Retrovirus<s n="n"/></l><r>retroviruso<s n="n"/></r></p></e>
     <e><p><l>Retrovirus<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>retrovirusa<s n="adj"/></r></p></e>
     <e><p><l>Retrovirus<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>retrovirusa<s n="adj"/></r></p></e>
@@ -81022,18 +81034,18 @@
     <e><p><l>teatr<s n="n"/><s n="der_aro"/><s n="n"/></l><r>teatraro<s n="n"/></r></p></e>
     <e><p><l>tedant<s n="adj"/></l><r>teda<s n="adj"/></r></p></e>
     <e><p><l>tedant<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>tedeco<s n="n"/></r></p></e>
-    <e><p><l>ted<s n="vblex"/></l><r>altrudiĝi<s n="vblex"/></r></p></e>
-    <e><p><l>ted<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>altrudiĝanto<s n="n"/></r></p></e>
-    <e><p><l>ted<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>altrudiĝado<s n="n"/></r></p></e>
-    <e><p><l>ted<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>altrudiĝinto<s n="n"/></r></p></e>
-    <e><p><l>ted<s n="vblex"/><s n="der_ppra"/><s n="adj"/></l><r>altrudiĝanta<s n="adj"/></r></p></e>
-    <e><p><l>ted<s n="vblex"/><s n="der_pfut"/><s n="adj"/></l><r>altrudiĝota<s n="adj"/></r></p></e>
-    <e><p><l>ted<s n="vblex"/><s n="der_ppas"/><s n="adj"/></l><r>altrudiĝi<s n="vblex"/><s n="pp"/></r></p></e>
-    <e><p><l>ted<s n="vblex"/><s n="der_ppa"/><s n="adj"/></l><r>altrudiĝi<s n="vblex"/><s n="pp3"/></r></p></e>
-    <e><p><l>ted<s n="vblex"/><s n="der_pprs"/><s n="adj"/></l><r>altrudiĝi<s n="vbtr"/><s n="ppres"/></r></p></e>
-    <e><p><l>ted<s n="vblex"/><s n="der_onta"/><s n="adj"/></l><r>altrudiĝi<s n="vblex"/><s n="pp2"/></r></p></e>
-    <e><p><l>ted<s n="vblex"/><s n="der_ante"/><s n="adv"/></l><r>altrudiĝi<s n="vblex"/><s n="ger"/></r></p></e>
-    <e><p><l>ted<s n="vblex"/><s n="der_inte"/><s n="adv"/></l><r>altrudiĝi<s n="vblex"/><s n="gerpast"/></r></p></e>
+    <e><p><l>ted<s n="vblex"/></l><r>tedi<s n="vblex"/></r></p></e>
+    <e><p><l>ted<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>tedanto<s n="n"/></r></p></e>
+    <e><p><l>ted<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>tedado<s n="n"/></r></p></e>
+    <e><p><l>ted<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>tedinto<s n="n"/></r></p></e>
+    <e><p><l>ted<s n="vblex"/><s n="der_ppra"/><s n="adj"/></l><r>tedanta<s n="adj"/></r></p></e>
+    <e><p><l>ted<s n="vblex"/><s n="der_pfut"/><s n="adj"/></l><r>tedota<s n="adj"/></r></p></e>
+    <e><p><l>ted<s n="vblex"/><s n="der_ppas"/><s n="adj"/></l><r>tedi<s n="vblex"/><s n="pp"/></r></p></e>
+    <e><p><l>ted<s n="vblex"/><s n="der_ppa"/><s n="adj"/></l><r>tedi<s n="vblex"/><s n="pp3"/></r></p></e>
+    <e><p><l>ted<s n="vblex"/><s n="der_pprs"/><s n="adj"/></l><r>tedi<s n="vbtr"/><s n="ppres"/></r></p></e>
+    <e><p><l>ted<s n="vblex"/><s n="der_onta"/><s n="adj"/></l><r>tedi<s n="vblex"/><s n="pp2"/></r></p></e>
+    <e><p><l>ted<s n="vblex"/><s n="der_ante"/><s n="adv"/></l><r>tedi<s n="vblex"/><s n="ger"/></r></p></e>
+    <e><p><l>ted<s n="vblex"/><s n="der_inte"/><s n="adv"/></l><r>tedi<s n="vblex"/><s n="gerpast"/></r></p></e>
     <e><p><l>ted<s n="n"/></l><r>enuo<s n="n"/></r></p></e>
     <e><p><l>ted<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>enua<s n="adj"/></r></p></e>
     <e><p><l>ted<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>enua<s n="adj"/></r></p></e>
