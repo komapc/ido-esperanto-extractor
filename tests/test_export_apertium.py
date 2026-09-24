@@ -311,3 +311,16 @@ def test_resolve_eo_side_closed_class():
     assert resolve_eo_side('li', 'prn', readings) is None       # prpers: bridged by t1x
     assert resolve_eo_side('nekonata', 'adj', readings) is None
     assert resolve_eo_side('tio', 'prn', {}) is None            # analyser unavailable
+
+
+def test_pos_valid_prefers_a_winner_with_the_entrys_pos():
+    from export_apertium import pos_valid
+    readings = {"endormiĝi": [("endormiĝi", ["vbntr", "inf"])],
+                "ekdormi": [("ekdormi", ["vblex", "inf"]), ("ekdormi", ["vbntr", "inf"])]}
+    cands = [("endormiĝi", ["en_wiktionary_via"]), ("ekdormi", ["en_wiktionary_via"])]
+    gen = {"endormiĝi", "ekdormi"}
+    assert pos_valid(cands, "vblex", gen, readings) == {"ekdormi"}
+    # no candidate has the POS: fall back to plain generatability, drop nothing
+    assert pos_valid(cands[:1], "vblex", gen, readings) == gen
+    # closed-class tags are the EO-side resolver's business, not this filter's
+    assert pos_valid(cands, "prn", gen, readings) == gen
