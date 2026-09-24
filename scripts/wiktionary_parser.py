@@ -732,6 +732,38 @@ def extract_tradukoj_io(section_or_page: str) -> List[List[str]]:
 
 
 def iter_pages(xml_path: Path) -> Iterator[Tuple[str, str, str]]:
+    """Yield (title, ns, text) from a dump, brought up to date by its overlay.
+
+    ``fetch_wiktionary_overlay.py`` stores pages edited after the dump's
+    snapshot as ``<dump>.overlay.json``; when present, those pages replace
+    their dump version, new ones are appended and deleted ones are skipped.
+    """
+    overlay_file = xml_path.with_name(xml_path.name + ".overlay.json")
+    if not overlay_file.exists():
+        yield from _iter_dump_pages(xml_path)
+        return
+    if overlay_file.stat().st_mtime < xml_path.stat().st_mtime:
+        # fetched for an older dump: its pages could roll back newer ones
+        logging.warning("Ignoring %s: older than the dump; re-run "
+                        "fetch_wiktionary_overlay.py", overlay_file.name)
+        yield from _iter_dump_pages(xml_path)
+        return
+    overlay = json.loads(overlay_file.read_text(encoding="utf-8"))
+    pending = dict(overlay.get("pages", {}))
+    logging.info("Applying %s: %d pages changed since %s",
+                 overlay_file.name, len(pending), overlay.get("since"))
+    for title, ns, text in _iter_dump_pages(xml_path):
+        page = pending.pop(title, None)
+        if page is None:
+            yield title, ns, text
+        elif not page.get("deleted"):
+            yield title, page.get("ns", ns), page.get("text", "")
+    for title, page in pending.items():
+        if not page.get("deleted"):
+            yield title, page.get("ns", "0"), page.get("text", "")
+
+
+def _iter_dump_pages(xml_path: Path) -> Iterator[Tuple[str, str, str]]:
     if _lxml_etree is not None:
         # lxml path: binary stream, tag filter fires only on <page> — 2-5x faster than stdlib ET
         import bz2, gzip
