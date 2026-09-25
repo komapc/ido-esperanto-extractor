@@ -321,6 +321,52 @@ def test_pos_valid_prefers_a_winner_with_the_entrys_pos():
     gen = {"endormiĝi", "ekdormi"}
     assert pos_valid(cands, "vblex", gen, readings) == {"ekdormi"}
     # no candidate has the POS: fall back to plain generatability, drop nothing
-    assert pos_valid(cands[:1], "vblex", gen, readings) == gen
+    assert pos_valid(cands[:1], "vblex", gen, readings) == {"endormiĝi"}
     # closed-class tags are the EO-side resolver's business, not this filter's
     assert pos_valid(cands, "prn", gen, readings) == gen
+
+
+def test_pos_valid_drops_a_lowercase_name():
+    """maria<adj> passed the casefolded lemma gate on Maria<np>'s account."""
+    from export_apertium import pos_valid
+    readings = {"Maria": [("Maria", ["np", "ant", "f", "sg", "nom"])],
+                "Francio": [("Francio", ["np", "loc", "sg", "nom"])]}
+    gen = {"maria", "francio"}
+    assert pos_valid([("maria", ["bert_embeddings"])], "adj", gen, readings) == set()
+    assert pos_valid([("Francio", ["wikipedia_langlinks"])], "np", gen, readings) == {"francio"}
+
+
+def test_proper_noun_record_becomes_np():
+    from export_apertium import np_lemmas, _record_paradigm, _resolve_np
+    def rec(lm, par, *eo):
+        return {"lemma": lm, "morphology": {"paradigm": par},
+                "senses": [{"translations": [{"lang": "eo", "term": t} for t in eo]}]}
+    readings = {"Francio": [("Francio", ["np", "loc", "sg", "nom"])],
+                "Usono": [("Usono", ["np", "loc", "sg", "nom"])],
+                "Anglo": [("Anglo", ["n", "m", "sg", "nom"])],
+                "Judoj": [("judo", ["n", "pl", "nom"])],
+                "arabo": [("arabo", ["n", "m", "sg", "nom"])]}
+    recs = [rec("Francia", "o__n", "Francio"), rec("Francia", "o__n"),   # untranslated twin
+            rec("Usa", "a__adj", "Usono", "Unuiĝintaj Ŝtatoj"),
+            rec("Angliana", "a__adj", "Anglo"),        # demonym, not a name
+            rec("Judi", "o__n", "Judoj"),              # plural surface, not a name
+            rec("Arabi", "o__n", "arabo"),             # common noun, not a name
+            rec("Germano", "o__n", "Germano"),         # inflecting -o noun
+            rec("Ca", "a__adj", "Francio")]            # chemical symbol
+    nps = np_lemmas(recs, readings)
+    assert nps == {"Francia", "Usa"}
+    assert _record_paradigm(recs[1], nps) == "np__np"
+    assert _record_paradigm(recs[3], nps) == "a__adj"
+    rs = [("Maria", ["np", "ant", "m", "sg"]), ("Maria", ["np", "ant", "f", "sg", "nom"])]
+    assert _resolve_np(rs, "Maria") == ("Maria", ["np", "ant", "f"])
+    assert _resolve_np([("Japano", ["n", "m", "sg", "nom"])], "Japano") == ("Japano", ["n", "m"])
+
+
+def test_lowercase_name_lemmas():
+    from export_apertium import _lowercase_name_lemmas
+    readings = {"Maria": [("Maria", ["np", "ant", "f", "sg", "nom"])],
+                "alia": [("alia", ["adj", "sg", "nom"])]}
+    rec = lambda lm, *eo: {"lemma": lm, "senses": [{"translations": [
+        {"lang": "eo", "term": t} for t in eo]}]}
+    assert _lowercase_name_lemmas([rec("maria", "maria"), rec("altra", "alia"),
+                                   rec("altra", "maria")], readings) == {"maria"}

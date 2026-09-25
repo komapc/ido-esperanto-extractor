@@ -82,6 +82,90 @@ def _paradigm_priority(p: str) -> int:
     return 2
 
 
+# Ending paradigms a capitalized lemma may have picked up from its spelling.
+# o__n appends -o, so a langlinks title ending otherwise (Francia, Australia)
+# has no surface at all but "Franciao"; Morfologio "[[Us]][[.a]]" makes
+# io.wiktionary's Usa an adjective whose EO side (Usono<adj>) cannot be
+# generated. Both are names: an invariable np — decided by apertium-epo, whose
+# analysis of the EO translation must be a declinable name (see _resolve_np):
+#  - o__n: any EO translation resolves (Francia → Francio<np><loc>). Titles
+#    whose translations don't (Amiki → Friends, Judi → Judoj) stay as they
+#    were, dead, rather than becoming a live np that shadows amiki/judi at
+#    sentence start with no translation behind it. Capitalized -o nouns
+#    (Germano/Germani) inflect and are left alone.
+#  - a__adj/e__adv: every analysed translation must be an np (Usa → Usono,
+#    Ameriko), so demonyms stay adjectives (Angliana → Angla, Anglo<n>).
+_NOUN_PARADIGMS = {"o__n", "n"}
+_MODIFIER_PARADIGMS = {"a__adj", "adj", "e__adv", "adv"}
+_NP_LEMMAS: set = set()   # filled by export() via np_lemmas()
+
+
+def _eo_terms(e):
+    return [tr.get("term") or "" for s in e.get("senses") or []
+            for tr in s.get("translations") or [] if tr.get("lang") == "eo"]
+
+
+def _name_candidate(e) -> Optional[str]:
+    """'noun'/'modifier' when the record's lemma could be a mis-paradigmed name."""
+    par = (e.get("morphology") or {}).get("paradigm")
+    lm = str(e.get("lemma") or "").strip()
+    if len(lm) <= 2 or not lm[:1].isupper() or " " in lm:
+        return None
+    if par in _NOUN_PARADIGMS and not lm.endswith("o"):
+        return "noun"
+    if par in _MODIFIER_PARADIGMS:
+        return "modifier"
+    return None
+
+
+def np_lemmas(entries, readings: Dict[str, list]) -> set:
+    """Lemmas to export as np (see above), judged over all of a lemma's
+    records, so the monodix and bidix agree even when only one record
+    carries the translations."""
+    noun_ok, mod_terms = set(), {}
+    for e in entries:
+        kind = _name_candidate(e)
+        if not kind:
+            continue
+        lm = str(e.get("lemma")).strip()
+        # a name translates to a name: Germaniani → germano is a plural title
+        resolved = [_resolve_np(readings[t], t) for t in _eo_terms(e)
+                    if t[:1].isupper() and t in readings]
+        if kind == "noun":
+            if any(resolved):
+                noun_ok.add(lm)
+        else:
+            mod_terms.setdefault(lm, []).extend(resolved)
+    return noun_ok | {lm for lm, rs in mod_terms.items()
+                      if rs and all(r and r[1][0] == "np" for r in rs)}
+
+
+def _is_lowercase_name(term: str, readings: Dict[str, list]) -> bool:
+    return (term[:1].islower() and term not in readings
+            and term[:1].upper() + term[1:] in readings)
+
+
+def _lowercase_name_lemmas(entries, readings: Dict[str, list]) -> set:
+    """Lowercase lemmas whose EO candidates, over all records, are all
+    lowercase names (see pos_valid)."""
+    terms: Dict[str, list] = {}
+    for e in entries:
+        lm = str(e.get("lemma") or "").strip()
+        if lm[:1].islower():
+            terms.setdefault(lm, []).extend(_eo_terms(e))
+    return {lm for lm, ts in terms.items()
+            if ts and all(_is_lowercase_name(t, readings) for t in ts)}
+
+
+def _record_paradigm(e, np_set: Optional[set] = None) -> Optional[str]:
+    """The record's paradigm, with names moved to np__np (see above)."""
+    par = (e.get("morphology") or {}).get("paradigm")
+    if _name_candidate(e) and str(e.get("lemma")).strip() in (
+            _NP_LEMMAS if np_set is None else np_set):
+        return "np__np"
+    return par
+
+
 def _clean_translation_term(raw: str) -> str:
     """Strip arrow artifacts and Kategorio references from a translation term."""
     term = clean_lemma(raw).strip()
@@ -194,7 +278,7 @@ def extract_stem(lemma: str, paradigm: str) -> str:
     """Extract stem from lemma based on paradigm. Used for both monolingual and bilingual dicts."""
     if not lemma:
         return ""
-    if paradigm in {"__pr", "__det", "__prn", "__cnjcoo", "__cnjsub", "__prep_art", "__adv", "__ij"}:
+    if paradigm in {"__pr", "__det", "__prn", "__cnjcoo", "__cnjsub", "__prep_art", "__adv", "__ij", "np__np"}:
         return lemma
     if paradigm == "ar__vblex":
         if lemma.endswith("ar"): return lemma[:-2]
@@ -354,6 +438,8 @@ def map_s_tag(par: str | None, pos: str | None) -> str | None:
         return "vblex"
     if par == "num":
         return "num"
+    if par == "np__np":
+        return "np"
     if par in ("__pr", "__det", "__prn", "__cnjcoo", "__cnjsub", "__ij",
                "pr", "det", "prn", "cnjcoo", "cnjsub", "ij"):
         return par.replace("__", "")
@@ -647,6 +733,8 @@ def resolve_eo_side(epo: str, ido_tag: Optional[str], readings: Dict[str, list])
     rs = readings.get(epo)
     if not rs:
         return None
+    if ido_tag == "np":
+        return _resolve_np(rs, epo)
     same_pos = [r for r in rs if r[1] and r[1][0] == ido_tag]
     if ido_tag in _OPEN_POS and same_pos:
         return None
@@ -674,26 +762,55 @@ def pos_valid(cands, ido_tag: Optional[str], eo_generatable: Optional[set],
     """Narrow pick_best's `valid` set to generatable candidates that apertium-epo
     analyses with the Ido entry's POS. Candidates it did not analyse
     (multiword, or no readings loaded) are not judged. When none qualifies
-    the plain generatability set is returned, so no entry is lost."""
-    want = _WINNER_POS.get(ido_tag or "")
-    if not want or not readings:
+    the generatable candidates are returned, so no entry is lost to the POS
+    check — only to a lowercase name (below)."""
+    if not readings:
         return eo_generatable
-    ok = set()
+    # A lowercase candidate apertium-epo knows only capitalized is a name, not
+    # this word: the casefolded lemma gate lets bert_embeddings' maria<adj>
+    # through on the strength of Maria<np>, and it generates as '#Maria'.
+    gen = set()
     for term, _ in cands:
         k = term.casefold()
         if eo_generatable is not None and k not in eo_generatable:
             continue
+        if _is_lowercase_name(term, readings):
+            continue
+        gen.add(k)
+    want = _WINNER_POS.get(ido_tag or "")
+    if not want:
+        return gen
+    ok = set()
+    for k in gen:
         rs = readings.get(k)
         if rs is None or any(tags and tags[0] in want for _, tags in rs):
             ok.add(k)
-    return ok or eo_generatable
+    return ok or gen
 
 
 def _entry_ido_tag(e) -> Optional[str]:
     """The Ido tag the bidix entry will carry (same fallback as the emit loop)."""
-    raw_par = (e.get("morphology") or {}).get("paradigm") or infer_paradigm(e)
+    raw_par = _record_paradigm(e) or infer_paradigm(e)
     pos = e.get("pos") if isinstance(e.get("pos"), str) else None
     return map_s_tag(raw_par, pos) if raw_par else None
+
+
+_INFLECTION_TAGS = {"sg", "pl", "sp", "nom", "acc"}
+
+
+def _resolve_np(rs, surface: str):
+    """EO side of an Ido proper noun: apertium-epo files names under np with a
+    subtype (Francio<np><loc>, Maria<np><ant><f>) and declines them, so a bare
+    <np> never generates. Take the first declinable reading (one with a case),
+    np before n (Japano is only a common noun there), minus number and case,
+    which t1x appends. The lemma must be the surface itself: Judoj is judo<pl>,
+    not a name."""
+    for pos in ("np", "n"):
+        for lemma, tags in rs:
+            if (tags and tags[0] == pos and "nom" in tags
+                    and lemma.casefold() == surface.casefold()):
+                return lemma, [t for t in tags if t not in _INFLECTION_TAGS]
+    return None
 
 
 def _same_lexeme(lemma: str, surface: str) -> bool:
@@ -705,6 +822,20 @@ def _same_lexeme(lemma: str, surface: str) -> bool:
         return False
     common = len(os.path.commonprefix([lemma.lower(), surface.lower()]))
     return common >= min(len(lemma), len(surface)) - 1
+
+
+def _load_all_eo_readings(eo_generatable: Optional[set]) -> Dict[str, list]:
+    """Readings for every generatable EO lemma, capitalized too: names are
+    analysed only in their own case (Francio<np>). Cached: export() and
+    build_bidix() both need them."""
+    global _ALL_READINGS
+    if _ALL_READINGS is None:
+        _ALL_READINGS = _load_eo_readings({v for w in (eo_generatable or ())
+                                           for v in (w, w[:1].upper() + w[1:])})
+    return _ALL_READINGS
+
+
+_ALL_READINGS: Optional[Dict[str, list]] = None
 
 
 def build_monodix(entries):
@@ -808,12 +939,12 @@ def build_monodix(entries):
         if not lm:
             continue
         
-        raw_par = (e.get("morphology") or {}).get("paradigm")
+        raw_par = _record_paradigm(e)
         
         if lm not in best_entries:
             best_entries[lm] = e
         else:
-            old_par = (best_entries[lm].get("morphology") or {}).get("paradigm")
+            old_par = _record_paradigm(best_entries[lm])
             if _paradigm_priority(raw_par) > _paradigm_priority(old_par):
                 best_entries[lm] = e
 
@@ -831,7 +962,7 @@ def build_monodix(entries):
     # Step 1: Pre-process best entries and their possessives
     for lm, e in best_entries.items():
         clean_lm = lm
-        raw_par = (e.get("morphology") or {}).get("paradigm")
+        raw_par = _record_paradigm(e)
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
         pos = _SHORT_POS.get(pos, pos)
         if not raw_par: raw_par = "o__n"
@@ -1048,7 +1179,7 @@ def build_bidix(entries):
     eo_vbser = _load_eo_vbser_lemmas()
     eo_generatable = _load_eo_generatable_lemmas()
     ungeneratable_skips = 0
-    eo_readings = _load_eo_readings(eo_generatable or ())
+    eo_readings = _load_all_eo_readings(eo_generatable)
     eo_side_resolved = 0
 
     dictionary = ET.Element("dictionary")
@@ -1148,7 +1279,7 @@ def build_bidix(entries):
             ungeneratable_skips += 1
             continue
 
-        raw_par = (e.get("morphology") or {}).get("paradigm")
+        raw_par = _record_paradigm(e)
 
         # Key includes paradigm so noun/adj/verb entries for the same (lemma, epo) pair
         # are kept as separate bidix entries rather than collapsed — avoids losing e.g.
@@ -1157,7 +1288,7 @@ def build_bidix(entries):
         if key not in best_bidix_entries:
             best_bidix_entries[key] = e
         else:
-            old_par = (best_bidix_entries[key].get("morphology") or {}).get("paradigm")
+            old_par = _record_paradigm(best_bidix_entries[key])
             if _paradigm_priority(raw_par) > _paradigm_priority(old_par):
                 best_bidix_entries[key] = e
 
@@ -1222,7 +1353,7 @@ def build_bidix(entries):
 
     for e in final_list_bidix:
         clean_lm = str(e.get("lemma")).strip()
-        raw_par = (e.get("morphology") or {}).get("paradigm") or None
+        raw_par = _record_paradigm(e) or None
         pos = e.get("pos") if isinstance(e.get("pos"), str) else None
         if not raw_par:
             # Same fallback build_one_big_bidix_json.py's Phase 4 applies:
@@ -1342,6 +1473,11 @@ def build_bidix(entries):
             if resolved:
                 r_lemma, r_tags = resolved
                 eo_side_resolved += 1
+                # A name whose EO side is a common noun (Nord → Nordo<n>) is
+                # ido→epo only: backwards it would claim every sentence-initial
+                # "Nordo" before the lowercase nordo<n> entry is tried.
+                if ido_tag == "np" and r_tags[:1] == ["n"]:
+                    en.set("r", "LR")
                 logging.debug("EO-side resolved: %s<%s> → %s<%s>", epo, ido_tag,
                               r_lemma, "><".join(r_tags))
         r.text = r_lemma
@@ -1636,6 +1772,21 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
     mono_entries = filtered
 
     # --- Phase 3: build and write both dictionaries.
+    global _NP_LEMMAS
+    readings = _load_all_eo_readings(_load_eo_generatable_lemmas())
+    _NP_LEMMAS = np_lemmas(list(mono_entries) + list(bidix_entries), readings)
+    logging.info("Proper nouns exported as np: %d lemmas", len(_NP_LEMMAS))
+    # A lowercase lemma whose every EO candidate is a name in lowercase
+    # (bert_embeddings' maria → maria, see pos_valid) gets no bidix entry; its
+    # monodix entry would only turn "Maria" into a truncated "@Mari" instead of
+    # the unknown "*Maria".
+    name_only = _lowercase_name_lemmas(bidix_entries, readings)
+    if name_only:
+        before = len(mono_entries)
+        mono_entries = [e for e in mono_entries
+                        if (e.get('lemma') or '').strip() not in name_only]
+        logging.info("Monodix: dropped %d entries translated only by lowercase names",
+                     before - len(mono_entries))
     mono = build_monodix(mono_entries)
     write_xml_file(mono, out_monodix, header_comment=_MONODIX_HEADER)
 
