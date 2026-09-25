@@ -141,9 +141,14 @@ def _normalize(entries: List[Dict[str, Any]]) -> Tuple[List[Dict[str, Any]], Dic
             should_fold = False
             if eo_terms and all(t and t[:1].islower() for t in eo_terms):
                 should_fold = True
-            elif e.get("pos") in ("adjective", "adj", "adverb", "adv"):
+            elif (e.get("pos") in ("adjective", "adj", "adverb", "adv")
+                  and not (eo_terms and all(t[:1].isupper() for t in eo_terms))):
                 # Adj/adv POS marks are closed-form: an "adjective" lemma is
-                # always a common-class word, never a proper noun.
+                # a common-class word — unless every EO translation is itself
+                # a name. io.wiktionary's Morfologio "[[Franci]][[.a]]" tags
+                # country names adjective by their -a (Francia → Francio,
+                # Usa → Usono); folding those made junk `francia<adj>` entries
+                # that shadow the name at sentence start.
                 should_fold = True
             if should_fold:
                 e["lemma"] = lm[:1].lower() + lm[1:]
