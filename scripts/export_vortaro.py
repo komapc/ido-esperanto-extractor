@@ -120,7 +120,8 @@ def convert_to_vortaro_format(bidix_path: str, output_path: str):
 
     # Update metadata
     vortaro["metadata"]["total_unique_ido_words"] = len(vortaro) - 1
-    vortaro["metadata"]["source_stats"] = source_counts
+    # sorted: `sources` is a set, so first-seen order varies with the hash seed
+    vortaro["metadata"]["source_stats"] = dict(sorted(source_counts.items()))
     vortaro["metadata"]["junk_removed"] = junk_count
     vortaro["metadata"]["case_pairs_merged"] = merged_pairs
 
