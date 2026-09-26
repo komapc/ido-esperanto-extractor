@@ -443,15 +443,33 @@ _LEMMA_SECTION_RE = re.compile(
     r"konjunciono|numero|interjeciono|artiklo)\)", re.IGNORECASE)
 
 
-def is_inflected_form(text: str) -> bool:
+def _is_regular_inflection(title: str, rest: str) -> bool:
+    """True if `title` is a regular noun inflection of the lemma named first
+    in `rest` (the Semantiko text after 'pluralo de'): -o → -i, or +n."""
+    m = re.match(r"[\s'\"]*([^\W\d_]+)", rest)
+    if not m:
+        return False
+    base, t = m.group(1).lower(), title.lower()
+    if not base.endswith("o"):
+        return False
+    stem = base[:-1]
+    return t in (stem + "i", base + "n", stem + "in")
+
+
+def is_inflected_form(text: str, title: Optional[str] = None) -> bool:
     """True if the page describes a non-lemma — a conjugation, declension,
     or root/morpheme — rather than a standalone dictionary lemma.
 
     Detected patterns (after stripping `[[...]]` link markup):
     - Semantiko line says "<X> formo de [verbo|substantivo|...]"
       (e.g. 'prezenta formo de verbo esar' → esas is a verb conjugation)
-    - Semantiko line says "(pluralo|nominativo|akuzativo|...) de"
-      (e.g. 'pluralo de kato' → kati is a noun plural)
+    - Semantiko line says "(pluralo|nominativo|akuzativo|...) de X"
+      (e.g. 'pluralo de kato' → kati is a noun plural). When the page title
+      is known, this only counts if the title is X's *regular* inflection
+      (kato → kati / katon). Closed-class pages use the same wording for
+      words that are lemmas in their own right — eli 'pluralo de elu',
+      le 'pluralo de artiklo la', singli 'pluralo de singlu' — and dropping
+      them left those words with no POS or paradigm.
     - Page body has "Radiko por: ..." / "Sufixo ..." / "Prefixo ..."
       (e.g. 'Radiko por: aro, ara' → ar is a root, not a lemma)
 
@@ -465,7 +483,8 @@ def is_inflected_form(text: str) -> bool:
         sem = m.group(0)
         if _INFLECTED_FORM_RE.search(sem):
             return True
-        if _PLURAL_FORM_RE.search(sem):
+        pm = _PLURAL_FORM_RE.search(sem)
+        if pm and (title is None or _is_regular_inflection(title, sem[pm.end():])):
             return True
     if _ROOT_MARKER_RE.search(cleaned) and not _LEMMA_SECTION_RE.search(cleaned):
         return True
@@ -854,7 +873,7 @@ def parse_wiktionary(
         # ("prezenta formo de verbo esar", "pluralo de kato", etc.) — these
         # aren't lemmas, they're surface variants that the morphology
         # pipeline derives from the base lemma.
-        if is_inflected_form(section):
+        if is_inflected_form(section, title):
             continue
         pos = extract_pos(section)
         # Variant short/alternative form ("il" = kurta formo de "ilu") — inherits
