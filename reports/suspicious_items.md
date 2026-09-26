@@ -3,8 +3,8 @@
 ## Stats
 - bad_schema: 0
 - bad_lemma: 1
-- wiki_low_freq: 38735
-- all_tr_removed: 63989
+- wiki_low_freq: 38734
+- all_tr_removed: 63981
 - tr_removed: 171
 
 ## Examples
