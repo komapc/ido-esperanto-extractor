@@ -86,8 +86,6 @@ def extract_filtered_wiktionary(dump_path: Path, output_path: Path, source_code:
     """Extract and filter Wiktionary entries from XML dump."""
     logging.info("Stage 1: Extracting filtered %s Wiktionary from %s", source_code, dump_path)
     
-    # Check if output already exists (resumability)
-    
     # Parse Wiktionary using existing parser
     cfg = ParserConfig(source_code=source_code, target_code=target_code)
     

@@ -13,14 +13,14 @@ from pathlib import Path
 from _common import configure_logging
 
 
-def run_stage(stage_script: str, description: str) -> bool:
+def run_stage(stage_script: str, args: list, description: str) -> bool:
     """Run a processing stage and return success status."""
     logging.info("=" * 60)
     logging.info("Running %s", description)
     logging.info("=" * 60)
     
     try:
-        result = subprocess.run([sys.executable, stage_script], 
+        result = subprocess.run([sys.executable, stage_script] + args, 
                               capture_output=True, text=True, check=True)
         logging.info("✓ %s completed successfully", description)
         if result.stdout:
@@ -45,6 +45,7 @@ def main(argv: list[str]) -> int:
                    default=Path(__file__).resolve().parents[1] / "work/io_wikipedia_processed.json")
     ap.add_argument("--skip-stage1", action="store_true", help="Skip Stage 1 (XML → Filtered JSON)")
     ap.add_argument("--skip-stage2", action="store_true", help="Skip Stage 2 (JSON → Final Processing)")
+    ap.add_argument("--force", action="store_true", help="Force regeneration of all stages")
     ap.add_argument("-v", "--verbose", action="count", default=0)
     args = ap.parse_args(argv)
 
@@ -67,10 +68,12 @@ def main(argv: list[str]) -> int:
     
     # Stage 1: XML → Filtered JSON
     if not args.skip_stage1:
-        if args.stage1_out.exists():
+        if args.stage1_out.exists() and not args.force:
             logging.info("Stage 1 output already exists, skipping...")
         else:
-            success = run_stage(str(stage1_script), "Stage 1: XML → Filtered JSON")
+            success = run_stage(str(stage1_script),
+                                ["--input", str(args.input), "--out", str(args.stage1_out)],
+                                "Stage 1: XML → Filtered JSON")
             if not success:
                 return 1
     else:
@@ -78,10 +81,12 @@ def main(argv: list[str]) -> int:
     
     # Stage 2: JSON → Final Processing
     if not args.skip_stage2:
-        if args.stage2_out.exists():
+        if args.stage2_out.exists() and not args.force:
             logging.info("Stage 2 output already exists, skipping...")
         else:
-            success = run_stage(str(stage2_script), "Stage 2: JSON → Final Processing")
+            success = run_stage(str(stage2_script),
+                                ["--input", str(args.stage1_out), "--out", str(args.stage2_out)],
+                                "Stage 2: JSON → Final Processing")
             if not success:
                 return 1
     else:

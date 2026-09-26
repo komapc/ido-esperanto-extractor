@@ -76,21 +76,47 @@ def _collect_code_files(command: List[str]) -> List[Path]:
     return sorted(out)
 
 
-def stage_fingerprint(command: List[str]) -> str:
-    """Short content hash of a stage's code (scripts + transitive local imports).
+_RAW_DIR = _REPO_DIR / 'data' / 'raw'
+# Files in data/raw that are not downloaded dumps: backups, in-flight downloads,
+# checksums, and the overlay (a stage output — its stage re-running already
+# invalidates everything downstream).
+_RAW_IGNORE = ('.bak', '.part', '.overlay.json', 'SHA256SUMS.txt')
 
-    For inline (`-c`) or shell commands with no .py file, the command text
-    itself is hashed so edits to inline logic still invalidate the stage.
+
+def raw_inputs_signature() -> str:
+    """(name, size, mtime) of every dump in data/raw.
+
+    Fingerprints were code-only, so replacing a dump left every stage marked
+    up to date. Stat-only, so cheap enough to include in every stage.
+    """
+    h = hashlib.sha256()
+    if _RAW_DIR.is_dir():
+        for f in sorted(_RAW_DIR.iterdir()):
+            if not f.is_file() or f.name.endswith(_RAW_IGNORE):
+                continue
+            st = f.stat()
+            h.update(f'{f.name}\0{st.st_size}\0{st.st_mtime_ns}\0'.encode())
+    return h.hexdigest()
+
+
+def stage_fingerprint(command: List[str]) -> str:
+    """Short hash of a stage's code (scripts + transitive local imports) and
+    of the raw dumps it ultimately reads.
+
+    Non-Python scripts in the command (e.g. download_dumps.sh) are hashed by
+    content; the command text itself is always hashed so edits to inline
+    (`-c`) logic or arguments invalidate the stage.
     """
     files = _collect_code_files(command)
+    files += [p for p in (_REPO_DIR / a for a in command if a.endswith('.sh')) if p.is_file()]
     h = hashlib.sha256()
-    if not files:
-        h.update(repr(command).encode())
+    h.update(repr(command).encode())
     for f in files:
         h.update(f.name.encode())
         h.update(b'\0')
         h.update(f.read_bytes())
         h.update(b'\0')
+    h.update(raw_inputs_signature().encode())
     return h.hexdigest()[:16]
 
 
@@ -228,7 +254,8 @@ class PipelineManager:
 
         try:
             result = subprocess.run(command, check=True, capture_output=False)
-            # Mark as completed
+            # Fingerprint AFTER the run: download_dumps changes data/raw itself.
+            current_fp = stage_fingerprint(command)
             self.state.stages[stage_name] = StageState(
                 name=stage_name,
                 status='completed',
@@ -262,6 +289,9 @@ class PipelineManager:
             start_from: Stage name to resume from (None = start from beginning)
         """
         found_start = start_from is None
+        if start_from is not None and start_from not in [s[0] for s in stages]:
+            logging.error("Unknown stage '%s'", start_from)
+            sys.exit(2)
         # Once any stage re-runs, its outputs change, so every downstream stage
         # must re-run too — even if its own code is unchanged.
         invalidate_rest = False
@@ -271,6 +301,9 @@ class PipelineManager:
             if not found_start:
                 if stage_name == start_from:
                     found_start = True
+                    # An explicit --stage means "re-run from here", even if
+                    # the stage and everything after it look up to date.
+                    invalidate_rest = True
                 else:
                     logging.info("Skipping stage '%s' (before start point)", stage_name)
                     continue
@@ -330,7 +363,7 @@ def main(argv):
     ap.add_argument("--force", action="store_true",
                    help="Force regeneration of all stages (ignore completed)")
     ap.add_argument("--stage", type=str,
-                   help="Resume from specific stage")
+                   help="Re-run from this stage onward (forces it and all later stages)")
     ap.add_argument("--status", action="store_true",
                    help="Show pipeline status only")
     ap.add_argument("-v", "--verbose", action="count", default=0)
@@ -384,7 +417,7 @@ def main(argv):
         
         # Stage 6: Wikipedia processing
         ("wikipedia",
-         ["python3", "scripts/process_wikipedia_two_stage.py"],
+         ["python3", "scripts/process_wikipedia_two_stage.py", "--force"],
          "Process Wikipedia dump (two-stage)",
          None),
         
