@@ -181,11 +181,6 @@ def main(argv):
         logging.error("Input file %s does not exist. Run Stage 1 first.", args.input)
         return 1
     
-    # Check if output already exists (resumability)
-    if args.output.exists():
-        logging.info("Output file %s already exists, skipping Stage 2", args.output)
-        return 0
-    
     process_wiktionary_entries(args.input, args.output, args.source)
     return 0
 

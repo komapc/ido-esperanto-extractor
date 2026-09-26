@@ -118,11 +118,6 @@ def main(argv: Iterable[str]) -> int:
         logging.error("Input file %s does not exist. Run Stage 1 first.", args.input)
         return 1
     
-    # Check if output already exists (resumability)
-    if args.out.exists():
-        logging.info("Output file %s already exists, skipping Stage 2", args.out)
-        return 0
-    
     process_wikipedia_entries(args.input, args.out)
     return 0
 

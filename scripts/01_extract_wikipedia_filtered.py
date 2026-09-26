@@ -170,11 +170,6 @@ def main(argv: Iterable[str]) -> int:
 
     configure_logging(args.verbose)
     
-    # Check if output already exists (resumability)
-    if args.out.exists():
-        logging.info("Output file %s already exists, skipping Stage 1", args.out)
-        return 0
-    
     extract_filtered_titles(args.input, args.out)
     return 0
 

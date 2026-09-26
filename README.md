@@ -11,7 +11,7 @@ Outputs feed `apertium-ido`, `apertium-ido-epo`, and the vortaro web dictionary.
 cd extractor
 python3 scripts/pipeline_manager.py
 
-# Check status / resume from a specific stage
+# Check status / re-run from a specific stage (forces it and all later ones)
 python3 scripts/pipeline_manager.py --status
 python3 scripts/pipeline_manager.py --stage <stage_name>
 

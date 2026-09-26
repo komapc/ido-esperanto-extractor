@@ -12,12 +12,28 @@ python3 scripts/pipeline_manager.py
 # Check status
 python3 scripts/pipeline_manager.py --status
 
-# Resume from a specific stage
+# Re-run from a specific stage (forces it and every later stage)
 python3 scripts/pipeline_manager.py --stage <stage_name>
+
+# Refresh the dumps (only files newer on the server are fetched)
+python3 scripts/pipeline_manager.py --stage download_dumps
 
 # Force re-run all stages
 python3 scripts/pipeline_manager.py --force
 ```
+
+## When a completed stage re-runs
+
+A completed stage is skipped unless one of these changed since it ran:
+
+- its code: the invoked script, its transitive local imports, any `.sh` in the
+  command, and the command line itself;
+- the dumps in `data/raw/` (name, size, mtime; `.part`, `.bak`, the overlay and
+  `SHA256SUMS.txt` are ignored);
+- any earlier stage re-ran in this invocation.
+
+Dumps are not re-downloaded on a normal run: `download_dumps` is itself a
+completed stage. Use `--stage download_dumps` to refresh them.
 
 ## Stages
 
