@@ -85,7 +85,7 @@ TARGET_TRANSLATION_PATTERNS = {
         r"\*[ \t]*\{\{eo\}\}[ \t]*[:\.-][ \t]*([^\n{]+?)(?=\n|\|\}|\Z)",
         r"\*[ \t]*(?:Esperanto|esperanto|EO)[ \t]*[:\.-][ \t]*\{\{t\+?\|eo\|([^}|]+)",
         r"\*[ \t]*(?:Esperanto|esperanto|EO)[ \t]*[:\.-][ \t]*([^\n{]+?)(?=\n|\|\}|\Z)",
-        r"(?m)^.*?Esperanto[ \t]*[:\-][ \t]*([^\n]+)",
+        r"(?m)^[^\n]*?Esperanto[ \t]*[:\-][ \t]*([^\n]+)",
         r"\{\{t\+?\|eo\|([^}|]+)",
         r"\{\{trad\+?\|eo\|([^}|]+)",
         r"\{\{l\|eo\|([^}|]+)",
@@ -97,7 +97,7 @@ TARGET_TRANSLATION_PATTERNS = {
         r"\*[ \t]*\{\{en\}\}[ \t]*[:\.-][ \t]*([^\n{]+?)(?=\n|\|\}|\Z)",
         r"\*[ \t]*(?:Angliana|English|EN|en)[ \t]*[:\.-][ \t]*\{\{t\+?\|en\|([^}|]+)",
         r"\*[ \t]*(?:Angliana|English|EN|en)[ \t]*[:\.-][ \t]*([^\n{]+?)(?=\n|\|\}|\Z)",
-        r"(?m)^.*?(?:Angliana|English)[ \t]*[:\-][ \t]*([^\n]+)",
+        r"(?m)^[^\n]*?(?:Angliana|English)[ \t]*[:\-][ \t]*([^\n]+)",
         r"\{\{t\+?\|en\|([^}|]+)",
         r"\{\{trad\+?\|en\|([^}|]+)",
         r"\{\{l\|en\|([^}|]+)",
@@ -109,7 +109,7 @@ TARGET_TRANSLATION_PATTERNS = {
         r"\*[ \t]*\{\{fr\}\}[ \t]*[:\.-][ \t]*([^\n{]+?)(?=\n|\|\}|\Z)",
         r"\*[ \t]*(?:Franciana|French|FR|fr)[ \t]*[:\.-][ \t]*\{\{t\+?\|fr\|([^}|]+)",
         r"\*[ \t]*(?:Franciana|French|FR|fr)[ \t]*[:\.-][ \t]*([^\n{]+?)(?=\n|\|\}|\Z)",
-        r"(?m)^.*?(?:Franciana|French)[ \t]*[:\-][ \t]*([^\n]+)",
+        r"(?m)^[^\n]*?(?:Franciana|French)[ \t]*[:\-][ \t]*([^\n]+)",
         r"\{\{t\+?\|fr\|([^}|]+)",
         r"\{\{trad\+?\|fr\|([^}|]+)",
         r"\{\{l\|fr\|([^}|]+)",
@@ -123,6 +123,21 @@ COMPILED_TRANSLATION_PATTERNS = {
     lang: [re.compile(pat, re.IGNORECASE | re.DOTALL) for pat in patterns]
     for lang, patterns in TARGET_TRANSLATION_PATTERNS.items()
 }
+
+# The "(?m)^…Esperanto:" line patterns try a match at every character of the
+# section and dominate parse time, yet most pages never name the language in
+# words. Each can only match where its language keyword occurs, so a plain
+# keyword search (same regex engine and flags, hence the same case rules)
+# gates it without changing any result.
+_LINE_PATTERN_GATES = {}
+for _lang, _pats in COMPILED_TRANSLATION_PATTERNS.items():
+    for _p in _pats:
+        _m = re.match(r"\(\?m\)\^\[\^\\n\]\*\?(\(\?:[^)]*\)|\w+)", _p.pattern)
+        if _m:
+            _LINE_PATTERN_GATES[_p] = re.compile(_m.group(1), _p.flags)
+assert len(_LINE_PATTERN_GATES) == sum(
+    p.pattern.startswith("(?m)^") for ps in COMPILED_TRANSLATION_PATTERNS.values() for p in ps
+), "every (?m)^ line pattern needs a keyword gate"
 
 # Match part-of-speech headings at level 3 or higher (===, ====, etc.)
 # Supports both English and Esperanto POS labels (e.g., "Noun" or "Substantivo")
@@ -247,6 +262,9 @@ def extract_morphology(section: str, title: str) -> Tuple[Optional[str], Optiona
     return None, None
 
 
+_POS_TEMPLATE_HINT_RE = re.compile(r"\{\{\s*(?:head|io-)", re.IGNORECASE)
+
+
 def extract_pos(section: str) -> Optional[str]:
     text = section or ""
     # 0) Check section header for POS in parentheses (e.g., "==II {{io}} (prepoziciono)==")
@@ -291,7 +309,10 @@ def extract_pos(section: str) -> Optional[str]:
         return pos
 
     # 2) Template-based detection (e.g., {{head|io|verb}})
-    if mwparserfromhell is not None:
+    # Only {{head…}} and {{io-…}} templates can match below; a full
+    # mwparserfromhell parse costs ~0.5 s on a big io.wiktionary page, so
+    # skip it when neither can be present.
+    if mwparserfromhell is not None and _POS_TEMPLATE_HINT_RE.search(text):
         try:
             wt = mwparserfromhell.parse(text)
             for tpl in wt.filter_templates():
@@ -522,6 +543,10 @@ _VARIANT_FORM_EXCLUDE = {
 def detect_variant_base(text: str) -> Optional[str]:
     """Base lemma for a '(kurta) formo de [[X]]' variant page, else None."""
     cleaned = re.sub(r"\[\[(?:[^\]|]*\|)?([^\]]+)\]\]", r"\1", text).replace("''", "")
+    # _VARIANT_FORM_RE needs a literal "form" (case-insensitive); checking
+    # for it first skips a slow backtracking search on ~95% of pages.
+    if "form" not in cleaned.lower():
+        return None
     m = _VARIANT_FORM_RE.search(cleaned)
     if not m:
         return None
@@ -615,6 +640,9 @@ def extract_translations(section: str, target_code: str) -> List[List[str]]:
     # OPTIMIZATION: Use pre-compiled patterns (20-30% speedup)
     compiled_patterns = COMPILED_TRANSLATION_PATTERNS.get(target_code, [])
     for compiled_pat in compiled_patterns:
+        gate = _LINE_PATTERN_GATES.get(compiled_pat)
+        if gate is not None and not gate.search(section or ""):
+            continue
         for match in compiled_pat.findall(section or ""):
             blob = match[0] if isinstance(match, tuple) else match
             meanings = parse_meanings(blob)
