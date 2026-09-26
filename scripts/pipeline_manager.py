@@ -235,7 +235,7 @@ class PipelineManager:
                 logging.info("Stage '%s' has no recorded code fingerprint (legacy state) — "
                              "treating as stale and re-running", stage_name)
             else:
-                logging.info("Stage '%s' code changed (%s → %s) — re-running",
+                logging.info("Stage '%s' fingerprint changed (%s → %s) — re-running",
                              stage_name, stored.code_fingerprint, current_fp)
 
         # Mark as running
