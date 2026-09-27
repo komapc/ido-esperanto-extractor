@@ -3193,6 +3193,10 @@
     <e><p><l>amoratul<s n="n"/><s n="der_aro"/><s n="n"/></l><r>koramikaro<s n="n"/></r></p></e>
     <e><p><l>amorf<s n="adj"/></l><r>amorfa<s n="adj"/></r></p></e>
     <e><p><l>amorf<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>amorfeco<s n="n"/></r></p></e>
+    <e><p><l>amor<s n="n"/></l><r>amo<s n="n"/></r></p></e>
+    <e r="LR"><p><l>amor<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>ama<s n="adj"/></r></p></e>
+    <e r="LR"><p><l>amor<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>ama<s n="adj"/></r></p></e>
+    <e><p><l>amor<s n="n"/><s n="der_aro"/><s n="n"/></l><r>amaro<s n="n"/></r></p></e>
     <e><p><l>amortis<s n="vblex"/></l><r>amortizi<s n="vblex"/></r></p></e>
     <e><p><l>amortis<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>amortizanto<s n="n"/></r></p></e>
     <e><p><l>amortis<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>amortizado<s n="n"/></r></p></e>
@@ -12419,6 +12423,7 @@
     <e r="LR"><p><l>C<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>kobalta<s n="adj"/></r></p></e>
     <e r="LR"><p><l>C<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>kobalta<s n="adj"/></r></p></e>
     <e r="LR"><p><l>C<s n="n"/><s n="der_aro"/><s n="n"/></l><r>kobaltaro<s n="n"/></r></p></e>
+    <e r="LR"><p><l>co<s n="prn"/></l><r>ĉi tio<s n="prn"/><s n="tn"/><s n="sg"/><s n="nom"/></r></p></e>
     <e><p><l>Coca Cola<s n="n"/></l><r>Kokakolao<s n="n"/></r></p></e>
     <e><p><l>Coca Cola<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Kokakolaa<s n="adj"/></r></p></e>
     <e><p><l>Coca Cola<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Kokakolaa<s n="adj"/></r></p></e>
@@ -29190,14 +29195,35 @@
     <e><p><l>habilit<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>habilitiĝa<s n="adj"/></r></p></e>
     <e><p><l>habilit<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>habilitiĝa<s n="adj"/></r></p></e>
     <e><p><l>habilit<s n="n"/><s n="der_aro"/><s n="n"/></l><r>habilitiĝaro<s n="n"/></r></p></e>
+    <e r="LR"><p><l>habitad<s n="n"/></l><r>loĝado<s n="n"/></r></p></e>
+    <e><p><l>habitad<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>loĝada<s n="adj"/></r></p></e>
+    <e><p><l>habitad<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>loĝada<s n="adj"/></r></p></e>
+    <e><p><l>habitad<s n="n"/><s n="der_aro"/><s n="n"/></l><r>loĝadaro<s n="n"/></r></p></e>
+    <e r="LR"><p><l>habitant<s n="adj"/></l><r>loĝanta<s n="adj"/></r></p></e>
+    <e r="LR"><p><l>habitant<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>loĝanteco<s n="n"/></r></p></e>
     <e><p><l>habitantar<s n="n"/></l><r>loĝantaro<s n="n"/></r></p></e>
     <e><p><l>habitantar<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>loĝantara<s n="adj"/></r></p></e>
     <e><p><l>habitantar<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>loĝantara<s n="adj"/></r></p></e>
     <e><p><l>habitantar<s n="n"/><s n="der_aro"/><s n="n"/></l><r>loĝantararo<s n="n"/></r></p></e>
+    <e><p><l>habitant<s n="adv"/></l><r>loĝante<s n="adv"/></r></p></e>
     <e><p><l>habitant<s n="n"/></l><r>loĝanto<s n="n"/></r></p></e>
     <e r="LR"><p><l>habitant<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>loĝanta<s n="adj"/></r></p></e>
     <e r="LR"><p><l>habitant<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>loĝanta<s n="adj"/></r></p></e>
     <e r="LR"><p><l>habitant<s n="n"/><s n="der_aro"/><s n="n"/></l><r>loĝantaro<s n="n"/></r></p></e>
+    <e><p><l>habit<s n="vblex"/></l><r>loĝi<s n="vblex"/></r></p></e>
+    <e r="LR"><p><l>habit<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>loĝanto<s n="n"/></r></p></e>
+    <e><p><l>habit<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>loĝado<s n="n"/></r></p></e>
+    <e><p><l>habit<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>loĝinto<s n="n"/></r></p></e>
+    <e r="LR"><p><l>habit<s n="vblex"/><s n="der_ppra"/><s n="adj"/></l><r>loĝanta<s n="adj"/></r></p></e>
+    <e><p><l>habit<s n="vblex"/><s n="der_pfut"/><s n="adj"/></l><r>loĝota<s n="adj"/></r></p></e>
+    <e><p><l>habit<s n="vblex"/><s n="der_ppas"/><s n="adj"/></l><r>loĝi<s n="vblex"/><s n="pp"/></r></p></e>
+    <e><p><l>habit<s n="vblex"/><s n="der_ppa"/><s n="adj"/></l><r>loĝi<s n="vblex"/><s n="pp3"/></r></p></e>
+    <e><p><l>habit<s n="vblex"/><s n="der_pprs"/><s n="adj"/></l><r>loĝi<s n="vbtr"/><s n="ppres"/></r></p></e>
+    <e><p><l>habit<s n="vblex"/><s n="der_onta"/><s n="adj"/></l><r>loĝi<s n="vblex"/><s n="pp2"/></r></p></e>
+    <e><p><l>habit<s n="vblex"/><s n="der_ante"/><s n="adv"/></l><r>loĝi<s n="vblex"/><s n="ger"/></r></p></e>
+    <e><p><l>habit<s n="vblex"/><s n="der_inte"/><s n="adv"/></l><r>loĝi<s n="vblex"/><s n="gerpast"/></r></p></e>
+    <e r="LR"><p><l>habitat<s n="adj"/></l><r>loĝata<s n="adj"/></r></p></e>
+    <e r="LR"><p><l>habitat<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>loĝateco<s n="n"/></r></p></e>
     <e><p><l>habit<s n="n"/></l><r>loĝo<s n="n"/></r></p></e>
     <e><p><l>habit<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>loĝa<s n="adj"/></r></p></e>
     <e><p><l>habit<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>loĝa<s n="adj"/></r></p></e>
@@ -72829,6 +72855,10 @@
     <e><p><l>siorin<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>sinjorina<s n="adj"/></r></p></e>
     <e><p><l>siorin<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>sinjorina<s n="adj"/></r></p></e>
     <e><p><l>siorin<s n="n"/><s n="der_aro"/><s n="n"/></l><r>sinjorinaro<s n="n"/></r></p></e>
+    <e><p><l>sior<s n="n"/></l><r>sinjoro<s n="n"/></r></p></e>
+    <e><p><l>sior<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>sinjora<s n="adj"/></r></p></e>
+    <e><p><l>sior<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>sinjora<s n="adj"/></r></p></e>
+    <e><p><l>sior<s n="n"/><s n="der_aro"/><s n="n"/></l><r>sinjoraro<s n="n"/></r></p></e>
     <e><p><l>siorul<s n="n"/></l><r>sinjoro<s n="n"/></r></p></e>
     <e><p><l>siorul<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>sinjora<s n="adj"/></r></p></e>
     <e><p><l>siorul<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>sinjora<s n="adj"/></r></p></e>
@@ -77900,6 +77930,7 @@
     <e r="LR"><p><l>talus<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>dekliva<s n="adj"/></r></p></e>
     <e><p><l>talus<s n="n"/><s n="der_aro"/><s n="n"/></l><r>deklivaro<s n="n"/></r></p></e>
     <e><p><l>Talveila<s n="np"/></l><r>Talveila<s n="np"/><s n="loc"/></r></p></e>
+    <e r="LR"><p><l>tam<s n="adv"/></l><r>tiel<s n="adv"/></r></p></e>
     <e><p><l>Tamarind<s n="n"/></l><r>Tamarindo<s n="n"/></r></p></e>
     <e><p><l>Tamarind<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Tamarinda<s n="adj"/></r></p></e>
     <e><p><l>Tamarind<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Tamarinda<s n="adj"/></r></p></e>
