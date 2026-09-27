@@ -913,6 +913,49 @@ def _interjection_phrases(records, readings: Dict[str, list]) -> set:
     return out
 
 
+def _casefold_title_translations(records, readings: Dict[str, list]) -> Dict[str, int]:
+    """Lend a capitalized title's EO translation to the lowercase word.
+
+    Wikipedia/Wikidata titles are capitalized (Judaismo -> Judismo), while
+    io.wiktionary's own entry for the word (judaismo) often has no EO
+    translation. The lowercase noun then has no bidix row, so the analyser
+    trimmed to the bidix drops it and "judaismo" / "Judaismo" come out
+    unknown. When apertium-epo reads the lowercased EO term as a common noun
+    of that same spelling (judismo<n>, not a name), the lowercase records get
+    it too. Returns {lowercase lemma: translations added}."""
+    if not readings:
+        return {}
+    bare: Dict[str, list] = {}
+    for r in records:
+        lm = (r.get("lemma") or "").strip()
+        if (lm[:1].islower() and " " not in lm and _noun_by_default(r)
+                and not _eo_terms(r)):
+            bare.setdefault(lm, []).append(r)
+    added: Dict[str, int] = {}
+    for r in records:
+        lm = (r.get("lemma") or "").strip()
+        if not lm[:1].isupper() or " " in lm:
+            continue
+        key = lm[:1].lower() + lm[1:]
+        if key not in bare:
+            continue
+        terms = []
+        for t in _eo_terms(r):
+            low = t[:1].lower() + t[1:]
+            if " " in low or low in terms:
+                continue
+            if any(tags and tags[0] == "n" and lemma == low
+                   for lemma, tags in readings.get(low, ())):
+                terms.append(low)
+        if not terms:
+            continue
+        for rec in bare[key]:
+            rec.setdefault("senses", []).append({"translations": [
+                {"lang": "eo", "term": t, "source": "title_casefold"} for t in terms]})
+        added[key] = len(terms)
+    return added
+
+
 def _entry_ido_tag(e) -> Optional[str]:
     """The Ido tag the bidix entry will carry (same fallback as the emit loop)."""
     raw_par = _record_paradigm(e) or infer_paradigm(e)
@@ -1475,7 +1518,8 @@ def _restrict_rl_losers(section, rows) -> int:
     group sharing a right side, entries with a worse key than the group's
     best become ido->epo only (r="LR"). Entries tied at the best key are left
     as they are: there is no signal to choose between them (a count of
-    sources would be one, but it put po over ye for je).
+    sources would be one, but it put po over ye for je). Dead entries are
+    restricted even alone or at the best key -- they cannot generate.
 
     Entries generated from a base entry (un<n><der_ala> -> unua, emitted
     right after it) rank after every live sourced entry: a guessed
@@ -1505,20 +1549,65 @@ def _restrict_rl_losers(section, rows) -> int:
         groups.setdefault(sig, []).append((e, key))
     n = 0
     for members in groups.values():
-        if len(members) < 2:
-            continue
         best = min(k for _, k in members)
         for e, k in members:
-            if k > best:
+            # A dead entry is restricted even when nothing beats it: epo->ido
+            # would only print #budism where the unknown *budhismo is better.
+            if k > best or k[0]:
                 e.set("r", "LR")
                 n += 1
+    return n
+
+
+def _plain_adjective_twins(section, twins) -> int:
+    """epo->ido for an EO adjective whose only translation is a noun's
+    derivative (japana -> japonian<n><der_ala>): when the Ido monodix has the
+    plain adjective of that stem (japoniana, kuraja, tria) it is the
+    translation, not the relational japonianala. Its -ala/-oza rows become
+    ido->epo only and an RL row stem<adj> takes the EO side.
+
+    Only where no other entry already translates the EO adjective epo->ido
+    (lia -> ilua, grava -> grava): those were chosen by _restrict_rl_losers,
+    and an RL-only row would bypass that choice. A capitalized title's
+    derivative whose lowercase EO side has such an entry is ido->epo only."""
+    def sig(e):
+        r = e.find("p/r")
+        return (r.text or "") + "".join(f"<{x.get('n')}>" for x in r.iter("s"))
+
+    derived = {id(e) for a, o, _, _ in twins for e in (a, o)}
+    live = {sig(e) for e in section.iter("e")
+            if e.get("r") != "LR" and e.find("p/r") is not None and id(e) not in derived}
+    n = 0
+    for e_ala, e_oz, stem, eo_adj in twins:
+        if e_ala.get("r") == "LR" or f"{eo_adj}<adj>" in live:
+            continue
+        if f"{eo_adj.lower()}<adj>" in live:
+            # A title's derivative (Forc<n><der_ala> -> Forta) must not
+            # catch a sentence-initial Forta that lowercases to fort<adj>.
+            e_ala.set("r", "LR")
+            e_oz.set("r", "LR")
+            continue
+        live.add(f"{eo_adj}<adj>")
+        e_ala.set("r", "LR")
+        e_oz.set("r", "LR")
+        e = ET.SubElement(section, "e", r="RL")
+        p = ET.SubElement(e, "p")
+        l = ET.SubElement(p, "l")
+        l.text = stem
+        ET.SubElement(l, "s", n="adj").tail = ""
+        r = ET.SubElement(p, "r")
+        r.text = eo_adj
+        ET.SubElement(r, "s", n="adj").tail = ""
+        n += 1
     return n
 
 
 def _ido_generatable(mono) -> tuple[set, set]:
     """What the Ido monodix can generate, for _restrict_rl_losers: the set of
     (lemma, tag) of its paradigm entries, and the lemmas whose paradigm maps
-    to no single tag (never judged). Lemmas lowercased."""
+    to no single tag (never judged). Lemmas keep their case: lt-proc -g
+    uppercases a lowercase entry on demand (Hund -> Hundo) but never finds a
+    capitalized one from a lowercase query (budism -> #budism beside Budismo)."""
     tagged, untagged = set(), set()
     for e in mono.iter("e"):
         lm = e.get("lm")
@@ -1527,9 +1616,9 @@ def _ido_generatable(mono) -> tuple[set, set]:
         par = e.find("par")
         tag = map_s_tag(par.get("n"), None) if par is not None else None
         if tag:
-            tagged.add((lm.lower(), tag))
+            tagged.add((lm, tag))
         else:
-            untagged.add(lm.lower())
+            untagged.add(lm)
     return tagged, untagged
 
 
@@ -1551,6 +1640,7 @@ def build_bidix(entries, mono=None):
     eo_side_resolved = 0
     rl_rows = []  # (base <e>, epo->ido quality key), see _restrict_rl_losers
     det_rows = []  # (RL determiner row, its base entry's key), see below
+    adj_twins = []  # (der_ala row, der_oz row, stem, EO adj), see _plain_adjective_twins
     # An entry whose Ido lemma the monodix doesn't have (pacala, parolado:
     # bidix-only records) cannot generate, so it must not win epo->ido.
     ido_tagged, ido_untagged = _ido_generatable(mono) if mono is not None else (None, None)
@@ -1886,8 +1976,9 @@ def build_bidix(entries, mono=None):
                     ET.SubElement(r_an, "s", n=t).tail = ""
                 det_twins.append(e_an)
         srcs = dict(cands).get(epo) or []
-        dead = ido_tagged is not None and lm_lower not in ido_untagged \
-            and (lm_lower, ido_tag) not in ido_tagged
+        dead = ido_tagged is not None and not any(
+            v in ido_untagged or (v, ido_tag) in ido_tagged
+            for v in {clean_lm, lm_lower})
         key = (dead, source_rank(srcs), uncorroborated_derivation(srcs),
                r_tags[:1] != l_tags[:1])
         rl_rows.append((en, key))
@@ -2051,6 +2142,10 @@ def build_bidix(entries, mono=None):
             r_der = ET.SubElement(p_der, "r")
             r_der.text = epo_stripped + 'a'
             ET.SubElement(r_der, "s", n="adj").tail = ""
+            # Lowercase counts too: a title's Bibl<adj> generates Bibla from bibla.
+            if ido_tagged is not None and any(
+                    (a, 'adj') in ido_tagged for a in (stem + 'a', (stem + 'a').lower())):
+                adj_twins.append((e_ala, e_der, stem, epo_stripped + 'a'))
             # -aro collective: mont+aro → montaro (mountain range), hom+aro → homaro.
             # EO collective is also -aro (generated compositionally by apertium-epo), so
             # the right side carries the EO collective lemma; <sg/pl><nom> passes through.
@@ -2071,6 +2166,9 @@ def build_bidix(entries, mono=None):
     # once. RL-only, so they never compete with the per-pronoun LR entries above.
     _emit_prpers_rl_entries(section)
     rl_restricted = _restrict_rl_losers(section, rl_rows)
+    adj_twinned = _plain_adjective_twins(section, adj_twins)
+    logging.info("Bidix: %d EO adjectives translated epo->ido by the plain Ido "
+                 "adjective instead of a noun's -ala/-oza derivative.", adj_twinned)
     # The determiner rows are RL-only, so _restrict_rl_losers skips them:
     # among those sharing an EO side keep only the best-keyed ones.
     det_groups: Dict[str, list] = {}
@@ -2148,6 +2246,9 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
             rec["morphology"] = {"paradigm": "__adv", "features": {}}
     if adverbial:
         logging.info("Adverbs retagged from the -o noun default: %s", ", ".join(sorted(adverbial)))
+    lent = _casefold_title_translations(list(bidix_entries), all_eo_readings)
+    if lent:
+        logging.info("Lowercase nouns given their capitalized title's EO translation: %d", len(lent))
     phrases = _interjection_phrases(list(entries) + list(bidix_entries), all_eo_readings)
     for rec in list(entries) + list(bidix_entries):
         if (rec.get("lemma") or "").strip().lower() in phrases and _noun_by_default(rec):
