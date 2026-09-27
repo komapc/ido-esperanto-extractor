@@ -25,11 +25,12 @@ Candidate = Tuple[str, List[str]]  # (eo term, sources)
 # Ido form would be ASCII. (The BERT path already applied this to its vocab;
 # this generalises it to every source.)
 _NON_ASCII_RE = re.compile(r"[^\x00-\x7f]")
-# MediaWiki / HTML layout tokens that slipped through as "words".
+# MediaWiki / HTML layout tokens that slipped through as "words". Not <sub>:
+# sub is the Ido preposition "under".
 _MEDIAWIKI_RE = re.compile(
     r"^(thumb|left|right|center|centre|displaytitle|redirect|colspan|rowspan|"
     r"bgcolor|rowcolor|style|px|small|big|border|align|valign|background|font|"
-    r"nbsp|sub|sup|br|hr|ref|nowrap|width|height|color)$",
+    r"nbsp|sup|br|hr|ref|nowrap|width|height|color)$",
     re.IGNORECASE,
 )
 _NUMERIC_JUNK_RES = (
