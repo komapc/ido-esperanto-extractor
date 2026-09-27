@@ -432,3 +432,30 @@ def test_epo_to_ido_entry_missing_from_the_monodix_loses():
     mono = build_monodix([live])
     rows = _rows(ET.tostring(build_bidix([live, dead], mono), encoding='unicode'), 'komence')
     assert {e.find('p/l').text: e.get('r') for e in rows} == {'komenc': None, 'inical': 'LR'}
+
+
+def _rec(lemma, par, pos, eo, sources):
+    return {"lemma": lemma, "pos": pos, "morphology": {"paradigm": par},
+            "senses": [{"translations": [{"lang": "eo", "term": eo, "sources": sources}]}]}
+
+
+def test_epo_to_ido_live_entry_beats_generated_derivation():
+    """uno -> unuo generates un<n><der_ala> -> unua; the sourced unesma -> unua
+    must win epo->ido over that guess."""
+    entries = [_rec("uno", "o__n", "n", "unuo", ["io_wiktionary"]),
+               _rec("unesma", "a__adj", "adj", "unua", ["io_wiktionary"])]
+    mono = build_monodix(entries)
+    rows = _rows(ET.tostring(build_bidix(entries, mono), encoding='unicode'), 'unua')
+    by = {tuple(s.get('n') for s in e.find('p/l')): e.get('r') for e in rows}
+    assert by[('adj',)] is None
+    assert by[('n', 'der_ala', 'adj')] == 'LR' and by[('n', 'der_oz', 'adj')] == 'LR'
+
+
+def test_epo_to_ido_dead_and_generated_are_not_ordered():
+    """valoroza (absent from the monodix) and valoro's generated -ala/-oza
+    rows all map to valora: no live sourced entry, so nothing is restricted."""
+    noun = _rec("valoro", "o__n", "n", "valoro", ["io_wiktionary"])
+    dead = _rec("valoroza", "a__adj", "adj", "valora", ["io_wiktionary"])
+    mono = build_monodix([noun])
+    rows = _rows(ET.tostring(build_bidix([noun, dead], mono), encoding='unicode'), 'valora')
+    assert len(rows) == 3 and all(e.get('r') is None for e in rows)
