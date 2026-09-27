@@ -491,9 +491,52 @@ def test_generated_rows_of_a_dead_base_are_dead():
         '<e><p><l>b<s n="n"/></l><r>y<s n="n"/></r></p></e>'
         '</section>')
     base = [e for e in section if e.find('p/l').text in ('a', 'b') and len(e.find('p/l')) == 1]
-    # a is dead (True, …); b is dead too: the generated row must not beat b.
+    # a is dead (True, …); b is dead too: the generated row must not beat b,
+    # and every dead row -- alone or not -- is ido->epo only.
     assert _restrict_rl_losers(section, [(base[0], (True, 0, False, False)),
-                                         (base[1], (True, 0, False, False))]) == 0
+                                         (base[1], (True, 0, False, False))]) == 3
+    assert all(e.get('r') == 'LR' for e in section)
+
+
+def test_dead_entry_alone_is_ido_to_epo_only():
+    """budismo is in the monodix only as Budismo: lt-proc -g can't produce
+    budism, so even as the only candidate for budhismo it must not go RL."""
+    title = _rec("Budismo", "o__n", "n", "Budhismo", ["wikipedia_langlinks"])
+    low = _rec("budismo", "o__n", "n", "budhismo", ["io_wiktionary"])
+    mono = build_monodix([title])
+    rows = _rows(ET.tostring(build_bidix([title, low], mono), encoding='unicode'), 'budhismo')
+    assert [e.get('r') for e in rows if len(e.find('p/l')) == 1] == ['LR']
+
+
+def test_plain_ido_adjective_translates_epo_to_ido():
+    """japana's only translation is japoniano's -ala row; the monodix has
+    japoniana, which epo->ido must produce instead of japonianala."""
+    noun = _rec("japoniano", "o__n", "n", "japano", ["io_wiktionary"])
+    adj = _rec("japoniana", "a__adj", "adj", None, ["io_wiktionary"])
+    adj["senses"] = []
+    mono = build_monodix([noun, adj])
+    rows = _rows(ET.tostring(build_bidix([noun], mono), encoding='unicode'), 'japana')
+    by = {tuple(s.get('n') for s in e.find('p/l')): e.get('r') for e in rows}
+    assert by == {('n', 'der_ala', 'adj'): 'LR', ('n', 'der_oz', 'adj'): 'LR', ('adj',): 'RL'}
+
+
+def test_plain_adjective_twin_respects_a_live_translation():
+    """An EO adjective another entry already translates keeps that winner;
+    a title's derivative whose lowercase EO side is taken becomes LR."""
+    from export_apertium import _plain_adjective_twins
+    section = ET.fromstring(
+        '<section>'
+        '<e><p><l>ilu<s n="adj"/></l><r>lia<s n="adj"/></r></p></e>'
+        '<e><p><l>l<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>lia<s n="adj"/></r></p></e>'
+        '<e><p><l>l<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>lia<s n="adj"/></r></p></e>'
+        '<e><p><l>fort<s n="adj"/></l><r>forta<s n="adj"/></r></p></e>'
+        '<e><p><l>Forc<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Forta<s n="adj"/></r></p></e>'
+        '<e><p><l>Forc<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Forta<s n="adj"/></r></p></e>'
+        '</section>')
+    es = list(section)
+    assert _plain_adjective_twins(section, [(es[1], es[2], "l", "lia"),
+                                            (es[4], es[5], "Forc", "Forta")]) == 0
+    assert [e.get('r') for e in section] == [None, None, None, None, 'LR', 'LR']
 
 
 def test_ido_determiner_adjective_gets_epo_determiner_rows():
@@ -600,3 +643,22 @@ def test_interjection_phrases():
                dict(rec("ne dankinde", "ĝis baldaŭ"), pos="adv",
                     morphology={"paradigm": "o__n"})]   # the paradigm wins
     assert _interjection_phrases(records, readings) == {"til balde", "ne dankinde"}
+
+
+def test_casefold_title_translations():
+    """A capitalized title's EO translation reaches the untranslated lowercase
+    noun when apertium-epo reads the lowercased term as that common noun."""
+    from export_apertium import _casefold_title_translations, _eo_terms
+    def rec(lm, *eo, pos="n"):
+        return {"lemma": lm, "pos": pos, "morphology": {"paradigm": "o__n"},
+                "senses": [{"translations": [{"lang": "eo", "term": t} for t in eo]}]}
+    readings = {"judismo": [("judismo", ["n", "sg", "nom"])],
+                "francio": [], "hundo": [("hundo", ["n", "sg", "nom"])]}
+    low, francia, hundo = rec("judaismo"), rec("francia"), rec("hundo", "hundo")
+    records = [low, rec("Judaismo", "Judismo", "hebrea religio", pos=None),
+               francia, rec("Francia", "Francio", pos=None),
+               hundo, rec("Hundo", "Hundo", pos=None)]
+    assert _casefold_title_translations(records, readings) == {"judaismo": 1}
+    assert _eo_terms(low) == ["judismo"]
+    assert _eo_terms(francia) == []            # Francio is a name, not a noun
+    assert _eo_terms(hundo) == ["hundo"]       # already translated: untouched
