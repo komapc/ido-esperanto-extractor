@@ -370,3 +370,26 @@ def test_lowercase_name_lemmas():
         {"lang": "eo", "term": t} for t in eo]}]}
     assert _lowercase_name_lemmas([rec("maria", "maria"), rec("altra", "alia"),
                                    rec("altra", "maria")], readings) == {"maria"}
+
+
+def test_intransitive_participles_get_epo_to_ido_twins():
+    """apertium-epo tags an intransitive verb's -anta as <vbntr><ppres> and its
+    -inta as <vbntr><pp> (on transitive verbs those tags mean -ata/-ita), so
+    venanta / venintajn found no bidix row and came out @ in epo->ido. They get
+    RL-only rows to the active Ido participles; a transitive verb gets none."""
+    from export_apertium import _load_eo_verb_class_lemmas
+    vbntr = _load_eo_verb_class_lemmas("vbntr")
+    if not vbntr:
+        return  # sibling apertium-epo checkout unavailable in this environment
+    assert 'veni' in vbntr and 'vidi' not in vbntr
+    entries = [
+        {"lemma": "venar", "pos": "vblex",
+         "morphology": {"paradigm": "ar__vblex"}, "eo_translations": ["veni"]},
+        {"lemma": "vidar", "pos": "vblex",
+         "morphology": {"paradigm": "ar__vblex"}, "eo_translations": ["vidi"]},
+    ]
+    xml_str = ET.tostring(build_bidix(entries), encoding='unicode')
+    for der, ptag in (('der_ppra', 'ppres'), ('der_ppa', 'pp')):
+        assert (f'<e r="RL"><p><l>ven<s n="vblex" /><s n="{der}" /><s n="adj" /></l>'
+                f'<r>veni<s n="vbntr" /><s n="{ptag}" /></r></p></e>') in xml_str
+    assert '<r>vidi<s n="vbntr" />' not in xml_str
