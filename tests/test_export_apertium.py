@@ -288,6 +288,22 @@ if __name__ == "__main__":
 
 
 
+def test_resolve_eo_side_verb_class_and_set_greetings():
+    """A verb apertium-epo knows only as vbtr/vbntr keeps that class (tense
+    comes from Ido); a noun whose EO side is only an <ij> unit becomes <ij>."""
+    from export_apertium import resolve_eo_side
+    readings = {
+        'edzigi': [('edzigi', ['vbtr', 'inf']), ('edziĝi', ['vbntr', 'igi', 'inf'])],
+        'aĝi': [('aĝi', ['vbntr', 'inf'])],
+        'paroli': [('paroli', ['vblex', 'inf']), ('paroli', ['vbtr', 'inf'])],
+        'bonan tagon': [('bonan tagon', ['ij'])],
+    }
+    assert resolve_eo_side('edzigi', 'vblex', readings) == ('edzigi', ['vbtr'])
+    assert resolve_eo_side('aĝi', 'vblex', readings) == ('aĝi', ['vbntr'])
+    assert resolve_eo_side('paroli', 'vblex', readings) is None   # has vblex
+    assert resolve_eo_side('bonan tagon', 'n', readings) == ('bonan tagon', ['ij'])
+
+
 def test_resolve_eo_side_closed_class():
     """Closed-class <r> sides take apertium-epo's generatable reading; open-class
     words and suppletive paradigm lemmas (prpers) keep the default."""
@@ -565,3 +581,22 @@ def test_pronoun_accusative_twins():
     twin = section[-1]
     assert twin.get("r") == "RL" and twin.find("p/l").text == "to"
     assert [s.get("n") for s in twin.find("p/r")] == ["prn", "tn", "sg", "acc"]
+
+
+def test_interjection_phrases():
+    """Multiword set phrases not ending in -o whose EO side is an interjection
+    become invariable ij; -o phrases and non-interjection targets stay nouns."""
+    from export_apertium import _interjection_phrases
+    def rec(lm, *eo):
+        return {"lemma": lm, "pos": "n",
+                "senses": [{"translations": [{"lang": "eo", "term": t} for t in eo]}]}
+    readings = {
+        "ĝis baldaŭ": [("ĝis baldaŭ", ["ij"])],
+        "bonan tagon": [("bonan tagon", ["ij"])],
+        "akuta angulo": [],
+    }
+    records = [rec("til balde", "ĝis baldaŭ"), rec("bona jorno", "bonan tagon"),
+               rec("angulo akuta", "akuta angulo"), rec("hundo", "hundo"),
+               dict(rec("ne dankinde", "ĝis baldaŭ"), pos="adv",
+                    morphology={"paradigm": "o__n"})]   # the paradigm wins
+    assert _interjection_phrases(records, readings) == {"til balde", "ne dankinde"}

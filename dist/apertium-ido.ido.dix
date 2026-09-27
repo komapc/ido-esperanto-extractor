@@ -6245,7 +6245,6 @@
     <e lm="Amor-asteroido"><i>Amor-asteroid</i><par n="o__n"/></e>
     <e lm="amora"><i>amor</i><par n="a__adj"/></e>
     <e lm="amoracho"><i>amorach</i><par n="o__n"/></e>
-    <e lm="amorala"><i>amoral</i><par n="a__adj"/></e>
     <e lm="amorantino"><i>amorantin</i><par n="o__n"/></e>
     <e lm="amorantulo"><i>amorantul</i><par n="o__n"/></e>
     <e lm="amorar"><i>amor</i><par n="ar__vblex"/></e>
@@ -6280,7 +6279,6 @@
     <e lm="Amoromano"><i>Amoroman</i><par n="o__n"/></e>
     <e lm="amoronaraco"><i>amoronarac</i><par n="o__n"/></e>
     <e lm="amoroplezuro"><i>amoroplezur</i><par n="o__n"/></e>
-    <e lm="amoroza"><i>amoroz</i><par n="a__adj"/></e>
     <e lm="amorozo"><i>amoroz</i><par n="o__n"/></e>
     <e lm="amortisadar"><i>amortisad</i><par n="ar__vblex"/></e>
     <e lm="amortisar"><i>amortis</i><par n="ar__vblex"/></e>
@@ -32986,19 +32984,15 @@
     <e lm="habilitar"><i>habilit</i><par n="ar__vblex"/></e>
     <e lm="habiliteso"><i>habilites</i><par n="o__n"/></e>
     <e lm="habilito"><i>habilit</i><par n="o__n"/></e>
-    <e lm="habitado"><i>habitad</i><par n="o__n"/></e>
     <e lm="habitaklo"><i>habitakl</i><par n="o__n"/></e>
-    <e lm="habitanta"><i>habitant</i><par n="a__adj"/></e>
     <e lm="habitantaro"><i>habitantar</i><par n="o__n"/></e>
     <e lm="habitante"><i>habitant</i><par n="e__adv"/></e>
     <e lm="habitanto"><i>habitant</i><par n="o__n"/></e>
     <e lm="habitar"><i>habit</i><par n="ar__vblex"/></e>
-    <e lm="habitata"><i>habitat</i><par n="a__adj"/></e>
     <e lm="habitebla"><i>habitebl</i><par n="a__adj"/></e>
     <e lm="habitero"><i>habiter</i><par n="o__n"/></e>
     <e lm="habiteskis"><i>habiteskis</i><par n="ar__vblex"/></e>
     <e lm="habiteyo"><i>habitey</i><par n="o__n"/></e>
-    <e lm="habitita"><i>habitit</i><par n="a__adj"/></e>
     <e lm="habito"><i>habit</i><par n="o__n"/></e>
     <e lm="habitodomo"><i>habitodom</i><par n="o__n"/></e>
     <e lm="habla"><i>habl</i><par n="a__adj"/></e>
@@ -53750,7 +53744,7 @@
     <e lm="me ne savas"><i>me ne savas</i><par n="o__n"/></e>
     <e lm="me nomesas"><i>me nomesas</i><par n="o__n"/></e>
     <e lm="me odias tu"><i>me odias tu</i><par n="o__n"/></e>
-    <e lm="me pregas"><i>me pregas</i><par n="o__n"/></e>
+    <e lm="me pregas"><i>me pregas</i><par n="__ij"/></e>
     <e lm="me regretas"><i>me regretas</i><par n="o__n"/></e>
     <e lm="me subisas AIDS"><i>me subisas AIDS</i><par n="o__n"/></e>
     <e lm="me subisas kancero"><i>me subisas kancer</i><par n="o__n"/></e>
@@ -58177,7 +58171,7 @@
     <e lm="ndafa"><i>ndaf</i><par n="a__adj"/></e>
     <e lm="ndebele"><i>ndebel</i><par n="e__adv"/></e>
     <e lm="ne"><i>n</i><par n="e__adv"/></e>
-    <e lm="ne dankinde"><i>ne dankinde</i><par n="o__n"/></e>
+    <e lm="ne dankinde"><i>ne dankinde</i><par n="__ij"/></e>
     <e lm="ne pluse"><i>ne pluse</i><par n="o__n"/></e>
     <e lm="Ne questionez, ne dicez"><i>Ne questionez, ne dicez</i><par n="o__n"/></e>
     <e lm="Ne varietur"><i>Ne varietur</i><par n="o__n"/></e>
@@ -84006,7 +84000,7 @@
     <e lm="TikTok"><i>TikTok</i><par n="o__n"/></e>
     <e lm="tikva"><i>tikv</i><par n="a__adj"/></e>
     <e lm="til"><i>til</i><par n="__pr"/></e>
-    <e lm="til balde"><i>til balde</i><par n="o__n"/></e>
+    <e lm="til balde"><i>til balde</i><par n="__ij"/></e>
     <e lm="til cirkume"><i>til cirkume</i><par n="o__n"/></e>
     <e lm="til ke"><i>til ke</i><par n="o__n"/></e>
     <e lm="til lore"><i>til lore</i><par n="o__n"/></e>

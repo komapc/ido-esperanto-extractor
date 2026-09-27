@@ -3193,6 +3193,10 @@
     <e><p><l>amoratul<s n="n"/><s n="der_aro"/><s n="n"/></l><r>koramikaro<s n="n"/></r></p></e>
     <e><p><l>amorf<s n="adj"/></l><r>amorfa<s n="adj"/></r></p></e>
     <e><p><l>amorf<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>amorfeco<s n="n"/></r></p></e>
+    <e><p><l>amor<s n="n"/></l><r>amo<s n="n"/></r></p></e>
+    <e r="LR"><p><l>amor<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>ama<s n="adj"/></r></p></e>
+    <e r="LR"><p><l>amor<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>ama<s n="adj"/></r></p></e>
+    <e><p><l>amor<s n="n"/><s n="der_aro"/><s n="n"/></l><r>amaro<s n="n"/></r></p></e>
     <e><p><l>amortis<s n="vblex"/></l><r>amortizi<s n="vblex"/></r></p></e>
     <e><p><l>amortis<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>amortizanto<s n="n"/></r></p></e>
     <e><p><l>amortis<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>amortizado<s n="n"/></r></p></e>
@@ -5383,7 +5387,7 @@
     <e><p><l>arozeg<s n="vblex"/><s n="der_onta"/><s n="adj"/></l><r>trempi<s n="vblex"/><s n="pp2"/></r></p></e>
     <e><p><l>arozeg<s n="vblex"/><s n="der_ante"/><s n="adv"/></l><r>trempi<s n="vblex"/><s n="ger"/></r></p></e>
     <e><p><l>arozeg<s n="vblex"/><s n="der_inte"/><s n="adv"/></l><r>trempi<s n="vblex"/><s n="gerpast"/></r></p></e>
-    <e><p><l>arozet<s n="vblex"/></l><r>malsekigi<s n="vblex"/></r></p></e>
+    <e><p><l>arozet<s n="vblex"/></l><r>malsekigi<s n="vbtr"/></r></p></e>
     <e><p><l>arozet<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>malsekiganto<s n="n"/></r></p></e>
     <e><p><l>arozet<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>malsekigado<s n="n"/></r></p></e>
     <e><p><l>arozet<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>malsekiginto<s n="n"/></r></p></e>
@@ -9445,10 +9449,10 @@
     <e r="LR"><p><l>Bombus<s n="np"/></l><r>Burdo<s n="n"/></r></p></e>
     <e><p><l>bon<s n="adj"/></l><r>bona<s n="adj"/></r></p></e>
     <e r="LR"><p><l>bon<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>boneco<s n="n"/></r></p></e>
-    <e><p><l>bona jorn<s n="n"/></l><r>bonan tagon<s n="n"/></r></p></e>
-    <e><p><l>bona matin<s n="n"/></l><r>bonan matenon<s n="n"/></r></p></e>
-    <e><p><l>bona nokt<s n="n"/></l><r>bonan nokton<s n="n"/></r></p></e>
-    <e><p><l>bona vesper<s n="n"/></l><r>bonan vesperon<s n="n"/></r></p></e>
+    <e><p><l>bona jorn<s n="n"/></l><r>bonan tagon<s n="ij"/></r></p></e>
+    <e><p><l>bona matin<s n="n"/></l><r>bonan matenon<s n="ij"/></r></p></e>
+    <e><p><l>bona nokt<s n="n"/></l><r>bonan nokton<s n="ij"/></r></p></e>
+    <e><p><l>bona vesper<s n="n"/></l><r>bonan vesperon<s n="ij"/></r></p></e>
     <e><p><l>Bonaj<s n="n"/></l><r>Havaĵo<s n="n"/></r></p></e>
     <e><p><l>Bonaj<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Havaĵa<s n="adj"/></r></p></e>
     <e><p><l>Bonaj<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Havaĵa<s n="adj"/></r></p></e>
@@ -10664,7 +10668,7 @@
     <e><p><l>butik<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>butika<s n="adj"/></r></p></e>
     <e><p><l>butik<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>butika<s n="adj"/></r></p></e>
     <e><p><l>butik<s n="n"/><s n="der_aro"/><s n="n"/></l><r>butikaro<s n="n"/></r></p></e>
-    <e><p><l>butonag<s n="vblex"/></l><r>butonumi<s n="vblex"/></r></p></e>
+    <e><p><l>butonag<s n="vblex"/></l><r>butonumi<s n="vbtr"/></r></p></e>
     <e><p><l>butonag<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>butonumanto<s n="n"/></r></p></e>
     <e><p><l>butonag<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>butonumado<s n="n"/></r></p></e>
     <e><p><l>butonag<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>butonuminto<s n="n"/></r></p></e>
@@ -12419,6 +12423,7 @@
     <e r="LR"><p><l>C<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>kobalta<s n="adj"/></r></p></e>
     <e r="LR"><p><l>C<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>kobalta<s n="adj"/></r></p></e>
     <e r="LR"><p><l>C<s n="n"/><s n="der_aro"/><s n="n"/></l><r>kobaltaro<s n="n"/></r></p></e>
+    <e r="LR"><p><l>co<s n="prn"/></l><r>ĉi tio<s n="prn"/><s n="tn"/><s n="sg"/><s n="nom"/></r></p></e>
     <e><p><l>Coca Cola<s n="n"/></l><r>Kokakolao<s n="n"/></r></p></e>
     <e><p><l>Coca Cola<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Kokakolaa<s n="adj"/></r></p></e>
     <e><p><l>Coca Cola<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Kokakolaa<s n="adj"/></r></p></e>
@@ -13291,7 +13296,7 @@
     <e><p><l>dek-e-unesma<s n="n"/><s n="der_aro"/><s n="n"/></l><r>dekunuaaro<s n="n"/></r></p></e>
     <e><p><l>Dek<s n="adj"/></l><r>Deka<s n="adj"/></r></p></e>
     <e><p><l>Dek<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>Dekeco<s n="n"/></r></p></e>
-    <e><p><l>dekad<s n="vblex"/></l><r>malpliboniĝi<s n="vblex"/></r></p></e>
+    <e><p><l>dekad<s n="vblex"/></l><r>malpliboniĝi<s n="vbntr"/></r></p></e>
     <e><p><l>dekad<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>malpliboniĝanto<s n="n"/></r></p></e>
     <e><p><l>dekad<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>malpliboniĝado<s n="n"/></r></p></e>
     <e><p><l>dekad<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>malpliboniĝinto<s n="n"/></r></p></e>
@@ -14073,7 +14078,7 @@
     <e><p><l>desaprob<s n="vblex"/><s n="der_onta"/><s n="adj"/></l><r>malaprobi<s n="vblex"/><s n="pp2"/></r></p></e>
     <e><p><l>desaprob<s n="vblex"/><s n="der_ante"/><s n="adv"/></l><r>malaprobi<s n="vblex"/><s n="ger"/></r></p></e>
     <e><p><l>desaprob<s n="vblex"/><s n="der_inte"/><s n="adv"/></l><r>malaprobi<s n="vblex"/><s n="gerpast"/></r></p></e>
-    <e><p><l>desarboriz<s n="vblex"/></l><r>senarbarigi<s n="vblex"/></r></p></e>
+    <e><p><l>desarboriz<s n="vblex"/></l><r>senarbarigi<s n="vbtr"/></r></p></e>
     <e><p><l>desarboriz<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>senarbariganto<s n="n"/></r></p></e>
     <e><p><l>desarboriz<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>senarbarigado<s n="n"/></r></p></e>
     <e><p><l>desarboriz<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>senarbariginto<s n="n"/></r></p></e>
@@ -14112,7 +14117,7 @@
     <e><p><l>desbon<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>malboneco<s n="n"/></r></p></e>
     <e><p><l>desdecant<s n="adj"/></l><r>maldeca<s n="adj"/></r></p></e>
     <e><p><l>desdecant<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>maldececo<s n="n"/></r></p></e>
-    <e><p><l>desebriesk<s n="vblex"/></l><r>malebriiĝi<s n="vblex"/></r></p></e>
+    <e><p><l>desebriesk<s n="vblex"/></l><r>malebriiĝi<s n="vbntr"/></r></p></e>
     <e><p><l>desebriesk<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>malebriiĝanto<s n="n"/></r></p></e>
     <e><p><l>desebriesk<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>malebriiĝado<s n="n"/></r></p></e>
     <e><p><l>desebriesk<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>malebriiĝinto<s n="n"/></r></p></e>
@@ -14273,7 +14278,7 @@
     <e><p><l>desherb<s n="vblex"/><s n="der_onta"/><s n="adj"/></l><r>sarki<s n="vblex"/><s n="pp2"/></r></p></e>
     <e><p><l>desherb<s n="vblex"/><s n="der_ante"/><s n="adv"/></l><r>sarki<s n="vblex"/><s n="ger"/></r></p></e>
     <e><p><l>desherb<s n="vblex"/><s n="der_inte"/><s n="adv"/></l><r>sarki<s n="vblex"/><s n="gerpast"/></r></p></e>
-    <e><p><l>desheredig<s n="vblex"/></l><r>senheredigi<s n="vblex"/></r></p></e>
+    <e><p><l>desheredig<s n="vblex"/></l><r>senheredigi<s n="vbtr"/></r></p></e>
     <e><p><l>desheredig<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>senherediganto<s n="n"/></r></p></e>
     <e><p><l>desheredig<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>senheredigado<s n="n"/></r></p></e>
     <e><p><l>desheredig<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>senherediginto<s n="n"/></r></p></e>
@@ -14317,7 +14322,7 @@
     <e><p><l>deskarg<s n="vblex"/><s n="der_onta"/><s n="adj"/></l><r>elŝuti<s n="vblex"/><s n="pp2"/></r></p></e>
     <e><p><l>deskarg<s n="vblex"/><s n="der_ante"/><s n="adv"/></l><r>elŝuti<s n="vblex"/><s n="ger"/></r></p></e>
     <e><p><l>deskarg<s n="vblex"/><s n="der_inte"/><s n="adv"/></l><r>elŝuti<s n="vblex"/><s n="gerpast"/></r></p></e>
-    <e><p><l>deskateniz<s n="vblex"/></l><r>elĉenigi<s n="vblex"/></r></p></e>
+    <e><p><l>deskateniz<s n="vblex"/></l><r>elĉenigi<s n="vbtr"/></r></p></e>
     <e><p><l>deskateniz<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>elĉeniganto<s n="n"/></r></p></e>
     <e><p><l>deskateniz<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>elĉenigado<s n="n"/></r></p></e>
     <e><p><l>deskateniz<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>elĉeniginto<s n="n"/></r></p></e>
@@ -14578,7 +14583,7 @@
     <e><p><l>destrukt<s n="vblex"/><s n="der_inte"/><s n="adv"/></l><r>detrui<s n="vblex"/><s n="gerpast"/></r></p></e>
     <e><p><l>destruktem<s n="adj"/></l><r>detruema<s n="adj"/></r></p></e>
     <e><p><l>destruktem<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>detruemeco<s n="n"/></r></p></e>
-    <e><p><l>desunion<s n="vblex"/></l><r>malkunigi<s n="vblex"/></r></p></e>
+    <e><p><l>desunion<s n="vblex"/></l><r>malkunigi<s n="vbtr"/></r></p></e>
     <e><p><l>desunion<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>malkuniganto<s n="n"/></r></p></e>
     <e><p><l>desunion<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>malkunigado<s n="n"/></r></p></e>
     <e><p><l>desunion<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>malkuniginto<s n="n"/></r></p></e>
@@ -15280,7 +15285,7 @@
     <e r="LR"><p><l>digital<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>digitala<s n="adj"/></r></p></e>
     <e r="LR"><p><l>digital<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>digitala<s n="adj"/></r></p></e>
     <e><p><l>digital<s n="n"/><s n="der_aro"/><s n="n"/></l><r>digitalaro<s n="n"/></r></p></e>
-    <e><p><l>digiz<s n="vblex"/></l><r>digi<s n="vblex"/></r></p></e>
+    <e><p><l>digiz<s n="vblex"/></l><r>digi<s n="vbtr"/></r></p></e>
     <e><p><l>digiz<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>diganto<s n="n"/></r></p></e>
     <e><p><l>digiz<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>digado<s n="n"/></r></p></e>
     <e><p><l>digiz<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>diginto<s n="n"/></r></p></e>
@@ -15512,7 +15517,7 @@
     <e><p><l>dindul<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>meleagra<s n="adj"/></r></p></e>
     <e><p><l>dindul<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>meleagra<s n="adj"/></r></p></e>
     <e><p><l>dindul<s n="n"/><s n="der_aro"/><s n="n"/></l><r>meleagraro<s n="n"/></r></p></e>
-    <e><p><l>dine<s n="vblex"/></l><r>vespermanĝi<s n="vblex"/></r></p></e>
+    <e><p><l>dine<s n="vblex"/></l><r>vespermanĝi<s n="vbntr"/></r></p></e>
     <e><p><l>dine<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>vespermanĝanto<s n="n"/></r></p></e>
     <e><p><l>dine<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>vespermanĝado<s n="n"/></r></p></e>
     <e><p><l>dine<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>vespermanĝinto<s n="n"/></r></p></e>
@@ -16803,7 +16808,7 @@
     <e r="RL"><p><l>dormesk<s n="vblex"/><s n="der_ppa"/><s n="adj"/></l><r>ekdormi<s n="vbntr"/><s n="pp"/></r></p></e>
     <e><p><l>dormesk<s n="vblex"/><s n="der_ante"/><s n="adv"/></l><r>ekdormi<s n="vblex"/><s n="ger"/></r></p></e>
     <e><p><l>dormesk<s n="vblex"/><s n="der_inte"/><s n="adv"/></l><r>ekdormi<s n="vblex"/><s n="gerpast"/></r></p></e>
-    <e><p><l>dormet<s n="vblex"/></l><r>dormeti<s n="vblex"/></r></p></e>
+    <e><p><l>dormet<s n="vblex"/></l><r>dormeti<s n="vbntr"/></r></p></e>
     <e><p><l>dormet<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>dormetanto<s n="n"/></r></p></e>
     <e><p><l>dormet<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>dormetado<s n="n"/></r></p></e>
     <e><p><l>dormet<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>dormetinto<s n="n"/></r></p></e>
@@ -17697,7 +17702,7 @@
     <e><p><l>edific<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>konstruaĵa<s n="adj"/></r></p></e>
     <e><p><l>edific<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>konstruaĵa<s n="adj"/></r></p></e>
     <e r="LR"><p><l>edific<s n="n"/><s n="der_aro"/><s n="n"/></l><r>konstruaĵaro<s n="n"/></r></p></e>
-    <e><p><l>edifik<s n="vblex"/></l><r>edifi<s n="vblex"/></r></p></e>
+    <e><p><l>edifik<s n="vblex"/></l><r>edifi<s n="vbtr"/></r></p></e>
     <e><p><l>edifik<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>edifanto<s n="n"/></r></p></e>
     <e><p><l>edifik<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>edifado<s n="n"/></r></p></e>
     <e><p><l>edifik<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>edifinto<s n="n"/></r></p></e>
@@ -19097,7 +19102,7 @@
     <e><p><l>Enfluant<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Alfluanta<s n="adj"/></r></p></e>
     <e><p><l>Enfluant<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Alfluanta<s n="adj"/></r></p></e>
     <e><p><l>Enfluant<s n="n"/><s n="der_aro"/><s n="n"/></l><r>Alfluantaro<s n="n"/></r></p></e>
-    <e><p><l>enflu<s n="vblex"/></l><r>enflui<s n="vblex"/></r></p></e>
+    <e><p><l>enflu<s n="vblex"/></l><r>enflui<s n="vbntr"/></r></p></e>
     <e><p><l>enflu<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>enfluanto<s n="n"/></r></p></e>
     <e><p><l>enflu<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>enfluado<s n="n"/></r></p></e>
     <e><p><l>enflu<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>enfluinto<s n="n"/></r></p></e>
@@ -20241,7 +20246,7 @@
     <e><p><l>eskarol<s n="n"/><s n="der_aro"/><s n="n"/></l><r>skarolaro<s n="n"/></r></p></e>
     <e><p><l>eskarp<s n="adj"/></l><r>kruta<s n="adj"/></r></p></e>
     <e><p><l>eskarp<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>kruteco<s n="n"/></r></p></e>
-    <e><p><l>eskart<s n="vblex"/></l><r>formeti<s n="vblex"/></r></p></e>
+    <e><p><l>eskart<s n="vblex"/></l><r>formeti<s n="vbtr"/></r></p></e>
     <e><p><l>eskart<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>formetanto<s n="n"/></r></p></e>
     <e><p><l>eskart<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>formetado<s n="n"/></r></p></e>
     <e><p><l>eskart<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>formetinto<s n="n"/></r></p></e>
@@ -20998,7 +21003,7 @@
     <e><p><l>evangeli<s n="n"/><s n="der_aro"/><s n="n"/></l><r>Evangeliaro<s n="n"/></r></p></e>
     <e><p><l>evangelist<s n="adj"/></l><r>evangelia<s n="adj"/></r></p></e>
     <e><p><l>evangelist<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>evangelieco<s n="n"/></r></p></e>
-    <e><p><l>ev<s n="vblex"/></l><r>aĝi<s n="vblex"/></r></p></e>
+    <e><p><l>ev<s n="vblex"/></l><r>aĝi<s n="vbntr"/></r></p></e>
     <e><p><l>ev<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>aĝanto<s n="n"/></r></p></e>
     <e><p><l>ev<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>aĝado<s n="n"/></r></p></e>
     <e><p><l>ev<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>aĝinto<s n="n"/></r></p></e>
@@ -22817,7 +22822,7 @@
     <e><p><l>fasonad<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>efektiviga<s n="adj"/></r></p></e>
     <e><p><l>fasonad<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>efektiviga<s n="adj"/></r></p></e>
     <e><p><l>fasonad<s n="n"/><s n="der_aro"/><s n="n"/></l><r>efektivigaro<s n="n"/></r></p></e>
-    <e><p><l>fason<s n="vblex"/></l><r>fasoni<s n="vblex"/></r></p></e>
+    <e><p><l>fason<s n="vblex"/></l><r>fasoni<s n="vbtr"/></r></p></e>
     <e><p><l>fason<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>fasonanto<s n="n"/></r></p></e>
     <e r="LR"><p><l>fason<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>fasonado<s n="n"/></r></p></e>
     <e><p><l>fason<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>fasoninto<s n="n"/></r></p></e>
@@ -22975,7 +22980,7 @@
     <e><p><l>febles<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>malforteca<s n="adj"/></r></p></e>
     <e><p><l>febles<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>malforteca<s n="adj"/></r></p></e>
     <e><p><l>febles<s n="n"/><s n="der_aro"/><s n="n"/></l><r>malfortecaro<s n="n"/></r></p></e>
-    <e><p><l>febr<s n="vblex"/></l><r>febri<s n="vblex"/></r></p></e>
+    <e><p><l>febr<s n="vblex"/></l><r>febri<s n="vbntr"/></r></p></e>
     <e><p><l>febr<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>febranto<s n="n"/></r></p></e>
     <e><p><l>febr<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>febrado<s n="n"/></r></p></e>
     <e><p><l>febr<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>febrinto<s n="n"/></r></p></e>
@@ -23499,7 +23504,7 @@
     <e><p><l>fial<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>fiola<s n="adj"/></r></p></e>
     <e><p><l>fial<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>fiola<s n="adj"/></r></p></e>
     <e><p><l>fial<s n="n"/><s n="der_aro"/><s n="n"/></l><r>fiolaro<s n="n"/></r></p></e>
-    <e><p><l>fianc<s n="vblex"/></l><r>fianĉigi<s n="vblex"/></r></p></e>
+    <e><p><l>fianc<s n="vblex"/></l><r>fianĉigi<s n="vbtr"/></r></p></e>
     <e><p><l>fianc<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>fianĉiganto<s n="n"/></r></p></e>
     <e><p><l>fianc<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>fianĉigado<s n="n"/></r></p></e>
     <e><p><l>fianc<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>fianĉiginto<s n="n"/></r></p></e>
@@ -25946,7 +25951,7 @@
     <e><p><l>frument<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>tritika<s n="adj"/></r></p></e>
     <e><p><l>frument<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>tritika<s n="adj"/></r></p></e>
     <e><p><l>frument<s n="n"/><s n="der_aro"/><s n="n"/></l><r>tritikaro<s n="n"/></r></p></e>
-    <e><p><l>fruns<s n="vblex"/></l><r>sulkigi<s n="vblex"/></r></p></e>
+    <e><p><l>fruns<s n="vblex"/></l><r>sulkigi<s n="vbtr"/></r></p></e>
     <e><p><l>fruns<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>sulkiganto<s n="n"/></r></p></e>
     <e><p><l>fruns<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>sulkigado<s n="n"/></r></p></e>
     <e><p><l>fruns<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>sulkiginto<s n="n"/></r></p></e>
@@ -26065,7 +26070,7 @@
     <e><p><l>Fulk<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Fulika<s n="adj"/></r></p></e>
     <e><p><l>Fulk<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Fulika<s n="adj"/></r></p></e>
     <e><p><l>Fulk<s n="n"/><s n="der_aro"/><s n="n"/></l><r>Fulikaro<s n="n"/></r></p></e>
-    <e><p><l>fulmin<s n="vblex"/></l><r>fulmi<s n="vblex"/></r></p></e>
+    <e><p><l>fulmin<s n="vblex"/></l><r>fulmi<s n="vbntr"/></r></p></e>
     <e><p><l>fulmin<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>fulmanto<s n="n"/></r></p></e>
     <e><p><l>fulmin<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>fulmado<s n="n"/></r></p></e>
     <e><p><l>fulmin<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>fulminto<s n="n"/></r></p></e>
@@ -29190,14 +29195,35 @@
     <e><p><l>habilit<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>habilitiĝa<s n="adj"/></r></p></e>
     <e><p><l>habilit<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>habilitiĝa<s n="adj"/></r></p></e>
     <e><p><l>habilit<s n="n"/><s n="der_aro"/><s n="n"/></l><r>habilitiĝaro<s n="n"/></r></p></e>
+    <e r="LR"><p><l>habitad<s n="n"/></l><r>loĝado<s n="n"/></r></p></e>
+    <e><p><l>habitad<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>loĝada<s n="adj"/></r></p></e>
+    <e><p><l>habitad<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>loĝada<s n="adj"/></r></p></e>
+    <e><p><l>habitad<s n="n"/><s n="der_aro"/><s n="n"/></l><r>loĝadaro<s n="n"/></r></p></e>
+    <e r="LR"><p><l>habitant<s n="adj"/></l><r>loĝanta<s n="adj"/></r></p></e>
+    <e r="LR"><p><l>habitant<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>loĝanteco<s n="n"/></r></p></e>
     <e><p><l>habitantar<s n="n"/></l><r>loĝantaro<s n="n"/></r></p></e>
     <e><p><l>habitantar<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>loĝantara<s n="adj"/></r></p></e>
     <e><p><l>habitantar<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>loĝantara<s n="adj"/></r></p></e>
     <e><p><l>habitantar<s n="n"/><s n="der_aro"/><s n="n"/></l><r>loĝantararo<s n="n"/></r></p></e>
+    <e><p><l>habitant<s n="adv"/></l><r>loĝante<s n="adv"/></r></p></e>
     <e><p><l>habitant<s n="n"/></l><r>loĝanto<s n="n"/></r></p></e>
     <e r="LR"><p><l>habitant<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>loĝanta<s n="adj"/></r></p></e>
     <e r="LR"><p><l>habitant<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>loĝanta<s n="adj"/></r></p></e>
     <e r="LR"><p><l>habitant<s n="n"/><s n="der_aro"/><s n="n"/></l><r>loĝantaro<s n="n"/></r></p></e>
+    <e><p><l>habit<s n="vblex"/></l><r>loĝi<s n="vblex"/></r></p></e>
+    <e r="LR"><p><l>habit<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>loĝanto<s n="n"/></r></p></e>
+    <e><p><l>habit<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>loĝado<s n="n"/></r></p></e>
+    <e><p><l>habit<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>loĝinto<s n="n"/></r></p></e>
+    <e r="LR"><p><l>habit<s n="vblex"/><s n="der_ppra"/><s n="adj"/></l><r>loĝanta<s n="adj"/></r></p></e>
+    <e><p><l>habit<s n="vblex"/><s n="der_pfut"/><s n="adj"/></l><r>loĝota<s n="adj"/></r></p></e>
+    <e><p><l>habit<s n="vblex"/><s n="der_ppas"/><s n="adj"/></l><r>loĝi<s n="vblex"/><s n="pp"/></r></p></e>
+    <e><p><l>habit<s n="vblex"/><s n="der_ppa"/><s n="adj"/></l><r>loĝi<s n="vblex"/><s n="pp3"/></r></p></e>
+    <e><p><l>habit<s n="vblex"/><s n="der_pprs"/><s n="adj"/></l><r>loĝi<s n="vbtr"/><s n="ppres"/></r></p></e>
+    <e><p><l>habit<s n="vblex"/><s n="der_onta"/><s n="adj"/></l><r>loĝi<s n="vblex"/><s n="pp2"/></r></p></e>
+    <e><p><l>habit<s n="vblex"/><s n="der_ante"/><s n="adv"/></l><r>loĝi<s n="vblex"/><s n="ger"/></r></p></e>
+    <e><p><l>habit<s n="vblex"/><s n="der_inte"/><s n="adv"/></l><r>loĝi<s n="vblex"/><s n="gerpast"/></r></p></e>
+    <e r="LR"><p><l>habitat<s n="adj"/></l><r>loĝata<s n="adj"/></r></p></e>
+    <e r="LR"><p><l>habitat<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>loĝateco<s n="n"/></r></p></e>
     <e><p><l>habit<s n="n"/></l><r>loĝo<s n="n"/></r></p></e>
     <e><p><l>habit<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>loĝa<s n="adj"/></r></p></e>
     <e><p><l>habit<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>loĝa<s n="adj"/></r></p></e>
@@ -34898,7 +34924,7 @@
     <e r="LR"><p><l>joli<s n="adj"/></l><r>bela<s n="adj"/></r></p></e>
     <e><p><l>joli<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>beleco<s n="n"/></r></p></e>
     <e><p><l>joli<s n="adv"/></l><r>bele<s n="adv"/></r></p></e>
-    <e><p><l>jongl<s n="vblex"/></l><r>ĵongli<s n="vblex"/></r></p></e>
+    <e><p><l>jongl<s n="vblex"/></l><r>ĵongli<s n="vbntr"/></r></p></e>
     <e><p><l>jongl<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>ĵonglanto<s n="n"/></r></p></e>
     <e><p><l>jongl<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>ĵonglado<s n="n"/></r></p></e>
     <e><p><l>jongl<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>ĵonglinto<s n="n"/></r></p></e>
@@ -34970,7 +34996,7 @@
     <e><p><l>joy<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>ĝojeco<s n="n"/></r></p></e>
     <e r="LR"><p><l>joyal<s n="adj"/></l><r>gaja<s n="adj"/></r></p></e>
     <e><p><l>joyal<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>gajeco<s n="n"/></r></p></e>
-    <e><p><l>joy<s n="vblex"/></l><r>ĝoji<s n="vblex"/></r></p></e>
+    <e><p><l>joy<s n="vblex"/></l><r>ĝoji<s n="vbntr"/></r></p></e>
     <e><p><l>joy<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>ĝojanto<s n="n"/></r></p></e>
     <e><p><l>joy<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>ĝojado<s n="n"/></r></p></e>
     <e><p><l>joy<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>ĝojinto<s n="n"/></r></p></e>
@@ -36250,7 +36276,7 @@
     <e><p><l>Kanonik<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Kanonika<s n="adj"/></r></p></e>
     <e><p><l>Kanonik<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Kanonika<s n="adj"/></r></p></e>
     <e><p><l>Kanonik<s n="n"/><s n="der_aro"/><s n="n"/></l><r>Kanonikaro<s n="n"/></r></p></e>
-    <e><p><l>kanoniz<s n="vblex"/></l><r>enkanonigi<s n="vblex"/></r></p></e>
+    <e><p><l>kanoniz<s n="vblex"/></l><r>enkanonigi<s n="vbtr"/></r></p></e>
     <e><p><l>kanoniz<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>enkanoniganto<s n="n"/></r></p></e>
     <e><p><l>kanoniz<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>enkanonigado<s n="n"/></r></p></e>
     <e><p><l>kanoniz<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>enkanoniginto<s n="n"/></r></p></e>
@@ -36896,7 +36922,7 @@
     <e><p><l>Kardun<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Kardona<s n="adj"/></r></p></e>
     <e><p><l>Kardun<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Kardona<s n="adj"/></r></p></e>
     <e><p><l>Kardun<s n="n"/><s n="der_aro"/><s n="n"/></l><r>Kardonaro<s n="n"/></r></p></e>
-    <e><p><l>kare<s n="vblex"/></l><r>malhavi<s n="vblex"/></r></p></e>
+    <e><p><l>kare<s n="vblex"/></l><r>malhavi<s n="vbtr"/></r></p></e>
     <e><p><l>kare<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>malhavanto<s n="n"/></r></p></e>
     <e><p><l>kare<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>malhavado<s n="n"/></r></p></e>
     <e><p><l>kare<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>malhavinto<s n="n"/></r></p></e>
@@ -40294,7 +40320,7 @@
     <e r="LR"><p><l>komunes<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>komunuma<s n="adj"/></r></p></e>
     <e r="LR"><p><l>komunes<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>komunuma<s n="adj"/></r></p></e>
     <e><p><l>komunes<s n="n"/><s n="der_aro"/><s n="n"/></l><r>komunumaro<s n="n"/></r></p></e>
-    <e><p><l>komuni<s n="vblex"/></l><r>komuniiĝi<s n="vblex"/></r></p></e>
+    <e><p><l>komuni<s n="vblex"/></l><r>komuniiĝi<s n="vbntr"/></r></p></e>
     <e><p><l>komuni<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>komuniiĝanto<s n="n"/></r></p></e>
     <e><p><l>komuni<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>komuniiĝado<s n="n"/></r></p></e>
     <e><p><l>komuni<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>komuniiĝinto<s n="n"/></r></p></e>
@@ -40970,7 +40996,7 @@
     <e><p><l>kongres<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>kongreseco<s n="n"/></r></p></e>
     <e><p><l>kongresal<s n="adj"/></l><r>kongresa<s n="adj"/></r></p></e>
     <e><p><l>kongresal<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>kongreseco<s n="n"/></r></p></e>
-    <e><p><l>kongres<s n="vblex"/></l><r>kongresi<s n="vblex"/></r></p></e>
+    <e><p><l>kongres<s n="vblex"/></l><r>kongresi<s n="vbntr"/></r></p></e>
     <e><p><l>kongres<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>kongresanto<s n="n"/></r></p></e>
     <e><p><l>kongres<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>kongresado<s n="n"/></r></p></e>
     <e><p><l>kongres<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>kongresinto<s n="n"/></r></p></e>
@@ -44222,7 +44248,7 @@
     <e><p><l>kul<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>puga<s n="adj"/></r></p></e>
     <e><p><l>kul<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>puga<s n="adj"/></r></p></e>
     <e><p><l>kul<s n="n"/><s n="der_aro"/><s n="n"/></l><r>pugaro<s n="n"/></r></p></e>
-    <e><p><l>kulp<s n="vblex"/></l><r>kulpi<s n="vblex"/></r></p></e>
+    <e><p><l>kulp<s n="vblex"/></l><r>kulpi<s n="vbntr"/></r></p></e>
     <e><p><l>kulp<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>kulpanto<s n="n"/></r></p></e>
     <e><p><l>kulp<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>kulpado<s n="n"/></r></p></e>
     <e><p><l>kulp<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>kulpinto<s n="n"/></r></p></e>
@@ -46659,7 +46685,7 @@
     <e><p><l>listel<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>listela<s n="adj"/></r></p></e>
     <e><p><l>listel<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>listela<s n="adj"/></r></p></e>
     <e><p><l>listel<s n="n"/><s n="der_aro"/><s n="n"/></l><r>listelaro<s n="n"/></r></p></e>
-    <e><p><l>listig<s n="vblex"/></l><r>listigi<s n="vblex"/></r></p></e>
+    <e><p><l>listig<s n="vblex"/></l><r>listigi<s n="vbtr"/></r></p></e>
     <e><p><l>listig<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>listiganto<s n="n"/></r></p></e>
     <e><p><l>listig<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>listigado<s n="n"/></r></p></e>
     <e><p><l>listig<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>listiginto<s n="n"/></r></p></e>
@@ -48658,7 +48684,7 @@
     <e><p><l>mariaj<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>edzececo<s n="n"/></r></p></e>
     <e r="LR"><p><l>mariajal<s n="adj"/></l><r>edzeca<s n="adj"/></r></p></e>
     <e r="LR"><p><l>mariajal<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>edzececo<s n="n"/></r></p></e>
-    <e><p><l>mariaj<s n="vblex"/></l><r>edzigi<s n="vblex"/></r></p></e>
+    <e><p><l>mariaj<s n="vblex"/></l><r>edzigi<s n="vbtr"/></r></p></e>
     <e><p><l>mariaj<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>edziganto<s n="n"/></r></p></e>
     <e><p><l>mariaj<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>edzigado<s n="n"/></r></p></e>
     <e><p><l>mariaj<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>edziginto<s n="n"/></r></p></e>
@@ -48747,7 +48773,7 @@
     <e><p><l>markomani<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>marka<s n="adj"/></r></p></e>
     <e><p><l>markomani<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>marka<s n="adj"/></r></p></e>
     <e><p><l>markomani<s n="n"/><s n="der_aro"/><s n="n"/></l><r>markaro<s n="n"/></r></p></e>
-    <e><p><l>markot<s n="vblex"/></l><r>markoti<s n="vblex"/></r></p></e>
+    <e><p><l>markot<s n="vblex"/></l><r>markoti<s n="vbtr"/></r></p></e>
     <e><p><l>markot<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>markotanto<s n="n"/></r></p></e>
     <e><p><l>markot<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>markotado<s n="n"/></r></p></e>
     <e><p><l>markot<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>markotinto<s n="n"/></r></p></e>
@@ -49068,7 +49094,7 @@
     <e><p><l>mas<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>masa<s n="adj"/></r></p></e>
     <e><p><l>mas<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>masa<s n="adj"/></r></p></e>
     <e><p><l>mas<s n="n"/><s n="der_aro"/><s n="n"/></l><r>masaro<s n="n"/></r></p></e>
-    <e><p><l>mason<s n="vblex"/></l><r>masoni<s n="vblex"/></r></p></e>
+    <e><p><l>mason<s n="vblex"/></l><r>masoni<s n="vbtr"/></r></p></e>
     <e><p><l>mason<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>masonanto<s n="n"/></r></p></e>
     <e><p><l>mason<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>masonado<s n="n"/></r></p></e>
     <e><p><l>mason<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>masoninto<s n="n"/></r></p></e>
@@ -49350,10 +49376,7 @@
     <e><p><l>m<s n="adv"/></l><r>mi<s n="adv"/></r></p></e>
     <e><p><l>me<s n="prn"/></l><r>mi<s n="prn"/></r></p></e>
     <e r="LR"><p><l>me<s n="adj"/></l><r>mia<s n="adj"/></r></p></e>
-    <e><p><l>me pregas<s n="n"/></l><r>bonvolu<s n="n"/></r></p></e>
-    <e><p><l>me pregas<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>bonvolua<s n="adj"/></r></p></e>
-    <e><p><l>me pregas<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>bonvolua<s n="adj"/></r></p></e>
-    <e><p><l>me pregas<s n="n"/><s n="der_aro"/><s n="n"/></l><r>bonvoluaro<s n="n"/></r></p></e>
+    <e><p><l>me pregas<s n="ij"/></l><r>bonvolu<s n="ij"/></r></p></e>
     <e><p><l>Meandr<s n="n"/></l><r>Meandro<s n="n"/></r></p></e>
     <e><p><l>Meandr<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Meandra<s n="adj"/></r></p></e>
     <e><p><l>Meandr<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Meandra<s n="adj"/></r></p></e>
@@ -51208,7 +51231,7 @@
     <e><p><l>Mizantrop<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>mizantropa<s n="adj"/></r></p></e>
     <e><p><l>Mizantrop<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>mizantropa<s n="adj"/></r></p></e>
     <e><p><l>Mizantrop<s n="n"/><s n="der_aro"/><s n="n"/></l><r>mizantroparo<s n="n"/></r></p></e>
-    <e><p><l>mizer<s n="vblex"/></l><r>mizeri<s n="vblex"/></r></p></e>
+    <e><p><l>mizer<s n="vblex"/></l><r>mizeri<s n="vbntr"/></r></p></e>
     <e><p><l>mizer<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>mizeranto<s n="n"/></r></p></e>
     <e><p><l>mizer<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>mizerado<s n="n"/></r></p></e>
     <e><p><l>mizer<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>mizerinto<s n="n"/></r></p></e>
@@ -53299,10 +53322,7 @@
     <e><p><l>nazotuk<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>naztuka<s n="adj"/></r></p></e>
     <e><p><l>nazotuk<s n="n"/><s n="der_aro"/><s n="n"/></l><r>naztukaro<s n="n"/></r></p></e>
     <e><p><l>n<s n="adv"/></l><r>ne<s n="adv"/></r></p></e>
-    <e><p><l>ne dankinde<s n="n"/></l><r>nedankinde<s n="n"/></r></p></e>
-    <e><p><l>ne dankinde<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>nedankindea<s n="adj"/></r></p></e>
-    <e><p><l>ne dankinde<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>nedankindea<s n="adj"/></r></p></e>
-    <e><p><l>ne dankinde<s n="n"/><s n="der_aro"/><s n="n"/></l><r>nedankindearo<s n="n"/></r></p></e>
+    <e><p><l>ne dankinde<s n="ij"/></l><r>nedankinde<s n="ij"/></r></p></e>
     <e><p><l>ne-eleganta<s n="n"/></l><r>plumpa<s n="n"/></r></p></e>
     <e><p><l>ne-eleganta<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>plumpaa<s n="adj"/></r></p></e>
     <e><p><l>ne-eleganta<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>plumpaa<s n="adj"/></r></p></e>
@@ -54288,7 +54308,7 @@
     <e><p><l>nokt<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>nokteco<s n="n"/></r></p></e>
     <e><p><l>noktal<s n="adj"/></l><r>nokta<s n="adj"/></r></p></e>
     <e><p><l>noktal<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>nokteco<s n="n"/></r></p></e>
-    <e><p><l>nokt<s n="vblex"/></l><r>nokti<s n="vblex"/></r></p></e>
+    <e><p><l>nokt<s n="vblex"/></l><r>nokti<s n="vbntr"/></r></p></e>
     <e><p><l>nokt<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>noktanto<s n="n"/></r></p></e>
     <e><p><l>nokt<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>noktado<s n="n"/></r></p></e>
     <e><p><l>nokt<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>noktinto<s n="n"/></r></p></e>
@@ -58888,7 +58908,7 @@
     <e><p><l>pens<s n="vblex"/><s n="der_inte"/><s n="adv"/></l><r>pensi<s n="vblex"/><s n="gerpast"/></r></p></e>
     <e><p><l>Pensilvania<s n="np"/></l><r>Pensilvanio<s n="np"/><s n="loc"/></r></p></e>
     <e><p><l>Pensilvaniana<s n="np"/></l><r>Pensilvanio<s n="np"/><s n="loc"/></r></p></e>
-    <e><p><l>pension<s n="vblex"/></l><r>pensii<s n="vblex"/></r></p></e>
+    <e><p><l>pension<s n="vblex"/></l><r>pensii<s n="vbtr"/></r></p></e>
     <e><p><l>pension<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>pensianto<s n="n"/></r></p></e>
     <e><p><l>pension<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>pensiado<s n="n"/></r></p></e>
     <e><p><l>pension<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>pensiinto<s n="n"/></r></p></e>
@@ -63143,7 +63163,7 @@
     <e><p><l>prodaj<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>heroaĵa<s n="adj"/></r></p></e>
     <e><p><l>prodaj<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>heroaĵa<s n="adj"/></r></p></e>
     <e><p><l>prodaj<s n="n"/><s n="der_aro"/><s n="n"/></l><r>heroaĵaro<s n="n"/></r></p></e>
-    <e><p><l>prodig<s n="vblex"/></l><r>prodigi<s n="vblex"/></r></p></e>
+    <e><p><l>prodig<s n="vblex"/></l><r>prodigi<s n="vbtr"/></r></p></e>
     <e><p><l>prodig<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>prodiganto<s n="n"/></r></p></e>
     <e><p><l>prodig<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>prodigado<s n="n"/></r></p></e>
     <e><p><l>prodig<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>prodiginto<s n="n"/></r></p></e>
@@ -68081,7 +68101,7 @@
     <e><p><l>revolucion<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>revolucieco<s n="n"/></r></p></e>
     <e r="LR"><p><l>revolucional<s n="adj"/></l><r>revolucia<s n="adj"/></r></p></e>
     <e r="LR"><p><l>revolucional<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>revolucieco<s n="n"/></r></p></e>
-    <e><p><l>revolucion<s n="vblex"/></l><r>revoluciigi<s n="vblex"/></r></p></e>
+    <e><p><l>revolucion<s n="vblex"/></l><r>revoluciigi<s n="vbtr"/></r></p></e>
     <e><p><l>revolucion<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>revoluciiganto<s n="n"/></r></p></e>
     <e><p><l>revolucion<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>revoluciigado<s n="n"/></r></p></e>
     <e><p><l>revolucion<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>revoluciiginto<s n="n"/></r></p></e>
@@ -69008,7 +69028,7 @@
     <e><p><l>rivet<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>nita<s n="adj"/></r></p></e>
     <e><p><l>rivet<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>nita<s n="adj"/></r></p></e>
     <e><p><l>rivet<s n="n"/><s n="der_aro"/><s n="n"/></l><r>nitaro<s n="n"/></r></p></e>
-    <e><p><l>rivid<s n="vblex"/></l><r>revidi<s n="vblex"/></r></p></e>
+    <e><p><l>rivid<s n="vblex"/></l><r>revidi<s n="vbtr"/></r></p></e>
     <e><p><l>rivid<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>revidanto<s n="n"/></r></p></e>
     <e><p><l>rivid<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>revidado<s n="n"/></r></p></e>
     <e><p><l>rivid<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>revidinto<s n="n"/></r></p></e>
@@ -70017,7 +70037,7 @@
     <e><p><l>salamandr<s n="n"/><s n="der_aro"/><s n="n"/></l><r>salamandraro<s n="n"/></r></p></e>
     <e><p><l>salarial<s n="adj"/></l><r>salajra<s n="adj"/></r></p></e>
     <e><p><l>salarial<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>salajreco<s n="n"/></r></p></e>
-    <e><p><l>salari<s n="vblex"/></l><r>salajri<s n="vblex"/></r></p></e>
+    <e><p><l>salari<s n="vblex"/></l><r>salajri<s n="vbtr"/></r></p></e>
     <e><p><l>salari<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>salajranto<s n="n"/></r></p></e>
     <e><p><l>salari<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>salajrado<s n="n"/></r></p></e>
     <e><p><l>salari<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>salajrinto<s n="n"/></r></p></e>
@@ -72835,6 +72855,10 @@
     <e><p><l>siorin<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>sinjorina<s n="adj"/></r></p></e>
     <e><p><l>siorin<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>sinjorina<s n="adj"/></r></p></e>
     <e><p><l>siorin<s n="n"/><s n="der_aro"/><s n="n"/></l><r>sinjorinaro<s n="n"/></r></p></e>
+    <e><p><l>sior<s n="n"/></l><r>sinjoro<s n="n"/></r></p></e>
+    <e><p><l>sior<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>sinjora<s n="adj"/></r></p></e>
+    <e><p><l>sior<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>sinjora<s n="adj"/></r></p></e>
+    <e><p><l>sior<s n="n"/><s n="der_aro"/><s n="n"/></l><r>sinjoraro<s n="n"/></r></p></e>
     <e><p><l>siorul<s n="n"/></l><r>sinjoro<s n="n"/></r></p></e>
     <e><p><l>siorul<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>sinjora<s n="adj"/></r></p></e>
     <e><p><l>siorul<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>sinjora<s n="adj"/></r></p></e>
@@ -72956,7 +72980,7 @@
     <e><p><l>situacion<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>situacia<s n="adj"/></r></p></e>
     <e><p><l>situacion<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>situacia<s n="adj"/></r></p></e>
     <e><p><l>situacion<s n="n"/><s n="der_aro"/><s n="n"/></l><r>situaciaro<s n="n"/></r></p></e>
-    <e><p><l>situ<s n="vblex"/></l><r>situigi<s n="vblex"/></r></p></e>
+    <e><p><l>situ<s n="vblex"/></l><r>situigi<s n="vbtr"/></r></p></e>
     <e><p><l>situ<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>situiganto<s n="n"/></r></p></e>
     <e><p><l>situ<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>situigado<s n="n"/></r></p></e>
     <e><p><l>situ<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>situiginto<s n="n"/></r></p></e>
@@ -74080,7 +74104,7 @@
     <e><p><l>sol<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>soleco<s n="n"/></r></p></e>
     <e r="LR"><p><l>solal<s n="adj"/></l><r>sola<s n="adj"/></r></p></e>
     <e><p><l>solal<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>soleco<s n="n"/></r></p></e>
-    <e><p><l>sold<s n="vblex"/></l><r>luti<s n="vblex"/></r></p></e>
+    <e><p><l>sold<s n="vblex"/></l><r>luti<s n="vbtr"/></r></p></e>
     <e><p><l>sold<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>lutanto<s n="n"/></r></p></e>
     <e><p><l>sold<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>lutado<s n="n"/></r></p></e>
     <e><p><l>sold<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>lutinto<s n="n"/></r></p></e>
@@ -74229,7 +74253,7 @@
     <e r="LR"><p><l>somit<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>supra<s n="adj"/></r></p></e>
     <e r="LR"><p><l>somit<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>supra<s n="adj"/></r></p></e>
     <e><p><l>somit<s n="n"/><s n="der_aro"/><s n="n"/></l><r>supraro<s n="n"/></r></p></e>
-    <e r="LR"><p><l>somnol<s n="vblex"/></l><r>dormeti<s n="vblex"/></r></p></e>
+    <e r="LR"><p><l>somnol<s n="vblex"/></l><r>dormeti<s n="vbntr"/></r></p></e>
     <e><p><l>somnol<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>dormetanto<s n="n"/></r></p></e>
     <e><p><l>somnol<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>dormetado<s n="n"/></r></p></e>
     <e><p><l>somnol<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>dormetinto<s n="n"/></r></p></e>
@@ -75428,7 +75452,7 @@
     <e r="LR"><p><l>statut<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>statuta<s n="adj"/></r></p></e>
     <e r="LR"><p><l>statut<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>statuta<s n="adj"/></r></p></e>
     <e><p><l>statut<s n="n"/><s n="der_aro"/><s n="n"/></l><r>statutaro<s n="n"/></r></p></e>
-    <e><p><l>steb<s n="vblex"/></l><r>stebi<s n="vblex"/></r></p></e>
+    <e><p><l>steb<s n="vblex"/></l><r>stebi<s n="vbtr"/></r></p></e>
     <e><p><l>steb<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>stebanto<s n="n"/></r></p></e>
     <e><p><l>steb<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>stebado<s n="n"/></r></p></e>
     <e><p><l>steb<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>stebinto<s n="n"/></r></p></e>
@@ -77002,7 +77026,7 @@
     <e><p><l>Sulki<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Sulkia<s n="adj"/></r></p></e>
     <e><p><l>Sulki<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Sulkia<s n="adj"/></r></p></e>
     <e><p><l>Sulki<s n="n"/><s n="der_aro"/><s n="n"/></l><r>Sulkiaro<s n="n"/></r></p></e>
-    <e r="LR"><p><l>sulkiz<s n="vblex"/></l><r>sulkigi<s n="vblex"/></r></p></e>
+    <e r="LR"><p><l>sulkiz<s n="vblex"/></l><r>sulkigi<s n="vbtr"/></r></p></e>
     <e><p><l>sulkiz<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>sulkiganto<s n="n"/></r></p></e>
     <e><p><l>sulkiz<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>sulkigado<s n="n"/></r></p></e>
     <e><p><l>sulkiz<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>sulkiginto<s n="n"/></r></p></e>
@@ -77144,7 +77168,7 @@
     <e><p><l>suol<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>planduma<s n="adj"/></r></p></e>
     <e><p><l>suol<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>planduma<s n="adj"/></r></p></e>
     <e><p><l>suol<s n="n"/><s n="der_aro"/><s n="n"/></l><r>plandumaro<s n="n"/></r></p></e>
-    <e><p><l>supe<s n="vblex"/></l><r>vespermanĝi<s n="vblex"/></r></p></e>
+    <e><p><l>supe<s n="vblex"/></l><r>vespermanĝi<s n="vbntr"/></r></p></e>
     <e><p><l>supe<s n="vblex"/><s n="der_pres"/><s n="n"/></l><r>vespermanĝanto<s n="n"/></r></p></e>
     <e><p><l>supe<s n="vblex"/><s n="der_act"/><s n="n"/></l><r>vespermanĝado<s n="n"/></r></p></e>
     <e><p><l>supe<s n="vblex"/><s n="der_past"/><s n="n"/></l><r>vespermanĝinto<s n="n"/></r></p></e>
@@ -77906,6 +77930,7 @@
     <e r="LR"><p><l>talus<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>dekliva<s n="adj"/></r></p></e>
     <e><p><l>talus<s n="n"/><s n="der_aro"/><s n="n"/></l><r>deklivaro<s n="n"/></r></p></e>
     <e><p><l>Talveila<s n="np"/></l><r>Talveila<s n="np"/><s n="loc"/></r></p></e>
+    <e r="LR"><p><l>tam<s n="adv"/></l><r>tiel<s n="adv"/></r></p></e>
     <e><p><l>Tamarind<s n="n"/></l><r>Tamarindo<s n="n"/></r></p></e>
     <e><p><l>Tamarind<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Tamarinda<s n="adj"/></r></p></e>
     <e><p><l>Tamarind<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Tamarinda<s n="adj"/></r></p></e>
@@ -79001,8 +79026,8 @@
     <e><p><l>tigrul<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>tigra<s n="adj"/></r></p></e>
     <e><p><l>tigrul<s n="n"/><s n="der_aro"/><s n="n"/></l><r>tigraro<s n="n"/></r></p></e>
     <e><p><l>til<s n="pr"/></l><r>ĝis<s n="pr"/></r></p></e>
-    <e><p><l>til balde<s n="n"/></l><r>ĝis baldaŭ<s n="n"/></r></p></e>
-    <e><p><l>til rivid<s n="n"/></l><r>adiaŭ<s n="n"/></r></p></e>
+    <e><p><l>til balde<s n="ij"/></l><r>ĝis baldaŭ<s n="ij"/></r></p></e>
+    <e r="LR"><p><l>til rivid<s n="n"/></l><r>adiaŭ<s n="ij"/></r></p></e>
     <e><p><l>til rivid<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>adiaŭa<s n="adj"/></r></p></e>
     <e><p><l>til rivid<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>adiaŭa<s n="adj"/></r></p></e>
     <e><p><l>til rivid<s n="n"/><s n="der_aro"/><s n="n"/></l><r>adiaŭaro<s n="n"/></r></p></e>
