@@ -664,7 +664,12 @@ _EO_POS_COMPAT = {
     "cnjcoo": ("cnjcoo", "cnjsub", "cnjadv", "adv"),
     "pr":     ("pr", "adv"),
     "ij":     ("ij", "adv"),
+    # Set greetings the Ido side lists as nouns (bona jorno) are one <ij>
+    # unit in apertium-epo (bonan tagon); as <n> they only generate as '#'.
+    "n":      ("ij",),
 }
+
+_EO_VERB_CLASSES = ("vbtr", "vbntr")
 
 
 # surface -> [(lemma, analysis tags)] of EO determiner readings that only the
@@ -778,6 +783,15 @@ def resolve_eo_side(epo: str, ido_tag: Optional[str], readings: Dict[str, list])
     same_pos = [r for r in rs if r[1] and r[1][0] == ido_tag]
     if ido_tag in _OPEN_POS and same_pos:
         return None
+    # apertium-epo splits verbs into vblex/vbtr/vbntr; one it knows only as
+    # vbtr or vbntr (edzigi, aĝi) never generates from <vblex> (#aĝi), and its
+    # analysis never reaches the <vblex> row backwards. Keep the class only:
+    # tense tags come from the Ido side.
+    if ido_tag == "vblex":
+        for lemma, tags in rs:
+            if tags and tags[0] in _EO_VERB_CLASSES and lemma == epo:
+                return lemma, [tags[0]]
+        return None
     if any(r[1] == [ido_tag] and r[0] == epo for r in same_pos):
         return None
     for pos in _EO_POS_COMPAT.get(ido_tag, ()):
@@ -862,6 +876,39 @@ def _adverbial_o_lemmas(records, readings: Dict[str, list]) -> set:
             continue
         nominal = any(tags and tags[0] in ("n", "np") for v in rs for _, tags in v)
         if not nominal or lm in attested:
+            out.add(lm)
+    return out
+
+
+def _noun_by_default(rec) -> bool:
+    """A record that exports as an o__n noun: tagged n (or untagged), or
+    carrying the o__n paradigm whatever its pos says (the paradigm wins)."""
+    par = (rec.get("morphology") or {}).get("paradigm")
+    return rec.get("pos") in ("n", None) or par in _NOUN_PARADIGMS
+
+
+def _interjection_phrases(records, readings: Dict[str, list]) -> set:
+    """Lowercase multiword Ido lemmas the noun default mangles: set phrases not
+    ending in -o (til balde, me pregas, ne dankinde) get o__n's -o appended
+    to the whole phrase ("til baldeo"), so they never match Ido text and
+    generate wrongly backwards. When every analysed EO translation is an
+    interjection in apertium-epo (ĝis baldaŭ, bonvolu, nedankinde), the lemma
+    is an invariable interjection too."""
+    if not readings:
+        return set()
+    terms: Dict[str, set] = {}
+    for r in records:
+        lm = (r.get("lemma") or "").strip()
+        if (not _noun_by_default(r) or " " not in lm
+                or not lm[:1].islower() or lm.lower().endswith("o")):
+            continue
+        terms.setdefault(lm.lower(), set()).update(
+            tr.get("term") for s in (r.get("senses") or [])
+            for tr in (s.get("translations") or []) if tr.get("lang") == "eo")
+    out = set()
+    for lm, ts in terms.items():
+        rs = [readings[t] for t in ts if t in readings]
+        if rs and all(any(tags and tags[0] == "ij" for _, tags in v) for v in rs):
             out.add(lm)
     return out
 
@@ -2093,14 +2140,21 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
     # POS/paradigm or multi-word EO targets that get filtered).
     # Adverbs the -o ending made nouns (tro, pro quo): every noun record of
     # the lemma, in both inputs, becomes an invariable adverb.
-    adverbial = _adverbial_o_lemmas(list(entries) + list(bidix_entries),
-                                    _load_all_eo_readings(_load_eo_generatable_lemmas()))
+    all_eo_readings = _load_all_eo_readings(_load_eo_generatable_lemmas())
+    adverbial = _adverbial_o_lemmas(list(entries) + list(bidix_entries), all_eo_readings)
     for rec in list(entries) + list(bidix_entries):
         if (rec.get("lemma") or "").strip().lower() in adverbial and rec.get("pos") in ("n", None):
             rec["pos"] = "adv"
             rec["morphology"] = {"paradigm": "__adv", "features": {}}
     if adverbial:
         logging.info("Adverbs retagged from the -o noun default: %s", ", ".join(sorted(adverbial)))
+    phrases = _interjection_phrases(list(entries) + list(bidix_entries), all_eo_readings)
+    for rec in list(entries) + list(bidix_entries):
+        if (rec.get("lemma") or "").strip().lower() in phrases and _noun_by_default(rec):
+            rec["pos"] = "ij"
+            rec["morphology"] = {"paradigm": "__ij", "features": {}}
+    if phrases:
+        logging.info("Set phrases retagged from the -o noun default to ij: %s", ", ".join(sorted(phrases)))
 
     bidix_by_lemma = {}
     bidix_override_by_lemma = {}
