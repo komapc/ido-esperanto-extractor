@@ -666,6 +666,13 @@ _EO_POS_COMPAT = {
 }
 
 
+# surface -> [(lemma, analysis tags)] of EO determiner readings that only the
+# analyser produces (<sp>; the generator wants <sg><nom>): neniu, tiu, ĉiu...
+# An Ido adjective translating to such a word gets an RL row to each of them,
+# so "neniu homo" (the determiner) reaches nula, not the pronoun nulu.
+_EO_DET_ANALYSES: Dict[str, list] = {}
+
+
 def _load_eo_readings(surfaces: Iterable[str], automorf: Path = _EO_AUTOMORF) -> Dict[str, list]:
     """{surface: [(lemma, [tags…]), …]} from apertium-epo's compiled analyser,
     in lt-proc's own reading order. Empty dict (→ resolution skipped) when the
@@ -714,7 +721,26 @@ def _load_eo_readings(surfaces: Iterable[str], automorf: Path = _EO_AUTOMORF) ->
             return {}
         ok = {(srf, i) for (srf, i, _), g in zip(flat, gen)
               if g.strip().lower() == srf.lower()}
-        out = {srf: [r for i, r in enumerate(rs) if (srf, i) in ok] for srf, rs in out.items()}
+        out_ok = {srf: [r for i, r in enumerate(rs) if (srf, i) in ok] for srf, rs in out.items()}
+        # A determiner is analysed with number `sp` but generated as <sg><nom>
+        # (neniu<det><ind><sp> / neniu<det><ind><sg><nom>), so the check above
+        # drops it. Resolution keeps ignoring it (ido->epo is unchanged), but
+        # epo->ido needs a row for it: record it in _EO_DET_ANALYSES.
+        retry = []
+        for srf, i, _ in flat:
+            lem, tags = out[srf][i]
+            if (srf, i) not in ok and tags[0] == "det" and "sp" in tags:
+                gt = [t for x in tags for t in (("sg", "nom") if x == "sp" else (x,))]
+                retry.append((srf, lem, tags, gt))
+        if retry:
+            gen = subprocess.run(["lt-proc", "-z", "-g", str(autogen)],
+                                 input="\0".join(f"^{lem}<{'><'.join(gt)}>$"
+                                                  for _, lem, _, gt in retry) + "\0",
+                                 capture_output=True, text=True, check=True).stdout.split("\0")
+            for (srf, lem, tags, gt), g in zip(retry, gen):
+                if g.strip().lower() == srf.lower():
+                    _EO_DET_ANALYSES.setdefault(srf, []).append((lem, tags))
+        out = out_ok
     else:
         logging.warning("apertium-epo generator not found at %s — skipping EO-side "
                         "tag resolution (unfiltered readings could emit '#').", autogen)
@@ -1260,6 +1286,7 @@ def build_bidix(entries, mono=None):
     eo_readings = _load_all_eo_readings(eo_generatable)
     eo_side_resolved = 0
     rl_rows = []  # (base <e>, epo->ido quality key), see _restrict_rl_losers
+    det_rows = []  # (RL determiner row, its base entry's key), see below
     # An entry whose Ido lemma the monodix doesn't have (pacala, parolado:
     # bidix-only records) cannot generate, so it must not win epo->ido.
     ido_tagged, ido_untagged = _ido_generatable(mono) if mono is not None else (None, None)
@@ -1567,11 +1594,29 @@ def build_bidix(entries, mono=None):
             s_elem = ET.SubElement(r, "s")
             s_elem.set("n", t)
             s_elem.tail = ""
+        # An Ido adjective whose EO word is also an analysis-only determiner
+        # (nula -> neniu<det><ind><sp>) gets an epo->ido row per such reading;
+        # which Ido adjective wins among them is settled like the base rows.
+        det_twins = []
+        if l_tags == ["adj"] and r_tags[:1] in (["prn"], ["det"]):
+            for a_lemma, a_tags in _EO_DET_ANALYSES.get(r_lemma, ()):
+                e_an = ET.SubElement(section, "e", r="RL")
+                p_an = ET.SubElement(e_an, "p")
+                l_an = ET.SubElement(p_an, "l")
+                l_an.text = stem
+                ET.SubElement(l_an, "s", n="adj").tail = ""
+                r_an = ET.SubElement(p_an, "r")
+                r_an.text = a_lemma
+                for t in a_tags:
+                    ET.SubElement(r_an, "s", n=t).tail = ""
+                det_twins.append(e_an)
         srcs = dict(cands).get(epo) or []
         dead = ido_tagged is not None and lm_lower not in ido_untagged \
             and (lm_lower, ido_tag) not in ido_tagged
-        rl_rows.append((en, (dead, source_rank(srcs), uncorroborated_derivation(srcs),
-                             r_tags[:1] != l_tags[:1])))
+        key = (dead, source_rank(srcs), uncorroborated_derivation(srcs),
+               r_tags[:1] != l_tags[:1])
+        rl_rows.append((en, key))
+        det_rows.extend((e_an, key) for e_an in det_twins)
 
         # epo→ido vbser fix: apertium-epo conjugates the copula + some
         # intransitive/inchoative verbs as `vbser` (not `vblex`), so the bidix's
@@ -1751,6 +1796,18 @@ def build_bidix(entries, mono=None):
     # once. RL-only, so they never compete with the per-pronoun LR entries above.
     _emit_prpers_rl_entries(section)
     rl_restricted = _restrict_rl_losers(section, rl_rows)
+    # The determiner rows are RL-only, so _restrict_rl_losers skips them:
+    # among those sharing an EO side keep only the best-keyed ones.
+    det_groups: Dict[str, list] = {}
+    for e, key in det_rows:
+        r = e.find("p/r")
+        det_groups.setdefault((r.text or "") + "".join(f"<{x.get('n')}>" for x in r.iter("s")),
+                              []).append((e, key))
+    for members in det_groups.values():
+        best = min(k for _, k in members)
+        for e, k in members:
+            if k > best:
+                section.remove(e)
     # Declare every symbol actually used — the EO-side resolution brings in
     # apertium-epo subcategory tags (tn, itg, dem, cnjadv, …) not listed above.
     declared = {sd.get("n") for sd in sdefs}
