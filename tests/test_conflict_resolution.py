@@ -34,3 +34,16 @@ def test_all_candidates_invalid_returns_none():
 def test_valid_set_does_not_override_rank_among_generatable_candidates():
     cands = [('malkovri', ['fr_wiktionary_via']), ('trovi', ['io_wiktionary'])]
     assert pick_best(cands, valid={'malkovri', 'trovi'}) == 'trovi'
+
+
+def test_uncorroborated_derivation_yields_to_same_rank_corroborated():
+    # komence: both derived from komenco's translations (eko, komenco); only
+    # komence is also attested elsewhere, so it wins despite coming second.
+    cands = [('eke', ['morphological_expansion']),
+             ('komence', ['bert_embeddings', 'morphological_expansion'])]
+    assert pick_best(cands) == 'komence'
+
+
+def test_uncorroborated_derivation_still_beats_lower_rank():
+    cands = [('eke', ['morphological_expansion']), ('komence', ['bert_embeddings'])]
+    assert pick_best(cands) == 'eke'

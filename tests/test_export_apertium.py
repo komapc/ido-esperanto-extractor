@@ -393,3 +393,42 @@ def test_intransitive_participles_get_epo_to_ido_twins():
         assert (f'<e r="RL"><p><l>ven<s n="vblex" /><s n="{der}" /><s n="adj" /></l>'
                 f'<r>veni<s n="vbntr" /><s n="{ptag}" /></r></p></e>') in xml_str
     assert '<r>vidi<s n="vbntr" />' not in xml_str
+
+
+def _rows(xml_str, r_text):
+    """The <e> elements of a bidix whose right side is exactly `r_text`."""
+    return [e for e in ET.fromstring(xml_str).iter('e')
+            if e.find('p/r') is not None and e.find('p/r').text == r_text]
+
+
+def _adv(lemma, eo, sources):
+    return {"lemma": lemma, "pos": "adv", "morphology": {"paradigm": "e__adv"},
+            "senses": [{"translations": [{"lang": "eo", "term": eo, "sources": sources}]}]}
+
+
+def test_epo_to_ido_winner_is_the_best_attested_entry():
+    """ibe and tie both translate to tie<adv>; lt-proc -b would pick either in
+    epo->ido. The BERT-only one becomes ido->epo only."""
+    entries = [_adv("ibe", "tie", ["closed_class_tables", "io_wiktionary"]),
+               _adv("tie", "tie", ["bert_embeddings"])]
+    mono = build_monodix(entries)
+    rows = _rows(ET.tostring(build_bidix(entries, mono), encoding='unicode'), 'tie')
+    assert {e.find('p/l').text: e.get('r') for e in rows} == {'ib': None, 'ti': 'LR'}
+
+
+def test_epo_to_ido_ties_are_left_alone():
+    entries = [_adv("forsane", "eble", ["io_wiktionary"]),
+               _adv("eventuale", "eble", ["io_wiktionary"])]
+    mono = build_monodix(entries)
+    rows = _rows(ET.tostring(build_bidix(entries, mono), encoding='unicode'), 'eble')
+    assert len(rows) == 2 and all(e.get('r') is None for e in rows)
+
+
+def test_epo_to_ido_entry_missing_from_the_monodix_loses():
+    """A bidix-only record (no monodix entry) can't generate in epo->ido, so
+    it must not win over a live one however well it is attested."""
+    live = _adv("komence", "komence", ["bert_embeddings"])
+    dead = _adv("inicale", "komence", ["io_wiktionary"])
+    mono = build_monodix([live])
+    rows = _rows(ET.tostring(build_bidix([live, dead], mono), encoding='unicode'), 'komence')
+    assert {e.find('p/l').text: e.get('r') for e in rows} == {'komenc': None, 'inical': 'LR'}

@@ -8,7 +8,9 @@ sources), so the same `bidix_big.json` always yields the same winner.
 
 Ranking (lower = better):
   1. source reliability  (curated override > direct Wiktionary > pivots/labels > BERT)
-  2. insertion order     (the candidate's position in bidix_big — preserves the
+  2. an uncorroborated morphological_expansion candidate after the others
+     of its rank (see uncorroborated_derivation)
+  3. insertion order     (the candidate's position in bidix_big — preserves the
                           existing de-facto source-priority ordering for same-rank
                           ties, so this change only overrides genuine rank inversions)
 
@@ -60,15 +62,28 @@ def source_rank(sources: Iterable[str], table: Dict[str, int] = SOURCE_RANK_BASE
     return min((table.get(s, _DEFAULT_RANK) for s in sources), default=_DEFAULT_RANK)
 
 
+def uncorroborated_derivation(sources: Iterable[str]) -> bool:
+    """True for a candidate attested ONLY by morphological_expansion.
+
+    That source derives a form from every translation of the base word
+    (komenco has eko and komenco, so komence gets eke and komence), so the
+    order of its candidates carries no preference. Its insertion order is not a signal,
+    and a same-rank candidate that another source also attests goes first.
+    Scoped to this source: for the others, a wider corroboration tie-break
+    mostly churned good winners (korpo -> korpuso, lu -> ĝi).
+    """
+    return set(sources) == {'morphological_expansion'}
+
+
 def confidence_key(term: str, sources: Sequence[str], index: int,
-                   table: Dict[str, int] = SOURCE_RANK_BASELINE) -> Tuple[int, int]:
+                   table: Dict[str, int] = SOURCE_RANK_BASELINE) -> Tuple[int, bool, int]:
     """Sort key for a candidate; the minimum across candidates is the winner.
 
     `index` is the candidate's original position in the entry (insertion order),
     which is a total order, so the key is deterministic and ties fall back to the
     pre-existing ordering rather than to an arbitrary alphabetical pick.
     """
-    return (source_rank(sources, table), index)
+    return (source_rank(sources, table), uncorroborated_derivation(sources), index)
 
 
 def pick_best(candidates: Sequence[Tuple[str, Sequence[str]]],

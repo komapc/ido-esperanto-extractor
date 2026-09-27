@@ -38,7 +38,7 @@ from typing import Dict, Iterable, Optional
 
 from _common import read_json, ensure_dir, configure_logging, clean_lemma
 from lexicon_filters import is_junk_verb
-from conflict_resolution import pick_best
+from conflict_resolution import pick_best, source_rank, uncorroborated_derivation
 from prepare_vocabulary import _SHORT_POS, infer_paradigm
 import xml.etree.ElementTree as ET
 from xml.sax.saxutils import quoteattr
@@ -1172,7 +1172,78 @@ def _eo_candidates(e):
     return [(t, sorted(by_term[t])) for t in order]
 
 
-def build_bidix(entries):
+def _restrict_rl_losers(section, rows) -> int:
+    """Choose the epo->ido translation of each EO side explicitly.
+
+    Many Ido entries share one EO right side (ibe, tie -> tie<adv>; nulu,
+    nula -> neniu<prn>...). lt-proc -b returns all of them in transducer
+    order -- neither file order nor any quality order -- and transfer takes
+    the first, so epo->ido picked tie for tie and nula for neniu. Here every
+    base entry carries a key (Ido side not in the monodix, source rank,
+    uncorroborated derivation, POS mismatch between the sides); in each
+    group sharing a right side, entries with a worse key than the group's
+    best become ido->epo only (r="LR"). Entries tied at the best key are left
+    as they are: there is no signal to choose between them (a count of
+    sources would be one, but it put po over ye for je).
+
+    Entries generated from a base entry (un<n><der_ala> -> unua, emitted
+    right after it) and entries the monodix lacks are one class, ranked
+    after every live sourced entry: a guessed derivation must not beat
+    unesma -> unua. Within that class there is no order -- the derivation
+    can generate a wrong word (lern<der_pres> -> lerni for lernanto) as
+    easily as the dead entry a gap -- so a group without a live sourced
+    entry is left as it was.
+
+    Entries before the first base (numbers, punctuation) and entries already
+    restricted either way are not grouped.
+    """
+    base = {id(e): key for e, key in rows}
+    groups: Dict[str, list] = {}
+    cur = None
+    for e in section.iter("e"):
+        if id(e) in base:
+            cur = base[id(e)]
+            key = (True,) if cur[0] else (False,) + cur[1:]
+        elif cur is None or e.find("p") is None:
+            continue
+        else:
+            key = (True,)
+        if e.get("r"):
+            continue
+        r = e.find("p/r")
+        sig = (r.text or "") + "".join(f"<{s.get('n')}>" for s in r.iter("s"))
+        groups.setdefault(sig, []).append((e, key))
+    n = 0
+    for members in groups.values():
+        if len(members) < 2:
+            continue
+        best = min(k for _, k in members)
+        for e, k in members:
+            if k > best:
+                e.set("r", "LR")
+                n += 1
+    return n
+
+
+def _ido_generatable(mono) -> tuple[set, set]:
+    """What the Ido monodix can generate, for _restrict_rl_losers: the set of
+    (lemma, tag) of its paradigm entries, and the lemmas whose paradigm maps
+    to no single tag (never judged). Lemmas lowercased."""
+    tagged, untagged = set(), set()
+    for e in mono.iter("e"):
+        lm = e.get("lm")
+        if not lm:
+            continue
+        par = e.find("par")
+        tag = map_s_tag(par.get("n"), None) if par is not None else None
+        if tag:
+            tagged.add((lm.lower(), tag))
+        else:
+            untagged.add(lm.lower())
+    return tagged, untagged
+
+
+def build_bidix(entries, mono=None):
     """io↔eo bidix. Picks the EO winner per entry, then generates derivations.
 
     Two ordering facts drive the structure. lt-proc -b returns the FIRST
@@ -1188,6 +1259,10 @@ def build_bidix(entries):
     ungeneratable_skips = 0
     eo_readings = _load_all_eo_readings(eo_generatable)
     eo_side_resolved = 0
+    rl_rows = []  # (base <e>, epo->ido quality key), see _restrict_rl_losers
+    # An entry whose Ido lemma the monodix doesn't have (pacala, parolado:
+    # bidix-only records) cannot generate, so it must not win epo->ido.
+    ido_tagged, ido_untagged = _ido_generatable(mono) if mono is not None else (None, None)
 
     dictionary = ET.Element("dictionary")
     alphabet = ET.SubElement(dictionary, "alphabet")
@@ -1492,6 +1567,11 @@ def build_bidix(entries):
             s_elem = ET.SubElement(r, "s")
             s_elem.set("n", t)
             s_elem.tail = ""
+        srcs = dict(cands).get(epo) or []
+        dead = ido_tagged is not None and lm_lower not in ido_untagged \
+            and (lm_lower, ido_tag) not in ido_tagged
+        rl_rows.append((en, (dead, source_rank(srcs), uncorroborated_derivation(srcs),
+                             r_tags[:1] != l_tags[:1])))
 
         # epo→ido vbser fix: apertium-epo conjugates the copula + some
         # intransitive/inchoative verbs as `vbser` (not `vblex`), so the bidix's
@@ -1670,11 +1750,15 @@ def build_bidix(entries):
     # epo→ido personal-pronoun entries (prpers → canonical Ido pronoun), emitted
     # once. RL-only, so they never compete with the per-pronoun LR entries above.
     _emit_prpers_rl_entries(section)
+    rl_restricted = _restrict_rl_losers(section, rl_rows)
     # Declare every symbol actually used — the EO-side resolution brings in
     # apertium-epo subcategory tags (tn, itg, dem, cnjadv, …) not listed above.
     declared = {sd.get("n") for sd in sdefs}
     for used in sorted({s_el.get("n") for s_el in section.iter("s")} - declared):
         ET.SubElement(sdefs, "sdef", n=used)
+    logging.info("Bidix epo->ido winners: %d entries restricted to ido->epo "
+                 "(r=\"LR\") under a better-attested entry with the same EO side.",
+                 rl_restricted)
     if eo_side_resolved:
         logging.info("Bidix EO-side resolution: %d entries take lemma/tags from "
                      "apertium-epo's analysis.", eo_side_resolved)
@@ -1818,7 +1902,7 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
     write_xml_file(mono, out_monodix, header_comment=_MONODIX_HEADER)
 
     logging.info(f"Building bilingual dictionary from {len(bidix_entries)} entries")
-    bidi = build_bidix(bidix_entries)
+    bidi = build_bidix(bidix_entries, mono)
     write_xml_file(bidi, out_bidix, header_comment=_BIDIX_HEADER)
     logging.info("Exported Apertium XML: %s, %s", out_monodix, out_bidix)
 
