@@ -662,3 +662,22 @@ def test_casefold_title_translations():
     assert _eo_terms(low) == ["judismo"]
     assert _eo_terms(francia) == []            # Francio is a name, not a noun
     assert _eo_terms(hundo) == ["hundo"]       # already translated: untouched
+
+
+def test_secondary_candidates_fill_empty_epo_sides():
+    """karno's second EO term viando gets an epo->ido row (nothing else
+    translates it); a bert-only candidate and one already live do not."""
+    from export_apertium import _secondary_rl_rows
+    section = ET.fromstring(
+        '<section><e><p><l>karn<s n="n"/></l><r>karno<s n="n"/></r></p></e>'
+        '<e><p><l>vesk<s n="n"/></l><r>vespero<s n="n"/></r></p></e></section>')
+    readings = {"viando": [("viando", ["n", "sg", "nom"])],
+                "vespero": [("vespero", ["n", "sg", "nom"])],
+                "fromaĝo": [("fromaĝo", ["n", "sg", "nom"])]}
+    cands = [("karno", ["io_wiktionary"]), ("viando", ["io_wiktionary"]),
+             ("vespero", ["io_wiktionary"]), ("fromaĝo", ["bert_embeddings"])]
+    n = _secondary_rl_rows(section, [("karn", "n", True, cands, "karno")],
+                           readings, None, set())
+    assert n == 1
+    new = [e for e in section if e.get("r") == "RL"]
+    assert [(e.find("p/l").text, e.find("p/r").text) for e in new] == [("karn", "viando")]

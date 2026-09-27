@@ -1559,6 +1559,95 @@ def _restrict_rl_losers(section, rows) -> int:
     return n
 
 
+# Sources whose secondary candidates may translate epo->ido (_secondary_rl_rows):
+# dictionaries, not title links, embeddings or derivation guesses.
+_FILLER_SOURCES = {"function_word_override", "function_words_seed", "closed_class_tables",
+                   "io_wiktionary", "eo_wiktionary", "fr_wiktionary_via", "en_wiktionary_via"}
+
+
+# (Ido derivation, its POS, EO verb class, EO participle tag) -- the epo->ido
+# side of build_bidix's participle and gerund rows for a base verb.
+_FILLER_VERB_DERIVATIONS = [("der_ppas", "adj", "vblex", "pp"), ("der_ppa", "adj", "vblex", "pp3"),
+                            ("der_pprs", "adj", "vbtr", "ppres"), ("der_onta", "adj", "vblex", "pp2"),
+                            ("der_ante", "adv", "vblex", "ger"), ("der_inte", "adv", "vblex", "gerpast")]
+
+
+def _secondary_rl_rows(section, fillers, readings, eo_generatable, eo_vbser) -> int:
+    """epo->ido rows for an entry's non-winning EO candidates.
+
+    Only the winner gets a bidix row, so an EO synonym another Ido word
+    lists second has no way back: karno -> karno leaves viando unknown,
+    ube -> kie leaves kien, de -> de leaves da. Such a candidate gets an
+    RL-only row when (a) no row already translates that EO side epo->ido --
+    fillers fill, never override; (b) a dictionary attests it
+    (_FILLER_SOURCES); (c) apertium-epo analyses it with the entry's POS
+    and can generate it. Among several Ido entries offering one EO side the
+    best source rank wins, then the first. A lowercase common noun takes the
+    lowercase form of a capitalized candidate apertium-epo knows as a noun."""
+    def sig(lemma, tags):
+        return lemma + "".join(f"<{t}>" for t in tags)
+
+    live = set()
+    for e in section.iter("e"):
+        r = e.find("p/r")
+        if e.get("r") != "LR" and r is not None:
+            live.add(sig(r.text or "", [x.get("n") for x in r.iter("s")]))
+    best: Dict[str, tuple] = {}
+    for i, (stem, ido_tag, common_noun, cands, winner) in enumerate(fillers):
+        want = _WINNER_POS.get(ido_tag, (ido_tag,))
+        for term, srcs in cands:
+            if term == winner or " " in term or not term:
+                continue
+            if not set(srcs) & _FILLER_SOURCES:
+                continue
+            if common_noun and term[:1].isupper() and any(
+                    ts[:1] == ["n"] for _, ts in readings.get(term.lower(), ())):
+                term = term.lower()
+            if eo_generatable is not None and term.casefold() not in eo_generatable:
+                continue
+            if _is_lowercase_name(term, readings):
+                continue
+            rs = readings.get(term)
+            if not rs or not any(ts and ts[0] in want for _, ts in rs):
+                continue
+            r_lemma, r_tags = resolve_eo_side(term, ido_tag, readings) or (term, [ido_tag])
+            k = sig(r_lemma, r_tags)
+            if k in live:
+                continue
+            rank = (source_rank(srcs), uncorroborated_derivation(srcs), i)
+            if k not in best or rank < best[k][0]:
+                best[k] = (rank, stem, ido_tag, r_lemma, r_tags, term)
+    for _, stem, ido_tag, r_lemma, r_tags, term in best.values():
+        variants = [r_tags]
+        if ido_tag == "vblex" and term in eo_vbser and r_tags != ["vbser"]:
+            variants.append(["vbser"])
+        for tags in variants:
+            e = ET.SubElement(section, "e", r="RL")
+            p = ET.SubElement(e, "p")
+            l = ET.SubElement(p, "l")
+            l.text = stem
+            ET.SubElement(l, "s", n=ido_tag).tail = ""
+            r = ET.SubElement(p, "r")
+            r.text = r_lemma
+            for t in tags:
+                ET.SubElement(r, "s", n=t).tail = ""
+        # Participles and gerunds, as build_bidix gives a base verb: without
+        # them ekzekutita falls back to the verb row (#exekut).
+        if ido_tag == "vblex" and r_lemma.endswith("i"):
+            for der_tag, pos, epo_vtag, epo_ptag in _FILLER_VERB_DERIVATIONS:
+                e = ET.SubElement(section, "e", r="RL")
+                p = ET.SubElement(e, "p")
+                l = ET.SubElement(p, "l")
+                l.text = stem
+                for t in ("vblex", der_tag, pos):
+                    ET.SubElement(l, "s", n=t).tail = ""
+                r = ET.SubElement(p, "r")
+                r.text = r_lemma
+                ET.SubElement(r, "s", n=epo_vtag).tail = ""
+                ET.SubElement(r, "s", n=epo_ptag).tail = ""
+    return len(best)
+
+
 def _plain_adjective_twins(section, twins) -> int:
     """epo->ido for an EO adjective whose only translation is a noun's
     derivative (japana -> japonian<n><der_ala>): when the Ido monodix has the
@@ -1641,6 +1730,7 @@ def build_bidix(entries, mono=None):
     rl_rows = []  # (base <e>, epo->ido quality key), see _restrict_rl_losers
     det_rows = []  # (RL determiner row, its base entry's key), see below
     adj_twins = []  # (der_ala row, der_oz row, stem, EO adj), see _plain_adjective_twins
+    fillers = []  # (stem, Ido tag, lowercase common noun?, cands, winner), see _secondary_rl_rows
     # An entry whose Ido lemma the monodix doesn't have (pacala, parolado:
     # bidix-only records) cannot generate, so it must not win epo->ido.
     ido_tagged, ido_untagged = _ido_generatable(mono) if mono is not None else (None, None)
@@ -1983,6 +2073,9 @@ def build_bidix(entries, mono=None):
                r_tags[:1] != l_tags[:1])
         rl_rows.append((en, key))
         det_rows.extend((e_an, key) for e_an in det_twins)
+        if not dead and lm_lower not in _PERSONAL_PRONOUNS and l_tags:
+            fillers.append((stem, ido_tag, clean_lm == lm_lower and ido_tag == "n",
+                            cands, epo))
 
         # epo→ido vbser fix: apertium-epo conjugates the copula + some
         # intransitive/inchoative verbs as `vbser` (not `vblex`), so the bidix's
@@ -2184,6 +2277,9 @@ def build_bidix(entries, mono=None):
     case_twins = _emit_case_twins(section)
     logging.info("Bidix: %d epo->ido case/number twins for pronouns and determiners.",
                  case_twins)
+    filled = _secondary_rl_rows(section, fillers, eo_readings, eo_generatable, eo_vbser)
+    logging.info("Bidix: %d EO words with no epo->ido row translated by a "
+                 "dictionary-attested secondary candidate.", filled)
     # Declare every symbol actually used — the EO-side resolution brings in
     # apertium-epo subcategory tags (tn, itg, dem, cnjadv, …) not listed above.
     declared = {sd.get("n") for sd in sdefs}
