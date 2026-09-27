@@ -93,9 +93,10 @@ _IDO_REL_INT_PRN = {'qua', 'qui', 'quo', 'quan', 'quin', 'quon',
 # rule). The correlative grid emits each as both the determiner row (adj) and
 # the individuo row (prn); forcing adj merges the prn entry into the adj one.
 # The plural forms (iti/ti/ici) and the -o thing-forms (ito/ico/to -> tio) keep
-# their prn reading — they are standalone pronouns, already correct. (The
-# proximal ica is added once Stage B supplies its ic<adj>->tiu bidix entry.)
-_IDO_DEM_DET = {'ita', 'ta'}
+# their prn reading — they are standalone pronouns, already correct. The
+# proximal ica translates to the multiword determiner ĉi tiu, which
+# export_apertium resolves against apertium-epo like any single word.
+_IDO_DEM_DET = {'ita', 'ta', 'ica'}
 
 
 # BERT vocab pre-filter: the source vocab includes a lot of non-Ido garbage

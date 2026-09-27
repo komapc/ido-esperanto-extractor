@@ -31,6 +31,7 @@ lexical string, and the `<s n="x"/>` spelling must be exact.
 """
 import argparse
 import logging
+import math
 import os
 import re
 from pathlib import Path
@@ -678,9 +679,12 @@ def _load_eo_readings(surfaces: Iterable[str], automorf: Path = _EO_AUTOMORF) ->
     in lt-proc's own reading order. Empty dict (→ resolution skipped) when the
     analyser isn't built, matching the optional-input policy of the gate."""
     import subprocess
-    # Single words only (resolve_eo_side skips multiword); letters/hyphen so
-    # nothing needs escaping in lt-proc's stream format.
-    surfaces = sorted({s for s in surfaces if s and re.fullmatch(r"[^\W\d_]+(?:-[^\W\d_]+)*", s)})
+    # Letters, hyphens and single spaces, so nothing needs escaping in
+    # lt-proc's stream format. A multiword (ĉi tiu, ĉi tio) gets readings only
+    # when apertium-epo has it as one unit: otherwise its words come back as
+    # separate units under their own surfaces.
+    surfaces = sorted({s for s in surfaces
+                       if s and re.fullmatch(r"[^\W\d_]+(?:[- ][^\W\d_]+)*", s)})
     if not automorf.exists():
         logging.warning("apertium-epo analyser not found at %s — skipping EO-side "
                         "tag resolution (closed-class words may generate '#').", automorf)
@@ -754,13 +758,17 @@ def resolve_eo_side(epo: str, ido_tag: Optional[str], readings: Dict[str, list])
     """Return (lemma, tags) for the bidix <r> side, or None to keep the
     default (epo, [ido_tag]).
 
+    A multiword EO side is resolved like a word when apertium-epo analyses it
+    as one unit (ica -> ĉi tiu<det><dem><sg><nom>); otherwise it has no
+    readings and keeps the default.
+
     Keeps the default when apertium-epo agrees with it — an open-class Ido tag
     with a same-POS reading, or a closed-class reading that is exactly the
     bare tag. Otherwise returns the first apertium-epo reading (lt-proc order)
     of the most preferred compatible POS; its lemma may differ from the
     surface (kion → kio<prn><itg><sg><acc>).
     """
-    if not ido_tag or " " in epo:
+    if not ido_tag:
         return None
     rs = readings.get(epo)
     if not rs:
@@ -820,6 +828,44 @@ def pos_valid(cands, ido_tag: Optional[str], eo_generatable: Optional[set],
     return ok or gen
 
 
+_EO_ADVERBIAL = {"adv", "preadv", "cnjadv"}
+
+
+def _adverbial_o_lemmas(records, readings: Dict[str, list]) -> set:
+    """Lowercase Ido lemmas ending in -o that are adverbs, not nouns.
+
+    The -o ending makes a noun of every such record (build_one_big_bidix
+    overrides even io.wiktionary's own adv for tro), so tro and pro quo
+    analyse as tr<n>/pro qu<n>, and their EO sides tro<n>/kial<n> neither
+    generate nor match apertium-epo's tro<adv>/kial<adv>. apertium-epo
+    decides, over the EO translations of all the lemma's noun records: when
+    each analysed one is an adverb, the lemma is an adverb if none of them
+    is also a noun (pro quo -> kial, pro ito -> tial) or if another record
+    already attests it as adv (tro -> tro, which apertium-epo also knows as
+    a noun). kelko (-> iom, but also io) stays a noun."""
+    if not readings:
+        return set()
+    attested = {(r.get("lemma") or "").strip().lower() for r in records
+                if r.get("pos") == "adv"}
+    terms: Dict[str, set] = {}
+    for r in records:
+        lm = (r.get("lemma") or "").strip()
+        if r.get("pos") != "n" or not lm[:1].islower() or not lm.lower().endswith("o"):
+            continue
+        terms.setdefault(lm.lower(), set()).update(
+            tr.get("term") for s in (r.get("senses") or [])
+            for tr in (s.get("translations") or []) if tr.get("lang") == "eo")
+    out = set()
+    for lm, ts in terms.items():
+        rs = [readings[t] for t in ts if t in readings]
+        if not rs or not all(any(tags and tags[0] in _EO_ADVERBIAL for _, tags in v) for v in rs):
+            continue
+        nominal = any(tags and tags[0] in ("n", "np") for v in rs for _, tags in v)
+        if not nominal or lm in attested:
+            out.add(lm)
+    return out
+
+
 def _entry_ido_tag(e) -> Optional[str]:
     """The Ido tag the bidix entry will carry (same fallback as the emit loop)."""
     raw_par = _record_paradigm(e) or infer_paradigm(e)
@@ -870,7 +916,73 @@ def _load_all_eo_readings(eo_generatable: Optional[set]) -> Dict[str, list]:
 _ALL_READINGS: Optional[Dict[str, list]] = None
 
 
-def build_monodix(entries):
+_PUNCT_TAGS = ("sent", "cm", "guio", "apos", "lpar", "rpar", "lquot", "rquot")
+_PUNCT_RE = re.compile(r'<e[^>]*>\s*(?:<re>\[([^\]]*(?:\\\][^\]]*)*)\]</re>)?\s*<p><l>([^<]*)</l>\s*'
+                       r'<r>([^<]*)<s n="(%s)"/></r></p></e>' % "|".join(_PUNCT_TAGS))
+
+
+def _load_eo_punctuation(dix_path: Path = _EO_EPO_DIX) -> list:
+    """[(mark, tag)] for the punctuation apertium-epo analyses as a unit
+    (,<cm>  -<guio>  ;<sent>  (<lpar> …), literal entries and single-character
+    regex classes alike, minus the sentence marks the Ido monodix already
+    analyses. epo->ido needs a bidix row and an Ido generation entry for each,
+    or every comma prints as '@,'."""
+    if not dix_path.exists():
+        return []
+    marks = set()
+    for m in _PUNCT_RE.finditer(dix_path.read_text(encoding="utf-8")):
+        cls, lit, rtxt, tag = m.groups()
+        if cls is not None:
+            marks.update((c, tag) for c in cls.replace("\\", ""))
+        elif lit and lit == rtxt:
+            marks.add((lit, tag))
+    return sorted(marks - {(c, "sent") for c in _IDO_SENT_MARKS})
+
+
+_IDO_SENT_MARKS = (".", "?", "!", "…")
+
+
+_IO_FREQUENCY = Path(__file__).resolve().parents[1] / "work/io_wiki_frequency.json"
+
+
+def _load_io_frequency(path: Path = _IO_FREQUENCY) -> Dict[str, int]:
+    """{token: count} from the io.wikipedia frequency list (stage 11e's
+    corpus), or {} when it hasn't been built."""
+    if not path.exists():
+        logging.warning("io.wikipedia frequency list not found at %s — same-analysis "
+                        "monodix entries keep generating every form.", path)
+        return {}
+    data = read_json(path)
+    return {it["token"]: it["count"] for it in data.get("items", []) if it.get("token")}
+
+
+def _generation_losers(items, freq: Dict[str, int]) -> set:
+    """Lemmas that must stay analysis-only (r="LR") in the monodix.
+
+    Two entries on one stem whose paradigms end differently but carry the
+    same tag (ank __adv, anke e__adv) share the analysis ank<adv>, so
+    generating it yields both forms: "anke/ank". Keep the form io.wikipedia
+    uses most (anke 7076, ank 1613; forsan 244, forsane 0) as the one that
+    generates; with no corpus evidence, or a tie, leave the group alone."""
+    if not freq:
+        return set()
+    groups: Dict[tuple, list] = {}
+    for it in items:
+        tag = map_s_tag(it["par"], None)
+        if tag:
+            groups.setdefault((it["stem"], tag), []).append(it)
+    losers = set()
+    for members in groups.values():
+        if len({it["par"] for it in members}) < 2:
+            continue
+        counts = sorted((freq.get(it["lm"].lower(), 0), it["lm"]) for it in members)
+        if counts[-1][0] == 0 or counts[-1][0] == counts[-2][0]:
+            continue
+        losers.update(lm for _, lm in counts[:-1])
+    return losers
+
+
+def build_monodix(entries, freq: Optional[Dict[str, int]] = None):
     """Ido monodix. One <e> per lemma; the paradigm does all the inflection.
 
     The interesting decisions are (a) which of several same-lemma records
@@ -950,13 +1062,25 @@ def build_monodix(entries):
     # boundary. Clause punctuation (, ; :) is deliberately left as blanks —
     # rules legitimately match across it (adj , adj nom chains).
     punct_section = ET.SubElement(dictionary, "section", id="punct", type="inconditional")
-    for mark in (".", "?", "!", "…"):
+    for mark in _IDO_SENT_MARKS:
         pe = ET.SubElement(punct_section, "e")
         pp = ET.SubElement(pe, "p")
         ET.SubElement(pp, "l").text = mark
         pr = ET.SubElement(pp, "r")
         pr.text = mark
         ET.SubElement(pr, "s", n="sent")
+    # The rest of apertium-epo's punctuation units (,<cm> …) are generation-
+    # only here: epo->ido must print them, while Ido analysis keeps treating
+    # them as blanks for the reason above.
+    for mark, tag in _load_eo_punctuation():
+        if tag not in {sd.get("n") for sd in sdefs}:
+            ET.SubElement(sdefs, "sdef", n=tag)
+        pe = ET.SubElement(punct_section, "e", r="RL")
+        pp = ET.SubElement(pe, "p")
+        ET.SubElement(pp, "l").text = mark
+        pr = ET.SubElement(pp, "r")
+        pr.text = mark
+        ET.SubElement(pr, "s", n=tag)
 
     # --- Phase 1: one record per lemma. Lemma alone is the key (not lemma+POS)
     # by design: when sources disagree on a word's paradigm we emit the most
@@ -1049,6 +1173,10 @@ def build_monodix(entries):
 
     # Sort final list by lemma
     final_list.sort(key=lambda x: (x['lm'].lower(), x['lm']))
+    analysis_only = _generation_losers(final_list, freq or {})
+    if analysis_only:
+        logging.info("Monodix: %d entries analysis-only under a same-analysis form "
+                     "io.wikipedia uses more", len(analysis_only))
 
     # --- Phase 3: emit XML. Sorted by lemma so the .dix diff between regens
     # is reviewable.
@@ -1080,6 +1208,8 @@ def build_monodix(entries):
             continue
 
         en = ET.SubElement(section, "e", lm=clean_lm)
+        if clean_lm in analysis_only:
+            en.set("r", "LR")
         i = ET.SubElement(en, "i")
         i.text = stem
         par_elem = ET.SubElement(en, "par")
@@ -1198,6 +1328,94 @@ def _eo_candidates(e):
     return [(t, sorted(by_term[t])) for t in order]
 
 
+def _eo_round_trips(analyses) -> list:
+    """The subset of `analyses` [(lemma, tags)] apertium-epo both generates
+    and analyses back to the same reading. Empty when it isn't built."""
+    import subprocess
+    autogen = _EO_AUTOMORF.with_name("epo.autogen.bin")
+    if not analyses or not autogen.exists() or not _EO_AUTOMORF.exists():
+        return []
+    try:
+        gen = subprocess.run(["lt-proc", "-z", "-g", str(autogen)],
+                             input="\0".join(f"^{lem}<{'><'.join(t)}>$" for lem, t in analyses) + "\0",
+                             capture_output=True, text=True, check=True).stdout.split("\0")
+        # One clean form or nothing: '#…' (ungeneratable) and 'oni/onin'
+        # (two forms) are not a single surface, and would break the stream.
+        surf = ["" if re.search(r"[#/^$<>\[\]\\@*{}]", g) else g.strip()
+                for g in gen[:len(analyses)]]
+        back = subprocess.run(["lt-proc", "-z", str(_EO_AUTOMORF)],
+                              input="\0".join(surf) + "\0",
+                              capture_output=True, text=True, check=True).stdout.split("\0")
+    except (OSError, subprocess.CalledProcessError) as e:
+        logging.warning("apertium-epo round trip failed (%s) — no case twins.", e)
+        return []
+    ok = []
+    for (lem, tags), srf, an in zip(analyses, surf, back):
+        if not srf:
+            continue
+        if f"/{lem}<{'><'.join(tags)}>" in an:
+            ok.append((lem, tags))
+    return ok
+
+
+def _emit_case_twins(section) -> int:
+    """epo->ido rows for the accusative of pronouns and determiners.
+
+    Their EO side is a full analysis (tio<prn><tn><sg><nom>, from
+    resolve_eo_side), so tion (…<acc>) matches nothing and prints @tio.
+    Each row epo->ido may use (not r="LR") gets an RL twin per case/number
+    form apertium-epo actually analyses: nom -> acc, and an analysis-only
+    determiner's <sp> -> sg/pl, nom/acc (ĉiun, ĉiujn). The Ido side is
+    unchanged -- Ido marks neither on these words."""
+    cands = []
+    for e in list(section.iter("e")):
+        if e.get("r") == "LR" or e.find("p") is None:
+            continue
+        r = e.find("p/r")
+        tags = [x.get("n") for x in r.iter("s")]
+        if not tags or tags[0] not in ("prn", "det"):
+            continue
+        if "sp" in tags:
+            i = tags.index("sp")
+            variants = [tags[:i] + [n, c] + tags[i + 1:] for n in ("sg", "pl") for c in ("nom", "acc")]
+        elif tags[-1] == "nom":
+            variants = [tags[:-1] + ["acc"]]
+        else:
+            continue
+        for v in variants:
+            cands.append((e, r.text or "", v))
+    ok = set((lem, tuple(t)) for lem, t in _eo_round_trips(
+        list({(lem, tuple(t)) for _, lem, t in cands})))
+    # An EO form some row already translates epo->ido (kion <- quon) keeps
+    # that row: no twin of the nominative's Ido word (quo) competes with it.
+    have = {(x.find("p/r").text or "") + "".join(f"<{s.get('n')}>" for s in x.find("p/r").iter("s"))
+            for x in section.iter("e") if x.find("p") is not None and x.get("r") != "LR"}
+    done = set()
+    n = 0
+    for e, lem, v in cands:
+        if (lem, tuple(v)) not in ok:
+            continue
+        l_old = e.find("p/l")
+        l_sig = (l_old.text or "") + "".join(f"<{s.get('n')}>" for s in l_old.iter("s"))
+        r_sig = lem + "".join(f"<{t}>" for t in v)
+        if r_sig in have or (l_sig, r_sig) in done:
+            continue
+        done.add((l_sig, r_sig))
+        tw = ET.Element("e", r="RL")
+        p = ET.SubElement(tw, "p")
+        l = ET.SubElement(p, "l")
+        l.text = l_old.text
+        for s in l_old.iter("s"):
+            ET.SubElement(l, "s", n=s.get("n")).tail = ""
+        rr = ET.SubElement(p, "r")
+        rr.text = lem
+        for t in v:
+            ET.SubElement(rr, "s", n=t).tail = ""
+        section.append(tw)
+        n += 1
+    return n
+
+
 def _restrict_rl_losers(section, rows) -> int:
     """Choose the epo->ido translation of each EO side explicitly.
 
@@ -1213,12 +1431,11 @@ def _restrict_rl_losers(section, rows) -> int:
     sources would be one, but it put po over ye for je).
 
     Entries generated from a base entry (un<n><der_ala> -> unua, emitted
-    right after it) and entries the monodix lacks are one class, ranked
-    after every live sourced entry: a guessed derivation must not beat
-    unesma -> unua. Within that class there is no order -- the derivation
-    can generate a wrong word (lern<der_pres> -> lerni for lernanto) as
-    easily as the dead entry a gap -- so a group without a live sourced
-    entry is left as it was.
+    right after it) rank after every live sourced entry: a guessed
+    derivation must not beat unesma -> unua. They still beat entries the
+    monodix lacks, which only generate a gap (lernanto -> #lernant where
+    lern<vblex><der_pres> gives lernanto) -- unless their own base is one of
+    those, and then they are dead too.
 
     Entries before the first base (numbers, punctuation) and entries already
     restricted either way are not grouped.
@@ -1233,7 +1450,7 @@ def _restrict_rl_losers(section, rows) -> int:
         elif cur is None or e.find("p") is None:
             continue
         else:
-            key = (True,)
+            key = (True,) if cur[0] else (False, math.inf)
         if e.get("r"):
             continue
         r = e.find("p/r")
@@ -1348,7 +1565,7 @@ def build_bidix(entries, mono=None):
     # Identity mappings for the sentence-punctuation LUs emitted by the
     # monodix punct section (see build_monodix) — without them lt-proc -b
     # marks every period '@'.
-    for mark in (".", "?", "!", "…"):
+    for mark in _IDO_SENT_MARKS:
         pe = ET.SubElement(section, "e")
         pp = ET.SubElement(pe, "p")
         pl = ET.SubElement(pp, "l")
@@ -1357,6 +1574,17 @@ def build_bidix(entries, mono=None):
         pr = ET.SubElement(pp, "r")
         pr.text = mark
         ET.SubElement(pr, "s", n="sent")
+    # epo->ido only: the Ido side generates them (build_monodix) but never
+    # analyses them.
+    for mark, tag in _load_eo_punctuation():
+        pe = ET.SubElement(section, "e", r="RL")
+        pp = ET.SubElement(pe, "p")
+        pl = ET.SubElement(pp, "l")
+        pl.text = mark
+        ET.SubElement(pl, "s", n=tag)
+        pr = ET.SubElement(pp, "r")
+        pr.text = mark
+        ET.SubElement(pr, "s", n=tag)
 
     # Use top-level map_s_tag
 
@@ -1808,6 +2036,9 @@ def build_bidix(entries, mono=None):
         for e, k in members:
             if k > best:
                 section.remove(e)
+    case_twins = _emit_case_twins(section)
+    logging.info("Bidix: %d epo->ido case/number twins for pronouns and determiners.",
+                 case_twins)
     # Declare every symbol actually used — the EO-side resolution brings in
     # apertium-epo subcategory tags (tn, itg, dem, cnjadv, …) not listed above.
     declared = {sd.get("n") for sd in sdefs}
@@ -1860,6 +2091,17 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
     # and tracking a separate index of function_word_override entries (authoritative
     # for fundamental closed-class words whose Wiktionary harvest produces wrong
     # POS/paradigm or multi-word EO targets that get filtered).
+    # Adverbs the -o ending made nouns (tro, pro quo): every noun record of
+    # the lemma, in both inputs, becomes an invariable adverb.
+    adverbial = _adverbial_o_lemmas(list(entries) + list(bidix_entries),
+                                    _load_all_eo_readings(_load_eo_generatable_lemmas()))
+    for rec in list(entries) + list(bidix_entries):
+        if (rec.get("lemma") or "").strip().lower() in adverbial and rec.get("pos") in ("n", None):
+            rec["pos"] = "adv"
+            rec["morphology"] = {"paradigm": "__adv", "features": {}}
+    if adverbial:
+        logging.info("Adverbs retagged from the -o noun default: %s", ", ".join(sorted(adverbial)))
+
     bidix_by_lemma = {}
     bidix_override_by_lemma = {}
     for be in bidix_entries:
@@ -1955,7 +2197,7 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
                         if (e.get('lemma') or '').strip() not in name_only]
         logging.info("Monodix: dropped %d entries translated only by lowercase names",
                      before - len(mono_entries))
-    mono = build_monodix(mono_entries)
+    mono = build_monodix(mono_entries, _load_io_frequency())
     write_xml_file(mono, out_monodix, header_comment=_MONODIX_HEADER)
 
     logging.info(f"Building bilingual dictionary from {len(bidix_entries)} entries")
