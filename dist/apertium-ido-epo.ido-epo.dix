@@ -2876,6 +2876,7 @@
     <e><p><l>amazon<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>amazona<s n="adj"/></r></p></e>
     <e><p><l>amazon<s n="n"/><s n="der_aro"/><s n="n"/></l><r>amazonaro<s n="n"/></r></p></e>
     <e><p><l>amb<s n="adj"/></l><r>ambaŭ<s n="prn"/><s n="tn"/><s n="pl"/><s n="nom"/></r></p></e>
+    <e r="RL"><p><l>amb<s n="adj"/></l><r>ambaŭ<s n="det"/><s n="ind"/><s n="sp"/></r></p></e>
     <e><p><l>ambaj<s n="n"/></l><r>perifrazo<s n="n"/></r></p></e>
     <e><p><l>ambaj<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>perifraza<s n="adj"/></r></p></e>
     <e><p><l>ambaj<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>perifraza<s n="adj"/></r></p></e>
@@ -34272,6 +34273,7 @@
     <e><p><l>istm<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>istma<s n="adj"/></r></p></e>
     <e><p><l>istm<s n="n"/><s n="der_aro"/><s n="n"/></l><r>istmaro<s n="n"/></r></p></e>
     <e><p><l>it<s n="adj"/></l><r>tiu<s n="prn"/><s n="tn"/><s n="sg"/><s n="nom"/></r></p></e>
+    <e r="RL"><p><l>it<s n="adj"/></l><r>tiu<s n="det"/><s n="dem"/><s n="sp"/></r></p></e>
     <e><p><l>ital<s n="adj"/></l><r>itala<s n="adj"/></r></p></e>
     <e><p><l>ital<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>italeco<s n="n"/></r></p></e>
     <e><p><l>Italia<s n="np"/></l><r>Italio<s n="np"/><s n="loc"/></r></p></e>
@@ -54853,6 +54855,8 @@
     <e><p><l>nuk<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>nuka<s n="adj"/></r></p></e>
     <e><p><l>nuk<s n="n"/><s n="der_aro"/><s n="n"/></l><r>nukaro<s n="n"/></r></p></e>
     <e r="LR"><p><l>nul<s n="adj"/></l><r>neniu<s n="prn"/><s n="tn"/><s n="sg"/><s n="nom"/></r></p></e>
+    <e r="RL"><p><l>nul<s n="adj"/></l><r>neniu<s n="det"/><s n="ind"/><s n="sp"/></r></p></e>
+    <e r="RL"><p><l>nul<s n="adj"/></l><r>neniu<s n="det"/><s n="qnt"/><s n="sp"/></r></p></e>
     <e r="LR"><p><l>nulal<s n="adj"/></l><r>nenia<s n="adj"/></r></p></e>
     <e><p><l>nulal<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>nenieco<s n="n"/></r></p></e>
     <e><p><l>nulalok<s n="adv"/></l><r>nenie<s n="adv"/></r></p></e>
@@ -55806,6 +55810,8 @@
     <e><p><l>omlet<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>omleta<s n="adj"/></r></p></e>
     <e><p><l>omlet<s n="n"/><s n="der_aro"/><s n="n"/></l><r>omletaro<s n="n"/></r></p></e>
     <e><p><l>omn<s n="adj"/></l><r>ĉiu<s n="det"/><s n="ind"/><s n="sg"/><s n="nom"/></r></p></e>
+    <e r="RL"><p><l>omn<s n="adj"/></l><r>ĉiu<s n="det"/><s n="ind"/><s n="sp"/></r></p></e>
+    <e r="RL"><p><l>omn<s n="adj"/></l><r>ĉiu<s n="det"/><s n="qnt"/><s n="sp"/></r></p></e>
     <e><p><l>omna du<s n="n"/></l><r>ambaŭ<s n="n"/></r></p></e>
     <e><p><l>omna du<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>ambaŭa<s n="adj"/></r></p></e>
     <e><p><l>omna du<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>ambaŭa<s n="adj"/></r></p></e>
@@ -77713,6 +77719,7 @@
     <e><p><l>Syr Darya<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Sirdarja<s n="adj"/></r></p></e>
     <e><p><l>Syr Darya<s n="n"/><s n="der_aro"/><s n="n"/></l><r>Sirdarjaro<s n="n"/></r></p></e>
     <e><p><l>t<s n="adj"/></l><r>tiu<s n="prn"/><s n="tn"/><s n="sg"/><s n="nom"/></r></p></e>
+    <e r="RL"><p><l>t<s n="adj"/></l><r>tiu<s n="det"/><s n="dem"/><s n="sp"/></r></p></e>
     <e><p><l>Tabak<s n="n"/></l><r>Tabako<s n="n"/></r></p></e>
     <e><p><l>Tabak<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Tabaka<s n="adj"/></r></p></e>
     <e><p><l>Tabak<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Tabaka<s n="adj"/></r></p></e>

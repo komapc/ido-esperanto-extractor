@@ -459,3 +459,17 @@ def test_epo_to_ido_dead_and_generated_are_not_ordered():
     mono = build_monodix([noun])
     rows = _rows(ET.tostring(build_bidix([noun, dead], mono), encoding='unicode'), 'valora')
     assert len(rows) == 3 and all(e.get('r') is None for e in rows)
+
+
+def test_ido_determiner_adjective_gets_epo_determiner_rows():
+    """neniu is analysed as neniu<det><ind><sp> before a noun, a reading the
+    generator doesn't round-trip, so resolution keeps the pronoun for
+    ido->epo; epo->ido gets RL rows from the determiner readings to nula."""
+    from export_apertium import _load_all_eo_readings, _load_eo_generatable_lemmas
+    if not _load_all_eo_readings(_load_eo_generatable_lemmas()):
+        return  # sibling apertium-epo build unavailable in this environment
+    entries = [_rec("nula", "a__adj", "adj", "neniu", ["closed_class_tables"])]
+    xml_str = ET.tostring(build_bidix(entries, build_monodix(entries)), encoding='unicode')
+    assert ('<e r="RL"><p><l>nul<s n="adj" /></l>'
+            '<r>neniu<s n="det" /><s n="ind" /><s n="sp" /></r></p></e>') in xml_str
+    assert '<r>neniu<s n="prn" />' in xml_str
