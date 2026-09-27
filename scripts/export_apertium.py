@@ -541,24 +541,30 @@ def _emit_prpers_rl_entries(section):
 _EO_EPO_DIX = Path(__file__).resolve().parents[2] / "apertium-epo/apertium-epo.epo.dix"
 
 
-def _load_eo_vbser_lemmas(dix_path: Path = _EO_EPO_DIX) -> set:
-    """Single-word Esperanto verb lemmas apertium-epo conjugates as `vbser`."""
+def _load_eo_verb_class_lemmas(tag: str, dix_path: Path = _EO_EPO_DIX) -> set:
+    """Single-word Esperanto verb lemmas whose apertium-epo paradigm emits
+    <s n="{tag}"/> (vbser, vbntr)."""
     if not dix_path.exists():
-        logging.warning("apertium-epo monodix not found at %s — skipping vbser "
-                        "verb-class bidix entries (epo→ido copula stays @).", dix_path)
+        logging.warning("apertium-epo monodix not found at %s — skipping %s "
+                        "verb-class bidix entries (epo→ido stays @).", dix_path, tag)
         return set()
     try:
         root = ET.parse(dix_path).getroot()
     except ET.ParseError as e:
-        logging.warning("Could not parse %s (%s) — skipping vbser entries.", dix_path, e)
+        logging.warning("Could not parse %s (%s) — skipping %s entries.", dix_path, e, tag)
         return set()
-    vbser_pars = {pd.get("n") for pd in root.iter("pardef")
-                  if any(s.get("n") == "vbser" for s in pd.iter("s"))}
+    pars = {pd.get("n") for pd in root.iter("pardef")
+            if any(s.get("n") == tag for s in pd.iter("s"))}
     lemmas = {e.get("lm") for e in root.iter("e")
               if e.get("lm") and " " not in e.get("lm")
-              and any(p.get("n") in vbser_pars for p in e.findall("par"))}
-    logging.info("Loaded %d apertium-epo vbser verb lemmas for epo→ido bidix.", len(lemmas))
+              and any(p.get("n") in pars for p in e.findall("par"))}
+    logging.info("Loaded %d apertium-epo %s verb lemmas for epo→ido bidix.", len(lemmas), tag)
     return lemmas
+
+
+def _load_eo_vbser_lemmas(dix_path: Path = _EO_EPO_DIX) -> set:
+    """Single-word Esperanto verb lemmas apertium-epo conjugates as `vbser`."""
+    return _load_eo_verb_class_lemmas("vbser", dix_path)
 
 
 def _load_eo_generatable_lemmas(dix_path: Path = _EO_EPO_DIX) -> Optional[set]:
@@ -1177,6 +1183,7 @@ def build_bidix(entries):
     """
 
     eo_vbser = _load_eo_vbser_lemmas()
+    eo_vbntr = _load_eo_verb_class_lemmas("vbntr")
     eo_generatable = _load_eo_generatable_lemmas()
     ungeneratable_skips = 0
     eo_readings = _load_all_eo_readings(eo_generatable)
@@ -1563,6 +1570,26 @@ def build_bidix(entries):
                 r_der.text = epo  # Epo verb lemma (e.g. 'krei'), not a suffix combo
                 ET.SubElement(r_der, "s", n=epo_vtag).tail = ""
                 ET.SubElement(r_der, "s", n=epo_ptag).tail = ""
+            # epo→ido for intransitive verbs: apertium-epo tags their -anta as
+            # <vbntr><ppres> and their -inta as <vbntr><pp> -- the same tags that
+            # mean -ata/-ita on transitive verbs, so the rows above (vbtr ppres ->
+            # der_pprs, vblex pp -> der_ppas) never match them and venanta /
+            # venintajn came out @. RL-only twins map them to the active Ido
+            # participles; ido→epo keeps its entries above.
+            if epo in eo_vbntr:
+                for der_tag, epo_ptag in [('der_ppra', 'ppres'), ('der_ppa', 'pp')]:
+                    e_der = ET.SubElement(section, "e")
+                    e_der.set("r", "RL")
+                    p_der = ET.SubElement(e_der, "p")
+                    l_der = ET.SubElement(p_der, "l")
+                    l_der.text = stem
+                    ET.SubElement(l_der, "s", n="vblex").tail = ""
+                    ET.SubElement(l_der, "s", n=der_tag).tail = ""
+                    ET.SubElement(l_der, "s", n="adj").tail = ""
+                    r_der = ET.SubElement(p_der, "r")
+                    r_der.text = epo
+                    ET.SubElement(r_der, "s", n="vbntr").tail = ""
+                    ET.SubElement(r_der, "s", n=epo_ptag).tail = ""
             # Participial adverbs (gerunds): der_ante(-ante)/der_inte(-inte) route
             # through Epo's own <ger>/<gerpast> tags, generatable for any verb stem
             # (kuri<vblex><ger> -> kurante), same generator-route as der_onta above.
