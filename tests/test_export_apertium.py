@@ -451,14 +451,33 @@ def test_epo_to_ido_live_entry_beats_generated_derivation():
     assert by[('n', 'der_ala', 'adj')] == 'LR' and by[('n', 'der_oz', 'adj')] == 'LR'
 
 
-def test_epo_to_ido_dead_and_generated_are_not_ordered():
+def test_epo_to_ido_generated_beats_dead():
     """valoroza (absent from the monodix) and valoro's generated -ala/-oza
-    rows all map to valora: no live sourced entry, so nothing is restricted."""
+    rows all map to valora: the dead entry can only print a gap, so the
+    generated rows (which generate) win."""
     noun = _rec("valoro", "o__n", "n", "valoro", ["io_wiktionary"])
     dead = _rec("valoroza", "a__adj", "adj", "valora", ["io_wiktionary"])
     mono = build_monodix([noun])
     rows = _rows(ET.tostring(build_bidix([noun, dead], mono), encoding='unicode'), 'valora')
-    assert len(rows) == 3 and all(e.get('r') is None for e in rows)
+    by = {tuple(s.get('n') for s in e.find('p/l')): e.get('r') for e in rows}
+    assert by[('adj',)] == 'LR'
+    assert by[('n', 'der_ala', 'adj')] is None and by[('n', 'der_oz', 'adj')] is None
+
+
+def test_generated_rows_of_a_dead_base_are_dead():
+    """A derivation generated from an entry the monodix lacks cannot generate
+    either: it ranks with the dead, not above them."""
+    from export_apertium import _restrict_rl_losers
+    section = ET.fromstring(
+        '<section>'
+        '<e><p><l>a<s n="n"/></l><r>x<s n="n"/></r></p></e>'
+        '<e><p><l>a<s n="n"/><s n="der_aro"/><s n="n"/></l><r>y<s n="n"/></r></p></e>'
+        '<e><p><l>b<s n="n"/></l><r>y<s n="n"/></r></p></e>'
+        '</section>')
+    base = [e for e in section if e.find('p/l').text in ('a', 'b') and len(e.find('p/l')) == 1]
+    # a is dead (True, …); b is dead too: the generated row must not beat b.
+    assert _restrict_rl_losers(section, [(base[0], (True, 0, False, False)),
+                                         (base[1], (True, 0, False, False))]) == 0
 
 
 def test_ido_determiner_adjective_gets_epo_determiner_rows():
@@ -473,3 +492,76 @@ def test_ido_determiner_adjective_gets_epo_determiner_rows():
     assert ('<e r="RL"><p><l>nul<s n="adj" /></l>'
             '<r>neniu<s n="det" /><s n="ind" /><s n="sp" /></r></p></e>') in xml_str
     assert '<r>neniu<s n="prn" />' in xml_str
+
+
+def test_adverbial_o_lemmas():
+    """-o records whose EO translations apertium-epo reads only as adverbs are
+    adverbs (pro quo -> kial); a noun reading needs an adv attestation of the
+    lemma (tro); a non-adverb translation keeps the noun (kelko -> io)."""
+    from export_apertium import _adverbial_o_lemmas
+    readings = {"kial": [("kial", ["adv"])],
+                "tro": [("tro", ["adv"]), ("tro", ["n", "sg", "nom"])],
+                "iom": [("iom", ["adv"])], "io": [("io", ["prn", "tn", "sg", "nom"])],
+                "adverbo": [("adverbo", ["n", "sg", "nom"])]}
+    recs = [_rec("pro quo", "o__n", "n", "kial", ["io_wiktionary"]),
+            _rec("tro", "o__n", "n", "tro", ["io_wiktionary"]),
+            {"lemma": "tro", "pos": "adv"},
+            _rec("kelko", "o__n", "n", "iom", ["io_wiktionary"]),
+            _rec("kelko", "o__n", "n", "io", ["io_wiktionary"]),
+            _rec("adverbo", "o__n", "n", "adverbo", ["io_wiktionary"]),
+            {"lemma": "adverbo", "pos": "adv"}]
+    assert _adverbial_o_lemmas(recs, readings) == {"pro quo", "tro"}
+
+
+def test_generation_losers_keep_the_corpus_form():
+    """ank (__adv) and anke (e__adv) both analyse as ank<adv>; only the form
+    io.wikipedia uses more generates. No corpus evidence: no change."""
+    from export_apertium import _generation_losers
+    items = [{"lm": "ank", "stem": "ank", "par": "__adv"},
+             {"lm": "anke", "stem": "ank", "par": "e__adv"},
+             {"lm": "forsan", "stem": "forsan", "par": "__adv"},
+             {"lm": "forsane", "stem": "forsan", "par": "e__adv"},
+             {"lm": "bone", "stem": "bon", "par": "e__adv"}]
+    assert _generation_losers(items, {"anke": 7076, "ank": 1613, "forsan": 244}) == {"ank", "forsane"}
+    assert _generation_losers(items, {}) == set()
+    mono = build_monodix([{"lemma": "ank", "pos": "adv", "morphology": {"paradigm": "__adv"}},
+                          {"lemma": "anke", "pos": "adv", "morphology": {"paradigm": "e__adv"}}],
+                         {"anke": 10, "ank": 1})
+    r = {e.get("lm"): e.get("r") for e in mono.iter("e") if e.get("lm")}
+    assert r["ank"] == "LR" and r["anke"] is None
+
+
+def test_eo_punctuation_units_get_epo_to_ido_rows():
+    """apertium-epo analyses , as ,<cm>: without a bidix row and an Ido
+    generation entry every comma printed as '@,'. Both are RL-only, so Ido
+    analysis still treats the comma as a blank."""
+    from export_apertium import _load_eo_punctuation, _EO_EPO_DIX
+    if not _EO_EPO_DIX.exists():
+        return
+    marks = _load_eo_punctuation()
+    assert (",", "cm") in marks and (";", "sent") in marks and (".", "sent") not in marks
+    entries = [_rec("domo", "o__n", "n", "domo", ["io_wiktionary"])]
+    mono = ET.tostring(build_monodix(entries), encoding='unicode')
+    bidi = ET.tostring(build_bidix(entries), encoding='unicode')
+    assert '<e r="RL"><p><l>,</l><r>,<s n="cm" /></r></p></e>' in mono
+    assert '<e r="RL"><p><l>,<s n="cm" /></l><r>,<s n="cm" /></r></p></e>' in bidi
+
+
+def test_pronoun_accusative_twins():
+    """tion (tio<prn><tn><sg><acc>) matched no row: every prn/det row gets an
+    RL twin for the accusative -- unless a row already translates that form
+    (kion <- quon keeps quon)."""
+    from unittest import mock
+    import export_apertium as ea
+    section = ET.fromstring(
+        '<section>'
+        '<e><p><l>to<s n="prn"/></l><r>tio<s n="prn"/><s n="tn"/><s n="sg"/><s n="nom"/></r></p></e>'
+        '<e><p><l>quo<s n="prn"/></l><r>kio<s n="prn"/><s n="rel"/><s n="sg"/><s n="nom"/></r></p></e>'
+        '<e><p><l>quon<s n="prn"/></l><r>kio<s n="prn"/><s n="rel"/><s n="sg"/><s n="acc"/></r></p></e>'
+        '<e r="LR"><p><l>lo<s n="prn"/></l><r>tio<s n="prn"/><s n="tn"/><s n="sg"/><s n="nom"/></r></p></e>'
+        '</section>')
+    with mock.patch.object(ea, "_eo_round_trips", side_effect=lambda an: list(an)):
+        assert ea._emit_case_twins(section) == 1
+    twin = section[-1]
+    assert twin.get("r") == "RL" and twin.find("p/l").text == "to"
+    assert [s.get("n") for s in twin.find("p/r")] == ["prn", "tn", "sg", "acc"]
