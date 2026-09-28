@@ -209,10 +209,7 @@
     <e><p><l>abas<s n="vblex"/><s n="der_onta"/><s n="adj"/></l><r>malaltigi<s n="vblex"/><s n="pp2"/></r></p></e>
     <e><p><l>abas<s n="vblex"/><s n="der_ante"/><s n="adv"/></l><r>malaltigi<s n="vblex"/><s n="ger"/></r></p></e>
     <e><p><l>abas<s n="vblex"/><s n="der_inte"/><s n="adv"/></l><r>malaltigi<s n="vblex"/><s n="gerpast"/></r></p></e>
-    <e><p><l>abasez la<s n="n"/></l><r>for<s n="n"/></r></p></e>
-    <e r="LR"><p><l>abasez la<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>fora<s n="adj"/></r></p></e>
-    <e r="LR"><p><l>abasez la<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>fora<s n="adj"/></r></p></e>
-    <e><p><l>abasez la<s n="n"/><s n="der_aro"/><s n="n"/></l><r>foraro<s n="n"/></r></p></e>
+    <e r="LR"><p><l>abasez la<s n="adv"/></l><r>for<s n="adv"/></r></p></e>
     <e><p><l>abas<s n="n"/></l><r>malaltigo<s n="n"/></r></p></e>
     <e><p><l>abas<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>malaltiga<s n="adj"/></r></p></e>
     <e><p><l>abas<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>malaltiga<s n="adj"/></r></p></e>
@@ -34946,7 +34943,7 @@
     <e><p><l>intensiv<s n="adj"/></l><r>intelekta<s n="adj"/></r></p></e>
     <e><p><l>intensiv<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>intelekteco<s n="n"/></r></p></e>
     <e><p><l>inter<s n="pr"/></l><r>inter<s n="pr"/></r></p></e>
-    <e><p><l>inter altri<s n="n"/></l><r>inter aliaj<s n="n"/></r></p></e>
+    <e><p><l>inter altri<s n="adv"/></l><r>inter aliaj<s n="adv"/></r></p></e>
     <e><p><l>inter-ret<s n="n"/></l><r>interreto<s n="n"/></r></p></e>
     <e r="LR"><p><l>inter-ret<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>interreta<s n="adj"/></r></p></e>
     <e r="LR"><p><l>inter-ret<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>interreta<s n="adj"/></r></p></e>
@@ -55433,6 +55430,7 @@
     <e><p><l>nazotuk<s n="n"/><s n="der_aro"/><s n="n"/></l><r>naztukaro<s n="n"/></r></p></e>
     <e><p><l>n<s n="adv"/></l><r>ne<s n="adv"/></r></p></e>
     <e><p><l>ne dankinde<s n="ij"/></l><r>nedankinde<s n="ij"/></r></p></e>
+    <e><p><l>ne plus<s n="adv"/></l><r>ne plu<s n="adv"/></r></p></e>
     <e><p><l>ne-eleganta<s n="n"/></l><r>plumpa<s n="n"/></r></p></e>
     <e><p><l>ne-eleganta<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>plumpaa<s n="adj"/></r></p></e>
     <e><p><l>ne-eleganta<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>plumpaa<s n="adj"/></r></p></e>
@@ -55837,7 +55835,7 @@
     <e><p><l>Nepas<s n="np"/></l><r>Nepas<s n="np"/><s n="loc"/></r></p></e>
     <e><p><l>neperfekt<s n="adj"/></l><r>neperfekta<s n="adj"/></r></p></e>
     <e><p><l>neperfekt<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>neperfekteco<s n="n"/></r></p></e>
-    <e><p><l>neplus<s n="adv"/></l><r>ne plu<s n="adv"/></r></p></e>
+    <e r="LR"><p><l>neplus<s n="adv"/></l><r>ne plu<s n="adv"/></r></p></e>
     <e><p><l>nepolit<s n="adj"/></l><r>malĝentila<s n="adj"/></r></p></e>
     <e r="LR"><p><l>nepolit<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>malĝentileco<s n="n"/></r></p></e>
     <e><p><l>neposibl<s n="adj"/></l><r>neebla<s n="adj"/></r></p></e>
@@ -58053,10 +58051,7 @@
     <e><p><l>omn<s n="adj"/></l><r>ĉiu<s n="det"/><s n="ind"/><s n="sg"/><s n="nom"/></r></p></e>
     <e r="RL"><p><l>omn<s n="adj"/></l><r>ĉiu<s n="det"/><s n="ind"/><s n="sp"/></r></p></e>
     <e r="RL"><p><l>omn<s n="adj"/></l><r>ĉiu<s n="det"/><s n="qnt"/><s n="sp"/></r></p></e>
-    <e><p><l>omna du<s n="n"/></l><r>ambaŭ<s n="n"/></r></p></e>
-    <e><p><l>omna du<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>ambaŭa<s n="adj"/></r></p></e>
-    <e><p><l>omna du<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>ambaŭa<s n="adj"/></r></p></e>
-    <e><p><l>omna du<s n="n"/><s n="der_aro"/><s n="n"/></l><r>ambaŭaro<s n="n"/></r></p></e>
+    <e><p><l>omna du<s n="adv"/></l><r>ambaŭ<s n="adv"/></r></p></e>
     <e><p><l>omnadi<s n="adj"/></l><r>ĉiutaga<s n="adj"/></r></p></e>
     <e><p><l>omnadi<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>ĉiutageco<s n="n"/></r></p></e>
     <e r="LR"><p><l>omnadi<s n="adv"/></l><r>ĉiutage<s n="adv"/></r></p></e>
@@ -58069,10 +58064,7 @@
     <e><p><l>omnatemp<s n="adv"/></l><r>ĉiam<s n="adv"/></r></p></e>
     <e><p><l>omn<s n="adv"/></l><r>ĉiel<s n="adv"/></r></p></e>
     <e><p><l>omni<s n="prn"/></l><r>ĉiu<s n="prn"/><s n="tn"/><s n="pl"/><s n="nom"/></r></p></e>
-    <e><p><l>omni du<s n="n"/></l><r>ambaŭ<s n="n"/></r></p></e>
-    <e><p><l>omni du<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>ambaŭa<s n="adj"/></r></p></e>
-    <e><p><l>omni du<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>ambaŭa<s n="adj"/></r></p></e>
-    <e><p><l>omni du<s n="n"/><s n="der_aro"/><s n="n"/></l><r>ambaŭaro<s n="n"/></r></p></e>
+    <e><p><l>omni du<s n="adv"/></l><r>ambaŭ<s n="adv"/></r></p></e>
     <e r="LR"><p><l>omnibus<s n="n"/></l><r>aŭtobuso<s n="n"/></r></p></e>
     <e><p><l>omnibus<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>aŭtobusa<s n="adj"/></r></p></e>
     <e><p><l>omnibus<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>aŭtobusa<s n="adj"/></r></p></e>
@@ -63342,10 +63334,7 @@
     <e><p><l>plu<s n="adv"/></l><r>pli<s n="adv"/></r></p></e>
     <e><p><l>plu bona<s n="n"/></l><r>pli bona<s n="n"/></r></p></e>
     <e><p><l>plu multa<s n="n"/></l><r>pli da<s n="n"/></r></p></e>
-    <e><p><l>plu o min<s n="n"/></l><r>pli-malpli<s n="n"/></r></p></e>
-    <e><p><l>plu o min<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>pli-malplia<s n="adj"/></r></p></e>
-    <e><p><l>plu o min<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>pli-malplia<s n="adj"/></r></p></e>
-    <e><p><l>plu o min<s n="n"/><s n="der_aro"/><s n="n"/></l><r>pli-malpliaro<s n="n"/></r></p></e>
+    <e><p><l>plu o min<s n="adv"/></l><r>pli-malpli<s n="adv"/></r></p></e>
     <e><p><l>plu<s n="adj"/></l><r>plua<s n="adj"/></r></p></e>
     <e><p><l>plu<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>plueco<s n="n"/></r></p></e>
     <e><p><l>plubonig<s n="vblex"/></l><r>plibonigi<s n="vblex"/></r></p></e>
@@ -82635,7 +82624,7 @@
     <e><p><l>total<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>totala<s n="adj"/></r></p></e>
     <e><p><l>total<s n="n"/><s n="der_aro"/><s n="n"/></l><r>totalaro<s n="n"/></r></p></e>
     <e><p><l>tot<s n="adv"/></l><r>tute<s n="adv"/></r></p></e>
-    <e><p><l>tote ne<s n="n"/></l><r>tute ne<s n="n"/></r></p></e>
+    <e><p><l>tote ne<s n="adv"/></l><r>tute ne<s n="adv"/></r></p></e>
     <e><p><l>Totem<s n="n"/></l><r>Totemo<s n="n"/></r></p></e>
     <e><p><l>Totem<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Totema<s n="adj"/></r></p></e>
     <e><p><l>Totem<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Totema<s n="adj"/></r></p></e>
@@ -92009,6 +91998,7 @@
     <e r="RL"><p><l>torment<s n="vblex"/><s n="der_inte"/><s n="adv"/></l><r>torturi<s n="vblex"/><s n="gerpast"/></r></p></e>
     <e r="RL"><p><l>torment<s n="n"/></l><r>turmento<s n="n"/></r></p></e>
     <e r="RL"><p><l>tortug<s n="n"/></l><r>kelonio<s n="n"/></r></p></e>
+    <e r="RL"><p><l>tote ne<s n="adv"/></l><r>nule<s n="adv"/></r></p></e>
     <e r="RL"><p><l>trist<s n="adj"/></l><r>trista<s n="adj"/></r></p></e>
     <e r="RL"><p><l>trovebl<s n="adj"/></l><r>eltrovebla<s n="adj"/></r></p></e>
     <e r="RL"><p><l>tualetey<s n="n"/></l><r>tualetejo<s n="n"/></r></p></e>

@@ -626,23 +626,26 @@ def test_pronoun_accusative_twins():
     assert [s.get("n") for s in twin.find("p/r")] == ["prn", "tn", "sg", "acc"]
 
 
-def test_interjection_phrases():
+def test_invariable_phrases():
     """Multiword set phrases not ending in -o whose EO side is an interjection
-    become invariable ij; -o phrases and non-interjection targets stay nouns."""
-    from export_apertium import _interjection_phrases
+    or an adverb become invariable; -o phrases and other targets stay nouns."""
+    from export_apertium import _invariable_phrases
     def rec(lm, *eo):
         return {"lemma": lm, "pos": "n",
                 "senses": [{"translations": [{"lang": "eo", "term": t} for t in eo]}]}
     readings = {
         "ĝis baldaŭ": [("ĝis baldaŭ", ["ij"])],
         "bonan tagon": [("bonan tagon", ["ij"])],
+        "ne plu": [("ne plu", ["adv"])],
         "akuta angulo": [],
     }
     records = [rec("til balde", "ĝis baldaŭ"), rec("bona jorno", "bonan tagon"),
                rec("angulo akuta", "akuta angulo"), rec("hundo", "hundo"),
+               dict(rec("ne plus", "ne plu"), pos=None),
                dict(rec("ne dankinde", "ĝis baldaŭ"), pos="adv",
                     morphology={"paradigm": "o__n"})]   # the paradigm wins
-    assert _interjection_phrases(records, readings) == {"til balde", "ne dankinde"}
+    assert _invariable_phrases(records, readings) == {
+        "til balde": "ij", "ne dankinde": "ij", "ne plus": "adv"}
 
 
 def test_casefold_title_translations():

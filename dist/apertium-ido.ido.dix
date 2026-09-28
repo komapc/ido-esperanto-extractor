@@ -3364,7 +3364,7 @@
     <e lm="abasar"><i>abas</i><par n="ar__vblex"/></e>
     <e lm="abase"><i>abas</i><par n="e__adv"/></e>
     <e lm="abaseso"><i>abases</i><par n="o__n"/></e>
-    <e lm="abasez la"><i>abasez la</i><par n="o__n"/></e>
+    <e lm="abasez la"><i>abasez la</i><par n="__adv"/></e>
     <e lm="Abashiri"><i>Abashiri</i><par n="o__n"/></e>
     <e lm="abasiva"><i>abasiv</i><par n="a__adj"/></e>
     <e lm="abaso"><i>abas</i><par n="o__n"/></e>
@@ -37485,7 +37485,7 @@
     <e lm="intensigiva"><i>intensigiv</i><par n="a__adj"/></e>
     <e lm="intensiva"><i>intensiv</i><par n="a__adj"/></e>
     <e lm="inter"><i>inter</i><par n="__pr"/></e>
-    <e lm="inter altri"><i>inter altri</i><par n="o__n"/></e>
+    <e lm="inter altri"><i>inter altri</i><par n="__adv"/></e>
     <e lm="inter-agra"><i>inter-agra</i><par n="o__n"/></e>
     <e lm="inter-agregita"><i>inter-agregita</i><par n="o__n"/></e>
     <e lm="inter-apud-pozita"><i>inter-apud-pozita</i><par n="o__n"/></e>
@@ -58171,6 +58171,7 @@
     <e lm="ndebele"><i>ndebel</i><par n="e__adv"/></e>
     <e lm="ne"><i>n</i><par n="e__adv"/></e>
     <e lm="ne dankinde"><i>ne dankinde</i><par n="__ij"/></e>
+    <e lm="ne plus"><i>ne plus</i><par n="__adv"/></e>
     <e lm="ne pluse"><i>ne pluse</i><par n="o__n"/></e>
     <e lm="Ne questionez, ne dicez"><i>Ne questionez, ne dicez</i><par n="o__n"/></e>
     <e lm="Ne varietur"><i>Ne varietur</i><par n="o__n"/></e>
@@ -61584,7 +61585,7 @@
     <e lm="omiso"><i>omis</i><par n="o__n"/></e>
     <e lm="omleto"><i>omlet</i><par n="o__n"/></e>
     <e lm="omna"><i>omn</i><par n="a__adj"/></e>
-    <e lm="omna du"><i>omna du</i><par n="o__n"/></e>
+    <e lm="omna du"><i>omna du</i><par n="__adv"/></e>
     <e lm="Omna yuri rezervita"><i>Omna yuri rezervita</i><par n="o__n"/></e>
     <e lm="Omna yuri rezervitana"><i>Omna yuri rezervitan</i><par n="a__adj"/></e>
     <e lm="omnadente"><i>omnadente</i><par n="a__adj"/></e>
@@ -61612,7 +61613,7 @@
     <e lm="omnayare"><i>omnayare</i><par n="a__adj"/></e>
     <e lm="omne"><i>omn</i><par n="e__adv"/></e>
     <e lm="omni"><i>omni</i><par n="__prn"/></e>
-    <e lm="omni du"><i>omni du</i><par n="o__n"/></e>
+    <e lm="omni du"><i>omni du</i><par n="__adv"/></e>
     <e lm="omnibusisto"><i>omnibusist</i><par n="o__n"/></e>
     <e lm="omnibuso"><i>omnibus</i><par n="o__n"/></e>
     <e lm="omnivora"><i>omnivor</i><par n="a__adj"/></e>
@@ -66719,7 +66720,7 @@
     <e lm="plu bone"><i>plu bone</i><par n="o__n"/></e>
     <e lm="plu juste"><i>plu juste</i><par n="o__n"/></e>
     <e lm="plu multa"><i>plu multa</i><par n="o__n"/></e>
-    <e lm="plu o min"><i>plu o min</i><par n="o__n"/></e>
+    <e lm="plu o min"><i>plu o min</i><par n="__adv"/></e>
     <e lm="plu … kam"><i>plu … kam</i><par n="o__n"/></e>
     <e lm="plu-altigita"><i>plu-altigita</i><par n="o__n"/></e>
     <e lm="plu-multeso"><i>plu-multes</i><par n="o__n"/></e>
@@ -84556,7 +84557,7 @@
     <e lm="totalo"><i>total</i><par n="o__n"/></e>
     <e lm="totareliefe"><i>totareliefe</i><par n="a__adj"/></e>
     <e lm="tote"><i>tot</i><par n="e__adv"/></e>
-    <e lm="tote ne"><i>tote ne</i><par n="o__n"/></e>
+    <e lm="tote ne"><i>tote ne</i><par n="__adv"/></e>
     <e lm="totem"><i>totem</i><par n="__ij"/></e>
     <e lm="Totem-fosto"><i>Totem-fost</i><par n="o__n"/></e>
     <e lm="Totemo"><i>Totem</i><par n="o__n"/></e>
