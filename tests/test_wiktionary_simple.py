@@ -68,3 +68,18 @@ class TestWiktionarySimple(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
+
+
+def test_verb_form_synonyms_from_sinonimo_line():
+    from wiktionary_parser import extract_verb_form_synonyms
+    esas = ("*Semantiko: [[prezenta]] [[formo]] [[de]] [[verbo]] ''[[esar]]''\n"
+            "*Morfologio: [[es]][[.as]]\n"
+            "*Sinonimo: [[es]], ([[signo]]) [[=]]\n")
+    assert extract_verb_form_synonyms(esas, "esas") == [
+        {"surface": "es", "lemma": "esar", "form": "esas"}]
+    plural = ("*Semantiko: [[pluralo]] [[de]] ''[[kato]]''\n"
+              "*Sinonimo: [[felisi]]\n")
+    assert extract_verb_form_synonyms(plural, "kati") == []
+    kom = ("*Semantiko: on devas uzar kom en la senco di formo de verbo ''[[esar]]''\n"
+           "*Sinonimo: [[esante]]\n")
+    assert extract_verb_form_synonyms(kom, "kom") == []
