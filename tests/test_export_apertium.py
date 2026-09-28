@@ -681,3 +681,20 @@ def test_secondary_candidates_fill_empty_epo_sides():
     assert n == 1
     new = [e for e in section if e.get("r") == "RL"]
     assert [(e.find("p/l").text, e.find("p/r").text) for e in new] == [("karn", "viando")]
+
+
+def test_verb_form_synonym_is_analysis_only():
+    """es, listed as a synonym of esas (present of esar), analyses like esas
+    and never generates; a form outside the paradigm is skipped."""
+    entries = [{"lemma": "esar", "pos": "vblex",
+                "morphology": {"paradigm": "ar__vblex"}, "senses": []}]
+    mono = build_monodix(entries, None, [
+        {"surface": "es", "lemma": "esar", "form": "esas"},
+        {"surface": "esx", "lemma": "esar", "form": "esxyz"}])
+    extra = [e for e in mono.iter("e") if e.get("lm") == "esar" and e.find("p") is not None]
+    assert len(extra) == 1
+    e = extra[0]
+    assert e.get("r") == "LR"
+    assert e.findtext("p/l") == "es"
+    r = e.find("p/r")
+    assert r.text == "es" and [s.get("n") for s in r.iter("s")] == ["vblex", "pri"]

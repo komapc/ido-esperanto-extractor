@@ -35,7 +35,7 @@ import math
 import os
 import re
 from pathlib import Path
-from typing import Dict, Iterable, Optional
+from typing import Dict, Iterable, List, Optional
 
 from _common import read_json, ensure_dir, configure_logging, clean_lemma
 from lexicon_filters import is_junk_verb
@@ -1072,7 +1072,56 @@ def _generation_losers(items, freq: Dict[str, int]) -> set:
     return losers
 
 
-def build_monodix(entries, freq: Optional[Dict[str, int]] = None):
+_IO_VERB_FORM_SYNONYMS = Path(__file__).resolve().parents[1] / "work/io_verb_form_synonyms.json"
+
+
+def _load_verb_form_synonyms(path: Path = _IO_VERB_FORM_SYNONYMS) -> List[Dict[str, str]]:
+    """[{surface, lemma, form}] collected by the io.wiktionary parser from
+    the Sinonimo line of verb-form pages (es = esas), or [] when absent."""
+    if not path.exists():
+        logging.warning("Verb-form synonyms not found at %s — no alternative "
+                        "surfaces of conjugated forms.", path)
+        return []
+    return read_json(path)
+
+
+def _add_verb_form_synonyms(dictionary, section, final_list, synonyms) -> int:
+    """Analysis-only entries for alternative surfaces of a conjugated form.
+
+    es is listed as a synonym of esas, the present of esar: it gets esas's
+    analysis, es<vblex><pri>, taken from the paradigm row whose ending turns
+    the stem into esas. r="LR" because generation must keep producing esas."""
+    pardefs = {pd.get("n"): pd for pd in dictionary.iter("pardef")}
+    by_lemma = {it["lm"].lower(): it for it in final_list}
+    n = 0
+    for syn in synonyms:
+        it = by_lemma.get(syn["lemma"])
+        form, surface = syn["form"], syn["surface"]
+        if not it or not it["stem"] or not form.startswith(it["stem"]):
+            logging.warning("Verb-form synonym %s: no monodix stem of %s for %s",
+                            surface, syn["lemma"], form)
+            continue
+        ending = form[len(it["stem"]):]
+        rows = [e for e in pardefs.get(it["par"], ET.Element("pardef")).iter("e")
+                if e.get("r") != "RL" and (e.findtext("p/l") or "") == ending
+                and not list(e.find("p/l"))]
+        if len(rows) != 1:
+            logging.warning("Verb-form synonym %s: %s is not one form of %s's paradigm %s",
+                            surface, form, syn["lemma"], it["par"])
+            continue
+        e = ET.SubElement(section, "e", lm=it["lm"], r="LR")
+        p = ET.SubElement(e, "p")
+        ET.SubElement(p, "l").text = surface
+        r = ET.SubElement(p, "r")
+        r.text = it["stem"]
+        for t in rows[0].find("p/r").iter("s"):
+            ET.SubElement(r, "s", n=t.get("n")).tail = ""
+        n += 1
+    return n
+
+
+def build_monodix(entries, freq: Optional[Dict[str, int]] = None,
+                  verb_form_synonyms: Optional[List[Dict[str, str]]] = None):
     """Ido monodix. One <e> per lemma; the paradigm does all the inflection.
 
     The interesting decisions are (a) which of several same-lemma records
@@ -1305,7 +1354,11 @@ def build_monodix(entries, freq: Optional[Dict[str, int]] = None):
         par_elem = ET.SubElement(en, "par")
         par_elem.set("n", par)
         par_elem.tail = "" 
-    
+
+    if verb_form_synonyms:
+        n = _add_verb_form_synonyms(dictionary, section, final_list, verb_form_synonyms)
+        logging.info("Monodix: %d analysis-only verb-form synonyms", n)
+
     return dictionary
 
 
@@ -2448,7 +2501,7 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
                         if (e.get('lemma') or '').strip() not in name_only]
         logging.info("Monodix: dropped %d entries translated only by lowercase names",
                      before - len(mono_entries))
-    mono = build_monodix(mono_entries, _load_io_frequency())
+    mono = build_monodix(mono_entries, _load_io_frequency(), _load_verb_form_synonyms())
     write_xml_file(mono, out_monodix, header_comment=_MONODIX_HEADER)
 
     logging.info(f"Building bilingual dictionary from {len(bidix_entries)} entries")

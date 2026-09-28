@@ -40343,7 +40343,6 @@
     <e lm="juste"><i>just</i><par n="e__adv"/></e>
     <e lm="justesar"><i>justes</i><par n="ar__vblex"/></e>
     <e lm="justeskar"><i>justesk</i><par n="ar__vblex"/></e>
-    <e lm="justeso"><i>justes</i><par n="o__n"/></e>
     <e lm="justifar"><i>justif</i><par n="ar__vblex"/></e>
     <e lm="justifikar"><i>justifik</i><par n="ar__vblex"/></e>
     <e lm="justifikativo"><i>justifikativ</i><par n="o__n"/></e>
@@ -58282,7 +58281,6 @@
     <e lm="necesa"><i>neces</i><par n="a__adj"/></e>
     <e lm="necesajn"><i>necesajn</i><par n="o__n"/></e>
     <e lm="necesajo"><i>necesaj</i><par n="o__n"/></e>
-    <e lm="necesanta"><i>necesant</i><par n="a__adj"/></e>
     <e lm="necesar"><i>neces</i><par n="ar__vblex"/></e>
     <e lm="necese"><i>neces</i><par n="e__adv"/></e>
     <e lm="necesega"><i>neceseg</i><par n="a__adj"/></e>
@@ -66922,6 +66920,7 @@
     <e lm="pluricheskar"><i>plurichesk</i><par n="ar__vblex"/></e>
     <e lm="plurichigar"><i>plurichig</i><par n="ar__vblex"/></e>
     <e lm="plurigar"><i>plurig</i><par n="ar__vblex"/></e>
+    <e lm="plus"><i>plus</i><par n="num"/></e>
     <e lm="plusa"><i>plus</i><par n="a__adj"/></e>
     <e lm="plusajo"><i>plusaj</i><par n="o__n"/></e>
     <e lm="plusaliigar"><i>plusaliig</i><par n="ar__vblex"/></e>
@@ -69661,7 +69660,6 @@
     <e lm="proximesar"><i>proximes</i><par n="ar__vblex"/></e>
     <e lm="proximeskar"><i>proximesk</i><par n="ar__vblex"/></e>
     <e lm="proximesko"><i>proximesk</i><par n="o__n"/></e>
-    <e lm="proximeso"><i>proximes</i><par n="o__n"/></e>
     <e lm="proximigado"><i>proximigad</i><par n="o__n"/></e>
     <e lm="proximigala"><i>proximigal</i><par n="a__adj"/></e>
     <e lm="proximigar"><i>proximig</i><par n="ar__vblex"/></e>
@@ -86841,7 +86839,6 @@
     <e lm="varme"><i>varm</i><par n="e__adv"/></e>
     <e lm="varmega"><i>varmeg</i><par n="a__adj"/></e>
     <e lm="varmeges-insulo"><i>varmeges-insul</i><par n="o__n"/></e>
-    <e lm="varmegeso"><i>varmeges</i><par n="o__n"/></e>
     <e lm="varmesala"><i>varmesal</i><par n="a__adj"/></e>
     <e lm="varmeskar"><i>varmesk</i><par n="ar__vblex"/></e>
     <e lm="varmesko"><i>varmesk</i><par n="o__n"/></e>
@@ -91053,6 +91050,7 @@
     <e lm="Żółtańce-Koloniana"><i>Żółtańce-Kolonian</i><par n="a__adj"/></e>
     <e lm="Żółtki-Koloniana"><i>Żółtki-Kolonian</i><par n="a__adj"/></e>
     <e lm="ʻAkilisi Pōhivana"><i>ʻAkilisi Pōhivan</i><par n="a__adj"/></e>
+    <e lm="esar" r="LR"><p><l>es</l><r>es<s n="vblex"/><s n="pri"/></r></p></e>
   </section>
   <section id="punct" type="inconditional">
     <e><p><l>.</l><r>.<s n="sent"/></r></p></e>

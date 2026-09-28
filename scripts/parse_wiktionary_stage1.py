@@ -98,7 +98,12 @@ def extract_filtered_wiktionary(dump_path: Path, output_path: Path, source_code:
         # Parse directly to get raw output (no conversion)
         # Use skip_pivot=False to extract EN/FR translations for Via approach
         from wiktionary_parser import parse_wiktionary
-        parse_wiktionary(dump_path, cfg, temp_path, limit, progress_every=progress_every, skip_pivot=False)
+        # io only: alternative spellings of conjugated forms (es = esas),
+        # consumed by export_apertium's monodix build.
+        synonyms_out = (output_path.parent / "io_verb_form_synonyms.json"
+                        if source_code == "io" else None)
+        parse_wiktionary(dump_path, cfg, temp_path, limit, progress_every=progress_every,
+                         skip_pivot=False, verb_form_synonyms_out=synonyms_out)
         
         # Load parsed data
         from _common import read_json

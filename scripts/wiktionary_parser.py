@@ -512,6 +512,41 @@ def is_inflected_form(text: str, title: Optional[str] = None) -> bool:
     return False
 
 
+# Alternative surfaces of a conjugated form: the page of a verb form can list
+# another spelling of that same form under Sinonimo, e.g. esas =
+# "prezenta formo de verbo esar" with "*Sinonimo: [[es]], ([[signo]]) [[=]]"
+# (es is the short present of esar). Parenthesised groups are glosses of a
+# different sense (the sign "="), so they are dropped before taking links.
+_VERB_FORM_BASE_RE = re.compile(
+    r"\bform[oi]\s+(?:de|di)\s+(?:la\s+)?verbo\s+['\"]*([^\W\d_]+)", re.IGNORECASE)
+_SINONIMO_LINE_RE = re.compile(r"^\*\s*Sinonimo\s*:([^\n]*)", re.IGNORECASE | re.MULTILINE)
+_PAREN_GROUP_RE = re.compile(r"\([^()]*\)")
+_LINK_TARGET_RE = re.compile(r"\[\[([^\]|]+)(?:\|[^\]]*)?\]\]")
+
+
+def extract_verb_form_synonyms(text: str, title: str) -> List[Dict[str, str]]:
+    """Alternative surfaces of the verb form `title`, as
+    [{surface, lemma, form}], from its Sinonimo line — [] unless the page's
+    Semantiko says it is a form of a verb."""
+    cleaned = re.sub(r"\[\[(?:[^\]|]*\|)?([^\]]+)\]\]", r"\1", text).replace("''", "")
+    sem = _SEMANTIKO_LINE_RE.search(cleaned)
+    base = _VERB_FORM_BASE_RE.search(sem.group(0)) if sem else None
+    syn = _SINONIMO_LINE_RE.search(text)
+    if not base or not syn:
+        return []
+    lemma, form = base.group(1).lower(), title.lower()
+    # A conjugation shares the verb's stem (esas/esar); a usage note that
+    # merely mentions a verb (kom: "... formo de verbo esar") does not.
+    if not form.startswith(lemma[:-2]):
+        return []
+    out = []
+    for target in _LINK_TARGET_RE.findall(_PAREN_GROUP_RE.sub(" ", syn.group(1))):
+        surface = target.strip().lower()
+        if surface.isalpha() and surface not in (form, lemma):
+            out.append({"surface": surface, "lemma": lemma, "form": form})
+    return out
+
+
 # Variant-form detection: io.wiktionary marks short/alternative forms as
 # "(kurta) formo de [[X]]" where X is a real lemma — NOT a POS keyword like
 # verbo/pronomo (those are inflections, already caught by is_inflected_form).
@@ -871,10 +906,12 @@ def parse_wiktionary(
     limit: Optional[int] = None,
     progress_every: Optional[int] = None,
     skip_pivot: bool = False,  # OPTIMIZATION: Skip EN/FR extraction (15-20% speedup)
+    verb_form_synonyms_out: Optional[Path] = None,
 ) -> None:
     logging.info("Parsing %s → %s from %s", cfg.source_code, cfg.target_code, xml_path)
     ensure_dir(out_json.parent)
     entries: List[Dict[str, Any]] = []
+    verb_form_synonyms: List[Dict[str, str]] = []
     processed = 0
 
     prog_n = max(1, int(progress_every or 1000))
@@ -902,6 +939,8 @@ def parse_wiktionary(
         # aren't lemmas, they're surface variants that the morphology
         # pipeline derives from the base lemma.
         if is_inflected_form(section, title):
+            if verb_form_synonyms_out is not None:
+                verb_form_synonyms.extend(extract_verb_form_synonyms(section, title))
             continue
         pos = extract_pos(section)
         # Variant short/alternative form ("il" = kurta formo de "ilu") — inherits
@@ -1007,6 +1046,10 @@ def parse_wiktionary(
 
     write_json(out_json, entries)
     logging.info("Wrote %s (%d entries)", out_json, len(entries))
+    if verb_form_synonyms_out is not None:
+        write_json(verb_form_synonyms_out, verb_form_synonyms)
+        logging.info("Wrote %s (%d verb-form synonyms)", verb_form_synonyms_out,
+                     len(verb_form_synonyms))
 
 
 def main(argv: Iterable[str]) -> int:
