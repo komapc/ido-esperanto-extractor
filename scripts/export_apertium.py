@@ -887,15 +887,21 @@ def _noun_by_default(rec) -> bool:
     return rec.get("pos") in ("n", None) or par in _NOUN_PARADIGMS
 
 
-def _interjection_phrases(records, readings: Dict[str, list]) -> set:
+# Invariable POS a set phrase can take from its EO side, in order of
+# preference: a phrase read as both keeps the interjection.
+_PHRASE_POS = {"ij": "__ij", "adv": "__adv"}
+
+
+def _invariable_phrases(records, readings: Dict[str, list]) -> Dict[str, str]:
     """Lowercase multiword Ido lemmas the noun default mangles: set phrases not
-    ending in -o (til balde, me pregas, ne dankinde) get o__n's -o appended
+    ending in -o (til balde, me pregas, ne plus) get o__n's -o appended
     to the whole phrase ("til baldeo"), so they never match Ido text and
-    generate wrongly backwards. When every analysed EO translation is an
-    interjection in apertium-epo (ĝis baldaŭ, bonvolu, nedankinde), the lemma
-    is an invariable interjection too."""
+    generate wrongly backwards. When every analysed EO translation has one
+    invariable POS in apertium-epo — an interjection (ĝis baldaŭ, bonvolu,
+    nedankinde) or an adverb (ne plu) — the lemma is invariable with that
+    POS. Returns {lemma: POS}."""
     if not readings:
-        return set()
+        return {}
     terms: Dict[str, set] = {}
     for r in records:
         lm = (r.get("lemma") or "").strip()
@@ -905,11 +911,13 @@ def _interjection_phrases(records, readings: Dict[str, list]) -> set:
         terms.setdefault(lm.lower(), set()).update(
             tr.get("term") for s in (r.get("senses") or [])
             for tr in (s.get("translations") or []) if tr.get("lang") == "eo")
-    out = set()
+    out = {}
     for lm, ts in terms.items():
         rs = [readings[t] for t in ts if t in readings]
-        if rs and all(any(tags and tags[0] == "ij" for _, tags in v) for v in rs):
-            out.add(lm)
+        for pos in _PHRASE_POS:
+            if rs and all(any(tags and tags[0] == pos for _, tags in v) for v in rs):
+                out[lm] = pos
+                break
     return out
 
 
@@ -2398,13 +2406,15 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
     lent = _casefold_title_translations(list(bidix_entries), all_eo_readings)
     if lent:
         logging.info("Lowercase nouns given their capitalized title's EO translation: %d", len(lent))
-    phrases = _interjection_phrases(list(entries) + list(bidix_entries), all_eo_readings)
+    phrases = _invariable_phrases(list(entries) + list(bidix_entries), all_eo_readings)
     for rec in list(entries) + list(bidix_entries):
-        if (rec.get("lemma") or "").strip().lower() in phrases and _noun_by_default(rec):
-            rec["pos"] = "ij"
-            rec["morphology"] = {"paradigm": "__ij", "features": {}}
+        pos = phrases.get((rec.get("lemma") or "").strip().lower())
+        if pos and _noun_by_default(rec):
+            rec["pos"] = pos
+            rec["morphology"] = {"paradigm": _PHRASE_POS[pos], "features": {}}
     if phrases:
-        logging.info("Set phrases retagged from the -o noun default to ij: %s", ", ".join(sorted(phrases)))
+        logging.info("Set phrases retagged from the -o noun default: %s",
+                     ", ".join(f"{lm}<{pos}>" for lm, pos in sorted(phrases.items())))
 
     bidix_by_lemma = {}
     bidix_override_by_lemma = {}
