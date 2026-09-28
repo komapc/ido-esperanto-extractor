@@ -55354,7 +55354,7 @@
     <e lm="minucio"><i>minuci</i><par n="o__n"/></e>
     <e lm="minucioza"><i>minucioz</i><par n="a__adj"/></e>
     <e lm="minucioze"><i>minucioz</i><par n="e__adv"/></e>
-    <e lm="minus"><i>minus</i><par n="num"/></e>
+    <e lm="minus"><i>minus</i><par n="__cnjcoo"/></e>
     <e lm="minuse"><i>minus</i><par n="e__adv"/></e>
     <e lm="minuskula"><i>minuskul</i><par n="a__adj"/></e>
     <e lm="minuskulo"><i>minuskul</i><par n="o__n"/></e>
@@ -66921,7 +66921,7 @@
     <e lm="pluricheskar"><i>plurichesk</i><par n="ar__vblex"/></e>
     <e lm="plurichigar"><i>plurichig</i><par n="ar__vblex"/></e>
     <e lm="plurigar"><i>plurig</i><par n="ar__vblex"/></e>
-    <e lm="plus"><i>plus</i><par n="num"/></e>
+    <e lm="plus"><i>plus</i><par n="__cnjcoo"/></e>
     <e lm="plusa"><i>plus</i><par n="a__adj"/></e>
     <e lm="plusajo"><i>plusaj</i><par n="o__n"/></e>
     <e lm="plusaliigar"><i>plusaliig</i><par n="ar__vblex"/></e>
