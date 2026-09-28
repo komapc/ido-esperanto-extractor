@@ -52963,7 +52963,7 @@
     <e><p><l>mint<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>menta<s n="adj"/></r></p></e>
     <e><p><l>mint<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>menta<s n="adj"/></r></p></e>
     <e><p><l>mint<s n="n"/><s n="der_aro"/><s n="n"/></l><r>mentaro<s n="n"/></r></p></e>
-    <e><p><l>minus<s n="num"/></l><r>minus<s n="num"/></r></p></e>
+    <e><p><l>minus<s n="cnjcoo"/></l><r>minus<s n="cnjadv"/></r></p></e>
     <e><p><l>minuskul<s n="adj"/></l><r>minuskla<s n="adj"/></r></p></e>
     <e><p><l>minuskul<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>minuskleco<s n="n"/></r></p></e>
     <e><p><l>Minuskul<s n="n"/></l><r>Minusklo<s n="n"/></r></p></e>
@@ -63439,7 +63439,7 @@
     <e r="LR"><p><l>plural<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>multenombra<s n="adj"/></r></p></e>
     <e r="LR"><p><l>plural<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>multenombra<s n="adj"/></r></p></e>
     <e><p><l>plural<s n="n"/><s n="der_aro"/><s n="n"/></l><r>multenombraro<s n="n"/></r></p></e>
-    <e><p><l>plus<s n="num"/></l><r>plus<s n="num"/></r></p></e>
+    <e><p><l>plus<s n="cnjcoo"/></l><r>plus<s n="cnjadv"/></r></p></e>
     <e><p><l>plus<s n="adj"/></l><r>plia<s n="adj"/></r></p></e>
     <e><p><l>plus<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>plieco<s n="n"/></r></p></e>
     <e><p><l>plus<s n="adv"/></l><r>plie<s n="adv"/></r></p></e>
