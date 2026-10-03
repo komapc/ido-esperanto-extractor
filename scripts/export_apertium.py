@@ -213,6 +213,42 @@ def write_xml_file(elem: ET.Element, output_path: Path, header_comment: str = No
         f.write("\n".join(lines))
         f.write("\n")
 
+# Short description of every der_* symbol, written into the sdef's c="" attribute
+# (the convention official Apertium pairs such as apertium-myv-fin use for
+# language-specific derivation symbols) so each tag is self-describing.
+_DER_SDEF_DOC = {
+    "der_act":  "Ido -ad- action noun (krear -> kreado)",
+    "der_pres": "Ido -ant- agent / present noun (krear -> kreanto)",
+    "der_past": "Ido -int- past noun (krear -> kreinto)",
+    "der_onto": "Ido -ont- future noun (krear -> kreonto)",
+    "der_ppra": "Ido -ant- active present participle (krear -> kreanta)",
+    "der_ppa":  "Ido -int- active past participle (krear -> kreinta)",
+    "der_onta": "Ido -ont- active future participle (krear -> kreonta)",
+    "der_pprs": "Ido -at- passive present participle (krear -> kreata)",
+    "der_ppas": "Ido -it- passive past participle (krear -> kreita)",
+    "der_pfut": "Ido -ot- passive future participle (krear -> kreota)",
+    "der_ante": "Ido -ante adverbial active present participle (krear -> kreante)",
+    "der_inte": "Ido -inte adverbial active past participle (krear -> kreinte)",
+    "der_onte": "Ido -onte adverbial active future participle (krear -> kreonte)",
+    "der_ate":  "Ido -ate adverbial passive present participle (krear -> kreate)",
+    "der_ite":  "Ido -ite adverbial passive past participle (krear -> kreite)",
+    "der_ote":  "Ido -ote adverbial passive future participle (krear -> kreote)",
+    "der_qual": "Ido -es- abstract quality noun from an adjective (bona -> boneco)",
+    "der_ala":  "Ido -al- relational adjective (ekonomio -> ekonomia)",
+    "der_oz":   "Ido -oz- 'full of' adjective (sukceso -> sukcesa)",
+    "der_aro":  "Ido -ar- collective noun (monto -> montaro)",
+    "der_aj":   "Ido -aj- concrete manifestation (monodix analysis only)",
+    "der_izar": "Ido -iz- 'provide with' verb (monodix analysis only)",
+    "der_esar": "Ido -es- passive verb formant (monodix analysis only)",
+}
+
+
+def _add_sdef(sdefs: ET.Element, name: str) -> ET.Element:
+    """Append <sdef n=name>, with a c="" description for der_* symbols."""
+    doc = _DER_SDEF_DOC.get(name)
+    return ET.SubElement(sdefs, "sdef", n=name, **({"c": doc} if doc else {}))
+
+
 # Documentation of the language-specific derivation symbols (sdefs) used by both
 # dictionaries, emitted into each .dix header so the custom tags are auditable —
 # a requirement for upstreaming to official Apertium. Ido and Esperanto share a
@@ -234,6 +270,10 @@ _DERIVATION_DOC = """\
     der_ala   Ido -al-  relational adjective      ekonomio -> ekonomia  [adj]
     der_oz    Ido -oz-  'full of' adjective       sukceso  -> sukcesa   [adj]
     der_aro   Ido -ar-  collective noun           monto    -> montaro   [n]
+    der_onta  Ido -ont- active future participle    krear   -> kreonta    [adj]
+    der_onto  Ido -ont- future noun                 krear   -> kreonto    [n]
+    der_ante/inte/onte  Ido -ante/-inte/-onte adverbial active participles  krear -> kreante...
+    der_ate/ite/ote     Ido -ate/-ite/-ote adverbial passive participles    krear -> kreate...
     der_aj    Ido -aj-  concrete manifestation    (monodix analysis only)
     der_izar  Ido -iz-  'provide with' verb       (monodix analysis only)
     der_esar  Ido -es-  passive verb formant      (monodix analysis only)
@@ -1144,7 +1184,7 @@ def build_monodix(entries, freq: Optional[Dict[str, int]] = None,
     # Define sdefs for monolingual dictionary
     sdefs = ET.SubElement(dictionary, "sdefs")
     for s in ["n", "adj", "adv", "vblex", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "p1", "p2", "p3", "m", "f", "mf", "nt", "np", "ant", "cog", "top", "al", "ciph", "able", "pasv", "act", "ord", "def", "sent", "der_pres", "der_act", "der_qual", "der_oz", "der_ala", "der_aro", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra", "der_aj", "der_onto", "der_onta", "der_ante", "der_inte", "der_onte", "der_ate", "der_ite", "der_ote"]:
-        ET.SubElement(sdefs, "sdef", n=s)
+        _add_sdef(sdefs, s)
     # Load pardefs from external file instead of hardcoding
     pardefs_path = Path(__file__).resolve().parents[1] / "data/pardefs.xml"
     if pardefs_path.exists():
@@ -1801,7 +1841,7 @@ def build_bidix(entries, mono=None):
     alphabet.text = "abcdefghijklmnopqrstuvwxyzĉĝĥĵŝŭABCDEFGHIJKLMNOPQRSTUVWXYZĈĜĤĴŜŬ"
     sdefs = ET.SubElement(dictionary, "sdefs")
     for s in ["n", "adj", "adv", "vblex", "vbtr", "vbser", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp2", "pp3", "ppres", "ger", "gerpast", "p1", "p2", "p3", "subj", "obj", "m", "f", "mf", "nt", "ciph", "np", "def", "sent", "der_pres", "der_act", "der_qual", "der_oz", "der_ala", "der_aro", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra", "der_aj", "der_onto", "der_onta", "der_ante", "der_inte", "der_onte", "der_ate", "der_ite", "der_ote"]:
-        ET.SubElement(sdefs, "sdef", n=s)
+        _add_sdef(sdefs, s)
     # Structural pardefs: regex-based rules that are independent of vocabulary data
     pardefs = ET.SubElement(dictionary, "pardefs")
     _num_pd = ET.SubElement(pardefs, "pardef", n="num_regex")
