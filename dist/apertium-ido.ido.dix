@@ -23,6 +23,10 @@
     der_ala   Ido -al-  relational adjective      ekonomio -> ekonomia  [adj]
     der_oz    Ido -oz-  'full of' adjective       sukceso  -> sukcesa   [adj]
     der_aro   Ido -ar-  collective noun           monto    -> montaro   [n]
+    der_onta  Ido -ont- active future participle    krear   -> kreonta    [adj]
+    der_onto  Ido -ont- future noun                 krear   -> kreonto    [n]
+    der_ante/inte/onte  Ido -ante/-inte/-onte adverbial active participles  krear -> kreante...
+    der_ate/ite/ote     Ido -ate/-ite/-ote adverbial passive participles    krear -> kreate...
     der_aj    Ido -aj-  concrete manifestation    (monodix analysis only)
     der_izar  Ido -iz-  'provide with' verb       (monodix analysis only)
     der_esar  Ido -es-  passive verb formant      (monodix analysis only)
@@ -72,29 +76,29 @@
     <sdef n="ord"/>
     <sdef n="def"/>
     <sdef n="sent"/>
-    <sdef n="der_pres"/>
-    <sdef n="der_act"/>
-    <sdef n="der_qual"/>
-    <sdef n="der_oz"/>
-    <sdef n="der_ala"/>
-    <sdef n="der_aro"/>
-    <sdef n="der_izar"/>
-    <sdef n="der_esar"/>
-    <sdef n="der_past"/>
-    <sdef n="der_ppa"/>
-    <sdef n="der_ppas"/>
-    <sdef n="der_pprs"/>
-    <sdef n="der_pfut"/>
-    <sdef n="der_ppra"/>
-    <sdef n="der_aj"/>
-    <sdef n="der_onto"/>
-    <sdef n="der_onta"/>
-    <sdef n="der_ante"/>
-    <sdef n="der_inte"/>
-    <sdef n="der_onte"/>
-    <sdef n="der_ate"/>
-    <sdef n="der_ite"/>
-    <sdef n="der_ote"/>
+    <sdef n="der_pres" c="Ido -ant- agent / present noun (krear -&gt; kreanto)"/>
+    <sdef n="der_act" c="Ido -ad- action noun (krear -&gt; kreado)"/>
+    <sdef n="der_qual" c="Ido -es- abstract quality noun from an adjective (bona -&gt; boneco)"/>
+    <sdef n="der_oz" c="Ido -oz- 'full of' adjective (sukceso -&gt; sukcesa)"/>
+    <sdef n="der_ala" c="Ido -al- relational adjective (ekonomio -&gt; ekonomia)"/>
+    <sdef n="der_aro" c="Ido -ar- collective noun (monto -&gt; montaro)"/>
+    <sdef n="der_izar" c="Ido -iz- 'provide with' verb (monodix analysis only)"/>
+    <sdef n="der_esar" c="Ido -es- passive verb formant (monodix analysis only)"/>
+    <sdef n="der_past" c="Ido -int- past noun (krear -&gt; kreinto)"/>
+    <sdef n="der_ppa" c="Ido -int- active past participle (krear -&gt; kreinta)"/>
+    <sdef n="der_ppas" c="Ido -it- passive past participle (krear -&gt; kreita)"/>
+    <sdef n="der_pprs" c="Ido -at- passive present participle (krear -&gt; kreata)"/>
+    <sdef n="der_pfut" c="Ido -ot- passive future participle (krear -&gt; kreota)"/>
+    <sdef n="der_ppra" c="Ido -ant- active present participle (krear -&gt; kreanta)"/>
+    <sdef n="der_aj" c="Ido -aj- concrete manifestation (monodix analysis only)"/>
+    <sdef n="der_onto" c="Ido -ont- future noun (krear -&gt; kreonto)"/>
+    <sdef n="der_onta" c="Ido -ont- active future participle (krear -&gt; kreonta)"/>
+    <sdef n="der_ante" c="Ido -ante adverbial active present participle (krear -&gt; kreante)"/>
+    <sdef n="der_inte" c="Ido -inte adverbial active past participle (krear -&gt; kreinte)"/>
+    <sdef n="der_onte" c="Ido -onte adverbial active future participle (krear -&gt; kreonte)"/>
+    <sdef n="der_ate" c="Ido -ate adverbial passive present participle (krear -&gt; kreate)"/>
+    <sdef n="der_ite" c="Ido -ite adverbial passive past participle (krear -&gt; kreite)"/>
+    <sdef n="der_ote" c="Ido -ote adverbial passive future participle (krear -&gt; kreote)"/>
     <sdef n="apos"/>
     <sdef n="lpar"/>
     <sdef n="rpar"/>
@@ -91052,6 +91056,10 @@
     <e lm="Żółtki-Koloniana"><i>Żółtki-Kolonian</i><par n="a__adj"/></e>
     <e lm="ʻAkilisi Pōhivana"><i>ʻAkilisi Pōhivan</i><par n="a__adj"/></e>
     <e lm="esar" r="LR"><p><l>es</l><r>es<s n="vblex"/><s n="pri"/></r></p></e>
+  </section>
+  <section id="apostrophes" type="postblank">
+    <e r="LR" lm="l'"><p><l>l'</l><r>la<s n="det"/></r></p></e>
+    <e r="LR" lm="l'"><p><l>L'</l><r>La<s n="det"/></r></p></e>
   </section>
   <section id="punct" type="inconditional">
     <e><p><l>.</l><r>.<s n="sent"/></r></p></e>

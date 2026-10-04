@@ -606,6 +606,19 @@ def test_eo_punctuation_units_get_epo_to_ido_rows():
     assert '<e r="RL"><p><l>,<s n="cm" /></l><r>,<s n="cm" /></r></p></e>' in bidi
 
 
+def test_elision_clitic_is_a_postblank_section_lr_only():
+    """l'unika needs the clitic as its own unit with a blank after it, which is
+    what a type="postblank" section gives (as in apertium-fra/cat/ita); without
+    it the ido-epo mode needed a sed. LR only, so generation still writes la."""
+    entries = [_rec("domo", "o__n", "n", "domo", ["io_wiktionary"])]
+    mono = build_monodix(entries)
+    sec = [x for x in mono.findall("section") if x.get("id") == "apostrophes"]
+    assert len(sec) == 1 and sec[0].get("type") == "postblank"
+    rows = [(e.get("r"), e.find("p/l").text, e.find("p/r").text) for e in sec[0].findall("e")]
+    assert rows == [("LR", "l'", "la"), ("LR", "L'", "La")]
+    assert [s.get("n") for s in sec[0].find("e/p/r").findall("s")] == ["det"]
+
+
 def test_pronoun_accusative_twins():
     """tion (tio<prn><tn><sg><acc>) matched no row: every prn/det row gets an
     RL twin for the accusative -- unless a row already translates that form
