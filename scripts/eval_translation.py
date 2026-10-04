@@ -147,6 +147,11 @@ def main() -> int:
     ap.add_argument("--mode", default="ido-epo")
     ap.add_argument("--reports-dir", type=Path, default=here / "reports")
     ap.add_argument(
+        "--report-tag", default="",
+        help="extra suffix for the report files, so a second gold set keeps its own "
+             "trend (e.g. 'tatoeba' -> quality_trend_epo_ido_tatoeba.md)",
+    )
+    ap.add_argument(
         "--chrf-fail", type=float, default=70.0,
         help="chrF below this flags a sentence as a regression in the detail report",
     )
@@ -160,6 +165,8 @@ def main() -> int:
 
     src_name, tgt_name = (n.capitalize() for n in args.mode.split("-"))
     suffix = "" if args.mode == "ido-epo" else "_" + args.mode.replace("-", "_")
+    if args.report_tag:
+        suffix += "_" + args.report_tag
 
     gold = load_gold(args.gold)
     if not gold:
