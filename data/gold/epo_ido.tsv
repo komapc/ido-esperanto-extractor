@@ -17,7 +17,7 @@ Li dormas.	Il dormas.	pronoun
 Ĝi estas granda.	Ol esas granda.	pronoun
 Li laboras.	Lu laboras.	pronoun
 Ni iras.	Ni iras.	pronoun
-Vi venas.	Vi venas.	pronoun
+Vi venas.	Vi venas. | Tu venas.	pronoun
 Ili dormas.	Li dormas.	pronoun
 Oni diras ke jes.	On dicas ke yes.	pronoun
 Mi vidas vin.	Me vidas tu.	pronoun,accusative
@@ -138,7 +138,7 @@ Mi nur volas helpi.	Me nur volas helpar.	function
 Ŝi estas tre bela.	El esas tre bela.	function,pronoun
 Pano kaj akvo.	Pano ed aquo.	conjunction
 Mi kaj vi venas.	Me e tu venas.	conjunction,pronoun
-Pano aŭ akvo.	Pano o aquo.	conjunction
+Pano aŭ akvo.	Pano o aquo. | Pano od aquo.	conjunction
 Hieraŭ mi estis ĉi tie.	Hiere me esis hike.	function,tense
 Morgaŭ ni iros.	Morge ni iros.	function,tense
 La urbo estas granda.	L'urbo esas granda.	elision,article
