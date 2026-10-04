@@ -1079,6 +1079,9 @@ def _load_eo_punctuation(dix_path: Path = _EO_EPO_DIX) -> list:
 
 _IDO_SENT_MARKS = (".", "?", "!", "…")
 
+# Elided definite article: l'amiko = la amiko. (surface, lemma, POS tag.)
+_IDO_ELISION_CLITICS = (("l'", "la", "det"),)
+
 
 _IO_FREQUENCY = Path(__file__).resolve().parents[1] / "work/io_wiki_frequency.json"
 
@@ -1248,6 +1251,21 @@ def build_monodix(entries, freq: Optional[Dict[str, int]] = None,
     # "Belan katon venas."). A <sent> LU breaks token adjacency at the
     # boundary. Clause punctuation (, ; :) is deliberately left as blanks —
     # rules legitimately match across it (adj , adj nom chains).
+    # Elision clitic l' (= la before a vowel). Without it lttoolbox cannot
+    # tokenize the glued l'unika, and the mode needed a sed to split it. A
+    # type="postblank" section is the standard Apertium mechanism (apertium-
+    # fra/cat/ita use it for their apostrophe clitics): the analyser emits a
+    # blank after the clitic, so the translation keeps "la unika", not
+    # "launika". LR only: generation keeps writing plain "la".
+    clitic_section = ET.SubElement(dictionary, "section", id="apostrophes", type="postblank")
+    for surface, lemma, tag in _IDO_ELISION_CLITICS:
+        for form, out in ((surface, lemma), (surface.upper(), lemma.capitalize())):
+            ce = ET.SubElement(clitic_section, "e", r="LR", lm=surface)
+            cp = ET.SubElement(ce, "p")
+            ET.SubElement(cp, "l").text = form
+            cr = ET.SubElement(cp, "r")
+            cr.text = out
+            ET.SubElement(cr, "s", n=tag)
     punct_section = ET.SubElement(dictionary, "section", id="punct", type="inconditional")
     for mark in _IDO_SENT_MARKS:
         pe = ET.SubElement(punct_section, "e")
