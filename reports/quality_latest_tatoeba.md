@@ -1,0 +1,526 @@
+# Quality detail — 2026-10-06
+
+- Gold set: `data/gold/ido_epo_tatoeba.tsv` (300 sentences)
+- Coverage: **93.5%** (1469/1571 word tokens analysed)
+- Mean chrF: **81.1**
+
+## By phenomenon
+
+| Tag | N | Mean chrF |
+|-----|---|-----------|
+| tatoeba | 300 | 81.1 |
+
+## Flagged sentences (128) — chrF < 70 or unknown words
+
+- chrF 21 [tatoeba]
+    - in : Ca agro esas mea proprietajo.
+    - got: Ĉi tiu kampo estas mia posedaĵo.
+    - ref: Tiu terpeco apartenas al mi.
+- chrF 26 [tatoeba]  unknown=['Plenigas']
+    - in : Plenigas olu kun normala, voluntez.
+    - got: *Plenigas ĝi kun norma, volontu.
+    - ref: Plenigu ĝin per la normala benzino, mi petas.
+- chrF 27 [tatoeba]  unknown=['nulafoye']
+    - in : Me nulafoye questionis tu pri irgo.
+    - got: Mi *nulafoye demandis vin pri io ajn.
+    - ref: Mi neniam petis ion de vi.
+- chrF 32 [tatoeba]
+    - in : Il parolas tro multe.
+    - got: Li parolas tro multe.
+    - ref: Li estas tro babilema.
+- chrF 33 [tatoeba]
+    - in : Vu ne devas venar tante frue.
+    - got: Vi ne devas veni tiamaniere frue.
+    - ref: Ne necesas ke vi venu tiel frue.
+- chrF 40 [tatoeba]
+    - in : Ca bordi esas tre dentoza.
+    - got: Ĉi tiuj bordoj estas tre denta.
+    - ref: Tiuj randoj estas sufiĉe akraj.
+- chrF 40 [tatoeba]  unknown=['rideto']
+    - in : Li me salutis kun rideto.
+    - got: Ili mi salutis kun *rideto.
+    - ref: Ili akceptis min ridete.
+- chrF 40 [tatoeba]  unknown=['ruineso']
+    - in : La urbeto falis en ruineso.
+    - got: La urbeto falis en *ruineco.
+    - ref: La urbo ruiniĝis.
+- chrF 40 [tatoeba]
+    - in : La filmo komencos balde.
+    - got: La filmo komencos baldaŭ.
+    - ref: La filmo estas ekonta.
+- chrF 40 [tatoeba]
+    - in : Ol esis altra vana promiso.
+    - got: Ĝi estis alia vana promeco.
+    - ref: Ĝi denove estis malplena promeso.
+- chrF 41 [tatoeba]  unknown=['drinkeyo']
+    - in : Me amas ca drinkeyo.
+    - got: Mi amas ĉi tiu *drinkeyo.
+    - ref: Mi ŝategas ĉi tiun trinkejon.
+- chrF 43 [tatoeba]
+    - in : Me ne volas vartar tale longe.
+    - got: Mi ne volas atendi tiel longe.
+    - ref: Mi deziras ne tiom longe atendi.
+- chrF 43 [tatoeba]  unknown=['Sami']
+    - in : Sami enlinee prizentis su kom kandidato.
+    - got: *Sami interrete prezentis sin kiel kandidato.
+    - ref: Samio kandidatiĝis enrete.
+- chrF 45 [tatoeba]  unknown=['Tom']
+    - in : Tom dicis ilu ne vidis ulo.
+    - got: *Tom diris lin ne vidis ion.
+    - ref: Tomo diris, ke li vidis nenion.
+- chrF 46 [tatoeba]
+    - in : Fortunoze me indijas pri nulo.
+    - got: Feliĉe mi mankas pri nenio.
+    - ref: Feliĉe mi estas sana.
+- chrF 48 [tatoeba]
+    - in : Ni pagos vu segun quante vu laboros.
+    - got: Ni pagos vin laŭ kiom vi laboros.
+    - ref: Ni pagos vin laŭ la kvanto de laboro, kiun vi faras.
+- chrF 48 [tatoeba]
+    - in : Sendube me esus trista se il mortus.
+    - got: Kompreneble mi estus malgaja se li mortus.
+    - ref: Mi sendube malĝojus, se li mortus.
+- chrF 49 [tatoeba]  unknown=['Tom', 'mentiero']
+    - in : Tom es notora mentiero.
+    - got: *Tom estas fama *mentiero.
+    - ref: Tomo estas fifama mensogulo.
+- chrF 50 [tatoeba]  unknown=['maskulala', 'reproduktado']
+    - in : La peniso esas un del maskulala organi di reproduktado.
+    - got: La peniso estas unu de la *maskula organoj de *reproduktado.
+    - ref: La peniso estas unu el la viraj generiloj.
+- chrF 51 [tatoeba]
+    - in : Mea sango-preso esas basa.
+    - got: Mia sango-#preco estas basa.
+    - ref: Mia sangopremo estas malalta.
+- chrF 52 [tatoeba]  unknown=['paranoyika']
+    - in : Tamen me esas paranoyika.
+    - got: Tamen mi estas *paranoyika.
+    - ref: Mi ankoraŭ estas paranoja.
+- chrF 54 [tatoeba]
+    - in : Ka co esas vespertilio?
+    - got: Ĉu ĉi tio estas vesperto?
+    - ref: Ĉu tio estas batilo?
+- chrF 54 [tatoeba]
+    - in : Ka li parolas l'Angla?
+    - got: Ĉu ili parolas la Angla?
+    - ref: Ĉu ili estas parolantaj en la angla?
+- chrF 54 [tatoeba]  unknown=['tv', 'spektajo']
+    - in : Nula tv-spektajo fitas hodie.
+    - got: Neniu *tv-*spektajo taŭgas hodiaŭ.
+    - ref: Neniu televida programo taŭgas hodiaŭ.
+- chrF 54 [tatoeba]  unknown=['antilogio']
+    - in : Biblala vereso esas antilogio.
+    - got: Biblia vereco estas *antilogio.
+    - ref: Biblia vero estas oksimoro.
+- chrF 55 [tatoeba]  unknown=['adche']
+    - in : Venez adche me matine.
+    - got: Venu *adche mi matene.
+    - ref: Venu ĉe min matene.
+- chrF 55 [tatoeba]  unknown=['voyajero']
+    - in : Me ne esas granda voyajero.
+    - got: Mi ne estas granda *voyajero.
+    - ref: Mi ne estas vojaĝema.
+- chrF 56 [tatoeba]
+    - in : Qua iros kun vu a la skolo?
+    - got: Kiu iros kun vi al la lernejo?
+    - ref: Kiu akompanos vin al la lernejo?
+- chrF 56 [tatoeba]  unknown=['kat', 'kat']
+    - in : Kande kat-yuno divenas kat-adulto?
+    - got: Kiam *kat-junulo fariĝas *kat-adolto?
+    - ref: Kiam katido iĝas kato?
+- chrF 56 [tatoeba]  unknown=['venabez']
+    - in : Tu venabez hiere vespere.
+    - got: Vi *venabez hieraŭ vespere.
+    - ref: Vi devintus veni hieraŭ vespere.
+- chrF 57 [tatoeba]  unknown=['grupe']
+    - in : Ica-somere ni voyajos grupe.
+    - got: Ĉi tiu-somere ni vojaĝos *grupe.
+    - ref: Ĉi-somere ni komune vojaĝos.
+- chrF 57 [tatoeba]
+    - in : Teo esis importacita de Chinia.
+    - got: Teo estis importita de China.
+    - ref: Teo estis importata el Ĉinujo.
+- chrF 57 [tatoeba]  unknown=['sorton']
+    - in : Qua sorton di fisho tu volas?
+    - got: Kiu *sorton de fiŝo vi volas?
+    - ref: Kian fiŝon vi volas?
+- chrF 57 [tatoeba]
+    - in : Me facus irgo helpar li.
+    - got: Mi farus io ajn helpi ili.
+    - ref: Mi farus ĉion ajn por helpi ilin.
+- chrF 58 [tatoeba]  unknown=['Chiniana']
+    - in : Me ne parolas la Chiniana.
+    - got: Mi ne parolas la *Chiniana.
+    - ref: Mi ne parolas la ĉinan lingvon.
+- chrF 58 [tatoeba]  unknown=['Tom']
+    - in : La viro, di qua la biciklo esis furtita, esis Tom.
+    - got: La viro, de kiu la biciklo estis ŝtelita, estis *Tom.
+    - ref: La viro, kies biciklon oni ŝtelis, estis Tomo.
+- chrF 59 [tatoeba]  unknown=['nekredeble']
+    - in : Co esas nekredeble desfacila.
+    - got: Ĉi tio estas *nekredeble malfacila.
+    - ref: Tiu ĉi estas ege malfacila.
+- chrF 60 [tatoeba]
+    - in : Nur me laboras hodie!
+    - got: Nur mi laboras hodiaŭ!
+    - ref: Estas nur mi, kiu laboras hodiaŭ!
+- chrF 60 [tatoeba]  unknown=['Tom', 'kulpoza']
+    - in : Tom sentis kom kulpoza.
+    - got: *Tom sentis kiel *kulpoza.
+    - ref: Tom sentis sin kulpa.
+- chrF 60 [tatoeba]  unknown=['Tom']
+    - in : Me pensas ke Tom esas jaluza.
+    - got: Mi pensas ke *Tom estas ĵaluza.
+    - ref: Mi kredas, ke Tomo estas ĵaluza.
+- chrF 60 [tatoeba]
+    - in : Exter fumar, mea patro anke drinkas.
+    - got: Ekster fumi, mian patron ankaŭ trinkas.
+    - ref: Krom fumi, mia patro ankaŭ drinkas.
+- chrF 61 [tatoeba]  unknown=['reparigar']
+    - in : Me devas reparigar mea komputero.
+    - got: Mi devas *reparigar mia komputilo.
+    - ref: Mi devas riparigi mian komputilon.
+- chrF 61 [tatoeba]  unknown=['Tom']
+    - in : Ka Tom esas hike vere felica?
+    - got: Ĉu *Tom estas tie ĉi vere feliĉa?
+    - ref: Ĉu Tomo vere estas feliĉa ĉi tie?
+- chrF 62 [tatoeba]
+    - in : Me ne esas ebria, me esas nur fatigita.
+    - got: Mi ne estas ebria, mi estas nur laca.
+    - ref: Mi ne ebrias, nur lacas.
+- chrF 62 [tatoeba]
+    - in : Me ne bezonis helpo.
+    - got: Mi ne bezonis helpon.
+    - ref: Mi bezonis neniun helpon.
+- chrF 62 [tatoeba]  unknown=['New', 'York']
+    - in : New York esas urbego.
+    - got: *New *York estas urbego.
+    - ref: Nov-Jorko estas urbego.
+- chrF 62 [tatoeba]
+    - in : Me ne intencas mixar me en tua aferi.
+    - got: Mi ne intencas miksi min en viaj aferoj.
+    - ref: Mi ne havas la intencon miksi min en viajn aferojn.
+- chrF 62 [tatoeba]
+    - in : Me savas parolar la Hispana.
+    - got: Mi scias paroli la Hispana.
+    - ref: Mi scipovas paroli hispane.
+- chrF 62 [tatoeba]
+    - in : Quala bela floro esas ica!
+    - got: Kia bela floro estas ĉi tiu!
+    - ref: Kiel bela tiu floro estas!
+- chrF 63 [tatoeba]
+    - in : Donez a me la kozo quan me volas.
+    - got: Donu al mi la aĵo kiun mi volas.
+    - ref: Donu al mi tion, kion mi volas.
+- chrF 63 [tatoeba]
+    - in : Me esas felica, ke me ne esis hike.
+    - got: Mi estas feliĉa, ke mi ne estis tie ĉi.
+    - ref: Mi feliĉas, ke mi ĉi tie ne estis.
+- chrF 64 [tatoeba]
+    - in : Onu ne povas fidar al policistaro hike.
+    - got: Oni ne povas fidi al policistaro tie ĉi.
+    - ref: Oni ne povas fidi la policon ĉi tie.
+- chrF 64 [tatoeba]  unknown=['exerci']
+    - in : La lernolibro havas texti ed exerci por lernanti.
+    - got: La manlibro havas tekstojn kaj *exerci por lernantoj.
+    - ref: La lernolibro enhavas tekstojn kaj ekzercojn por lernantoj.
+- chrF 64 [tatoeba]
+    - in : Elu es povra, ma felica.
+    - got: Ŝi estas malriĉa, sed feliĉa.
+    - ref: Ŝi estas malriĉa, tamen estas feliĉa.
+- chrF 65 [tatoeba]
+    - in : La kati odias aquo.
+    - got: La katoj mamas akvon.
+    - ref: Katoj malŝatas akvon.
+- chrF 65 [tatoeba]
+    - in : Struchi ne povas flugar.
+    - got: Strutoj ne povas flugi.
+    - ref: Strutoj ne kapablas flugi.
+- chrF 66 [tatoeba]
+    - in : Me pensas ke li mentias.
+    - got: Mi pensas ke ili mensogas.
+    - ref: Mi kredas, ke ili mensogas.
+- chrF 67 [tatoeba]  unknown=['Masao']
+    - in : Qua yunulo esas Masao?
+    - got: Kiu junulo estas *Masao?
+    - ref: Kiu knabo estas Masao?
+- chrF 67 [tatoeba]
+    - in : Me esas infanto sola.
+    - got: Mi estas infano sola.
+    - ref: Mi estas solinfano.
+- chrF 67 [tatoeba]
+    - in : Ni havis bela dio.
+    - got: Ni havis belan tagon.
+    - ref: Ni pasigis belan tagon.
+- chrF 67 [tatoeba]
+    - in : Li komencis kun forta atako kontre la enemiko.
+    - got: Ili komencis kun forta atako kontraŭ la mamiko.
+    - ref: Ili komencis per fortaj atakoj kontraŭ la malamiko.
+- chrF 67 [tatoeba]  unknown=['normaleso', 'tediva']
+    - in : La normaleso es tediva.
+    - got: La *normaleco estas *tediva.
+    - ref: Normaleco estas enuiga.
+- chrF 67 [tatoeba]  unknown=['Tom']
+    - in : Ka vi pensas, ke Tom facos to?
+    - got: Ĉu vi pensas, ke *Tom faros tion?
+    - ref: Ĉu vi kredas, ke Tomo faros tion?
+- chrF 68 [tatoeba]
+    - in : Via situaciono esas analoga a la mea.
+    - got: Via situacio estas analoga al la mia.
+    - ref: Via situacio estas sama, kiel la mia.
+- chrF 68 [tatoeba]  unknown=['onkli']
+    - in : Ube esas vua onkli?
+    - got: Kie estas via *onkli?
+    - ref: Kie estas viaj onkloj?
+- chrF 68 [tatoeba]
+    - in : Ka vu povas konceptar ulo plu bona?
+    - got: Ĉu vi povas koncipi ion pli bona?
+    - ref: Ĉu vi povas elpensi ion pli bonan?
+- chrF 68 [tatoeba]
+    - in : La aquo esas tro varmega.
+    - got: La akvo estas tro varmega.
+    - ref: La akvo tro varmas.
+- chrF 68 [tatoeba]  unknown=['Tokio']
+    - in : Me ne kredas ke ta filio venis a Tokio sole.
+    - got: Mi ne kredas ke tiu filo venis al *Tokio sole.
+    - ref: Mi ne kredas ke tiu ido venis Tokien sola.
+- chrF 69 [tatoeba]  unknown=['boni']
+    - in : Mea patri ne esis boni.
+    - got: Miaj patroj ne estis *boni.
+    - ref: Miaj gepatroj ne estis bonuloj.
+- chrF 69 [tatoeba]  unknown=['teroristo', 'liberes', 'altru']
+    - in : Ta qua esas teroristo por ulu, esas liberes-kombatanto por altru.
+    - got: Tiu kiu estas *teroristo por iu, estas *liberes-kontraŭbatanto por *altru.
+    - ref: Kio estas teroristo por unu estas liberecbatalanto por alia.
+- chrF 69 [tatoeba]
+    - in : Ka tu natas ankore?
+    - got: Ĉu vi naĝas ankoraŭ?
+    - ref: Ĉu vi ankoraŭ naĝas?
+- chrF 70 [tatoeba]
+    - in : Me esas trista quale vi.
+    - got: Mi estas malgaja kiel vi.
+    - ref: Mi estas malfeliĉa kiel vi.
+- chrF 70 [tatoeba]  unknown=['justatempe']
+    - in : La treno arivis justatempe.
+    - got: La trajno alvenis *justatempe.
+    - ref: La trajno alvenis akurate.
+- chrF 70 [tatoeba]
+    - in : Me ne savas quale me facis lo. Importas ke me facis lo.
+    - got: Mi ne scias kiel mi faris tion. Gravas ke mi faris tion.
+    - ref: Mi ne scias, kiel mi faris tion. Kio gravas estas, ke mi ja faris tion.
+- chrF 71 [tatoeba]  unknown=['Tatoeba']
+    - in : Tatoeba esas exemplo pri interhelpo.
+    - got: *Tatoeba estas ekzemplo pri interŝanĝo.
+    - ref: Tatoeba estas ekzemplo de interhelpo.
+- chrF 71 [tatoeba]  unknown=['Tatoeba']
+    - in : Tatoeba: frazi, frazi e plusa frazi.
+    - got: *Tatoeba: frazoj, frazoj kaj pliaj frazoj.
+    - ref: Tatoeba: Frazoj, frazoj kaj ankoraŭ pli da frazoj.
+- chrF 72 [tatoeba]  unknown=['Tom', 'vegano']
+    - in : Tom decidis divenar vegano.
+    - got: *Tom decidis fariĝi *vegano.
+    - ref: Tomo decidis iĝi vegano.
+- chrF 72 [tatoeba]  unknown=['aprocho']
+    - in : Lia aprocho es unika.
+    - got: Ilia *aprocho estas unika.
+    - ref: Ilia aliro estas unika.
+- chrF 73 [tatoeba]  unknown=['Hungariana']
+    - in : Ka la Hungariana es vua matrala linguo?
+    - got: Ĉu la *Hungariana estas via patrina lingvo?
+    - ref: Ĉu la hungara estas via gepatra lingvo?
+- chrF 73 [tatoeba]  unknown=['postmarki']
+    - in : Me anke bezonis postmarki.
+    - got: Mi ankaŭ bezonis *postmarki.
+    - ref: Mi ankaŭ bezonis poŝtmarkojn.
+- chrF 74 [tatoeba]  unknown=['Laszlo']
+    - in : Laszlo recevis medalio pro meritoza servado.
+    - got: *Laszlo ricevis medalon pro merita servado.
+    - ref: Ladislao ricevis medalon pro meritplena servado.
+- chrF 76 [tatoeba]  unknown=['Tom']
+    - in : Tom edukas Araba kavali.
+    - got: *Tom edukas Arabajn ĉevalojn.
+    - ref: Tom bredas arabajn ĉevalojn.
+- chrF 77 [tatoeba]  unknown=['Korona']
+    - in : La Korona-viruso esas omnaloke.
+    - got: La *Korona-viruso estas ĉie.
+    - ref: La kronviruso estas ĉie.
+- chrF 78 [tatoeba]  unknown=['post']
+    - in : Ube me povas komprar post-marki?
+    - got: Kie mi povas aĉeti *post-markoj?
+    - ref: Kie mi povas aĉeti poŝtmarkojn?
+- chrF 78 [tatoeba]  unknown=['Tom', 'Maria']
+    - in : Tom dicis, ke Maria kredis il.
+    - got: *Tom diris, ke *Maria kredis lin.
+    - ref: Tomo diris, ke Maria kredas lin.
+- chrF 78 [tatoeba]  unknown=['gremio']
+    - in : El sidis sur la gremio di sua patro.
+    - got: Ŝi sidis sur la *gremio de sia patro.
+    - ref: Ŝi sidis sur la genuoj de sia patro.
+- chrF 78 [tatoeba]  unknown=['Tom']
+    - in : Tom havas multa pekunio, ma ne multa amiki.
+    - got: *Tom havas multan monon, sed ne multaj amikoj.
+    - ref: Tomo ja havas multan monon, sed ne multajn amikojn.
+- chrF 79 [tatoeba]  unknown=['Ricardo']
+    - in : Me iros kun Ricardo.
+    - got: Mi iros kun *Ricardo.
+    - ref: Mi iros kun Rikardo.
+- chrF 79 [tatoeba]  unknown=['repetada']
+    - in : Lua laboro esas repetada.
+    - got: Lia laboro estas *repetada.
+    - ref: Lia laboro estas ripeta.
+- chrF 80 [tatoeba]  unknown=['Tom', 'Mary']
+    - in : Quo esas la difero inter Tom e Mary?
+    - got: Kio estas la diferenco inter *Tom kaj *Mary?
+    - ref: Kiu estas la diferenco inter Tomo kaj Maria?
+- chrF 81 [tatoeba]  unknown=['monate']
+    - in : Ilua frato mortis pasinta monate.
+    - got: Lia frato mortis pasinta *monate.
+    - ref: Lia frato mortis pasintan monaton.
+- chrF 81 [tatoeba]  unknown=['komenti']
+    - in : Ne lektez la komenti.
+    - got: Ne legu la *komenti.
+    - ref: Ne legu la komentojn.
+- chrF 81 [tatoeba]  unknown=['popular']
+    - in : Lu esas popular artisto.
+    - got: Li estas *popular artisto.
+    - ref: Ri estas populara artisto.
+- chrF 82 [tatoeba]  unknown=['Alex']
+    - in : Mea nomo esas Alex.
+    - got: Mia nomo estas *Alex.
+    - ref: Mia nomo estas Alekso.
+- chrF 82 [tatoeba]  unknown=['Sami']
+    - in : Sami lojas en Siria.
+    - got: *Sami loĝas en Sirio.
+    - ref: Samio loĝas en Sirio.
+- chrF 82 [tatoeba]  unknown=['pasinteso', 'mentio']
+    - in : La pasinteso esas mentio.
+    - got: La *pasinteco estas *mentio.
+    - ref: La pasinteco estas mensogo.
+- chrF 83 [tatoeba]  unknown=['utilesas']
+    - in : A quo tu utilesas?
+    - got: Al kio vi *utilesas?
+    - ref: Al kio vi utilas?
+- chrF 83 [tatoeba]  unknown=['Tom']
+    - in : Quon Tom facos morge?
+    - got: Kion *Tom faros morgaŭ?
+    - ref: Kion Tomo faros morgaŭ?
+- chrF 83 [tatoeba]  unknown=['nemanjebla']
+    - in : Co es nemanjebla fungo.
+    - got: Ĉi tio estas *nemanjebla fungo.
+    - ref: Tio estas nemanĝebla fungo.
+- chrF 84 [tatoeba]  unknown=['Tom']
+    - in : Ma Tom ne darfas venar.
+    - got: Sed *Tom ne rajtas veni.
+    - ref: Sed Tomo ne rajtas veni.
+- chrF 85 [tatoeba]  unknown=['Tom']
+    - in : Tom furtis mea shuo.
+    - got: *Tom ŝtelis mian ŝuon.
+    - ref: Tomo ŝtelis mian ŝuon.
+- chrF 86 [tatoeba]  unknown=['Tom']
+    - in : Tom esis en la cielo.
+    - got: *Tom estis en la ĉielo.
+    - ref: Tomo estis en la ĉielo.
+- chrF 86 [tatoeba]  unknown=['Tom']
+    - in : Tom vere esas afabla.
+    - got: *Tom vere estas afabla.
+    - ref: Tomo vere estas afabla.
+- chrF 86 [tatoeba]  unknown=['tempon']
+    - in : Quanta tempon tu bezonas por tradukar ica libro?
+    - got: Kiom *tempon vi bezonas por traduki ĉi tiun libron?
+    - ref: Kiom da tempo vi bezonas por traduki ĉi tiun libron?
+- chrF 86 [tatoeba]  unknown=['Tom']
+    - in : Tom esas tre patriota.
+    - got: *Tom estas tre patriota.
+    - ref: Tomo estas tre patriota.
+- chrF 87 [tatoeba]  unknown=['Tom']
+    - in : Tom dicas a homi nur to, quon li volas audar.
+    - got: *Tom diras al homoj nur tio, kion ili volas aŭdi.
+    - ref: Tomo diras al homoj nur tion, kion ili volas aŭdi.
+- chrF 87 [tatoeba]  unknown=['Tom']
+    - in : Tom kaptis la furtisto.
+    - got: *Tom kaptis la ŝteliston.
+    - ref: Tomo kaptis la ŝteliston.
+- chrF 87 [tatoeba]  unknown=['Tom']
+    - in : Tom ne esas tradukisto.
+    - got: *Tom ne estas tradukisto.
+    - ref: Tomo ne estas tradukisto.
+- chrF 88 [tatoeba]  unknown=['Tom']
+    - in : Tom ne esas kapitalisto.
+    - got: *Tom ne estas kapitalisto.
+    - ref: Tomo ne estas kapitalisto.
+- chrF 89 [tatoeba]  unknown=['Tom']
+    - in : Tom bezonas nova biciklo.
+    - got: *Tom bezonas novan biciklon.
+    - ref: Tomo bezonas novan biciklon.
+- chrF 89 [tatoeba]  unknown=['Tom']
+    - in : Tom laboras en hospitalo.
+    - got: *Tom laboras en malsanulejo.
+    - ref: Tomo laboras en malsanulejo.
+- chrF 89 [tatoeba]  unknown=['Ella']
+    - in : Ella ne esas mea onklino.
+    - got: *Ella ne estas mia onklino.
+    - ref: Ŝi ne estas mia onklino.
+- chrF 89 [tatoeba]  unknown=['London']
+    - in : London esas la chefurbo di Anglia.
+    - got: *London estas la ĉefurbo de Anglio.
+    - ref: Londono estas la ĉefurbo de Anglio.
+- chrF 91 [tatoeba]  unknown=['Hebrea']
+    - in : Me lernas la Hebrea.
+    - got: Mi lernas la *Hebrea.
+    - ref: Mi lernas la hebrean.
+- chrF 91 [tatoeba]  unknown=['Elaine']
+    - in : Elaine esas en la hospitalo.
+    - got: *Elaine estas en la malsanulejo.
+    - ref: Elaine estas en malsanulejo.
+- chrF 92 [tatoeba]  unknown=['Hamas']
+    - in : Me es kontre Hamas.
+    - got: Mi estas kontraŭ *Hamas.
+    - ref: Mi estas kontraŭ Hamaso.
+- chrF 93 [tatoeba]  unknown=['Tom']
+    - in : Ni mustas facar to sen Tom.
+    - got: Ni devas fari tion sen *Tom.
+    - ref: Ni devas fari tion sen Tomo.
+- chrF 93 [tatoeba]  unknown=['Tom']
+    - in : Vu ankore esas yuna, Tom.
+    - got: Vi ankoraŭ estas juna, *Tom.
+    - ref: Vi ankoraŭ estas juna, Tomo.
+- chrF 94 [tatoeba]  unknown=['Tom']
+    - in : Tu ne es la patro di Tom.
+    - got: Vi ne estas la patro de *Tom.
+    - ref: Vi ne estas la patro de Tomo.
+- chrF 100 [tatoeba]  unknown=['Hilton']
+    - in : Al hotelo Hilton, me pregas.
+    - got: Al hotelo *Hilton, bonvolu.
+    - ref: Al hotelo Hilton, bonvolu.
+- chrF 100 [tatoeba]  unknown=['Ilia']
+    - in : Ilia instruktisto gratulis ili.
+    - got: *Ilia instruisto gratulis ilin.
+    - ref: Ilia instruisto gratulis ilin.
+- chrF 100 [tatoeba]  unknown=['surprizo']
+    - in : Ka to esis surprizo?
+    - got: Ĉu tio estis *surprizo?
+    - ref: Ĉu tio estis surprizo?
+- chrF 100 [tatoeba]  unknown=['Amikumu']
+    - in : Ka vu ja uzas Amikumu?
+    - got: Ĉu vi jam uzas *Amikumu?
+    - ref: Ĉu vi jam uzas Amikumu?
+- chrF 100 [tatoeba]  unknown=['Mary']
+    - in : Mary jacas en la suno.
+    - got: *Mary kuŝas en la suno.
+    - ref: Mary kuŝas en la suno.
+- chrF 100 [tatoeba]  unknown=['Tom']
+    - in : Pro quo Tom dicis to?
+    - got: Kial *Tom diris tion?
+    - ref: Kial Tom diris tion?
+- chrF 100 [tatoeba]  unknown=['Tom']
+    - in : Tom es mea amiko.
+    - got: *Tom estas mia amiko.
+    - ref: Tom estas mia amiko.
+- chrF 100 [tatoeba]  unknown=['Tom']
+    - in : Tom esas bona homo.
+    - got: *Tom estas bona homo.
+    - ref: Tom estas bona homo.
+- chrF 100 [tatoeba]  unknown=['Tom']
+    - in : Tom esas sola infanto.
+    - got: *Tom estas sola infano.
+    - ref: Tom estas sola infano.

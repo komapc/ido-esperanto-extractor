@@ -15,7 +15,7 @@
 | number | 7 | 85.6 |
 | derivation | 5 | 88.6 |
 | plural | 22 | 89.4 |
-| comparative | 4 | 91.0 |
+| comparative | 4 | 90.5 |
 | accusative | 30 | 92.9 |
 | conjunction | 4 | 94.0 |
 | possessive | 13 | 94.7 |
@@ -28,8 +28,8 @@
 | relative | 5 | 97.8 |
 | participle | 8 | 97.9 |
 | function | 14 | 98.7 |
-| correlative | 29 | 98.7 |
 | predicate | 8 | 98.7 |
+| correlative | 29 | 98.8 |
 | basic | 7 | 100.0 |
 | mood | 6 | 100.0 |
 | passive | 4 | 100.0 |
@@ -37,7 +37,7 @@
 | adverb | 3 | 100.0 |
 | copula | 3 | 100.0 |
 
-## Flagged sentences (10) — chrF < 70 or unknown words
+## Flagged sentences (11) — chrF < 70 or unknown words
 
 - chrF 50 [number,plural]
     - in : Tri infanoj ludas.
@@ -59,6 +59,10 @@
     - in : Kelkaj junaj infanoj ludas.
     - got: Kelka yuna infanti ludas.
     - ref: Kelka yuna pueri ludas.
+- chrF 70 [comparative]
+    - in : Ĉi tiu libro estas malpli kara ol tiu.
+    - got: Ca libro esas min kara kam ta.
+    - ref: Ica libro esas min chera kam ita.
 - chrF 72 [wikipedia,preposition]  unknown=['troviĝas']
     - in : Stepo troviĝas en Centra Azio.
     - got: Stepo *troviĝas en Centra Azia.
