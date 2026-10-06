@@ -229,6 +229,7 @@ Coverage: 42.04% (2102/5000)
 - 2012
 - josé
 - 93
+- trupi
 - uzesas
 - 2008
 - 31ma
@@ -1359,7 +1360,6 @@ Coverage: 42.04% (2102/5000)
 - donas
 - kulturi
 - lansas
-- plus
 - 193
 - 234
 - 237
@@ -1584,6 +1584,7 @@ Coverage: 42.04% (2102/5000)
 - jack
 - kanadan
 - lewis
+- mark
 - osada
 - 265
 - anne
@@ -1973,7 +1974,6 @@ Coverage: 42.04% (2102/5000)
 - imperis
 - klemens
 - my
-- paleolitiko
 - pictures
 - preci
 - sendas

@@ -1,5 +1,5 @@
 # IO→EO Conflicts (multiple EO terms per IO lemma)
-- Total conflicts: 4143
+- Total conflicts: 3841
 
 - Aachen: Aachen{wikidata_labels}, Akeno{ll,wiki,wikidata_labels}, Aĥeno{wikidata_labels}
 - Aalborg: Aalborg{ll,wiki,wikidata_labels}, Alborgo{wikidata_labels}
@@ -23,7 +23,6 @@
 - Acre: Acre{wikidata_labels}, Akreo{ll,wiki,wikidata_labels}, Akro{wikidata_labels}
 - Adamstown: Adamstaŭno{ll,wiki,wikidata_labels}, Adamstown{wikidata_labels}
 - Adele: Adele{ll,wiki,wikidata_labels}, Adele Adkins{wikidata_labels}
-- Adoptismo: Adoptianismo{wikidata_labels}, Adoptismo{ll,wiki,wikidata_labels}
 - Adrenalino: Adrenalino{ll,wiki,wikidata_labels}, epinefrino{wikidata_labels}
 - Adulto: Plenkreskeco{ll,wiki,wikidata_labels}, adolteco{wikidata_labels}, adolto{wikidata_labels}, plenkreskulo{wikidata_labels}
 - Adverbo: Adverbo{ll,wiki,wikidata_labels}, ECX{wikidata_labels}, e-vorto{wikidata_labels}
@@ -88,7 +87,7 @@
 - Anarkio-kapitalismo: Anarki-kapitalismo{ll,wiki,wikidata_labels}, anarki-liberalismo{wikidata_labels}, anarĥi-kapitalismo{wikidata_labels}, libermerkata anarkiismo{wikidata_labels}
 - Anatolia: Anatolio{ll,wiki,wikidata_labels}, Anatolujo{wikidata_labels}
 - Andaluzia: Andaluzio{ll,wiki,wikidata_labels}, Andaluzujo{wikidata_labels}
-- Andora: Andoro{ll,wiki,wikidata_labels,wikt_eo}, Princlando Andoro{wikidata_labels}
+- Andora: Andoro{ll,wiki,wikidata_labels,wikt_eo,wikt_io}, Princlando Andoro{wikidata_labels}
 - Andreapol: Andreapol{wikidata_labels}, Andreapolo{ll,wiki}
 - Andromahe: Andromaka{wikidata_labels}, Andromaĥa{wikidata_labels}, Andromaĥo{ll,wiki}
 - Anemono: Anemona{wikidata_labels}, Anemone{wikidata_labels}, Anemono{ll,wiki,wikidata_labels}
@@ -97,7 +96,7 @@
 - Angeliko: Angelica{wikidata_labels}, Angelikoj{ll,wiki,wikidata_labels}
 - Angers: Angers{ll,wiki,wikidata_labels}, Anĝero{wikidata_labels}, Anĝevo{wikidata_labels}
 - Angiospermi: Angiospermo{ll,wiki,wikidata_labels}, Florplanto{wikidata_labels}, Larĝafolia{wikidata_labels}, Magnoliofito{wikidata_labels}
-- Angola: Angolo{ll,wiki,wikidata_labels,wikt_eo}, Respubliko Angolo{wikidata_labels}
+- Angola: Angolo{ll,wiki,wikidata_labels,wikt_eo,wikt_io}, Respubliko Angolo{wikidata_labels}
 - Anguila: Angilo{wikidata_labels}, Anguilla{wikidata_labels}, Angvilo{ll,wiki,wikidata_labels}
 - Anhinoe: Akiroo{wikidata_labels}, Ankinoo{ll,wiki,wikidata_labels}, Aĥiroo{wikidata_labels}
 - Animal-Farmeyo: Bestofarmo{wikidata_labels}, La Besto-Farmo{ll,wiki,wikidata_labels}
@@ -156,6 +155,7 @@
 - Artemizio: Artemisia{wikidata_labels}, Artemizio{ll,wiki,wikidata_labels}
 - Artikopodo: Heksapodoj{ll,wiki,wikidata_labels}, Hexapoda{wikidata_labels}, Sespieduloj{wikidata_labels}
 - Arumo: Arumiano{wikidata_labels}, Arumo{ll,wiki,wikidata_labels}
+- Arvernia: Auvernia{wikidata_labels}, Aŭvernjo{wikt_io}
 - Arzamas: Arzamas{wikidata_labels}, Arzamaso{ll,wiki}
 - Aselo: Oniscidea{wikidata_labels}, Oniskoj{ll,wiki}
 - Asemblolinguo: Asembla lingvo{ll,wiki,wikidata_labels}, CMP{wikidata_labels}, JMP{wikidata_labels}, asembla komputillingvo{wikidata_labels}, simbola maŝinkodo{wikidata_labels}
@@ -203,6 +203,7 @@
 - BRICS: BRBĈS{wikidata_labels}, BRICS{ll,wiki,wikidata_labels}
 - Babiruso: Babiruso{ll,wiki,wikidata_labels}, Babyrousa{wikidata_labels}
 - Bacilo: Bacillus{wikidata_labels}, Bacilo{ll,wiki,wikidata_labels}
+- Badenia-Wurtemberg: Baden-Virtembergo{ll,wiki,wikidata_labels}, Badeno-Virtembergo{wikidata_labels}
 - Bagajo: Pakaĵo{ll,wiki,wikidata_labels}, bagaĝo{wikidata_labels}, pakumo{wikidata_labels}
 - Bahia: Bahia{wikidata_labels}, Bahio{ll,wiki,wikidata_labels}
 - Bahrain: Barejno{ll,wiki,wikidata_labels}, Reĝlando Barejno{wikidata_labels}
@@ -331,7 +332,7 @@
 - Canterbury: Canterbury{bert_embeddings,ll,wiki,wikidata_labels}, Kanterbury{wikidata_labels}
 - Capet-dinastio: Kapetida dinastio{wikidata_labels}, Kapetidoj{ll,wiki,wikidata_labels}
 - Caracas: Karakaso{ll,wiki,wikidata_labels}, Karako{wikidata_labels}
-- Caravaggio: Caravaggio{ll,wiki}, Michelangelo Caravaggio{wikidata_labels}, Michelangelo Merisi{wikidata_labels}, Mikelanĝelo Karavaĝo{wikidata_labels}, Mikelanĝelo Merisi{wikidata_labels}
+- Caravaggio: Caravaggio{ll,wiki}, Mikelanĝelo Karavaĝo{wikidata_labels}, Mikelanĝelo Merisi{wikidata_labels}
 - Cassini-Huygens: Cassini-Huygens{wikidata_labels}, Misio Cassini-Huygens{ll,wiki,wikidata_labels}
 - Castries: Castries{wikidata_labels}, Kastrizo{ll,wiki}
 - Catullus: Catullus{wikidata_labels}, Katulo{ll,wiki,wikidata_labels}
@@ -353,9 +354,10 @@
 - Champanio: Ĉampano{ll,wiki,wikidata_labels}, Ĉampanvino{wikidata_labels}
 - Chandigarh: Ĉandigarh{wikidata_labels}, Ĉandigaro{ll,wiki,wikidata_labels}
 - Charleroi: Charleroi{ll,wiki,wikidata_labels}, Karloreĝo{wikidata_labels}
+- Chechenia: Ĉeĉenio{wikidata_labels,wikt_io}, Ĉeĉenujo{wikidata_labels,wikt_io}
 - Chefministro: ministroprezidanto{wikidata_labels}, premiero{wikidata_labels}, Ĉefministro{ll,wiki,wikidata_labels}
-- Chekia: Ĉeĥa Respubliko{wikidata_labels}, Ĉeĥio{ll,wiki,wikidata_labels}, Ĉeĥujo{wikidata_labels}
-- Chekoslovakia: Ĉeĥo-Slovakio{wikidata_labels}, Ĉeĥoslovaka Respubliko{wikidata_labels}, Ĉeĥoslovakio{ll,wiki,wikidata_labels}, Ĉeĥoslovakoj{wikidata_labels}, Ĉeĥoslovakujo{wikidata_labels}
+- Chekia: Ĉeĥa Respubliko{wikidata_labels}, Ĉeĥio{ll,wiki,wikidata_labels,wikt_io}, Ĉeĥujo{wikidata_labels}
+- Chekoslovakia: Ĉeĥo-Slovakio{wikidata_labels}, Ĉeĥoslovaka Respubliko{wikidata_labels}, Ĉeĥoslovakio{ll,wiki,wikidata_labels,wikt_io}, Ĉeĥoslovakoj{wikidata_labels}, Ĉeĥoslovakujo{wikidata_labels}
 - Chelyabinsk: Ĉelabinsk{wikidata_labels}, Ĉelabinsko{wikidata_labels}, Ĉeljabinsk{ll,wiki,wikidata_labels}
 - Chennai: Madraso{wikidata_labels}, Ĉenajo{ll,wiki,wikidata_labels}
 - Chernivci: Ĉernivci{wikidata_labels}, Ĉernivco{ll,wiki,wikidata_labels}
@@ -412,7 +414,8 @@
 - Dahome: Reĝlando Dahomejo{wikidata_labels}, Reĝlando Dahomeo{ll,wiki,wikidata_labels}
 - Daimono: Daimono{wikidata_labels}, Dajmono{ll,wiki,wikidata_labels}
 - Dalida: Dalida{ll,wiki,wikidata_labels}, Iolanda Gigliotti{wikidata_labels}
-- Dania: Danio{ll,wiki,wikidata_labels}, Danujo{wikidata_labels}
+- Dalmatia: Dalmatio{ll,wiki,wikidata_labels,wikt_io}, Dalmatujo{wikt_io}
+- Dania: Danio{ll,wiki,wikidata_labels,wikt_io}, Danlando{wikt_io}, Danujo{wikidata_labels,wikt_io}
 - Dania-Norvegia: Danio-Norvegio{ll,wiki,wikidata_labels}, Danmark-Noreg{wikidata_labels}
 - Dans-arto: Koreografio{ll,wiki,wikidata_labels}, koregrafio{wikidata_labels}, koregrafo{wikidata_labels}, koreografo{wikidata_labels}, ĥoreografiisto{wikidata_labels}, ĥoreografio{wikidata_labels}
 - Dateliero: Daktila feniko{wikidata_labels}, Daktilopalmo{ll,wiki,wikidata_labels}, Daktilpalmo{wikidata_labels}, Daktilujo{wikidata_labels}
@@ -469,7 +472,6 @@
 - Dorloto: Dorlotbesto{ll,wiki,wikidata_labels}, Dorlotobesto{wikidata_labels}, Maskoto{wikidata_labels}, hejmbesto{wikidata_labels}
 - Dortmund: Dortmund{ll,wiki,wikidata_labels}, Dortmundo{wikidata_labels}
 - Douala: Douala{wikidata_labels}, Dualao{ll,wiki,wikidata_labels}
-- Drenobaseno: Akvokolekta areo{ll,wiki,wikidata_labels}, riverbaseno{wikidata_labels}
 - Drenthe: Drenthe{wikidata_labels}, Drento{ll,wiki,wikidata_labels}
 - Dresden: Dresden{wikidata_labels}, Dresdeno{bert_embeddings,ll,wiki,wikidata_labels}
 - Dromedaro: Camelus dromedarius{wikidata_labels}, Dromedaro{ll,wiki,wikidata_labels}
@@ -484,7 +486,7 @@
 - Edukado: Bestbredado{wikidata_labels}, Bestobredado{wikidata_labels}, Bredado{ll,wiki,wikidata_labels}, Brutbredado{wikidata_labels}, Brutobredado{wikidata_labels}, Gregaro{wikidata_labels}, Hejmigita{wikidata_labels}, Kaptiva bredado{wikidata_labels}, Kaptivbredado{wikidata_labels}
 - Efemero: Efemeroj{wikidata_labels}, Efemeropteroj{ll,wiki}
 - Egeus: Egeo{en_wiktionary_via,wikidata_labels}, Egeono{wikidata_labels}
-- Egiptia: Egiptio{ll,wiki,wikidata_labels,wikt_eo}, Egiptujo{wikidata_labels}, Respubliko Egiptio{wikidata_labels}, Respubliko Egiptujo{wikidata_labels}
+- Egiptia: Egiptio{ll,wiki,wikidata_labels,wikt_eo,wikt_io}, Egiptujo{wikidata_labels,wikt_io}, Respubliko Egiptio{wikidata_labels}, Respubliko Egiptujo{wikidata_labels}
 - Eglefino: Eglefino{ll,wiki,wikidata_labels}, Melanogrammus aeglefinus{wikidata_labels}
 - Ekfenestrigo: Defenestrigo{ll,wiki}, defenestriĝo{wikidata_labels}
 - Ekino: Eĥino{ll,wiki,wikidata_labels}, ekino{wikidata_labels}, mara erinaco{wikidata_labels}, marerinaco{wikidata_labels}
@@ -495,7 +497,6 @@
 - Elche: Elx{wikidata_labels}, Elĉo{ll,wiki}
 - Emberizo: Emberizedoj{ll,wiki,wikidata_labels}, Emberizidae{wikidata_labels}
 - Emirio: Emirlando{ll,wiki,wikidata_labels}, emirujo{wikidata_labels}
-- Emuo: Dromaius novaehollandiae{wikidata_labels}, Emuo{ll,wiki,wikidata_labels}
 - Endivio: Endivio{ll,wiki,wikidata_labels}, brusela cikorio{wikidata_labels}
 - Endokrinologio: Endokrinologio{ll,wiki,wikidata_labels}, Hormonscienco{wikidata_labels}
 - Eneyas: ENE{wikidata_labels}, Eneo{ll,wiki,wikidata_labels}
@@ -526,13 +527,13 @@
 - Esplanado: Esplanado{ll,wiki}, promenejo{wikidata_labels}
 - Est-Afrika: Orient-Afriko{wikidata_labels}, Orienta Afriko{ll,wiki,wikidata_labels}, Orientafriko{wikidata_labels}
 - Estakado: Piero{ll,wiki,wikidata_labels}, marponto{wikidata_labels}
-- Estonia: Estonio{ll,wiki,wikidata_labels}, Estonujo{wikidata_labels}, Respubliko Estonio{wikidata_labels}
+- Estonia: Estonio{ll,wiki,wikidata_labels,wikt_io}, Estonujo{wikidata_labels}, Respubliko Estonio{wikidata_labels}
 - Eswatini: Reĝlando Svazilando{wikidata_labels}, Svazilando{ll,wiki,wikidata_labels}
 - Etalono: Prototipo{ll,wiki,wikidata_labels}, pratipo{wikidata_labels}
 - Eteokles: Eteokles{wikidata_labels}, Eteoklo{ll,wiki,wikidata_labels}, Etheokles{wikidata_labels}
 - Etero: Aether{wikidata_labels}, Etero{ll,wiki,wikidata_labels}
 - Etiketo: Etikedo{ll,wiki,wikidata_labels}, Glumarko{wikidata_labels}
-- Etiopia: Etiopio{ll,wiki,wikidata_labels}, et{wikidata_labels}
+- Etiopia: Etiopio{ll,wiki,wikidata_labels,wikt_io}, et{wikidata_labels}
 - Eufonio: Belsoneco{ll,wiki,wikidata_labels}, eŭfonio{wikidata_labels}
 - Euforbio: Euphorbia{wikidata_labels}, Eŭforbio{ll,wiki,wikidata_labels}
 - Eufrosine: Euphrosyne{wikidata_labels}, Eŭfrozina{wikidata_labels}, Eŭfrozino{ll,wiki,wikidata_labels}
@@ -594,7 +595,7 @@
 - Finlando: Finlando{en_wiktionary_via}, Finnio{wikidata_labels}, Finnlando{en_wiktionary_via,ll,wiki,wikidata_labels,wikt_eo,wikt_io}, Finnujo{wikidata_labels}, Respubliko Finnlando{wikidata_labels}, Respubliko Suomio{wikidata_labels}, Suomio{en_wiktionary_via,wikidata_labels,wikt_io}, Suomujo{wikidata_labels}
 - Fiziokratio: Fiziokracio{wikidata_labels}, Fiziokrata skolo{wikidata_labels}, Fiziokratio{ll,wiki,wikidata_labels}
 - Flamingo: Fenikopteredoj{wikidata_labels}, Fenikoptero{wikidata_labels}, Fenikopteroformaj{wikidata_labels}, Fenikopteroformaj birdoj{wikidata_labels}, Flamengo{ll,wiki,wikidata_labels}, Phoenicopterus{wikidata_labels}
-- Flandria: Flandrio{ll,wiki,wikidata_labels}, Flandrujo{wikidata_labels}
+- Flandria: Flandrio{ll,wiki,wikidata_labels,wikt_io}, Flandrujo{wikidata_labels,wikt_io}
 - Flecho: Flecho{wikidata_labels}, Sago{ll,wiki,wikidata_labels}
 - Flegado: Flegado{ll,wiki,wikidata_labels}, Flegisto{wikidata_labels}
 - Flerovio: Fl{wikidata_labels}, Flerovio{ll,wiki}, Uuq{wikidata_labels}, fleroviumo{wikidata_labels}, ununquadio{wikidata_labels}
@@ -606,7 +607,6 @@
 - Fonto: Fonte{wikidata_labels}, Fonto{ll,wiki,wikidata_labels}
 - Fontokodexo: Fonta kodo{wikidata_labels}, Fonta teksto{wikidata_labels}, Fontkodo{ll,wiki,wikidata_labels}, Fonto-kodo{wikidata_labels}, Fontokodo{wikidata_labels}, Kodumaĵo{wikidata_labels}, Programa teksto{wikidata_labels}
 - Forcalquier: Forcalchieri{wikidata_labels}, Forcalquier{ll,wiki,wikidata_labels}, Forcauquier{wikidata_labels}
-- Forfikulo: Dermaptera{wikidata_labels}, Forfikulo{ll,wiki,wikidata_labels}
 - Forkis: Forkiso{ll,wiki,wikidata_labels}, Forko{wikidata_labels}
 - Formiko: Formicidae{wikidata_labels}, Formikedoj{ll,wiki}, formiko{wikidata_labels}
 - Fort-de-France: Fort-de-France{ll,wiki,wikidata_labels}, Fuorto-de-Francio{wikidata_labels}
@@ -616,7 +616,7 @@
 - Foxtroto: Fokstroto{ll,wiki,wikidata_labels}, Foxtrot{wikidata_labels}
 - Fraktalo: Fraktalo{ll,wiki,wikidata_labels}, frakto{wikidata_labels}
 - Framasonaro: Framasonismo{ll,wiki,wikidata_labels}, framasonaj organizoj{wikidata_labels}
-- Francia: Franca Respubliko{wikidata_labels}, Francio{ll,wiki,wikidata_labels}, Francujo{wikidata_labels}, Respubliko Francio{wikidata_labels}
+- Francia: Franca Respubliko{wikidata_labels}, Francio{ll,wiki,wikidata_labels,wikt_io}, Francujo{wikidata_labels}, Respubliko Francio{wikidata_labels}
 - Franciskano: Franciskano{ll,wiki,wikidata_labels}, OFM{wikidata_labels}
 - Frangulo: Alno nigra{wikidata_labels}, Alnus glutinosa{wikidata_labels}, Nigra alno{ll,wiki,wikidata_labels}
 - Frankofonio: Franclingvio{ll,wiki,wikidata_labels}, franclingvujo{wikidata_labels}
@@ -672,9 +672,9 @@
 - Georgismo: Georgismo{ll,wiki,wikidata_labels}, ĝorĝismo{wikidata_labels}
 - Geranio: Geranio{ll,wiki,wikidata_labels}, Geranium{wikidata_labels}
 - Gerfalko: Falco rusticolus{wikidata_labels}, Ĉasfalko{ll,wiki,wikidata_labels}
-- Germania: Germanio{ll,wiki,wikidata_labels}, Germanlando{wikt_eo}, Germanujo{wikidata_labels}
+- Germania: Germanio{ll,wiki,wikidata_labels,wikt_io}, Germanujo{wikidata_labels}
 - Geto: Geto{ll,wiki,wikidata_labels}, getto{wikidata_labels}
-- Ghana: Ganao{ll,wiki,wikidata_labels}, Respubliko Ganao{wikidata_labels}
+- Ghana: Ganao{ll,wiki,wikidata_labels,wikt_io}, Respubliko Ganao{wikidata_labels}
 - Gibono: Gibonedoj{wikidata_labels}, Gibono{ll,wiki,wikidata_labels}, Hylobatidae{wikidata_labels}
 - Gildo: Gildo{ll,wiki,wikidata_labels}, korporacio{wikidata_labels}
 - Gilgamesh: Gilgameŝ{ll,wiki,wikidata_labels}, Gilgameŝo{wikidata_labels}
@@ -703,14 +703,15 @@
 - Grand-mastro: GM{wikidata_labels}, Grandmajstro{ll,wiki,wikidata_labels}, Internacia Grandmajstro{wikidata_labels}
 - Gravelo: Kalkuluso{ll,wiki}, rena kalkuluso{wikidata_labels}
 - Graz: Graco{wikidata_labels}, Graz{bert_embeddings,ll,wiki,wikidata_labels}
-- Grekia: Grekio{ll,wiki,wikidata_labels}, Grekujo{wikidata_labels}, Helena Respubliko{wikidata_labels}
+- Grekia: Grekio{ll,wiki,wikidata_labels,wikt_io}, Grekujo{wikidata_labels}, Helena Respubliko{wikidata_labels}
+- Grenada: GRN{wikidata_labels}, Grenado{wikidata_labels,wikt_io}
 - Grenlando: Grenlando{wikidata_labels}, Groenlando{en_wiktionary_via}, Gronlando{ll,wiki,wikidata_labels,wikt_io}
 - Greso: Grejso{ll,wiki,wikidata_labels}, sablopetro{wikidata_labels}, sabloŝtono{wikidata_labels}
 - Groningen: Groningen{bert_embeddings,wikidata_labels}, Groningeno{wikidata_labels}, Groningo{wikidata_labels}
 - Gruzia: Kartvelio{ll,wiki,wikidata_labels}, Respubliko Kartvelio{wikidata_labels}
 - Gruzo: Tetraonedoj{ll,wiki,wikidata_labels}, Tetraonidae{wikidata_labels}
 - Guanajuato: Guanajuato{ll,wiki,wikidata_labels}, Guanaĥuato{wikidata_labels}, Gvanaĥŭato{wikidata_labels}
-- Guatemala: GT{wikidata_labels}, Gvatemalo{ll,wiki,wikidata_labels}, Respubliko Gvatemalo{wikidata_labels}
+- Guatemala: GT{wikidata_labels}, Gvatemalo{ll,wiki,wikidata_labels,wikt_io}, Respubliko Gvatemalo{wikidata_labels}
 - Guayaquil: Guajakilo{wikidata_labels}, Guayaquil{ll,wiki,wikidata_labels}, Gvajakilo{wikidata_labels}
 - Guberniestro: Guberniestro{ll,wiki,wikidata_labels}, gubernatoro{wikidata_labels}
 - Gudermes: Gudermes{wikidata_labels}, Gudermeso{ll,wiki}
@@ -719,7 +720,7 @@
 - Gufo: Bubo bubo{wikidata_labels}, Gufo{ll,wiki,wikidata_labels}
 - Gugolo: Guglo{ll,wiki,wikidata_labels}, dek deksesiliardoj{wikidata_labels}
 - Gugoloplexo: Gugloplekso{ll,wiki,wikidata_labels}, guglego{wikidata_labels}
-- Guinea: Gvineo{ll,wiki,wikidata_labels}, Gvineo-Konakrio{wikidata_labels}, Respubliko Gvineo{wikidata_labels}
+- Guinea: Gvineo{ll,wiki,wikidata_labels,wikt_io}, Gvineo-Konakrio{wikidata_labels}, Respubliko Gvineo{wikidata_labels}
 - Gujarat: Guĝaratio{ll,wiki,wikidata_labels}, Guĝaratlando{wikidata_labels}
 - Guyana: Gujano{ll,wiki,wikidata_labels}, Respubliko Gujano{wikidata_labels}
 - Gwangju: Gŭangĝu{wikidata_labels}, Kŭangĵuo{ll,wiki}, Kŭanĵuo{wikidata_labels}
@@ -784,8 +785,8 @@
 - Hiragana: Hiragana{wikidata_labels}, Hiraganaj skriboj{wikidata_labels}, Rondaj kanaoj{ll,wiki,wikidata_labels}
 - Hiroshima: Hiroshima{wikidata_labels}, Hiroŝima{wikidata_labels}, Hiroŝimo{ll,wiki,wikidata_labels}
 - Hirundo: Hirundedoj{wikidata_labels}, Hirundinidae{wikidata_labels}, Hirundo{ll,wiki,wikidata_labels}
-- Hispania: Hispana Ŝtato{wikidata_labels}, Hispanio{ll,wiki,wikidata_labels}, Hispanujo{wikidata_labels}, Reĝlando Hispanio{wikidata_labels}
-- Hispaniola: Hispaniola{wikidata_labels}, Hispaniolo{ll,wiki,wikidata_labels}, Hispanjolo{wikidata_labels}
+- Hispania: Hispana Ŝtato{wikidata_labels}, Hispanio{ll,wiki,wikidata_labels,wikt_io}, Hispanujo{wikidata_labels,wikt_io}, Reĝlando Hispanio{wikidata_labels}
+- Hispaniola: Hispaniolo{ll,wiki,wikidata_labels}, Hispanjolo{wikidata_labels}
 - Hizbollah: Hezbolaho{wikidata_labels}, Hezbolao{wikidata_labels}, Hisbollah{wikidata_labels}, Hizbala{wikidata_labels}, Hizballa{wikidata_labels}, Hizbolaho{wikidata_labels}, Hizbulaho{ll,wiki,wikidata_labels}
 - Hobart: Hobart{wikidata_labels}, Hobarto{ll,wiki,wikidata_labels}
 - Hofburg-palaco: Hofburg{wikidata_labels}, Hofburgo{ll,wiki}
@@ -805,7 +806,7 @@
 - Huddinge: Huddinge{ll,wiki,wikidata_labels}, Huddinge kommun{wikidata_labels}, komunumo Huddinge{wikidata_labels}
 - Humero: Humero{ll,wiki,wikidata_labels}, Humerus{wikidata_labels}
 - Hundochasado: Hundoforta ĉasado{wiki,wikidata_labels}, Kurĉasado{ll}
-- Hungaria: Hungario{ll,wiki,wikidata_labels}, Hungarujo{wikidata_labels}
+- Hungaria: Hungario{ll,wiki,wikidata_labels,wikt_io}, Hungarujo{wikidata_labels,wikt_io}
 - Huo: Athene noctua{wikidata_labels}, Noktuo{ll,wiki,wikidata_labels}
 - Husiti: Husana periodo{wikidata_labels}, Husano{ll,wiki,wikidata_labels}, Husido{wikidata_labels}, Husito{wikidata_labels}, Husmovado{wikidata_labels}
 - Ianus: Ianus{wikidata_labels}, Jano{ll,wiki,wikidata_labels}, Janus{wikidata_labels}
@@ -820,7 +821,7 @@
 - Iktero: Flavmalsano{wikidata_labels}, Iktero{ll,wiki,wikidata_labels}
 - Iktiosauro: Fiŝosaŭroj{ll,wiki,wikidata_labels}, Iĥtiosaŭro{wikidata_labels}
 - Ilexo: Ilex aquifolium{wikidata_labels}, Ordinara ilekso{ll,wiki,wikidata_labels}
-- Iliria: Ilirio{ll,wiki,wikidata_labels}, Ilirujo{wikidata_labels}, Illyria{wikidata_labels}
+- Iliria: Ilirio{ll,wiki,wikidata_labels}, Ilirujo{wikidata_labels}
 - Illinois: IL{wikidata_labels}, Ilinojso{ll,wiki,wikidata_labels}
 - Imortelo: Helichrysum{wiki,wikidata_labels}, Helikrizo{ll,wikidata_labels}
 - Impresionismo: Impresionisma Pentrado{wikidata_labels}, Impresionismo{ll,wiki,wikidata_labels}
@@ -829,7 +830,7 @@
 - Incenso: Incenso{ll,wiki,wikidata_labels}, odorfumaĵo{wikidata_labels}
 - Incheon: Inĉon{wikidata_labels}, Inĉono{ll,wiki,wikidata_labels}
 - Indemno: Kompensaĵo{wikidata_labels}, Kompenso{ll,wiki,wikidata_labels}
-- India: Barato{ll,wiki,wikidata_labels}, Bharata{wikidata_labels}, Hinda Unio{wikidata_labels}, Hindio{wikidata_labels}, Hindujo{wikidata_labels}, IND{wikidata_labels}, respubliko Barato{wikidata_labels}
+- India: Barato{ll,wiki,wikidata_labels}, Bharata{wikidata_labels}, Hinda Unio{wikidata_labels}, Hindio{wikidata_labels,wikt_io}, Hindujo{wikidata_labels}, IND{wikidata_labels}, respubliko Barato{wikidata_labels}
 - Indiana: Indianao{wikidata_labels}, Indianio{ll,wiki,wikidata_labels}
 - Indianapolis: Indianapolis{en_wiktionary_via,wikidata_labels}, Indianapolo{ll,wiki,wikidata_labels}
 - Indijeno: Indiana popolo{wikidata_labels}, Indiĝena{wikidata_labels}, Indiĝena popolo{wikidata_labels}, Indiĝeno{ll,wiki,wikidata_labels}
@@ -841,7 +842,7 @@
 - Inkandeco-lampo: Ampolo{ll,wiki,wikidata_labels}, inkandeska lampo{wikidata_labels}
 - Innsbruck: Innsbruck{bert_embeddings,ll,wiki,wikidata_labels}, Insbruko{wikidata_labels}
 - Ino: Ino{wikidata_labels}, Inoa{wikidata_labels}, Leŭkotea{ll,wiki}
-- Inquiziciono: Hispana Inkvizicio{wikidata_labels}, Inkvizicio{ll,wiki,wikidata_labels}, Sankta Ofico{wikidata_labels}
+- Inquiziciono: Inkvizicio{ll,wiki,wikidata_labels}, Sankta Ofico{wikidata_labels}
 - Intal: Intal{wikidata_labels}, Intalo{ll,wiki,wikidata_labels}
 - Interglossa: Intergloso{ll,wiki,wikidata_labels}, Interglossa{wikidata_labels}
 - Interlingua: Interlingua lingvo{wikidata_labels}, Interlingvaa lingvo{wikidata_labels}, Interlingvao{ll,wiki,wikidata_labels,wikt_io}
@@ -862,7 +863,7 @@
 - Islando: Islando{ll,wiki,wikidata_labels,wikt_io}, Respubliko Islando{wikidata_labels}
 - Israel: Israelo{ll,wiki,wikidata_labels,wikt_io}, Ŝtato Israelo{wikidata_labels}
 - Istmo: Istmo{ll,wiki,wikidata_labels}, terkolo{wikidata_labels}
-- Italia: Itala Respubliko{wikidata_labels}, Italio{ll,wiki,wikidata_labels,wikt_eo}, Italujo{wikidata_labels}, Respubliko Italio{wikidata_labels}, Respubliko Italujo{wikidata_labels}
+- Italia: Itala Respubliko{wikidata_labels}, Italio{ll,wiki,wikidata_labels,wikt_eo,wikt_io}, Italiujo{wikt_io}, Italujo{wikidata_labels}, Respubliko Italio{wikidata_labels}, Respubliko Italujo{wikidata_labels}
 - Ivano-Frankivsk: Ivano-Frankivsk{wikidata_labels}, Ivano-Frankivsko{ll,wiki,wikidata_labels}, Ivanofrankivsk{wikidata_labels}, Ivanofrankivsko{wikidata_labels}, Stanislawow{wikidata_labels}
 - Ivora Rivo: Ebur-Bordo{fr_wiktionary_via,ll,wiki}, Eburbordo{wikt_io}
 - Iznogoud: Iznogoud{wikidata_labels}, Iznogud{ll,wiki,wikidata_labels}
@@ -872,9 +873,10 @@
 - Jakarta: Provinco Ĝakarto{wikidata_labels}, Ĝakarto{ll,wiki,wikidata_labels}
 - Jalalabad: Ĝalalabad{wikidata_labels}, Ĝalalabado{ll,wiki,wikidata_labels}
 - Januaro: Januaro{ll,wiki,wikidata_labels}, jan{wikidata_labels}
-- Japonia: Japanio{ll,wiki,wikidata_labels}, Japanujo{wikidata_labels}, Nipono{wikidata_labels}
+- Japonia: Japanio{ll,wiki,wikidata_labels,wikt_io}, Japanujo{wikidata_labels,wikt_io}, Nipono{wikidata_labels}
 - Jason: Iason{wikidata_labels}, Jason{wikidata_labels}, Jasono{wikidata_labels}, Jazono{ll,wiki,wikidata_labels}
 - Jaspo: Jaspo{ll,wiki,wikidata_labels}, jaspiso{wikidata_labels}
+- Jeddah: Ĝido{ll,wiki,wikidata_labels}, Ĵido{wikidata_labels}
 - Jedi: Ĵedaja Ordeno{wikidata_labels}, Ĵedajo{ll,wiki,wikidata_labels}
 - Jelgava: Jelgava{ll,wiki,wikidata_labels}, Mitau{wikidata_labels}, Mitava{wikidata_labels}, Mitawa{wikidata_labels}
 - Jemelo: dunaskito{wikidata_labels}, Ĝemelo{ll,wiki,wikidata_labels}
@@ -884,7 +886,7 @@
 - Jinjero: Zingiber officinale{wikidata_labels}, Zingibro{ll,wiki,wikidata_labels}
 - Jodhpur: Jodhpur{wikidata_labels}, Jodhpuro{wikidata_labels}, Jopdhpur{wikidata_labels}, Ĝodhpur{wikidata_labels}, Ĝodhpuro{wikidata_labels}, Ĝodpur{ll,wiki}
 - Johannesburg: Johanesburg{wikidata_labels}, Johanesburgo{ll,wiki,wikidata_labels}, Johannesburgo{wikidata_labels}, Johannisburg{wikidata_labels}
-- Jordania: Jordanio{ll,wiki,wikidata_labels}, Reĝlando Jordanio{wikidata_labels}
+- Jordania: Jordanio{ll,wiki,wikidata_labels,wikt_io}, Reĝlando Jordanio{wikidata_labels}
 - Jovdio: Ĵaŭdo{ll,wiki,wikidata_labels}, ĵa{wikidata_labels}, ĵaŭ{wikidata_labels}
 - Judaismo: Judismo{ll,wiki,wikidata_labels}, hebrea religio{wikidata_labels}, juda religio{wikidata_labels}, judaismo{wikidata_labels}
 - Judea: Iudaea{wikidata_labels}, Judajo{wikidata_labels}, Judea{wikidata_labels}, Judeo{ll,wiki,wikidata_labels}, Judio{wikidata_labels}, Judujo{wikidata_labels}, Palaestina{wikidata_labels}
@@ -911,15 +913,14 @@
 - Kalorio: Kalorio{ll,wiki,wikidata_labels}, cal{wikidata_labels}
 - Kalvario: Golgoto{ll,wiki,wikidata_labels}, Kalvaria monto{wikidata_labels}, Kalvario{wikidata_labels}
 - Kalvinismo: Kalvinismo{ll,wiki,wikidata_labels}, Reformita kredo{wikidata_labels}, Reformita kristanismo{wikidata_labels}, Reformita protestantismo{wikidata_labels}
-- Kambodja: Kamboĝo{ll,wiki,wikidata_labels}, Reĝlando Kamboĝo{wikidata_labels}
-- Kamelo: Camelus{wikidata_labels}, Kamelo{ll,wiki,wikidata_labels}
+- Kambodja: Kamboĝo{ll,wiki,wikidata_labels,wikt_io}, Reĝlando Kamboĝo{wikidata_labels}
 - Kamerlingo: Kamerlengo{wikidata_labels}, Kamerlingo{ll,wiki}
 - Kamerun: Kamerunio{wikidata_labels}, Kameruno{ll,wiki,wikidata_labels,wikt_io}, Respubliko Kamerunio{wikidata_labels}, Respubliko Kameruno{wikidata_labels}
 - Kamiono: Kamiono{ll,wiki,wikidata_labels}, ŝarĝaŭto{wikidata_labels}, ŝarĝaŭtomobilo{wikidata_labels}
 - Kamomilo: Kamomilo{ll,wiki,wikidata_labels}, Matricaria chamomilla{wikidata_labels}
 - Kanaano: Kanaano{ll,wiki,wikidata_labels}, Lando Kanaana{wikidata_labels}
 - Kanabo: Kanaba manĝaĵo{wikidata_labels}, Kanabo{ll,wiki,wikidata_labels}
-- Kanada: Kanada{wikidata_labels}, Kanado{ll,wiki,wikidata_labels}
+- Kanada: Kanada{wikidata_labels}, Kanado{ll,wiki,wikidata_labels,wikt_io}
 - Kanapeo: Sofo{ll,wiki,wikidata_labels}, divano{wikidata_labels}, kanapo{wikidata_labels}
 - Kanarii: Kanariaj insuloj{wikidata_labels}, Kanarioj{ll,wiki,wikidata_labels}
 - Kanario: Atlantika kanario{wikidata_labels}, Insula kanario{wikidata_labels}, Kanario{ll,wiki,wikidata_labels}, Komuna kanario{wikidata_labels}
@@ -960,7 +961,7 @@
 - Kastano: Kastaneo{wikidata_labels}, Kaŝtanarbo{ll,wiki,wikidata_labels}, Kaŝtano{wikidata_labels}, Kaŝtanujo{wikidata_labels}
 - Kasto: Kasto{ll,wiki,wikidata_labels}, kastosistemo{wikidata_labels}
 - Katakana: Katakanaj Skriboj{wikidata_labels}, Strekaj kanaoj{ll,wiki,wikidata_labels}
-- Katalunia: Katalunio{ll,wiki,wikidata_labels}, Katalunujo{wikidata_labels}
+- Katalunia: Katalunio{ll,wiki,wikidata_labels,wikt_io}, Katalunujo{wikidata_labels}
 - Katana: Katana{ll,wiki,wikidata_labels}, Katano{wikidata_labels}, japana glavo{wikidata_labels}
 - Katar: Kataro{ll,wiki,wikidata_labels,wikt_io}, Ŝtato Kataro{wikidata_labels}
 - Katari: Katarismo{ll,wiki,wikidata_labels}, Kataroj{wikidata_labels}
@@ -979,7 +980,7 @@
 - Keglo: Keglado{wikidata_labels}, Keglo{wikidata_labels}, Kegloludo{ll,wiki,wikidata_labels}
 - Kemioterapio: Kemiterapio{ll,wiki,wikidata_labels}, kemioterapio{wikidata_labels}, ĥemioterapio{wikidata_labels}, ĥemiterapio{wikidata_labels}
 - Kenelo: Knelo{ll,wiki,wikidata_labels}, Knepfle{wikidata_labels}, quenelle{wikidata_labels}
-- Kenia: Kenjo{ll,wiki,wikidata_labels}, Respubliko Kenjo{wikidata_labels}
+- Kenia: Kenjo{ll,wiki,wikidata_labels,wikt_io}, Respubliko Kenjo{wikidata_labels}
 - Kerala: Keralao{wikidata_labels}, Keralo{ll,wiki,wikidata_labels}
 - Kerkira: Kerkira{ll,wiki}, Korfuo{wikidata_labels}
 - Khartoum: Kartumo{wikidata_labels}, Ĥartumo{en_wiktionary_via,ll,wiki,wikidata_labels}
@@ -1022,7 +1023,7 @@
 - Kolor-modelo: Kolormodelo{ll,wiki,wikidata_labels}, kolora modelo{wikidata_labels}
 - Kolubro: Colubrid{wikidata_labels}, Kolubredoj{ll,wiki,wikidata_labels}
 - Kolumbario: Kolombario{wikidata_labels}, Kolumbario{ll,wiki,wikidata_labels}
-- Kolumbia: Kolombio{ll,wiki,wikidata_labels}, Respubliko Kolombio{wikidata_labels}
+- Kolumbia: Kolombio{ll,wiki,wikidata_labels,wikt_io}, Respubliko Kolombio{wikidata_labels}
 - Komato: Komato{ll,wiki,wikidata_labels}, komata{wikidata_labels}
 - Kombato: Armita luktado{ll,wiki}, batalo{wikidata_labels}
 - Komintern: Kominterno{wikidata_labels}, Komunista Internacio{wikidata_labels}, Tria Internacio{ll,wiki,wikidata_labels}
@@ -1049,7 +1050,7 @@
 - Kopernicio: Cn{wikidata_labels}, Kopernicio{ll,wiki}, koperniciumo{wikidata_labels}
 - Koramshar: Koramŝahr{wikidata_labels}, Ĥoramŝahr{ll,wiki,wikidata_labels}
 - Kordo-teorio: Kordoteorio{ll,wiki,wikidata_labels}, korda teorio{wikidata_labels}
-- Korea: Koreio{ll,wiki,wikidata_labels}, Koreo{wikidata_labels}, Koreujo{wikidata_labels}
+- Korea: Koreio{ll,wiki,wikidata_labels}, Koreo{wikidata_labels,wikt_io}, Koreujo{wikidata_labels}
 - Kormorano: Falakrokoracoformaj{wikidata_labels}, Falakrokorakedoj{wikidata_labels}, Kormorano{ll,wiki,wikidata_labels}, Phalacrocorax{wikidata_labels}
 - Korniko: Corvus corax{wikidata_labels}, Granda korvo{wikidata_labels}, Komuna korako{wikidata_labels}, Korako{ll,wiki,wikidata_labels}
 - Koro: Koro{wikidata_labels}, Korusejo{wikidata_labels}, Koruso{wikidata_labels}, Ĥormuziko{wikidata_labels}, Ĥoro{ll,wiki,wikidata_labels}, ĥorejo{wikidata_labels}
@@ -1070,11 +1071,11 @@
 - Krev-maizo: Krevmaizo{ll,wiki,wikidata_labels}, pufmaizo{wikidata_labels}
 - Kriptografo: Kriptologio{ll,wiki,wikidata_labels}, ĉifra inĝenierio{wikidata_labels}, ĉifrologio{wikidata_labels}
 - Kriptovaluto: kriptovaluto{wikidata_labels}, Ĉifrovaluto{ll,wiki,wikidata_labels}, ĉifrmomono{wikidata_labels}
-- Krishna: Krishna{wikidata_labels}, Kriŝna{wikidata_labels}, Kriŝno{ll,wiki,wikidata_labels}
+- Krishna: Kriŝna{wikidata_labels}, Kriŝno{ll,wiki,wikidata_labels}
 - Kristanismo: Kristanismo{ll,wiki,wikidata_labels}, kristana{wikidata_labels}, kristana doktrino{wikidata_labels}, kristana kredo{wikidata_labels}, kristanisma{wikidata_labels}, kristanoj{wikidata_labels}
 - Kristnask-arboro: Kristnaska arbo{ll,wiki,wikidata_labels}, Kristnaskarbo{wikidata_labels}, jularbo{wikidata_labels}
 - Krizantemo: Chrysanthemum{wikidata_labels}, Krizantemo{ll,wiki,wikidata_labels}
-- Kroatia: HR{wikidata_labels}, HRV{wikidata_labels}, Kroatio{ll,wiki,wikidata_labels}, Kroatujo{wikidata_labels}, Respubliko Kroatio{wikidata_labels}
+- Kroatia: HR{wikidata_labels}, HRV{wikidata_labels}, Kroatio{ll,wiki,wikidata_labels,wikt_io}, Kroatujo{wikidata_labels}, Respubliko Kroatio{wikidata_labels}
 - Kroketo: Kroketo{ll,wiki,wikidata_labels}, rokeo{wikidata_labels}
 - Kroniko: Kroniko{ll,wiki,wikidata_labels}, Ĥroniko{wikidata_labels}
 - Kronometro: Halthorloĝo{ll,wiki,wikidata_labels}, klikhorloĝo{wikidata_labels}, ŝtophorloĝo{wikidata_labels}
@@ -1149,9 +1150,9 @@
 - Libano: Libana Respubliko{wikidata_labels}, Libano{ll,wiki,wikidata_labels,wikt_eo,wikt_io}, Respubliko Libano{wikidata_labels}
 - Libelulo: Anisoptera{ll,wiki}, anisopteroj{wikidata_labels}
 - Liberec: Liberec{ll,wiki,wikidata_labels}, Reichenberg{wikidata_labels}
-- Liberia: Liberio{ll,wiki,wikidata_labels}, Respubliko Liberio{wikidata_labels}
+- Liberia: Liberio{ll,wiki,wikidata_labels,wikt_io}, Respubliko Liberio{wikidata_labels}
 - Libertarianismo: Libertarianismo{ll,wiki,wikidata_labels}, liberecismo{wikidata_labels}, liberismo{wikidata_labels}
-- Libia: Libio{ll,wiki,wikidata_labels}, Ŝtato Libio{wikidata_labels}
+- Libia: Libio{ll,wiki,wikidata_labels,wikt_io}, Ŝtato Libio{wikidata_labels}
 - Libreville: Liberurbo{wikidata_labels}, Librevilo{ll,wiki,wikidata_labels}
 - Liguria: Ligurio{ll,wiki,wikidata_labels}, Ligurujo{wikidata_labels}
 - Liguro: Ligaturo{ll,wiki,wikidata_labels}, ligaĵo{wikidata_labels}
@@ -1168,7 +1169,7 @@
 - Linz: Linco{wikidata_labels}, Linz{ll,wiki,wikidata_labels}
 - Lipogramo: Eszperente{wikidata_labels}, Lipogramo{ll,wiki,wikidata_labels}
 - Litoto: Litoto{ll,wiki,wikidata_labels}, Maltroigo{wikidata_labels}
-- Lituania: Litovio{ll,wiki,wikidata_labels}, Litovujo{wikidata_labels}, Respubliko Litovio{wikidata_labels}
+- Lituania: Litovio{ll,wiki,wikidata_labels,wikt_io}, Litovujo{wikidata_labels}, Respubliko Litovio{wikidata_labels}
 - Liuto: Liutfaristo{wikidata_labels}, Liutisto{wikidata_labels}, Liuto{ll,wiki,wikidata_labels}, Luteo{wikidata_labels}
 - Livermorio: Livermorio{ll,wiki}, Lv{wikidata_labels}, Uuh{wikidata_labels}, livermoriumo{wikidata_labels}, ununhexio{wikidata_labels}
 - Liverpool: Liverpolo{wikidata_labels}, Liverpool{ll,wiki,wikidata_labels}, Liverpulo{wikidata_labels}
@@ -1198,6 +1199,7 @@
 - Luteranismo: Lutera reformacio{wikidata_labels}, Luterana{wikidata_labels}, Luteranismo{ll,wiki,wikidata_labels}, Luterano{wikidata_labels}, Luterismo{wikidata_labels}, Lutheranismo{wikidata_labels}, Lutherismo{wikidata_labels}
 - Lutro: Lutra lutra{ll,wiki,wikidata_labels}, Lutrenoj{wikidata_labels}, Lutro{wikidata_labels}
 - Luxemburg: Luksemburgo{fr_wiktionary_via,wikidata_labels}, Luksemburgurbo{wikidata_labels}
+- Luxemburgia: Luksemburgo{wikidata_labels,wikt_io}, grandduklando Luksemburgio{wikidata_labels}, grandduklando Luksemburgo{wikidata_labels}, lando Luksemburgo{wikidata_labels}
 - Luzon: Luzon{wikidata_labels}, Luzono{ll,wiki,wikidata_labels}
 - Lviv: Lvivo{ll,wiki,wikidata_labels}, Lvovo{wikidata_labels}
 - Lycurgus: Likurg{wikidata_labels}, Likurgo{ll,wiki,wikidata_labels}
@@ -1214,12 +1216,12 @@
 - Makalu: Makalu{ll,wiki,wikidata_labels}, Monto Makalu{wikidata_labels}
 - Makau: Makao{ll,wiki,wikidata_labels}, Makao SAR{wikidata_labels}
 - Makio: Lemur catta{wikidata_labels}, Ringvosta lemuro{ll,wiki}
-- Malaizia: Federacio Malajzio{wikidata_labels}, Malajzia Federacio{wikidata_labels}, Malajzio{ll,wiki,wikidata_labels}
+- Malaizia: Federacio Malajzio{wikidata_labels}, Malajzia Federacio{wikidata_labels}, Malajzio{ll,wiki,wikidata_labels,wikt_io}
 - Malawi: MW{wikidata_labels}, Malavio{ll,wiki,wikidata_labels,wikt_io}, Respubliko Malavio{wikidata_labels}
 - Malay-peninsulo: Malaja duoninsulo{ll,wiki,wikidata_labels}, Malaka Duoninsulo{wikidata_labels}
 - Maldivi: MV{wikidata_labels}, Maldivoj{en_wiktionary_via,ll,wiki,wikidata_labels}
 - Maleolo: Piedartiko{ll,wiki}, maleolo{wikidata_labels}
-- Malta: Malto{ll,wiki,wikidata_labels}, Respubliko Malto{wikidata_labels}
+- Malta: Malto{ll,wiki,wikidata_labels,wikt_io}, Respubliko Malto{wikidata_labels}
 - Managua: Managua{wikidata_labels}, Managvo{ll,wiki,wikidata_labels}
 - Manaus: Manaus{wikidata_labels}, Manaŭo{wikidata_labels}, Manaŭso{ll,wiki}
 - Mandalay: Mandalaj{wikidata_labels}, Mandalajo{ll,wiki,wikidata_labels}, Mandalay{wikidata_labels}
@@ -1251,6 +1253,7 @@
 - Marsuino: Focenedoj{ll,wiki,wikidata_labels}, Foceno{wikidata_labels}, Phocoenidae{wikidata_labels}, Porkocetoj{wikidata_labels}, marporko{wikidata_labels}
 - Marsupialo: Marsupialia{wikidata_labels}, Marsupiulo{ll,wiki,wikidata_labels}, Metatheria{wikidata_labels}, Senplacentuloj{wikidata_labels}
 - Martin-peskero: Alcedo atthis{wikidata_labels}, Alciono{ll,wiki,wikidata_labels}, Eŭropa alciono{wikidata_labels}, Komuna alciono{wikidata_labels}
+- Marto: Marto{ll,wiki,wikidata_labels}, mar{wikidata_labels}
 - Mashad: Mashhad{wikidata_labels}, Maŝado{wikidata_labels}, Maŝhado{ll,wiki,wikidata_labels}
 - Mashreko: Araba Oriento{wikidata_labels}, Maŝreko{ll,wiki,wikidata_labels}
 - Massachusetts: Golfa Ŝtato{wikidata_labels}, Masaĉuseco{ll,wiki,wikidata_labels}
@@ -1275,7 +1278,6 @@
 - Merkurdio: Merkredo{ll,wiki,wikidata_labels}, me{wikidata_labels}, mer{wikidata_labels}
 - Merlo: Merlo{ll,wiki,wikidata_labels}, Turdus merula{wikidata_labels}, eŭropa merlo{wikidata_labels}
 - Merovecho-dinastio: Merovida dinastio{wikidata_labels}, Merovidoj{ll,wiki,wikidata_labels}, Merovigoj{wikidata_labels}
-- Metano: Metano{ll,wiki,wikidata_labels}, natura gaso{wikidata_labels}
 - Metileno: Metileno{ll,wiki,wikidata_labels}, meteno{wikidata_labels}
 - Metilo: Metila grupo{ll,wiki}, metilogrupo{wikidata_labels}
 - Metro-Goldwyn-Mayer: MGM{wikidata_labels}, Metro-Goldwyn-Mayer{ll,wiki,wikidata_labels}
@@ -1302,7 +1304,7 @@
 - Minnesota: MN{wikidata_labels}, Minesoto{ll,wiki,wikidata_labels}, subŝtato Minesoto{wikidata_labels}
 - Minos-kulturo: Minoa civilizo{ll,wiki,wikidata_labels}, Minoa imperio{wikidata_labels}, Minoa kulturo{wikidata_labels}
 - Minuskulo: Minusklo{ll,wiki,wikidata_labels}, minuskla litero{wikidata_labels}
-- Miozoto: Miozoto{wikidata_labels}, Myosotis{wikidata_labels}, Neforgesumino{ll,wiki,wikidata_labels}
+- Miozoto: Miozoto{wikidata_labels}, Neforgesumino{ll,wiki,wikidata_labels}
 - Miriapodo: Diplopodo{wikidata_labels}, Milpiedulo{ll,wiki,wikidata_labels}
 - Mirmekofago: Formik-manĝulo{wikidata_labels}, Formikomanĝulo{ll,wiki,wikidata_labels}, Mirmekofagedoj{wikidata_labels}, Mirmekofago{wikidata_labels}, Vermilingua{wikidata_labels}
 - Mirtelo: Mirtelo{ll,wiki,wikidata_labels}, Vaccinium myrtillus{wikidata_labels}
@@ -1320,7 +1322,7 @@
 - Mombasa: Mombasa{ll,wiki,wikidata_labels}, Mombaso{wikidata_labels}
 - Monako: Monako{wikidata_labels}, Monaĥo{ll,wiki,wikidata_labels}, Princlando Monako{wikidata_labels}
 - Mondo-expozo: Internacia Foiro{wikidata_labels}, Internacia ekspozicio{ll,wiki,wikidata_labels}, Mond-ekspozicio{wikidata_labels}, Monda ekspozicio{wikidata_labels}, Mondekspozicio{wikidata_labels}, Tutmonda ekspozicio{wikidata_labels}, Universala Ekspozicio{wikidata_labels}
-- Mongolia: Mongolio{ll,wiki,wikidata_labels}, Mongolujo{wikidata_labels}, Ŝtato Mongolio{wikidata_labels}, Ŝtato Mongolujo{wikidata_labels}
+- Mongolia: Mongolio{ll,wiki,wikidata_labels,wikt_io}, Mongolujo{wikidata_labels}, Ŝtato Mongolio{wikidata_labels}, Ŝtato Mongolujo{wikidata_labels}
 - Monografio: Monografio{ll,wiki,wikidata_labels}, faklibro{wikidata_labels}
 - Monorelo: Unurela fervojo{ll,wiki,wikidata_labels}, unurelvojo{wikidata_labels}
 - Montana: MT{wikidata_labels}, Montano{ll,wiki,wikidata_labels}, Ŝtato Montano{wikidata_labels}
@@ -1344,7 +1346,6 @@
 - Moskorato: Ondatro{ll,wiki,wikidata_labels}, Ondatrofelo{wikidata_labels}
 - Moskva-kremlin: Kremlo{wikidata_labels}, Moskva Kremlo{ll,wiki,wikidata_labels}
 - Moso: Maristlernanto{ll,wiki,wikidata_labels}, ferdeka knabo{wikidata_labels}, knaba maristo{wikidata_labels}, knabomaristo{wikidata_labels}, ŝipa knabo{wikidata_labels}, ŝipknabo{wikidata_labels}
-- Mosul: Mosul{wikidata_labels}, Mosulo{ll,wiki,wikidata_labels}
 - Motacilo: Motacilla{wikidata_labels}, Motacilo{ll,wiki,wikidata_labels}
 - Moto: Moto{ll,wiki,wikidata_labels}, devizo{wikidata_labels}, slogano{wikidata_labels}
 - Mozambik: Mozambiko{ll,wiki,wikidata_labels,wikt_io}, Respubliko Mozambiko{wikidata_labels}
@@ -1368,12 +1369,12 @@
 - Nagano: Nagano{ll,wiki,wikidata_labels}, Urbo Nagano{wikidata_labels}
 - Nagasaki: Nagasaki{wikidata_labels}, Nagasako{ll,wiki,wikidata_labels}
 - Nagoya: Nagoja Urbo{wikidata_labels}, Nagojo{ll,wiki,wikidata_labels}
-- Namibia: Namibio{ll,wiki,wikidata_labels}, Respubliko Namibio{wikidata_labels}
+- Namibia: Namibio{ll,wiki,wikidata_labels,wikt_io}, Respubliko Namibio{wikidata_labels}
 - Nancy: Nancio{ll,wiki,wikidata_labels}, Nancy{bert_embeddings,wikidata_labels}
 - Nanjing: Nankingo{wikidata_labels}, Nankino{ll,wiki,wikidata_labels}
 - Nanning: Naningo{ll,wiki,wikidata_labels}, Nannin{wikidata_labels}
 - Narva: Narva{wikidata_labels}, Narvo{ll,wiki}
-- Nauru: NR{wikidata_labels}, Nauro{fr_wiktionary_via,ll,wiki,wikidata_labels}, Naŭruo{wikt_io}, Respubliko Nauro{wikidata_labels}
+- Nauru: Nauro{fr_wiktionary_via,ll,wiki,wikidata_labels}, Naŭruo{wikt_io}, Respubliko Nauro{wikidata_labels}
 - Nauzeo: Vomemo{ll,wiki,wikidata_labels}, naŭzo{wikidata_labels}
 - Navassa: Navasa Insulo{ll,wiki,wikidata_labels}, Navaso{wikidata_labels}
 - Navigado: Navigado{ll,wiki,wikidata_labels}, navigacio{wikidata_labels}, navigi{wikidata_labels}, navigisto{wikidata_labels}, navigo{wikidata_labels}
@@ -1398,10 +1399,11 @@
 - Nevroso: Neŭrozo{ll,wiki,wikidata_labels}, neŭrozulo{wikidata_labels}
 - Neymar: Neymar{ll,wiki,wikidata_labels}, Neymar Junior{wikidata_labels}
 - Nice: Nice{wikidata_labels}, Nico{ll,wiki,wikidata_labels}, Nissa{wikidata_labels}, Nizza{wikidata_labels}
+- Nigeria: Nigerio{wikt_io}, Niĝerio{ll,wiki,wikidata_labels}
 - Nihonio: Nihonio{ll,wiki,wikidata_labels}, ununtrio{wikidata_labels}
 - Nijer: Nigero{wikt_io}, Niĝerlando{wikidata_labels}, Niĝero{fr_wiktionary_via,ll,wiki,wikidata_labels}, Respubliko Niĝerlando{wikidata_labels}
 - Nijmegen: Nijmegen{wikidata_labels}, Nimego{ll,wiki,wikidata_labels}
-- Nikaragua: NI{wikidata_labels}, Nikaragvo{ll,wiki,wikidata_labels}, Respubliko Nikaragvo{wikidata_labels}
+- Nikaragua: NI{wikidata_labels}, Nikaragvo{ll,wiki,wikidata_labels,wikt_io}, Respubliko Nikaragvo{wikidata_labels}
 - Nitra: Neutra{wikidata_labels}, Nitra{wikidata_labels}, Nitro{ll,wiki,wikidata_labels}, Nyitra{wikidata_labels}
 - Niue: Niueo{wikidata_labels}, Niuo{ll,wiki,wikidata_labels}
 - Nobeleso: Aristokrato{wikidata_labels}, Nobelaro{ll,wiki,wikidata_labels}, Nobelulo{wikidata_labels}
@@ -1416,11 +1418,11 @@
 - Nord-Vietnam: Nord-Vjetnamio{ll,wiki,wikidata_labels}, Nord-Vjetnamo{wikidata_labels}, Norda Vjetnamio{wikidata_labels}
 - Nordia: Nordia regiono{wikidata_labels}, Nordiaj landoj{wikidata_labels}, Nordio{ll,wiki,wikidata_labels}
 - Nordrheno-Vestfalia: Nordrejn-Vestfalio{bert_embeddings,ll,wiki,wikidata_labels}, Nordrhein-Westfalen{wikidata_labels}
-- Norvegia: Norvegio{ll,wiki,wikidata_labels}, Norvegujo{wikidata_labels}, Reĝlando Norvegio{wikidata_labels}
+- Norvegia: Norvegio{ll,wiki,wikidata_labels,wikt_io}, Norvegujo{wikidata_labels}, Reĝlando Norvegio{wikidata_labels}
 - Nostradamus: Nostradamo{wikidata_labels}, Nostradamus{ll,wiki,wikidata_labels}
 - Nottingham: Notinghamo{wikidata_labels}, Nottingham{ll,wiki,wikidata_labels}
 - Nov-yaro: Jarŝanĝo{wikidata_labels}, Nova jaro{wikidata_labels}, Novjaro{ll,wiki,wikidata_labels}
-- Nova-Guinea: Nov-Gvineo{ll,wiki,wikidata_labels}, Nova Gvineo{wikidata_labels}, Novgvineo{wikidata_labels}
+- Nova-Guinea: Nov-Gvineo{ll,wiki,wikidata_labels,wikt_io}, Nova Gvineo{wikidata_labels}, Novgvineo{wikidata_labels}
 - Nova-Hampshire: NH{wikidata_labels}, Nov-Hampŝiro{ll,wiki,wikidata_labels}
 - Nova-Jersey: La Ĝardeno-Ŝtato{wikidata_labels}, NJ{wikidata_labels}, Nov-Ĵerzejo{ll,wiki,wikidata_labels}
 - Nova-Kaledonia: Kanakujo{ll,wiki}, Nov-Kaledonio{wikidata_labels}, Nova Kaledonio{wikidata_labels}, Novkaledonio{wikidata_labels}
@@ -1502,7 +1504,7 @@
 - Palumbo: Palumbo{ll,wiki,wikidata_labels}, Ringokolombo{wikidata_labels}
 - Pamplona: Pamplona{wikidata_labels}, Pamplono{ll,wiki,wikidata_labels}
 - Pan: Pajno{ll,wiki,wikidata_labels}, Pano{wikidata_labels}
-- Panama: Panamo{ll,wiki,wikidata_labels}, Respubliko Panamo{wikidata_labels}
+- Panama: Panamo{ll,wiki,wikidata_labels,wikt_io}, Respubliko Panamo{wikidata_labels}
 - Panikulo: Grapolaro{ll,wiki,wikidata_labels}, Paniklo{wikidata_labels}
 - Panislamismo: Tut-Islamismo{wikidata_labels}, Tutislamismo{ll,wiki}
 - Panonia: Pannonia{wikidata_labels}, Pannonia Inferior{wikidata_labels}, Pannonia Superior{wikidata_labels}, Panonio{ll,wiki,wikidata_labels}
@@ -1513,7 +1515,7 @@
 - Papayo: Carica papaya{wikidata_labels}, Papajfrukto{wikidata_labels}, Papajo{ll,wiki,wikidata_labels}
 - Papeete: Papeete{wikidata_labels}, Papeeto{ll,wiki,wikidata_labels}
 - Papiamento: Papiamenta lingvo{wikidata_labels}, Papiamento{ll,wiki,wikidata_labels}, Papiamentu{wikidata_labels}, Pipiamenta lingvo{wikidata_labels}
-- Papua-Nova-Guinea: PNG{wikidata_labels}, Papu-Nov-Gvineo{wikidata_labels}, Papuo-Nov-Gvineo{ll,wiki,wikidata_labels}, pg{wikidata_labels}
+- Papua-Nova-Guinea: Papu-Nov-Gvineo{wikidata_labels}, Papuo-Nov-Gvineo{ll,wiki,wikidata_labels}, Papuo-Novgvineo{wikt_io}
 - Paradigmo: Paradigmo{ll,wiki}, scienca paradigmo{wikidata_labels}
 - Paradiz-ucelo: Paradisaeidae{wikidata_labels}, Paradizeedoj{ll,wiki,wikidata_labels}
 - Parafilio: Parafilio{ll,wiki,wikidata_labels}, perversio{wikidata_labels}, seksa aberacio{wikidata_labels}
@@ -1564,10 +1566,9 @@
 - Pigmento: Pigmentado{wikidata_labels}, Pigmento{ll,wiki,wikidata_labels}
 - Pigo: Eŭrazia pigo{wikidata_labels}, Eŭropa pigo{ll,wiki,wikidata_labels}, Eŭropazia pigo{wikidata_labels}, Pica pica{wikidata_labels}
 - Pilastro: Piliero{ll,wiki}, pilastro{wikidata_labels}
-- Pilgrimo: Pilgrimado{ll,wiki,wikidata_labels}, Pilgrimanto{wikidata_labels}, Pilgrimejo{wikidata_labels}, Pilgrimo{wikidata_labels}
+- Pilgrimo: Pilgrimado{ll,wiki,wikidata_labels}, pilgrimo{wikidata_labels}
 - Pilorio: Punpilorio{ll,wiki,wikidata_labels}, malhonora kolono{wikidata_labels}, pilorio{wikidata_labels}, punkolono{wikidata_labels}
 - Pilos: Piloso{ll,wiki,wikidata_labels}, Pylos{wikidata_labels}
-- Pinastro: Arbara pino{ll,wiki,wikidata_labels}, Pinus sylvestris{wikidata_labels}
 - Pindaros: Pindar{wikidata_labels}, Pindaro{ll,wiki,wikidata_labels}
 - Pinglo: Pinglo{ll,wiki}, stifto{wikidata_labels}
 - Pinguino: Pingveno{ll,wiki,wikidata_labels}, Spheniscidae{wikidata_labels}
@@ -1601,7 +1602,7 @@
 - Polineikes: Polineiko{wikidata_labels}, Poliniko{ll,wiki,wikidata_labels}
 - Polinezia: Polinezia Triangulo{wikidata_labels}, Polinezio{ll,wiki,wikidata_labels}
 - Polisakarido: Polisaĥarido{ll,wiki,wikidata_labels}, polisakarido{wikidata_labels}
-- Polonia: Polio{wikidata_labels}, Pollando{ll,wiki,wikidata_labels}, Polujo{wikidata_labels}
+- Polonia: Polio{wikidata_labels}, Pollando{ll,wiki,wikidata_labels,wikt_io}, Polujo{wikidata_labels}
 - Polonio: Po{wikidata_labels}, Polonio{ll,wiki,wikidata_labels}
 - Polpo: Octopoda{wikidata_labels}, Oktopieduloj{wikidata_labels}, Oktopodoj{wikidata_labels}, Polpoj{ll,wiki}
 - Pomerania: Malantaŭpomerio{wikidata_labels}, Pomeranio{wikidata_labels}, Pomerio{ll,wiki,wikidata_labels}, Pomorze{wikidata_labels}
@@ -1631,7 +1632,7 @@
 - Protokolo: Protokolli{wikidata_labels}, Protokolo{ll,wiki,wikidata_labels}
 - Proximigado: Proksimuma kalkulado{ll,wikidata_labels}, Proksimuma kalkulo{wikidata_labels}
 - Prunelo: Dorna prunuso{wikidata_labels}, Prunelo{ll,wiki,wikidata_labels}, Prunus spinosa{wikidata_labels}
-- Prusia: Prusa{wikidata_labels}, Prusio{ll,wiki,wikidata_labels,wikt_eo}, Pruso{wikidata_labels}, Prusujo{wikidata_labels}
+- Prusia: Prusa{wikidata_labels}, Prusio{ll,wiki,wikidata_labels,wikt_eo,wikt_io}, Pruso{wikidata_labels}, Prusujo{wikidata_labels}
 - Psalterio: Psaltero{ll,wiki,wikidata_labels}, psalterio{wikidata_labels}
 - Pseudocienco: Pseŭdoscienco{ll,wiki,wikidata_labels}, kvazaŭscienco{wikidata_labels}, ŝajnscienco{wikidata_labels}
 - Psikoanalizo: Freŭdismo{wikidata_labels}, Psikoanalizo{ll,wiki,wikidata_labels}, psikanalizo{wikidata_labels}, psiĥanalizo{wikidata_labels}, psiĥoanalizo{wikidata_labels}
@@ -1670,7 +1671,7 @@
 - Radom: Radom{ll,wiki,wikidata_labels}, Radomo{wikidata_labels}
 - Ralo: Akvoralo{ll,wiki,wikidata_labels}, Rallus aquaticus{wikidata_labels}
 - Ramala: Ramalaho{ll,wiki,wikidata_labels}, Ramallah{wikidata_labels}
-- Rano: Rana{wikidata_labels}, Ranedo{wikidata_labels}, Rano{ll,wiki,wikidata_labels}
+- Rano: Ranedo{wikidata_labels}, Rano{ll,wiki,wikidata_labels}
 - Ranobe: Light novel{wikidata_labels}, Mangailustrita romano{ll,wiki,wikidata_labels}, leĝera romano{wikidata_labels}
 - Ransono: Elaĉeta mono{ll,wiki,wikidata_labels}, Elaĉetmono{wikidata_labels}
 - Ranunkulo: Ranunculus{wikidata_labels}, Ranunkolo{ll,wiki,wikidata_labels}
@@ -1721,12 +1722,12 @@
 - Rondonia: Rondonia{wikidata_labels}, Rondonio{ll,wiki,wikidata_labels}
 - Roraima: Roraima{wikidata_labels}, Rorajmo{ll,wiki,wikidata_labels}
 - Rosmaro: Odobenedoj{wikidata_labels}, Rosmaro{ll,wiki,wikidata_labels}
-- Rotaco: Rotacio{ll,wiki,wikidata_labels}, Turnado{wikidata_labels}
+- Rotaco: Rotacio{ll,wiki,wikidata_labels}, turnado{wikidata_labels}
 - Rouen: Rouen{wikidata_labels}, Rueno{ll,wiki,wikidata_labels}
 - Rozlauro: Nerio{wikidata_labels}, Oleandro{ll,wiki,wikidata_labels}
-- Ruanda: RW{wikidata_labels}, Respubliko Ruando{wikidata_labels}, Ruando{ll,wiki,wikidata_labels}
-- Runo-skribajo: Run-skribaĵo{wikidata_labels}, Runaj alfabetoj{ll,wiki,wikidata_labels}, Runoj{wikidata_labels}
-- Rusia: Rusia Federacio{wikidata_labels}, Rusio{ll,wiki,wikidata_labels}, Ruslando{wikidata_labels,wikt_eo}, Rusujo{wikidata_labels}
+- Ruanda: RW{wikidata_labels}, Respubliko Ruando{wikidata_labels}, Ruando{ll,wiki,wikidata_labels}, Rwando{wikt_io}
+- Runo-skribajo: Run-skribaĵo{wikidata_labels}, Runaj alfabetoj{ll,wiki,wikidata_labels}, Runoj{wikidata_labels}, runa alfabeto{wikidata_labels}
+- Rusia: Rusia Federacio{wikidata_labels}, Rusio{ll,wiki,wikidata_labels,wikt_io}, Ruslando{wikidata_labels,wikt_eo}, Rusujo{wikidata_labels,wikt_io}
 - Rusko: Pika rusko{ll,wiki,wikidata_labels}, Ruscus aculeatus{wikidata_labels}
 - Ruteni: Historiaj rutenoj{ll,wiki}, rutenoj{wikidata_labels}
 - Ruto: Rut{wikt_io}, Ruto{ll,wiki,wikidata_labels}
@@ -1741,7 +1742,7 @@
 - Salzburg: Salcburgo{ll,wiki,wikidata_labels}, Salzburg{bert_embeddings,wikidata_labels}, Salzburgo{wikidata_labels}, Zalcburgo{wikidata_labels}
 - Samara: Kujbiŝev{wikidata_labels}, Samara{ll,wikidata_labels}
 - Sambuko: Sambucus{wikidata_labels}, Sambuko{ll,wiki,wikidata_labels}
-- Samoa: Okcidenta Samoo{wikidata_labels}, Samoo{ll,wiki,wikidata_labels}, WS{wikidata_labels}
+- Samoa: Okcidenta Samoo{wikidata_labels}, Samoo{ll,wiki,wikidata_labels,wikt_io}, WS{wikidata_labels}
 - San-Marino: San-Marino{ll,wiki,wikidata_labels,wikt_io}, Sanmarino{en_wiktionary_via,wikidata_labels}
 - Sanesoflego-asekuro: Malsanokosta asekuro{ll,wiki,wikidata_labels}, malsanasekuro{wikidata_labels}
 - Sangogrupo: Sangogrupo{ll,wiki,wikidata_labels}, sanggrupo{wikidata_labels}, sangotipo{wikidata_labels}
@@ -1780,6 +1781,7 @@
 - Septembro: Septembro{ll,wiki,wikidata_labels}, sep{wikidata_labels}
 - Sequo: Vico{ll,wiki,wikidata_labels}, serio{wikidata_labels}
 - Sequoyo: Sekvojadendro{ll,wiki,wikidata_labels}, giganta sekvojo{wikidata_labels}
+- Serapis: Serapis{ll,wiki}, Serapo{wikidata_labels}
 - Serbia: Respubliko Serbio{wikidata_labels}, Serbio{ll,wiki,wikidata_labels}
 - Serfeso: Servuteco{ll,wiki,wikidata_labels}, servileco{wikidata_labels}, servuto{wikidata_labels}
 - Sergipe: Sergipe{wikidata_labels}, Serĝipo{ll,wiki,wikidata_labels}
@@ -1813,13 +1815,13 @@
 - Sirusho: Sirusho{wikidata_labels}, Siruŝo{ll,wiki,wikidata_labels}
 - Sismologio: Tertremoscienco{ll,wiki,wikidata_labels}, seismologio{wikidata_labels}, sismologio{wikidata_labels}
 - Sivas: Sebasteia{wikidata_labels}, Sebastia{wikidata_labels}, Sivas{ll,wiki,wikidata_labels}
-- Skandinavia: Skandinavianoj{wikidata_labels}, Skandinavio{ll,wiki,wikidata_labels}, Skandinavujo{wikidata_labels}
+- Skandinavia: Skandinavianoj{wikidata_labels}, Skandinavio{ll,wiki,wikidata_labels,wikt_io}, Skandinavujo{wikidata_labels}
 - Skarlato: Skarlato{ll,wiki,wikidata_labels}, skarlata{wikidata_labels}
 - Skiti: Scitoj{wikidata_labels}, Skitio{wikidata_labels}, Skitoj{ll,wiki,wikidata_labels}
 - Skolastikismo: Skolastiko{ll,wiki,wikidata_labels}, skolastikismo{wikidata_labels}, sĥolastikismo{wikidata_labels}, sĥolastiko{wikidata_labels}
 - Skolopendro: Centpiedulo{ll,wiki,wikidata_labels}, Chilopoda{wikidata_labels}, Kilopodo{wikidata_labels}
 - Skorio: skorio{wikidata_labels}, Ŝlako{ll,wiki}
-- Skotia: Skotio{wikidata_labels}, Skotlando{ll,wiki,wikidata_labels}, Skotujo{wikidata_labels}
+- Skotia: Skotio{wikidata_labels}, Skotlando{ll,wiki,wikidata_labels,wikt_io}, Skotujo{wikidata_labels}
 - Skren-kaptajo: Ekrankopio{ll,wiki,wikidata_labels}, ekranbildo{wikidata_labels}, ekranfoto{wikidata_labels}
 - Skurelo: Sciuredoj{ll,wiki,wikidata_labels}, Sciuridae{wikidata_labels}
 - Slavi: slava{wikidata_labels}, slavaj popoloj{wikidata_labels}, slavo{ll,wiki,wikidata_labels}
@@ -1835,7 +1837,7 @@
 - Solikamsk: Solikamsk{wikidata_labels}, Solikamsko{ll,wiki}
 - Solna: Solna{ll,wiki,wikidata_labels}, Solna kommun{wikidata_labels}, komunumo Solna{wikidata_labels}, urbo Solna{wikidata_labels}
 - Solresol: Solresol{en_wiktionary_via,wikidata_labels}, Solresolo{en_wiktionary_via,ll,wiki,wikidata_labels}
-- Somalia: SO{wikidata_labels}, Somalio{ll,wiki,wikidata_labels}, Somalujo{wikidata_labels}
+- Somalia: SO{wikidata_labels}, Somalio{ll,wiki,wikidata_labels,wikt_io}, Somalujo{wikidata_labels}
 - Somalilando: Somalilando{ll,wiki,wikidata_labels,wikt_io}, Somalio{wikidata_labels}
 - Somoni: Somoni{wikidata_labels}, Taĝika somonio{ll,wiki,wikidata_labels}
 - Sonora: Sonora{ll,wiki,wikidata_labels}, Sonoro{wikidata_labels}
@@ -1843,6 +1845,7 @@
 - Sorbonne: La Sorbonne{wikidata_labels}, La Sorbono{wikidata_labels}, Sorbonne{wikidata_labels}, Sorbono{ll,wiki,wikidata_labels}, Universitato Sorbono{wikidata_labels}
 - Sousse: Sousse{ll,wiki,wikidata_labels}, Suso{wikidata_labels}
 - Soviet-Uniono: Sovet-Unio{wikidata_labels}, Soveta Unio{wikidata_labels}, Sovetio{wikidata_labels}, Sovetunio{en_wiktionary_via,ll,wiki,wikidata_labels}
+- Sovietia: Sovet-Unio{wikidata_labels}, Soveta Unio{wikidata_labels}, Sovetio{wikidata_labels}, Sovetunio{wikidata_labels,wikt_io}
 - Soyo: Glycine max{wikidata_labels}, Sojfabo{ll,wiki,wikidata_labels}, sojafabo{wikidata_labels}, sojofabo{wikidata_labels}
 - Spacotempo: Spactempo{ll,wiki,wikidata_labels}, spaco-tempa intervalo{wikidata_labels}, spaco-tempo{wikidata_labels}, spacotempa intervalo{wikidata_labels}, spacotempo{wikidata_labels}, spactempa intervalo{wikidata_labels}, tempo-spaco{wikidata_labels}
 - Spadico: Spadiko{ll,wiki,wikidata_labels}, Spato{wikidata_labels}
@@ -1860,6 +1863,7 @@
 - Spricofluo: Ĵetfluo{wikidata_labels}, Ŝprucfluo{ll,wiki}
 - Springfield: OH{wikidata_labels}, Ohio{wikidata_labels}, Springfield{ll,wiki,wikidata_labels}
 - Srebrenica: Srebrenica{ll,wiki,wikidata_labels}, Srebrenico{wikidata_labels}
+- Sri-Lanka: Sri-Lanko{wikt_io}, Srilanko{ll,wiki,wikidata_labels}
 - Stalaktito: Stalagtito{wikidata_labels}, Stalaktito{ll,wiki,wikidata_labels}
 - Stalinismo: Stalinismo{ll,wiki,wikidata_labels}, stalinisto{wikidata_labels}
 - Stamino: Antero{wikidata_labels}, Polensako{wikidata_labels}, Polenujo{wikidata_labels}, Stameno{ll,wiki,wikidata_labels}
@@ -1872,7 +1876,6 @@
 - Sterleto: Acipenser ruthenus{wikidata_labels}, Sterledo{ll,wiki,wikidata_labels}
 - Stoikismo: Stoikismo{ll,wiki,wikidata_labels}, stoikisto{wikidata_labels}
 - Stonehenge: Stonehenge{ll,wiki,wikidata_labels}, Stonhenĝo{wikidata_labels}
-- Storo: Persieno{ll,wiki}, Ĵaluzio{wikidata_labels}
 - Strabon: Strabo{wikidata_labels}, Strabono{ll,wiki,wikidata_labels}
 - Stradarto: Strata arto{ll,wiki,wikidata_labels}, urba arto{wikidata_labels}
 - Stratonubi: St{wikidata_labels}, Stratuso{ll,wiki,wikidata_labels}
@@ -1898,8 +1901,8 @@
 - Sudan: Nord-Sudano{wikidata_labels}, Respubliko Sudano{wikidata_labels}, SD{wikidata_labels}, Sudano{ll,wiki,wikidata_labels,wikt_io}
 - Sudja: Sudĵa{wikidata_labels}, Suĝo{ll,wiki}
 - Sudoku: Sudoko{ll,wiki,wikidata_labels}, Sudoku{wikidata_labels}
-- Suedia: Reĝlando Svedio{wikidata_labels}, Svedio{ll,wiki,wikidata_labels}, Svedujo{wikidata_labels}
-- Suisia: Konfederacio Svislando{wikidata_labels}, Svisio{wikidata_labels}, Svislando{ll,wiki,wikidata_labels}, Svisujo{wikidata_labels}
+- Suedia: Reĝlando Svedio{wikidata_labels}, Svedio{ll,wiki,wikidata_labels,wikt_io}, Svedujo{wikidata_labels}
+- Suisia: Konfederacio Svislando{wikidata_labels}, Svisio{wikidata_labels}, Svislando{ll,wiki,wikidata_labels,wikt_io}, Svisujo{wikidata_labels}
 - Sukarno: Aĥmad Sukarno{wikidata_labels}, Aĥmed Sukarno{wikidata_labels}, Kusno Sosrodihardj{wikidata_labels}, Soekarno{wikidata_labels}, Sukarno{ll,wiki,wikidata_labels}
 - Sumako: Rhus{wikidata_labels}, Sumako{ll,wiki,wikidata_labels}
 - Sun Yacen: Sun Jatsen{wiki}, Sun Yat-sen{ll}
@@ -2006,7 +2009,7 @@
 - Tours: Tours{bert_embeddings,ll,wiki,wikidata_labels}, Turo{wikidata_labels}
 - Trakeito: Traĥeito{ll,wiki,wikidata_labels}, trakeito{wikidata_labels}
 - Trakeo: Aertubo{wikidata_labels}, Trakeo{wikidata_labels}, Traĥeo{ll,wiki,wikidata_labels}
-- Trakia: Thracia{wikidata_labels}, Tracio{wikidata_labels}, Trakio{ll,wiki,wikidata_labels}, Trakujo{wikidata_labels}
+- Trakia: Thracia{wikidata_labels}, Tracio{wikidata_labels}, Trakio{ll,wiki,wikidata_labels,wikt_io}, Trakujo{wikidata_labels}
 - Transilvania: Ardeal{wikidata_labels}, Transilvanio{ll,wiki,wikidata_labels}
 - Transsexualeso: Transsekseco{ll,wiki,wikidata_labels}, transekseco{wikidata_labels}, transseksa{wikidata_labels}, transseksismo{wikidata_labels}, transseksulo{wikidata_labels}
 - Treso: Harligo{wikidata_labels}, Harplektaĵo{wikidata_labels}, Plektaĵo{ll,wiki}, plekto{wikidata_labels}
@@ -2025,10 +2028,10 @@
 - Tuci: Tutsi{wikidata_labels}, tutsio{ll,wiki,wikidata_labels}
 - Tulipo: Tulipa{wikidata_labels}, Tulipo{ll,wiki,wikidata_labels}
 - Tulsa: Tulsa{ll,wikidata_labels}, Tulso{wikidata_labels}
-- Tunizia: Respubliko Tunizio{wikidata_labels}, Tunizio{ll,wiki,wikidata_labels}
+- Tunizia: Respubliko Tunizio{wikidata_labels}, Tunizio{ll,wiki,wikidata_labels,wikt_io}
 - Turboto: Psetta maxima{wikidata_labels}, Turboto{ll,wiki,wikidata_labels}
 - Turdo: Turdedoj{ll,wiki,wikidata_labels}, Turdidae{wikidata_labels}
-- Turkia: Respubliko Turkio{wikidata_labels}, Turkio{ll,wiki,wikidata_labels}, Turkujo{wikidata_labels}
+- Turkia: Respubliko Turkio{wikidata_labels}, Turkio{ll,wiki,wikidata_labels,wikt_io}, Turkujo{wikidata_labels}
 - Turkmenistan: Turkmenio{ll,wiki,wikidata_labels}, Turkmenistano{wikidata_labels}, Turkmenujo{wikidata_labels}
 - Turmo: Turmo{wikidata_labels}, Turo{ll,wiki,wikidata_labels}
 - Turmo Eiffel: Eiffel-Turo{en_wiktionary_via,ll,wiki}, Ejfelturo{en_wiktionary_via}
@@ -2037,7 +2040,7 @@
 - Tuvalu: TV{wikidata_labels}, Tuvalo{ll,wiki,wikidata_labels}
 - Tuyero: Duzo{ll,wiki}, ajuto{wikidata_labels}
 - Tyrannosaurus: Tiranosaŭro{ll,wiki,wikidata_labels}, Tyrannosaurus{wikidata_labels}
-- Uganda: Respubliko Ugando{wikidata_labels}, Ugando{ll,wiki,wikidata_labels}
+- Uganda: Respubliko Ugando{wikidata_labels}, Ugando{ll,wiki,wikidata_labels,wikt_io}
 - Ujhorod: Ungvaro{wikidata_labels}, Uĵgorod{wikidata_labels}, Uĵgorodo{wikidata_labels}, Uĵhorod{wikidata_labels}, Uĵhorodo{ll,wiki,wikidata_labels}
 - Ukraina: Ukrainio{ll,wiki,wikidata_labels}, Ukrainujo{wikidata_labels}
 - Ulaanbaatar: Ulaanbaataro{wiki}, Ulanbatoro{ll}
@@ -2095,6 +2098,7 @@
 - Vilnius: Vilnius{wikidata_labels}, Vilno{ll,wiki,wikidata_labels}
 - Vitelo: Ovoflavo{ll,wiki,wikidata_labels}, Vitelo{wikidata_labels}
 - Vitoria-Gasteiz: Vitoria-Gasteiz{ll,wiki}, Vitorio{wikidata_labels}
+- Vladimir: Vladimir{bert_embeddings,wikidata_labels}, Vladimiro{wikidata_labels}
 - Vladivostok: Vladivostok{wikidata_labels}, Vladivostoko{ll,wiki,wikidata_labels}
 - Vltava: Vltava{wikidata_labels}, Vultavo{ll,wiki,wikidata_labels}
 - Voco: Voĉa ĵazo{wikidata_labels}, Voĉo{ll,wiki,wikidata_labels}
@@ -2104,7 +2108,6 @@
 - Volga-Bolgaria: Volga Bolgario{wikidata_labels}, Volgia Bulgario{ll,wiki,wikidata_labels}
 - Volgograd: Stalingrado{wikidata_labels}, Volgogrado{ll,wiki,wikidata_labels}
 - Volta-Kongo-lingui: Volta-konga lingvaro{ll,wiki}, voltakonga lingvaro{wikidata_labels}
-- Voltaire: Voltaire{ll,wiki,wikidata_labels}, Voltero{wikidata_labels}
 - Vort-valizo: Vortokunfando{ll,wiki,wikidata_labels}, kofrovorto{wikidata_labels}
 - Voynich-manuskripto: Manuskripto Voynich{wikidata_labels}, Voynich-manuskripto{ll,wiki,wikidata_labels}
 - Vulto: Volbo{ll,wiki,wikidata_labels}, volbaĵo{wikidata_labels}
@@ -2145,13 +2148,13 @@
 - Yorkshire: Jorkio{wikidata_labels}, Jorkŝiro{ll,wiki,wikidata_labels}, graflando Jorko{wikidata_labels}
 - YouTube: Jutubo{wikidata_labels}, YouTube{ll,wiki}
 - Ypres: Ieper{wikidata_labels}, Ipro{ll,wiki,wikidata_labels}
-- Yugoslavia: Jugoslavio{ll,wiki,wikidata_labels}, Jugoslavujo{wikidata_labels}
-- Yukatan-peninsulo: Jukatan-duoninsulo{wikidata_labels}, Jukatana Duoninsulo{wikidata_labels}, Jukatanio{en_wiktionary_via}, Jukatano{en_wiktionary_via,wikidata_labels}
+- Yugoslavia: Jugoslavio{ll,wiki,wikidata_labels,wikt_io}, Jugoslavujo{wikidata_labels}
+- Yukatan-peninsulo: Jukatan-duoninsulo{wikidata_labels}, Jukatana Duoninsulo{wikidata_labels}, Jukatano{en_wiktionary_via,wikidata_labels}
 - Yuko: Jukao{ll,wiki,wikidata_labels}, Yucca{wikidata_labels}
 - Yurocienco: Jurisprudenco{ll,wiki,wikidata_labels}, juro{wikidata_labels}, juroscienco{wikidata_labels}
 - Zacatecas: Zacatecas{ll,wiki,wikidata_labels}, Zakateko{wikidata_labels}
 - Zambezi: Rivero Zambezi{wikidata_labels}, Zambezi{ll,wiki,wikidata_labels}, Zambezo{wikidata_labels}
-- Zambia: Respubliko Zambio{wikidata_labels}, Zambio{ll,wiki,wikidata_labels}
+- Zambia: Respubliko Zambio{wikidata_labels}, Zambio{ll,wiki,wikidata_labels,wikt_io}
 - Zebuo: Vatusio{wikidata_labels}, Zebuo{ll,wiki,wikidata_labels}, Ĝibbovo{wikidata_labels}
 - Zenito: Medium Coeli{wikidata_labels}, Zenito{ll,wiki,wikidata_labels}
 - Zeus: Zeŭs{wikidata_labels}, Zeŭso{ll,wiki,wikidata_labels}
@@ -2167,23 +2170,19 @@
 - abdomino: abdomeno{wikt_io}, ventro{en_wiktionary_via,wikidata_labels}
 - abieto: abio{en_wiktionary_via,wikt_io}, piceo{en_wiktionary_via,wikt_io}
 - abominar: abomeni{wikt_io}, malamegi{en_wiktionary_via}
-- abortar: aborti{wikt_io}, abortigi{en_wiktionary_via}, ĉesigi{en_wiktionary_via}
 - abortigo: abortigo{wikt_io}, aborto{fr_wiktionary_via,wikidata_labels}
 - abreviuro: kurtigo{wikidata_labels}, mallongigo{en_wiktionary_via,wikidata_labels}
 - abrogar: aboli{wikt_io}, abrogacii{en_wiktionary_via}, nuligi{fr_wiktionary_via}
 - abrupta: abrupta{wikt_io}, subita{en_wiktionary_via}
-- absinto: absintaĵo{en_wiktionary_via}, absinto{wikt_io}
+- absinto: absintaĵo{fr_wiktionary_via}, absinto{wikt_io}
 - absolute: absolute{bert_embeddings,en_wiktionary_via}, certe{en_wiktionary_via}, nepre{en_wiktionary_via}, tute{en_wiktionary_via}
 - abstinenco: abstinado{en_wiktionary_via}, abstinenco{wikt_io}
-- acensar: alsupri{en_wiktionary_via}, grimpi{fr_wiktionary_via}, plialtiĝi{en_wiktionary_via}, supreniri{en_wiktionary_via}
-- acensilo: alsuprilo{morphological_expansion}, grimpilo{morphological_expansion}, lifto{wikidata_labels}, plialtiĝilo{morphological_expansion}, suprenirilo{morphological_expansion}
-- acento: akcento{en_wiktionary_via,wikidata_labels}, akĉento{en_wiktionary_via}, diakrita signo{en_wiktionary_via}, diakritilo{en_wiktionary_via}
-- aceptar: akcepti{wikt_io}, ricevi{en_wiktionary_via}
+- acensar: grimpi{fr_wiktionary_via}, plialtiĝi{en_wiktionary_via}, supreniri{en_wiktionary_via}
+- acensilo: grimpilo{morphological_expansion}, lifto{wikidata_labels}, plialtiĝilo{morphological_expansion}, suprenirilo{morphological_expansion}
+- acento: akcento{en_wiktionary_via,wikidata_labels}, akĉento{en_wiktionary_via}
 - acerba: acerba{wikt_io}, acida{en_wiktionary_via}, akra{fr_wiktionary_via}
-- achento: akcento{en_wiktionary_via}, akĉento{wikt_io}, diakrita signo{en_wiktionary_via}, diakritilo{en_wiktionary_via}
-- aciono: akcio{wikt_io}, parto{en_wiktionary_via}
 - adequata: adekvata{wikt_io}, konvena{en_wiktionary_via}, taŭga{en_wiktionary_via}
-- adheriva: adhera{wikt_io}, glua{en_wiktionary_via}, gluiva{en_wiktionary_via}, gluiĝiva{en_wiktionary_via}
+- adheriva: adhera{wikt_io}, glua{en_wiktionary_via}, gluiva{en_wiktionary_via}
 - adio: adiaŭ{wikt_io}, adiaŭo{en_wiktionary_via}
 - adjektivo: a-vorto{en_wiktionary_via,wikidata_labels}, adjektivo{wikidata_labels,wikt_eo,wikt_io}
 - adminime: almenaŭ{wikt_io}, minimume{en_wiktionary_via}
@@ -2197,23 +2196,21 @@
 - aeroplano: aeroplano{wikt_io}, aviadilo{en_wiktionary_via,wikidata_labels,wikt_io}, avio{en_wiktionary_via,wikt_io}, flugmaŝino{en_wiktionary_via}
 - aeroportuo: aerodromo{wikt_io}, aerohaveno{en_wiktionary_via}, aeroporto{wikidata_labels}, flughaveno{en_wiktionary_via,wikidata_labels}, internacia flughaveno{wikidata_labels}
 - aerostato: aero-balono{wikt_io}, aerostato{en_wiktionary_via,wikt_io}
-- afero: afero{wikt_io}, amafero{en_wiktionary_via}, amaĵo{en_wiktionary_via}, amintrigo{en_wiktionary_via}, aĵo{en_wiktionary_via}, okazaĵo{en_wiktionary_via}, sekretaĵo{en_wiktionary_via}
+- afero: afero{wikt_io}, amafero{en_wiktionary_via}, amaĵo{en_wiktionary_via}, amintrigo{en_wiktionary_via}, sekretaĵo{en_wiktionary_via}
 - afliktar: aflikti{wikt_io}, malĝojigi{en_wiktionary_via}, ĉagreni{en_wiktionary_via}
 - aforismo: aforismo{wikt_io}, proverbo{wikidata_labels}
-- ago: ago{bert_embeddings,en_wiktionary_via}, akto{en_wiktionary_via}
-- agreabla: agrabla{wikt_io}, bona{en_wiktionary_via}, simpatia{en_wiktionary_via}
+- agreabla: agrabla{wikt_io}, bona{en_wiktionary_via}
 - agrokultivo: agrikulturo{wikidata_labels,wikt_io}, agrokulturo{wikidata_labels}, terkulturo{en_wiktionary_via}
-- ajustar: adapti{en_wiktionary_via}, adaptiĝi{en_wiktionary_via}, akomodi{en_wiktionary_via}, akomodiĝi{en_wiktionary_via}, alĝusti{wikt_io}, alĝustigi{en_wiktionary_via}, ĝustigi{en_wiktionary_via}
+- ajustar: adapti{en_wiktionary_via}, akomodi{en_wiktionary_via}, alĝusti{wikt_io}
 - aklamar: aklami{fr_wiktionary_via}, aplaŭdi{en_wiktionary_via}
 - akordeono: akordiono{wikidata_labels,wikt_io}, tirharmoniko{wikidata_labels}
 - akordo: agordo{wikt_io}, akordo{en_wiktionary_via}
 - akra: acerba{fr_wiktionary_via}, akra{wikt_io}, akuta{wikt_io}, aspera{wikt_io}, pikanta{wikt_io}, stridanta{wikt_io}
 - aktiva: agema{en_wiktionary_via}, aktiva{wikt_io}
-- aktoro: aganto{en_wiktionary_via}, aktorino{en_wiktionary_via,wikidata_labels}, aktoro{wikidata_labels,wikt_io}, viraktoro{wikidata_labels}
-- aktorulo: aganto{en_wiktionary_via}, aktorino{bert_embeddings,en_wiktionary_via}, aktoro{en_wiktionary_via}
-- akumulatoro: akumulatoro{wikt_io}, akumulejo{en_wiktionary_via}
+- aktoro: aktorino{en_wiktionary_via,wikidata_labels}, aktoro{wikidata_labels,wikt_io}, viraktoro{wikidata_labels}
+- aktorulo: aktorino{bert_embeddings,en_wiktionary_via}, aktoro{en_wiktionary_via}
 - akustiko: akustika{wikidata_labels}, akustiko{wikidata_labels,wikt_io}
-- akuta: akra{en_wiktionary_via,wikt_eo}, akuta{wikt_io}, diesa{en_wiktionary_via}, inteligenta{en_wiktionary_via}, intensa{en_wiktionary_via}, saĝa{en_wiktionary_via}
+- akuta: akra{en_wiktionary_via,wikt_eo}, akuta{wikt_io}
 - akuzativo: akuzativo{wikidata_labels,wikt_io}, duobla akuzativo{wikidata_labels}
 - albumeno: albumeno{en_wiktionary_via}, ovoblankaĵo{wikidata_labels}, ovoblanko{wikidata_labels}
 - aleo: aleo{wikidata_labels,wikt_io}, strateto{wikidata_labels}
@@ -2222,55 +2219,46 @@
 - alkemio: alkemio{wikidata_labels,wikt_io}, alĥemio{wikidata_labels,wikt_io}
 - almanako: almanako{wikt_io}, almanaĥo{en_wiktionary_via}
 - alopecio: alopecio{wikt_io}, kalveco{en_wiktionary_via}, senhareco{en_wiktionary_via}
-- alterar: aliformi{en_wiktionary_via}, aliformigi{en_wiktionary_via}, aliigi{en_wiktionary_via}, aliiĝi{wikt_io}, falsi{fr_wiktionary_via}, ŝanĝi{en_wiktionary_via}, ŝanĝiĝi{en_wiktionary_via}
+- alterar: aliformi{en_wiktionary_via}, aliformigi{en_wiktionary_via}, aliigi{en_wiktionary_via}, aliiĝi{wikt_io}, falsi{fr_wiktionary_via}, ŝanĝi{en_wiktionary_via}
 - alternatoro: alternatoro{wikidata_labels,wikt_io}, alternilo{wikidata_labels}
 - alto: aldo{wikt_io}, aldoviolono{wikt_io}, aldviolono{en_wiktionary_via,wikidata_labels,wikt_io}, vjolisto{wikidata_labels}, vjolo{wikidata_labels,wikt_io}
-- alumeto: alumeto{wikt_io}, matĉo{en_wiktionary_via}
 - amatoro: amatoro{wikidata_labels,wikt_io}, diletanto{wikidata_labels}, nemetiisto{wikidata_labels}
 - ambasadisto: ambasadorino{en_wiktionary_via}, ambasadoro{wikt_io}
 - ambasado: ambasado{wikidata_labels,wikt_io}, ambasadorejo{en_wiktionary_via}
 - americio: Am{wikidata_labels}, americio{wikidata_labels,wikt_io}, americiumo{wikidata_labels}
-- amikino: amikino{wikt_io}, koramikino{en_wiktionary_via}
-- amikulo: amikiĉo{en_wiktionary_via}, koramiko{en_wiktionary_via}, viramiko{wikt_io}
+- amerika: Ameriko{wikt_io}, amerika{en_wiktionary_via}
+- amikulo: amikiĉo{en_wiktionary_via}, viramiko{wikt_io}
 - amin-acido: amina acido{en_wiktionary_via}, aminoacido{wikidata_labels,wikt_io}
 - amoniako: amonia hidroksido{wikidata_labels}, amoniako{wikt_io}
 - amortisilo: amortizilo{en_wiktionary_via}, skusorbilo{en_wiktionary_via,wikidata_labels}
-- amuzar: amuzi{wikt_io}, distri{en_wiktionary_via}, esplori{en_wiktionary_via}, konsideri{en_wiktionary_via}, pripensi{en_wiktionary_via}, regali{en_wiktionary_via}
+- amuzar: amuzi{wikt_io}, distri{en_wiktionary_via}, regali{en_wiktionary_via}
 - analoga: analoga{wikt_io}, analogia{fr_wiktionary_via}
-- ananaso: ananaso{wikt_io}, ananasujo{en_wiktionary_via}
 - anarkiismo: anarkiismo{bert_embeddings,morphological_expansion,wikidata_labels}, anarĥiismo{morphological_expansion,wikidata_labels}
 - ancestro: antaŭulo{wikt_io}, praulo{en_wiktionary_via,wikidata_labels}
-- anciena: antikva{en_wiktionary_via}, grandaĝa{en_wiktionary_via}, malnova{wikt_io}, malnovega{en_wiktionary_via}, pra-antikva{en_wiktionary_via}
-- animalo: animalo{wikidata_labels,wikt_io}, besto{en_wiktionary_via,wikidata_labels}, bruto{en_wiktionary_via}
-- anime: animacie{morphological_expansion}, animeo{wikidata_labels}
-- aniversario: datreveno{wikidata_labels,wikt_io}, jubileo{en_wiktionary_via}
+- anciena: antikva{en_wiktionary_via}, grandaĝa{en_wiktionary_via}, malnova{wikt_io}, malnovega{en_wiktionary_via}
+- animalo: animalo{wikidata_labels,wikt_io}, besto{wikidata_labels}
 - anizo: anizo{wikt_io}, anizujo{en_wiktionary_via}
-- ankore: ankoraŭ{wikt_io}, eĉ{en_wiktionary_via}, malgraŭe{en_wiktionary_via}, senmove{en_wiktionary_via}, tamen{en_wiktionary_via}
-- ante: antaŭ{en_wiktionary_via}, antaŭ kiam{en_wiktionary_via}, antaŭ ol{en_wiktionary_via}, antaŭe{wikt_io}
 - antidoto: antidoto{wikt_io}, kontraŭveneno{en_wiktionary_via}
 - antimonio: Sb{wikidata_labels}, antimono{wikidata_labels,wikt_io}
 - antipartikulo: antipartiklo{en_wiktionary_via,wikidata_labels}, kontraŭpartiklo{en_wiktionary_via,wikidata_labels}
 - antipatio: abomeno{fr_wiktionary_via}, antipatio{wikt_io}
-- antiqua: antikva{wikt_io}, grandaĝa{en_wiktionary_via}, malnovega{en_wiktionary_via}, pra-antikva{en_wiktionary_via}
+- antiqua: antikva{wikt_io}, grandaĝa{en_wiktionary_via}, malnovega{en_wiktionary_via}
 - antropologio: antropologio{wikidata_labels,wikt_io}, homologio{wikidata_labels}, homoscienco{wikidata_labels}
 - anuso: anuso{wikidata_labels,wikt_io}, postaĵotruo{en_wiktionary_via}
 - apartamento: apartamento{wikt_io}, ĉambraro{en_wiktionary_via}
-- aplikar: alfiksi{en_wiktionary_via}, apliki{wikt_io}, diligenti{en_wiktionary_via}, imponi{en_wiktionary_via}, kandidatigi{en_wiktionary_via}, peti{en_wiktionary_via}, rilati{en_wiktionary_via}
-- aplikata: alfiksata{morphological_expansion}, aplikata{bert_embeddings,morphological_expansion}, diligentata{morphological_expansion}, imponata{morphological_expansion}, kandidatigata{morphological_expansion}, petata{morphological_expansion}, rilatata{morphological_expansion}
-- aplikita: alfiksita{morphological_expansion}, aplikita{bert_embeddings,morphological_expansion}, diligentita{morphological_expansion}, imponita{morphological_expansion}, kandidatigita{morphological_expansion}, petita{morphological_expansion}, rilatita{morphological_expansion}
-- apogar: apogi{wikt_io}, bazi{en_wiktionary_via}, resti{en_wiktionary_via}, ripozi{en_wiktionary_via}, subteni{en_wiktionary_via}
-- apogita: apogita{bert_embeddings,morphological_expansion}, bazita{morphological_expansion}, restita{morphological_expansion}, ripozita{morphological_expansion}, subtenita{morphological_expansion}
-- apoplexio: apopleksio{en_wiktionary_via}, apoplexio{wikt_io}
-- apreciar: alttaksi{en_wiktionary_via}, apreci{wikt_io}, aprezi{wikt_io}
+- aplikar: alfiksi{en_wiktionary_via}, apliki{wikt_io}, imponi{en_wiktionary_via}
+- aplikata: alfiksata{morphological_expansion}, aplikata{bert_embeddings,morphological_expansion}, imponata{morphological_expansion}
+- aplikita: alfiksita{morphological_expansion}, aplikita{bert_embeddings,morphological_expansion}, imponita{morphological_expansion}
+- apogar: apogi{wikt_io}, bazi{en_wiktionary_via}, subteni{en_wiktionary_via}
+- apogita: apogita{bert_embeddings,morphological_expansion}, bazita{morphological_expansion}, subtenita{morphological_expansion}
 - aprentiseso: metilernado{wikt_io}, trejnado{en_wiktionary_via}
-- apud: anstataŭ{en_wiktionary_via}, antaŭ{en_wiktionary_via}, apud{wikt_io}, apuda{en_wiktionary_via}, kompare{en_wiktionary_via}, kontraste{en_wiktionary_via}, kontraŭ{en_wiktionary_via}, kune kun{en_wiktionary_via}, proksima{en_wiktionary_via}, ĉe{en_wiktionary_via}
+- apud: apud{wikt_io}, kune kun{en_wiktionary_via}, ĉe{en_wiktionary_via}
 - aquarelo: akvarelo{wikt_io}, akvofarbo{en_wiktionary_via}
-- aquirar: akiri{wikt_io}, fariĝi{en_wiktionary_via}, havigi{en_wiktionary_via}, iĝi{en_wiktionary_via}, preni{en_wiktionary_via}, ricevi{en_wiktionary_via}
-- aquirita: akirita{bert_embeddings,morphological_expansion}, fariĝita{morphological_expansion}, havigita{morphological_expansion}, iĝita{morphological_expansion}, prenita{morphological_expansion}, ricevita{morphological_expansion}
+- aquirar: akiri{wikt_io}, havigi{en_wiktionary_via}, preni{en_wiktionary_via}, ricevi{en_wiktionary_via}
+- aquirita: akirita{bert_embeddings,morphological_expansion}, havigita{morphological_expansion}, prenita{morphological_expansion}, ricevita{morphological_expansion}
 - aquo: akvo{wikidata_labels,wikt_io}, dihidridooksigeno{wikidata_labels}, dihidrogena monooksido{wikidata_labels}, hidrogena hidroksido{wikidata_labels}, oksidano{wikidata_labels}
 - aquofalo: akvofalo{wikt_io}, kaskado{en_wiktionary_via}
 - aquuyo: akvujo{wikt_io}, cisterno{en_wiktionary_via}
-- arab: araba{wikt_eo}, la araba{en_wiktionary_via}
 - araba: araba{bert_embeddings,wikt_io}, la araba{en_wiktionary_via}
 - arabiana: araba{wikt_io}, la araba{en_wiktionary_via}
 - arakido: arakido{en_wiktionary_via}, ternukso{wikt_io}
@@ -2291,17 +2279,15 @@
 - arko: arko{wikt_io}, arĥo{en_wiktionary_via}
 - armadilo: armadelo{wikt_io}, dazipedo{wikt_io}, dazipo{en_wiktionary_via}
 - arobo: heliko{wikt_io}, po-signo{en_wiktionary_via}, poo{en_wiktionary_via}, ĉeo{en_wiktionary_via}
-- arozar: akvumi{wikt_io}, malsekigi{en_wiktionary_via}, malsekiĝi{en_wiktionary_via}
+- arozar: akvumi{wikt_io}, malsekigi{en_wiktionary_via}
 - arseno: As{wikidata_labels}, arseno{wikidata_labels,wikt_io}
-- artikular: artikigi{en_wiktionary_via}, artikulacii{wikt_io}
 - artisto: artistino{wikidata_labels}, artisto{wikidata_labels,wikt_io}
 - asekuro: aplombo{en_wiktionary_via}, asekuro{en_wiktionary_via,wikidata_labels}
 - asistar: asisti{wikt_io}, ĉeesti{en_wiktionary_via}
 - asno: Azenfelo{wikidata_labels}, azeniĉo{en_wiktionary_via}, azeno{wikidata_labels,wikt_eo,wikt_io}, virazeno{en_wiktionary_via}
-- aspektar: aperi{en_wiktionary_via}, aspekti{wikt_io}
 - aspekto: aspekto{wikidata_labels,wikt_io}, gramatika aspekto{wikidata_labels}
 - aspera: aspra{wikt_io}, malglata{en_wiktionary_via}
-- aspirar: aspiri{wikt_io}, enspiri{en_wiktionary_via}, inhali{en_wiktionary_via}
+- aspirar: aspiri{wikt_io}, enspiri{en_wiktionary_via}
 - asterisko: asterisko{wikt_io}, steleto{en_wiktionary_via}
 - astonante: mirinde{wikt_io}, surprizante{en_wiktionary_via}, surprize{en_wiktionary_via,wikt_io}
 - astro: astro{wikidata_labels,wikt_io}, ĉielkorpo{en_wiktionary_via}
@@ -2320,7 +2306,6 @@
 - atitudo: atitudo{wikidata_labels}, sinteno{en_wiktionary_via}
 - atlaso: atlaso{wikt_io}, maparo{en_wiktionary_via}
 - atleto: atleto{wikidata_labels,wikt_io}, sportisto{en_wiktionary_via,wikidata_labels}
-- atmosfero: atmosfero{wikidata_labels,wikt_io}, etoso{en_wiktionary_via}
 - audado: aŭdado{wikt_io}, aŭdo{fr_wiktionary_via}
 - augmentanta: kreskanta{bert_embeddings,morphological_expansion}, kreskiganta{morphological_expansion}, kultivanta{morphological_expansion}, kulturanta{morphological_expansion}
 - autentika: aŭtenta{en_wiktionary_via,wikt_io}, aŭtentika{en_wiktionary_via,wikt_io}, vera{en_wiktionary_via}
@@ -2328,20 +2313,19 @@
 - autobuso: aŭtobuso{wikidata_labels,wikt_io}, buso{wikidata_labels}, omnibuso{wikidata_labels}
 - automobilo: aŭto{en_wiktionary_via,wikidata_labels,wikt_io}, aŭtomobilo{en_wiktionary_via,wikidata_labels,wikt_io}
 - autoro: aŭtorino{wikidata_labels}, aŭtoro{wikidata_labels,wikt_io}, verkistino{wikidata_labels}, verkisto{wikidata_labels}
-- avan: antaŭ{wikt_io}, antaŭ kiam{en_wiktionary_via}, antaŭ ol{en_wiktionary_via}, antaŭe{en_wiktionary_via}
 - avantajo: avantaĝo{wikt_io}, profito{fr_wiktionary_via}
 - aviacilo: aerveturilo{en_wiktionary_via}, aviadilo{wikt_io}
 - aviaco: aerveturado{en_wiktionary_via}, aviado{wikt_io}
-- avokado: avokadarbo{en_wiktionary_via}, avokado{wikt_io}, avokadujo{en_wiktionary_via}
 - axelo: akselo{wikidata_labels,wikt_io}, subbrako{en_wiktionary_via}
 - axoloto: Ambystoma mexicanum{wikidata_labels}, aksolotlo{wikidata_labels,wikt_io}
+- aye: aj{wikt_io}, aŭ{en_wiktionary_via}, uj{en_wiktionary_via}
 - azuro: azura{wikidata_labels}, lazuro{en_wiktionary_via}, ĉielbluo{en_wiktionary_via}
 - babucho: babuŝo{wikt_io}, pantoflo{en_wiktionary_via}
-- bachelero: Baĥeloro{wikidata_labels}, bakalaŭreco{en_wiktionary_via}, bakalaŭro{en_wiktionary_via,wikidata_labels}, fraŭlo{en_wiktionary_via}
+- bachelero: Baĥeloro{wikidata_labels}, bakalaŭro{en_wiktionary_via,wikidata_labels}
 - bagajo: bagaĝo{en_wiktionary_via,wikt_io}, pakaĵo{en_wiktionary_via,wikt_io}
 - baleto: baledo{wikidata_labels}, baleto{en_wiktionary_via,wikidata_labels,wikt_io}
 - balnar: bani{en_wiktionary_via,wikt_io}, baniĝi{en_wiktionary_via}, sin bani{wikt_io}
-- balono: balono{en_wiktionary_via}, ludbaloneto{en_wiktionary_via}, pilko{fr_wiktionary_via}
+- balono: balono{en_wiktionary_via}, pilko{fr_wiktionary_via}
 - balustrado: balustrado{wikt_io}, balustro{en_wiktionary_via}
 - balzamo: balzamino{en_wiktionary_via}, balzamo{wikt_io}
 - bandajo: bandaĝo{wikt_io}, pneŭmatiko{en_wiktionary_via}, pneŭo{en_wiktionary_via}
@@ -2354,37 +2338,29 @@
 - barometro: aerpremomezurilo{en_wiktionary_via}, barometro{wikidata_labels,wikt_io}, baroskopo{en_wiktionary_via}
 - barono: baronino{en_wiktionary_via,wikidata_labels}, barono{wikidata_labels,wikt_io}
 - baroskopo: aerpremomezurilo{en_wiktionary_via}, barometro{en_wiktionary_via,wikidata_labels}, baroskopo{en_wiktionary_via}
-- basa: basa{en_wiktionary_via,wikt_io}, malalta{en_wiktionary_via,wikt_io}, mallaŭta{en_wiktionary_via}
-- baseno: baseno{wikt_io}, bovlo{en_wiktionary_via}, drenbaseno{en_wiktionary_via}, flako{en_wiktionary_via}, lavabo{en_wiktionary_via}, lavujo{en_wiktionary_via}, pelvo{en_wiktionary_via}
+- basa: basa{wikt_io}, malalta{en_wiktionary_via,wikt_io}
+- baseno: baseno{wikt_io}, drenbaseno{en_wiktionary_via}, lavabo{en_wiktionary_via}, lavujo{en_wiktionary_via}, pelvo{en_wiktionary_via}
 - basketbalo: basketbalo{wikt_io}, korbopilkado{en_wiktionary_via}, korbopilko{en_wiktionary_via}
-- bastardo: bastardino{en_wiktionary_via}, bastardo{wikt_io}, ulaĉo{en_wiktionary_via}
-- bastono: bastono{wikt_io}, blindulbastono{en_wiktionary_via}, dungitaro{en_wiktionary_via}, kano{en_wiktionary_via}, kuo{en_wiktionary_via}, notliniaro{en_wiktionary_via}, oficistaro{en_wiktionary_via}, promenbastono{en_wiktionary_via}, promenkano{en_wiktionary_via}, puŝbastono{en_wiktionary_via}, stabo{en_wiktionary_via}, vergo{en_wiktionary_via}
-- batar: bati{wikt_io}, frapi{en_wiktionary_via}, striki{en_wiktionary_via}, trafi{en_wiktionary_via}, venki{en_wiktionary_via}
+- bastardo: bastardino{en_wiktionary_via}, bastardo{wikt_io}
+- bastono: bastono{wikt_io}, puŝbastono{en_wiktionary_via}, vergo{en_wiktionary_via}
+- batar: bati{wikt_io}, frapi{en_wiktionary_via}, trafi{en_wiktionary_via}
 - batelo: boato{wikidata_labels}, ŝipeto{wikidata_labels}, ŝipo{wikt_io}
 - baterio: akumulatoro{en_wiktionary_via}, baterio{wikt_io}, pilo{en_wiktionary_via}
-- bavar: bavi{wikt_io}, dribli{en_wiktionary_via}, guti{en_wiktionary_via}, pogute versi{en_wiktionary_via}, salivumi{en_wiktionary_via}
-- baza: baza{bert_embeddings,morphological_expansion}, funda{morphological_expansion}
-- baze: baze{bert_embeddings,morphological_expansion}, funde{morphological_expansion}
-- bazo: bazo{wikt_io}, fundo{en_wiktionary_via}
+- bavar: bavi{wikt_io}, salivumi{en_wiktionary_via}
 - bear: gapi{wikt_eo}, oscedi{en_wiktionary_via}
 - bedo: bedo{wikt_io}, florbedo{en_wiktionary_via}
 - beja: beĵa{en_wiktionary_via}, flavgriza{wikt_io}
-- beko: beko{wikt_io}, fakturo{en_wiktionary_via}, kalkulo{en_wiktionary_via}, leĝopropono{en_wiktionary_via}
 - bela: bela{wikt_io}, beleta{en_wiktionary_via}
-- beleso: belaĵo{wikt_io}, beleco{en_wiktionary_via,wikt_io}, belo{en_wiktionary_via}, belulino{en_wiktionary_via}, belulo{en_wiktionary_via}
+- beleso: belaĵo{wikt_io}, beleco{en_wiktionary_via,wikt_io}, belo{en_wiktionary_via}
 - benigna: benigna{wikt_io}, bona{en_wiktionary_via}
 - beredo: bereto{wikidata_labels,wikt_io}, bireto{en_wiktionary_via}
-- bestio: animalo{en_wiktionary_via}, besto{wikt_io}, bruto{en_wiktionary_via}
 - betravo: beto{en_wiktionary_via}, ruĝa beto{wikt_io}
-- bezonar: bezoni{wikt_io}, devi{en_wiktionary_via}
-- bezonata: bezonata{bert_embeddings,morphological_expansion}, devata{morphological_expansion}
 - bibliografio: Bibliografiisto{wikidata_labels}, bibliografio{wikidata_labels,wikt_io}
 - bibliotekisto: bibliotekisto{bert_embeddings,morphological_expansion}, librejisto{morphological_expansion}, libroŝrankisto{morphological_expansion}
 - biblioteko: biblioteko{wikidata_labels,wikt_io}, bretaro{en_wiktionary_via}, librejo{fr_wiktionary_via}, librobretaro{en_wiktionary_via}, libroŝranko{en_wiktionary_via}
 - bicoko: bajto{en_wiktionary_via}, bitoko{wikt_io}, okopo{en_wiktionary_via}
 - bifsteko: bifsteko{wikt_io}, steko{en_wiktionary_via}
 - bigoto: bigoteco{wikidata_labels}, bigotismo{wikidata_labels}, bigoto{wikt_io}
-- bilanco: bilanco{wikidata_labels,wikt_io}, saldo{en_wiktionary_via}
 - biliardo: bilardo{en_wiktionary_via,wikt_io}, duiliardo{wikt_io}
 - biliono: Billion{wikidata_labels}, biliono{wikt_io}
 - bilorno: binoklo{en_wiktionary_via,wikt_io}, dulorneto{wikt_io}
@@ -2394,82 +2370,67 @@
 - biografio: Vivpriskribo{wikidata_labels}, biografio{wikidata_labels,wikt_io}
 - biokemio: biokemio{wikt_io}, bioĥemio{en_wiktionary_via}
 - biologio: biologio{wikidata_labels,wikt_io}, vivscienco{wikidata_labels}
-- bipunto: dupunkto{wikt_io}, kojlo{en_wiktionary_via}
 - biskoto: biskoto{wikt_io}, toasto{en_wiktionary_via}
-- bisquito: biskoto{en_wiktionary_via}, biskvito{wikidata_labels,wikt_io}, kekso{en_wiktionary_via}, kringo{en_wiktionary_via}, kuketo{en_wiktionary_via}, marbiskvito{en_wiktionary_via}, paneto{en_wiktionary_via}, skono{en_wiktionary_via}
+- bisquito: biskvito{wikidata_labels,wikt_io}, kekso{en_wiktionary_via}, kringo{en_wiktionary_via}
 - blanka: blanka{wikidata_labels,wikt_io}, blanka koloro{wikidata_labels}, blanko{wikidata_labels}
 - blanko: blanka{wikidata_labels}, blanka koloro{wikidata_labels}, blanko{bert_embeddings,wikidata_labels}
 - blua: blua{wikidata_labels,wikt_io}, bluo{wikidata_labels}
-- boko: buŝo{wikt_io}, buŝumo{en_wiktionary_via}, muzelo{en_wiktionary_via}
-- boliar: boli{wikt_io}, boligi{en_wiktionary_via}
-- boliigar: boli{en_wiktionary_via}, boligi{wikt_io}
 - bombardar: bombardi{wikt_io}, bombi{en_wiktionary_via}
 - bonbono: bombono{wikt_io}, dolĉaĵo{en_wiktionary_via}, sukeraĵo{en_wiktionary_via}
-- bonega: bonega{wikt_io}, delikata{en_wiktionary_via}, eskvizita{en_wiktionary_via}, ravega{en_wiktionary_via}
-- bordo: bordo{wikt_io}, landlimo{en_wiktionary_via}
+- bonega: bonega{wikt_io}, delikata{en_wiktionary_via}, ravega{en_wiktionary_via}
 - borio: borio{en_wiktionary_via}, boriumo{wikt_io}
 - bosko: Maldens-arbaro{wikidata_labels}, Maldensa arbaro{wikidata_labels}, Maldensarbaro{wikidata_labels}, Maldensaĵarbaro{wikidata_labels}, bosko{wikt_io}
 - botaniko: botaniko{wikidata_labels,wikt_io}, plantoscienco{wikidata_labels}
-- boto: boto{wikidata_labels,wikt_io}, praŝarĝo{en_wiktionary_via}, startigo{en_wiktionary_via}
 - bovo: bovaĵo{wikt_io}, bovino{fr_wiktionary_via}, bovo{wikt_io}, okso{fr_wiktionary_via,wikt_io}
-- bovulo: buleo{en_wiktionary_via}, taŭro{en_wiktionary_via,wikt_io}, virbovo{en_wiktionary_via,wikt_io}
-- bovyuno: bovidino{en_wiktionary_via}, bovido{wikt_io}, suro{en_wiktionary_via}, virbovido{en_wiktionary_via}
-- braceleto: braceleto{wikt_io}, brakringo{en_wiktionary_via}, rimeno{en_wiktionary_via}
-- bradipo: bradipo{wikt_io}, pigreco{en_wiktionary_via}
-- brancho: branĉo{wikt_io}, membro{en_wiktionary_via}
-- brava: aŭdaca{en_wiktionary_via}, brava{wikt_io}, grasa{en_wiktionary_via}, kuraĝa{en_wiktionary_via}
+- bovulo: taŭro{en_wiktionary_via,wikt_io}, virbovo{en_wiktionary_via,wikt_io}
+- bovyuno: bovidino{en_wiktionary_via}, bovido{wikt_io}, virbovido{en_wiktionary_via}
+- braceleto: braceleto{wikt_io}, brakringo{en_wiktionary_via}
+- brava: aŭdaca{en_wiktionary_via}, brava{wikt_io}, kuraĝa{en_wiktionary_via}
 - braziliana: Brazilo{wikt_eo}, brazilano{en_wiktionary_via}
-- brilanta: arda{en_wiktionary_via}, brila{wikt_io}, brulanta{en_wiktionary_via}
-- briocho: brioĉo{wikidata_labels}, ĉapo{wikt_io}
+- brilanta: arda{en_wiktionary_via}, brila{wikt_io}
 - brizo: brizo{wikidata_labels,wikt_io}, venteto{en_wiktionary_via}
 - bromo: Br{wikidata_labels}, bromo{wikidata_labels,wikt_io}
 - bronkio: bronka sistemo{wikidata_labels}, bronketo{wikidata_labels}, bronko{wikidata_labels,wikt_io}, bronĥa sistemo{wikidata_labels}, bronĥeto{wikidata_labels}, bronĥo{wikidata_labels}, ĉefa bronko{wikidata_labels}, ĉefaj bronkoj{wikidata_labels}
 - bronzo: bronza{wikidata_labels}, bronzo{wikidata_labels,wikt_io}
 - broshuro: broŝuro{wikt_io}, faldfolio{en_wiktionary_via}
 - brosilo: broso{wikt_io}, peniko{en_wiktionary_via}
-- bruiso: bruo{wikt_io}, bruomuziko{en_wiktionary_via}
 - bruna: bruna{wikidata_labels,wikt_io}, bruna koloro{wikidata_labels}, bruno{wikidata_labels}, kaŝtana{wikidata_labels}
 - bruska: bruska{wikt_io}, subita{en_wiktionary_via}
 - bubo: bubo{wikt_eo,wikt_io}, senhejma infano{wikidata_labels}, stratinfano{wikidata_labels}
 - budjeto: budĝeto{en_wiktionary_via,wikt_io}, buĝeto{en_wiktionary_via,wikt_io}
-- bulo: bobelo{en_wiktionary_via}, globo{wikt_io}, veziko{en_wiktionary_via}
+- bulo: bobelo{en_wiktionary_via}, globo{wikt_io}
 - bulvardo: aleo{en_wiktionary_via}, bulvardo{wikt_io}
 - burjono: burĝono{en_wiktionary_via,wikidata_labels}, kreskoburĝono{wikidata_labels}
-- burso: biletujo{en_wiktionary_via}, burso{wikt_io}, mansako{en_wiktionary_via}, monujo{en_wiktionary_via,wikidata_labels}, stipendio{fr_wiktionary_via}
-- butono: butono{wikt_io}, regbutono{en_wiktionary_via}
-- buxo: brusto{en_wiktionary_via}, kesto{wikt_io}, kofro{en_wiktionary_via}, skatolo{en_wiktionary_via}
-- ca: tiu{function_words_seed}, ĉi{wikt_io}
+- burso: biletujo{en_wiktionary_via}, burso{wikt_io}, monujo{en_wiktionary_via,wikidata_labels}, stipendio{fr_wiktionary_via}
+- buxo: kesto{wikt_io}, kofro{en_wiktionary_via}, skatolo{en_wiktionary_via}
+- ca: Ca{wikidata_labels}, kalcio{wikidata_labels}, kalciumo{wikidata_labels}, tiu{function_words_seed}, ĉi{wikt_io}, ĉi tiu{closed_class_tables}
 - caro: carino{en_wiktionary_via}, caro{wikidata_labels,wikt_io}
 - cedilio: cedilo{wikt_io}, subhoko{en_wiktionary_via}, zoeto{en_wiktionary_via}
 - celiba: fraŭla{en_wiktionary_via}, fraŭleca{wikt_io}
-- cerealo: aveno{en_wiktionary_via}, cerealo{wikt_io}, greno{en_wiktionary_via,wikidata_labels}, hordeo{en_wiktionary_via}, kalo{en_wiktionary_via}, piedkalo{en_wiktionary_via}, tritiko{en_wiktionary_via}
+- cerealo: aveno{en_wiktionary_via}, cerealo{wikt_io}, greno{en_wiktionary_via,wikidata_labels}, hordeo{en_wiktionary_via}, tritiko{en_wiktionary_via}
 - cerebelo: cerbeto{en_wiktionary_via,wikidata_labels}, cerebelo{wikidata_labels,wikt_io}, etcerbo{wikidata_labels}
-- cerebro: cerbo{wikidata_labels,wikt_io}, encefalo{en_wiktionary_via}, intelekto{en_wiktionary_via}, menso{en_wiktionary_via}
-- certe: certe{bert_embeddings,en_wiktionary_via}, kompreneble{en_wiktionary_via}, sendube{en_wiktionary_via}
+- cerebro: cerbo{wikidata_labels,wikt_io}, encefalo{en_wiktionary_via}
+- certe: certe{bert_embeddings,en_wiktionary_via}, sendube{en_wiktionary_via}
 - cerumeno: cerumeno{wikt_io}, orelvakso{en_wiktionary_via}
-- cervino: cervino{wikt_io}, damaino{en_wiktionary_via}, kanguruino{en_wiktionary_via}, kapreolino{en_wiktionary_via}, kuniklino{en_wiktionary_via}, leporino{en_wiktionary_via}, sciurino{en_wiktionary_via}
 - cervo: cervo{wikt_io}, vircervo{en_wiktionary_via}
 - cervulo: cervo{wikt_io}, vircervo{en_wiktionary_via}
+- cesar: ĉesi{fr_wiktionary_via}, ĉesigi{en_wiktionary_via}
 - cesio: Cs{wikidata_labels}, cezio{wikidata_labels,wikt_io}, ceziumo{wikidata_labels}
-- cezaro: cezaro{bert_embeddings,en_wiktionary_via}, imperiestro{en_wiktionary_via}
 - chamo: Rupicapra rupicapra{wikidata_labels}, ĉamo{wikidata_labels,wikt_io}
 - champiniono: duspora agariko{en_wiktionary_via}, ĉampinjono{wikt_io}
-- chanjar: aliformi{en_wiktionary_via}, aliformigi{en_wiktionary_via}, aliformiĝi{en_wiktionary_via}, aliigi{en_wiktionary_via}, aliiĝi{en_wiktionary_via}, alivestiĝi{en_wiktionary_via}, transformi{en_wiktionary_via}, transformiĝi{en_wiktionary_via}, ŝanĝi{wikt_io}, ŝanĝiĝi{en_wiktionary_via}
+- chanjar: aliformi{en_wiktionary_via}, aliformigi{en_wiktionary_via}, aliformiĝi{en_wiktionary_via}, aliigi{en_wiktionary_via}, aliiĝi{en_wiktionary_via}, transformi{en_wiktionary_via}, transformiĝi{en_wiktionary_via}, ŝanĝi{wikt_io}, ŝanĝiĝi{en_wiktionary_via}
 - charo: armea ĉaro{en_wiktionary_via}, ĉaro{wikt_io}
 - chasado: postkurado{morphological_expansion}, ĉasado{morphological_expansion,wikidata_labels}, ĉaso{wikidata_labels}
 - chasar: postkuri{en_wiktionary_via}, ĉasi{wikt_io}
 - chefeso: estreco{morphological_expansion}, gvidado-estreco{wikidata_labels}, ĉefeco{morphological_expansion}
 - chefo: estro{en_wiktionary_via}, gvidanto{en_wiktionary_via}, ĉefo{wikt_io}
 - chimo: ĉimo{wikidata_labels,wikt_io}, ĥimo{en_wiktionary_via,wikt_io}
-- chiniono: bulko{en_wiktionary_via}, hartubero{wikt_io}
 - chitino: kitino{wikidata_labels}, ĥitino{wikidata_labels,wikt_io}
-- chokolado: ĉokoladkoloro{en_wiktionary_via}, ĉokolado{wikidata_labels,wikt_io}
 - chomeso: Sendungeco{wikidata_labels}, Sendungo{wikidata_labels}, senlaboreco{wikidata_labels,wikt_io}
 - choseo: veturejo{en_wiktionary_via}, vojo{en_wiktionary_via}, ŝoseo{wikt_io}
 - cibernetiko: cibernetiko{wikt_io}, kibernetiko{en_wiktionary_via}
 - cieloskrapero: nubskrapulo{en_wiktionary_via}, ĉielskrapanto{wikt_io}
 - ciencisto: scienca esploristino{wikidata_labels}, scienca esploristo{wikidata_labels}, sciencisto{wikt_io}, scientisto{en_wiktionary_via}
-- cifro: cifero{wikt_io}, fingro{en_wiktionary_via}
 - cikatro: cikatro{wikidata_labels,wikt_io}, stigmato{en_wiktionary_via}
 - cikorio: amara cikorio{wikidata_labels}, cichorium intybus{wikidata_labels}, cikorio{wikt_io}
 - cilindro: cilindra{wikidata_labels}, cilindra surfaco{wikidata_labels}, cilindro{wikidata_labels,wikt_io}, cirkla cilindro{wikidata_labels}, malfinia cilindro{wikidata_labels}
@@ -2477,87 +2438,73 @@
 - cimaso: Modluro{wikidata_labels}, cimatio{wikt_io}
 - cimo: cimo{wikt_io}, litcimo{en_wiktionary_via}
 - cinematografo: filmado{wikt_io}, filmarto{wikidata_labels}, kinematografio{wikidata_labels}
-- cinemo: filmaro{en_wiktionary_via}, filmo{wikidata_labels}, kinarto{en_wiktionary_via}, kinejo{en_wiktionary_via,wikidata_labels}, kinindustrio{en_wiktionary_via}
-- cintilo: fajrero{en_wiktionary_via,wikt_io}, sparko{en_wiktionary_via,wikt_io}
+- cinemo: filmo{wikidata_labels}, kinejo{en_wiktionary_via,wikidata_labels}
+- cintilo: fajrero{en_wiktionary_via,wikt_io}, sparko{wikt_io}
 - cirajo: ciro{wikt_io}, ŝupolurilo{en_wiktionary_via}
 - cirkla: cirkla{wikt_io}, ronda{en_wiktionary_via}
-- cirklo: cirklo{wikidata_labels,wikt_io}, rondo{en_wiktionary_via}
-- cirkum: kun{en_wiktionary_via}, ota{en_wiktionary_via}, pri{en_wiktionary_via}, proksimume{en_wiktionary_via}, returnen{en_wiktionary_via}, tra{en_wiktionary_via}, ĉirkaŭ{wikt_io}, ĉirkaŭe{en_wiktionary_via}, ĉirkaŭe en{en_wiktionary_via}
-- cirkume: kun{en_wiktionary_via}, proksimume{en_wiktionary_via}, returnen{en_wiktionary_via}, ĉirkaŭ{wikt_io}, ĉirkaŭe{en_wiktionary_via}, ĉirkaŭe en{en_wiktionary_via}
+- cirkume: proksimume{en_wiktionary_via}, ĉirkaŭ{wikt_io}, ĉirkaŭe{en_wiktionary_via}
 - cis: C diesa{en_wiktionary_via}, cis{wikt_io}, maltrans{wikt_io}
 - citoplasmo: citoplasmo{wikt_io}, ĉelplasmo{en_wiktionary_via}
 - civito: civito{wikt_io}, urbo{en_wiktionary_via}
 - daltonismo: daltonismo{wikt_io}, kolorblindeco{wikidata_labels}
 - dami: damludo{wikt_io}, damoj{en_wiktionary_via}
-- damzelo: fraŭlino{wikt_eo,wikt_io}, knabino{en_wiktionary_via}, maltrafo{en_wiktionary_via}, servistino{en_wiktionary_via}, ĉambristino{en_wiktionary_via}
+- damzelo: fraŭlino{wikt_eo,wikt_io}, knabino{en_wiktionary_via}
 - danso: danco{wikidata_labels}, danso{wikt_io}
 - datumaro: datenaro{wikt_io}, datenbanko{wikidata_labels}, datenbazo{en_wiktionary_via}, datumbanko{en_wiktionary_via}, datumbazo{en_wiktionary_via,wikidata_labels}
 - dazlar: blindetigi{wikt_io}, blindumi{en_wiktionary_via,wikt_io}, mirigi{en_wiktionary_via}, ravi{en_wiktionary_via}
-- de: antaŭ{en_wiktionary_via}, da{wikt_io}, de{en_wiktionary_via,wikt_io}, disde{en_wiktionary_via}, ekde{en_wiktionary_via}, el{en_wiktionary_via}
+- de: da{wikt_io}, de{en_wiktionary_via,wikt_io}, el{en_wiktionary_via}
 - debila: debila{wikt_io}, malforta{en_wiktionary_via}
 - decensar: decensi{wikt_io}, malsupreniri{wikt_io}, profundiĝi{en_wiktionary_via}
 - deceptar: malkontentigi{en_wiktionary_via}, ĉagreni{fr_wiktionary_via}
 - decimala: decimala{wikt_io}, dekuma{en_wiktionary_via}
 - deismo: Deismo{wikidata_labels}, diismo{wikidata_labels,wikt_io}
 - dejuno: lunĉo{en_wiktionary_via}, meztagmanĝaĵo{en_wiktionary_via}, tagmanĝo{wikt_io}
-- dek-e-du: dek du{en_wiktionary_via}, dekdu{wikt_io}, dekduo{en_wiktionary_via}, dekoj{en_wiktionary_via}
+- dek-e-du: dek du{en_wiktionary_via}, dekdu{wikt_io}, dekduo{en_wiktionary_via}
 - deklaro: deklaracio{bert_embeddings,en_wiktionary_via}, deklaro{bert_embeddings,en_wiktionary_via}
 - delegitaro: delegacio{en_wiktionary_via,wikt_io}, delegitaro{wikt_io}
-- demokratia: demokratia{bert_embeddings,morphological_expansion}, demokratia ŝtatforma{morphological_expansion}
-- demokratio: demokratia ŝtatformo{en_wiktionary_via}, demokratio{wikidata_labels,wikt_io}
-- demonstrar: demonstracii{wikt_io}, demonstri{en_wiktionary_via,wikt_io}, elmontri{en_wiktionary_via}, manifestacii{en_wiktionary_via}, montri{en_wiktionary_via}
+- demonstrar: demonstracii{wikt_io}, demonstri{wikt_io}, elmontri{en_wiktionary_via}, montri{en_wiktionary_via}
 - dentifrico: dentopasto{en_wiktionary_via}, dentpasto{wikt_io}
 - dentisto: dentistino{en_wiktionary_via}, dentisto{wikt_io}
 - denuncanto: denuncanto{morphological_expansion}, interna alarmanto{wikidata_labels}, interninformanto{wikidata_labels}
 - deo: diaĵo{en_wiktionary_via}, diino{wikidata_labels}, dio{wikidata_labels,wikt_io}
-- departar: deiri{en_wiktionary_via}, eliri{en_wiktionary_via}, foriri{wikt_io}, lasi{en_wiktionary_via}
-- depos: de kiam{en_wiktionary_via}, depost{en_wiktionary_via,wikt_io}, ekde{en_wiktionary_via,wikt_io}, ĉar{en_wiktionary_via}
+- departar: deiri{en_wiktionary_via}, eliri{en_wiktionary_via}, foriri{wikt_io}
+- depos: depost{en_wiktionary_via,wikt_io}, ekde{en_wiktionary_via,wikt_io}
 - derivajo: derivaĵeco{wikidata_labels}, derivaĵo{wikidata_labels,wikt_io}, derivebleco{wikidata_labels}
-- desaparar: malaperi{en_wiktionary_via,wikt_io}, malaperigi{en_wiktionary_via}, sveni{wikt_io}
-- desegnar: allogi{en_wiktionary_via}, altiri{en_wiktionary_via}, dedukti{en_wiktionary_via}, desegni{wikt_io}, egalvenki{en_wiktionary_via}, eltiri{en_wiktionary_via}, fermtiri{en_wiktionary_via}, konkludi{en_wiktionary_via}, ĉerpi{en_wiktionary_via}
-- desegnisto: allogisto{morphological_expansion}, altiristo{morphological_expansion}, deduktisto{morphological_expansion}, desegnisto{bert_embeddings,morphological_expansion}, egalvenkisto{morphological_expansion}, eltiristo{morphological_expansion}, fermtiristo{morphological_expansion}, konkludisto{morphological_expansion}, ĉerpisto{morphological_expansion}
-- desegnita: allogita{morphological_expansion}, altirita{morphological_expansion}, deduktita{morphological_expansion}, desegnita{bert_embeddings,morphological_expansion}, egalvenkita{morphological_expansion}, eltirita{morphological_expansion}, fermtirita{morphological_expansion}, konkludita{morphological_expansion}, ĉerpita{morphological_expansion}
+- desaparar: malaperi{en_wiktionary_via,wikt_io}, sveni{wikt_io}
 - desero: deserto{wikt_io}, postmanĝaĵo{en_wiktionary_via}
-- desfacila: forta{en_wiktionary_via}, malfacila{wikt_io}, malmola{en_wiktionary_via}, nerefutebla{en_wiktionary_via}, severa{en_wiktionary_via}
 - deskovrar: eltrovi{wikt_io}, malkovri{en_wiktionary_via,wikt_io}, trovi{en_wiktionary_via}
 - deskriptar: adjektivi{en_wiktionary_via}, figuri{en_wiktionary_via}, prezenti{en_wiktionary_via}, priskribi{en_wiktionary_via,wikt_io}, vortpentri{wikt_io}
 - dessaja: malsaĝa{wikt_io}, stulta{en_wiktionary_via}
 - destruktar: detrui{wikt_io}, ekstermi{en_wiktionary_via}
 - detektivo: detektivino{en_wiktionary_via}, detektivo{wikt_io}, policana detektivo{en_wiktionary_via}
-- developanta: disvolvanta{morphological_expansion}, disvolviganta{morphological_expansion}, disvolviĝanta{morphological_expansion}, evoluiganta{morphological_expansion}, kreskanta{bert_embeddings,morphological_expansion}, kreskiganta{morphological_expansion}, kultivanta{morphological_expansion}, kulturanta{morphological_expansion}
-- developar: disvolvi{wikt_io}, disvolvigi{en_wiktionary_via}, disvolviĝi{en_wiktionary_via}, evoluigi{en_wiktionary_via,wikt_io}, kreski{en_wiktionary_via}, kreskigi{en_wiktionary_via}, kultivi{en_wiktionary_via}, kulturi{en_wiktionary_via}
-- developita: disvolvigita{morphological_expansion}, disvolvita{morphological_expansion}, disvolviĝita{morphological_expansion}, evoluigita{bert_embeddings,morphological_expansion}, kreskigita{morphological_expansion}, kreskita{morphological_expansion}, kultivita{morphological_expansion}, kulturita{morphological_expansion}
-- di: antaŭ{en_wiktionary_via}, da{en_wiktionary_via}, de{wikt_io}, el{en_wiktionary_via}, pri{en_wiktionary_via}
+- developar: disvolvi{wikt_io}, disvolviĝi{en_wiktionary_via}, evoluigi{wikt_io}, kreskigi{en_wiktionary_via}, kultivi{en_wiktionary_via}, kulturi{en_wiktionary_via}
+- developita: disvolvita{morphological_expansion}, disvolviĝita{morphological_expansion}, evoluigita{bert_embeddings,morphological_expansion}, kreskigita{morphological_expansion}, kultivita{morphological_expansion}, kulturita{morphological_expansion}
 - di qua: de kiu{function_word_override}, kies{wikt_io}
 - di qui: de kiuj{function_word_override}, kies{wikt_io}
 - diabeto: diabeto{wikidata_labels,wikt_io}, sukera diabeto{wikidata_labels}
-- diafana: diafana{en_wiktionary_via}, travidebla{wikt_io}
 - diapazono: agordforko{wikidata_labels}, agordilo{wikidata_labels}, agordoforko{wikidata_labels}, diapazono{wikidata_labels,wikt_io}, sonforko{wikidata_labels}, tonforko{wikidata_labels}
 - diareo: diareo{wikidata_labels,wikt_io}, lakso{en_wiktionary_via,wikidata_labels}
-- dicante: deklamante{morphological_expansion}, dirante{bert_embeddings,morphological_expansion}
-- dicar: deklami{en_wiktionary_via}, diri{wikt_io}, ni diru{en_wiktionary_via}
 - dicionario: leksikono{wikt_io}, vortaro{wikidata_labels,wikt_eo,wikt_io}, vortoprovizo{wikt_io}
 - diferar: diferenci{wikt_io}, malsimili{en_wiktionary_via}
 - difero: diferenco{wikidata_labels,wikt_io}, malsameco{en_wiktionary_via,wikidata_labels}, malsamo{en_wiktionary_via}
-- difuzar: aspergi{en_wiktionary_via}, difuzi{wikt_io}, disiĝi{en_wiktionary_via}, dispeli{en_wiktionary_via}, disvastigi{en_wiktionary_via}, disvastiĝi{en_wiktionary_via}, etendiĝi{en_wiktionary_via}, sterni{en_wiktionary_via}, vastiĝi{en_wiktionary_via}, ŝmiri{en_wiktionary_via}
-- digna: admirinda{en_wiktionary_via}, digna{en_wiktionary_via}, estimata{en_wiktionary_via}, honorinda{en_wiktionary_via}, inda{en_wiktionary_via,wikt_io}, merita{en_wiktionary_via}, meritplena{en_wiktionary_via,wikt_io}
+- difuzar: aspergi{en_wiktionary_via}, difuzi{wikt_io}, dispeli{en_wiktionary_via}, vastiĝi{en_wiktionary_via}
+- digna: digna{en_wiktionary_via}, inda{en_wiktionary_via,wikt_io}, merita{en_wiktionary_via}, meritplena{wikt_io}
 - digramo: Duliteraĵo{wikidata_labels}, Trigramo{wikidata_labels}, digrafo{wikidata_labels}, digramo{wikidata_labels,wikt_io}
 - diktatoro: diktatorino{wikidata_labels}, diktatoro{wikidata_labels,wikt_io}, diktisto{wikidata_labels}
-- dil: de{function_word_override}, de la{wikt_io}
 - diluvio: diluvo{wikt_io}, inundo{wikidata_labels}, superbordiĝo{wikidata_labels}, superverŝo{wikidata_labels}
-- diminutar: malaltigi{en_wiktionary_via}, malaltiĝi{en_wiktionary_via}, maldikiĝi{en_wiktionary_via}, malgrandigi{en_wiktionary_via,wikt_io}, malgrandiĝi{en_wiktionary_via,wikt_io}, mallarĝiĝi{en_wiktionary_via}, malpliigi{en_wiktionary_via,wikt_io}, malpliiĝi{en_wiktionary_via}, plimalgrandigi{en_wiktionary_via}, plimalgrandiĝi{en_wiktionary_via}
+- diminutar: malaltigi{en_wiktionary_via}, malaltiĝi{en_wiktionary_via}, malgrandigi{en_wiktionary_via,wikt_io}, malgrandiĝi{en_wiktionary_via,wikt_io}, malpliigi{en_wiktionary_via,wikt_io}, malpliiĝi{en_wiktionary_via}, plimalgrandigi{en_wiktionary_via}, plimalgrandiĝi{en_wiktionary_via}
 - dina: maldika{wikt_io}, svelta{en_wiktionary_via}
 - dinastio: Dynasty{wikidata_labels}, dinastio{wikidata_labels,wikt_io}
-- dindo: meleagraĵo{en_wiktionary_via}, meleagrino{en_wiktionary_via}, meleagriĉo{en_wiktionary_via}, meleagro{wikt_io}, virmeleagro{en_wiktionary_via}
+- dindo: meleagrino{en_wiktionary_via}, meleagriĉo{en_wiktionary_via}, meleagro{wikt_io}, virmeleagro{en_wiktionary_via}
 - dio: diurno{wikidata_labels,wikt_io}, tagnokto{wikidata_labels}, tago{fr_wiktionary_via,wikidata_labels,wikt_eo,wikt_io}
 - diocezo: diocezo{wikidata_labels,wikt_io}, episkopujo{en_wiktionary_via,wikidata_labels}
-- direktar: aldirekti{en_wiktionary_via}, direkti{wikt_io}, gvidi{en_wiktionary_via}, reĝisori{en_wiktionary_via}
-- direktisto: aldirektisto{morphological_expansion}, direktisto{morphological_expansion}, filmreĝisorino{wikidata_labels}, filmreĝisoro{wikidata_labels}, gvidisto{morphological_expansion}, reĝisoristo{morphological_expansion}
-- direktita: aldirektita{morphological_expansion}, direktita{bert_embeddings,morphological_expansion}, gvidita{morphological_expansion}, reĝisorita{morphological_expansion}
+- direktar: aldirekti{en_wiktionary_via}, direkti{wikt_io}, gvidi{en_wiktionary_via}
+- direktisto: aldirektisto{morphological_expansion}, direktisto{morphological_expansion}, filmreĝisorino{wikidata_labels}, filmreĝisoro{wikidata_labels}, gvidisto{morphological_expansion}
+- direktita: aldirektita{morphological_expansion}, direktita{bert_embeddings,morphological_expansion}, gvidita{morphological_expansion}
 - disk-jokeo: Diskĵokeino{wikidata_labels}, DĴ{en_wiktionary_via,wikidata_labels}, diskludisto{en_wiktionary_via,wikidata_labels}, diskĵokeo{en_wiktionary_via,wikidata_labels}
 - diskutar: diskuti{wikt_io}, priparoli{en_wiktionary_via}
 - diskuto: diskutado{en_wiktionary_via}, diskuto{bert_embeddings,en_wiktionary_via}
-- dispersar: aspergi{en_wiktionary_via}, disiĝi{en_wiktionary_via}, dispeli{en_wiktionary_via}, dispersi{wikt_io}
+- dispersar: aspergi{en_wiktionary_via}, dispeli{en_wiktionary_via}, dispersi{wikt_io}
 - disputar: disputi{wikt_io}, kvereli{fr_wiktionary_via}
 - distanta: distanca{wikt_io}, fora{en_wiktionary_via}, malproksima{wikt_io}
 - distingar: diferencigi{wikt_io}, distingi{wikt_io}, karakterizi{en_wiktionary_via}
@@ -2565,24 +2512,19 @@
 - distributar: distribui{wikt_io}, onigi{en_wiktionary_via}
 - divenar: ekesti{en_wiktionary_via}, estiĝi{en_wiktionary_via}, fariĝi{wikt_io}, iĝi{en_wiktionary_via,wikt_io}
 - divido: dividado{wikidata_labels}, divido{bert_embeddings,wikidata_labels}
-- divinar: diveni{wikt_io}, supozi{en_wiktionary_via}
 - diviziono: armea divizio{wikidata_labels}, divizio{wikt_io}
 - divorco: divorco{wikt_io}, eksgeedziĝo{en_wiktionary_via}
 - dizastro: desastre{wikidata_labels}, katastrofo{wikidata_labels,wikt_io}
-- docar: instrui{wikt_io}, lernigi{en_wiktionary_via}
 - dodekaedro: dekduedro{en_wiktionary_via,wikt_io}, dodekaedro{wikt_io}
 - doktoreso: doktoreco{wikt_io}, doktoriĝo{en_wiktionary_via}
 - doktoro: doktorino{en_wiktionary_via}, doktoro{wikidata_labels,wikt_io}, virdoktoro{en_wiktionary_via}
 - dolca: aminda{en_wiktionary_via}, dolĉa{wikt_io}
 - dolmeno: dolmeno{wikidata_labels,wikt_io}, megalita tombo{wikidata_labels}
-- dolorar: damaĝi{en_wiktionary_via}, dolori{wikt_io}, dolorigi{en_wiktionary_via}, vundi{en_wiktionary_via}
-- domajar: damaĝi{en_wiktionary_via,wikt_io}, difekti{en_wiktionary_via,wikt_io}, malkaŝi{en_wiktionary_via}, riveli{en_wiktionary_via}
+- domajar: damaĝi{en_wiktionary_via,wikt_io}, difekti{en_wiktionary_via,wikt_io}
 - domeno: bieno{wikt_io}, limo{fr_wiktionary_via}
 - dominacar: domini{wikt_io}, superregi{en_wiktionary_via}
 - domtar: kvietigi{en_wiktionary_via}, obeigi{en_wiktionary_via}, subjugigi{wikt_io}
-- dop: malantaŭ{wikt_io}, postaĵo{en_wiktionary_via}
 - dormo-chambro: dormĉambro{en_wiktionary_via}, ĉambro{fr_wiktionary_via}
-- dosiero: dosiero{wikt_io}, fajlilo{en_wiktionary_via}, vico{en_wiktionary_via}
 - drastika: drasta{wikt_io}, radikala{en_wiktionary_via}
 - drinkar: drinki{en_wiktionary_via}, trinki{wikt_io}
 - drupo: drupo{wikidata_labels,wikt_io}, kernofrukto{wikt_io}
@@ -2590,45 +2532,38 @@
 - duka: duka{bert_embeddings,morphological_expansion}, dukina{morphological_expansion}
 - duke: duke{bert_embeddings,morphological_expansion}, dukine{morphological_expansion}
 - duko: dukino{wikt_io}, duko{wikidata_labels,wikt_io}
-- duktar: antaŭi{en_wiktionary_via}, antaŭiri{en_wiktionary_via}, estri{en_wiktionary_via}, gvidi{en_wiktionary_via}, komenci{en_wiktionary_via}, komenciĝi{en_wiktionary_via}, konduki{wikt_io}, kondukti{en_wiktionary_via}, konduti{en_wiktionary_via}, logi{en_wiktionary_via}, sekvi{en_wiktionary_via}, stiri{fr_wiktionary_via}
-- dum: dum{wikt_io}, kvankam{en_wiktionary_via}
+- duktar: estri{en_wiktionary_via}, gvidi{en_wiktionary_via}, konduki{wikt_io}, konduti{en_wiktionary_via}, stiri{fr_wiktionary_via}
 - dungo: fekundigilo{wikidata_labels}, grasigaĵo{wikidata_labels}, grasumo{wikidata_labels}, kompoŝto{en_wiktionary_via}, sintezita sterko{wikidata_labels}, sterkaĵo{wikidata_labels}, sterko{wikidata_labels,wikt_io}, ĥemis sterko{wikidata_labels}
-- duo: duo{wikt_io}, kelkaj{en_wiktionary_via}, paro{en_wiktionary_via}
-- duopla: duobla{en_wiktionary_via}, duopa{en_wiktionary_via}, duopla{wikt_io}
-- duople: duoble{bert_embeddings,morphological_expansion}, duope{morphological_expansion}, duople{morphological_expansion}
+- duo: duo{wikt_io}, paro{en_wiktionary_via}
+- duopla: duobla{en_wiktionary_via}, duopla{wikt_io}
+- duople: duoble{bert_embeddings,morphological_expansion}, duople{morphological_expansion}
 - dupo: dupo{en_wiktionary_via,wikt_io}, trompato{en_wiktionary_via}, trompito{en_wiktionary_via}, trompito naiva{wikt_io}
-- durar: daŭri{wikt_io}, daŭrigi{en_wiktionary_via}, elteni{en_wiktionary_via}, kontinui{en_wiktionary_via}, pluigi{en_wiktionary_via}, resti{en_wiktionary_via}, suferi{en_wiktionary_via}
-- ebuliar: bobeli{wikt_io}, boli{en_wiktionary_via}, boligi{en_wiktionary_via}
+- durar: daŭri{wikt_io}, daŭrigi{en_wiktionary_via}, elteni{en_wiktionary_via}, kontinui{en_wiktionary_via}, pluigi{en_wiktionary_via}, resti{en_wiktionary_via}
+- ebuliar: bobeli{wikt_io}, boli{en_wiktionary_via}
 - ecelanta: bonega{wikt_io}, elstara{en_wiktionary_via}
 - ecelar: esti bonega{wikt_io}, superi{en_wiktionary_via,wikt_io}
-- eceptar: escepti{wikt_io}, krom{en_wiktionary_via}
-- eceso: dezerto{en_wiktionary_via}, eksceso{wikt_io}, rubo{en_wiktionary_via}, troo{en_wiktionary_via}
-- ed: kaj{function_word_override}, pro tio{en_wiktionary_via}
-- edifico: konstruado{en_wiktionary_via}, konstruaĵo{wikidata_labels,wikt_io}
-- editar: adapti{en_wiktionary_via}, eldoni{wikt_io}, modifi{en_wiktionary_via}, redakti{en_wiktionary_via}, ŝanĝi{en_wiktionary_via}
-- editita: adaptita{bert_embeddings,morphological_expansion}, eldonita{morphological_expansion}, modifita{morphological_expansion}, redaktita{morphological_expansion}, ŝanĝita{morphological_expansion}
+- eceso: eksceso{wikt_io}, troo{en_wiktionary_via}
 - edro: edro{wikt_io}, multedro{wikidata_labels}, pluredro{wikidata_labels}, poliedro{wikidata_labels}
-- edukar: altigi{en_wiktionary_via}, baŭmi{en_wiktionary_via}, bredi{en_wiktionary_via}, eduki{wikt_io}, kreskigi{en_wiktionary_via}, levi{en_wiktionary_via}, plialtigi{en_wiktionary_via}, selekti{en_wiktionary_via}
-- edukisto: altigisto{morphological_expansion}, baŭmisto{morphological_expansion}, bredisto{morphological_expansion}, edukadisto{morphological_expansion}, edukisto{bert_embeddings,morphological_expansion}, kreskigisto{morphological_expansion}, levisto{morphological_expansion}, plialtigisto{morphological_expansion}, selektisto{morphological_expansion}
-- edukita: altigita{morphological_expansion}, baŭmita{morphological_expansion}, bredita{morphological_expansion}, edukita{bert_embeddings,morphological_expansion}, kreskigita{morphological_expansion}, levita{morphological_expansion}, plialtigita{morphological_expansion}, selektita{morphological_expansion}
-- eduko: edukado{en_wiktionary_via}, eduko{bert_embeddings,en_wiktionary_via}
-- efacar: elimini{en_wiktionary_via}, forigi{en_wiktionary_via,wikt_io}, forviŝi{en_wiktionary_via,wikt_io}, malaperigi{wikt_io}, nuligi{wikt_io}, viŝi{en_wiktionary_via}
+- edukado: bredado{wikt_io}, edukado{en_wiktionary_via}, eduko{en_wiktionary_via}
+- edukar: bredi{en_wiktionary_via}, eduki{wikt_io}, kreskigi{en_wiktionary_via}, selekti{en_wiktionary_via}
+- edukisto: bredisto{morphological_expansion}, edukadisto{morphological_expansion}, edukisto{bert_embeddings,morphological_expansion}, kreskigisto{morphological_expansion}, selektisto{morphological_expansion}
+- edukita: bredita{morphological_expansion}, edukita{bert_embeddings,morphological_expansion}, kreskigita{morphological_expansion}, selektita{morphological_expansion}
+- eduko: edukado{wikt_io}, eduko{bert_embeddings,en_wiktionary_via}
+- efacar: forigi{en_wiktionary_via,wikt_io}, forviŝi{en_wiktionary_via,wikt_io}, malaperigi{wikt_io}, nuligi{wikt_io}
 - efekto: efekto{wikt_io}, efiko{en_wiktionary_via}, rezulto{en_wiktionary_via}
-- ego: egoo{wikt_io}, mio{en_wiktionary_via}
 - einsteinio: ejnŝtejnio{en_wiktionary_via}, ejnŝtejniumo{wikidata_labels}
-- ek: antaŭ{en_wiktionary_via}, da{en_wiktionary_via}, de{en_wiktionary_via}, el{wikt_io}, pri{en_wiktionary_via}
+- ek: da{en_wiktionary_via}, de{en_wiktionary_via}, el{wikt_io}
 - ekino: ekino{wikt_io}, eĥino{en_wiktionary_via}, mara erinaco{en_wiktionary_via}, markaŝtano{en_wiktionary_via}
-- ekirar: adiaŭi{en_wiktionary_via}, ekiri{wikt_io}, eliri{en_wiktionary_via,wikt_io}, elsaluti{en_wiktionary_via}, elveni{en_wiktionary_via}, estingiĝi{en_wiktionary_via}
+- ekirar: adiaŭi{en_wiktionary_via}, ekiri{wikt_io}, eliri{en_wiktionary_via,wikt_io}, elsaluti{en_wiktionary_via}, elveni{en_wiktionary_via}
 - eko: eko{en_wiktionary_via}, ekoo{wikidata_labels}, eĥo{wikidata_labels,wikt_io}
 - ekonomiko: ekonomia scienco{wikidata_labels}, ekonomiko{wikidata_labels,wikt_io}, ekonomiscienco{wikidata_labels}
-- el: ĝi{en_wiktionary_via}, ŝi{closed_class_tables,wikt_eo,wikt_io}, ŝia{en_wiktionary_via}
 - elektar: elekti{wikt_io}, voli{en_wiktionary_via}
 - elektita: elektita{bert_embeddings,morphological_expansion}, volita{morphological_expansion}
-- elekto: balotado{en_wiktionary_via}, elektado{en_wiktionary_via}, elekto{wikt_io}
+- elekto: balotado{en_wiktionary_via}, elekto{wikt_io}
+- eli: ili{wikt_io}, ilin{en_wiktionary_via}
 - eloquenta: elokventa{wikt_io}, flua{en_wiktionary_via}
-- elu: ĝi{en_wiktionary_via}, ŝi{closed_class_tables,wikt_io}, ŝia{en_wiktionary_via}
 - emblemo: emblemo{wikidata_labels,wikt_io}, insigno{wikidata_labels}, logoo{wikidata_labels}, logotipo{wikidata_labels}
-- embracar: ampleksi{en_wiktionary_via}, brakumi{en_wiktionary_via}, enbrakigi{en_wiktionary_via}, ĉirkaŭbraki{en_wiktionary_via}, ĉirkaŭi{wikt_io}, ĉirkaŭpremi{en_wiktionary_via,wikt_io}, ĉirkaŭpreni{en_wiktionary_via}
+- embracar: brakumi{en_wiktionary_via}, enbrakigi{en_wiktionary_via}, ĉirkaŭbraki{en_wiktionary_via}, ĉirkaŭi{wikt_io}, ĉirkaŭpremi{en_wiktionary_via,wikt_io}, ĉirkaŭpreni{en_wiktionary_via}
 - embriono: embrio{wikidata_labels,wikt_io}, embriono{wikidata_labels}
 - emfazar: akcenti{en_wiktionary_via}, emfazi{wikt_io}
 - emfazo: akcento{en_wiktionary_via}, emfazo{wikt_io}
@@ -2636,11 +2571,12 @@
 - emoji: bildosigno{wikidata_labels}, emoĝio{en_wiktionary_via,ll,wiki,wikidata_labels}, unikoda bildosigno{wikidata_labels}
 - empiriko: empiriismo{wikidata_labels}, empirio{wikt_io}, empirismo{wikidata_labels}
 - employar: dungi{en_wiktionary_via,wikt_io}, okupigi{wikt_io}
-- en: dum{en_wiktionary_via}, en{wikt_io}, post{en_wiktionary_via}, ĝis post{en_wiktionary_via}
+- en: dum{en_wiktionary_via}, en{wikt_io}, post{en_wiktionary_via}
 - enduktar: alkonduki{wikt_io}, enŝovi{fr_wiktionary_via}
 - energioza: energia{en_wiktionary_via}, vigla{wikt_io}
-- engajar: dungi{en_wiktionary_via,wikt_io}, engaĝi{en_wiktionary_via,wikt_io}, lui{en_wiktionary_via}, varbi{wikt_io}, varbiĝi{en_wiktionary_via}
-- enirar: eniri{wikt_io}, ensaluti{en_wiktionary_via}, entajpi{en_wiktionary_via}
+- engajar: dungi{en_wiktionary_via,wikt_io}, engaĝi{en_wiktionary_via,wikt_io}, varbi{wikt_io}
+- enirar: eniri{wikt_io}, ensaluti{en_wiktionary_via}
+- enoyiganta: enua{en_wiktionary_via}, enuiga{en_wiktionary_via}, teda{wikt_io}
 - ensemblo: aro{wikidata_labels}, ensemblo{wikt_io}, matematika aro{wikidata_labels}
 - ento: ekzistaĵo{wikt_io}, ento{wikidata_labels,wikt_io}, estaĵo{wikt_io}, estulo{wikt_io}, ulo{wikt_io}
 - entomologio: entomologio{en_wiktionary_via,wikidata_labels}, insektologio{en_wiktionary_via}, insektoscienco{wikidata_labels}, insektscienco{wikidata_labels}
@@ -2652,26 +2588,19 @@
 - epitafo: epitafo{wikt_io}, tomboskribo{en_wiktionary_via}
 - epizodo: epizodo{wikt_io}, ĉapitro{wikidata_labels}
 - equinoxo: ekvinokso{wikidata_labels,wikt_io}, tagnoktegaleco{en_wiktionary_via}
-- er: Er{wikidata_labels}, ano{en_wiktionary_via}, erbio{wikidata_labels}, isto{en_wiktionary_via}, pli{en_wiktionary_via}
 - eroro: eraro{wikt_io}, miso{en_wiktionary_via}
 - es: ec{wikt_io}, esti{function_words_seed}, iĝ{wikt_io}
-- esanta: egalanta{morphological_expansion}, ekzistanta{morphological_expansion}, estanta{bert_embeddings,morphological_expansion}, iranta{morphological_expansion}, iĝanta{morphological_expansion}, okazanta{morphological_expansion}, venanta{morphological_expansion}
-- esante: egalante{morphological_expansion}, ekzistante{morphological_expansion}, estante{bert_embeddings,morphological_expansion}, irante{morphological_expansion}, iĝante{bert_embeddings,morphological_expansion}, okazante{morphological_expansion}, venante{morphological_expansion}
-- esar: egali{en_wiktionary_via}, ekzisti{en_wiktionary_via}, esti{wikt_io}, iri{en_wiktionary_via}, iĝi{en_wiktionary_via}, okazi{en_wiktionary_via}, veni{en_wiktionary_via}
-- esforcar: gustumi{en_wiktionary_via}, klopodi{wikt_io}, penadi{en_wiktionary_via}, peni{wikt_io}, prilabori{en_wiktionary_via}, procesi{en_wiktionary_via}, provi{en_wiktionary_via}, strebi{en_wiktionary_via}, testi{en_wiktionary_via}
+- esforcar: klopodi{wikt_io}, peni{wikt_io}, provi{en_wiktionary_via}, strebi{en_wiktionary_via}
 - eshafodo: eŝafodo{en_wiktionary_via,wikt_io}, skafaldo{en_wiktionary_via,wikt_io}
-- esinta: egalinta{morphological_expansion}, ekzistinta{morphological_expansion}, estinta{bert_embeddings,morphological_expansion}, irinta{morphological_expansion}, iĝinta{morphological_expansion}, okazinta{morphological_expansion}, veninta{morphological_expansion}
-- eskalero: eskalo{wikt_io}, ŝtuparo{en_wiktionary_via,wikidata_labels,wikt_io}, ŝtupo{en_wiktionary_via}
+- eskalero: eskalo{wikt_io}, ŝtuparo{en_wiktionary_via,wikidata_labels,wikt_io}
 - eskapar: eskapi{wikt_io}, fuĝi{en_wiktionary_via}
-- eskarpa: kruta{wikt_io}, subita{en_wiktionary_via}
 - eskombro: forĵetaĵo{wikt_io}, rubaĵo{en_wiktionary_via}, rubo{en_wiktionary_via,wikt_io}, ŝtonetaro{en_wiktionary_via}
-- esonta: egalonta{morphological_expansion}, ekzistonta{morphological_expansion}, estonta{bert_embeddings,morphological_expansion}, ironta{morphological_expansion}, iĝonta{morphological_expansion}, okazonta{morphological_expansion}, venonta{bert_embeddings,morphological_expansion}
 - esparseto: Onobrychis{wikidata_labels}, onobriko{en_wiktionary_via}
 - espelar: literi{wikt_io}, literumi{en_wiktionary_via}
 - esperantista: esperantista{bert_embeddings,morphological_expansion}, esperantistina{morphological_expansion}, esperantistiĉa{morphological_expansion}
 - esperantisto: esperantistino{bert_embeddings,en_wiktionary_via}, esperantistiĉo{en_wiktionary_via}, esperantisto{bert_embeddings,en_wiktionary_via}, esperantoparolanto{en_wiktionary_via}
 - esperanto: Esperanto{wikt_eo,wikt_io}, espero{en_wiktionary_via}
-- esquado: eskadrono{en_wiktionary_via}, grupo{wikt_io}, jungitaro{en_wiktionary_via}, roto{wikt_io}, teamo{en_wiktionary_via,wikt_io}
+- esquado: eskadrono{en_wiktionary_via}, grupo{wikt_io}, roto{wikt_io}, teamo{en_wiktionary_via,wikt_io}
 - establisar: establi{wikt_io}, fondi{fr_wiktionary_via}
 - establisita: establita{bert_embeddings,morphological_expansion}, fondita{morphological_expansion}
 - estetiko: Estetika{wikidata_labels}, estetiko{wikidata_labels,wikt_io}
@@ -2679,72 +2608,59 @@
 - estrado: estrado{wikt_io}, podio{en_wiktionary_via}
 - estragono: drakunkolo{wikidata_labels,wikt_io}, estragono{en_wiktionary_via,wikidata_labels}
 - eta: aĉa{morphological_expansion}, eta{bert_embeddings,morphological_expansion}
-- etiketo: etikedo{wikt_io}, langeto{en_wiktionary_via}, tabo{en_wiktionary_via}
-- etimologio: etimo{en_wiktionary_via}, etimologio{wikidata_labels,wikt_io}, vortdeveno{wikidata_labels}, vortodeveno{en_wiktionary_via}
+- etiketo: etikedo{wikt_io}, langeto{en_wiktionary_via}
+- etimologio: etimologio{wikidata_labels,wikt_io}, vortdeveno{wikidata_labels}
 - etnologio: etnologio{wikidata_labels,wikt_io}, etnoscienco{wikidata_labels}
-- etuyo: afero{en_wiktionary_via}, ingo{en_wiktionary_via}, juĝafero{en_wiktionary_via}, kazo{en_wiktionary_via}, okazfrazo{en_wiktionary_via}, skatolo{en_wiktionary_via}, ujo{fr_wiktionary_via}, uskleco{en_wiktionary_via}, usklo{en_wiktionary_via}, vitrino{en_wiktionary_via}, ŝranko{en_wiktionary_via}
-- eunuko: eŭnuko{en_wiktionary_via,wikidata_labels}, kastrito{en_wiktionary_via}
-- evar: aĝi{wikt_io}, egali{en_wiktionary_via}, ekzisti{en_wiktionary_via}, esti{en_wiktionary_via}, iri{en_wiktionary_via}, iĝi{en_wiktionary_via}, okazi{en_wiktionary_via}, veni{en_wiktionary_via}
+- etuyo: ingo{en_wiktionary_via}, skatolo{en_wiktionary_via}, ujo{fr_wiktionary_via}
+- eunuko: eŭnuko{wikidata_labels}, kastrito{en_wiktionary_via}
+- europa: Eŭropo{wikt_io}, eŭropana{en_wiktionary_via}
+- europano: eŭropana{en_wiktionary_via}, eŭropanino{en_wiktionary_via}, eŭropano{wikt_io}, vireŭropano{en_wiktionary_via}
 - eventanta: eventanta{morphological_expansion}, okazanta{bert_embeddings,morphological_expansion}
 - eventar: eventi{wikt_io}, okazi{en_wiktionary_via,wikt_io}
 - evento: evento{en_wiktionary_via,wikt_io}, okazaĵo{en_wiktionary_via}, okazo{wikt_io}
 - eviero: defluejo{wikt_io}, lavopelvo{wikt_io}, lavujo{en_wiktionary_via}, pelvo{wikt_io}
 - exakte: ekzakte{en_wiktionary_via}, precize{bert_embeddings,en_wiktionary_via}
 - exasperar: iriti{wikt_io}, kolerigi{wikt_io}, ĉagreni{en_wiktionary_via}
-- exekutar: ekzekucii{wikt_io}, ekzekuti{en_wiktionary_via,wikt_io}, elfari{wikt_io}, plenumi{en_wiktionary_via,wikt_io}
-- existar: egali{en_wiktionary_via}, ekzisti{wikt_io}, esti{en_wiktionary_via}, iri{en_wiktionary_via}, iĝi{en_wiktionary_via}, okazi{en_wiktionary_via}, veni{en_wiktionary_via}
+- existar: ekzisti{wikt_io}, esti{en_wiktionary_via}
 - exkavar: elbori{wikt_io}, elfosi{wikt_io}, elkavigi{wikt_io}, esplori{fr_wiktionary_via}, fosi{en_wiktionary_via}
-- exkremento: dezerto{en_wiktionary_via}, ekskremento{wikt_io}, feko{en_wiktionary_via}, rubo{en_wiktionary_via}
+- exkremento: ekskremento{wikt_io}, feko{en_wiktionary_via}
 - exkuzar: ekskuzi{wikt_io}, pardonpeti{en_wiktionary_via}, senkulpigi{wikt_io}
 - exotika: ekzota{en_wiktionary_via}, ekzotika{wikt_io}, neindiĝena{en_wiktionary_via}
-- expektar: antaŭvidi{wikt_io}, atendi{en_wiktionary_via,wikt_io}, ekspekti{wikt_io}, supozi{wikt_io}
 - explicita: eksplicita{wikt_io}, maldeca{en_wiktionary_via}
-- explikar: ekspliki{wikt_io}, ilustri{en_wiktionary_via}, klarigi{en_wiktionary_via,wikt_io}, pravigi{en_wiktionary_via}
-- explozar: eksplodi{wikt_io}, eksplodigi{en_wiktionary_via}
-- expresar: esprimi{wikt_io}, opinii{en_wiktionary_via}
-- exter: ekster{wikt_io}, escepti{en_wiktionary_via}, krom{en_wiktionary_via}
-- extingar: estingi{en_wiktionary_via,wikt_io}, estingiĝi{wikt_io}, malsoifigi{en_wiktionary_via}, malsoifiĝi{en_wiktionary_via}, sensoifigi{en_wiktionary_via}, sensoifiĝi{en_wiktionary_via}
+- explikar: ekspliki{wikt_io}, klarigi{en_wiktionary_via,wikt_io}
+- exter: ekster{wikt_io}, krom{en_wiktionary_via}
+- extingar: estingi{en_wiktionary_via,wikt_io}, estingiĝi{wikt_io}
 - extorsar: eltordi{wikt_io}, eltrudi{wikt_io}, ĉantaĝi{en_wiktionary_via}
 - extorso: eldevigo{wikt_io}, ĉantaĝo{en_wiktionary_via}
-- extrema: ekstrema{wikt_io}, plej fora{en_wiktionary_via}
 - fablo: fabelo{wikt_io}, fablo{en_wiktionary_via,wikidata_labels}
-- facante: farante{bert_embeddings,morphological_expansion}, sufiĉante{morphological_expansion}
-- facar: fari{wikt_io}, sufiĉi{en_wiktionary_via}, ĉu{en_wiktionary_via}
 - fakochero: fakoĉero{en_wiktionary_via}, verukapro{wikt_io}
 - fakte: fakte{bert_embeddings,en_wiktionary_via}, vere{en_wiktionary_via}
-- falkono: akcipitro{en_wiktionary_via}, falko{wikt_io}, kestrelo{en_wiktionary_via}, turfalko{en_wiktionary_via}
+- fakultativa: fakultativa{en_wiktionary_via,wikt_io}, nedeviga{wikt_io}
+- falkono: akcipitro{en_wiktionary_via}, falko{wikt_io}
 - falo: falo{bert_embeddings,fr_wiktionary_via}, forpaso{en_wiktionary_via}, morto{en_wiktionary_via}
 - falsa: falsa{wikt_io}, malvera{en_wiktionary_via}, nevera{en_wiktionary_via}
-- fama: fama{bert_embeddings,morphological_expansion}, famula{morphological_expansion}
-- fame: fame{bert_embeddings,morphological_expansion}, famule{morphological_expansion}
-- familiara: familiara{wikt_io}, konata{en_wiktionary_via}, trofamiliara{en_wiktionary_via}
+- familiara: familiara{wikt_io}, konata{en_wiktionary_via}
 - familionomo: familia nomo{wikidata_labels,wikt_io}, familinomo{wikidata_labels}
-- famo: famo{wikt_io}, famulo{en_wiktionary_via}
 - fango: koto{en_wiktionary_via,wikt_io}, ŝlimo{en_wiktionary_via,wikidata_labels,wikt_io}
-- fantastika: fantasta{wikt_io}, fantazia{en_wiktionary_via}
 - fantazio: fantazio{en_wiktionary_via}, manio{fr_wiktionary_via}
 - farmacio: apoteko{fr_wiktionary_via}, farmacio{wikt_io}
-- fatigar: lacigi{wikt_io}, laciĝi{en_wiktionary_via}, porti{en_wiktionary_via}, surporti{en_wiktionary_via}
 - febla: febla{wikt_io}, malforta{en_wiktionary_via,wikt_io}
-- fekifar: elfeki{en_wiktionary_via}, feki{wikt_eo}, koti{en_wiktionary_via}
+- fekifar: feki{wikt_eo}, koti{en_wiktionary_via}
 - feko: ekskremento{en_wiktionary_via}, fekaĵo{en_wiktionary_via,wikt_io}, feko{fr_wiktionary_via,wikt_io}
 - femina: femala{wikt_eo,wikt_io}, virina{wikt_io}
 - feminismo: feminismo{wikidata_labels,wikt_io}, inismo{wikidata_labels}, virinismo{wikidata_labels}
 - femuro: femuro{wikt_io}, femurosto{en_wiktionary_via}
 - fendar: dividi{en_wiktionary_via}, fendi{wikt_io}
-- fenestro: fenestro{wikt_io}, intervalo{en_wiktionary_via}
 - fenolo: fenolo{wikidata_labels,wikt_io}, karbolata acido{wikidata_labels}, karbolatacido{wikidata_labels}, monohidroksi-benzolon{wikidata_labels}
-- ferdeko: ferdeko{wikt_io}, ludkartaro{en_wiktionary_via}
 - feroca: feroca{en_wiktionary_via,wikt_io}, kruelega{wikt_io}, sovaĝa{wikt_io}
 - ferovoyo: fervoja trako{wikidata_labels}, fervojo{wikt_io}, trako{wikidata_labels}
 - fetisho: fetiĉismo{wikidata_labels}, fetiĉo{wikt_io}
 - feto: feto{wikidata_labels,wikt_io}, homa feto{wikidata_labels}
 - fiakro: fiakro{wikt_io}, kabo{en_wiktionary_via}, taksio{en_wiktionary_via}
 - fialo: boteleto{wikt_io}, fiolo{en_wiktionary_via}
-- fiancar: fianĉigi{wikt_io}, fianĉiĝi{en_wiktionary_via}
-- fiasko: fiasko{wikt_io}, fuŝaĵo{en_wiktionary_via}, malsukceso{en_wiktionary_via}
+- fiancito: edziĝanto{en_wiktionary_via}, fianĉo{fr_wiktionary_via}, gefianĉo{en_wiktionary_via}, novedzino{en_wiktionary_via}
+- fiasko: fiasko{wikt_io}, malsukceso{en_wiktionary_via}
 - fiera: aroganta{en_wiktionary_via}, fiera{wikt_io}, orgojla{en_wiktionary_via}
-- figo: figarbo{en_wiktionary_via}, figo{wikt_io}, figujo{en_wiktionary_via}
 - fiktiveso: fikcieco{morphological_expansion}, fikcio{wikidata_labels}, fiktiveco{morphological_expansion}
 - filatelio: Filatelio{wikidata_labels}, Filatelisto{wikidata_labels}, filatelo{wikidata_labels,wikt_io}
 - filiko: filiko{wikidata_labels,wikt_io}, pteridofito{wikidata_labels}
@@ -2758,49 +2674,42 @@
 - firma: firma{bert_embeddings,morphological_expansion}, firmaa{morphological_expansion}
 - fiziko: fizika{wikidata_labels}, fizika scienco{wikidata_labels}, fiziko{wikidata_labels,wikt_io}, ĝenerala fiziko{wikidata_labels}
 - flago: Insigno{wikidata_labels}, flago{wikt_io}
-- flakono: fiolo{en_wiktionary_via}, flakono{wikt_io}, karafo{en_wiktionary_via}
+- flakono: flakono{wikt_io}, karafo{en_wiktionary_via}
 - flamingo: fenikoptero{wikt_io}, flamengo{en_wiktionary_via}
 - flarado: flara senso{wikidata_labels}, flarado{morphological_expansion,wikidata_labels}, flaro{wikidata_labels}, olfakta senso{wikidata_labels}, olfakto{wikidata_labels}
 - flatuo: furzi{wikidata_labels}, furzo{en_wiktionary_via,wikidata_labels}
 - flecho: pinaklo{wikt_io}, sago{fr_wiktionary_via,wikt_io}, spajro{en_wiktionary_via}
-- flegisto: flegistino{wikt_io}, flegisto{en_wiktionary_via}, vartisto{en_wiktionary_via}
+- flegisto: flegistino{wikt_io}, flegisto{en_wiktionary_via}
 - flirtar: amindumi{en_wiktionary_via}, flirti{wikt_io}, koketi{en_wiktionary_via}
 - flogar: skurĝi{en_wiktionary_via,wikt_io}, vergi{wikt_io}, vipi{en_wiktionary_via,wikt_io}
 - fluido: fluaĵo{wikidata_labels}, fluido{wikidata_labels,wikt_io}, likvaĵoj{wikidata_labels}
-- fola: fola{wikt_io}, freneza{en_wiktionary_via,wikt_io}, kolera{en_wiktionary_via}, ravita{en_wiktionary_via}
+- fola: fola{wikt_io}, freneza{en_wiktionary_via,wikt_io}
 - foliaro: foliaro{en_wiktionary_via}, folio{wikidata_labels}
 - folkloro: folkloro{wikidata_labels,wikt_io}, popolkulturo{wikidata_labels}
-- fonto: fonto{wikt_io}, tiparo{en_wiktionary_via}
 - fora: distanca{en_wiktionary_via}, fora{bert_embeddings,en_wiktionary_via}
-- forco: forteco{en_wiktionary_via}, forto{wikidata_labels,wikt_io}, perforto{en_wiktionary_via}
 - forejo: furaĝo{wikidata_labels,wikt_io}, furaĝoplanto{wikidata_labels}, furaĝplanto{wikidata_labels}
 - forko: forkego{en_wiktionary_via,wikt_io}, forko{wikt_io}
 - formaldehido: Formalino{wikidata_labels}, HCHO{wikidata_labels}, formaldehido{wikidata_labels,wikt_io}, metanalo{wikidata_labels}
 - formato: aranĝo{en_wiktionary_via}, formato{wikt_io}
-- formo: formo{wikidata_labels,wikt_io}, formularo{en_wiktionary_via}
 - forno: bakujo{en_wiktionary_via}, forno{wikt_io}
 - fortreso: fortikaĵo{wikidata_labels}, fortiko{en_wiktionary_via}, fortreso{wikt_io}
-- fortuno: bonŝanco{wikidata_labels}, fortuno{wikt_io}, sorto{en_wiktionary_via}
-- forumo: forumo{wikt_io}, kunveno{en_wiktionary_via}
+- fortuno: bonŝanco{wikidata_labels}, fortuno{wikt_io}
 - fosato: fosaĵo{en_wiktionary_via}, tranĉeo{wikt_io}
 - foso: fosaĵo{wikt_io}, foso{fr_wiktionary_via}
 - fotografar: foti{en_wiktionary_via,wikt_io}, fotografi{en_wiktionary_via,wikt_io}
 - fotokemio: fotokemio{wikidata_labels,wikt_io}, fotoĥemio{wikidata_labels}
 - frajila: facilrompa{en_wiktionary_via}, fragila{en_wiktionary_via}, fraĝila{wikt_io}, rompiĝema{wikt_io}
-- frambo: frambo{wikt_io}, frambujo{en_wiktionary_via}, langofurzo{en_wiktionary_via}
 - framo: framo{wikt_io}, ĉasio{wikidata_labels}
 - france: france{bert_embeddings,morphological_expansion}, francine{morphological_expansion}
 - franciano: franca{wikt_io}, francino{en_wiktionary_via}, franco{wikt_io}
 - franco: francino{en_wiktionary_via}, franco{bert_embeddings,wikt_io}
-- frapar: bati{en_wiktionary_via}, frapi{wikt_io}, striki{en_wiktionary_via}, trafi{en_wiktionary_via}, vangofrapi{en_wiktionary_via}
-- frateso: frataro{en_wiktionary_via}, frateco{wikt_io}
+- frapar: bati{en_wiktionary_via}, frapi{wikt_io}, trafi{en_wiktionary_via}, vangofrapi{en_wiktionary_via}
 - frato: frato{bert_embeddings,wikt_eo}, gefrato{en_wiktionary_via,wikidata_labels}, sibo{wikidata_labels}
-- freno: bremsilo{en_wiktionary_via}, bremso{wikt_io}, brido{en_wiktionary_via}
-- frigorizilo: fridujo{wikidata_labels,wikt_eo,wikt_io}, frostujo{wikidata_labels}, glaciŝranko{wikidata_labels}, malvarmujo{en_wiktionary_via}
+- freno: bremsilo{en_wiktionary_via}, bremso{wikt_io}
+- frigorizilo: fridujo{wikidata_labels,wikt_eo,wikt_io}, glaciŝranko{wikidata_labels}, malvarmujo{en_wiktionary_via}
 - frigorizivo: fridujo{en_wiktionary_via,wikt_eo}, malvarmujo{en_wiktionary_via}
 - frivola: facilanima{en_wiktionary_via}, frivola{wikt_io}, vanta{en_wiktionary_via}
 - fronto: fronto{wikt_io}, frunto{en_wiktionary_via,wikt_io}
-- frostar: frosti{wikt_io}, frostigi{en_wiktionary_via}
 - frugala: sobra{fr_wiktionary_via}, ŝparema{en_wiktionary_via}
 - fuelo: brulaĵo{en_wiktionary_via}, fuelo{wikt_io}
 - fugar: forkuri{en_wiktionary_via,wikt_io}, fuĝi{en_wiktionary_via,wikt_io}
@@ -2809,24 +2718,22 @@
 - funciono: funkcio{wikidata_labels,wikt_io}, matematika funkcio{wikidata_labels}, ofico{fr_wiktionary_via}
 - funero: enterigiro{en_wiktionary_via}, funebro{wikt_io}
 - fungo: fungo{wikt_io}, ĉapelfungo{wikidata_labels}
-- furio: furiozo{en_wiktionary_via}, kolerego{en_wiktionary_via}, kolero{fr_wiktionary_via}
+- furio: furiozo{en_wiktionary_via}, kolerego{en_wiktionary_via}, kolero{wikt_io}
 - furnelo: fornelo{en_wiktionary_via}, forno{wikt_io}, stovo{en_wiktionary_via}
 - furtanto: rompŝtelisto{wikt_io}, ŝtelisto{en_wiktionary_via}
 - fusilo: fusilo{wikt_io}, muskedo{en_wiktionary_via}, musketo{en_wiktionary_via}, pafilo{en_wiktionary_via}
 - futbalo: futbalo{wikidata_labels}, piedpilko{wikt_io}
 - futuro: estonteco{en_wiktionary_via}, estonto{en_wiktionary_via}, futuro{wikt_io}
 - gado: gado{wikt_io}, moruo{en_wiktionary_via}
+- gadolinio: Gd{wikidata_labels}, gadolinio{wikidata_labels,wikt_io}, gadoliniumo{wikidata_labels}
 - gaino: glavingo{en_wiktionary_via}, ingo{wikt_io}
-- galanta: brava{en_wiktionary_via}, galanta{wikt_io}
 - galanteno: galantino{wikidata_labels}, gelatenaĵo{wikt_io}
 - galio: Ga{wikidata_labels}, galio{wikidata_labels}, galiumo{wikidata_labels,wikt_eo,wikt_io}
 - gambo: gambo{wikidata_labels,wikt_io}, kruro{fr_wiktionary_via,wikidata_labels}, malantaŭa membro{wikidata_labels}, suba membro{wikidata_labels}
 - ganar: gajni{wikt_io}, venki{en_wiktionary_via}
-- ganso: anseraĵo{en_wiktionary_via}, ansero{wikidata_labels,wikt_io}
-- garsonino: atendanto{en_wiktionary_via}, kelnerino{en_wiktionary_via,wikidata_labels}, kelnero{en_wiktionary_via,wikidata_labels}
-- garsono: atendanto{en_wiktionary_via}, kelnerino{en_wiktionary_via,wikidata_labels}, kelnero{wikidata_labels,wikt_io}
-- garsonulo: atendanto{en_wiktionary_via}, kelnerino{en_wiktionary_via,wikidata_labels}, kelnero{en_wiktionary_via,wikidata_labels}
-- gastigar: akomodi{en_wiktionary_via}, alfari{en_wiktionary_via}, gastigi{wikt_io}
+- garsonino: kelnerino{en_wiktionary_via,wikidata_labels}, kelnero{en_wiktionary_via,wikidata_labels}
+- garsono: kelnerino{en_wiktionary_via,wikidata_labels}, kelnero{wikidata_labels,wikt_io}
+- garsonulo: kelnerino{en_wiktionary_via,wikidata_labels}, kelnero{en_wiktionary_via,wikidata_labels}
 - gazolino: benzino{en_wiktionary_via,wikidata_labels}, gasolino{wikt_io}
 - gazono: gazono{wikidata_labels,wikt_io}, greso{en_wiktionary_via}, herbo{en_wiktionary_via}, herbotapiŝo{wikidata_labels}, razeno{wikidata_labels}
 - genealogio: Familia historio{wikidata_labels}, genealogio{wikidata_labels,wikt_io}
@@ -2835,90 +2742,73 @@
 - genitado: generado{morphological_expansion}, reproduktado{wikidata_labels}
 - genitivo: genitiva kazo{wikidata_labels}, genitivo{wikidata_labels,wikt_io}
 - genitoro: gepatro{en_wiktionary_via,wikt_io}, patro{en_wiktionary_via}
-- genro: genro{wikidata_labels,wikt_io}, sekso{en_wiktionary_via}
 - gento: gento{wikt_io}, homoj{fr_wiktionary_via}
-- genuo: genuo{wikidata_labels,wikt_io}, surgenuiĝo{en_wiktionary_via}
 - geografio: geografia{wikidata_labels}, geografio{wikidata_labels,wikt_io}
 - geografo: geografino{en_wiktionary_via}, geografo{wikt_io}
+- germania: Germanlando{wikt_eo}, germana{wikt_io}
 - germaniana: Germanlando{wikt_eo}, germana{wikt_io}
 - germanio: Ge{wikidata_labels}, germanio{wikidata_labels}, germaniumo{wikidata_labels,wikt_io}
 - germano: germana{wikt_io}, germano{bert_embeddings,wikt_io}
-- gerundio: e-participo{en_wiktionary_via}, gerundio{wikt_io}
 - geyo: gejo{en_wiktionary_via,wikt_io}, samseksemulo{en_wiktionary_via,wikt_io}
 - giganta: enorma{en_wiktionary_via}, giganta{wikt_io}, grandega{en_wiktionary_via}
-- giganto: altulo{en_wiktionary_via}, giganto{wikt_io}
-- gimnazio: gimnastikejo{en_wiktionary_via}, gimnazio{wikidata_labels,wikt_io}, liceo{en_wiktionary_via}, mezlernejo{en_wiktionary_via}
+- gimnazio: gimnazio{wikidata_labels,wikt_io}, liceo{en_wiktionary_via}, mezlernejo{en_wiktionary_via}
 - gipso: gipsmineralo{wikt_io}, gipso{fr_wiktionary_via,wikt_io}
 - glacar: glaceigi{wikt_io}, glazuri{en_wiktionary_via}
 - glaciero: glaciaro{en_wiktionary_via,wikidata_labels}, glaciejo{wikidata_labels,wikt_io}, glacirivero{wikidata_labels}, glaĉero{en_wiktionary_via,wikidata_labels}
 - glacio: glaciaĵo{en_wiktionary_via,wikt_io}, glacio{en_wiktionary_via,wikidata_labels,wikt_io}
 - glacioza: glacia{bert_embeddings,morphological_expansion}, glaciaĵa{morphological_expansion}
 - glavo: espado{wikt_io}, fuŝardo{en_wiktionary_via}, glavo{wikt_io}
-- gluo: amplekso{en_wiktionary_via}, gluaĵo{wikt_io}, gluo{en_wiktionary_via,wikt_io}, grandeco{en_wiktionary_via}
-- glutar: engluti{en_wiktionary_via}, gluti{wikt_io}
+- gluo: gluaĵo{wikt_io}, gluo{en_wiktionary_via,wikt_io}
 - gluteo: gluteo{en_wiktionary_via,wikt_io}, gropo{wikt_io}, sidvango{en_wiktionary_via}
 - glutinar: alglui{en_wiktionary_via}, glui{en_wiktionary_via,wikt_io}, gluiĝi{wikt_io}
 - golfo: golfludo{en_wiktionary_via}, golfo{wikt_io}
 - goto: gotino{en_wiktionary_via}, goto{wikt_io}, podagro{wikt_io}
-- grado: etapo{en_wiktionary_via}, fazo{en_wiktionary_via}, grado{wikt_io}, paŝado{en_wiktionary_via}, paŝo{en_wiktionary_via}, stadio{en_wiktionary_via}, ŝtuparo{en_wiktionary_via}, ŝtupo{en_wiktionary_via}
+- grado: grado{wikt_io}, ŝtupo{en_wiktionary_via}
 - grafikisto: grafikaĵisto{morphological_expansion}, grafikisto{bert_embeddings,morphological_expansion}
 - grafiko: grafeo{wikidata_labels}, grafikaĵo{wikt_io}, grafiko{en_wiktionary_via,wikidata_labels}, grafo{wikidata_labels}, miksita grafeo{wikidata_labels}, nedirektita grafeo{wikidata_labels}, sendirekta grafeo{wikidata_labels}
 - granario: fojnejo{en_wiktionary_via}, subtegmento{wikt_io}
-- granda: bonega{en_wiktionary_via}, ega{en_wiktionary_via}, granda{wikt_io}
-- grande: bonege{morphological_expansion}, ege{morphological_expansion}, grande{bert_embeddings,morphological_expansion}
+- granda: ega{en_wiktionary_via}, granda{wikt_io}
+- grande: ege{morphological_expansion}, grande{bert_embeddings,morphological_expansion}
 - grano: grajno{wikt_io}, grano{wikidata_labels}
-- grantar: allasi{en_wiktionary_via}, doni{en_wiktionary_via}, konsenti{wikt_io}, permesi{en_wiktionary_via}
-- grantita: allasita{morphological_expansion}, donita{bert_embeddings,morphological_expansion}, konsentita{morphological_expansion}, permesita{morphological_expansion}
-- grasa: aŭdaca{en_wiktionary_via}, grasa{wikt_io}
+- grantar: doni{en_wiktionary_via}, konsenti{wikt_io}
+- grantita: donita{bert_embeddings,morphological_expansion}, konsentita{morphological_expansion}
 - gratuita: senkosta{en_wiktionary_via}, senpaga{wikt_io}
-- grava: grava{wikt_io}, gravega{en_wiktionary_via}, peza{en_wiktionary_via,wikt_io}, pezega{en_wiktionary_via}, profunda{en_wiktionary_via}
-- grave: grave{bert_embeddings,morphological_expansion}, gravege{morphological_expansion}, pezege{morphological_expansion}, profunde{morphological_expansion}
+- grava: grava{wikt_io}, gravega{en_wiktionary_via}, peza{en_wiktionary_via,wikt_io}, pezega{en_wiktionary_via}
+- grave: grave{bert_embeddings,morphological_expansion}, gravege{morphological_expansion}, pezege{morphological_expansion}
 - gravideso: gravedeco{wikt_io}, homa gravedeco{wikidata_labels}
-- gravitado: graveco{en_wiktionary_via}, gravitada ondo{en_wiktionary_via}, gravito{en_wiktionary_via,wikidata_labels}, seriozeco{en_wiktionary_via}
+- gravitado: gravitada ondo{en_wiktionary_via}, gravito{en_wiktionary_via,wikidata_labels}
 - grelo: hajlo{wikidata_labels}, hajloŝtormo{en_wiktionary_via}
 - grenado: granato{en_wiktionary_via,wikt_io}, grenado{en_wiktionary_via,wikt_io}, mangrenado{en_wiktionary_via}
 - greso: grejso{en_wiktionary_via}, sabloŝtono{wikt_io}
-- grilio: grilo{wikt_io}, kriketo{en_wiktionary_via}
 - grincar: grinci{wikt_io}, grincigi{en_wiktionary_via}
 - grondar: muĝi{wikt_io}, rori{fr_wiktionary_via}
 - gropo: gluteo{wikt_io}, gropo{fr_wiktionary_via}, pugo{wikt_io}
 - grunar: grumbli{fr_wiktionary_via}, grunti{wikt_io}
-- guidanta: gvidanta{morphological_expansion}, kondukanta{bert_embeddings,morphological_expansion}, konduktanta{morphological_expansion}, kondutanta{morphological_expansion}, mastrumanta{morphological_expansion}, reganta{morphological_expansion}
-- guidar: gvidi{wikt_io}, konduki{en_wiktionary_via}, kondukti{en_wiktionary_via}, konduti{en_wiktionary_via}, mastrumi{en_wiktionary_via}, regi{en_wiktionary_via}
+- guidanta: gvidanta{morphological_expansion}, kondukanta{bert_embeddings,morphological_expansion}, kondutanta{morphological_expansion}, mastrumanta{morphological_expansion}, reganta{morphological_expansion}
+- guidar: gvidi{wikt_io}, konduki{en_wiktionary_via}, konduti{en_wiktionary_via}, mastrumi{en_wiktionary_via}, regi{en_wiktionary_via}
 - gulag: GULAG{wikidata_labels}, gulago{en_wiktionary_via,ll,wiki,wikidata_labels}
-- gulfo: abismo{en_wiktionary_via}, golfo{wikt_io}
-- gustar: gusti{en_wiktionary_via,wikt_io}, gustumi{en_wiktionary_via,wikt_io}
-- guto: guto{wikidata_labels,wikt_io}, lakrico{en_wiktionary_via}
-- guyaviero: gujavarbo{en_wiktionary_via,wikt_io}, gujavo{en_wiktionary_via}, gujavujo{en_wiktionary_via,wikt_io}
-- guyavo: gujavarbo{en_wiktionary_via}, gujavo{wikt_io}, gujavujo{en_wiktionary_via}
+- gustar: gusti{wikt_io}, gustumi{en_wiktionary_via,wikt_io}
+- guyaviero: gujavarbo{en_wiktionary_via,wikt_io}, gujavujo{en_wiktionary_via,wikt_io}
+- habitanto: enloĝantino{en_wiktionary_via}, enloĝanto{en_wiktionary_via}, loĝantino{en_wiktionary_via}, loĝanto{wikt_io}
 - hafnio: Hf{wikidata_labels}, hafnio{fr_wiktionary_via,wikidata_labels}, hafniumo{wikidata_labels}
-- hakar: haki{en_wiktionary_via}, triangulo{wikt_io}
 - hamburgero: burgero{wikidata_labels}, hamburgero{en_wiktionary_via,wikidata_labels}
-- hancho: kokso{wikidata_labels,wikt_io}, rozbero{en_wiktionary_via}, rozfrukto{en_wiktionary_via}
 - handbalo: handbalo{wikt_io}, manpilkado{wikidata_labels}, manpilko{wikt_io}
-- hano: koko{wikidata_labels,wikt_io}, kolombiĉo{en_wiktionary_via}, maskla birdo{en_wiktionary_via}, virkolombo{en_wiktionary_via}, virseksa birdo{en_wiktionary_via}, ĉano{wikt_io}
-- hanulo: kokiĉo{en_wiktionary_via}, koko{fr_wiktionary_via}, kolombiĉo{en_wiktionary_via}, maskla birdo{en_wiktionary_via}, virkoko{wikt_io}, virkolombo{en_wiktionary_via}, virseksa birdo{en_wiktionary_via}
-- harda: forta{en_wiktionary_via}, malfacila{en_wiktionary_via}, malmola{wikt_io}, nerefutebla{en_wiktionary_via}, severa{en_wiktionary_via}
+- hano: koko{wikidata_labels,wikt_io}, maskla birdo{en_wiktionary_via}, virseksa birdo{en_wiktionary_via}, ĉano{wikt_io}
+- hanulo: kokiĉo{en_wiktionary_via}, koko{fr_wiktionary_via}, maskla birdo{en_wiktionary_via}, virkoko{wikt_io}, virseksa birdo{en_wiktionary_via}
 - haringo: harengo{wikt_io}, haringo{en_wiktionary_via}
 - hasio: hasiumo{wikidata_labels}, hassium{wikt_io}
 - hastar: hasti{wikt_io}, kuri{en_wiktionary_via}
 - hauo: hakilo{wikidata_labels}, rastro{en_wiktionary_via}, sarkilo{en_wiktionary_via}
-- hazarda: aleatora{en_wiktionary_via}, arbitra{en_wiktionary_via}, fortuna{en_wiktionary_via}, hazarda{wikt_io}, hazardeca{en_wiktionary_via}
-- hazardala: fortuna{en_wiktionary_via}, hazarda{wikt_io}
+- hazarda: aleatora{en_wiktionary_via}, arbitra{en_wiktionary_via}, hazarda{wikt_io}
 - hazarde: hazarde{bert_embeddings,en_wiktionary_via}, okaze{en_wiktionary_via}
 - hefo: fermentilo{en_wiktionary_via}, feĉo{en_wiktionary_via}, gisto{wikidata_labels,wikt_io}
 - hektaro: hektaro{en_wiktionary_via,wikidata_labels}, hektoaro{wikidata_labels}
 - heliko: helika{wikidata_labels}, heliko{wikidata_labels,wikt_io}
 - helio: helio{en_wiktionary_via}, heliumo{wikidata_labels,wikt_io}
-- helpa: helpa{bert_embeddings,morphological_expansion}, helpila{morphological_expansion}, helpista{morphological_expansion}, servista{morphological_expansion}
-- helpar: helpi{wikt_io}, helpon{en_wiktionary_via}
-- helpe: helpe{bert_embeddings,morphological_expansion}, helpile{morphological_expansion}, helpiste{morphological_expansion}, serviste{morphological_expansion}
-- helpo: helpanto{en_wiktionary_via}, helpilo{en_wiktionary_via}, helpisto{en_wiktionary_via}, helpo{en_wiktionary_via,wikt_io}, servisto{en_wiktionary_via}
 - hemiptero: Hemiptera{wikidata_labels}, hemiptero{wikidata_labels,wikt_io}
 - heptagono: heptagono{en_wiktionary_via}, plurlatero{wikidata_labels}, sepangulo{en_wiktionary_via,wikidata_labels}, seplatero{en_wiktionary_via,wikidata_labels}
 - herbivoro: Herbivora{wikidata_labels}, Herbivoro{wikidata_labels}, Herbivorulo{wikidata_labels}, Herbomanĝanto{wikidata_labels}, Herbomanĝuloj{wikidata_labels}, herbovorulo{en_wiktionary_via,wikidata_labels}
-- herbo: drogherbo{en_wiktionary_via}, herbo{wikt_io}
-- herboro: drogherbo{en_wiktionary_via}, herbo{en_wiktionary_via}, kuracplanto{wikt_io}
+- herboro: drogherbo{en_wiktionary_via}, kuracplanto{wikt_io}
 - heroo: heroino{en_wiktionary_via}, heroiĉo{en_wiktionary_via}, heroo{bert_embeddings,en_wiktionary_via,wikidata_labels}
 - heroulo: heroino{en_wiktionary_via}, heroiĉo{en_wiktionary_via}, heroo{bert_embeddings,en_wiktionary_via}
 - heterosexuala: aliseksama{wikt_io}, aliseksema{en_wiktionary_via,wikt_eo,wikt_io}, malgeja{en_wiktionary_via}
@@ -2926,116 +2816,94 @@
 - heterosexualino: aliseksamantino{wikt_io}, aliseksamulino{wikt_eo,wikt_io}, aliseksemulino{wikt_io}
 - heterosexualo: aliseksamanto{wikt_io}, aliseksamulo{wikt_eo,wikt_io}, aliseksemulino{en_wiktionary_via}, aliseksemuliĉo{en_wiktionary_via}, aliseksemulo{en_wiktionary_via,wikt_eo,wikt_io}, malgejo{wikt_eo}
 - hexagono: heksagono{en_wiktionary_via}, sesangulo{en_wiktionary_via,wikidata_labels}, seslatero{wikidata_labels,wikt_io}
+- hezitar: heziti{wikt_io}, ŝanceliĝi{fr_wiktionary_via}
 - hidrologio: akvoscienco{en_wiktionary_via,wikidata_labels}, hidrologio{en_wiktionary_via,wikidata_labels}
 - hidroterapio: akvoterapio{wikidata_labels}, hidroterapio{en_wiktionary_via,wikidata_labels}
 - higrometro: higrometro{en_wiktionary_via,wikidata_labels}, higroskopo{en_wiktionary_via}
-- hike: tie ĉi{wikt_io}, ĉi tie{en_wiktionary_via}, ĉi tien{en_wiktionary_via}
+- hike: tie ĉi{wikt_io}, ĉi tie{en_wiktionary_via}
 - himno: Sakrala kanto{wikidata_labels}, himno{wikidata_labels,wikt_io}
 - hipofizo: hipofizo{en_wiktionary_via,wikidata_labels}, pituitaria glando{wikidata_labels}
-- hispana: hispana{bert_embeddings,wikt_io}, hispanoj{en_wiktionary_via}
-- hispaniana: hispana{wikt_io}, hispanoj{en_wiktionary_via}
 - hobio: hobio{wikidata_labels,wikt_io}, ŝatokupo{wikidata_labels}
 - homa: homa{en_wiktionary_via,wikt_io}, homala{wikt_io}
 - homardo: Homarus{wikidata_labels}, omaro{en_wiktionary_via}
 - home: homale{morphological_expansion}, home{bert_embeddings,morphological_expansion}
-- homeosexuala: geja{en_wiktionary_via,wikt_eo}, samseksama{en_wiktionary_via,wikt_eo,wikt_io}, samseksema{en_wiktionary_via,wikt_eo,wikt_io}
+- homeosexuala: geja{wikt_eo}, samseksama{en_wiktionary_via,wikt_eo,wikt_io}, samseksema{en_wiktionary_via,wikt_eo,wikt_io}
 - homeosexualeso: gejo{wikidata_labels}, samseksamo{wikidata_labels,wikt_io}, samseksemo{en_wiktionary_via,wikidata_labels,wikt_io}, samseksemulo{wikidata_labels}
 - homeosexualino: gejo{en_wiktionary_via}, lesbo{wikt_eo}, samseksamantino{wikt_io}, samseksamulino{wikt_eo,wikt_io}, samseksemulino{wikt_eo,wikt_io}, samseksemulo{en_wiktionary_via}
 - homeosexualo: gejo{en_wiktionary_via,wikt_eo}, samseksamanto{wikt_io}, samseksamulo{wikt_eo,wikt_io}, samseksemulo{en_wiktionary_via,wikt_eo,wikt_io}
 - homocido: hommortigo{wikidata_labels}, murdo{en_wiktionary_via}
+- honoroza: admirinda{en_wiktionary_via}, estimata{en_wiktionary_via}, honorinda{wikt_io}, meritplena{en_wiktionary_via}
 - horlojo: horloĝo{wikt_io}, portebla horloĝo{wikidata_labels}
 - hospitalo: hospitalo{wikt_io}, malsanejo{wikt_io}, malsanulejo{wikidata_labels,wikt_io}
 - hufofero: huffero{en_wiktionary_via}, hufofero{en_wiktionary_via}, hufumo{wikt_io}
 - humanismo: Homismo{wikidata_labels}, Humanisma{wikidata_labels}, Humanisto{wikidata_labels}, humanismo{fr_wiktionary_via,wikidata_labels}
 - humida: humida{wikt_io}, malseka{en_wiktionary_via}, malseketa{en_wiktionary_via}
-- hundino: hundino{wikt_io}, putino{en_wiktionary_via}, ĉiesulino{en_wiktionary_via}
-- hundyuno: fokido{en_wiktionary_via}, hundidino{en_wiktionary_via}, hundido{en_wiktionary_via,wikt_eo}, lupido{en_wiktionary_via}, marhundido{en_wiktionary_via}, ratido{en_wiktionary_via}
-- ibe: jen{en_wiktionary_via}, tie{closed_class_tables,wikt_io}, tien{en_wiktionary_via}
+- hundyuno: hundidino{en_wiktionary_via}, hundido{en_wiktionary_via,wikt_eo}, lupido{en_wiktionary_via}
 - ica: ĉi{wikt_io}, ĉi tiu{closed_class_tables}
 - ici: tiuj ĉi{en_wiktionary_via}, ĉi tiuj{closed_class_tables,en_wiktionary_via}
-- ideala: ideala{bert_embeddings,en_wiktionary_via}, perfekta{en_wiktionary_via}
-- ideo: arketipo{en_wiktionary_via}, arĥetipo{en_wiktionary_via}, ideo{wikt_io}, pratipo{en_wiktionary_via}
 - idiotismo: idiomaĵo{wikt_io}, idiotismo{en_wiktionary_via}
 - idisto: idistino{en_wiktionary_via}, idisto{wikt_eo,wikt_io}
 - igante: farante{morphological_expansion}, igante{bert_embeddings,morphological_expansion}, kaŭzante{morphological_expansion}
 - igar: fari{wikt_io}, igi{wikt_io}, kaŭzi{en_wiktionary_via}
 - ignorar: ignori{en_wiktionary_via,wikt_io}, malatenti{en_wiktionary_via,wikt_io}
-- ili: ili{en_wiktionary_via}, ilin{en_wiktionary_via}, liaro{wikt_io}
+- ili: ili{wikt_io}, ilin{en_wiktionary_via}
 - imajo: bildo{en_wiktionary_via,wikt_io}, foto{en_wiktionary_via}, fotografaĵo{en_wiktionary_via}, imagaĵo{wikt_io}
 - impedar: malhelpi{fr_wiktionary_via,wikt_io}, obstrukci{wikt_io}
 - imperativo: imperativo{wikidata_labels,wikt_io}, modo ordona{wikidata_labels}
-- importacar: gravi{en_wiktionary_via}, importi{wikt_io}
 - importar: gravi{en_wiktionary_via,wikt_io}, necesi{wikt_io}
-- in: femalo{en_wiktionary_via}, in{wikidata_labels,wikt_io}, ina{en_wiktionary_via}, indio{wikidata_labels}, indiumo{wikidata_labels}, ino{en_wiktionary_via}
+- in: in{wikidata_labels,wikt_io}, ina{en_wiktionary_via}, indio{wikidata_labels}, indiumo{wikidata_labels}
 - indexo: indekso{en_wiktionary_via,wikt_io}, indikilo{wikt_io}
-- indikar: indiki{wikt_io}, montri{en_wiktionary_via}, rimarkigi{en_wiktionary_via}
-- indikita: indikita{bert_embeddings,morphological_expansion}, montrita{morphological_expansion}, rimarkigita{morphological_expansion}
+- indikar: indiki{wikt_io}, rimarkigi{en_wiktionary_via}
+- indikita: indikita{bert_embeddings,morphological_expansion}, rimarkigita{morphological_expansion}
 - indio: In{wikidata_labels}, indio{fr_wiktionary_via,wikidata_labels}, indiumo{wikidata_labels}
 - individua: individua{bert_embeddings,morphological_expansion}, unuopula{morphological_expansion}
 - individuala: individua{bert_embeddings,morphological_expansion}, unuopula{morphological_expansion}
 - individuo: individuo{wikidata_labels,wikt_io}, unuopulo{en_wiktionary_via}
-- indulgema: indulgema{wikt_io}, kompleza{en_wiktionary_via}
 - infinitivo: infinitivo{wikidata_labels,wikt_io}, modo sendifina{wikidata_labels}
 - infloresenco: floraro{wikidata_labels}, infloresko{en_wiktionary_via,wikidata_labels}, samtiga floraro{wikidata_labels}
 - informatiko: informa scienco{en_wiktionary_via}, komputiko{en_wiktionary_via}, komputoscienco{wikt_io}
 - informo: informo{bert_embeddings,en_wiktionary_via,wikidata_labels}, novaĵoj{en_wiktionary_via}
-- iniciar: inici{en_wiktionary_via}, iniciati{wikt_io}
 - injeniorarto: inĝenierado{wikt_io}, inĝenierarto{en_wiktionary_via,wikidata_labels,wikt_io}, inĝenierio{en_wiktionary_via,wikidata_labels}
 - injenioro: inĝenierino{wikidata_labels}, inĝeniero{wikidata_labels,wikt_io}
 - inklinar: inklini{wikt_io}, inklinigi{wikt_io}, klini{fr_wiktionary_via}
 - inkubo: inkubo{wikidata_labels}, koŝmaro{wikt_io}, premsonĝo{fr_wiktionary_via}
 - inquestar: demandi{wikt_io}, enketi{wikt_io}, esplori{fr_wiktionary_via,wikt_io}
 - insekto: Insecta{wikidata_labels}, insekto{wikidata_labels,wikt_io}
-- insigno: afiŝo{en_wiktionary_via}, butono{en_wiktionary_via}, elpendaĵo{wikt_io}, gestlingvo{en_wiktionary_via}, gesto{en_wiktionary_via}, insigno{wikt_io}, regbutono{en_wiktionary_via}, signo{en_wiktionary_via}, ŝildo{en_wiktionary_via}
-- instanto: momanto{en_wiktionary_via}, momento{wikt_io}
+- insigno: afiŝo{en_wiktionary_via}, elpendaĵo{wikt_io}, insigno{wikt_io}, signo{en_wiktionary_via}, ŝildo{en_wiktionary_via}
 - institucita: establita{bert_embeddings,morphological_expansion}, konstituita{morphological_expansion}
 - instruktar: instrui{wikt_io}, lernigi{en_wiktionary_via}
 - instruktisto: instruistino{en_wiktionary_via}, instruisto{wikt_io}
 - insularo: arkipelago{en_wiktionary_via}, arĥipelago{en_wiktionary_via}, insularo{wikt_io}
 - insulo: insuleto{wikidata_labels}, insulo{wikidata_labels,wikt_io}
 - integralo: integralo{wikidata_labels}, integraĵo{wikt_io}, integro{wikt_io}
-- inteligenteso: inteligenteco{wikt_io}, inteligento{en_wiktionary_via}
 - intenseso: intenseco{morphological_expansion}, kurento{wikidata_labels}
 - interago: interagado{bert_embeddings,en_wiktionary_via}, interago{en_wiktionary_via}
 - interdiktar: interdikti{wikt_io}, malpermesi{en_wiktionary_via}, prohibicii{wikt_io}
 - interfero: enmiksiĝo{wikt_io}, interfero{wikidata_labels}
 - interjeciono: ekkrio{wikidata_labels}, interjekcio{wikidata_labels,wikt_io}
 - interogativo: demanda vorto{wikidata_labels}, demandvorto{wikt_io}
-- interseko: intersekco{wikidata_labels}, komunaĵo{en_wiktionary_via,wikidata_labels}, kruciĝo{en_wiktionary_via}
-- irante: dirante{morphological_expansion}, farante{bert_embeddings,morphological_expansion}, forirante{morphological_expansion}, irante{morphological_expansion}, rompiĝante{morphological_expansion}
-- irar: diri{en_wiktionary_via}, fari{en_wiktionary_via}, foriri{en_wiktionary_via}, iri{wikt_io}, rompiĝi{en_wiktionary_via}
-- irga: ia{en_wiktionary_via}, io ajn{wikt_io}, iom ajn{en_wiktionary_via}, iom da{en_wiktionary_via}, iu{en_wiktionary_via}, iu ajn{closed_class_tables,en_wiktionary_via,wikt_io}, ĉiu{en_wiktionary_via}, ĉiuj{en_wiktionary_via}
-- irgaloke: ie ajn{closed_class_tables,en_wiktionary_via}, ien ajn{en_wiktionary_via}
+- interseko: intersekco{wikidata_labels}, komunaĵo{en_wiktionary_via,wikidata_labels}
+- irga: io ajn{wikt_io}, iom da{en_wiktionary_via}, iu{en_wiktionary_via}, iu ajn{closed_class_tables,wikt_io}
 - irge: iel ajn{closed_class_tables}, iom de{morphological_expansion}
 - irgu: iu{en_wiktionary_via}, iu ajn{closed_class_tables,en_wiktionary_via,wikt_io}, kiu ajn{wikt_io}
 - istmo: istmo{wikt_io}, terkolo{en_wiktionary_via}
-- ita: kiu{en_wiktionary_via}, tiom{en_wiktionary_via}, tiu{closed_class_tables,wikt_io}
-- italiana: Italio{wikt_eo}, itala{en_wiktionary_via}, itallingva{en_wiktionary_via}
-- ito: kiu{en_wiktionary_via}, tio{closed_class_tables,en_wiktionary_via}, tiom{en_wiktionary_via}, tiu{en_wiktionary_via}
+- italiana: Italio{wikt_eo}, itala{en_wiktionary_via}
 - jaguaro: Panthera onca{wikidata_labels}, jaguaro{wikidata_labels,wikt_io}
 - jargono: galimatio{en_wiktionary_via}, volapukaĵo{en_wiktionary_via}, ĵargono{wikt_io}
 - jaro: bokalo{en_wiktionary_via}, ĵaro{wikt_io}
 - jemelo: ĝemelino{en_wiktionary_via}, ĝemelo{wikt_eo,wikt_io}
-- jenar: agaci{en_wiktionary_via}, kolerigi{en_wiktionary_via}, malamuzi{en_wiktionary_via}, tedi{en_wiktionary_via}, ĉagreni{en_wiktionary_via}, ĝeni{wikt_io}
-- jenjivo: gingivo{wikidata_labels,wikt_io}, gumo{en_wiktionary_via}
-- jeo: garolo{wikt_io}, jo{en_wiktionary_via}
+- jenar: agaci{en_wiktionary_via}, malamuzi{en_wiktionary_via}, tedi{en_wiktionary_via}, ĝeni{wikt_io}
 - jerar: administri{fr_wiktionary_via,wikt_io}, aranĝi{wikt_io}
 - jokeo: rajdisto{en_wiktionary_via}, ĵokeo{wikidata_labels,wikt_io}
-- jordania: Jordana{en_wiktionary_via}, Jordanio{wikt_io}
-- joyar: ĝoji{wikt_io}, ĝojigi{en_wiktionary_via}
 - joyoza: feliĉa{wikt_io}, gaja{en_wiktionary_via}
 - juda: hebrea{morphological_expansion}, juda{bert_embeddings,morphological_expansion}, judismana{morphological_expansion}
 - judiciala: jurisdikcia{en_wiktionary_via}, juĝa{wikt_io}
 - judo: hebreo{en_wiktionary_via}, judismano{en_wiktionary_via}, judo{wikt_io}
-- jurar: blasfemi{en_wiktionary_via}, fiparoli{en_wiktionary_via}, parolaĉi{en_wiktionary_via}, sakri{en_wiktionary_via}, ĵuri{wikt_io}
+- jurar: sakri{fr_wiktionary_via}, ĵuri{wikt_io}
 - jurnalisto: ĵurnalistino{wikidata_labels}, ĵurnalisto{wikidata_labels,wikt_io}
-- jus: baldaŭ{en_wiktionary_via}, justa{en_wiktionary_via}, nur{en_wiktionary_via}, ĝuste{en_wiktionary_via}, ĵus{wikt_io}
+- jus: nur{en_wiktionary_via}, ĵus{wikt_io}
 - juvelo: gemo{en_wiktionary_via}, juvelo{wikt_io}
-- kabano: kabano{wikt_io}, kajuto{en_wiktionary_via}
-- kabino: kabano{en_wiktionary_via}, kajuto{wikt_io}
 - kadmio: Cd{wikidata_labels}, kadmio{wikidata_labels,wikt_io}, kadmiumo{wikidata_labels}
-- kadre: frame{morphological_expansion}, kadre{bert_embeddings,morphological_expansion}, karoserie{morphological_expansion}, korpframe{morphological_expansion}
-- kadro: framo{en_wiktionary_via}, kadro{wikt_io}, karoserio{en_wiktionary_via}, korpframo{en_wiktionary_via}
 - kafeino: kafeino{wikidata_labels,wikt_io}, teino{wikidata_labels}
 - kafeo: kafo{wikidata_labels,wikt_io}, kafokoloro{wikidata_labels}
 - kagulo: balaklavumo{wikidata_labels}, bivakcxapo{wikidata_labels}, bivakhaŭbo{wikidata_labels}, bivakĉapo{en_wiktionary_via}, skimasko{en_wiktionary_via}
@@ -3043,13 +2911,13 @@
 - kalcio: Ca{wikidata_labels}, kalcio{wikidata_labels,wikt_io}, kalciumo{wikidata_labels}
 - kalemburo: kalemburo{wikt_io}, vortludo{en_wiktionary_via}
 - kalifo: kalifo{en_wiktionary_via}, ĥalifo{wikt_io}
-- kalko: kalko{wikt_io}, limearbo{en_wiktionary_via}, limeo{en_wiktionary_via}, limeujo{en_wiktionary_via}
 - kalkular: kalkuli{wikt_io}, komputi{en_wiktionary_via}
-- kalkulo: infinitezima kalkulo{wikidata_labels}, kalkulado{en_wiktionary_via}, kalkulo{bert_embeddings,en_wiktionary_via,wikidata_labels}, senfinecona kalkulo{wikidata_labels}, ŝtono{fr_wiktionary_via}
+- kalkulilo: kalkulilo{morphological_expansion,wikidata_labels}, komputilo{morphological_expansion}
+- kalkulo: infinitezima kalkulo{wikidata_labels}, kalkulado{en_wiktionary_via}, kalkulo{bert_embeddings,wikidata_labels}, senfinecona kalkulo{wikidata_labels}, ŝtono{fr_wiktionary_via}
 - kalmaro: kalmaro{en_wiktionary_via,wikt_io}, loligo{wikt_io}
 - kaloro: varmeco{en_wiktionary_via,wikidata_labels}, varmo{wikidata_labels,wikt_io}
 - kalva: kalva{wikt_io}, senhara{en_wiktionary_via}
-- kamarado: k-do{en_wiktionary_via}, kamarado{wikt_io}, samideano{en_wiktionary_via}
+- kamarado: kamarado{wikt_io}, samideano{en_wiktionary_via}
 - kameleono: kameleono{fr_wiktionary_via,wikidata_labels,wikt_io}, ĥameleono{en_wiktionary_via,wikidata_labels,wikt_io}
 - kameno: fajrejo{en_wiktionary_via}, fumtubo{wikidata_labels}, kameno{wikt_io}, kamentubo{wikidata_labels}
 - kamilo: brankardo{wikt_io}, portilo{en_wiktionary_via}
@@ -3064,43 +2932,32 @@
 - kanono: artilerio{en_wiktionary_via}, kanono{wikt_io}
 - kansono: kanto{wikidata_labels,wikt_io}, kanzono{wikt_io}
 - kantar: kanti{en_wiktionary_via,wikt_io}, ĉirpi{wikt_io}
-- kantino: kantino{wikt_io}, manĝejo{en_wiktionary_via}
 - kaoso: kaoso{en_wiktionary_via,wikt_io}, ĥaoso{en_wiktionary_via,wikt_io}
-- kapitalo: kapitalo{wikidata_labels,wikt_io}, kapitelo{en_wiktionary_via}
-- kapitelo: kapitalo{en_wiktionary_via}, kapitelo{wikt_io}
 - kapo: kapo{wikidata_labels,wikt_io}, ĉefo{wikt_eo,wikt_io}
-- kaprifolio: Lonicera{wikidata_labels}, Lonicero{wikidata_labels}, kaprifolio{wikt_io}
+- kaprifolio: Lonicero{wikidata_labels}, kaprifolio{wikt_io}
 - kaprulo: boko{en_wiktionary_via}, kapriĉo{en_wiktionary_via}, kapro{fr_wiktionary_via}, virkapro{en_wiktionary_via}
-- kaptar: ekkapti{en_wiktionary_via}, forkapti{en_wiktionary_via}, kapti{wikt_io}, ricevi{en_wiktionary_via}
-- kaptita: ekkaptita{morphological_expansion}, forkaptita{morphological_expansion}, kaptita{bert_embeddings,morphological_expansion}, ricevita{morphological_expansion}
 - kara: aminda{en_wiktionary_via}, kara{wikt_io}
-- karcero: arestejo{en_wiktionary_via}, forgesejo{en_wiktionary_via}, forgeskelo{en_wiktionary_via}, karcero{wikt_io}, kelkarcero{en_wiktionary_via}, loĝejturo{en_wiktionary_via}, malliberejo{en_wiktionary_via}, prizono{en_wiktionary_via}, ublieto{en_wiktionary_via}
+- karcero: arestejo{en_wiktionary_via}, forgesejo{en_wiktionary_via}, forgeskelo{en_wiktionary_via}, karcero{wikt_io}, kelkarcero{en_wiktionary_via}, malliberejo{en_wiktionary_via}, prizono{en_wiktionary_via}, ublieto{en_wiktionary_via}
 - karesmo: Fastsezono{en_wiktionary_via}, karesmo{en_wiktionary_via,wikt_io}
 - karnivoro: karnomanĝanto{wikidata_labels}, karnomanĝulo{wikt_io}, karnovorulo{wikidata_labels,wikt_io}, karnvorulo{wikidata_labels}
 - karno: karno{en_wiktionary_via,wikt_io}, viando{fr_wiktionary_via,wikidata_labels,wikt_io}
 - karpo: karpeo{wikt_io}, karpo{en_wiktionary_via,wikt_io}, pojno{en_wiktionary_via}
-- kartocho: kartoĉo{wikidata_labels,wikt_io}, kasedo{en_wiktionary_via}, kaseto{en_wiktionary_via}
 - kartoludo: kartludo{en_wiktionary_via,wikidata_labels}, kartoludo{en_wiktionary_via}
-- kartuno: animaciaĵo{en_wiktionary_via}, animaciita desegno{en_wiktionary_via}, bildrakonto{en_wiktionary_via}, bildstrio{wikt_io}, kartuno{en_wiktionary_via}, komikso{wikt_io}
+- kartuno: bildrakonto{en_wiktionary_via}, bildstrio{wikt_io}, kartuno{en_wiktionary_via}, komikso{wikt_io}
 - kaseto: kasedo{wikt_io}, trezoro{fr_wiktionary_via}
-- kaso: kaso{wikt_io}, ĝis{en_wiktionary_via}
 - kasrolo: kaserolo{wikt_io}, poto{en_wiktionary_via}
 - kastaniero: kaŝtanarbo{en_wiktionary_via}, kaŝtanujo{wikt_io}
-- kastelo: aroko{en_wiktionary_via}, burgo{wikidata_labels}, kastelo{wikidata_labels,wikt_io}
+- kastelo: burgo{wikidata_labels}, kastelo{wikidata_labels,wikt_io}
 - katarakto: akvofalo{fr_wiktionary_via}, katarakto{wikidata_labels,wikt_io}
-- kateno: kateno{en_wiktionary_via,wikt_io}, ĉeno{en_wiktionary_via,wikt_io}
+- kateno: kateno{wikt_io}, ĉeno{en_wiktionary_via,wikt_io}
 - kateto: kanjo{en_wiktionary_via}, kateto{wikt_io}, katido{en_wiktionary_via}, kaĉjo{en_wiktionary_via}
 - kato: hejma kato{wikidata_labels}, kato{wikidata_labels,wikt_io}
-- kauchuko: gumo{en_wiktionary_via}, kaŭĉuko{wikidata_labels,wikt_io}, naturkaŭĉuko{wikidata_labels}
+- kauchuko: kaŭĉuko{wikidata_labels,wikt_io}, naturkaŭĉuko{wikidata_labels}
 - kautero: kaŭterado{wikidata_labels}, kaŭterizo{wikidata_labels,wikt_io}
-- kavaliero: kavaliro{wikt_io}, ĉevalo{en_wiktionary_via}
 - kavalofero: huffero{en_wiktionary_via}, hufofero{en_wiktionary_via}, hufumo{wikt_io}
 - kaverno: groto{wikidata_labels}, kaverno{wikidata_labels,wikt_io}
-- kayero: kajero{wikt_io}, notlibra komputilo{en_wiktionary_via}, notlibreto{en_wiktionary_via}, tekokomputilo{en_wiktionary_via}
-- kazeo: kazeo{wikt_io}, kvarko{en_wiktionary_via}
-- kazerno: fundo{en_wiktionary_via}, soldatejo{fr_wiktionary_via}
+- kayero: kajero{wikt_io}, notlibreto{en_wiktionary_via}
 - kazino: kazino{wikidata_labels,wikt_io}, monludejo{wikidata_labels}, vetludejo{wikidata_labels}
-- ke: ke{wikt_io}, kiu{en_wiktionary_via}, por ke{en_wiktionary_via}, tiom{en_wiktionary_via}, tiu{en_wiktionary_via}
 - kelko: io{en_wiktionary_via}, iom{wikt_io}, kelke da{wikt_io}
 - kemiala: kemia{bert_embeddings,morphological_expansion}, ĥemia{morphological_expansion}
 - kemio: kemio{en_wiktionary_via,wikidata_labels,wikt_io}, ĥemio{en_wiktionary_via,wikidata_labels,wikt_io}
@@ -3110,11 +2967,9 @@
 - kilometro: kilometro{wikidata_labels,wikt_io}, km{wikidata_labels}
 - kimero: kimero{wikt_io}, ĥimero{en_wiktionary_via,wikt_io}
 - kinesma: kineja{bert_embeddings}, kvina{en_wiktionary_via}
-- kirurgio: kirurgio{en_wiktionary_via,wikt_io}, operacio{en_wiktionary_via}, ĥirurgio{en_wiktionary_via,wikt_io}
-- klamar: klami{wikt_io}, kriegaĉi{wikt_io}, krii{en_wiktionary_via}, kriĉi{en_wiktionary_via}
-- klarigar: ilumini{en_wiktionary_via}, ilustri{en_wiktionary_via}, klarigi{wikt_io}
+- kirurgio: kirurgio{wikt_io}, operacio{en_wiktionary_via}, ĥirurgio{wikt_io}
+- klamar: ekkrii{wikt_io}, klami{wikt_io}, kriegaĉi{wikt_io}, krii{en_wiktionary_via}, kriĉi{en_wiktionary_via}
 - klasifikar: klasi{fr_wiktionary_via}, klasifiki{wikt_io}
-- klaso: klaso{wikt_io}, kurso{en_wiktionary_via}
 - klauno: klaŭnino{en_wiktionary_via}, klaŭno{wikt_io}
 - klauzo: klaŭzo{wikt_io}, kondiĉo{en_wiktionary_via}
 - klavaro: klavaro{wikidata_labels,wikt_io}, komputila klavaro{wikidata_labels}
@@ -3125,118 +2980,90 @@
 - kleriko: kleriko{wikt_io}, pastrino{en_wiktionary_via}, pastro{en_wiktionary_via}
 - klerko: aktisto{en_wiktionary_via}, komizo{en_wiktionary_via,wikt_io}, oficisto{en_wiktionary_via,wikt_io}
 - klifo: klifo{wikt_io}, krutaĵo{en_wiktionary_via}
-- kliktar: alklaki{en_wiktionary_via}, klaketi{en_wiktionary_via}, klaki{wikt_io}
-- klimar: grimpi{wikt_io}, supreniri{en_wiktionary_via}
+- kliktar: alklaki{en_wiktionary_via}, klaki{wikt_io}
 - kloroplasto: klorofilplastido{wikidata_labels}, kloroplasto{wikidata_labels,wikt_io}
 - klosho: kloŝo{wikt_io}, sonorilo{fr_wiktionary_via,wikt_io}
-- klozar: fermi{en_wiktionary_via,wikt_io}, fini{en_wiktionary_via}, ŝtopi{wikt_io}
-- klukar: gaki{en_wiktionary_via}, kluki{wikt_io}, rikani{en_wiktionary_via}, subridi{en_wiktionary_via}
-- koakto: forto{en_wiktionary_via}, limigo{wikidata_labels}, perforto{en_wiktionary_via}
+- klozar: fermi{en_wiktionary_via,wikt_io}, ŝtopi{wikt_io}
+- klukar: gaki{en_wiktionary_via}, kluki{wikt_io}, subridi{en_wiktionary_via}
 - koalo: Phascolarctos cinereus{wikidata_labels}, koalo{en_wiktionary_via,wikidata_labels}
 - kobalto: Co{wikidata_labels}, kobalto{wikidata_labels,wikt_io}
 - kodexo: kodekso{wikt_io}, kodo{en_wiktionary_via,wikt_io}, ĉifro{en_wiktionary_via}
-- kofro: afero{en_wiktionary_via}, ingo{en_wiktionary_via}, juĝafero{en_wiktionary_via}, kazo{en_wiktionary_via}, kofro{wikidata_labels,wikt_io}, okazfrazo{en_wiktionary_via}, rostro{en_wiktionary_via}, uskleco{en_wiktionary_via}, usklo{en_wiktionary_via}, vitrino{en_wiktionary_via}, ŝranko{en_wiktionary_via}
 - koitar: amori{en_wiktionary_via}, koiti{wikt_io}, sekskuniĝi{wikt_io}, seksumi{en_wiktionary_via}
 - kokoso: kokosnukso{en_wiktionary_via}, kokoso{wikt_io}
-- kolareto: duelbirdo{en_wiktionary_via}, krispo{wikidata_labels}
-- kolegio: altlernejo{en_wiktionary_via}, fakultato{en_wiktionary_via}, kolegio{wikt_io}, universitato{en_wiktionary_via}
+- kolegio: fakultato{en_wiktionary_via}, kolegio{wikt_io}, universitato{en_wiktionary_via}
 - koliaro: koliero{wikt_io}, kolringo{wikt_io}, kolĉeno{wikidata_labels}
 - kolino: altaĵo{en_wiktionary_via}, monteto{wikidata_labels,wikt_io}
 - kolombo: kolombino{en_wiktionary_via}, kolombo{wikt_io}, virkolombo{en_wiktionary_via}
 - kolono: kojlo{wikt_io}, kolono{fr_wiktionary_via,wikt_io}
 - kolor-blindeso: daltonismo{en_wiktionary_via}, kolorblindeco{en_wiktionary_via,wikidata_labels}
-- kom: dum{en_wiktionary_via}, kiam{en_wiktionary_via}, kiel{en_wiktionary_via,function_words_seed}, kiom{en_wiktionary_via}, laŭ{en_wiktionary_via}, tiel{en_wiktionary_via}, ĉar{en_wiktionary_via}
 - kombusteblajo: brulaĵo{en_wiktionary_via}, fuelo{wikt_io}
+- kombusto: bruli{wikidata_labels}, bruligado{wikt_io}, brulo{wikidata_labels}
 - komencante: ekante{morphological_expansion}, komencante{bert_embeddings,morphological_expansion}, komenciĝante{morphological_expansion}
 - komencar: eki{en_wiktionary_via}, komenci{en_wiktionary_via,wikt_io}, komenciĝi{en_wiktionary_via,wikt_io}
-- komence: eke{morphological_expansion}, ekmove{morphological_expansion}, komence{bert_embeddings,morphological_expansion}
+- komence: eke{morphological_expansion}, komence{bert_embeddings,morphological_expansion}
 - komencita: ekita{morphological_expansion}, komencita{bert_embeddings,morphological_expansion}, komenciĝita{morphological_expansion}
-- komenco: ekmovo{en_wiktionary_via}, eko{en_wiktionary_via}, komenco{bert_embeddings,en_wiktionary_via}
-- komendar: aranĝi{en_wiktionary_via}, mendi{wikt_io}, ordigi{en_wiktionary_via}, ordoni{en_wiktionary_via}
+- komenco: eko{en_wiktionary_via}, komenco{bert_embeddings,en_wiktionary_via}
+- komenturo: komentario{wikt_io}, komento{en_wiktionary_via}
 - kompanio: kompanio{wikidata_labels,wikt_io}, roto{wikidata_labels}
 - kompano: kolego{wikt_io}, kompano{en_wiktionary_via,wikt_io}, kunulo{en_wiktionary_via,wikt_io}
-- kompetenta: bona{en_wiktionary_via}, kompetenta{wikt_io}
-- komplete: absolute{en_wiktionary_via}, komplete{bert_embeddings,en_wiktionary_via}, tute{en_wiktionary_via}
 - kompozita: komponita{bert_embeddings,morphological_expansion}, kunmetita{morphological_expansion}
-- komuna: komuna{wikt_io}, normala{en_wiktionary_via}, ofta{en_wiktionary_via}, ordinara{en_wiktionary_via}, vulgara{en_wiktionary_via}
-- komune: komune{bert_embeddings,morphological_expansion}, normale{morphological_expansion}, ofte{morphological_expansion}
 - koncienco: konscienco{wikidata_labels,wikt_io}, morala konscienco{wikidata_labels}
 - konektar: konekti{en_wiktionary_via,wikt_io}, kunigi{wikt_io}
 - konektita: konektita{bert_embeddings,morphological_expansion}, kunigita{morphological_expansion}
-- konfesiono: konfesio{wikt_io}, konfeso{en_wiktionary_via,wikidata_labels}
+- konfesiono: konfesio{wikt_io}, konfeso{wikidata_labels}
 - konfidar: alkonfidi{en_wiktionary_via}, konfidi{wikt_io}
 - konfitajo: fruktaĵo{en_wiktionary_via}, konfitaĵo{wikt_io}, marmelado{en_wiktionary_via}
 - konflikto: konflikto{bert_embeddings,en_wiktionary_via}, kverelo{en_wiktionary_via}, malakordo{en_wiktionary_via}
 - konfrontar: alfronti{en_wiktionary_via}, konfronti{wikt_io}
-- konkurso: alumeto{en_wiktionary_via}, konkurso{bert_embeddings,wikt_eo}, matĉo{en_wiktionary_via}
-- kono: konuso{wikt_io}, strobilo{en_wiktionary_via}
-- konocar: koni{wikt_io}, seksumi{en_wiktionary_via}
-- konservatorio: forcejo{en_wiktionary_via}, konservatorio{wikidata_labels,wikt_io}
+- konkurso: konkurso{bert_embeddings,wikt_eo}, matĉo{en_wiktionary_via}
 - konsiderante: konsiderante{bert_embeddings,morphological_expansion}, pensante{morphological_expansion}, pripensante{morphological_expansion}
 - konsiderar: konsideri{wikt_io}, pensi{en_wiktionary_via}, pripensi{en_wiktionary_via}
 - konsiderata: konsiderata{bert_embeddings,morphological_expansion}, pensata{morphological_expansion}, pripensata{morphological_expansion}
 - konsiderinda: konsiderinda{bert_embeddings,morphological_expansion}, pensinda{morphological_expansion}, pripensinda{morphological_expansion}
 - konsiderita: konsiderita{bert_embeddings,morphological_expansion}, pensita{morphological_expansion}, pripensita{morphological_expansion}
 - konsputar: hui{fr_wiktionary_via}, malestimi{wikt_io}
-- konstruktar: konstrui{wikt_io}, munti{en_wiktionary_via}
-- konstruktata: konstruata{bert_embeddings,morphological_expansion}, muntata{morphological_expansion}
-- konstruktita: konstruita{bert_embeddings,morphological_expansion}, muntita{morphological_expansion}
-- kontar: gravi{en_wiktionary_via}, kalkuli{wikt_io}, nombri{en_wiktionary_via}, numeri{en_wiktionary_via}
+- kontar: kalkuli{wikt_io}, nombri{en_wiktionary_via}, numeri{en_wiktionary_via}
 - kontinento: kontinento{wikidata_labels,wikt_io}, landmaso{wikidata_labels}
-- konto: grafo{en_wiktionary_via}, konto{wikt_io}
-- kontoro: administrejo{en_wiktionary_via}, kontoro{en_wiktionary_via,wikt_io}, oficejo{en_wiktionary_via,wikt_io}, ofico{en_wiktionary_via}
+- kontoro: administrejo{en_wiktionary_via}, kontoro{en_wiktionary_via,wikt_io}, oficejo{en_wiktionary_via,wikt_io}
 - kontrabando: kontrabandaĵo{en_wiktionary_via}, kontrabando{wikt_io}
 - kontraforto: abutmento{wikt_io}, kontraŭforto{wikidata_labels}
-- kontraktar: kontrakti{en_wiktionary_via}, mallongigi{wikt_io}
 - kontrapunto: kontrapunkta{wikidata_labels}, kontrapunkto{wikidata_labels,wikt_io}
-- kontre: anstataŭ{en_wiktionary_via}, antaŭ{en_wiktionary_via}, apud{en_wiktionary_via}, kompare{en_wiktionary_via}, kontraste{en_wiktionary_via}, kontraŭ{wikt_io}, ĉe{en_wiktionary_via}
-- koquar: kuiri{wikt_io}, kuiriĝi{en_wiktionary_via}
 - koralio: koralkoloro{wikidata_labels}, koralo{wikidata_labels,wikt_io}
-- koram: antaŭ{wikt_io}, kontraŭ{en_wiktionary_via}, kun{en_wiktionary_via}, per{en_wiktionary_via}, pri{en_wiktionary_via}
-- kordeto: kordo{bert_embeddings,en_wiktionary_via}, signoĉeno{en_wiktionary_via}, vico{en_wiktionary_via}, ŝnureto{en_wiktionary_via}
-- kordio: Kordio{wikidata_labels}, kerno{en_wiktionary_via}, kero{en_wiktionary_via}, koro{wikidata_labels,wikt_io}
+- koram: antaŭ{wikt_io}, kun{en_wiktionary_via}
+- kordeto: kordo{bert_embeddings,en_wiktionary_via}, ŝnureto{en_wiktionary_via}
+- kordio: Kordio{wikidata_labels}, koro{wikidata_labels,wikt_io}
 - kordo: kordo{wikt_io}, ŝnuro{en_wiktionary_via}
-- korinto: korinta sekvinbero{wikidata_labels}, ribo{en_wiktionary_via}
+- koridoro: koridoro{fr_wiktionary_via,wikt_io}, pasejo{wikt_io}
 - koro: koruso{en_wiktionary_via,wikt_io}, ĥoro{en_wiktionary_via,wikt_io}
-- korpo: karno{en_wiktionary_via}, korpo{wikt_io}, korpuso{en_wiktionary_via,wikt_io}, torso{en_wiktionary_via}
+- korpo: korpo{wikt_io}, korpuso{en_wiktionary_via,wikt_io}, torso{en_wiktionary_via}
 - korsajo: bluzo{en_wiktionary_via}, korsaĵo{fr_wiktionary_via}
-- kortico: arboŝelo{en_wiktionary_via}, arbŝelo{wikt_io}, bojo{en_wiktionary_via}, kortiko{wikt_io}
+- kortico: arboŝelo{en_wiktionary_via}, arbŝelo{wikt_io}, kortiko{wikt_io}
 - koruptajo: korupteco{wikt_io}, korupto{en_wiktionary_via}
-- koshmaro: koŝmaro{wikt_io}, premsonĝo{en_wiktionary_via}, sonĝaĉo{en_wiktionary_via}, travivaĉo{en_wiktionary_via}
+- koshmaro: koŝmaro{wikt_io}, premsonĝo{en_wiktionary_via}, sonĝaĉo{en_wiktionary_via}
 - kosmologio: fizika kosmologio{wikidata_labels}, kosmologio{en_wiktionary_via,wikidata_labels}
 - kosto: marbordo{fr_wiktionary_via}, ripo{wikt_io}
-- kozo: afero{en_wiktionary_via,wikt_io}, amafero{en_wiktionary_via}, amaĵo{en_wiktionary_via}, amintrigo{en_wiktionary_via}, aĵo{en_wiktionary_via,wikidata_labels,wikt_io}, okazaĵo{en_wiktionary_via}, sekretaĵo{en_wiktionary_via}
-- krabo: grumblemulo{en_wiktionary_via}, krabo{wikidata_labels,wikt_io}
+- kozo: afero{en_wiktionary_via,wikt_io}, aĵo{en_wiktionary_via,wikidata_labels,wikt_io}
 - kredar: fidi{en_wiktionary_via}, kredi{wikt_io}
-- kremo: haŭtkremo{en_wiktionary_via}, kremkoloro{en_wiktionary_via}, kremo{wikidata_labels,wikt_io}, pomado{en_wiktionary_via}
-- kreskanta: grandiĝanta{morphological_expansion}, kreskanta{bert_embeddings,morphological_expansion}, kreskiganta{morphological_expansion}, kultivanta{morphological_expansion}, kulturanta{morphological_expansion}
-- kreskar: grandiĝi{wikt_io}, kreski{en_wiktionary_via,wikt_io}, kreskigi{en_wiktionary_via}, kultivi{en_wiktionary_via}, kulturi{en_wiktionary_via}
-- kreskigar: kreski{bert_embeddings,en_wiktionary_via}, kreskigi{en_wiktionary_via}, kultivi{en_wiktionary_via}, kulturi{en_wiktionary_via}
+- kremo: haŭtkremo{en_wiktionary_via}, kremo{wikidata_labels,wikt_io}, pomado{en_wiktionary_via}
+- kreskanta: grandiĝanta{morphological_expansion}, kreskanta{bert_embeddings,morphological_expansion}
+- kreskar: grandiĝi{wikt_io}, kreski{en_wiktionary_via,wikt_io}
 - krespo: krepo{en_wiktionary_via}, krespo{wikidata_labels,wikt_io}, patkuko{en_wiktionary_via}
-- kreveto: etulo{en_wiktionary_via}, salikokaĵo{en_wiktionary_via}, salikoko{wikt_io}
 - kriar: ekkrii{en_wiktionary_via}, kriegi{en_wiktionary_via}, krii{wikt_io}
-- kriketo: grilo{en_wiktionary_via}, kriketo{wikt_io}
 - kritikar: kritiki{en_wiktionary_via,wikt_io}, prijuĝi{wikt_io}
 - kroasar: graki{wikt_io}, kvaki{en_wiktionary_via}
-- krokodilo: krokodilo{wikt_io}, language gathering{en_wiktionary_via}
 - kromo: Cr{wikidata_labels}, kromio{wikidata_labels}, kromo{wikt_io}, ĥromo{wikidata_labels}
 - kromosomo: kromosomo{en_wiktionary_via,wikidata_labels,wikt_eo,wikt_io}, ĥromosomo{wikidata_labels,wikt_io}
 - kronologio: kronologio{wikidata_labels,wikt_io}, ĥronologio{wikidata_labels}
-- krucho: kruĉo{wikt_io}, lanĉulo{en_wiktionary_via}, trinkaĵskatolo{fr_wiktionary_via}, ĵetanto{en_wiktionary_via}
-- kruco: kruco{wikt_io}, ponardo{en_wiktionary_via}
-- krucumar: kruci{wikt_io}, krucigi{en_wiktionary_via}, krucmarki{en_wiktionary_via}, transiri{en_wiktionary_via}
+- krucho: kruĉo{wikt_io}, trinkaĵskatolo{fr_wiktionary_via}
+- krucumar: kruci{wikt_io}, krucigi{en_wiktionary_via}, transiri{en_wiktionary_via}
 - kruela: kruela{wikt_io}, murdema{en_wiktionary_via}, sangavida{en_wiktionary_via}, sangosoifanta{en_wiktionary_via}
 - kruro: femuro{en_wiktionary_via}, kruro{wikt_io}
 - krusto: krusto{wikt_io}, terkrusto{en_wiktionary_via}
 - kubo: kubo{wikidata_labels,wikt_io}, regula sesedro{wikidata_labels}
-- kuko: briko{en_wiktionary_via}, kuko{wikidata_labels,wikt_io}
 - kukulo: Cuculus canorus{wikidata_labels}, Eŭropa kukolo{wikidata_labels}, Komuna kukolo{wikidata_labels}, kukolo{wikidata_labels,wikt_io}
-- kukurbito: kukurbo{wikt_io}, skvaŝo{en_wiktionary_via}
 - kulo: fundo{wikt_io}, gluteo{en_wiktionary_via,wikt_io}, postaĵo{en_wiktionary_via}, pugo{en_wiktionary_via,wikt_eo,wikt_io}, sidvango{en_wiktionary_via}
 - kultivata: kultivata{bert_embeddings,morphological_expansion}, kulturata{morphological_expansion}
 - kunfrataro: frateco{wikt_io}, fratrio{wikidata_labels}
-- kunveno: kunsido{bert_embeddings,en_wiktionary_via}, kunveno{bert_embeddings,en_wiktionary_via}, seanco{en_wiktionary_via}
-- kuplar: kelkaj{en_wiktionary_via}, kupli{wikt_io}
 - kupro: Cu{wikidata_labels}, kupro{wikidata_labels,wikt_io}
 - kuraso: karapaco{wikt_io}, kiraso{en_wiktionary_via,wikt_io}
 - kurso: kurso{wikt_io}, kurzo{en_wiktionary_via,wikt_io}
@@ -3244,71 +3071,59 @@
 - kurtezar: amindumi{en_wiktionary_via,wikt_io}, flati{wikt_io}, plezurigi{wikt_io}
 - kurvo: kurbiĝo{en_wiktionary_via}, kurbo{bert_embeddings,en_wiktionary_via}, sinuo{en_wiktionary_via}, vojturno{en_wiktionary_via}, ĝirejo{en_wiktionary_via}
 - kuseno: kapkuseno{wikt_io}, kuseno{en_wiktionary_via,wikidata_labels,wikt_io}
-- kustumala: kutima{wikt_eo}, ordinara{en_wiktionary_via}
-- kustumo: froko{en_wiktionary_via}, kutimo{en_wiktionary_via,wikidata_labels}, vesto{en_wiktionary_via}
 - kutio: dreliko{wikidata_labels}, tiko{wikt_io}
-- kuzino: gekuzo{en_wiktionary_via}, kuzino{wikt_io}, kuziĉo{en_wiktionary_via}, kuzo{en_wiktionary_via}, parenco{en_wiktionary_via}
-- kuzo: gekuzo{en_wiktionary_via,wikidata_labels}, kuzino{en_wiktionary_via}, kuziĉo{en_wiktionary_via}, kuzo{bert_embeddings,en_wiktionary_via}, parenco{en_wiktionary_via}
-- kuzulo: gekuzo{en_wiktionary_via}, kuzino{en_wiktionary_via}, kuziĉo{en_wiktionary_via}, kuzo{wikt_io}, parenco{en_wiktionary_via}
+- kuzino: gekuzo{en_wiktionary_via}, kuzino{wikt_io}, kuziĉo{en_wiktionary_via}, kuzo{en_wiktionary_via}
+- kuzo: gekuzo{en_wiktionary_via,wikidata_labels}, kuzino{en_wiktionary_via}, kuziĉo{en_wiktionary_via}, kuzo{bert_embeddings,en_wiktionary_via}
+- kuzulo: gekuzo{en_wiktionary_via}, kuzino{en_wiktionary_via}, kuziĉo{en_wiktionary_via}, kuzo{wikt_io}
 - labiobarbo: liphararo{en_wiktionary_via}, lipharoj{wikt_io}
 - laboratorio: esplorejo{en_wiktionary_via}, laboratorio{wikt_io}
 - laborista: laborantina{morphological_expansion}, laborista{bert_embeddings,morphological_expansion}, laboristina{morphological_expansion}, proleta{morphological_expansion}, proletaria{morphological_expansion}, proletariina{morphological_expansion}, proletina{morphological_expansion}
 - laboristala: laborantina{morphological_expansion}, laborista{bert_embeddings,morphological_expansion}, laboristina{morphological_expansion}, proleta{morphological_expansion}, proletaria{morphological_expansion}, proletariina{morphological_expansion}, proletina{morphological_expansion}
 - laboristaro: laborista klaso{wikt_io}, laboristaro{en_wiktionary_via}
 - laboristo: laborantino{en_wiktionary_via}, laboranto{en_wiktionary_via}, laboristino{en_wiktionary_via}, laboristo{wikt_io}, proletariino{en_wiktionary_via}, proletario{en_wiktionary_via}, proletino{en_wiktionary_via}, proleto{en_wiktionary_via}
-- laboro: akuŝpeno{en_wiktionary_via}, laboro{wikt_io}
 - lada: ferlada{morphological_expansion}, lada{bert_embeddings,morphological_expansion}
 - laktovoyo: Galaksio{wikt_io}, Lakta Vojo{en_wiktionary_via}, Laktovojo{wikt_io}
 - landa: landa{bert_embeddings,morphological_expansion}, tera{morphological_expansion}
 - lando: lando{wikidata_labels,wikt_eo,wikt_io}, tero{en_wiktionary_via}
-- langorar: malvigliĝi{wikt_io}, resti{en_wiktionary_via}, velki{en_wiktionary_via,wikt_io}
+- langorar: malvigliĝi{wikt_io}, resti{en_wiktionary_via}, velki{wikt_io}
 - lansita: lanĉita{bert_embeddings,morphological_expansion}, ĵetita{morphological_expansion}
 - lantano: La{wikidata_labels}, lantano{wikidata_labels,wikt_io}
 - lasante: lasante{bert_embeddings,morphological_expansion}, permesante{morphological_expansion}
 - lasar: lasi{wikt_io}, permesi{en_wiktionary_via}
 - lasta: antaŭa{en_wiktionary_via}, fina{en_wiktionary_via}, lasta{wikt_io}
 - laste: antaŭe{morphological_expansion}, fine{morphological_expansion}, laste{bert_embeddings,morphological_expansion}
-- latero: flanko{en_wiktionary_via}, latero{wikt_io}, paĝo{en_wiktionary_via}
-- latina: latia{en_wiktionary_via}, latina{wikt_io}, romia{en_wiktionary_via}
-- latine: latie{morphological_expansion}, latine{bert_embeddings,morphological_expansion}, romie{morphological_expansion}
-- latrino: fekseĝo{en_wiktionary_via}, klozeto{en_wiktionary_via}, latrino{en_wiktionary_via,wikt_io}, necesejo{en_wiktionary_via,wikt_io}, tualetejo{en_wiktionary_via}, tualeto{en_wiktionary_via}, vestejo{en_wiktionary_via}
+- latrino: fekseĝo{en_wiktionary_via}, klozeto{en_wiktionary_via}, latrino{en_wiktionary_via,wikt_io}, necesejo{en_wiktionary_via,wikt_io}
 - lauso: laŭso{wikidata_labels,wikt_io}, pediko{en_wiktionary_via,wikt_io}
-- lauta: brua{en_wiktionary_via}, laŭta{wikt_io}
-- lavendo: lavendo{wikt_io}, lavendobluo{en_wiktionary_via}
-- leda: fia{en_wiktionary_via}, malbela{en_wiktionary_via,wikt_io}, malnobla{wikt_io}, malplaĉa{en_wiktionary_via}
+- leda: malbela{en_wiktionary_via,wikt_io}, malnobla{wikt_io}
 - legacar: heredigi{wikt_io}, testamenti{en_wiktionary_via}
 - legitimeso: legitimeco{morphological_expansion,wikidata_labels}, politika legitimeco{wikidata_labels}
-- legumo: guŝo{en_wiktionary_via}, kreskaĵo{en_wiktionary_via}, legomo{wikidata_labels,wikt_io}, legumo{en_wiktionary_via}, planto{en_wiktionary_via}, vegetaĵo{en_wiktionary_via}
+- legumo: guŝo{en_wiktionary_via}, legomo{wikidata_labels,wikt_io}, legumo{en_wiktionary_via}
 - lemingo: lemingo{wikt_io}, lemo{en_wiktionary_via}
 - lenso: lenso{wikt_io}, lento{fr_wiktionary_via,wikt_io}
-- leono: leono{en_wiktionary_via,wikt_io}, leonulino{en_wiktionary_via}, leonulo{en_wiktionary_via}
-- lernar: ekscii{en_wiktionary_via}, informiĝi{en_wiktionary_via}, instruiĝi{en_wiktionary_via}, lerni{wikt_io}, studi{en_wiktionary_via}
+- lernar: instruiĝi{en_wiktionary_via}, lerni{wikt_io}
 - lesbiano: gejo{en_wiktionary_via}, lesbanino{en_wiktionary_via,wikt_io}, lesbo{en_wiktionary_via,wikt_io}, samseksemulino{en_wiktionary_via}, samseksemulo{en_wiktionary_via}
-- levar: altigi{en_wiktionary_via}, eduki{en_wiktionary_via}, levi{wikt_io}, plialtigi{en_wiktionary_via}
-- levita: altigita{morphological_expansion}, edukita{morphological_expansion}, levita{bert_embeddings,morphological_expansion}, plialtigita{morphological_expansion}
+- levar: altigi{en_wiktionary_via}, levi{wikt_io}, plialtigi{en_wiktionary_via}
+- levita: altigita{morphological_expansion}, levita{bert_embeddings,morphological_expansion}, plialtigita{morphological_expansion}
 - lexiko: leksiko{wikidata_labels}, leksikono{wikt_io}, vortaro{wikt_io}
 - li: ili{closed_class_tables,wikt_eo,wikt_io}, ilin{en_wiktionary_via}
 - libreto: broŝureto{en_wiktionary_via}, libreto{bert_embeddings,en_wiktionary_via,wikidata_labels}
 - likar: liki{en_wiktionary_via,wikt_io}, likigi{wikt_io}
-- limito: limeso{en_wiktionary_via}, limito{en_wiktionary_via}, limo{wikt_io}
-- linealo: liniilo{en_wiktionary_via,wikidata_labels,wikt_io}, regnestro{en_wiktionary_via}, rektilo{wikidata_labels,wikt_io}
+- limito: limito{en_wiktionary_via}, limo{wikt_io}
+- linealo: liniilo{en_wiktionary_via,wikidata_labels,wikt_io}, rektilo{wikidata_labels,wikt_io}
 - lineo: linio{wikt_io}, rekta linio{wikidata_labels}, rekto{wikidata_labels}, vico{fr_wiktionary_via}
 - linguaro: lingva familio{wikidata_labels}, lingvaj familioj{wikidata_labels}, lingvaro{morphological_expansion,wikidata_labels}, lingvo-familio{wikidata_labels}, lingvofamilio{wikidata_labels}
 - linguistiko: lingviko{en_wiktionary_via}, lingvistiko{wikidata_labels,wikt_io}, lingvoscienco{en_wiktionary_via,wikidata_labels}
-- liquidacar: enloĝiĝi{en_wiktionary_via}, likvidi{wikt_io}, saldi{en_wiktionary_via}
+- liquidacar: likvidi{wikt_io}, saldi{en_wiktionary_via}
 - liquido: likvaĵo{wikidata_labels}, likvo{fr_wiktionary_via,wikidata_labels}
 - litio: litio{en_wiktionary_via,wikidata_labels}, litiumo{wikidata_labels}
-- lito: bedo{en_wiktionary_via}, fluejo{en_wiktionary_via}, lito{wikt_io}
-- livar: eliri{en_wiktionary_via}, foriri{en_wiktionary_via,wikt_io}, forlasi{wikt_io}, lasi{en_wiktionary_via}
+- livar: foriri{en_wiktionary_via,wikt_io}, forlasi{wikt_io}
 - logaritmo: log{wikidata_labels}, logaritma funkcio{wikidata_labels}, logaritmo{wikidata_labels,wikt_io}
 - lojeyo: intertempa loĝejo{en_wiktionary_via}, loĝejo{wikt_io}
-- loklo: buklo{wikt_io}, fermilo{en_wiktionary_via}, kluzo{en_wiktionary_via}, seruro{en_wiktionary_via}, ŝloso{en_wiktionary_via}
 - lokusto: akrido{en_wiktionary_via}, lokusto{wikt_io}
 - lombriko: Lumbricina{wikidata_labels}, lumbriko{wikt_io}, tervermo{en_wiktionary_via,wikidata_labels}
-- longa: granda{fr_wiktionary_via}, longa{wikt_io}, longdaŭra{en_wiktionary_via}
-- longe: grande{morphological_expansion}, longdaŭre{morphological_expansion}, longe{bert_embeddings,morphological_expansion}
-- lord: Eternulo{en_wiktionary_via}, Sinjoro{en_wiktionary_via}, lord{bert_embeddings}
-- lore: poste{en_wiktionary_via}, tamen{en_wiktionary_via}, tiam{closed_class_tables,wikt_io}
+- longa: granda{fr_wiktionary_via}, longa{wikt_io}
+- longe: grande{morphological_expansion}, longe{bert_embeddings,morphological_expansion}
+- lore: poste{en_wiktionary_via}, tiam{closed_class_tables,wikt_io}
 - lu: Lu{wikidata_labels}, li{wikt_io}, lutecio{wikidata_labels}, ri{wikt_eo}, ĝi{closed_class_tables_qualified,wikt_eo,wikt_io}, ŝi{wikt_io}, ŝli{fr_wiktionary_via}
 - ludilo: amuzilo{en_wiktionary_via}, ludilo{wikt_io}
 - ludo: ludado{wikidata_labels}, ludo{bert_embeddings,wikidata_labels}
@@ -3321,141 +3136,126 @@
 - lundio: lu{wikidata_labels}, lun{wikidata_labels}, lundo{wikidata_labels,wikt_io}
 - lupanaro: Amoristinejo{wikidata_labels}, Amovendistinejo{wikidata_labels}, Prostituejo{wikidata_labels}, Publika domo{wikidata_labels}, Putinejo{wikidata_labels}, bordelo{wikidata_labels}, malĉastejo{en_wiktionary_via}
 - lupo: grandiga vitro{en_wiktionary_via}, lupeo{wikt_io}
-- ma: krom{en_wiktionary_via}, sed{wikt_io}, tamen{en_wiktionary_via}
+- ma: sed{wikt_io}, tamen{en_wiktionary_via}
 - macerar: maceri{fr_wiktionary_via,wikt_io}, maceriĝi{wikt_io}
-- magazino: magazeno{wikt_io}, magazino{en_wiktionary_via}, revuo{en_wiktionary_via}, vendejo{fr_wiktionary_via}
+- magazino: magazeno{wikt_io}, vendejo{fr_wiktionary_via}
 - magnezio: magnezia oksido{en_wiktionary_via}, magnezo{wikt_io}
 - magnezo: magnezio{wikidata_labels,wikt_io}, magneziumo{wikidata_labels}
 - majoritato: majoritato{wikt_io}, plejparto{en_wiktionary_via}, plimulto{en_wiktionary_via,wikt_io}
-- makulo: aknero{en_wiktionary_via}, akno{en_wiktionary_via}, haŭtmalsano{wikidata_labels}, loko{en_wiktionary_via}, makulo{wikt_io}
+- makulo: haŭtmalsano{wikidata_labels}, makulo{wikt_io}
 - mala: malbona{wikt_io}, malica{en_wiktionary_via}
 - maladeso: malsaneco{wikt_io}, malsano{en_wiktionary_via,wikt_io}
 - malgre: malgraŭ{wikt_io}, malgraŭe{en_wiktionary_via}, tamen{en_wiktionary_via}
-- maligna: malica{en_wiktionary_via,wikt_io}, maligna{fr_wiktionary_via,wikt_io}
+- maligna: malica{wikt_io}, maligna{fr_wiktionary_via,wikt_io}
 - mamiero: mamosubtenilo{wikidata_labels}, mamzono{wikidata_labels,wikt_io}
 - mamifero: mambesto{wikt_io}, mamulo{en_wiktionary_via,wikidata_labels,wikt_io}
-- mamilo: cico{en_wiktionary_via,wikidata_labels,wikt_io}, cicumo{en_wiktionary_via}, mampinto{en_wiktionary_via,wikidata_labels,wikt_io}
+- mamilo: cico{en_wiktionary_via,wikidata_labels,wikt_io}, mampinto{en_wiktionary_via,wikidata_labels,wikt_io}
 - mamo: ina mamo{wikidata_labels}, mamo{wikidata_labels,wikt_io}
 - mamosustenilo: mamosubtenilo{wikidata_labels}, mamzono{wikidata_labels,wikt_io}
-- mancho: anso{en_wiktionary_via}, klinko{en_wiktionary_via}, tenilo{wikt_io}
-- mandariniero: mandarinarbo{en_wiktionary_via,wikt_io}, mandarino{en_wiktionary_via}, mandarinujo{en_wiktionary_via,wikt_io}
-- mandarino: mandarinarbo{en_wiktionary_via}, mandarino{wikt_io}, mandarinujo{en_wiktionary_via}
+- mancho: anso{en_wiktionary_via}, tenilo{wikt_io}
+- mandariniero: mandarinarbo{en_wiktionary_via,wikt_io}, mandarinujo{en_wiktionary_via,wikt_io}
 - mangano: Mn{wikidata_labels}, mangano{wikidata_labels,wikt_io}
 - mangusto: herpesto{en_wiktionary_via}, mungoto{wikt_io}
-- maniero: ago{en_wiktionary_via}, maniero{wikt_io}
-- manjajo: manĝaĵo{en_wiktionary_via,wikt_eo}, plado{en_wiktionary_via}, telero{en_wiktionary_via}
+- manjajo: manĝaĵo{en_wiktionary_via,wikt_eo}, plado{en_wiktionary_via}
 - manjar: konsumi{en_wiktionary_via,wikt_io}, manĝi{fr_wiktionary_via,wikt_io}
 - mantenar: bonteni{en_wiktionary_via}, subteni{wikt_io}
 - mantenata: bontenata{morphological_expansion}, subtenata{bert_embeddings,morphological_expansion}
 - manuedo: manpleno{wikt_io}, plenmano{en_wiktionary_via}
-- manuo: mano{wikidata_labels,wikt_eo,wikt_io}, maristo{en_wiktionary_via}, matroso{en_wiktionary_via}, montrilo{en_wiktionary_via}, plenmano{en_wiktionary_via}, pugno{wikidata_labels}, skribkaraktero{en_wiktionary_via}, ŝipano{en_wiktionary_via}
+- manuo: mano{wikidata_labels,wikt_eo,wikt_io}, pugno{wikidata_labels}
 - mapo: atlaso{wikt_io}, landkarto{wikt_io}, mapo{en_wiktionary_via,wikidata_labels,wikt_io}
 - marala: mara{fr_wiktionary_via}, naŭtika{en_wiktionary_via}
 - margriteto: lekanteto{wikt_io}, lekanto{en_wiktionary_via}
-- mariajar: edzigi{wikt_io}, edzinigi{wikt_io}, edziĝi{en_wiktionary_via}, geedzigi{wikt_io}, geedziĝi{en_wiktionary_via}
+- mariajita: edziĝinta{wikt_io}, geedziĝinta{en_wiktionary_via}
 - mariajo: edzeco{en_wiktionary_via,wikt_io}, edziĝo{wikt_io}, geedzeco{en_wiktionary_via}, geedziĝo{en_wiktionary_via,wikt_io}, nupto{en_wiktionary_via}
 - marioneto: marioneto{en_wiktionary_via,wikt_io}, pupo{wikt_io}
 - maristo: maristino{en_wiktionary_via}, maristo{bert_embeddings,en_wiktionary_via}
-- marmoro: globeto{en_wiktionary_via}, marmoro{wikt_io}
-- marohundo: foko{wikt_io}, sigelo{en_wiktionary_via}
 - martelo: Maleo{wikidata_labels}, martelo{wikidata_labels,wikt_io}
 - martiro: martirino{wikidata_labels}, martiro{wikidata_labels,wikt_io}
 - masakrar: amasbuĉi{en_wiktionary_via}, masakri{wikt_io}
 - masakro: amasbuĉado{en_wiktionary_via}, masakro{bert_embeddings,en_wiktionary_via}
 - mashino: maŝino{wikidata_labels,wikt_io}, motoro{en_wiktionary_via}
-- maskula: maskla{wikt_eo,wikt_io}, vira{fr_wiktionary_via,wikt_io}
+- maskula: maskla{wikt_eo}, vira{wikt_io}
 - maskulo: iĉo{wikidata_labels}, masklo{bert_embeddings,wikidata_labels}, virbesto{wikidata_labels}, virseksa{wikidata_labels}, virseksa organismo{wikidata_labels}
 - masturbo: masturbo{wikt_io}, sinmasturbado{wikidata_labels}
 - matematikisto: matematikistino{en_wiktionary_via}, matematikisto{bert_embeddings,en_wiktionary_via}
 - matematikistulo: matematikistino{en_wiktionary_via}, matematikisto{bert_embeddings,en_wiktionary_via}
 - materiajo: materialo{wikidata_labels}, materio{wikt_io}
-- materio: materialo{wikt_eo,wikt_io}, ŝtofo{en_wiktionary_via}
 - mato: mato{wikt_io}, tapiŝo{en_wiktionary_via}
-- maxim: plej{wikt_io}, plejparto{en_wiktionary_via}, pli bona{en_wiktionary_via}, plibonigi{en_wiktionary_via}, tre{en_wiktionary_via}
+- maxim: plej{wikt_io}, pli bona{en_wiktionary_via}
+- maxim-multa-kaze: komune{en_wiktionary_via}, kutime{en_wiktionary_via,wikt_io}, ordinare{wikt_io}
 - me: mi{closed_class_tables,wikt_eo,wikt_io}, min{en_wiktionary_via}
-- medicino: kuracilo{en_wiktionary_via}, medicino{wikidata_labels,wikt_io}, medikamento{en_wiktionary_via}, sanoscienco{wikidata_labels}
+- medicino: medicino{wikidata_labels,wikt_io}, sanoscienco{wikidata_labels}
 - medikamento: kuracilo{fr_wiktionary_via}, medikamento{wikt_io}
-- mediko: kuracistino{en_wiktionary_via,wikidata_labels}, kuracisto{wikidata_labels,wikt_io}, medicinisto{wikidata_labels}, virkuracisto{en_wiktionary_via}
+- mediko: kuracistino{wikidata_labels}, kuracisto{wikidata_labels,wikt_io}, medicinisto{wikidata_labels}, virkuracisto{en_wiktionary_via}
 - meditar: mediti{wikt_io}, pensi{en_wiktionary_via}, pripensi{en_wiktionary_via}
 - mekaniko: mekaniko{wikidata_labels,wikt_io}, meĥaniko{wikidata_labels}
 - mekanismo: mekanismo{wikt_io}, meĥanismo{en_wiktionary_via}
 - melanismo: hipermelanismo{wikidata_labels}, melanismo{en_wiktionary_via,wikidata_labels}
 - melankolio: Melanĥolio{wikidata_labels}, melankolio{wikidata_labels,wikt_io}
 - melolonto: majskarabo{en_wiktionary_via}, melolonto{wikt_io}
-- mem: ebena{en_wiktionary_via}, egala{en_wiktionary_via}, eĉ{en_wiktionary_via,wikt_io}, ja{wikt_eo,wikt_io}, para{en_wiktionary_via}
+- mem: eĉ{en_wiktionary_via,wikt_io}, ja{wikt_eo,wikt_io}
 - menajerio: bestoĝardeno{en_wiktionary_via}, menaĝerio{fr_wiktionary_via}, zoo{en_wiktionary_via}, zoologia ĝardeno{en_wiktionary_via}
 - menuo: manĝokarto{wikidata_labels}, menuo{wikt_io}
-- merkato: bazaro{en_wiktionary_via}, merkato{wikt_io}, vendejo{en_wiktionary_via}
 - merkurio: Hg{wikidata_labels}, hidrargo{wikidata_labels,wikt_io}
 - mesajacho: spamo{wikt_io}, trudaĵo{en_wiktionary_via}
-- mestica: mestiza{wikt_io}, senrasa{en_wiktionary_via}
 - mestico: mestizino{en_wiktionary_via}, mestizo{wikt_io}
 - mestiero: metio{wikt_io}, profesio{fr_wiktionary_via}
+- metano: metano{wikidata_labels,wikt_io}, natura gaso{wikidata_labels}
 - metar: porti{en_wiktionary_via}, surmeti{wikt_io}, surporti{en_wiktionary_via}, vesti{en_wiktionary_via}
 - meteorologio: meteologiisto{wikidata_labels}, meteologio{wikidata_labels,wikt_io}, meteologisto{wikidata_labels}, meteologo{wikidata_labels}, meteorologio{en_wiktionary_via,wikidata_labels}, veterscienco{wikidata_labels}
-- metropoliteno: S-fervojo{en_wiktionary_via}, S-trajno{en_wiktionary_via}, metroo{wikt_io}, subtera fervojo{en_wiktionary_via}, subtrajno{en_wiktionary_via}
-- miaular: miaŭ{en_wiktionary_via}, miaŭi{wikt_io}
+- metropoliteno: S-fervojo{en_wiktionary_via}, metroo{wikt_io}, subtera fervojo{en_wiktionary_via}
 - mikologio: fungologio{wikidata_labels}, fungoscienco{en_wiktionary_via,wikidata_labels}, mikologio{en_wiktionary_via,wikidata_labels}
 - mikra: eta{wikt_io}, malgranda{fr_wiktionary_via,wikt_io}
 - mikrobo: mikrobo{wikidata_labels,wikt_io}, mikroorganismo{en_wiktionary_via,wikidata_labels}
-- miliardo: duiliono{en_wiktionary_via}, miliardo{wikt_io}
 - miliono: mil miloj{wikidata_labels}, miliono{wikidata_labels,wikt_io}
 - militisto: militaj aferoj{wikidata_labels}, militisto{bert_embeddings,morphological_expansion}
 - miniona: aminda{en_wiktionary_via}, beleta{en_wiktionary_via}, dolĉa{en_wiktionary_via}, eta{wikt_io}, ĉarma{en_wiktionary_via}
 - ministerio: ministerio{wikt_io}, ministrejo{en_wiktionary_via}
 - ministro: ministrino{wikidata_labels}, ministro{wikidata_labels,wikt_io}
-- mirtelo: mirtelo{wikt_io}, vakcinio{en_wiktionary_via}
 - mistelo: blanka visko{en_wiktionary_via}, visko{wikt_io}
 - mizantropeso: homevitemo{wikidata_labels}, mizantropa{wikidata_labels}, mizantropeco{wikidata_labels}, mizantropio{en_wiktionary_via}, mizantropo{wikidata_labels}
 - modifikar: aliigi{en_wiktionary_via}, modifi{wikt_io}
 - modifikita: aliigita{morphological_expansion}, modifita{bert_embeddings,morphological_expansion}
-- modo: fasono{en_wiktionary_via}, maniero{en_wiktionary_via}, metodo{en_wiktionary_via}, modo{wikidata_labels,wikt_io}, reĝimo{en_wiktionary_via}
-- mola: dolĉa{en_wiktionary_via}, milda{en_wiktionary_via}, mola{wikt_io}
-- momento: Turnomomanto{wikidata_labels}, elano{en_wiktionary_via}, momanto{wikt_io}, movokvanto{en_wiktionary_via}, torda momanto{wikidata_labels}
+- modo: fasono{en_wiktionary_via}, modo{wikidata_labels,wikt_io}, reĝimo{en_wiktionary_via}
+- momento: Turnomomanto{wikidata_labels}, momanto{wikt_io}, movokvanto{en_wiktionary_via}, torda momanto{wikidata_labels}
 - monako: monako{wikt_io}, monaĥo{en_wiktionary_via,wikt_io}
 - monarkio: monarkio{wikidata_labels,wikt_io}, monarĥio{en_wiktionary_via,wikidata_labels}
 - monarko: monarko{bert_embeddings,en_wiktionary_via,wikidata_labels}, monarĥo{en_wiktionary_via,wikidata_labels}
-- moneto: konata mono{en_wiktionary_via}, kontanto{en_wiktionary_via}, monero{wikidata_labels,wikt_io}, mono{en_wiktionary_via}, monunuo{wikidata_labels}, valuto{en_wiktionary_via,wikidata_labels}, ĵetono{en_wiktionary_via}, ŝanĝmono{en_wiktionary_via}, ŝanĝo{en_wiktionary_via}
+- moneto: konata mono{en_wiktionary_via}, kontanto{en_wiktionary_via}, monero{wikidata_labels,wikt_io}, mono{en_wiktionary_via}, monunuo{wikidata_labels}, valuto{en_wiktionary_via,wikidata_labels}
 - monomero: mero{wikidata_labels}, monomero{en_wiktionary_via,wikidata_labels}
 - monotona: monotona{fr_wiktionary_via}, unutona{wikt_io}
 - monstro: bestaĉo{wikidata_labels}, monstro{wikidata_labels,wikt_io}
 - morbo: malsano{en_wiktionary_via,wikidata_labels,wikt_io}, morbo{wikt_io}
 - morfemo: morfemo{wikidata_labels,wikt_io}, vortero{wikidata_labels}
-- mortar: misamuzigi{en_wiktionary_via}, morti{wikt_io}
-- mortero: bombokanono{en_wiktionary_via}, mortero{wikt_io}, pistujo{en_wiktionary_via}
 - mortigisto: ekzekutisto{wikidata_labels}, mortigisto{morphological_expansion}, murdisto{morphological_expansion}
-- morto: Mortulo{en_wiktionary_via}, mortinta{wikidata_labels}, mortis{wikidata_labels}, morto{bert_embeddings,en_wiktionary_via,wikidata_labels}
-- moruso: morusarbo{en_wiktionary_via}, morusbero{en_wiktionary_via}, moruso{wikt_io}, morusujo{en_wiktionary_via}, rubusbero{en_wiktionary_via}, rubuso{en_wiktionary_via}, rubusujo{en_wiktionary_via}
+- morto: mortinta{wikidata_labels}, mortis{wikidata_labels}, morto{bert_embeddings,en_wiktionary_via,wikidata_labels}
+- moruso: morusbero{en_wiktionary_via}, moruso{wikt_io}, rubusbero{en_wiktionary_via}
 - moskito: kulo{en_wiktionary_via}, moskito{wikt_io}
 - motoristo: ŝoforino{en_wiktionary_via}, ŝoforo{wikt_io}
 - motorobiciklo: motorbiciklo{en_wiktionary_via}, motorciklo{wikt_io}
-- movar: ekmovi{en_wiktionary_via}, emocii{en_wiktionary_via}, movi{en_wiktionary_via,wikt_io}, moviĝi{en_wiktionary_via,wikt_io}, propulsi{en_wiktionary_via}, translokiĝi{en_wiktionary_via}
+- movar: ekmovi{en_wiktionary_via}, movi{en_wiktionary_via,wikt_io}, moviĝi{en_wiktionary_via,wikt_io}, propulsi{en_wiktionary_via}
 - movo: movado{wikidata_labels}, movo{bert_embeddings,wikidata_labels}
 - mueleyo: muelado{wikidata_labels}, muelejo{bert_embeddings,wikidata_labels}, muelilo{wikidata_labels}
 - muevo: laro{en_wiktionary_via,wikt_io}, mevo{en_wiktionary_via,wikt_io}
 - muliero: edzino{fr_wiktionary_via}, femino{wikidata_labels}, plenaĝulino{wikt_io}, virino{en_wiktionary_via,wikidata_labels,wikt_io}
-- mumio: mumio{wikidata_labels,wikt_io}, panjo{en_wiktionary_via}
 - mungar: mungi{wikt_io}, nazpurigi{en_wiktionary_via,wikt_io}
 - muro: muro{wikidata_labels,wikt_io}, urbomuro{wikidata_labels}
 - musketo: muskedo{en_wiktionary_via,wikt_io}, musketo{en_wiktionary_via,wikt_io}
 - mustar: devi{en_wiktionary_via,wikt_io}, necesi{wikt_io}
-- mustardo: mustardkoloro{en_wiktionary_via}, mustardo{wikidata_labels,wikt_io}, sinapo{en_wiktionary_via}
 - mutono: Mouton{wikidata_labels}, ŝafo{wikidata_labels,wikt_io}
-- muzelo: buŝumo{en_wiktionary_via}, muzelo{wikidata_labels,wikt_io}
 - muzik-bando: bando{wikidata_labels}, muzika grupo{wikidata_labels}, muzikgrupo{bert_embeddings,wikidata_labels}, muzikistaro{wikidata_labels}
-- nam: por{en_wiktionary_via}, pro{en_wiktionary_via}, ĉar{wikt_io}
+- nam: pro{en_wiktionary_via}, ĉar{wikt_io}
 - nana: nana{bert_embeddings,morphological_expansion}, nanina{morphological_expansion}
 - nano: nanino{en_wiktionary_via}, nano{wikidata_labels,wikt_io}
 - napo: napo{wikidata_labels,wikt_io}, rapo{en_wiktionary_via,wikidata_labels,wikt_io}
 - naraco: historio{fr_wiktionary_via}, rakonto{en_wiktionary_via}
 - naskodio: naskiĝotago{en_wiktionary_via}, naskiĝtago{en_wiktionary_via,wikidata_labels}, naskodato{wikidata_labels}, naskotago{en_wiktionary_via}
-- natado: homa naĝado{wikidata_labels}, naĝado{morphological_expansion,wikidata_labels}
+- natado: homa naĝado{wikidata_labels}, naĝado{wikidata_labels}, naĝante{wikt_io}
 - navaro: navaro{bert_embeddings,morphological_expansion}, ŝiparo{morphological_expansion}
 - navigilo: TTT-legilo{wikidata_labels}, foliumilo{wikidata_labels}, krozilo{wikidata_labels}, navigilo{morphological_expansion}, retfoliumilo{wikidata_labels}, retkrozilo{wikidata_labels}, retlegilo{wikidata_labels}, retnavigilo{wikidata_labels}
 - navo: navo{en_wiktionary_via,wikidata_labels,wikt_io}, ŝipo{fr_wiktionary_via,wikidata_labels,wikt_io}
 - nazotuko: naztuko{wikt_io}, poŝtuko{en_wiktionary_via}
 - ne: mal{en_wiktionary_via}, ne{wikt_io}
-- nederlandana: nederlanda{wikt_io}, nederlandanoj{en_wiktionary_via}
 - neglijeo: banvesto{fr_wiktionary_via}, negliĝo{wikt_io}
 - nehomala: malhumana{wikt_io}, nehoma{en_wiktionary_via}
 - nematodo: fadenvermo{wikt_io}, nematodo{en_wiktionary_via}
@@ -3467,25 +3267,22 @@
 - nesuceso: fiasko{wikt_io}, forpaso{en_wiktionary_via}, malsukceso{wikt_io}, morto{en_wiktionary_via}
 - neutreso: neŭtraleco{morphological_expansion,wikidata_labels}, neŭtreco{morphological_expansion}
 - nevo: genevo{en_wiktionary_via}, nevo{wikt_io}, nevulo{wikt_io}
-- nevuso: makulo{wikt_io}, nevuso{wikidata_labels}
 - ni: ni{closed_class_tables,wikt_io}, nin{en_wiktionary_via}
 - nikelo: Ni{wikidata_labels}, nikelo{wikidata_labels,wikt_io}
 - niobio: Cb{wikidata_labels}, Nb{wikidata_labels}, niobio{wikidata_labels,wikt_io}, niobiumo{wikidata_labels}, niobo{wikidata_labels}
 - nitrato: azotato{en_wiktionary_via,wikt_io}, nitrato{en_wiktionary_via,wikt_io}
 - nitrito: azotito{en_wiktionary_via,wikt_io}, nitrito{en_wiktionary_via,wikt_io}
 - nitro: azoto{en_wiktionary_via,wikidata_labels}, nitrogeno{wikidata_labels,wikt_io}
-- no: ne{wikt_io}, neniu{en_wiktionary_via}, neo{en_wiktionary_via}
 - noktuo: noktuo{wikt_io}, strigo{fr_wiktionary_via}
-- nome: nome{bert_embeddings,morphological_expansion}, substantive{morphological_expansion}
-- nomo: nomo{wikidata_labels,wikt_io}, o-vorto{wikidata_labels}, substantivo{en_wiktionary_via,wikidata_labels}
+- nomo: nomo{wikidata_labels,wikt_io}, o-vorto{wikidata_labels}, substantivo{wikidata_labels}
 - noto: muziknoto{wikidata_labels}, noto{bert_embeddings,wikidata_labels}
-- nuco: juglandarbo{en_wiktionary_via}, juglando{en_wiktionary_via,wikidata_labels}, juglandonukso{en_wiktionary_via,wikidata_labels}, juglandujo{en_wiktionary_via}, nukso{wikt_io}
+- nuco: juglando{en_wiktionary_via,wikidata_labels}, juglandonukso{en_wiktionary_via,wikidata_labels}, nukso{wikt_io}
+- nukleala: kerna{morphological_expansion}, nuklea{bert_embeddings,morphological_expansion}
 - nukleo: kerno{en_wiktionary_via}, nukleo{wikt_io}
 - nula: nenia{wikt_io}, neniu{closed_class_tables,en_wiktionary_via}
-- nulaloke: nenie{closed_class_tables,en_wiktionary_via}, nenien{en_wiktionary_via}
 - nule: nenie{morphological_expansion}, neniel{closed_class_tables}
 - nulu: neniom{en_wiktionary_via}, neniu{closed_class_tables,wikt_io}
-- nura: nur{en_wiktionary_via}, nura{bert_embeddings,en_wiktionary_via}, sola{en_wiktionary_via}
+- nura: nura{bert_embeddings,en_wiktionary_via}, sola{en_wiktionary_via}
 - nure: nure{bert_embeddings,morphological_expansion}, sole{morphological_expansion}
 - nutrajo: manĝaĵo{en_wiktionary_via}, nutraĵo{wikt_io}
 - nutrivo: manĝaĵo{en_wiktionary_via}, nutraĵo{wikt_io}
@@ -3500,93 +3297,87 @@
 - od: aŭ{function_word_override,wikt_eo}, kaŭ{en_wiktionary_via}
 - odianto: malamantino{en_wiktionary_via}, malamanto{wikt_io}
 - oglar: okulumi{wikt_io}, rigardemi{en_wiktionary_via}
-- okro: gombo{en_wiktionary_via}, gombofrukto{en_wiktionary_via}, gomboplanto{en_wiktionary_via}, okro{wikt_io}
+- okro: gombo{en_wiktionary_via}, gomboplanto{en_wiktionary_via}, okro{wikt_io}
 - oktavo: oktavo{wikt_io}, okto{fr_wiktionary_via,wikidata_labels}
 - oktogono: okangulo{en_wiktionary_via,wikidata_labels}, oklatero{en_wiktionary_via,wikidata_labels}
-- okupata: homplena{en_wiktionary_via}, okupata{bert_embeddings,en_wiktionary_via}
-- oli: ili{en_wiktionary_via}, ilin{en_wiktionary_via}, ĝiaro{wikt_io}
+- oli: ili{wikt_io}, ilin{en_wiktionary_via}
 - olim: antaŭe{wikt_io}, iam{wikt_io}, iam estis{en_wiktionary_via}
 - oliv-oleo: oliv-oleo{wikidata_labels}, oliva oleo{wikidata_labels}, olivoleo{en_wiktionary_via,wikidata_labels}
 - olua: ties{en_wiktionary_via}, ĝia{wikt_io}
 - omna: ĉia{wikt_eo}, ĉiu{closed_class_tables,wikt_io}
 - omne: ĉie{morphological_expansion}, ĉiel{closed_class_tables}
-- omnibuso: aŭtobuso{en_wiktionary_via}, buso{en_wiktionary_via}, kompilaĵo{en_wiktionary_via}, omnibuso{wikt_io}
+- omnibuso: aŭtobuso{en_wiktionary_via}, buso{en_wiktionary_via}, omnibuso{wikt_io}
 - omnu: ĉiu{closed_class_tables,en_wiktionary_via,wikt_eo}, ĉiuj{en_wiktionary_via}
 - onomatopeo: Sonimita interjekcio{wikidata_labels}, Sonimitado{wikidata_labels}, onomatopeo{wikidata_labels,wikt_io}, sonimito{fr_wiktionary_via,wikidata_labels}
-- onu: oni{closed_class_tables,wikt_io}, unu{en_wiktionary_via}
 - operaco: operacio{wikt_io}, operaco{en_wiktionary_via}
 - optimismo: Optimisto{wikidata_labels}, optimismo{wikidata_labels,wikt_io}
 - orangutano: orangutango{wikt_io}, orangutano{en_wiktionary_via}
 - orbito: kavo{en_wiktionary_via}, orbito{wikidata_labels,wikt_io}
-- ordinara: komuna{en_wiktionary_via}, normala{en_wiktionary_via}, ofta{en_wiktionary_via}, ordinara{wikt_io}, vulgara{en_wiktionary_via}
+- ordinara: normala{en_wiktionary_via}, ofta{en_wiktionary_via}, ordinara{wikt_io}
 - orfano: orfino{wikidata_labels}, orfo{wikidata_labels,wikt_io}
 - organismo: organismo{wikidata_labels,wikt_io}, vivestaĵo{wikidata_labels}
 - organizuro: organizacio{wikidata_labels}, organizaĵo{wikidata_labels}, organizo{bert_embeddings,wikidata_labels}
-- organo: organo{wikidata_labels,wikt_io}, orgeno{en_wiktionary_via}
-- orgeno: organo{en_wiktionary_via}, orgeno{wikt_io}
 - orkestro: orkestro{wikidata_labels,wikt_io}, orkestromuziko{wikidata_labels}, orĥestro{wikidata_labels}
 - ornitologio: birdiko{wikidata_labels}, birdologio{wikidata_labels}, birdoscienco{wikidata_labels,wikt_io}, ornitologio{en_wiktionary_via,wikidata_labels,wikt_io}
 - otuso: gufo{fr_wiktionary_via}, strigo{wikt_io}
 - ozono: ozono{wikidata_labels,wikt_io}, trioksigeno{wikidata_labels}
 - padelo: fritilo{en_wiktionary_via}, pato{wikt_io}
 - pafilo: pafarmilo{en_wiktionary_via}, pafilo{wikt_io}
-- pagar: enloĝiĝi{en_wiktionary_via}, pagi{wikt_io}, profitigi{en_wiktionary_via}, saldi{en_wiktionary_via}
+- pagar: pagi{wikt_io}, saldi{en_wiktionary_via}
 - pajo: bubo{en_wiktionary_via}, fanto{en_wiktionary_via}, paĝio{wikt_io}
 - paladio: Pd{wikidata_labels}, paladio{wikidata_labels,wikt_io}
 - palato: palaco{wikt_io}, palato{fr_wiktionary_via}
+- palestina: Palestino{wikt_io}, palestina{en_wiktionary_via}
 - palio: pajlero{en_wiktionary_via}, pajlo{wikidata_labels,wikt_io}
-- paliso: fosto{en_wiktionary_via}, paliseto{en_wiktionary_via}, paliso{wikt_io}
+- paliso: paliseto{en_wiktionary_via}, paliso{wikt_io}
 - palma: palma{bert_embeddings,morphological_expansion}, polma{morphological_expansion}
 - palmo: manplato{en_wiktionary_via,wikt_io}, palmo{wikt_io}, polmo{en_wiktionary_via,wikt_io}
 - pando: Ailuropoda melanoleuca{wikidata_labels}, granda pando{wikidata_labels}, pando{fr_wiktionary_via}
 - pantoflo: babuŝo{en_wiktionary_via}, pantoflo{wikt_io}
 - papa: papa{bert_embeddings,morphological_expansion}, papina{morphological_expansion}
 - papagayo: papago{wikt_eo,wikt_io}, psitako{en_wiktionary_via}
-- papavero: avĉjo{en_wiktionary_via}, papava ruĝo{en_wiktionary_via}, papaveto{en_wiktionary_via}, papavo{wikt_io}, skarlato{en_wiktionary_via}
+- papavero: papaveto{en_wiktionary_via}, papavo{wikt_io}
 - papiliono: Rhopalocera{wikidata_labels}, papilio{wikidata_labels,wikt_io}
 - papiro: papiro{en_wiktionary_via}, papiruso{wikt_io}
 - paplo: kaĉo{fr_wiktionary_via,wikidata_labels,wikt_io}, pulpo{wikt_io}
 - papo: papino{en_wiktionary_via}, papo{wikidata_labels,wikt_io}
-- para: ebena{en_wiktionary_via}, egala{en_wiktionary_via,wikt_io}, ekvivalenta{wikt_io}, eĉ{en_wiktionary_via}, para{en_wiktionary_via}
+- para: egala{wikt_io}, ekvivalenta{wikt_io}, para{en_wiktionary_via}
 - paragrafo: alineo{en_wiktionary_via,wikidata_labels}, paragrafo{wikt_io}
 - parametro: loknombro{en_wiktionary_via}, parametro{wikt_io}
 - parapluvo: ombrelo{wikt_io}, pluvombrelo{en_wiktionary_via}, sunombrelo{en_wiktionary_via}
 - parasuno: ombrelo{en_wiktionary_via}, pluvombrelo{en_wiktionary_via}, sunombrelo{wikt_io}
-- parenteso: amrilato{en_wiktionary_via}, parenceco{en_wiktionary_via,wikidata_labels}, rilato{en_wiktionary_via}
 - parentezo: krampo{fr_wiktionary_via,wikt_io}, parentezo{wikt_io}
 - parento: gepatroj{fr_wiktionary_via}, parencino{en_wiktionary_via}, parenco{en_wiktionary_via}
 - parlamento: deputitejo{en_wiktionary_via}, parlamento{wikt_io}
-- paro: kelkaj{en_wiktionary_via}, paro{bert_embeddings,en_wiktionary_via}
 - parolado: parolado{morphological_expansion,wikidata_labels}, paroli{wikidata_labels}, parolo{wikidata_labels}
 - participo: PTCP{wikidata_labels}, participo{wikidata_labels,wikt_io}
-- partigar: disdividi{en_wiktionary_via}, dividi{wikt_io}, onigi{en_wiktionary_via}
+- partigar: dividi{wikt_io}, onigi{en_wiktionary_via}
 - partikulo: partiklo{en_wiktionary_via,wikidata_labels}, partikulo{wikidata_labels,wikt_io}
-- partio: amikaro{en_wiktionary_via}, festo{en_wiktionary_via}, partio{wikt_io}
+- partio: festo{en_wiktionary_via}, partio{wikt_io}
 - partiso: partio{wikt_io}, politiko partio{en_wiktionary_via}
 - parturar: akuŝi{wikt_io}, naski{en_wiktionary_via,wikt_io}
 - parturo: akuŝo{wikidata_labels}, akuŝpeno{en_wiktionary_via}, nasko{wikidata_labels}
-- pasinto: estinteco{en_wiktionary_via}, pasinteco{wikt_io}, preter{en_wiktionary_via}
+- pasinta: pasiginta{morphological_expansion}, pasinta{bert_embeddings,morphological_expansion}
+- pasinto: estinteco{en_wiktionary_via}, pasinteco{wikt_io}
 - pasiono: pasieco{wikidata_labels}, pasio{wikidata_labels,wikt_io}
 - pasko: Pesaĥo{en_wiktionary_via}, pasko{en_wiktionary_via,wikt_io}
-- pastilo: eta{wikt_io}, malgranda{wikt_io}, pastelo{en_wiktionary_via}
-- pasto: gluo{en_wiktionary_via}, pastaĵo{wikidata_labels}, pasto{wikidata_labels,wikt_io}
-- patato: batato{wikt_io}, dolĉa terpomo{en_wiktionary_via}, patato{en_wiktionary_via}
+- pasto: pastaĵo{wikidata_labels}, pasto{wikidata_labels,wikt_io}
 - pato: pato{wikidata_labels,wikt_io}, senmoviĝo{wikidata_labels}
 - patrino: matro{wikidata_labels}, panjo{wikidata_labels}, patrino{morphological_expansion,wikidata_labels}
 - patrio: patrio{wikt_io}, patrolando{wikt_io}, patrujo{en_wiktionary_via}
 - patro: generinto{wikidata_labels}, gepatro{wikidata_labels}, parento{wikidata_labels}, patro{wikidata_labels,wikt_eo,wikt_io}
 - patrulo: patro{wikidata_labels}, patrulo{morphological_expansion}
-- pauzar: paŭzi{wikt_io}, paŭzigi{en_wiktionary_via}
-- pazo: etapo{en_wiktionary_via}, fazo{en_wiktionary_via}, paŝado{en_wiktionary_via}, paŝo{wikt_io}, stadio{en_wiktionary_via}, ŝtupo{en_wiktionary_via}
+- pazo: paŝado{en_wiktionary_via}, paŝo{wikt_io}
+- pediranto: piedirantino{en_wiktionary_via}, piedirantiĉo{en_wiktionary_via}, piediranto{wikt_io}, virpiediranto{en_wiktionary_via}
 - pedo: Pedo{wikidata_labels}, piedo{wikidata_labels,wikt_io}
-- pektoro: brusto{wikt_io}, kesto{en_wiktionary_via}, kofro{en_wiktionary_via}, pektoralo{wikidata_labels}
+- pektoro: brusto{wikt_io}, pektoralo{wikidata_labels}
 - pekunio: kontanta{wikidata_labels}, mono{wikidata_labels,wikt_io}
 - penar: peni{wikt_io}, strebi{en_wiktionary_via}
 - peniso: fikilo{wikidata_labels}, peniso{wikidata_labels,wikt_io}
-- penso: pensado{wikt_io}, penseco{en_wiktionary_via}, penso{en_wiktionary_via}
+- penso: pensado{wikt_io}, penso{en_wiktionary_via}
 - pentagono: kvinangulo{en_wiktionary_via,wikidata_labels}, kvinlatero{en_wiktionary_via,wikidata_labels}, pentagono{wikidata_labels}
 - pentagramo: kvinpinta stelo{wikidata_labels}, pentagramo{en_wiktionary_via}
-- per: en{en_wiktionary_via}, kontraŭ{en_wiktionary_via}, kun{en_wiktionary_via}, laŭ{en_wiktionary_via}, per{wikt_io}, pri{en_wiktionary_via}, tra{en_wiktionary_via}
+- per: laŭ{en_wiktionary_via}, per{wikt_io}
 - perdar: malgajni{en_wiktionary_via}, perdi{wikt_io}
 - perdita: malgajnita{morphological_expansion}, perdita{bert_embeddings,morphological_expansion}
 - perfekta: perfekta{wikt_io}, senpeka{en_wiktionary_via}
@@ -3602,34 +3393,25 @@
 - piedestalo: piedestalo{en_wiktionary_via}, soklo{wikt_io}
 - pigo: pigino{en_wiktionary_via}, pigo{wikt_io}
 - pikar: piki{wikt_io}, stebi{fr_wiktionary_via}
-- piklo: kukumeto{en_wiktionary_via}, piklo{wikt_io}
-- piktar: farbi{en_wiktionary_via}, figuri{en_wiktionary_via}, pentri{wikt_io}, prezenti{en_wiktionary_via}
-- pikturo: bildo{en_wiktionary_via}, foto{en_wiktionary_via}, fotografaĵo{en_wiktionary_via}, pentrado{wikt_io}, pentraĵo{en_wiktionary_via,wikidata_labels}
-- pilio: pilo{wikt_io}, ĉelo{en_wiktionary_via}
-- pilulo: antikoncipa pilolo{en_wiktionary_via}, morgaŭa pilolo{en_wiktionary_via}, pilolo{wikt_io}
+- piktar: figuri{en_wiktionary_via}, pentri{wikt_io}, prezenti{en_wiktionary_via}
+- pikturo: bildo{en_wiktionary_via}, pentrado{wikt_io}, pentraĵo{en_wiktionary_via,wikidata_labels}
 - pinselo: broso{en_wiktionary_via}, peniko{wikt_io}
 - piocho: pikfosilo{en_wiktionary_via}, pioĉo{wikt_io}
-- piono: garantipruntejo{en_wiktionary_via}, lombardejo{en_wiktionary_via}, peono{en_wiktionary_via,wikidata_labels}
 - pipito: Anthus{wikidata_labels}, pipio{en_wiktionary_via,wikidata_labels}
-- pipro: papriko{en_wiktionary_via}, pipro{wikt_io}, piproarbedo{en_wiktionary_via}, piprujo{en_wiktionary_via}
+- pipro: pipro{wikt_io}, piproarbedo{en_wiktionary_via}, piprujo{en_wiktionary_via}
 - pirateso: marpiratado{wikidata_labels}, piratado{en_wiktionary_via,wikidata_labels}
 - pirato: marrabisto{en_wiktionary_via}, pirato{wikt_io}
-- piro: pirarbo{en_wiktionary_via}, piro{wikidata_labels,wikt_io}, pirujo{en_wiktionary_via}
 - plado: pladeto{wikt_io}, plado{wikt_io}, telero{fr_wiktionary_via,wikidata_labels,wikt_io}
 - plajo: marbordo{wikt_io}, plaĝo{en_wiktionary_via,wikt_io}, strando{en_wiktionary_via}
 - plano: ebena{wikt_io}, ebeno{wikidata_labels}, plano{bert_embeddings,wikidata_labels}, plata{wikt_io}
 - plantago: kuirbanano{wikidata_labels}, pizango{wikidata_labels}, plantago{wikt_io}
-- plata: bemola{en_wiktionary_via}, ebena{en_wiktionary_via}, plata{wikt_io}
-- pleante: ludante{bert_embeddings,morphological_expansion}, muzikante{morphological_expansion}, partoprenante{morphological_expansion}, rolante{morphological_expansion}
-- plear: ludi{wikt_io}, muziki{en_wiktionary_via}, muziki per{en_wiktionary_via}, partopreni{en_wiktionary_via}, roli{en_wiktionary_via}
-- plezar: bonvolu{en_wiktionary_via}, plaĉi{wikt_io}
+- plata: ebena{en_wiktionary_via}, plata{wikt_io}
+- pleante: ludante{bert_embeddings,morphological_expansion}, rolante{morphological_expansion}
+- plear: ludi{wikt_io}, muziki per{en_wiktionary_via}, roli{en_wiktionary_via}
 - plezuro: plezuro{fr_wiktionary_via,wikidata_labels,wikt_io}, ĝojo{wikt_io}
-- plombo: plumbo{wikidata_labels,wikt_io}, sondilo{en_wiktionary_via}
-- plu: pli{wikt_io}, pli da{en_wiktionary_via}, pli multaj{en_wiktionary_via}
 - plumo: anserplumo{en_wiktionary_via}, harplumo{wikidata_labels}, inkoskribilo{en_wiktionary_via}, kalamo{en_wiktionary_via}, plumo{wikidata_labels,wikt_io}
 - plumpa: malgracia{wikt_io}, mallerta{en_wiktionary_via}, netraktebla{wikt_io}, plumpa{wikt_io}
-- plunjar: plonĝi{en_wiktionary_via}, plunĝi{wikt_io}
-- plura: diversa{en_wiktionary_via}, kelkaj{en_wiktionary_via}, pluraj{wikt_io}
+- plura: diversaj{en_wiktionary_via}, kelkaj{en_wiktionary_via}, pluraj{wikt_io}
 - po: en{wikt_io}, je{wikt_eo,wikt_io}, por{wikt_io}
 - poeto: poetino{wikidata_labels}, poeto{wikidata_labels,wikt_io}, poeziistino{wikidata_labels}, poeziisto{wikidata_labels}
 - polara: polara{wikt_io}, polusa{en_wiktionary_via}
@@ -3643,128 +3425,110 @@
 - ponto: drenilo{en_wiktionary_via}, ponto{wikidata_labels,wikt_io}, torentdrenilo{en_wiktionary_via}, tunelponto{en_wiktionary_via}
 - populo: popolnombro{wikt_io}, popolo{wikidata_labels,wikt_io}
 - porcelano: porcelana{wikt_io}, porcelano{en_wiktionary_via}
+- porkulo: porkiĉo{wikt_io}, virporko{fr_wiktionary_via,wikt_io}
 - portar: alkonduki{en_wiktionary_via}, alporti{en_wiktionary_via}, porti{wikt_io}, surporti{en_wiktionary_via}
 - portuo: haveno{wikt_io}, marhaveno{en_wiktionary_via}
-- pose: post{en_wiktionary_via}, poste{wikt_io}
 - posedar: havi{wikt_io}, posedi{fr_wiktionary_via,wikt_io}
 - posedata: havata{morphological_expansion}, posedata{bert_embeddings,morphological_expansion}
-- posto: poŝto{wikidata_labels,wikt_eo,wikt_io}, retpoŝto{en_wiktionary_via}
 - potenco: Potenca funkcio{wikidata_labels}, Potencigo{wikidata_labels}, potenco{wikidata_labels,wikt_io}
-- povo: potenco{en_wiktionary_via}, povo{bert_embeddings,en_wiktionary_via}, povumo{en_wiktionary_via}
-- povra: bedaŭrinda{en_wiktionary_via}, kompatinda{en_wiktionary_via}, malriĉa{en_wiktionary_via,wikt_io}, povra{wikt_io}
+- povo: potenco{en_wiktionary_via}, povo{bert_embeddings,en_wiktionary_via}
+- povra: malriĉa{en_wiktionary_via,wikt_io}, povra{wikt_io}
 - prato: herbejo{en_wiktionary_via,wikt_io}, paŝtejo{wikt_io}
-- precipitar: faligi{wikt_io}, plonĝi{en_wiktionary_via}, precipiti{wikt_io}
-- precipua: precipa{wikt_io}, prima{en_wiktionary_via}, unuaranga{en_wiktionary_via}
+- precipua: precipa{wikt_io}, unuaranga{en_wiktionary_via}
 - prefixo: antaŭafikso{en_wiktionary_via,wikidata_labels}, antaŭvortero{en_wiktionary_via}, prefikso{wikidata_labels,wikt_io}
-- prenar: preni{wikt_io}, transporti{en_wiktionary_via}
-- prenita: prenita{bert_embeddings,morphological_expansion}, transportita{morphological_expansion}
 - prenomo: antaŭnomo{wikidata_labels,wikt_io}, baptonomo{wikidata_labels}, nomo{en_wiktionary_via}, persona nomo{en_wiktionary_via,wikidata_labels}, personaj nomoj{wikidata_labels}
 - presar: premi{wikt_io}, streĉi{fr_wiktionary_via}
 - prestar: pruntedoni{wikt_io}, prunti{en_wiktionary_via,wikt_io}
 - preterito: Pasinta tempo{wikidata_labels}, preterito{wikidata_labels,wikt_io}
-- preurbo: antaŭurbo{en_wiktionary_via,wikt_io}, kvartalo{en_wiktionary_via}, suburbo{wikt_io}
+- preurbo: antaŭurbo{en_wiktionary_via,wikt_io}, suburbo{wikt_io}
 - prezenta: estanta{wikt_io}, hodiaŭa{en_wiktionary_via}, nuna{en_wiktionary_via}, prezenca{wikt_io}, ĉeestanta{wikt_io}
 - prezidanto: federacia prezidanto{wikidata_labels}, federacia prezidento{wikidata_labels}, prezidantino{en_wiktionary_via}, prezidanto{bert_embeddings,en_wiktionary_via,wikidata_labels}, prezidento{wikidata_labels}, prezidinto{wikidata_labels}, virprezidanto{en_wiktionary_via}, ŝtatprezidanto{wikidata_labels}
 - prezidantulo: prezidantino{bert_embeddings,en_wiktionary_via}, prezidanto{en_wiktionary_via}, virprezidanto{en_wiktionary_via}
-- pri: antaŭ{en_wiktionary_via}, da{en_wiktionary_via}, de{en_wiktionary_via}, el{en_wiktionary_via}, kun{en_wiktionary_via}, ota{en_wiktionary_via}, pri{wikt_io}, proksimume{en_wiktionary_via}, returnen{en_wiktionary_via}, tra{en_wiktionary_via}, ĉirkaŭ{en_wiktionary_via}, ĉirkaŭe{en_wiktionary_via}, ĉirkaŭe en{en_wiktionary_via}
 - primara: elementa{wikt_io}, primara{en_wiktionary_via,wikt_io}, unuagrada{en_wiktionary_via}, unuaranga{en_wiktionary_via}
 - primtipo: arketipo{en_wiktionary_via,wikidata_labels}, arĥetipo{en_wiktionary_via}, pratipo{en_wiktionary_via}
 - printempo: primavero{wikidata_labels}, printempo{wikidata_labels,wikt_io}
 - prioro: priorino{wikidata_labels}, prioro{en_wiktionary_via,wikidata_labels}, ĉefabato{en_wiktionary_via}
-- prizar: altetaksi{wikt_io}, ami{en_wiktionary_via}, kiel{en_wiktionary_via}, kvazaŭ{en_wiktionary_via}, lajk{en_wiktionary_via}, nu{en_wiktionary_via}, plaĉi{en_wiktionary_via}, ŝatalklaki{en_wiktionary_via}, ŝati{en_wiktionary_via}, ŝatmarki{en_wiktionary_via}
+- prizar: ami{en_wiktionary_via}, aprezi{wikt_io}, plaĉi{en_wiktionary_via}, ŝati{en_wiktionary_via,wikt_io}
 - pro to: pro tio{wikt_io}, tial{closed_class_tables}
 - probabla: probabla{wikt_io}, verŝajna{en_wiktionary_via}
 - procedilo: procedilo{morphological_expansion}, procesoro{wikidata_labels}
-- proda: aŭdaca{en_wiktionary_via}, grasa{en_wiktionary_via}, proda{wikt_io}
+- proda: aŭdaca{en_wiktionary_via}, proda{wikt_io}
 - profesiono: profesia{wikidata_labels}, profesio{wikidata_labels,wikt_io}, profesiulo{wikidata_labels}
 - programaro: programaro{bert_embeddings,en_wiktionary_via,wikidata_labels}, softvaro{wikidata_labels}
-- programo: programaro{bert_embeddings,en_wiktionary_via}, programo{bert_embeddings,en_wiktionary_via}
 - projektilo: pafaĵo{wikidata_labels}, projekciilo{morphological_expansion}
 - prokuratoro: akuzisto{wikidata_labels}, prokuroro{bert_embeddings,wikidata_labels}
 - proletariaro: proletariaro{morphological_expansion}, proletaro{morphological_expansion,wikidata_labels}, proleto{wikidata_labels}
-- pronuncar: deklari{en_wiktionary_via}, eldiri{en_wiktionary_via}, elparoli{en_wiktionary_via,wikt_io}, prononci{en_wiktionary_via,wikt_io}
+- pronuncar: elparoli{en_wiktionary_via,wikt_io}, prononci{en_wiktionary_via,wikt_io}
 - propagado: disvastigado{morphological_expansion}, propagado{morphological_expansion}, propagando{wikidata_labels}, reproduktado{morphological_expansion}
-- proprietajo: afero posedata{wikt_io}, atributo{en_wiktionary_via}, bieno{en_wiktionary_via}, eco{en_wiktionary_via}, havo{en_wiktionary_via}, posedaĵo{en_wiktionary_via,wikt_io}, propraĵo{en_wiktionary_via}, propreco{en_wiktionary_via}, proprietaĵo{en_wiktionary_via}, proprieto{en_wiktionary_via}, trajto{en_wiktionary_via}
+- proprietajo: afero posedata{wikt_io}, havo{en_wiktionary_via}, posedaĵo{en_wiktionary_via,wikt_io}, propraĵo{en_wiktionary_via}, proprietaĵo{en_wiktionary_via}
 - propulsar: antaŭenpuŝi{wikt_io}, propulsi{en_wiktionary_via}
 - prostitucado: prostituado{wikidata_labels}, prostitucio{wikidata_labels}, prostituo{wikidata_labels,wikt_io}
 - protektar: protekti{wikt_io}, ŝirmi{en_wiktionary_via}
 - protektata: protektata{bert_embeddings,morphological_expansion}, ŝirmata{morphological_expansion}
 - protektita: protektita{bert_embeddings,morphological_expansion}, ŝirmita{morphological_expansion}
 - proverbo: proverbo{wikidata_labels,wikt_io}, sentenco{en_wiktionary_via}
-- proxim: apud{en_wiktionary_via,wikt_io}, apuda{en_wiktionary_via}, fermi{en_wiktionary_via}, fini{en_wiktionary_via}, korligita{en_wiktionary_via}, kun{en_wiktionary_via}, ota{en_wiktionary_via}, pri{en_wiktionary_via}, proksima{en_wiktionary_via}, proksime de{wikt_io}, proksimume{en_wiktionary_via}, returnen{en_wiktionary_via}, tra{en_wiktionary_via}, ĉirkaŭ{en_wiktionary_via}, ĉirkaŭe{en_wiktionary_via}, ĉirkaŭe en{en_wiktionary_via}
-- pruno: prunkoloro{en_wiktionary_via}, pruno{wikt_io}
-- pruritar: juki{wikt_io}, juki sin{en_wiktionary_via}
-- pseudonimo: alinomo{en_wiktionary_via}, artista nomo{wikidata_labels}, kaŝnomo{en_wiktionary_via,wikidata_labels,wikt_io}, kromnomo{en_wiktionary_via}, plumnomo{wikidata_labels}, pseŭdonimo{en_wiktionary_via,wikidata_labels,wikt_io}, pseŭdonomo{wikidata_labels}
+- proxim: apud{wikt_io}, apuda{en_wiktionary_via}, kun{en_wiktionary_via}, proksima{en_wiktionary_via}, proksime de{wikt_io}, ĉirkaŭ{en_wiktionary_via}
+- proxime: proksimume{wikt_io}, ĉirkaŭ{en_wiktionary_via}
+- pseudonimo: alinomo{en_wiktionary_via}, artista nomo{wikidata_labels}, kaŝnomo{en_wiktionary_via,wikidata_labels,wikt_io}, plumnomo{wikidata_labels}, pseŭdonimo{en_wiktionary_via,wikidata_labels,wikt_io}, pseŭdonomo{wikidata_labels}
 - psikologio: psikologio{wikidata_labels,wikt_io}, psikoscienco{wikidata_labels}
 - psikologo: Psikologiisto{wikidata_labels}, Psikologino{wikidata_labels}, Psikosciencisto{wikidata_labels}, psikologo{wikidata_labels,wikt_io}
 - pubio: pubio{wikidata_labels}, pubo{wikt_io}, pubosto{en_wiktionary_via,wikt_io}
 - puero: infano{wikidata_labels,wikt_io}, knabino{wikt_io}, knabo{wikt_io}
 - pulmonito: pneŭmonio{wikt_io}, pneŭmonito{en_wiktionary_via}
-- pulpo: karno{en_wiktionary_via}, pulpo{wikt_io}
-- pulsar: peli{en_wiktionary_via}, pulsi{wikt_io}, puŝi{en_wiktionary_via,wikt_eo,wikt_io}
+- pulsar: pulsi{wikt_io}, puŝi{en_wiktionary_via,wikt_eo,wikt_io}
 - pupo: pobo{en_wiktionary_via,wikidata_labels}, poŭpo{en_wiktionary_via,wikidata_labels}
 - purpuro: purpurkoloro{wikidata_labels}, purpuro{wikt_io}, ruĝbluo{wikidata_labels}, violkoloro{wikidata_labels}
 - pustulo: haŭtmalsano{wikidata_labels}, pustulo{wikt_io}
-- putanino: hundino{en_wiktionary_via}, putino{wikt_eo}, ĉiesulino{en_wiktionary_via}
+- putanino: putino{wikt_eo}, ĉiesulino{en_wiktionary_via}
 - qua: kiu{closed_class_tables,wikt_eo,wikt_io}, kiuj{en_wiktionary_via}
-- quadrato: kvadrato{wikidata_labels,wikt_io}, placo{en_wiktionary_via}
-- quale: kiel{closed_class_tables,wikt_io}, kvazaŭ{en_wiktionary_via}, lajk{en_wiktionary_via}, nu{en_wiktionary_via}
-- qualeso: eco{en_wiktionary_via}, kvalito{wikt_io}
-- quan: kiu{wikt_io}, kiuj{en_wiktionary_via}, kiujn{en_wiktionary_via}, kiun{function_word_override}
-- quankam: ke{en_wiktionary_via}, kvankam{wikt_io}, malgraŭ{en_wiktionary_via}, malgraŭ ke{en_wiktionary_via}, tamen{en_wiktionary_via}
-- quarimo: kvaronjaro{en_wiktionary_via}, kvarono{wikt_io}, kvartalo{en_wiktionary_via}
-- quartero: kvaronjaro{en_wiktionary_via}, kvarono{en_wiktionary_via}, kvartalo{wikt_io}
+- quale: kiel{closed_class_tables,wikt_io}, kvazaŭ{en_wiktionary_via}
+- quan: kiu{wikt_io}, kiun{function_word_override}
+- quankam: ke{en_wiktionary_via}, kvankam{wikt_io}, malgraŭ{en_wiktionary_via}, malgraŭ ke{en_wiktionary_via}
 - questionar: demandi{wikt_io}, pridemandi{fr_wiktionary_via}
-- questiono: demando{wikt_io}, dubo{en_wiktionary_via}, propono{en_wiktionary_via}, temo{en_wiktionary_via}
-- qui: kioj{wikt_eo}, kiuj{closed_class_tables}
-- quieta: kvieta{wikt_io}, mallaŭta{en_wiktionary_via}, trankvila{en_wiktionary_via,wikt_io}
-- quik: samtempe{en_wiktionary_via}, senprokraste{en_wiktionary_via}, tuj{wikt_io}
+- qui: kioj{wikt_eo}, kiuj{closed_class_tables,wikt_io}
+- quieta: kvieta{wikt_io}, mallaŭta{en_wiktionary_via}, trankvila{wikt_io}
+- quik: senprokraste{en_wiktionary_via}, tuj{wikt_io}
 - quinino: kinino{wikt_io}, ĥinino{en_wiktionary_via}
 - rabino: rabenino{en_wiktionary_via}, rabeno{wikt_io}
-- radiala: radia{bert_embeddings,morphological_expansion}, traba{morphological_expansion}
 - radikifo: n-a radiko{wikidata_labels}, radiko{bert_embeddings,wikidata_labels}
-- radio: radio{en_wiktionary_via,wikt_io}, radiuso{wikt_io}, trabo{en_wiktionary_via}
+- radio: radio{en_wiktionary_via,wikt_io}, radiuso{wikt_io}
 - rafano: kreno{en_wiktionary_via}, rafano{wikt_io}
 - rafto: flosemo{wikidata_labels}, floso{wikidata_labels,wikt_io}
 - rago: drapaĉo{en_wiktionary_via}, ĉifono{wikt_io}
-- raketo: batilo{en_wiktionary_via}, malhonestaĵo{en_wiktionary_via}, pilkoĵetilo{en_wiktionary_via}, rakedo{wikidata_labels,wikt_io}, raketo{en_wiktionary_via}, ĉantaĝo{en_wiktionary_via}
+- raketo: batilo{en_wiktionary_via}, pilkoĵetilo{en_wiktionary_via}, rakedo{wikidata_labels,wikt_io}, raketo{en_wiktionary_via}
 - rakonto: fabelo{en_wiktionary_via}, fablo{en_wiktionary_via}, rakonto{bert_embeddings,en_wiktionary_via}
-- rapideso: rapideco{en_wiktionary_via,wikidata_labels}, rapido{fr_wiktionary_via,wikidata_labels}, skalara rapido{wikidata_labels}
+- rapideso: rapideco{en_wiktionary_via,wikidata_labels}, rapido{wikidata_labels,wikt_io}, skalara rapido{wikidata_labels}
 - raptar: forkapti{en_wiktionary_via}, forrabi{en_wiktionary_via}, rabi{wikt_io}
 - rara: malabunda{fr_wiktionary_via}, malofta{en_wiktionary_via,wikt_io}, rara{en_wiktionary_via,wikt_io}
 - rasismo: rasismo{en_wiktionary_via,wikidata_labels}, rasisto{wikidata_labels}
-- ratono: lav-urso{en_wiktionary_via,wikidata_labels}, lavurso{wikt_io}, ordinara prociono{wikidata_labels}, procionedo{en_wiktionary_via}, procioneno{en_wiktionary_via}, prociono{en_wiktionary_via,wikt_io}
-- raupo: raŭpo{wikt_io}, ĉenbendo{en_wiktionary_via}
-- realigar: efektivigi{en_wiktionary_via}, ekkompreni{en_wiktionary_via}, ekkonscii{en_wiktionary_via}, konscii{en_wiktionary_via}, realigi{bert_embeddings,en_wiktionary_via}
-- realigita: efektivigita{morphological_expansion}, ekkomprenita{morphological_expansion}, ekkonsciita{morphological_expansion}, konsciita{morphological_expansion}, realigita{bert_embeddings,morphological_expansion}
-- recensar: recenzi{wikt_io}, revizii{en_wiktionary_via}
+- ratono: lav-urso{en_wiktionary_via,wikidata_labels}, lavurso{wikt_io}, ordinara prociono{wikidata_labels}, prociono{en_wiktionary_via,wikt_io}
+- realigar: efektivigi{en_wiktionary_via}, realigi{bert_embeddings,en_wiktionary_via}
+- realigita: efektivigita{morphological_expansion}, realigita{bert_embeddings,morphological_expansion}
 - recenta: antaŭnelonga{wikt_io}, freŝdata{wikt_io}, lasta{en_wiktionary_via}, lastatempa{en_wiktionary_via,wikt_io}, nova{wikt_io}, recenta{wikt_io}
 - reda: ruĝa{wikidata_labels,wikt_eo,wikt_io}, ruĝo{wikidata_labels}
 - redaktar: adapti{en_wiktionary_via}, modifi{en_wiktionary_via}, redakti{wikt_io}, ŝanĝi{en_wiktionary_via}
-- redaktero: muntisto{en_wiktionary_via}, redaktisto{bert_embeddings,en_wiktionary_via}, redaktoro{en_wiktionary_via}
-- redaktisto: muntisto{en_wiktionary_via}, redaktisto{bert_embeddings,en_wiktionary_via}, redaktoro{en_wiktionary_via}
+- redaktero: redaktisto{bert_embeddings,en_wiktionary_via}, redaktoro{en_wiktionary_via}
+- redaktisto: redaktisto{bert_embeddings,en_wiktionary_via}, redaktoro{en_wiktionary_via}
 - redaktita: adaptita{morphological_expansion}, modifita{morphological_expansion}, redaktita{bert_embeddings,morphological_expansion}, ŝanĝita{morphological_expansion}
 - reflektar: pensi{en_wiktionary_via}, pripensi{en_wiktionary_via}, reflekti{wikt_io}, speguli{en_wiktionary_via}
-- refuzar: malakcepti{wikt_io}, rifuzi{en_wiktionary_via,wikt_io}, rifuziĝi{en_wiktionary_via}
-- regardar: gvati{en_wiktionary_via}, rigardi{wikt_io}, spekti{en_wiktionary_via}
+- refuzar: malakcepti{wikt_io}, rifuzi{en_wiktionary_via,wikt_io}
+- regardar: rigardi{wikt_io}, spekti{en_wiktionary_via}
 - regento: reganto{en_wiktionary_via}, regento{wikt_io}
 - regiono: geografia regiono{wikidata_labels}, regiono{wikidata_labels,wikt_io}
 - registragilo: aŭtokodoj{wikidata_labels}, aŭtomobila kodo{wikidata_labels}, licencplato{en_wiktionary_via,wikidata_labels}, numerplato{en_wiktionary_via}, ŝildo{en_wiktionary_via}
 - regnanta: reganta{bert_embeddings,morphological_expansion}, reĝanta{morphological_expansion}
 - regresar: regresi{wikt_io}, reiri{en_wiktionary_via}, reveturi{en_wiktionary_via}
-- rejio: regno{wikidata_labels}, reĝlando{en_wiktionary_via,wikidata_labels}
+- rejio: regno{wikidata_labels}, reĝlando{wikidata_labels,wikt_io}
 - rejo: reĝino{wikt_io}, reĝo{fr_wiktionary_via,wikt_eo,wikt_io}, suvereno{en_wiktionary_via}
 - rektangula: ortangula{morphological_expansion}, rektangula{bert_embeddings,morphological_expansion}
 - rektangulo: ortangulo{en_wiktionary_via}, rektangulo{wikt_io}
 - rektifikilo: rektifikilo{morphological_expansion}, rektifilo{morphological_expansion,wikidata_labels}
 - relayo: Relay{wikidata_labels}, relajso{wikidata_labels,wikt_io}
-- renkontro: kunsido{en_wiktionary_via}, kunveno{bert_embeddings,en_wiktionary_via}, seanco{en_wiktionary_via}
 - rentiro: boaco{en_wiktionary_via,wikt_io}, norda cervo{en_wiktionary_via}, rangifero{en_wiktionary_via,wikt_io}
 - repartisar: onigi{en_wiktionary_via}, porciigi{wikt_io}
 - repasto: manĝaĵo{en_wiktionary_via}, manĝo{wikt_io}
 - repertorio: dosierujo{en_wiktionary_via}, repertuaro{wikt_io}
 - repetar: rediri{en_wiktionary_via}, ripeti{wikt_io}
-- repozar: resti{en_wiktionary_via}, ripozi{wikt_io}
 - reprezentar: figuri{en_wiktionary_via}, prezenti{en_wiktionary_via}, reprezenti{wikt_io}
 - reprezentata: figurata{morphological_expansion}, prezentata{morphological_expansion}, reprezentata{bert_embeddings,morphological_expansion}
 - reprezentita: figurita{morphological_expansion}, prezentita{morphological_expansion}, reprezentita{bert_embeddings,morphological_expansion}
@@ -3776,50 +3540,37 @@
 - restajo: restaĵo{wikt_io}, resto{wikidata_labels}
 - reto: Interreto{en_wiktionary_via}, reto{wikt_io}
 - retro: malantaŝe{wikt_io}, malantaŭen{wikt_io}, poste{wikt_io}, posten{wikt_io}, re{wikt_io}, retro{en_wiktionary_via,wikt_io}
-- retroirar: redoni{en_wiktionary_via}, reiri{en_wiktionary_via}, retroiri{wikt_io}, reveni{en_wiktionary_via}, reveturi{en_wiktionary_via}
+- retroirar: reiri{en_wiktionary_via}, retroiri{wikt_io}, reveni{en_wiktionary_via}, reveturi{en_wiktionary_via}
 - revelar: malkaŝi{en_wiktionary_via,wikt_io}, revelacii{wikt_io}, riveli{fr_wiktionary_via,wikt_io}
 - revenuo: enspezo{wikt_io}, rento{fr_wiktionary_via}
 - revoltar: protesti{en_wiktionary_via}, ribeli{wikt_io}
-- revuar: recenzi{en_wiktionary_via}, revizii{en_wiktionary_via}, revui{wikt_io}
-- revuo: magazeno{en_wiktionary_via}, magazino{en_wiktionary_via,wikidata_labels}, recenzo{en_wiktionary_via}, revuo{wikidata_labels,wikt_io}
-- rezolvar: decidi{wikt_io}, solvi{en_wiktionary_via}
+- revuo: magazino{en_wiktionary_via,wikidata_labels}, revuo{wikidata_labels,wikt_io}
 - rigo: rigilaro{wikt_io}, rigilo{wikt_io}, rigo{fr_wiktionary_via}
-- rimeno: frapego{en_wiktionary_via}, rimeno{wikt_io}, sekurzono{en_wiktionary_via}, zono{en_wiktionary_via}
 - rinocero: nazkornulo{en_wiktionary_via}, rinocero{wikt_eo,wikt_io}
 - rinsar: akvumi{en_wiktionary_via}, laveti{wikt_io}, skulavi{wikt_io}, tralavi{en_wiktionary_via,wikt_io}
-- risanigar: kuraci{en_wiktionary_via}, resanigi{wikt_io}, resaniĝi{en_wiktionary_via}
+- risanigar: kuraci{en_wiktionary_via}, resanigi{wikt_io}
 - rivereto: rivereto{bert_embeddings,en_wiktionary_via}, rojo{en_wiktionary_via}
 - rivo: bordo{en_wiktionary_via,wikt_io}, digo{wikt_io}, marbordo{en_wiktionary_via}, riverbordo{en_wiktionary_via}
 - rock: rok-muziko{en_wiktionary_via,ll,wiki,wikidata_labels}, rokmuziko{en_wiktionary_via,wikidata_labels}, roko{en_wiktionary_via,wikidata_labels}
-- rostar: rosti{wikt_io}, tosti{en_wiktionary_via}
 - rostilo: Trapikilo{wikidata_labels}, panrostilo{en_wiktionary_via}, rostostango{wikidata_labels}
-- rostro: podio{en_wiktionary_via}, rostro{wikt_io}
 - rotacanta: aks-turniĝanta{morphological_expansion}, rotacianta{bert_embeddings,morphological_expansion}
+- rubidio: Rb{wikidata_labels}, rubidio{wikidata_labels,wikt_io}, rubidiumo{wikidata_labels}
 - rugo: falto{fr_wiktionary_via}, ondeto{wikt_io}, sulketo{wikt_io}
 - rukular: kveri{en_wiktionary_via,wikt_io}, rukuli{en_wiktionary_via,wikt_io}
-- ruptar: panei{en_wiktionary_via}, rompi{wikt_io}, rompiĝi{en_wiktionary_via}
+- ruptar: rompi{wikt_io}, rompiĝi{en_wiktionary_via}
 - ruro: kamparo{wikt_io}, rura areo{wikidata_labels}, ruro{wikidata_labels,wikt_io}
 - rusiana: Ruslando{wikt_eo}, ruso{wikt_io}
-- rusto: rusto{wikt_io}, rustokoloro{en_wiktionary_via}
-- sabato: dimanĉo{en_wiktionary_via}, sabato{wikt_io}, sabatorgio{en_wiktionary_via}, ŝabato{en_wiktionary_via}
+- sabato: sabato{wikt_io}, ŝabato{en_wiktionary_via}
 - sacerdoto: pastrino{en_wiktionary_via,wikidata_labels}, pastro{en_wiktionary_via,wikidata_labels}, sacerdoto{wikidata_labels,wikt_io}
 - saimo: porkgraso{wikt_io}, porkograso{en_wiktionary_via}, ŝmalco{en_wiktionary_via,wikidata_labels}
 - sajeso: saĝeco{en_wiktionary_via}, saĝo{en_wiktionary_via,wikidata_labels}
 - sakarino: sakarino{wikt_io}, saĥarino{wikidata_labels}
-- saldar: enloĝiĝi{en_wiktionary_via}, saldi{wikt_io}
-- salubra: bona{en_wiktionary_via}, salubra{wikt_io}
 - saluto: saluto{en_wiktionary_via}, saluton{function_word_override}
-- salvar: konservi{en_wiktionary_via}, savi{wikt_io}, surdiskigi{en_wiktionary_via}, ŝpari{en_wiktionary_via}
-- sama: sama{wikt_io}, simila{en_wiktionary_via}
-- saporoza: bona{en_wiktionary_via}, bongusta{wikt_io}
+- salvar: konservi{en_wiktionary_via}, savi{wikt_io}, surdiskigi{en_wiktionary_via}
 - sarkoveturo: ĉerkoveturilo{wikidata_labels}, ĉerkveturilo{en_wiktionary_via}
 - sate: sate{wikt_io}, sufiĉe{en_wiktionary_via,wikt_io}
 - satelito: artefarita satelito{wikidata_labels}, satelito{wikt_io}
 - satisfacar: efektivigi{en_wiktionary_via}, kontentigi{en_wiktionary_via}, kvitigi{wikt_io}, plenumi{en_wiktionary_via}
-- savaro: dosiero{wikt_io}, fajlilo{en_wiktionary_via}, vico{en_wiktionary_via}
-- savurar: frandi{en_wiktionary_via}, gustumi{wikt_io}, ĝui{wikt_io}
-- se: se{wikt_io}, ĉu{en_wiktionary_via}
-- segmento: paragrafo{en_wiktionary_via}, segmento{wikt_io}
 - sekreta: kripta{en_wiktionary_via}, sekreta{wikt_io}
 - sekretario: sekretariino{wikidata_labels}, sekretario{wikidata_labels,wikt_io}
 - sekundara: duagrada{en_wiktionary_via}, duaperioda{en_wiktionary_via}, sekundara{wikt_io}
@@ -3827,7 +3578,6 @@
 - selektar: elekti{en_wiktionary_via}, selekti{wikt_io}, voli{en_wiktionary_via}
 - selektita: elektita{bert_embeddings,morphological_expansion}, selektita{morphological_expansion}, volita{morphological_expansion}
 - seminario: Porpastra seminario{wikidata_labels}, seminario{bert_embeddings,wikidata_labels}
-- senco: senco{wikt_io}, senso{en_wiktionary_via}, sentumo{en_wiktionary_via}
 - senkapa: acefala{wikt_io}, senkapa{en_wiktionary_via,wikt_io}
 - sensencajo: nekompreneblaĵo{en_wiktionary_via}, sensencaĵo{wikidata_labels}, stultaĵo{en_wiktionary_via}, volapukaĵo{en_wiktionary_via}
 - senso: senso{wikt_io}, sentumo{en_wiktionary_via}
@@ -3836,66 +3586,49 @@
 - senvalora: aĉa{en_wiktionary_via}, senutila{en_wiktionary_via}, senvalora{wikt_io}
 - sepalo: kaliko{wikt_io}, sepalo{en_wiktionary_via}
 - separata: apartigata{morphological_expansion}, disigata{morphological_expansion}, separata{bert_embeddings,morphological_expansion}
-- sequanta: apud{en_wiktionary_via}, apuda{en_wiktionary_via}, proksima{en_wiktionary_via}, sekva{en_wiktionary_via}, sekvanta{wikt_io}, venonta{en_wiktionary_via}
-- serchar: peti{en_wiktionary_via}, provi{en_wiktionary_via}, serĉi{wikt_io}
+- sequanta: sekva{en_wiktionary_via}, sekvanta{wikt_io}, venonta{en_wiktionary_via}
 - serpo: haktranĉilo{wikidata_labels}, serpo{wikt_io}
-- seruro: buklo{en_wiktionary_via}, fermilo{en_wiktionary_via}, kluzo{en_wiktionary_via}, seruro{wikt_io}, ŝloso{en_wiktionary_via}
+- seruro: fermilo{en_wiktionary_via}, seruro{wikt_io}, ŝloso{en_wiktionary_via}
 - servitudo: servitudo{en_wiktionary_via}, servuto{fr_wiktionary_via}
-- sexuo: amorado{en_wiktionary_via}, amoro{en_wiktionary_via}, fiko{en_wiktionary_via}, genro{en_wiktionary_via}, koito{en_wiktionary_via}, sekso{wikidata_labels,wikt_io}, seksumo{en_wiktionary_via}
 - shakoludisto: virŝakludisto{wikidata_labels}, ŝakistino{wikidata_labels}, ŝakisto{morphological_expansion,wikidata_labels}, ŝakludistino{wikidata_labels}, ŝakludisto{wikidata_labels}
 - shakoludo: internacia ŝako{wikidata_labels}, ŝako{wikidata_labels,wikt_io}
 - shaloto: askalono{en_wiktionary_via,wikidata_labels}, ŝaloto{wikidata_labels,wikt_io}
 - shamo: hontaĵo{en_wiktionary_via}, honto{wikt_io}
-- sharlatano: kvako{en_wiktionary_via}, ĉarlatano{wikt_io}
 - sharpo: kolskarpo{en_wiktionary_via}, koltuko{en_wiktionary_via}, skarpo{wikt_io}
 - shokar: ŝoki{en_wiktionary_via,wikt_io}, ŝokiĝi{wikt_io}
 - shuifisto: ŝufaristino{en_wiktionary_via}, ŝufaristo{en_wiktionary_via}, ŝuistino{en_wiktionary_via}, ŝuisto{wikt_io}
-- sideyo: sidejo{bert_embeddings,en_wiktionary_via}, stabejo{en_wiktionary_via}
 - signatar: signaturi{wikt_io}, subskribi{en_wiktionary_via,wikt_io}
 - siluro: katfiŝo{en_wiktionary_via}, siluro{wikt_io}
 - simetreso: simetrieco{morphological_expansion}, simetrio{wikidata_labels}
 - simpatio: kunsento{en_wiktionary_via}, simpatio{wikt_io}
-- simpla: simpla{wikt_io}, simplanima{en_wiktionary_via}
-- simple: simplanime{morphological_expansion}, simple{bert_embeddings,morphological_expansion}
-- sinapo: mustardkoloro{en_wiktionary_via}, mustardo{en_wiktionary_via}, sinapo{wikt_io}
-- sinkar: alfundigi{en_wiktionary_via}, alfundiĝi{en_wiktionary_via}, droni{en_wiktionary_via}, sinki{en_wiktionary_via,wikt_io}, sinkigi{wikt_io}
+- sinkar: alfundiĝi{en_wiktionary_via}, droni{en_wiktionary_via}, sinki{en_wiktionary_via,wikt_io}, sinkigi{wikt_io}
 - sinonimo: samsencaĵo{wikidata_labels}, sinonimo{bert_embeddings,en_wiktionary_via,wikidata_labels}
-- sinso: direkto{wikt_io}, sencumo{wikt_io}, senso{en_wiktionary_via}, sentumo{en_wiktionary_via}
 - siorino: damo{fr_wiktionary_via}, sinjorino{wikt_io}
+- sioro: gesinjoro{en_wiktionary_via}, s-ano{en_wiktionary_via}, sinjoro{wikt_io}
 - sireno: marvirino{en_wiktionary_via}, sireno{wikt_io}
 - sismo: sismo{wikt_io}, tertremo{en_wiktionary_via,wikt_io}
 - sistemo: komplekso{en_wiktionary_via}, sistemo{wikidata_labels,wikt_io}
-- situo: retejo{en_wiktionary_via}, situo{wikt_io}
 - skalaro: Scalare{wikidata_labels}, skalaro{wikidata_labels,wikt_io}
-- skalo: dismaŝigo{en_wiktionary_via}, eskalo{en_wiktionary_via,wikidata_labels}, mapa skalo{wikidata_labels}, skalo{wikidata_labels,wikt_io}, ŝtupetaro{en_wiktionary_via,wikidata_labels}
+- skalo: eskalo{en_wiktionary_via,wikidata_labels}, mapa skalo{wikidata_labels}, skalo{wikidata_labels,wikt_io}, ŝtupetaro{en_wiktionary_via,wikidata_labels}
 - skalpelo: bisturio{wikidata_labels}, skalpelo{en_wiktionary_via,wikidata_labels}
-- skanar: skandi{en_wiktionary_via}, skani{wikt_io}
-- skandar: balai{wikt_io}, skandi{en_wiktionary_via,wikt_io}, skani{en_wiktionary_via,wikt_io}
+- skandar: balai{wikt_io}, skandi{en_wiktionary_via,wikt_io}, skani{wikt_io}
 - skarabeo: skarabedoj{en_wiktionary_via}, skarabo{wikt_io}
 - skeleto: ostaro{en_wiktionary_via}, skeleto{wikt_io}
-- skermar: riceli{en_wiktionary_via}, skermi{wikt_io}
 - skermo: skermado{wikt_io}, skermo{en_wiktionary_via}
 - skikurar: skii{en_wiktionary_via}, skikuri{wikt_io}
 - skizofrenio: skizofrenio{en_wiktionary_via,wikidata_labels}, sĥizofrenio{wikidata_labels}
 - skolo: lernejo{fr_wiktionary_via,wikidata_labels,wikt_io}, skolo{wikt_io}
-- skopo: celo{en_wiktionary_via,wikt_io}, golejo{en_wiktionary_via}, golo{en_wiktionary_via}, intenco{wikt_io}, objekto{wikt_io}, skopo{en_wiktionary_via}
-- skreno: ekranego{en_wiktionary_via}, ekrano{en_wiktionary_via}, nivelo{en_wiktionary_via}, skreno{wikt_io}
+- skopo: celo{en_wiktionary_via,wikt_io}, intenco{wikt_io}, objekto{wikt_io}, skopo{en_wiktionary_via}
+- skreno: ekrano{en_wiktionary_via}, skreno{wikt_io}
 - skriptar: aŭtori{en_wiktionary_via}, verki{en_wiktionary_via}, verki librojn{wikt_io}
 - skroto: skroto{wikidata_labels,wikt_io}, testikujo{en_wiktionary_via,wikidata_labels}
-- skrubo: helico{en_wiktionary_via}, ŝraŭbo{wikt_io}
 - skruboturnilo: ŝraŭbilo{en_wiktionary_via,wikt_io}, ŝraŭbturnilo{en_wiktionary_via,wikt_io}
-- skulto: skulptarto{en_wiktionary_via}, skulptaĵo{bert_embeddings,en_wiktionary_via}
-- skulturo: skulptarto{en_wiktionary_via}, skulptaĵo{wikt_io}
 - slamo: bavo{en_wiktionary_via}, muko{en_wiktionary_via}, ŝlimo{wikt_io}
-- socia: socia{bert_embeddings,morphological_expansion}, societa{morphological_expansion}
-- societo: societo{bert_embeddings,wikt_eo}, socio{en_wiktionary_via}
-- socio: societo{en_wiktionary_via}, socio{wikidata_labels,wikt_io}
 - sociolinguistiko: socilingvistiko{wikidata_labels}, sociolingvistiko{en_wiktionary_via,wikidata_labels}
 - sociologio: sociologia esploro{wikidata_labels}, sociologio{wikidata_labels,wikt_io}
 - softwaro: programaro{en_wiktionary_via,wikidata_labels}, softvaro{wikidata_labels}
 - soldar: luti{fr_wiktionary_via,wikt_io}, soldi{wikt_io}
 - solecismo: gramatika eraro{wikidata_labels}, solecismo{en_wiktionary_via}
-- soleo: plando{en_wiktionary_via}, plandumo{en_wiktionary_via}, soleo{wikt_io}
 - somnolar: dormeti{en_wiktionary_via}, esti dormema{wikt_io}
 - sonato: Sonatoformo{wikidata_labels}, sonata formo{wikidata_labels}, sonato{wikt_io}
 - soneto: Kanteto{wikidata_labels}, soneto{wikidata_labels,wikt_io}
@@ -3903,12 +3636,9 @@
 - sorbeto: sorbeto{wikt_io}, ŝorbeto{wikidata_labels,wikt_io}
 - sorcisto: magiisto{wikidata_labels}, sorĉisto{wikidata_labels}, sorĝisto{morphological_expansion}
 - sordida: malpura{en_wiktionary_via,wikt_io}, sordida{wikt_io}
-- sorto: markigo{en_wiktionary_via}, marko{en_wiktionary_via}, speco{wikt_io}
+- sorto: marko{en_wiktionary_via}, speco{wikt_io}
 - sovaja: feroca{en_wiktionary_via}, sovaĝa{wikt_io}
 - sovaja kapro: alpa kapro{en_wiktionary_via}, ibekso{wikt_io}
-- spacala: kosma{morphological_expansion}, spaca{bert_embeddings,morphological_expansion}, spaceta{morphological_expansion}
-- space: kosme{morphological_expansion}, space{bert_embeddings,morphological_expansion}, spacete{morphological_expansion}
-- spaco: kosmo{en_wiktionary_via}, spaceto{en_wiktionary_via}, spaco{wikidata_labels,wikt_io}
 - spaconavo: kosma flug-aparato{wikidata_labels}, kosma flugaparato{wikidata_labels}, kosmoveturilo{wikidata_labels}, kosmoŝipo{en_wiktionary_via,wikidata_labels}, spacoŝipo{en_wiktionary_via}
 - spado: fosilo{wikt_io}, ŝpato{en_wiktionary_via,wikidata_labels,wikt_io}
 - sparar: esti ŝparema{wikt_io}, ŝpari{en_wiktionary_via,wikt_io}
@@ -3927,67 +3657,56 @@
 - staciono: stacidomo{en_wiktionary_via,wikt_io}, stacio{en_wiktionary_via,wikt_io}
 - stadio: pilkejo{en_wiktionary_via}, stadiono{en_wiktionary_via,wikt_io}, stadiumo{wikt_io}
 - standardo: flago{wikidata_labels}, standardo{wikt_io}
-- stando: farto{wikt_io}, kondiĉo{en_wiktionary_via}, stato{en_wiktionary_via}, ŝtato{fr_wiktionary_via}
+- stando: farto{wikt_io}, stato{en_wiktionary_via}, ŝtato{fr_wiktionary_via}
 - staturo: homa alto{wikidata_labels}, staturo{wikt_io}
 - stelaro: konstelacio{wikidata_labels,wikt_io}, stelaro{en_wiktionary_via}
 - sterko: stala sterko{wikidata_labels}, sterko{wikt_io}
 - stertorar: grumbli{fr_wiktionary_via}, stertori{wikt_io}
 - stifto: maleolo{en_wiktionary_via}, stifto{wikt_io}
-- stilo: stilo{wikt_io}, stiluso{en_wiktionary_via}
 - stofo: teksumaĵo{wikidata_labels}, ŝtofo{wikt_io}
 - stono: ŝtoneto{en_wiktionary_via}, ŝtono{wikt_io}
 - strandar: fiaski{fr_wiktionary_via}, grundi{wikt_io}
 - stranjera: alilanda{en_wiktionary_via}, eksterlanda{en_wiktionary_via}, fremda{wikt_io}
 - strato: stratumo{wikt_io}, tavolo{en_wiktionary_via,wikt_io}
-- striko: bato{en_wiktionary_via}, frapo{en_wiktionary_via}, striko{bert_embeddings,en_wiktionary_via,wikidata_labels}, trafo{en_wiktionary_via}
 - strio: strio{wikt_io}, ŝmiraĵo{en_wiktionary_via}
-- stroko: apopleksio{en_wiktionary_via}, atako{wikt_io}, bato{en_wiktionary_via,wikt_io}, frapo{en_wiktionary_via}, movo{wikt_io}, transloĝiĝo{en_wiktionary_via}
 - studento: studanto{wikt_io}, studentino{wikidata_labels}, studento{wikidata_labels,wikt_io}
-- stulta: facilanima{en_wiktionary_via}, fola{en_wiktionary_via}, malsaĝa{en_wiktionary_via}, stulta{wikt_io}
+- stulta: malsaĝa{en_wiktionary_via}, stulta{wikt_io}
 - stuvo: saŭno{en_wiktionary_via}, stovo{wikt_io}, varmejo{wikt_io}
 - su-ocido: memmortigo{wikidata_labels,wikt_io}, sinmortigo{en_wiktionary_via,wikidata_labels}, suicido{wikidata_labels}
-- subisar: daŭri{en_wiktionary_via}, elteni{en_wiktionary_via}, suferi{en_wiktionary_via,wikt_io}, toleri{wikt_io}
+- subisar: suferi{en_wiktionary_via,wikt_io}, toleri{wikt_io}
 - submisar: kvietigi{en_wiktionary_via}, obeigi{en_wiktionary_via}, subigi{wikt_io}
 - subornar: korupti{wikt_io}, subaĉeti{en_wiktionary_via}
 - substantivo: o-vorto{wikidata_labels}, substantivo{wikidata_labels,wikt_io}
-- substitucar: anstataŭi{en_wiktionary_via,wikt_io}, anstataŭigi{en_wiktionary_via,wikt_io}, remeti{en_wiktionary_via}, substitui{wikt_io}
-- suburbo: antaŭurbo{en_wiktionary_via,wikt_io}, kvartalo{en_wiktionary_via}, suburbo{wikt_io}
-- sucino: sukcenkoloro{en_wiktionary_via}, sukceno{wikt_io}
+- substitucar: anstataŭi{wikt_io}, anstataŭigi{en_wiktionary_via,wikt_io}, substitui{wikt_io}
+- suburbo: antaŭurbo{en_wiktionary_via,wikt_io}, suburbo{wikt_io}
 - suediano: sveda{wikt_io}, svedino{en_wiktionary_via}, svedo{wikt_io}
 - sufixo: kategorio-sufiksoj{wikidata_labels}, postafikso{en_wiktionary_via,wikidata_labels}, sufikso{wikidata_labels,wikt_io}
 - suflar: blovi{wikt_io}, suflori{en_wiktionary_via}
-- sufrar: doloriĝi{en_wiktionary_via}, lasi{en_wiktionary_via}, permesi{en_wiktionary_via}, plimalboniĝi{en_wiktionary_via}, suferi{wikt_io}, toleri{en_wiktionary_via}
-- sugar: aĉi{en_wiktionary_via}, suĉi{wikt_io}
 - sukoza: bongusta{fr_wiktionary_via}, sukulento{wikt_io}
 - sulko: sulko{wikt_io}, tersulko{en_wiktionary_via}
-- sume: sume{bert_embeddings,morphological_expansion}, totale{morphological_expansion}
-- sundio: dimanĉo{wikt_eo,wikt_io}, sabato{en_wiktionary_via}, sabatorgio{en_wiktionary_via}, ŝabato{en_wiktionary_via}
-- suplikar: almozpeti{en_wiktionary_via}, insiste peti{wikt_io}, petegi{en_wiktionary_via,wikt_io}
-- sur: je{en_wiktionary_via}, pri{en_wiktionary_via}, sur{wikt_io}
-- surnomo: doni familinomon{en_wiktionary_via}, familia nomo{en_wiktionary_via,wikidata_labels}, familinomo{en_wiktionary_via,wikidata_labels}
+- suplikar: insiste peti{wikt_io}, petegi{en_wiktionary_via,wikt_io}
+- surnomo: familia nomo{en_wiktionary_via,wikidata_labels}, familinomo{en_wiktionary_via,wikidata_labels}
 - susurar: flustri{en_wiktionary_via,wikt_io}, susuri{wikt_io}, susurigi{wikt_io}
-- ta: Ta{wikidata_labels}, kiu{en_wiktionary_via}, tantalo{wikidata_labels}, tio{wikt_eo}, tiom{en_wiktionary_via}, tiu{closed_class_tables,wikt_io}
+- ta: Ta{wikidata_labels}, tantalo{wikidata_labels}, tio{wikt_eo}, tiu{closed_class_tables,wikt_io}
 - tabeleto: tabeleto{morphological_expansion}, tabulkomputilo{wikidata_labels}
 - tablero: instrumenta panelo{wikidata_labels}, instrumentpanelo{en_wiktionary_via}
 - tabureto: seĝeto{en_wiktionary_via}, tabureto{wikt_io}
 - tala: tala{morphological_expansion}, tia{closed_class_tables}
 - talio: talio{wikidata_labels,wikt_io}, taliumo{wikidata_labels}
-- tamen: kvankam{en_wiktionary_via}, malgraŭe{en_wiktionary_via}, tamen{wikt_io}
+- tamen: malgraŭe{en_wiktionary_via}, tamen{wikt_io}
 - tandem: fine{en_wiktionary_via}, finfine{wikt_io}
 - tanko: akvujo{wikt_io}, rezervujo{wikidata_labels}, tanko{wikt_io}
 - tantalo: Ta{wikidata_labels}, tantalo{wikidata_labels,wikt_io}
 - tatuo: tatuaĵo{wikt_io}, tatuo{en_wiktionary_via,wikt_io}
-- tauro: Taŭruso{en_wiktionary_via}, buleo{en_wiktionary_via}, taŭro{en_wiktionary_via,wikt_io}, virbovo{en_wiktionary_via,wikt_io}
+- tauro: taŭro{en_wiktionary_via,wikt_io}, virbovo{en_wiktionary_via,wikt_io}
 - taverno: drinkejo{en_wiktionary_via}, gastejo{en_wiktionary_via}, taverno{wikidata_labels,wikt_io}
 - taxio: kabo{en_wiktionary_via}, taksio{wikidata_labels,wikt_io}, taxi{wikidata_labels}
-- teatro: teatrarto{wikidata_labels}, teatrejo{en_wiktionary_via}, teatro{wikidata_labels,wikt_io}
+- teatro: teatrarto{wikidata_labels}, teatro{wikidata_labels,wikt_io}
+- tedar: altrudiĝi{en_wiktionary_via}, tedi{wikt_io}, trudi{en_wiktionary_via}
 - tegulo: kahelo{en_wiktionary_via,wikidata_labels}, tegolo{en_wiktionary_via}
 - teismo: malateismo{wikidata_labels}, teismo{en_wiktionary_via,wikidata_labels}
 - teknologio: teknologio{wikt_io}, teĥnologio{wikidata_labels}
-- televidilo: televidilo{en_wiktionary_via}, televido{bert_embeddings,en_wiktionary_via}, televizio{en_wiktionary_via}
 - televiziono: televidilo{en_wiktionary_via}, televido{wikidata_labels,wikt_io}, televizio{en_wiktionary_via}
-- templo: tempio{en_wiktionary_via}, templo{bert_embeddings,en_wiktionary_via,wikidata_labels}
-- tempo: fojo{en_wiktionary_via}, horo{en_wiktionary_via}, tempo{wikidata_labels,wikt_io}
 - tenalio: pinĉilo{en_wiktionary_via}, tenilo{wikt_io}
 - tendino: tendeno{wikidata_labels}, tendineo{wikidata_labels}, tendino{morphological_expansion}
 - tenso: streĉo{en_wiktionary_via}, tensio{bert_embeddings,en_wiktionary_via}
@@ -3995,62 +3714,56 @@
 - teologio: Diologio{wikidata_labels}, Diologo{wikidata_labels}, Discienco{wikidata_labels}, Teologiisto{wikidata_labels}, Teologo{wikidata_labels}, dioscienco{en_wiktionary_via}, teologio{bert_embeddings,en_wiktionary_via,wikidata_labels}
 - teoremo: matematika teoremo{wikidata_labels}, teoremo{bert_embeddings,wikidata_labels}
 - teplico: forcejo{wikt_io}, oranĝerio{en_wiktionary_via}
-- tera: tera{bert_embeddings,wikidata_labels}, tergloba{morphological_expansion}
-- terapio: Kuraco{wikidata_labels}, kuracado{en_wiktionary_via,wikidata_labels}, pritraktado{en_wiktionary_via}, terapio{bert_embeddings,en_wiktionary_via,wikidata_labels}, traktado{en_wiktionary_via}, trakto{en_wiktionary_via}
+- tera: grunda{morphological_expansion}, tera{bert_embeddings,morphological_expansion,wikidata_labels}, tergloba{morphological_expansion}
+- terapio: Kuraco{wikidata_labels}, kuracado{en_wiktionary_via,wikidata_labels}, terapio{bert_embeddings,en_wiktionary_via,wikidata_labels}
 - terbio: Tb{wikidata_labels}, terbio{wikidata_labels,wikt_io}
 - tereno: tera reliefo{wikidata_labels}, tereno{bert_embeddings,wikidata_labels}
 - terminaro: terminaro{wikt_io}, terminologio{en_wiktionary_via,wikidata_labels}
 - termometro: temperatursensilo{wikidata_labels}, termometro{wikt_io}
-- tero: Tero{wikt_io}, terglobo{en_wiktionary_via}
+- tero: grundo{wikt_io}, terglobo{en_wiktionary_via}, tero{wikt_io}
 - testikulo: kojono{wikidata_labels}, testiko{wikidata_labels,wikt_io}, ĉurovo{wikidata_labels}
 - tezauro: sinonimaro{en_wiktionary_via}, tezaŭro{en_wiktionary_via,wikidata_labels}
 - tezo: Disertacio{wikidata_labels}, disertaĵo{wikidata_labels}, tezo{bert_embeddings,wikidata_labels}
 - tigrino: tigrino{en_wiktionary_via}, tigro{wikt_eo}
-- til: adiaŭ{en_wiktionary_via}, adiaŭo{en_wiktionary_via}, ĝis{function_word_override}
-- to: kiu{en_wiktionary_via}, tio{closed_class_tables,en_wiktionary_via}, tiom{en_wiktionary_via}, tiu{en_wiktionary_via}
+- til: adiaŭ{en_wiktionary_via}, ĝis{function_word_override}
 - toalo: mantuko{wikt_io}, viŝilo{en_wiktionary_via}
-- tomato: tomato{wikt_io}, tomatujo{en_wiktionary_via}
 - tombeyo: enterigejo{en_wiktionary_via}, tombejo{wikt_io}
 - tombo: tombo{wikt_io}, tomboŝtono{en_wiktionary_via}
-- torako: brusto{en_wiktionary_via,wikidata_labels}, kesto{en_wiktionary_via}, kofro{en_wiktionary_via}, torako{en_wiktionary_via,wikidata_labels}
+- torako: brusto{en_wiktionary_via,wikidata_labels}, torako{en_wiktionary_via,wikidata_labels}
+- torio: Th{wikidata_labels}, torio{wikidata_labels,wikt_io}, toriumo{wikidata_labels}
 - tormentar: torturi{en_wiktionary_via,wikt_io}, turmenti{en_wiktionary_via,wikt_io}
 - tormento: torturo{wikt_io}, turmento{en_wiktionary_via}
-- tortugo: kelonio{en_wiktionary_via}, martestudo{en_wiktionary_via}, testudo{wikt_io}
-- tosto: rostpano{en_wiktionary_via}, tosto{wikt_io}
+- tortugo: kelonio{en_wiktionary_via}, testudo{wikt_io}
 - toxika: toksa{en_wiktionary_via}, tokso{wikt_io}
 - tradukanto: tradukantino{en_wiktionary_via}, tradukanto{wikt_io}, tradukilo{en_wiktionary_via}, tradukistino{en_wiktionary_via}, tradukisto{en_wiktionary_via}, virtradukanto{en_wiktionary_via}, virtradukisto{en_wiktionary_via}
 - tradukisto: tradukantino{en_wiktionary_via}, tradukanto{en_wiktionary_via}, tradukilo{en_wiktionary_via}, tradukistino{en_wiktionary_via}, tradukisto{wikt_io}, virtradukanto{en_wiktionary_via}, virtradukisto{en_wiktionary_via}
-- traduko: tradukaĵo{en_wiktionary_via}, traduko{wikt_io}
-- trafiko: trafiko{bert_embeddings,en_wiktionary_via}, ŝakrado{en_wiktionary_via}
+- trancheo: fosaĵo{en_wiktionary_via}, tranĉeo{wikt_io}
 - transformatoro: transformatoro{wikidata_labels}, transformilo{wikidata_labels,wikt_io}
-- transformita: aliformigita{morphological_expansion}, aliformita{morphological_expansion}, aliformiĝita{morphological_expansion}, aliiĝita{morphological_expansion}, evoluita{morphological_expansion}, transformita{bert_embeddings,morphological_expansion}, transformiĝita{morphological_expansion}
-- transgenreso: transgenra{wikidata_labels}, transgenreco{morphological_expansion,wikidata_labels}, transgenruleco{morphological_expansion}, transgenrulo{wikidata_labels}, transsekseco{morphological_expansion}, transseksuleco{morphological_expansion}
+- transformita: aliformigita{morphological_expansion}, aliformita{morphological_expansion}, transformita{bert_embeddings,morphological_expansion}
+- transgenreso: transgenra{wikidata_labels}, transgenreco{wikidata_labels}, transgenruleco{morphological_expansion}, transgenrulo{wikidata_labels}, transseksuleco{morphological_expansion}
 - transportilo: angulmezurilo{en_wiktionary_via}, transportilo{wikt_io}
 - tre: efektive{en_wiktionary_via}, tre{wikt_io}, vere{en_wiktionary_via}
 - triangula: triangula{bert_embeddings,morphological_expansion}, trilatera{morphological_expansion}
 - triangulo: triangulo{wikidata_labels,wikt_io}, trilatero{en_wiktionary_via,wikidata_labels}
 - tribuo: Gento{wikidata_labels}, tribo{wikidata_labels,wikt_io}
-- trimestro: kvaronjaro{en_wiktionary_via}, kvarono{en_wiktionary_via}, kvartalo{en_wiktionary_via}, trimonato{wikt_io}
+- trimestro: kvaronjaro{en_wiktionary_via}, trimonato{wikt_io}
 - trista: malgaja{wikt_io}, melankolia{wikt_io}, morna{fr_wiktionary_via}, trista{wikt_io}
-- tro: ankaŭ{en_wiktionary_via}, tro{wikt_io}
-- trovata: ekbruligata{morphological_expansion}, lumigata{morphological_expansion}, malkovrata{morphological_expansion}, trovata{bert_embeddings,morphological_expansion}
+- trovata: malkovrata{morphological_expansion}, trovata{bert_embeddings,morphological_expansion}
 - trovebla: eltrovebla{en_wiktionary_via}, trovebla{bert_embeddings,en_wiktionary_via}
-- trovita: ekbruligita{morphological_expansion}, lumigita{morphological_expansion}, malkovrita{morphological_expansion}, trovita{bert_embeddings,morphological_expansion}
+- trovita: malkovrita{morphological_expansion}, trovita{bert_embeddings,morphological_expansion}
 - tu: ci{closed_class_tables_qualified,wikt_eo,wikt_io}, vi{wikt_eo}
-- tualeteyo: fekseĝo{en_wiktionary_via}, klozeto{en_wiktionary_via,wikidata_labels}, latrino{en_wiktionary_via,wikidata_labels}, necesejo{en_wiktionary_via,wikidata_labels}, necesujo{wikidata_labels}, neprejo{wikidata_labels}, neĉesejo{wikidata_labels}, tualetejo{en_wiktionary_via}, tualeto{en_wiktionary_via}, vestejo{en_wiktionary_via}
+- tualeteyo: klozeto{en_wiktionary_via,wikidata_labels}, latrino{wikidata_labels}, necesejo{en_wiktionary_via,wikidata_labels}, necesujo{wikidata_labels}, neprejo{wikidata_labels}, neĉesejo{wikidata_labels}, tualetejo{en_wiktionary_via}, vestejo{en_wiktionary_via}
 - tubulo: dukto{wikidata_labels}, tubokondukilo{wikidata_labels}, tubulo{morphological_expansion}
 - tuso: tusado{wikidata_labels}, tuso{wikidata_labels,wikt_io}
 - ube: kie{closed_class_tables,wikt_io}, kien{wikt_io}
 - ucelo: birda klaso{wikidata_labels}, birdo{wikidata_labels,wikt_eo,wikt_io}, birdospecio{wikidata_labels}
-- ucelyuno: birdido{wikt_io}, kokido{en_wiktionary_via}, ulino{en_wiktionary_via}
 - ul: iĉ{en_wiktionary_via}, vir{wikt_io}
-- ula: ia{en_wiktionary_via}, iom ajn{en_wiktionary_via}, iom da{en_wiktionary_via}, iu{closed_class_tables,wikt_io}, iu ajn{en_wiktionary_via}, ĉiu{en_wiktionary_via}, ĉiuj{en_wiktionary_via}
+- ula: iom da{en_wiktionary_via}, iu{closed_class_tables,wikt_io}
 - ule: iel{closed_class_tables}, iom de{morphological_expansion}
 - uli: iu{wikt_io}, iuj{closed_class_tables}
 - unika: unika{wikt_io}, ununura{en_wiktionary_via}
 - unikorno: unikorno{wikt_io}, unukornulo{en_wiktionary_via,wikt_io}
 - unisono: perfekta unuto{wikidata_labels}, unisono{wikidata_labels,wikt_io}
-- universala: universa{en_wiktionary_via}, universala{bert_embeddings,en_wiktionary_via}
 - urba: urba{bert_embeddings,morphological_expansion}, urbeta{morphological_expansion}
 - urbala: urba{bert_embeddings,morphological_expansion}, urbeta{morphological_expansion}
 - urbego: urbego{bert_embeddings,morphological_expansion}, urbetego{morphological_expansion}
@@ -4059,14 +3772,10 @@
 - urbo: civito{en_wiktionary_via}, urbeto{en_wiktionary_via}, urbo{wikidata_labels,wikt_io}
 - urinifar: maltrinki{en_wiktionary_via}, pisi{en_wiktionary_via}, urini{wikt_io}
 - urino: pisaĵo{wikidata_labels}, urino{wikidata_labels,wikt_io}
-- usano: amerikano{en_wiktionary_via}, usona{en_wiktionary_via}, usonano{wikt_io}
+- usa: Usono{wikt_io}, usona{en_wiktionary_via}
+- usano: usona{en_wiktionary_via}, usonano{wikt_io}
 - utensilo: ilo{wikt_io}, laborilo{wikidata_labels}
 - utopio: Utopia lingvo{wikidata_labels}, utopio{wikidata_labels,wikt_io}
-- uzanta: dunganta{morphological_expansion}, uzanta{bert_embeddings,morphological_expansion}
-- uzante: dungante{morphological_expansion}, uzante{bert_embeddings,morphological_expansion}
-- uzar: dungi{en_wiktionary_via}, uzi{wikt_io}
-- uzata: dungata{morphological_expansion}, uzata{bert_embeddings,morphological_expansion}
-- uzita: dungita{morphological_expansion}, uzita{bert_embeddings,morphological_expansion}
 - uzurpar: akapari{en_wiktionary_via}, kontraŭi{en_wiktionary_via}, malobei{en_wiktionary_via}, malobservi{en_wiktionary_via}, uzurpi{wikt_io}
 - vabo: mielchelaro{en_wiktionary_via}, mielcxelaro{en_wiktionary_via}, mielĉelaro{wikidata_labels,wikt_io}
 - vakanco: ferioj{fr_wiktionary_via}, libertempo{en_wiktionary_via}
@@ -4074,51 +3783,41 @@
 - valenco: valento{en_wiktionary_via,wikidata_labels}, ĥemia valento{wikidata_labels}
 - valo: rivervalo{wikidata_labels}, valo{wikidata_labels,wikt_io}
 - valuto: mono{en_wiktionary_via}, valuto{wikt_io}
-- vampiro: desmodo{en_wiktionary_via}, vampiro{wikt_io}, vampirvesperto{en_wiktionary_via}
 - vanadio: vanadio{wikidata_labels,wikt_io}, vanadiumo{wikidata_labels}
-- vango: sidvango{en_wiktionary_via}, vango{wikidata_labels,wikt_io}
 - varo: komercaĵo{en_wiktionary_via}, varo{wikt_io}
-- varsar: malplenigi{en_wiktionary_via}, verŝi{wikt_io}, verŝiĝi{en_wiktionary_via}, ŝuti{en_wiktionary_via}
+- varsar: malplenigi{en_wiktionary_via}, verŝi{wikt_io}, ŝuti{en_wiktionary_via}
 - vaskulo: angio{wikt_io}, sanga vaskulo{en_wiktionary_via}
 - vazo: ingo{en_wiktionary_via}, matraso{en_wiktionary_via}, vazo{wikidata_labels,wikt_io}
-- vehar: drajvi{en_wiktionary_via}, konduki{en_wiktionary_via}, peli{en_wiktionary_via}, veturi{wikt_io}, veturigi{en_wiktionary_via}
+- vehar: konduki{en_wiktionary_via}, veturi{wikt_io}
 - veino: gango{en_wiktionary_via}, petra vejno{wikidata_labels}, vejno{wikidata_labels,wikt_io}
-- vekar: veki{en_wiktionary_via}, vekiĝi{wikt_io}
 - veko: krano{fr_wiktionary_via}, vekiĝo{wikt_io}
 - vektoro: eŭklida vektoro{wikidata_labels}, geometria vektoro{wikidata_labels}, vektoro{wikidata_labels,wikt_io}
 - veneno: Venena{wikidata_labels}, Venenado{wikidata_labels}, veneno{wikidata_labels,wikt_io}
-- verajo: veraĵo{en_wiktionary_via}, vereco{en_wiktionary_via}, vero{en_wiktionary_via,wikidata_labels}
-- verda: suka{en_wiktionary_via}, verda{wikt_io}
-- verde: suke{morphological_expansion}, verde{bert_embeddings,morphological_expansion}
+- venenoza: venena{en_wiktionary_via,wikt_io}, veneniga{en_wiktionary_via}
 - verniso: lako{wikidata_labels}, verniso{wikt_io}
 - vers: al{en_wiktionary_via}, direkte al{wikt_io}
-- verso: versiklo{en_wiktionary_via}, verso{wikidata_labels,wikt_io}
-- vestizar: pansi{en_wiktionary_via}, vesti{wikt_io}, vesti sin{en_wiktionary_via}, vestiĝi{en_wiktionary_via}
+- vestizar: vesti{wikt_io}, vesti sin{en_wiktionary_via}, vestiĝi{en_wiktionary_via}
 - vesto: vestaĵo{en_wiktionary_via}, vesto{wikidata_labels,wikt_io}
 - veterinaro: bestkuracistino{en_wiktionary_via}, bestkuracisto{en_wiktionary_via,wikidata_labels,wikt_io}, bestokuracistino{en_wiktionary_via}, bestokuracisto{en_wiktionary_via,wikidata_labels}, veterinarino{en_wiktionary_via}, veterinaro{en_wiktionary_via,wikidata_labels,wikt_io}
-- vetrino: afero{en_wiktionary_via}, ingo{en_wiktionary_via}, juĝafero{en_wiktionary_via}, kazo{en_wiktionary_via}, okazfrazo{en_wiktionary_via}, uskleco{en_wiktionary_via}, usklo{en_wiktionary_via}, vitrino{en_wiktionary_via,wikt_io}, vitroŝranko{wikt_io}, ŝranko{en_wiktionary_via}
+- vetrino: vitrino{en_wiktionary_via,wikt_io}, vitroŝranko{wikt_io}, ŝranko{en_wiktionary_via}
 - veturo: aŭtomobilo{wikt_io}, veturilo{en_wiktionary_via,wikt_io}
 - vice: anstataŭ{wikt_eo,wikt_io}, vic{en_wiktionary_via}
 - videoludo: komputila ludo{wikidata_labels}, komputilludo{wikidata_labels}, konzoludo{wikidata_labels}, videoludo{bert_embeddings,en_wiktionary_via,wikidata_labels}
-- vidvo: gevidvo{en_wiktionary_via}, vidvino{bert_embeddings,en_wiktionary_via,wikidata_labels}, vidvo{wikidata_labels}
-- vigoro: forteco{wikt_io}, forto{en_wiktionary_via}, perforto{en_wiktionary_via}
+- vidvo: gevidvo{en_wiktionary_via}, vidvino{bert_embeddings,wikidata_labels}, vidvo{wikidata_labels}
 - vilaja: urbeta{morphological_expansion}, vilaĝa{bert_embeddings,morphological_expansion}
 - vilajo: urbeto{en_wiktionary_via}, vilaĝo{wikidata_labels,wikt_io}
 - vildo: ĉasaĵo{wikt_io}, ĉasbesto{wikidata_labels,wikt_io}, ĉasbirdo{wikidata_labels,wikt_io}
 - vinagro: aceto{wikidata_labels}, vinagro{wikidata_labels,wikt_io}
 - violacar: malobservi{en_wiktionary_via}, malrespekti{en_wiktionary_via}, rompi{wikt_io}
 - violaco: seksa perforto{wikidata_labels}, seksatenco{en_wiktionary_via,wikidata_labels}, seksperforto{en_wiktionary_via,wikidata_labels,wikt_io}, stupro{en_wiktionary_via,wikidata_labels,wikt_io}, violenco{wikt_io}
-- violento: forto{en_wiktionary_via}, perforto{wikt_io}
-- vipero: adiciilo{en_wiktionary_via}, sumilo{en_wiktionary_via}, vipero{en_wiktionary_via,wikt_io}, vipuro{en_wiktionary_via,wikt_io}
+- vipero: vipero{en_wiktionary_via,wikt_io}, vipuro{en_wiktionary_via,wikt_io}
 - virologio: virus-scienco{wikidata_labels}, virusologio{en_wiktionary_via,wikidata_labels}, virusoscienco{wikidata_labels}, virusscienco{wikidata_labels}
-- visar: fiki{en_wiktionary_via}, ŝraŭbi{wikt_io}
 - vitelo: ovoflavo{en_wiktionary_via}, vitelo{wikt_io}
 - viteyo: vinberejo{en_wiktionary_via}, vitejo{en_wiktionary_via,wikidata_labels}
 - vito: traŭbo{wikidata_labels}, uvo{wikidata_labels}, vinberarbo{en_wiktionary_via}, vinbero{wikidata_labels}, vinberujo{en_wiktionary_via}, vito{wikt_io}
 - vitobero: traŭbo{en_wiktionary_via}, uvo{wikt_io}, vinbero{en_wiktionary_via,wikt_io}
 - vizelo: mustelo{wikt_io}, vizelo{fr_wiktionary_via}, vizono{wikt_io}
 - volkanismo: vulkana agado{wikidata_labels}, vulkanismo{morphological_expansion,wikidata_labels}
-- volumino: jarvolumo{en_wiktionary_via}, laŭteco{en_wiktionary_via}, rulaĵo{en_wiktionary_via}, volumeno{wikidata_labels,wikt_io}, volumo{en_wiktionary_via}
 - vortaro: vortaro{fr_wiktionary_via,wikidata_labels,wikt_io}, vortoprovizo{wikt_io}
 - vorticar: giri{en_wiktionary_via}, kirliĝi{wikt_io}, turniĝadi{en_wiktionary_via}
 - vorticeso: kirleco{morphological_expansion}, spino{wikidata_labels}, vorticeco{morphological_expansion}
@@ -4128,17 +3827,16 @@
 - voyo: trako{wikt_io}, vojo{en_wiktionary_via,wikidata_labels,wikt_io}, ŝoseo{en_wiktionary_via}
 - vulvo: piĉo{wikidata_labels}, vulvo{wikidata_labels,wikt_io}
 - warfo: kajo{wikt_io}, varfo{en_wiktionary_via}
-- wefto: boj{en_wiktionary_via}, bojo{en_wiktionary_via}, teksaĵo{en_wiktionary_via}, vefto{wikt_io}
+- wefto: teksaĵo{en_wiktionary_via}, vefto{wikt_io}
 - weldar: alforĝi{en_wiktionary_via}, veldi{wikt_io}
 - westo: okcidento{wikidata_labels,wikt_io}, uesto{wikidata_labels}
 - xenono: Xe{wikidata_labels}, ksenono{wikidata_labels,wikt_io}
 - yarcento: centjaro{en_wiktionary_via}, jarcento{wikidata_labels,wikt_io}, jc{wikidata_labels}
 - yen: jen{wikt_io}, rigardi{en_wiktionary_via}
-- yes: jes{wikt_io}, jesi{en_wiktionary_via}, jeso{en_wiktionary_via}
 - yitrio: itrio{wikidata_labels,wikt_io}, itriumo{wikidata_labels}
 - yogurto: jahurto{en_wiktionary_via}, jogurto{wikt_io}
 - yugo: jugo{wikidata_labels,wikt_io}, jungilaro{wikidata_labels}
-- yuneso: junaro{en_wiktionary_via}, junaĝo{en_wiktionary_via}, juneco{wikt_io}, junularo{en_wiktionary_via}, junuliĉo{en_wiktionary_via}, junulo{en_wiktionary_via}, knabo{en_wiktionary_via}
+- yuneso: juneco{wikt_io}, junulo{en_wiktionary_via}
 - yuro: juro{fr_wiktionary_via}, rajto{wikt_io}
 - zero: nul{wikidata_labels,wikt_eo}, nula{wikidata_labels}, nulo{wikidata_labels,wikt_io}
 - zinko: Zn{wikidata_labels}, zinko{wikidata_labels,wikt_io}
