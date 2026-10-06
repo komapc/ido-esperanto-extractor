@@ -670,6 +670,27 @@ def parse_meanings(blob: str) -> List[List[str]]:
     return [[t]]
 
 
+_NUMBERED_SECTION_SPLIT_RE = re.compile(r"(?m)^(?=={1,2}\s*[IVX]+\s*\{\{)")
+
+
+def extract_pos_by_section(section: str, title: str) -> Optional[str]:
+    """POS of a page that splits one word over numbered sections
+    ("==I {{io}} (pekunio)==" / "==II {{io}} (1/100)=="): the first section whose
+    own text gives a POS wins. Scanning the concatenation let a category from a
+    later sense decide for the whole page (centimo = coin, but the 1/100 section's
+    [[Kategorio:Numeri]] made the coin a numeral). None for single-section
+    pages, which extract_pos handles unchanged.
+    """
+    parts = [p for p in _NUMBERED_SECTION_SPLIT_RE.split(section or "") if p.strip()]
+    if len(parts) < 2:
+        return None
+    for part in parts:
+        pos = extract_pos(part) or extract_morphology(part, title)[1]
+        if pos:
+            return pos
+    return None
+
+
 def extract_translations(section: str, target_code: str) -> List[List[str]]:
     out: List[List[str]] = []
     # OPTIMIZATION: Use pre-compiled patterns (20-30% speedup)
@@ -943,6 +964,9 @@ def parse_wiktionary(
                 verb_form_synonyms.extend(extract_verb_form_synonyms(section, title))
             continue
         pos = extract_pos(section)
+        if pos == "num":
+            # [[Kategorio:Numeri]] belongs to one sense, not to the whole page.
+            pos = extract_pos_by_section(section, title) or pos
         # Variant short/alternative form ("il" = kurta formo de "ilu") — inherits
         # the base lemma's translation at merge time (io.wiktionary only).
         variant_base = detect_variant_base(section) if cfg.source_code == "io" else None
