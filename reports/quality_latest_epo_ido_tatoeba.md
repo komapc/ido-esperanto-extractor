@@ -96,6 +96,10 @@
     - in : Mi ekkonis lin antaŭ multe da jaroj.
     - got: Me *ekkonis il pre multe de yari.
     - ref: Me konoceskis il ante multa yari.
+- chrF 42 [tatoeba]  unknown=['desegnaĵo']
+    - in : Ĉi tiu desegnaĵo plaĉas al mi.
+    - got: Ca *desegnaĵo plezas a me.
+    - ref: Me prizas ica desegnuro.
 - chrF 43 [tatoeba]  unknown=['Ŝekspiro', 'probable']
     - in : Ĉu Ŝekspiro verkis aŭ ne tiun poemon, tio probable restos enigmo.
     - got: Ka *Ŝekspiro skriptis od ne ta poemo, to *probable restos enigmato.
@@ -116,10 +120,6 @@
     - in : Mia avino loĝis ĉe ni.
     - got: Mea avino lojis che ni.
     - ref: Mea avino habitis kun ni.
-- chrF 47 [tatoeba]  unknown=['desegnaĵo']
-    - in : Ĉi tiu desegnaĵo plaĉas al mi.
-    - got: Ica *desegnaĵo plezas a me.
-    - ref: Me prizas ica desegnuro.
 - chrF 47 [tatoeba]
     - in : Kion vi volas, tion vi povas.
     - got: Quon tu volas, to tu povas.
@@ -145,10 +145,6 @@
     - got: To ne esis *deflankiĝo.
     - ref: Lo ne esis aberaco.
 - chrF 49 [tatoeba]
-    - in : Kio estas ĉi tio?
-    - got: Quo esas ico?
-    - ref: Quo es to?
-- chrF 49 [tatoeba]
     - in : Ŝi havas katon kaj du hundojn.
     - got: El havas kato ed du hundi.
     - ref: Elu posedas un kato e du hundi.
@@ -156,6 +152,10 @@
     - in : Kien veturas tiu trajno?
     - got: Ube vehas ta treno?
     - ref: Ube iras la treno?
+- chrF 50 [tatoeba]
+    - in : Kio estas ĉi tio?
+    - got: Quo esas co?
+    - ref: Quo es to?
 - chrF 50 [tatoeba]  unknown=['Tomo']
     - in : Tomo havas mallongajn harojn.
     - got: *Tomo havas mallonga hari.
@@ -200,10 +200,6 @@
     - in : Kiel vi precizigus "feliĉon"?
     - got: Quale tu *precizigus "feliceso"?
     - ref: Quante tu definas "feliceso"?
-- chrF 52 [tatoeba]
-    - in : Ĉi tio neniam finiĝos.
-    - got: Ico nultempe expiros.
-    - ref: Ta nultempe finos.
 - chrF 53 [tatoeba]
     - in : Ĉi-vespere, vi ĉiuj devas venki!
     - got: Ca-vespere, tu omni devas vinkar!
@@ -220,6 +216,10 @@
     - in : Ĉu li scias ke vi lin amas?
     - got: Ka il savas ke tu il amas?
     - ref: Kad ilu savas ke tu amoras il?
+- chrF 53 [tatoeba]
+    - in : Ĉi tio neniam finiĝos.
+    - got: Co nultempe expiros.
+    - ref: Ta nultempe finos.
 - chrF 54 [tatoeba]  unknown=['Brahmo', 'Sarasvatio']
     - in : La edzino de Brahmo estas Sarasvatio.
     - got: La spozulino de *Brahmo esas *Sarasvatio.
@@ -588,9 +588,9 @@
     - in : Tomo kandidatiĝis por tiu laboro.
     - got: *Tomo *kandidatiĝis por ta laboro.
     - ref: Tom kandidatesis por ta laboro.
-- chrF 76 [tatoeba]  unknown=['Tomo']
+- chrF 77 [tatoeba]  unknown=['Tomo']
     - in : Ĉi tiu estas mia amiko Tomo.
-    - got: Ica esas mea amiko *Tomo.
+    - got: Ca esas mea amiko *Tomo.
     - ref: Ta es mea amiko Tom.
 - chrF 78 [tatoeba]  unknown=['Gronlando']
     - in : Gronlando estas membro de NATO.

@@ -86,7 +86,7 @@ _FUNCTION_WORD_OVERRIDES: Dict[str, Dict[str, str]] = {
 _IDO_REL_INT_PRN = {'qua', 'qui', 'quo', 'quan', 'quin', 'quon',
                     'di qua', 'di qui', 'di quo'}
 
-# Closed-class demonstrative DETERMINERS (singular: ita/ta distal, ica proximal).
+# Closed-class demonstrative DETERMINERS (singular: ita/ta distal, ica/ca proximal).
 # Force adj so they analyse as it<adj>/ic<adj> and route through the corr_u+nom
 # agreement rule (ita domi -> tiuj domoj) exactly like omna -> ĉiu, rather than
 # as <prn> (which blocks agreement AND collides with the verb+pronoun object
@@ -96,7 +96,7 @@ _IDO_REL_INT_PRN = {'qua', 'qui', 'quo', 'quan', 'quin', 'quon',
 # their prn reading — they are standalone pronouns, already correct. The
 # proximal ica translates to the multiword determiner ĉi tiu, which
 # export_apertium resolves against apertium-epo like any single word.
-_IDO_DEM_DET = {'ita', 'ta', 'ica'}
+_IDO_DEM_DET = {'ita', 'ta', 'ica', 'ca'}
 
 
 # BERT vocab pre-filter: the source vocab includes a lot of non-Ido garbage

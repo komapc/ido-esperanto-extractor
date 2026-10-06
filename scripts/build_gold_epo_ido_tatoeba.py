@@ -14,7 +14,7 @@ Sentences already in epo_ido.tsv are excluded. Tatoeba text is CC BY 2.0 FR.
 Filters: 4-12 words, no digits, ends with . ? !, no '*' (unknown-word marks in
 the pair file). Deterministic for a given input and --seed.
 
-Usage: python3 scripts/build_gold_epo_ido_tatoeba.py [--src PATH] [--n 300] [--seed 1]
+Usage: python3 scripts/build_gold_epo_ido_tatoeba.py [--src-lang epo|ido] [--src PATH] [--n 300] [--seed 1]
 """
 from __future__ import annotations
 
@@ -32,17 +32,21 @@ HEADER = """\
 """
 
 
-def usable(src: str, tgt: str) -> bool:
+def usable(src: str, tgt: str, ido_side: str = "tgt") -> bool:
+    # '*' marks unknown words in the pair file and only occurs on the Ido side.
+    ido = tgt if ido_side == "tgt" else src
     return (4 <= len(src.split()) <= 12
             and not re.search(r"\d", src + tgt)
-            and src[-1] in ".?!" and "*" not in tgt)
+            and src[-1] in ".?!" and "*" not in ido)
 
 
-def build(src: Path, exclude: set[str], n: int, seed: int) -> list[tuple[str, str]]:
+def build(src: Path, exclude: set[str], n: int, seed: int,
+          src_lang: str = "epo") -> list[tuple[str, str]]:
     seen: dict[str, str] = {}
     for line in src.read_text(encoding="utf-8").splitlines():
         r = json.loads(line)
-        if r["src_lang"] != "epo" or not usable(r["src"], r["tgt"]):
+        if r["src_lang"] != src_lang or not usable(
+                r["src"], r["tgt"], "tgt" if src_lang == "epo" else "src"):
             continue
         if r["src"] in exclude or r["src"] in seen:
             continue
@@ -59,15 +63,27 @@ def main() -> int:
                     default=here.parent / "llm/data/out/tatoeba_io_eo.jsonl")
     ap.add_argument("--existing", type=Path, default=here / "data/gold/epo_ido.tsv")
     ap.add_argument("--out", type=Path, default=here / "data/gold/epo_ido_tatoeba.tsv")
+    ap.add_argument("--src-lang", choices=["epo", "ido"], default="epo",
+                    help="ido builds the ido->epo set (reference = Tatoeba's Esperanto)")
     ap.add_argument("--n", type=int, default=300)
     ap.add_argument("--seed", type=int, default=1)
     args = ap.parse_args()
 
+    if args.src_lang == "ido":
+        if args.out.name == "epo_ido_tatoeba.tsv":
+            args.out = here / "data/gold/ido_epo_tatoeba.tsv"
+        if args.existing.name == "epo_ido.tsv":
+            args.existing = here / "data/gold/ido_epo.tsv"
     exclude = {l.split("\t")[0] for l in args.existing.read_text(encoding="utf-8").splitlines()
                if l.strip() and not l.startswith("#")}
-    rows = build(args.src, exclude, args.n, args.seed)
+    rows = build(args.src, exclude, args.n, args.seed, args.src_lang)
+    header = HEADER
+    if args.src_lang == "ido":
+        header = (HEADER.replace("Esperanto -> Ido", "Ido -> Esperanto")
+                  .replace("Ido translation", "Esperanto translation")
+                  .replace("esperanto_source<TAB>reference_ido", "ido_source<TAB>reference_esperanto"))
     args.out.write_text(
-        HEADER + "".join(f"{s}\t{t}\ttatoeba\n" for s, t in rows), encoding="utf-8")
+        header + "".join(f"{s}\t{t}\ttatoeba\n" for s, t in rows), encoding="utf-8")
     print(f"wrote {len(rows)} rows to {args.out}")
     return 0
 
