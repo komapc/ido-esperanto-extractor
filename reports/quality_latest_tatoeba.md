@@ -1,7 +1,7 @@
 # Quality detail — 2026-10-06
 
 - Gold set: `data/gold/ido_epo_tatoeba.tsv` (300 sentences)
-- Coverage: **93.5%** (1469/1571 word tokens analysed)
+- Coverage: **93.6%** (1470/1571 word tokens analysed)
 - Mean chrF: **81.1**
 
 ## By phenomenon
@@ -128,6 +128,10 @@
     - in : Kande kat-yuno divenas kat-adulto?
     - got: Kiam *kat-junulo fariĝas *kat-adolto?
     - ref: Kiam katido iĝas kato?
+- chrF 56 [tatoeba]
+    - in : Ka la Hungariana es vua matrala linguo?
+    - got: Ĉu la #Nulo estas via patrina lingvo?
+    - ref: Ĉu la hungara estas via gepatra lingvo?
 - chrF 56 [tatoeba]  unknown=['venabez']
     - in : Tu venabez hiere vespere.
     - got: Vi *venabez hieraŭ vespere.
@@ -324,10 +328,6 @@
     - in : Lia aprocho es unika.
     - got: Ilia *aprocho estas unika.
     - ref: Ilia aliro estas unika.
-- chrF 73 [tatoeba]  unknown=['Hungariana']
-    - in : Ka la Hungariana es vua matrala linguo?
-    - got: Ĉu la *Hungariana estas via patrina lingvo?
-    - ref: Ĉu la hungara estas via gepatra lingvo?
 - chrF 73 [tatoeba]  unknown=['postmarki']
     - in : Me anke bezonis postmarki.
     - got: Mi ankaŭ bezonis *postmarki.

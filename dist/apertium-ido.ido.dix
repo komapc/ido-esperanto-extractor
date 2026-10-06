@@ -14739,7 +14739,7 @@
     <e lm="centimetra"><i>centimetr</i><par n="a__adj"/></e>
     <e lm="centimetro"><i>centimetr</i><par n="o__n"/></e>
     <e lm="centimi"><i>centimi</i><par n="o__n"/></e>
-    <e lm="centimo"><i>centimo</i><par n="num"/></e>
+    <e lm="centimo"><i>centim</i><par n="o__n"/></e>
     <e lm="cento"><i>cento</i><par n="num"/></e>
     <e lm="centono"><i>centon</i><par n="o__n"/></e>
     <e lm="centope"><i>centop</i><par n="e__adv"/></e>
@@ -15894,7 +15894,7 @@
     <e lm="cifri"><i>cifri</i><par n="o__n"/></e>
     <e lm="cifrizar"><i>cifriz</i><par n="ar__vblex"/></e>
     <e lm="cifrizo"><i>cifriz</i><par n="o__n"/></e>
-    <e lm="cifro"><i>cifro</i><par n="num"/></e>
+    <e lm="cifro"><i>cifr</i><par n="o__n"/></e>
     <e lm="cifroplako"><i>cifroplak</i><par n="o__n"/></e>
     <e lm="cigana"><i>cigan</i><par n="a__adj"/></e>
     <e lm="ciganala"><i>ciganal</i><par n="a__adj"/></e>
@@ -35838,12 +35838,16 @@
     <e lm="Hungara revoluciono di 1848"><i>Hungara revoluciono di 1848</i><par n="o__n"/></e>
     <e lm="Hungari"><i>Hungari</i><par n="o__n"/></e>
     <e lm="Hungaria"><i>Hungaria</i><par n="np__np"/></e>
+    <e lm="hungaria"><i>hungaria</i><par n="o__n"/></e>
     <e lm="Hungariana"><i>Hungarian</i><par n="a__adj"/></e>
+    <e lm="hungariana"><i>hungarian</i><par n="a__adj"/></e>
     <e lm="Hungariana Federuro pri Futbalo"><i>Hungariana Federuro pri Futbal</i><par n="o__n"/></e>
     <e lm="Hungariana invadi di Europa"><i>Hungariana invadi di Europa</i><par n="o__n"/></e>
     <e lm="Hungariana invadi di Europana"><i>Hungariana invadi di Europan</i><par n="a__adj"/></e>
+    <e lm="hungariane"><i>hungarian</i><par n="e__adv"/></e>
     <e lm="hungariani"><i>hungariani</i><par n="o__n"/></e>
     <e lm="Hungariano"><i>Hungarian</i><par n="o__n"/></e>
+    <e lm="hungariano"><i>hungarian</i><par n="o__n"/></e>
     <e lm="hungrar"><i>hungr</i><par n="ar__vblex"/></e>
     <e lm="hungregar"><i>hungreg</i><par n="ar__vblex"/></e>
     <e lm="hungrego"><i>hungreg</i><par n="o__n"/></e>
@@ -60659,14 +60663,13 @@
     <e lm="Numazu"><i>Numazu</i><par n="o__n"/></e>
     <e lm="Numazu, Shizuokana"><i>Numazu, Shizuokan</i><par n="a__adj"/></e>
     <e lm="Numenius"><i>Numenius</i><par n="np__np"/></e>
-    <e lm="numerala"><i>numeral</i><par n="a__adj"/></e>
     <e lm="Numeralo"><i>Numeral</i><par n="o__n"/></e>
     <e lm="numeralo"><i>numeral</i><par n="o__n"/></e>
     <e lm="numeratoro"><i>numerator</i><par n="o__n"/></e>
     <e lm="numeri"><i>numeri</i><par n="o__n"/></e>
     <e lm="numerizar"><i>numeriz</i><par n="ar__vblex"/></e>
     <e lm="numerizita"><i>numerizit</i><par n="a__adj"/></e>
-    <e lm="numero"><i>numero</i><par n="num"/></e>
+    <e lm="numero"><i>numer</i><par n="o__n"/></e>
     <e lm="numero-un"><i>numero-un</i><par n="o__n"/></e>
     <e lm="numerologio"><i>numerologi</i><par n="o__n"/></e>
     <e lm="numeroza"><i>numeroz</i><par n="a__adj"/></e>
@@ -67868,7 +67871,7 @@
     <e lm="potencigar"><i>potencig</i><par n="ar__vblex"/></e>
     <e lm="potencigo"><i>potencig</i><par n="o__n"/></e>
     <e lm="potenciometro"><i>potenciometr</i><par n="o__n"/></e>
-    <e lm="potenco"><i>potenco</i><par n="num"/></e>
+    <e lm="potenco"><i>potenc</i><par n="o__n"/></e>
     <e lm="potenta"><i>potent</i><par n="a__adj"/></e>
     <e lm="potente"><i>potent</i><par n="e__adv"/></e>
     <e lm="potento"><i>potent</i><par n="o__n"/></e>
@@ -70669,7 +70672,7 @@
     <e lm="radikifar"><i>radikif</i><par n="ar__vblex"/></e>
     <e lm="radikifo"><i>radikif</i><par n="o__n"/></e>
     <e lm="radikizita"><i>radikizit</i><par n="a__adj"/></e>
-    <e lm="radiko"><i>radiko</i><par n="num"/></e>
+    <e lm="radiko"><i>radik</i><par n="o__n"/></e>
     <e lm="radikobulbo"><i>radikobulb</i><par n="o__n"/></e>
     <e lm="radikosproso"><i>radikospros</i><par n="o__n"/></e>
     <e lm="radikoza"><i>radikoz</i><par n="a__adj"/></e>
@@ -85241,6 +85244,7 @@
     <e lm="triumfo"><i>triumf</i><par n="o__n"/></e>
     <e lm="triumviraro"><i>triumviraro</i><par n="ar__vblex"/></e>
     <e lm="triumviro"><i>triumvir</i><par n="o__n"/></e>
+    <e lm="triuna"><i>triun</i><par n="a__adj"/></e>
     <e lm="triuneso"><i>triunes</i><par n="o__n"/></e>
     <e lm="triuno"><i>triun</i><par n="o__n"/></e>
     <e lm="triversa"><i>trivers</i><par n="a__adj"/></e>

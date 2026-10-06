@@ -2,7 +2,7 @@
 
 - Gold set: `data/gold/epo_ido.tsv` (162 sentences)
 - Coverage: **99.0%** (622/628 word tokens analysed)
-- Mean chrF: **95.5**
+- Mean chrF: **95.6**
 
 ## By phenomenon
 
@@ -11,25 +11,25 @@
 | quantifier | 3 | 74.6 |
 | elision | 3 | 79.5 |
 | article | 3 | 79.5 |
-| wikipedia | 4 | 85.1 |
 | number | 7 | 85.6 |
+| wikipedia | 4 | 87.3 |
 | derivation | 5 | 88.6 |
-| plural | 22 | 89.4 |
+| plural | 22 | 89.7 |
 | comparative | 4 | 90.5 |
 | accusative | 30 | 92.9 |
 | conjunction | 4 | 94.0 |
-| preposition | 20 | 94.8 |
 | agreement | 22 | 95.6 |
 | pronoun | 40 | 95.7 |
 | possessive | 13 | 95.7 |
 | question | 10 | 95.7 |
+| preposition | 20 | 95.9 |
 | negation | 5 | 97.0 |
 | tense | 21 | 97.5 |
 | relative | 5 | 97.8 |
 | participle | 8 | 97.9 |
-| function | 14 | 98.7 |
 | predicate | 8 | 98.7 |
 | correlative | 29 | 98.8 |
+| function | 14 | 99.7 |
 | basic | 7 | 100.0 |
 | mood | 6 | 100.0 |
 | passive | 4 | 100.0 |
@@ -67,18 +67,18 @@
     - in : Stepo troviĝas en Centra Azio.
     - got: Stepo *troviĝas en Centra Azia.
     - ref: Stepo trovesas en Central Azia.
-- chrF 77 [wikipedia,plural,preposition]  unknown=['Franklin']
+- chrF 85 [wikipedia,plural,preposition]  unknown=['Franklin']
     - in : Franklin estis unu el la fondintoj de Usono.
-    - got: *Franklin esis un ek la fonderi de Usa.
+    - got: *Franklin esis un ek la fonderi di Usa.
     - ref: Franklin esis un ek la fondinti di Usa.
-- chrF 86 [preposition,function]  unknown=['Maria']
-    - in : La libro de Maria estas ĉi tie.
-    - got: La libro de *Maria esas hike.
-    - ref: La libro di Maria esas hike.
 - chrF 99 [possessive]  unknown=['Mario']
     - in : Lia nomo estas Mario.
     - got: Ilua nomo esas *Mario.
     - ref: Lua nomo esas Mario.
+- chrF 100 [preposition,function]  unknown=['Maria']
+    - in : La libro de Maria estas ĉi tie.
+    - got: La libro di *Maria esas hike.
+    - ref: La libro di Maria esas hike.
 - chrF 100 [wikipedia,tense,conjunction]  unknown=['Benjamin', 'Franklin']
     - in : Benjamin Franklin estis usona politikisto kaj inventisto.
     - got: *Benjamin *Franklin esis usana politikisto ed inventisto.
