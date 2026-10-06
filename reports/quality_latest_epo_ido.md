@@ -1,8 +1,8 @@
-# Quality detail — 2026-10-04
+# Quality detail — 2026-10-06
 
 - Gold set: `data/gold/epo_ido.tsv` (162 sentences)
 - Coverage: **99.0%** (622/628 word tokens analysed)
-- Mean chrF: **94.8**
+- Mean chrF: **95.4**
 
 ## By phenomenon
 
@@ -13,27 +13,27 @@
 | article | 3 | 79.5 |
 | wikipedia | 4 | 85.1 |
 | number | 7 | 85.6 |
-| possessive | 13 | 88.5 |
 | derivation | 5 | 88.6 |
 | plural | 22 | 89.4 |
 | comparative | 4 | 91.0 |
-| reflexive | 5 | 91.9 |
-| accusative | 30 | 92.1 |
-| preposition | 20 | 93.0 |
+| accusative | 30 | 92.9 |
 | conjunction | 4 | 94.0 |
-| agreement | 22 | 95.1 |
-| pronoun | 40 | 95.4 |
-| relative | 5 | 95.5 |
+| possessive | 13 | 94.7 |
+| preposition | 20 | 94.8 |
+| agreement | 22 | 95.6 |
+| pronoun | 40 | 95.7 |
 | question | 10 | 95.7 |
 | negation | 5 | 97.0 |
 | tense | 21 | 97.5 |
+| relative | 5 | 97.8 |
 | participle | 8 | 97.9 |
-| correlative | 29 | 98.3 |
 | function | 14 | 98.7 |
+| correlative | 29 | 98.7 |
 | predicate | 8 | 98.7 |
 | basic | 7 | 100.0 |
 | mood | 6 | 100.0 |
 | passive | 4 | 100.0 |
+| reflexive | 5 | 100.0 |
 | adverb | 3 | 100.0 |
 | copula | 3 | 100.0 |
 
