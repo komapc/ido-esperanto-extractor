@@ -2,15 +2,15 @@
 
 - Gold set: `data/gold/epo_ido_tatoeba.tsv` (300 sentences)
 - Coverage: **92.1%** (1471/1597 word tokens analysed)
-- Mean chrF: **73.8**
+- Mean chrF: **74.1**
 
 ## By phenomenon
 
 | Tag | N | Mean chrF |
 |-----|---|-----------|
-| tatoeba | 300 | 73.8 |
+| tatoeba | 300 | 74.1 |
 
-## Flagged sentences (169) — chrF < 70 or unknown words
+## Flagged sentences (168) — chrF < 70 or unknown words
 
 - chrF 12 [tatoeba]
     - in : Mi havas grandan zorgon.
@@ -212,10 +212,6 @@
     - in : Ĉi tio neniam finiĝos.
     - got: Co nultempe expiros.
     - ref: Ta nultempe finos.
-- chrF 54 [tatoeba]  unknown=['Brahmo', 'Sarasvatio']
-    - in : La edzino de Brahmo estas Sarasvatio.
-    - got: La spozulino de *Brahmo esas *Sarasvatio.
-    - ref: La konsorto di Brahma esas Sarasvati.
 - chrF 54 [tatoeba]
     - in : La itala estas mia gepatra lingvo.
     - got: La itala esas mea genitorala linguo.
@@ -280,10 +276,6 @@
     - in : Kristnasko ne estas laika festo.
     - got: Kristnasko ne esas *laika festado.
     - ref: Kristonasko ne esas sekulara festo.
-- chrF 58 [tatoeba]  unknown=['geedziĝa']
-    - in : Hodiaŭ estas geedziĝa festo de mia fratino.
-    - got: Hodie esas *geedziĝa festado de mea fratino.
-    - ref: Hodie esas la mariajo di mea fratino.
 - chrF 58 [tatoeba]  unknown=['Ŝekspiro']
     - in : Ŝekspiro estas konsiderata kiel la plej granda dramisto.
     - got: *Ŝekspiro konsideresas quale la maxim granda dramatisto.
@@ -292,6 +284,10 @@
     - in : Tomo forgesis sian puloveron.
     - got: *Tomo obliviis sua trikoturo.
     - ref: Tom obliviis sua jerzeo.
+- chrF 58 [tatoeba]  unknown=['forpurigi']
+    - in : Ni devas forpurigi la neĝon de sur la tegmento.
+    - got: Ni devas *forpurigi la nivo di sur la tekto.
+    - ref: Ni devas netigar la tekto de la nivo.
 - chrF 59 [tatoeba]
     - in : Via apartamento aspektas mirinde!
     - got: Tua apartamento aspektas astonante!
@@ -344,10 +340,10 @@
     - in : Mi ne estas ĉiesulino!
     - got: Me ne esas prostitucino!
     - ref: Me ne esas putanino!
-- chrF 62 [tatoeba]  unknown=['forpurigi']
-    - in : Ni devas forpurigi la neĝon de sur la tegmento.
-    - got: Ni devas *forpurigi la nivo de sur la tekto.
-    - ref: Ni devas netigar la tekto de la nivo.
+- chrF 62 [tatoeba]  unknown=['Brahmo', 'Sarasvatio']
+    - in : La edzino de Brahmo estas Sarasvatio.
+    - got: La spozulino di *Brahmo esas *Sarasvatio.
+    - ref: La konsorto di Brahma esas Sarasvati.
 - chrF 62 [tatoeba]  unknown=['plu']
     - in : Mi ne scias, kion plu fari.
     - got: Me ne savas, quon *plu facar.
@@ -356,10 +352,6 @@
     - in : La ĉevalo estas en la arbaro.
     - got: La kavalo esas en la silvo.
     - ref: La kavalo es en la foresto.
-- chrF 62 [tatoeba]
-    - in : Berlino estas la metropolo de Germanujo.
-    - got: Berlin esas la metropolito de Germania.
-    - ref: Berlin esas la chefurbo di Germania.
 - chrF 63 [tatoeba]
     - in : Via situacio estas sama, kiel la mia.
     - got: Tua situaciono esas sama, quale la mea.
@@ -420,6 +412,10 @@
     - in : Mi devas helpi ŝin.
     - got: Me devas helpar el.
     - ref: Me mustas helpar el.
+- chrF 66 [tatoeba]  unknown=['geedziĝa']
+    - in : Hodiaŭ estas geedziĝa festo de mia fratino.
+    - got: Hodie esas *geedziĝa festado di mea fratino.
+    - ref: Hodie esas la mariajo di mea fratino.
 - chrF 67 [tatoeba]  unknown=['takso']
     - in : Kiom da libroj vi jam legis laŭ via takso?
     - got: Quante de libri tu ja lektis segun tua *takso?
@@ -516,10 +512,6 @@
     - in : Mi preskaŭ ĉiam portas malhelajn vestaĵojn.
     - got: Me preske sempre portas *malhelajn vesti.
     - ref: Me preske sempre portas tenebroza vesti.
-- chrF 71 [tatoeba]  unknown=['Maria', 'Tom']
-    - in : Maria estis la unua edzino de Tom.
-    - got: *Maria esis la unesma spozulino de *Tom.
-    - ref: Mary esis la unesma spozino di Tom.
 - chrF 71 [tatoeba]  unknown=['radioaparato']
     - in : Kiom kostas tiu radioaparato?
     - got: Quante kustas ta *radioaparato?
@@ -536,10 +528,6 @@
     - in : Kion diras via panjo?
     - got: Quon dicas tua *panjo?
     - ref: Quon dicas tua mama?
-- chrF 72 [tatoeba]  unknown=['Tom', 'milionuloj']
-    - in : Multaj el la klientoj de Tom estas milionuloj.
-    - got: Multa ek la klienti de *Tom esas *milionuloj.
-    - ref: Multa klienti di Tom esas milioneri.
 - chrF 72 [tatoeba]  unknown=['Munkeno']
     - in : Munkeno estas en Germanujo.
     - got: *Munkeno esas en Germania.
@@ -588,10 +576,6 @@
     - in : Via ĉapelo similas al la mia.
     - got: Tua chapelo *similas a la mea.
     - ref: Tua chapelo similesas la mea.
-- chrF 78 [tatoeba]  unknown=['Gronlando']
-    - in : Gronlando estas membro de NATO.
-    - got: *Gronlando esas membro de NATO.
-    - ref: Grenlando esas membro di NATO.
 - chrF 78 [tatoeba]  unknown=['elvomis']
     - in : Li elvomis ĉion, kion li manĝis.
     - got: Il *elvomis omno, quon il manjis.
@@ -608,10 +592,18 @@
     - in : Ŝi estas tre fleksebla.
     - got: El esas tre *fleksebla.
     - ref: El esas tre flexebla.
+- chrF 81 [tatoeba]  unknown=['Maria', 'Tom']
+    - in : Maria estis la unua edzino de Tom.
+    - got: *Maria esis la unesma spozulino di *Tom.
+    - ref: Mary esis la unesma spozino di Tom.
 - chrF 82 [tatoeba]  unknown=['parolmaniero']
     - in : Mi scias per lia parolmaniero, ke li ne estas usonano.
     - got: Me savas per ilua *parolmaniero, ke il ne esas usano.
     - ref: Me savas per lua parol-maniero ke il ne esas usano.
+- chrF 82 [tatoeba]  unknown=['Tom', 'milionuloj']
+    - in : Multaj el la klientoj de Tom estas milionuloj.
+    - got: Multa ek la klienti di *Tom esas *milionuloj.
+    - ref: Multa klienti di Tom esas milioneri.
 - chrF 82 [tatoeba]  unknown=['irlandan']
     - in : Mi nun lernas la irlandan.
     - got: Me nun lernas la *irlandan.
@@ -660,6 +652,10 @@
     - in : Linn kuras tre rapide.
     - got: *Linn kuras tre rapide.
     - ref: Lynn kuras tre rapide.
+- chrF 91 [tatoeba]  unknown=['Gronlando']
+    - in : Gronlando estas membro de NATO.
+    - got: *Gronlando esas membro di NATO.
+    - ref: Grenlando esas membro di NATO.
 - chrF 96 [tatoeba]  unknown=['Londono']
     - in : Miaj infanoj loĝas en Londono.
     - got: Mea infanti lojas en *Londono.
