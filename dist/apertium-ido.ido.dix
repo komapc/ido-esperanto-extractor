@@ -4102,6 +4102,7 @@
     <e lm="adoptenda"><i>adoptend</i><par n="a__adj"/></e>
     <e lm="adoptesar"><i>adoptes</i><par n="ar__vblex"/></e>
     <e lm="Adoptismo"><i>Adoptism</i><par n="o__n"/></e>
+    <e lm="adoptismo"><i>adoptism</i><par n="o__n"/></e>
     <e lm="adopto"><i>adopt</i><par n="o__n"/></e>
     <e lm="adoptomatro"><i>adoptomatr</i><par n="o__n"/></e>
     <e lm="adoptopatro"><i>adoptopatr</i><par n="o__n"/></e>
@@ -12970,6 +12971,7 @@
     <e lm="Brescia"><i>Brescia</i><par n="o__n"/></e>
     <e lm="brescia"><i>bresci</i><par n="a__adj"/></e>
     <e lm="Bresciana"><i>Brescian</i><par n="a__adj"/></e>
+    <e lm="Brest"><i>Brest</i><par n="o__n"/></e>
     <e lm="bretel-paro"><i>bretel-par</i><par n="o__n"/></e>
     <e lm="bretela"><i>bretel</i><par n="a__adj"/></e>
     <e lm="breteli"><i>breteli</i><par n="o__n"/></e>
@@ -14012,7 +14014,6 @@
     <e lm="Camden, Missouri"><i>Camden, Missouri</i><par n="o__n"/></e>
     <e lm="Camden, Tennessee"><i>Camden, Tennessee</i><par n="o__n"/></e>
     <e lm="Camdenton, Missouri"><i>Camdenton, Missouri</i><par n="o__n"/></e>
-    <e lm="Camelus"><i>Camelus</i><par n="o__n"/></e>
     <e lm="Cameron Diaz"><i>Cameron Diaz</i><par n="o__n"/></e>
     <e lm="Cameron van der Burgh"><i>Cameron van der Burgh</i><par n="o__n"/></e>
     <e lm="Cameron, Missouri"><i>Cameron, Missouri</i><par n="o__n"/></e>
@@ -14688,6 +14689,8 @@
     <e lm="cent e triadek e tri"><i>cent e triadek e tri</i><par n="o__n"/></e>
     <e lm="cent ed un"><i>cent ed un</i><par n="o__n"/></e>
     <e lm="cent-e-okadek"><i>cent-e-okadek</i><par n="o__n"/></e>
+    <e lm="centa"><i>cent</i><par n="a__adj"/></e>
+    <e lm="centala"><i>cental</i><par n="a__adj"/></e>
     <e lm="centamil"><i>centamil</i><par n="num"/></e>
     <e lm="Centaur"><i>Centaur</i><par n="o__n"/></e>
     <e lm="centaure"><i>centaur</i><par n="e__adv"/></e>
@@ -14695,6 +14698,7 @@
     <e lm="centaureo"><i>centaure</i><par n="o__n"/></e>
     <e lm="centaurio"><i>centauri</i><par n="o__n"/></e>
     <e lm="centauro"><i>centaur</i><par n="o__n"/></e>
+    <e lm="cente"><i>cent</i><par n="e__adv"/></e>
     <e lm="Centenera de Andaluz"><i>Centenera de Andaluz</i><par n="o__n"/></e>
     <e lm="Center City, Minnesota"><i>Center City, Minnesota</i><par n="o__n"/></e>
     <e lm="Center City, Minnesotana"><i>Center City, Minnesotan</i><par n="a__adj"/></e>
@@ -21657,7 +21661,7 @@
     <e lm="Doon, Iowa"><i>Doon, Iowa</i><par n="o__n"/></e>
     <e lm="Doon, Iowana"><i>Doon, Iowan</i><par n="a__adj"/></e>
     <e lm="dop"><i>dop</i><par n="__pr"/></e>
-    <e lm="Dop-remilo"><i>Dop-remil</i><par n="o__n"/></e>
+    <e lm="dop-remilo"><i>dop-remil</i><par n="o__n"/></e>
     <e lm="dopa"><i>dop</i><par n="a__adj"/></e>
     <e lm="dopa korto"><i>dopa kort</i><par n="o__n"/></e>
     <e lm="dopado"><i>dopad</i><par n="o__n"/></e>
@@ -21888,6 +21892,7 @@
     <e lm="dreno"><i>dren</i><par n="o__n"/></e>
     <e lm="dreno-baseno"><i>dreno-basen</i><par n="o__n"/></e>
     <e lm="Drenobaseno"><i>Drenobasen</i><par n="o__n"/></e>
+    <e lm="drenobaseno"><i>drenobasen</i><par n="o__n"/></e>
     <e lm="drenorobineto"><i>drenorobinet</i><par n="o__n"/></e>
     <e lm="drenotubo"><i>drenotub</i><par n="o__n"/></e>
     <e lm="Drenthe"><i>Drenth</i><par n="e__adv"/></e>
@@ -32693,6 +32698,7 @@
     <e lm="gufo"><i>guf</i><par n="o__n"/></e>
     <e lm="Guglielmo Marconi"><i>Guglielmo Marconi</i><par n="o__n"/></e>
     <e lm="Gugolo"><i>Gugol</i><par n="o__n"/></e>
+    <e lm="Gugoloduplexo"><i>Gugoloduplex</i><par n="o__n"/></e>
     <e lm="Gugoloplexo"><i>Gugoloplex</i><par n="o__n"/></e>
     <e lm="gui"><i>gui</i><par n="o__n"/></e>
     <e lm="guidado"><i>guidad</i><par n="o__n"/></e>
@@ -44887,6 +44893,7 @@
     <e lm="konsakrado"><i>konsakrad</i><par n="o__n"/></e>
     <e lm="konsakrar"><i>konsakr</i><par n="ar__vblex"/></e>
     <e lm="konsakresar"><i>konsakres</i><par n="ar__vblex"/></e>
+    <e lm="konsakreso"><i>konsakres</i><par n="o__n"/></e>
     <e lm="konsakro"><i>konsakr</i><par n="o__n"/></e>
     <e lm="konsanguina"><i>konsanguin</i><par n="a__adj"/></e>
     <e lm="konsanguineso"><i>konsanguines</i><par n="o__n"/></e>
@@ -46410,7 +46417,7 @@
     <e lm="kriscina"><i>kriscin</i><par n="a__adj"/></e>
     <e lm="krise"><i>kris</i><par n="e__adv"/></e>
     <e lm="Krise (filiino di Pallas)"><i>Krise (filiino di Pallas)</i><par n="o__n"/></e>
-    <e lm="Krishna"><i>Krishn</i><par n="a__adj"/></e>
+    <e lm="Krishna"><i>Krishna</i><par n="np__np"/></e>
     <e lm="Krishnaismo"><i>Krishnaism</i><par n="o__n"/></e>
     <e lm="krismo"><i>krism</i><par n="o__n"/></e>
     <e lm="krispa"><i>krisp</i><par n="a__adj"/></e>
@@ -54533,6 +54540,7 @@
     <e lm="Mezotero"><i>Mezoter</i><par n="o__n"/></e>
     <e lm="mezotinto"><i>mezotint</i><par n="o__n"/></e>
     <e lm="Mezur-unajo"><i>Mezur-unaj</i><par n="o__n"/></e>
+    <e lm="mezur-unajo"><i>mezur-unaj</i><par n="o__n"/></e>
     <e lm="mezura"><i>mezur</i><par n="a__adj"/></e>
     <e lm="mezurana"><i>mezuran</i><par n="a__adj"/></e>
     <e lm="mezurano"><i>mezuran</i><par n="o__n"/></e>
@@ -54936,6 +54944,7 @@
     <e lm="mildeso"><i>mildes</i><par n="o__n"/></e>
     <e lm="mildo"><i>mild</i><par n="o__n"/></e>
     <e lm="Mildred, Kansas"><i>Mildred, Kansas</i><par n="o__n"/></e>
+    <e lm="mile"><i>mil</i><par n="e__adv"/></e>
     <e lm="Milejów-Osadana"><i>Milejów-Osadan</i><par n="a__adj"/></e>
     <e lm="mileona"><i>mileon</i><par n="a__adj"/></e>
     <e lm="Miles Davis"><i>Miles Davis</i><par n="o__n"/></e>
@@ -57638,7 +57647,6 @@
     <e lm="myelo"><i>myel</i><par n="o__n"/></e>
     <e lm="Mylae-batalio"><i>Mylae-batali</i><par n="o__n"/></e>
     <e lm="mylord"><i>mylord</i><par n="__ij"/></e>
-    <e lm="Myosotis"><i>Myosotis</i><par n="np__np"/></e>
     <e lm="myra"><i>myr</i><par n="a__adj"/></e>
     <e lm="myron"><i>myron</i><par n="o__n"/></e>
     <e lm="Myron Scholes"><i>Myron Scholes</i><par n="o__n"/></e>
@@ -60447,6 +60455,7 @@
     <e lm="novaluno"><i>novaluno</i><par n="a__adj"/></e>
     <e lm="novan"><i>novan</i><par n="o__n"/></e>
     <e lm="Novatian"><i>Novatian</i><par n="o__n"/></e>
+    <e lm="Novatianismo"><i>Novatianism</i><par n="o__n"/></e>
     <e lm="novaya"><i>novay</i><par n="a__adj"/></e>
     <e lm="Novaya Gazeta"><i>Novaya Gazeta</i><par n="o__n"/></e>
     <e lm="Novaya Gazetana"><i>Novaya Gazetan</i><par n="a__adj"/></e>
@@ -67732,14 +67741,12 @@
     <e lm="posdinea"><i>posdine</i><par n="a__adj"/></e>
     <e lm="posdineo"><i>posdine</i><par n="o__n"/></e>
     <e lm="pose"><i>pos</i><par n="e__adv"/></e>
-    <e lm="posedado"><i>posedad</i><par n="o__n"/></e>
     <e lm="posedajo"><i>posedaj</i><par n="o__n"/></e>
     <e lm="posedalo"><i>posedal</i><par n="o__n"/></e>
     <e lm="posedar"><i>posed</i><par n="ar__vblex"/></e>
     <e lm="posedero"><i>poseder</i><par n="o__n"/></e>
     <e lm="posedeskar"><i>posedesk</i><par n="ar__vblex"/></e>
     <e lm="posedesko"><i>posedesk</i><par n="o__n"/></e>
-    <e lm="posedeso"><i>posedes</i><par n="o__n"/></e>
     <e lm="posedigar"><i>posedig</i><par n="ar__vblex"/></e>
     <e lm="posedo"><i>posed</i><par n="o__n"/></e>
     <e lm="Poseidon"><i>Poseidon</i><par n="np__np"/></e>
@@ -71984,6 +71991,7 @@
     <e lm="remiso"><i>remis</i><par n="o__n"/></e>
     <e lm="remisto"><i>remist</i><par n="o__n"/></e>
     <e lm="remix-kulturo"><i>remix-kultur</i><par n="o__n"/></e>
+    <e lm="Remixo"><i>Remix</i><par n="o__n"/></e>
     <e lm="remo"><i>rem</i><par n="o__n"/></e>
     <e lm="remobatelo"><i>remobatel</i><par n="o__n"/></e>
     <e lm="remonstrar"><i>remonstr</i><par n="ar__vblex"/></e>
@@ -75516,6 +75524,7 @@
     <e lm="Samson Kisekkana"><i>Samson Kisekkan</i><par n="a__adj"/></e>
     <e lm="Samson, Alabama"><i>Samson, Alabama</i><par n="o__n"/></e>
     <e lm="Samson, Alabamana"><i>Samson, Alabaman</i><par n="a__adj"/></e>
+    <e lm="Samsubstanceso"><i>Samsubstances</i><par n="o__n"/></e>
     <e lm="samtempa"><i>samtemp</i><par n="a__adj"/></e>
     <e lm="samtempe"><i>samtemp</i><par n="e__adv"/></e>
     <e lm="Samuel"><i>Samuel</i><par n="o__n"/></e>
@@ -78662,6 +78671,7 @@
     <e lm="slangar"><i>slang</i><par n="ar__vblex"/></e>
     <e lm="Slangerup"><i>Slangerup</i><par n="o__n"/></e>
     <e lm="slango"><i>slang</i><par n="o__n"/></e>
+    <e lm="slapar"><i>slap</i><par n="ar__vblex"/></e>
     <e lm="slate"><i>slat</i><par n="e__adv"/></e>
     <e lm="Slater, Iowa"><i>Slater, Iowa</i><par n="o__n"/></e>
     <e lm="Slater, Iowana"><i>Slater, Iowan</i><par n="a__adj"/></e>
@@ -82276,7 +82286,7 @@
     <e lm="system"><i>system</i><par n="o__n"/></e>
     <e lm="systems"><i>systems</i><par n="o__n"/></e>
     <e lm="syukuro"><i>syukur</i><par n="o__n"/></e>
-    <e lm="Szadek"><i>Szadek</i><par n="o__n"/></e>
+    <e lm="szadek"><i>szadek</i><par n="o__n"/></e>
     <e lm="Szadkowice"><i>Szadkowic</i><par n="e__adv"/></e>
     <e lm="Szadkowice-Koloniana"><i>Szadkowice-Kolonian</i><par n="a__adj"/></e>
     <e lm="Szalenik-Koloniana"><i>Szalenik-Kolonian</i><par n="a__adj"/></e>
@@ -89148,6 +89158,7 @@
     <e lm="Wiatrołuża Pierwszana"><i>Wiatrołuża Pierwszan</i><par n="a__adj"/></e>
     <e lm="Wichita"><i>Wichit</i><par n="a__adj"/></e>
     <e lm="Wichita, Kansas"><i>Wichita, Kansas</i><par n="o__n"/></e>
+    <e lm="Wickenburg"><i>Wickenburg</i><par n="o__n"/></e>
     <e lm="Wickenburg, Arizonana"><i>Wickenburg, Arizonan</i><par n="a__adj"/></e>
     <e lm="Wickliffe"><i>Wickliff</i><par n="e__adv"/></e>
     <e lm="wickliffe"><i>wickliff</i><par n="e__adv"/></e>
