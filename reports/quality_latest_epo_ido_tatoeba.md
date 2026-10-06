@@ -2,15 +2,15 @@
 
 - Gold set: `data/gold/epo_ido_tatoeba.tsv` (300 sentences)
 - Coverage: **92.1%** (1471/1597 word tokens analysed)
-- Mean chrF: **73.6**
+- Mean chrF: **73.8**
 
 ## By phenomenon
 
 | Tag | N | Mean chrF |
 |-----|---|-----------|
-| tatoeba | 300 | 73.6 |
+| tatoeba | 300 | 73.8 |
 
-## Flagged sentences (170) — chrF < 70 or unknown words
+## Flagged sentences (169) — chrF < 70 or unknown words
 
 - chrF 12 [tatoeba]
     - in : Mi havas grandan zorgon.
@@ -20,9 +20,9 @@
     - in : Tomo mensogas kiel kalendaro; kiel gazeto; kiel funebra parolo.
     - got: *Tomo mentias quale kalendario; quale gazeto; quale funerala parolo.
     - ref: Tom afektacas.
-- chrF 19 [tatoeba]
+- chrF 18 [tatoeba]
     - in : Pro via sperto certe ĉiu firmao dungus vin.
-    - got: Pro via probo certe omna firmo employus tu.
+    - got: Pro tua probo certe omna firmo employus tu.
     - ref: Pro vua experienco, irga kompanio engajus vu quik.
 - chrF 21 [tatoeba]
     - in : Vi supozeble estas usonanoj.
@@ -80,10 +80,6 @@
     - in : Tomo estas tridek-jaraĝa viro.
     - got: *Tomo esas triadek-*jaraĝa viro.
     - ref: Tom es viro de triadek yari.
-- chrF 41 [tatoeba]  unknown=['ŝarĝaŭto']
-    - in : Kie estas via ŝarĝaŭto?
-    - got: Ube esas via *ŝarĝaŭto?
-    - ref: Ube esas tua kamiono?
 - chrF 42 [tatoeba]  unknown=['malfortojn']
     - in : Ĉiu havas siajn fortojn kaj malfortojn.
     - got: Omnu havas sua forci ed *malfortojn.
@@ -176,10 +172,6 @@
     - in : Kia mastro, tia dungisto.
     - got: Quala mastro, tala employisto.
     - ref: Quale la mastro, tale la hundo.
-- chrF 52 [tatoeba]  unknown=['panjo']
-    - in : Kion diras via panjo?
-    - got: Quon dicas via *panjo?
-    - ref: Quon dicas tua mama?
 - chrF 52 [tatoeba]  unknown=['Tomo']
     - in : Tomo estas malica homo.
     - got: *Tomo esas maligna homo.
@@ -273,10 +265,6 @@
     - got: *Arĝentas parolo, ma *oras silenco.
     - ref: Arjenta esas parolo, ma silenco esas oro.
 - chrF 56 [tatoeba]
-    - in : Via apartamento aspektas mirinde!
-    - got: Via apartamento aspektas astonante!
-    - ref: Vua apartmento aspektas marveloza!
-- chrF 56 [tatoeba]
     - in : Mi ĉesis fumi antaŭ du jaroj.
     - got: Me cesis fumar pre du yari.
     - ref: Me cesis fumado du yari ante nun.
@@ -304,6 +292,14 @@
     - in : Tomo forgesis sian puloveron.
     - got: *Tomo obliviis sua trikoturo.
     - ref: Tom obliviis sua jerzeo.
+- chrF 59 [tatoeba]
+    - in : Via apartamento aspektas mirinde!
+    - got: Tua apartamento aspektas astonante!
+    - ref: Vua apartmento aspektas marveloza!
+- chrF 59 [tatoeba]  unknown=['ŝarĝaŭto']
+    - in : Kie estas via ŝarĝaŭto?
+    - got: Ube esas tua *ŝarĝaŭto?
+    - ref: Ube esas tua kamiono?
 - chrF 59 [tatoeba]  unknown=['Karlo', 'Markso', 'marksisto']
     - in : Karlo Markso ne estis marksisto.
     - got: *Karlo *Markso ne esis *marksisto.
@@ -365,6 +361,10 @@
     - got: Berlin esas la metropolito de Germania.
     - ref: Berlin esas la chefurbo di Germania.
 - chrF 63 [tatoeba]
+    - in : Via situacio estas sama, kiel la mia.
+    - got: Tua situaciono esas sama, quale la mea.
+    - ref: Via situaciono esas analoga a la mea.
+- chrF 63 [tatoeba]
     - in : La hungara estas mia gepatra lingvo.
     - got: La hungara esas mea genitorala linguo.
     - ref: La Hungariana es mea matrala linguo.
@@ -404,10 +404,6 @@
     - in : Ĉu vi estas Johano?
     - got: Ka tu esas Ioannes?
     - ref: Ka tu esas Jean?
-- chrF 65 [tatoeba]  unknown=['takso']
-    - in : Kiom da libroj vi jam legis laŭ via takso?
-    - got: Quante de libri tu ja lektis segun via *takso?
-    - ref: Quanta librin tu ja lektis segunquante?
 - chrF 65 [tatoeba]
     - in : Mi estas pli alta ol vi.
     - got: Me esas plu alta kam tu.
@@ -424,6 +420,10 @@
     - in : Mi devas helpi ŝin.
     - got: Me devas helpar el.
     - ref: Me mustas helpar el.
+- chrF 67 [tatoeba]  unknown=['takso']
+    - in : Kiom da libroj vi jam legis laŭ via takso?
+    - got: Quante de libri tu ja lektis segun tua *takso?
+    - ref: Quanta librin tu ja lektis segunquante?
 - chrF 67 [tatoeba]  unknown=['He']
     - in : He, vi! Kion vi faras?
     - got: *He, tu! Quon tu facas?
@@ -469,17 +469,9 @@
     - got: Havar karaktero esas la *malkapablo esar diferanta.
     - ref: Havar karaktero esas la nekapableso esar altre.
 - chrF 68 [tatoeba]
-    - in : Via situacio estas sama, kiel la mia.
-    - got: Via situaciono esas sama, quale la mea.
-    - ref: Via situaciono esas analoga a la mea.
-- chrF 68 [tatoeba]
     - in : Komputiloj estas mirindaj aparatoj.
     - got: Komputeri esas marveloza aparati.
     - ref: Komputeri esas astoniva aparati.
-- chrF 69 [tatoeba]
-    - in : Via filo estas heroo.
-    - got: Via filio esas heroo.
-    - ref: Tua filiulo esas heroo.
 - chrF 69 [tatoeba]  unknown=['frida']
     - in : La grundo estis frida.
     - got: La sulo esis *frida.
@@ -524,10 +516,6 @@
     - in : Mi preskaŭ ĉiam portas malhelajn vestaĵojn.
     - got: Me preske sempre portas *malhelajn vesti.
     - ref: Me preske sempre portas tenebroza vesti.
-- chrF 70 [tatoeba]  unknown=['similas']
-    - in : Via ĉapelo similas al la mia.
-    - got: Via chapelo *similas a la mea.
-    - ref: Tua chapelo similesas la mea.
 - chrF 71 [tatoeba]  unknown=['Maria', 'Tom']
     - in : Maria estis la unua edzino de Tom.
     - got: *Maria esis la unesma spozulino de *Tom.
@@ -544,6 +532,10 @@
     - in : Ĉu vi memoras la tempon, kiam ni estis infanoj, kaj vojaĝis trajne?
     - got: Ka tu memoras la tempo, kande ni esis infanti, ed voyajis *trajne?
     - ref: Ka tu memoras la tempo kande ni esis infanti e voyajadis en treno?
+- chrF 72 [tatoeba]  unknown=['panjo']
+    - in : Kion diras via panjo?
+    - got: Quon dicas tua *panjo?
+    - ref: Quon dicas tua mama?
 - chrF 72 [tatoeba]  unknown=['Tom', 'milionuloj']
     - in : Multaj el la klientoj de Tom estas milionuloj.
     - got: Multa ek la klienti de *Tom esas *milionuloj.
@@ -592,6 +584,10 @@
     - in : Ĉi tiu estas mia amiko Tomo.
     - got: Ca esas mea amiko *Tomo.
     - ref: Ta es mea amiko Tom.
+- chrF 78 [tatoeba]  unknown=['similas']
+    - in : Via ĉapelo similas al la mia.
+    - got: Tua chapelo *similas a la mea.
+    - ref: Tua chapelo similesas la mea.
 - chrF 78 [tatoeba]  unknown=['Gronlando']
     - in : Gronlando estas membro de NATO.
     - got: *Gronlando esas membro de NATO.

@@ -2,7 +2,7 @@
 
 - Gold set: `data/gold/epo_ido.tsv` (162 sentences)
 - Coverage: **99.0%** (622/628 word tokens analysed)
-- Mean chrF: **95.4**
+- Mean chrF: **95.5**
 
 ## By phenomenon
 
@@ -18,10 +18,10 @@
 | comparative | 4 | 90.5 |
 | accusative | 30 | 92.9 |
 | conjunction | 4 | 94.0 |
-| possessive | 13 | 94.7 |
 | preposition | 20 | 94.8 |
 | agreement | 22 | 95.6 |
 | pronoun | 40 | 95.7 |
+| possessive | 13 | 95.7 |
 | question | 10 | 95.7 |
 | negation | 5 | 97.0 |
 | tense | 21 | 97.5 |
@@ -51,9 +51,9 @@
     - in : Multaj infanoj kantas.
     - got: Multa infanti kantas.
     - ref: Multa pueri kantas.
-- chrF 58 [possessive]
+- chrF 59 [possessive]
     - in : Via infano estas juna.
-    - got: Via infanto esas yuna.
+    - got: Tua infanto esas yuna.
     - ref: Vua filio esas yuna.
 - chrF 66 [agreement,plural,quantifier]
     - in : Kelkaj junaj infanoj ludas.

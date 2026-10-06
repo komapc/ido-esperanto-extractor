@@ -2195,8 +2195,18 @@ def build_bidix(entries, mono=None):
         # The possessive follows from the pronoun by grammar (me -> mea), not by
         # guess: it competes for its EO side (mia) at the pronoun's own key, so a
         # BERT-only junk adjective (mi -> mia) cannot outrank it.
+        # Several Ido pronouns share one EO possessive (tu/vu/vi -> via): the
+        # one that wins for the pronoun itself (vi -> tu) wins for its
+        # possessive too (via -> tua); the rest rank one step behind.
         if e_poss is not None:
-            rl_rows.append((e_poss, key))
+            preferred = _EO_TO_IDO_PRN.get(epo_poss_stem)
+            if preferred is None:
+                poss_key = key
+            elif preferred == lm_lower:
+                poss_key = (key[0], -1, False, False)
+            else:
+                poss_key = key + (1,)
+            rl_rows.append((e_poss, poss_key))
         det_rows.extend((e_an, key) for e_an in det_twins)
         if not dead and lm_lower not in _PERSONAL_PRONOUNS and l_tags:
             fillers.append((stem, ido_tag, clean_lm == lm_lower and ido_tag == "n",
