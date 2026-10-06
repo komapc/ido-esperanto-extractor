@@ -2107,6 +2107,7 @@ def build_bidix(entries, mono=None):
         # ALL its records (eo_wiktionary also lists 'vi') whose X+'a' does.
         # None → no possessive entry rather than '#cia'.
         epo_poss_stem = None
+        e_poss = None
         if str(raw_par).strip('_') == 'prn' and lm_lower in _PERSONAL_PRONOUNS and epo:
             if not eo_readings or (epo + 'a') in eo_readings:
                 epo_poss_stem = epo
@@ -2191,6 +2192,11 @@ def build_bidix(entries, mono=None):
         key = (dead, source_rank(srcs), uncorroborated_derivation(srcs),
                r_tags[:1] != l_tags[:1])
         rl_rows.append((en, key))
+        # The possessive follows from the pronoun by grammar (me -> mea), not by
+        # guess: it competes for its EO side (mia) at the pronoun's own key, so a
+        # BERT-only junk adjective (mi -> mia) cannot outrank it.
+        if e_poss is not None:
+            rl_rows.append((e_poss, key))
         det_rows.extend((e_an, key) for e_an in det_twins)
         if not dead and lm_lower not in _PERSONAL_PRONOUNS and l_tags:
             fillers.append((stem, ido_tag, clean_lm == lm_lower and ido_tag == "n",
