@@ -34,7 +34,7 @@ from _common import configure_logging, write_json
 logger = logging.getLogger(__name__)
 
 ENTITY_API = "https://www.wikidata.org/w/api.php"
-USER_AGENT = "ApertiumIoEoBot/1.0 (https://github.com/apertium; komapc@gmail.com)"
+USER_AGENT = "ApertiumIoEoBot/1.0 (https://github.com/komapc/apertium-ido-epo)"
 BATCH_SIZE = 50
 MAX_RETRIES = 6
 BASE_DELAY = 5.0
