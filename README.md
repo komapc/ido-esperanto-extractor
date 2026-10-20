@@ -2,7 +2,7 @@
 
 Builds Ido monolingual, Esperanto monolingual, and Ido–Esperanto bilingual dictionaries
 from Wiktionary, Wikipedia, Wikidata, and BERT embedding alignment.
-Outputs feed `apertium-ido`, `apertium-ido-epo`, and the vortaro web dictionary.
+Outputs feed `apertium-ido`, `apertium-ido-epo`, and the [vortaro](https://vortaro.lipu.dev/) web dictionary.
 
 ## Quick Start
 
