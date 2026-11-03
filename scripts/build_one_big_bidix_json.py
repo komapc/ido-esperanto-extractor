@@ -64,10 +64,9 @@ _FUNCTION_WORD_OVERRIDES: Dict[str, Dict[str, str]] = {
     # dil/del RETIRED 2026-09-03: both have a real io_wiktionary gloss ("de
     # la") — export_apertium.py's _reduce_prep_art_contraction() now unwraps
     # any prep_art "X la" candidate to "X" generically, so the .t1x prep-art
-    # transfer rule can re-expand it. 'dal' dropped outright (not retired):
-    # it has ZERO source data anywhere in work/*.json, so its old entry here
-    # was fabricated, not a pipeline-gap fix — until a real source exists,
-    # 'dal' has no bidix translation.
+    # transfer rule can re-expand it. 'dal' needs no entry here either: its
+    # page defines it as "= da la", which wiktionary_parser's
+    # detect_prep_art_base() reads as a prep_art lemma.
     'til':  {'pos': 'pr',       'eo': 'ĝis'},   # until — io_wiktionary EO is junk-grade ("ĝis la revido")
     'quan': {'pos': 'prn',      'eo': 'kiun'},  # accusative of qua; not derived by __prn paradigm
     # qui→kiuj and quo→kio RETIRED 2026-06-10: now supplied by the

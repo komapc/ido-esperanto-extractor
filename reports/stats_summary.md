@@ -1,6 +1,6 @@
 # Dictionary Statistics
 
-- Final entries: 93177
+- Final entries: 93181
 - Monolingual Ido entries: 72490
 
 ## Final by Source
@@ -34,7 +34,7 @@
 - wikidata: 11249
 
 ## Coverage: Ido entries without EO translations
-- no_EO_translation: 50782
+- no_EO_translation: 50779
 - with_any_other_translation: 0
 - with_english_translation: 0
 

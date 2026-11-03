@@ -178,15 +178,22 @@
       </e>
     </pardef>
     <!-- Digit-form ordinals: 1ma / 16ma / 16-ma → "first" / "sixteenth"
-         Ido attaches -ma (sometimes -esma) to a numeral to form an ordinal.
-         When the base is digits, the surface form is just digit(s) + optional
-         hyphen + 'ma'. -->
+         Ido attaches -ma to a number written in digits. The lemma stays the
+         surface spelling (16ma); the hyphenated spelling is analysis-only and
+         normalises to it. -->
     <pardef n="num_ord_regex">
       <e>
-        <re>[0-9]+\-?ma</re>
+        <re>[0-9]+</re>
         <p>
-          <l/>
-          <r><s n="num"/><s n="ord"/></r>
+          <l>ma</l>
+          <r>ma<s n="num"/><s n="ord"/></r>
+        </p>
+      </e>
+      <e r="LR">
+        <re>[0-9]+</re>
+        <p>
+          <l>-ma</l>
+          <r>ma<s n="num"/><s n="ord"/></r>
         </p>
       </e>
     </pardef>

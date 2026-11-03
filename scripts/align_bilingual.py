@@ -200,7 +200,9 @@ def align(io_path: Path, eo_path: Path, out_path: Path,
                 for s in (io_e.get("senses") or [])
                 for tr in (s.get("translations") or [])
             )
-            if not lm or not has_other_tr:
+            # A prep_art page is confirmed by its own "dal = da la" equation
+            # (wiktionary_parser.detect_prep_art_base), so it needs no translation.
+            if not lm or not (has_other_tr or pos == "prep_art"):
                 continue
             if lower.endswith(_IDO_INFLECTION_TAILS):
                 continue  # conjugated form, not a lemma

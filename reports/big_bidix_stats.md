@@ -1,5 +1,5 @@
 # BIG BIDIX Statistics
-- Total entries: 93177
+- Total entries: 93181
 
 ## Entries per source (entry-level provenance)
 - closed_class_tables: 87
@@ -25,7 +25,7 @@
 - ll: 14334
 - morphological_expansion: 13989
 - wiki: 14151
-- wikidata_labels: 16245
+- wikidata_labels: 16226
 - wikt_eo: 206
 - wikt_io: 8619
 
@@ -40,7 +40,7 @@
 - ll: 14334
 - morphological_expansion: 13989
 - wiki: 14151
-- wikidata_labels: 16245
+- wikidata_labels: 16226
 - wikt_eo: 206
 - wikt_io: 8619
 
