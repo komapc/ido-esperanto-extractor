@@ -604,6 +604,26 @@ CLEAN_NAV_ARROWS_RE = re.compile(r"[↓↑]")                        # Remove na
 CLEAN_PAREN_ANNOTATION_RE = re.compile(r"\s*\([^)0-9][^)]*\)\s*")  # Remove parenthetical annotations like (indikante aganton) but not (1), (2)
 NUMBERED_MEANING_RE = re.compile(r"\((\d+)\)\s*([^;()]+)")
 
+def detect_prep_art_base(section: str, title: str) -> Optional[str]:
+    """Return X when an Ido page defines its title as the contraction of X + la.
+
+    io.wiktionary writes these as an equation, in either order:
+    "dal (...) = [[da]] [[la]]" or "[[di]] [[la]] = dil". The equation itself
+    is the source fact, so such a page is a lemma even without a {{eo}} line;
+    the Esperanto side follows from the base preposition at export time.
+    Requiring title == X + "l" keeps out the many definitions that merely
+    contain "[[X]] [[la]]" next to an "=".
+    """
+    lowered = title.lower()
+    for line in section.splitlines():
+        if "=" not in line:
+            continue
+        for m in re.finditer(r"\[\[(\w+)\]\]\s+\[\[la\]\]", line):
+            if lowered == m.group(1).lower() + "l":
+                return m.group(1).lower()
+    return None
+
+
 def clean_translation_text(text: str) -> str:
     if not text:
         return ""
@@ -974,6 +994,10 @@ def parse_wiktionary(
         # Use inferred POS from morphology if extract_pos didn't find one
         if not pos and inferred_pos:
             pos = inferred_pos
+        # "dal = da la": a contraction is a lemma on the strength of its equation.
+        prep_art_base = detect_prep_art_base(section, title) if cfg.source_code == "io" else None
+        if prep_art_base and not pos:
+            pos = "prep_art"
         translations = extract_translations(section, cfg.target_code)
         # OPTIMIZATION: Skip EN/FR extraction if flag set (for orthogonal pipeline)
         en_trans_lists: List[List[str]] = []
@@ -997,7 +1021,7 @@ def parse_wiktionary(
             translations = extract_translations_anywhere(text, cfg.target_code)
         # Allow entries that have EN/FR (or IO/EO on EN pages) even if no direct target translations
         has_extras = bool(en_trans_lists or fr_trans_lists or io_from_en or eo_from_en)
-        if not translations and not has_extras and not variant_base:
+        if not translations and not has_extras and not variant_base and not prep_art_base:
             continue
         entry: Dict[str, Any] = {
             "id": f"{cfg.source_code}:{title}:{pos or 'x'}",

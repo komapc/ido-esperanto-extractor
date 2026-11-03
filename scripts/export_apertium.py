@@ -2010,6 +2010,7 @@ def build_bidix(entries, mono=None):
 
     eo_vbser = _load_eo_vbser_lemmas()
     eo_vbntr = _load_eo_verb_class_lemmas("vbntr")
+    eo_vbtr = _load_eo_verb_class_lemmas("vbtr")
     eo_generatable = _load_eo_generatable_lemmas()
     ungeneratable_skips = 0
     eo_readings = _load_all_eo_readings(eo_generatable)
@@ -2028,6 +2029,7 @@ def build_bidix(entries, mono=None):
     sdefs = ET.SubElement(dictionary, "sdefs")
     for s in ["n", "adj", "adv", "vblex", "vbtr", "vbser", "pr", "prn", "det", "num", "cnjcoo", "cnjsub", "ij", "sg", "pl", "sp", "nom", "acc", "inf", "pri", "pii", "fti", "cni", "imp", "pp", "pp2", "pp3", "ppres", "ger", "gerpast", "p1", "p2", "p3", "subj", "obj", "m", "f", "mf", "nt", "ciph", "np", "def", "sent", "der_pres", "der_act", "der_qual", "der_oz", "der_ala", "der_aro", "der_izar", "der_esar", "der_past", "der_ppa", "der_ppas", "der_pprs", "der_pfut", "der_ppra", "der_aj", "der_onto", "der_onta", "der_ante", "der_inte", "der_onte", "der_ate", "der_ite", "der_ote"]:
         _add_sdef(sdefs, s)
+    _add_sdef(sdefs, "ord")
     # Structural pardefs: regex-based rules that are independent of vocabulary data
     pardefs = ET.SubElement(dictionary, "pardefs")
     _num_pd = ET.SubElement(pardefs, "pardef", n="num_regex")
@@ -2071,10 +2073,30 @@ def build_bidix(entries, mono=None):
     ET.SubElement(_num_l3, "s", n="num")
     _num_r3 = ET.SubElement(_num_p3, "r")
     ET.SubElement(_num_r3, "s", n="num")
+    # Digit ordinals: Ido 16ma <-> Esperanto 16a. The Esperanto analyser also
+    # gives the lemmas 16an, 16-a and 16-an, so those map to Ido as well, but
+    # only right-to-left: the generator spells a digit ordinal one way, 16a.
+    _ord_pd = ET.SubElement(pardefs, "pardef", n="num_ord_regex")
+    for _ord_r, _ord_dir in (("a", None), ("an", "RL"), ("-a", "RL"), ("-an", "RL")):
+        _ord_e = ET.SubElement(_ord_pd, "e")
+        if _ord_dir:
+            _ord_e.set("r", _ord_dir)
+        ET.SubElement(_ord_e, "re").text = "[0-9]+"
+        _ord_p = ET.SubElement(_ord_e, "p")
+        _ord_l = ET.SubElement(_ord_p, "l")
+        _ord_l.text = "ma"
+        ET.SubElement(_ord_l, "s", n="num")
+        ET.SubElement(_ord_l, "s", n="ord")
+        _ord_rr = ET.SubElement(_ord_p, "r")
+        _ord_rr.text = _ord_r
+        ET.SubElement(_ord_rr, "s", n="num")
+        ET.SubElement(_ord_rr, "s", n="ord")
     section = ET.SubElement(dictionary, "section", id="main", type="standard")
     # Regex number passthrough: maps Ido digits → same digits in Esperanto
     _num_sec = ET.SubElement(section, "e")
     ET.SubElement(_num_sec, "par", n="num_regex")
+    _num_ord_sec = ET.SubElement(section, "e")
+    ET.SubElement(_num_ord_sec, "par", n="num_ord_regex")
 
     # Identity mappings for the sentence-punctuation LUs emitted by the
     # monodix punct section (see build_monodix) — without them lt-proc -b
@@ -2123,6 +2145,10 @@ def build_bidix(entries, mono=None):
         # surface form) is filtered out rather than shipped as a dead `#word`.
         cands = _eo_candidates(e)
         if not cands:
+            # A contraction defined only by its equation (dal = da la) has no
+            # gloss; its Esperanto side comes from the base preposition.
+            if lm.lower() in _PREP_ART and _record_paradigm(e) == "prep_art":
+                best_bidix_entries.setdefault((lm, "", "prep_art"), e)
             continue
         epo = pick_best(cands, valid=pos_valid(cands, _entry_ido_tag(e),
                                                eo_generatable, eo_readings))
@@ -2457,6 +2483,21 @@ def build_bidix(entries, mono=None):
                 r_der.text = epo  # Epo verb lemma (e.g. 'krei'), not a suffix combo
                 ET.SubElement(r_der, "s", n=epo_vtag).tail = ""
                 ET.SubElement(r_der, "s", n=epo_ptag).tail = ""
+            # ido→epo present passive (konstruktesas -> estas konstruata): -ata
+            # exists only on apertium-epo's vbtr paradigm, so the row exposes that
+            # to the transfer rule, which uses -ita for every other verb.
+            if epo in eo_vbtr:
+                e_der = ET.SubElement(section, "e")
+                e_der.set("r", "LR")
+                p_der = ET.SubElement(e_der, "p")
+                l_der = ET.SubElement(p_der, "l")
+                l_der.text = stem
+                ET.SubElement(l_der, "s", n="vblex").tail = ""
+                ET.SubElement(l_der, "s", n="der_esar").tail = ""
+                r_der = ET.SubElement(p_der, "r")
+                r_der.text = epo
+                ET.SubElement(r_der, "s", n="vbtr").tail = ""
+                ET.SubElement(r_der, "s", n="der_esar").tail = ""
             # epo→ido for intransitive verbs: apertium-epo tags their -anta as
             # <vbntr><ppres> and their -inta as <vbntr><pp> -- the same tags that
             # mean -ata/-ita on transitive verbs, so the rows above (vbtr ppres ->

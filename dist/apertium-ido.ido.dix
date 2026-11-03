@@ -251,10 +251,17 @@
     </pardef>
     <pardef n="num_ord_regex">
       <e>
-        <re>[0-9]+\-?ma</re>
+        <re>[0-9]+</re>
         <p>
-          <l/>
-          <r><s n="num"/><s n="ord"/></r>
+          <l>ma</l>
+          <r>ma<s n="num"/><s n="ord"/></r>
+        </p>
+      </e>
+      <e r="LR">
+        <re>[0-9]+</re>
+        <p>
+          <l>-ma</l>
+          <r>ma<s n="num"/><s n="ord"/></r>
         </p>
       </e>
     </pardef>
@@ -6657,7 +6664,6 @@
     <e lm="anemofileso"><i>anemofiles</i><par n="o__n"/></e>
     <e lm="anemofilo"><i>anemofil</i><par n="o__n"/></e>
     <e lm="anemometro"><i>anemometr</i><par n="o__n"/></e>
-    <e lm="Anemone"><i>Anemon</i><par n="e__adv"/></e>
     <e lm="anemono"><i>anemon</i><par n="o__n"/></e>
     <e lm="aneroida"><i>aneroid</i><par n="a__adj"/></e>
     <e lm="aneroido"><i>aneroid</i><par n="o__n"/></e>
@@ -11120,6 +11126,7 @@
     <e lm="Bengalana"><i>Bengalan</i><par n="a__adj"/></e>
     <e lm="Bengalano"><i>Bengalan</i><par n="o__n"/></e>
     <e lm="Bengali-linguo"><i>Bengali-lingu</i><par n="o__n"/></e>
+    <e lm="Bengaluru"><i>Bengaluru</i><par n="o__n"/></e>
     <e lm="Benghazi"><i>Benghazi</i><par n="o__n"/></e>
     <e lm="bengt"><i>bengt</i><par n="o__n"/></e>
     <e lm="Bengt Robert Holmström"><i>Bengt Robert Holmström</i><par n="o__n"/></e>
@@ -17240,6 +17247,7 @@
     <e lm="Dakota, Minnesotana"><i>Dakota, Minnesotan</i><par n="a__adj"/></e>
     <e lm="Daktili"><i>Daktili</i><par n="o__n"/></e>
     <e lm="daktilo"><i>daktil</i><par n="o__n"/></e>
+    <e lm="da"><p><l>dal</l><r>da<s n="pr"/><s n="def"/></r></p></e>
     <e lm="Dalai-lamao"><i>Dalai-lama</i><par n="o__n"/></e>
     <e lm="dalay"><i>dalay</i><par n="o__n"/></e>
     <e lm="Dalay Lama"><i>Dalay Lama</i><par n="o__n"/></e>
@@ -21492,7 +21500,7 @@
     <e lm="doloro"><i>dolor</i><par n="o__n"/></e>
     <e lm="dolorozeso"><i>dolorozes</i><par n="o__n"/></e>
     <e lm="dolorozo"><i>doloroz</i><par n="o__n"/></e>
-    <e lm="Dolospionado"><i>Dolospionad</i><par n="o__n"/></e>
+    <e lm="dolospionado"><i>dolospionad</i><par n="o__n"/></e>
     <e lm="doloza"><i>doloz</i><par n="a__adj"/></e>
     <e lm="dolph"><i>dolph</i><par n="o__n"/></e>
     <e lm="Dolph Lundgren"><i>Dolph Lundgren</i><par n="o__n"/></e>
@@ -25476,7 +25484,6 @@
     <e lm="Eunola, Alabamana"><i>Eunola, Alabaman</i><par n="a__adj"/></e>
     <e lm="eunuka"><i>eunuk</i><par n="a__adj"/></e>
     <e lm="eunuko"><i>eunuk</i><par n="o__n"/></e>
-    <e lm="Euphorbia"><i>Euphorbia</i><par n="np__np"/></e>
     <e lm="Euratom"><i>Euratom</i><par n="o__n"/></e>
     <e lm="Eurazia"><i>Eurazia</i><par n="np__np"/></e>
     <e lm="eurazia"><i>eurazi</i><par n="a__adj"/></e>
@@ -33960,7 +33967,6 @@
     <e lm="hemingway"><i>hemingway</i><par n="o__n"/></e>
     <e lm="hemiopa"><i>hemiop</i><par n="a__adj"/></e>
     <e lm="hemiplegio"><i>hemiplegi</i><par n="o__n"/></e>
-    <e lm="Hemiptera"><i>Hemipter</i><par n="a__adj"/></e>
     <e lm="hemiptera"><i>hemipter</i><par n="a__adj"/></e>
     <e lm="hemiptero"><i>hemipter</i><par n="o__n"/></e>
     <e lm="hemistiko"><i>hemistik</i><par n="o__n"/></e>
@@ -59666,6 +59672,7 @@
     <e lm="Niemienice"><i>Niemienic</i><par n="e__adv"/></e>
     <e lm="Niemienice-Koloniana"><i>Niemienice-Kolonian</i><par n="a__adj"/></e>
     <e lm="Niemirówek-Koloniana"><i>Niemirówek-Kolonian</i><par n="a__adj"/></e>
+    <e lm="Nieszawa"><i>Nieszaw</i><par n="a__adj"/></e>
     <e lm="Nietupa-Koloniana"><i>Nietupa-Kolonian</i><par n="a__adj"/></e>
     <e lm="nievarojka"><i>nievarojk</i><par n="a__adj"/></e>
     <e lm="niew"><i>niew</i><par n="o__n"/></e>
@@ -62467,7 +62474,6 @@
     <e lm="otfried"><i>otfried</i><par n="o__n"/></e>
     <e lm="other"><i>other</i><par n="o__n"/></e>
     <e lm="othmar"><i>othm</i><par n="ar__vblex"/></e>
-    <e lm="Otho"><i>Oth</i><par n="o__n"/></e>
     <e lm="Otho, Iowa"><i>Otho, Iowa</i><par n="o__n"/></e>
     <e lm="Otho, Iowana"><i>Otho, Iowan</i><par n="a__adj"/></e>
     <e lm="otilio"><i>otili</i><par n="o__n"/></e>
@@ -64474,7 +64480,7 @@
     <e lm="patton"><i>patton</i><par n="o__n"/></e>
     <e lm="Pattonsburg, Missouri"><i>Pattonsburg, Missouri</i><par n="o__n"/></e>
     <e lm="Patty Brard"><i>Patty Brard</i><par n="o__n"/></e>
-    <e lm="Pau"><i>Pau</i><par n="np__np"/></e>
+    <e lm="Pau"><i>Pau</i><par n="o__n"/></e>
     <e lm="Pau Casals"><i>Pau Casals</i><par n="o__n"/></e>
     <e lm="Paul Allen"><i>Paul Allen</i><par n="o__n"/></e>
     <e lm="Paul Anka"><i>Paul Anka</i><par n="o__n"/></e>
@@ -77199,6 +77205,7 @@
     <e lm="seydou"><i>seydou</i><par n="o__n"/></e>
     <e lm="Seydou Diarrana"><i>Seydou Diarran</i><par n="a__adj"/></e>
     <e lm="Seyhan"><i>Seyhan</i><par n="o__n"/></e>
+    <e lm="Seymour"><i>Seymour</i><par n="o__n"/></e>
     <e lm="Seymour, Indiana"><i>Seymour, Indiana</i><par n="o__n"/></e>
     <e lm="Seymour, Indianana"><i>Seymour, Indianan</i><par n="a__adj"/></e>
     <e lm="Seymour, Iowa"><i>Seymour, Iowa</i><par n="o__n"/></e>
@@ -79596,6 +79603,7 @@
     <e lm="Spirit Lake, Iowana"><i>Spirit Lake, Iowan</i><par n="a__adj"/></e>
     <e lm="spiritale"><i>spirital</i><par n="e__adv"/></e>
     <e lm="Spiritaleso"><i>Spiritales</i><par n="o__n"/></e>
+    <e lm="spiritaleso"><i>spiritales</i><par n="o__n"/></e>
     <e lm="spiritalismo"><i>spiritalism</i><par n="o__n"/></e>
     <e lm="spiritismo"><i>spiritism</i><par n="o__n"/></e>
     <e lm="spiritista"><i>spiritist</i><par n="a__adj"/></e>
@@ -90915,6 +90923,7 @@
     <e lm="zoo"><i>zo</i><par n="o__n"/></e>
     <e lm="zoocecidio"><i>zoocecidi</i><par n="o__n"/></e>
     <e lm="Zoofilio"><i>Zoofili</i><par n="o__n"/></e>
+    <e lm="zoofilio"><i>zoofili</i><par n="o__n"/></e>
     <e lm="zoofito"><i>zoofit</i><par n="o__n"/></e>
     <e lm="zoografio"><i>zoografi</i><par n="o__n"/></e>
     <e lm="zoologiisto"><i>zoologiist</i><par n="o__n"/></e>
