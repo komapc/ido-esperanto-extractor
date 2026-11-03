@@ -583,11 +583,11 @@ _EO_EPO_DIX = Path(__file__).resolve().parents[2] / "apertium-epo/apertium-epo.e
 
 
 def _load_eo_verb_class_lemmas(tag: str, dix_path: Path = _EO_EPO_DIX) -> set:
-    """Single-word Esperanto verb lemmas whose apertium-epo paradigm emits
-    <s n="{tag}"/> (vbser, vbntr)."""
+    """Single-word Esperanto lemmas whose apertium-epo paradigm emits
+    <s n="{tag}"/> (vbser, vbntr, adj)."""
     if not dix_path.exists():
         logging.warning("apertium-epo monodix not found at %s — skipping %s "
-                        "verb-class bidix entries (epo→ido stays @).", dix_path, tag)
+                        "bidix entries.", dix_path, tag)
         return set()
     try:
         root = ET.parse(dix_path).getroot()
@@ -599,13 +599,18 @@ def _load_eo_verb_class_lemmas(tag: str, dix_path: Path = _EO_EPO_DIX) -> set:
     lemmas = {e.get("lm") for e in root.iter("e")
               if e.get("lm") and " " not in e.get("lm")
               and any(p.get("n") in pars for p in e.findall("par"))}
-    logging.info("Loaded %d apertium-epo %s verb lemmas for epo→ido bidix.", len(lemmas), tag)
+    logging.info("Loaded %d apertium-epo %s lemmas for the bidix.", len(lemmas), tag)
     return lemmas
 
 
 def _load_eo_vbser_lemmas(dix_path: Path = _EO_EPO_DIX) -> set:
     """Single-word Esperanto verb lemmas apertium-epo conjugates as `vbser`."""
     return _load_eo_verb_class_lemmas("vbser", dix_path)
+
+
+def _load_eo_adj_lemmas(dix_path: Path = _EO_EPO_DIX) -> set:
+    """Single-word Esperanto adjectives of apertium-epo, for _cognate_ala_rows."""
+    return _load_eo_verb_class_lemmas("adj", dix_path)
 
 
 def _load_eo_generatable_lemmas(dix_path: Path = _EO_EPO_DIX) -> Optional[set]:
@@ -1891,6 +1896,86 @@ def _plain_adjective_twins(section, twins) -> int:
     return n
 
 
+def _cognate_ala_rows(section, eo_adjectives) -> int:
+    """ido->epo for stem<n><der_ala>: when Esperanto has the same word as an
+    adjective (normala, originala, egala), that is the translation, not the
+    composition of the noun's translation (norma, origina, egoa).
+
+    The compositional row keeps serving epo->ido as r="RL", so that direction
+    does not change. Capitalized stems are titles and are left alone."""
+    groups: Dict[str, list] = {}
+    for e in section.iter("e"):
+        p = e.find("p")
+        if p is None or p.find("l") is None or p.find("r") is None:
+            continue
+        stem = p.find("l").text or ""
+        tags = [x.get("n") for x in p.find("l").iter("s")]
+        if tags == ["n", "der_ala", "adj"] and stem == stem.lower() \
+                and stem + "ala" in eo_adjectives:
+            groups.setdefault(stem, []).append(e)
+    for stem, rows in groups.items():
+        cognate = stem + "ala"
+        has_cognate = False
+        for e in rows:
+            if e.find("p/r").text == cognate:
+                has_cognate = True
+            elif e.get("r") == "LR":
+                section.remove(e)
+            else:
+                e.set("r", "RL")
+        if not has_cognate:
+            e = ET.SubElement(section, "e", r="LR")
+            p = ET.SubElement(e, "p")
+            l = ET.SubElement(p, "l")
+            l.text = stem
+            for tag in ("n", "der_ala", "adj"):
+                ET.SubElement(l, "s", n=tag)
+            r = ET.SubElement(p, "r")
+            r.text = cognate
+            ET.SubElement(r, "s", n="adj")
+    return len(groups)
+
+
+def _cognate_adjective_rows(section, eo_adjectives) -> int:
+    """stem<adj> whose every translation is not an Esperanto adjective
+    (originala -> originalo, a noun, which cannot generate): when Esperanto has
+    the identical adjective, that is the translation. Capitalized stems are
+    titles and are left alone."""
+    known = {a.lower() for a in eo_adjectives}
+    groups: Dict[str, list] = {}
+    other_pos = set()  # stems translated by a non-adjective tag: nul<adj> -> nula<prn>
+    rl_sides = set()
+    for e in section.iter("e"):
+        p = e.find("p")
+        if p is None or p.find("l") is None or p.find("r") is None:
+            continue
+        r_is_adj = [x.get("n") for x in p.find("r").iter("s")] == ["adj"]
+        if r_is_adj and e.get("r") != "LR":
+            rl_sides.add(p.find("r").text)
+        if [x.get("n") for x in p.find("l").iter("s")] == ["adj"] and e.get("r") != "RL":
+            if r_is_adj:
+                groups.setdefault(p.find("l").text or "", []).append(e)
+            else:
+                other_pos.add(p.find("l").text or "")
+    n = 0
+    for stem, rows in groups.items():
+        cognate = stem + "a"
+        if stem != stem.lower() or cognate not in eo_adjectives or stem in other_pos:
+            continue
+        if any((e.find("p/r").text or "").lower() in known for e in rows):
+            continue
+        for e in rows[1:]:
+            section.remove(e)
+        e = rows[0]
+        rl_sides.discard(e.find("p/r").text)
+        e.find("p/r").text = cognate
+        if cognate in rl_sides:
+            e.set("r", "LR")
+        rl_sides.add(cognate)
+        n += 1
+    return n
+
+
 def _ido_generatable(mono) -> tuple[set, set]:
     """What the Ido monodix can generate, for _restrict_rl_losers: the set of
     (lemma, tag) of its paradigm entries, and the lemmas whose paradigm maps
@@ -2480,6 +2565,13 @@ def build_bidix(entries, mono=None):
     adj_twinned = _plain_adjective_twins(section, adj_twins)
     logging.info("Bidix: %d EO adjectives translated epo->ido by the plain Ido "
                  "adjective instead of a noun's -ala/-oza derivative.", adj_twinned)
+    eo_adjectives = _load_eo_adj_lemmas()
+    ala_cognates = _cognate_ala_rows(section, eo_adjectives)
+    logging.info("Bidix: %d -ala adjectives translated ido->epo by the identical "
+                 "EO adjective.", ala_cognates)
+    adj_cognates = _cognate_adjective_rows(section, eo_adjectives)
+    logging.info("Bidix: %d adjectives whose translation was no EO adjective now "
+                 "take the identical one.", adj_cognates)
     # The determiner rows are RL-only, so _restrict_rl_losers skips them:
     # among those sharing an EO side keep only the best-keyed ones.
     det_groups: Dict[str, list] = {}

@@ -17,7 +17,7 @@ from xml.etree import ElementTree as ET
 # Add parent directory to path to import the module
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'scripts'))
 
-from export_apertium import build_monodix, build_bidix, _load_eo_generatable_lemmas, _EO_PRPERS_FEATS
+from export_apertium import build_monodix, build_bidix, _cognate_adjective_rows, _cognate_ala_rows, _load_eo_generatable_lemmas, _EO_PRPERS_FEATS
 
 
 def test_new_format_entries_without_language_field():
@@ -245,6 +245,51 @@ def test_generatable_lemmas_include_correlative_plural_and_case_forms():
         return
     for form in ('kiuj', 'kiujn', 'kiun', 'kioj', 'kion'):
         assert form in valid, f"{form!r} missing from the generatability gate"
+
+
+
+def _ala_section(*rows):
+    section = ET.Element("section")
+    for stem, target, restriction in rows:
+        attrs = {"r": restriction} if restriction else {}
+        e = ET.SubElement(section, "e", **attrs)
+        p = ET.SubElement(e, "p")
+        l = ET.SubElement(p, "l")
+        l.text = stem
+        for tag in ("n", "der_ala", "adj"):
+            ET.SubElement(l, "s", n=tag)
+        r = ET.SubElement(p, "r")
+        r.text = target
+        ET.SubElement(r, "s", n="adj")
+    return section
+
+
+def _ala_rows(section):
+    return sorted((e.find("p/l").text, e.find("p/r").text, e.get("r")) for e in section.iter("e"))
+
+
+def test_cognate_ala_replaces_ido_epo_and_keeps_epo_ido():
+    section = _ala_section(("norm", "norma", None))
+    assert _cognate_ala_rows(section, {"normala"}) == 1
+    assert _ala_rows(section) == [("norm", "norma", "RL"), ("norm", "normala", "LR")]
+
+
+def test_cognate_ala_drops_ido_epo_only_losers():
+    section = _ala_section(("origin", "origina", "LR"))
+    _cognate_ala_rows(section, {"originala"})
+    assert _ala_rows(section) == [("origin", "originala", "LR")]
+
+
+def test_cognate_ala_keeps_an_existing_cognate_row():
+    section = _ala_section(("materi", "materia", "LR"), ("materi", "materiala", None))
+    _cognate_ala_rows(section, {"materiala"})
+    assert _ala_rows(section) == [("materi", "materiala", None)]
+
+
+def test_cognate_ala_ignores_words_esperanto_lacks_and_titles():
+    section = _ala_section(("urb", "urba", None), ("Norm", "Norma", None))
+    assert _cognate_ala_rows(section, {"normala"}) == 0
+    assert _ala_rows(section) == [("Norm", "Norma", None), ("urb", "urba", None)]
 
 
 if __name__ == "__main__":
@@ -766,3 +811,36 @@ def test_short_al_form_comes_from_the_noun_unless_an_adjective_has_it():
 def test_no_short_forms_without_the_lowercase_counts():
     entries = [_short_entry("generala", "a__adj", "adj")]
     assert _short_mono(entries, {"general": 100, "generala": 500}, None) == set()
+
+
+def _adj_section(*rows):
+    section = ET.Element("section")
+    for stem, target, restriction in rows:
+        attrs = {"r": restriction} if restriction else {}
+        e = ET.SubElement(section, "e", **attrs)
+        p = ET.SubElement(e, "p")
+        l = ET.SubElement(p, "l")
+        l.text = stem
+        ET.SubElement(l, "s", n="adj")
+        r = ET.SubElement(p, "r")
+        r.text = target
+        ET.SubElement(r, "s", n="adj")
+    return section
+
+
+def test_cognate_adjective_replaces_a_non_adjective_target():
+    section = _adj_section(("dan", "dano", None))
+    assert _cognate_adjective_rows(section, {"dana"}) == 1
+    assert _ala_rows(section) == [("dan", "dana", None)]
+
+
+def test_cognate_adjective_is_ido_epo_only_under_an_rl_row():
+    section = _adj_section(("original", "originalo", None), ("original", "originala", "RL"))
+    assert _cognate_adjective_rows(section, {"originala"}) == 1
+    assert _ala_rows(section) == [("original", "originala", "LR"), ("original", "originala", "RL")]
+
+
+def test_cognate_adjective_keeps_real_adjective_targets_and_titles():
+    section = _adj_section(("materi", "materia", None), ("Dan", "Dano", None), ("us", "Usono", None))
+    assert _cognate_adjective_rows(section, {"materia", "materiala", "Dana", "dana"}) == 0
+    assert _ala_rows(section) == [("Dan", "Dano", None), ("materi", "materia", None), ("us", "Usono", None)]
