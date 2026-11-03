@@ -1097,6 +1097,83 @@ def _load_io_frequency(path: Path = _IO_FREQUENCY) -> Dict[str, int]:
     return {it["token"]: it["count"] for it in data.get("items", []) if it.get("token")}
 
 
+def _load_io_lowercase(path: Path = _IO_FREQUENCY) -> Dict[str, int]:
+    """{token: lowercase occurrences} from the same list, or {} when the list
+    predates the `lower` field (rerun build_frequency_io_wiki.py)."""
+    if not path.exists():
+        return {}
+    data = read_json(path)
+    lower = {it["token"]: it["lower"] for it in data.get("items", [])
+             if it.get("token") and "lower" in it}
+    if not lower:
+        logging.warning("%s has no lowercase counts: no short adjectives will be "
+                        "emitted. Rerun build_frequency_io_wiki.py.", path)
+    return lower
+
+
+# An Ido adjective may drop its -a (lingual, general). The grammar allows it for
+# any adjective, but most bare stems also spell foreign words and names (if, it,
+# text, Martin), so a short form is only added where io.wikipedia shows it in use.
+_SHORT_ADJ_MIN_LEN = 4
+_SHORT_ADJ_MIN_LOWER = 2
+_SHORT_ADJ_MIN_LOWER_SHARE = 0.3
+_SHORT_ADJ_PARADIGMS = {"short__adj", "short_ala__n"}
+
+
+def _short_adjective_attested(surface: str, freq: Dict[str, int], lower: Dict[str, int]) -> bool:
+    """True when `surface` is mostly lowercase in the corpus and the full -a form
+    is at least as common: a name fails the first test, a foreign word the second."""
+    total = freq.get(surface, 0)
+    low = lower.get(surface, 0)
+    return (len(surface) >= _SHORT_ADJ_MIN_LEN
+            and surface[-1] not in "aeiou"
+            and low >= _SHORT_ADJ_MIN_LOWER
+            and low / total >= _SHORT_ADJ_MIN_LOWER_SHARE
+            and freq.get(surface + "a", 0) >= low)
+
+
+def _monodix_surfaces(dictionary) -> set:
+    """Every lowercase surface the monodix analyses so far."""
+    endings = {}
+    for pd in dictionary.iter("pardef"):
+        endings[pd.get("n")] = {(l.text or "") for l in pd.iter("l")}
+    surfaces = set()
+    for e in dictionary.find("section").iter("e"):
+        i, par = e.find("i"), e.find("par")
+        if i is not None and par is not None:
+            stem = (i.text or "").lower()
+            surfaces.update(stem + end.lower() for end in endings.get(par.get("n"), ()))
+        elif i is not None:
+            surfaces.add((i.text or "").lower())
+        else:
+            surfaces.update((l.text or "").lower() for l in e.iter("l"))
+    return surfaces
+
+
+def _add_short_adjectives(dictionary, section, freq: Dict[str, int], lower: Dict[str, int]) -> int:
+    """Analysis-only short forms: bare a__adj stems, then noun + -al where no
+    adjective already claims the surface (general<adj> over gener<n><der_ala>).
+    Never overrides an existing surface, so function words stay unambiguous."""
+    taken = _monodix_surfaces(dictionary)
+    wanted = (("a__adj", "short__adj", ""), ("o__n", "short_ala__n", "al"))
+    new = []
+    for par_in, par_out, suffix in wanted:
+        for e in section.iter("e"):
+            par, i = e.find("par"), e.find("i")
+            if par is None or i is None or par.get("n") != par_in or e.get("r"):
+                continue
+            surface = (i.text or "") + suffix
+            if surface in taken or not _short_adjective_attested(surface, freq, lower):
+                continue
+            taken.add(surface)
+            new.append((e.get("lm"), i.text, par_out))
+    for lm, stem, par_out in new:
+        en = ET.SubElement(section, "e", lm=lm, r="LR")
+        ET.SubElement(en, "i").text = stem
+        ET.SubElement(en, "par", n=par_out).tail = ""
+    return len(new)
+
+
 def _generation_losers(items, freq: Dict[str, int]) -> set:
     """Lemmas that must stay analysis-only (r="LR") in the monodix.
 
@@ -1172,7 +1249,8 @@ def _add_verb_form_synonyms(dictionary, section, final_list, synonyms) -> int:
 
 
 def build_monodix(entries, freq: Optional[Dict[str, int]] = None,
-                  verb_form_synonyms: Optional[List[Dict[str, str]]] = None):
+                  verb_form_synonyms: Optional[List[Dict[str, str]]] = None,
+                  io_lowercase: Optional[Dict[str, int]] = None):
     """Ido monodix. One <e> per lemma; the paradigm does all the inflection.
 
     The interesting decisions are (a) which of several same-lemma records
@@ -1424,6 +1502,9 @@ def build_monodix(entries, freq: Optional[Dict[str, int]] = None,
     if verb_form_synonyms:
         n = _add_verb_form_synonyms(dictionary, section, final_list, verb_form_synonyms)
         logging.info("Monodix: %d analysis-only verb-form synonyms", n)
+
+    n = _add_short_adjectives(dictionary, section, freq or {}, io_lowercase or {})
+    logging.info("Monodix: %d analysis-only short adjectives", n)
 
     return dictionary
 
@@ -1822,6 +1903,8 @@ def _ido_generatable(mono) -> tuple[set, set]:
         if not lm:
             continue
         par = e.find("par")
+        if par is not None and par.get("n") in _SHORT_ADJ_PARADIGMS:
+            continue  # analysis-only, says nothing about what the lemma generates
         tag = map_s_tag(par.get("n"), None) if par is not None else None
         if tag:
             tagged.add((lm, tag))
@@ -2585,7 +2668,7 @@ def export_apertium(entries_path: Path, out_monodix: Path, bidix_entries_path: P
                         if (e.get('lemma') or '').strip() not in name_only]
         logging.info("Monodix: dropped %d entries translated only by lowercase names",
                      before - len(mono_entries))
-    mono = build_monodix(mono_entries, _load_io_frequency(), _load_verb_form_synonyms())
+    mono = build_monodix(mono_entries, _load_io_frequency(), _load_verb_form_synonyms(), _load_io_lowercase())
     write_xml_file(mono, out_monodix, header_comment=_MONODIX_HEADER)
 
     logging.info(f"Building bilingual dictionary from {len(bidix_entries)} entries")

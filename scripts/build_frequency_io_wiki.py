@@ -47,9 +47,10 @@ def strip_wikitext(text: str) -> str:
     return text
 
 
-def tokenize(text: str) -> Iterable[str]:
+def tokenize(text: str, lowercase: bool = True) -> Iterable[str]:
     # Normalize and split on non-letters; keep Unicode letters
-    text = text.lower()
+    if lowercase:
+        text = text.lower()
     # Python's default regex lacks \p{L}, but many letters are matched by \w; fallback split
     # Replace non-letter characters with space
     text = re.sub(r"[^\w]+", " ", text, flags=re.UNICODE)
@@ -81,6 +82,9 @@ def build_frequency(xml_path: Path, out_json: Path) -> None:
     logging.info("Building frequency from %s", xml_path)
     ensure_dir(out_json.parent)
     counts: Counter[str] = collections.Counter()
+    # Occurrences written in lowercase: export_apertium uses them to tell a short
+    # Ido adjective (lingual) from a name (Vidal).
+    lower_counts: Counter[str] = collections.Counter()
     num_pages = 0
     for title, ns, text in iter_wiki_pages(xml_path):
         if ns != "0":  # main/article namespace only
@@ -88,6 +92,7 @@ def build_frequency(xml_path: Path, out_json: Path) -> None:
         num_pages += 1
         plain = strip_wikitext(text)
         counts.update(tokenize(plain))
+        lower_counts.update(tok for tok in tokenize(plain, lowercase=False) if tok[0].islower())
         if num_pages % 500 == 0:
             logging.info("Processed %d pages...", num_pages)
 
@@ -95,7 +100,7 @@ def build_frequency(xml_path: Path, out_json: Path) -> None:
     # Build ranked list
     ranked = sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))
     out = [
-        {"token": tok, "count": int(cnt), "rank": idx + 1}
+        {"token": tok, "count": int(cnt), "lower": int(lower_counts.get(tok, 0)), "rank": idx + 1}
         for idx, (tok, cnt) in enumerate(ranked)
     ]
     write_json(out_json, {"source": str(xml_path), "items": out})

@@ -714,3 +714,55 @@ def test_verb_form_synonym_is_analysis_only():
     assert e.findtext("p/l") == "es"
     r = e.find("p/r")
     assert r.text == "es" and [s.get("n") for s in r.iter("s")] == ["vblex", "pri"]
+
+
+def _short_mono(entries, freq, lower):
+    mono = build_monodix(entries, freq, None, lower)
+    return {(e.get("lm"), e.find("i").text, e.find("par").get("n"), e.get("r"))
+            for e in mono.iter("e")
+            if e.get("lm") and e.find("par") is not None
+            and e.find("par").get("n") in ("short__adj", "short_ala__n")}
+
+
+def _short_entry(lemma, paradigm, pos):
+    return {"lemma": lemma, "pos": pos, "language": "io", "senses": [],
+            "morphology": {"paradigm": paradigm, "features": {}}}
+
+
+def test_short_adjective_needs_lowercase_use_and_common_long_form():
+    entries = [_short_entry("generala", "a__adj", "adj"),   # kept
+               _short_entry("martina", "a__adj", "adj"),    # a name: mostly capitalised
+               _short_entry("texta", "a__adj", "adj")]      # foreign: rarer long form
+    freq = {"general": 100, "generala": 500, "martin": 100, "martina": 500,
+            "text": 100, "texta": 5}
+    lower = {"general": 90, "martin": 10, "text": 90}
+    assert _short_mono(entries, freq, lower) == {("generala", "general", "short__adj", "LR")}
+
+
+def test_short_adjective_never_takes_an_existing_surface():
+    entries = [_short_entry("surfo", "o__n", "n"), _short_entry("sura", "a__adj", "adj"),
+               _short_entry("surfa", "a__adj", "adj")]
+    # `surf` is a real surface of neither paradigm's long form, `surfo` is.
+    freq = {"surf": 10, "surfa": 50}
+    lower = {"surf": 10}
+    assert _short_mono(entries, freq, lower) == {("surfa", "surf", "short__adj", "LR")}
+    entries = [_short_entry("surfa", "a__adj", "adj"),
+               {"lemma": "surf", "pos": "pr", "language": "io", "senses": [],
+                "morphology": {"paradigm": "__pr", "features": {}}}]
+    assert _short_mono(entries, freq, lower) == set()
+
+
+def test_short_al_form_comes_from_the_noun_unless_an_adjective_has_it():
+    entries = [_short_entry("linguo", "o__n", "n"), _short_entry("genero", "o__n", "n"),
+               _short_entry("generala", "a__adj", "adj")]
+    freq = {"lingual": 20, "linguala": 300, "general": 100, "generala": 500}
+    lower = {"lingual": 20, "general": 90}
+    assert _short_mono(entries, freq, lower) == {
+        ("linguo", "lingu", "short_ala__n", "LR"),
+        ("generala", "general", "short__adj", "LR"),
+    }
+
+
+def test_no_short_forms_without_the_lowercase_counts():
+    entries = [_short_entry("generala", "a__adj", "adj")]
+    assert _short_mono(entries, {"general": 100, "generala": 500}, None) == set()
