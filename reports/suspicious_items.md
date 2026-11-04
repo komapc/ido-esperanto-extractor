@@ -4,8 +4,8 @@
 - bad_schema: 0
 - bad_lemma: 1
 - wiki_low_freq: 38734
-- all_tr_removed: 63961
-- tr_removed: 171
+- all_tr_removed: 63932
+- tr_removed: 170
 
 ## Examples
 - wiki_low_freq: 0 (nombro)

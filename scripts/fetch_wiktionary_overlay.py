@@ -11,8 +11,9 @@ deleted pages are dropped. Everything still comes from the source wiki and is
 reproducible; the overlay only brings the snapshot up to date.
 
 The snapshot time is the newest ``<timestamp>`` inside the dump itself (minus
-a day's margin), so it fits whichever dump file is on disk. Wikimedia keeps recentchanges for
-90 days — older dumps are refused (download a newer dump instead).
+a day's margin), so it fits whichever dump file is on disk. Changes come from
+allrevisions and logevents, which have no retention limit: recentchanges is
+purged after about 30 days on these wikis, so it silently loses older edits.
 
 Usage:
   python3 scripts/fetch_wiktionary_overlay.py --lang io [--dump FILE]
@@ -29,12 +30,11 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Dict, Iterable, List
+from typing import Dict, Iterable, Iterator, List
 
 from utils.parser_base import find_dump_file
 
 USER_AGENT = "apertium-ido-epo-extractor/1.0 (https://github.com/komapc/ido-esperanto-extractor)"
-RC_MAX_AGE = timedelta(days=90)
 SNAPSHOT_MARGIN = timedelta(days=1)
 _TS_RE = re.compile(rb"<timestamp>([0-9T:\-]+Z)</timestamp>")
 
@@ -72,26 +72,39 @@ def _api(lang: str, params: Dict[str, str]) -> dict:
     raise SystemExit(f"API unreachable: {url}")
 
 
-def changed_titles(lang: str, since: str) -> List[str]:
-    """Main-namespace titles edited, created or moved-into since `since`."""
-    titles: Dict[str, None] = {}
-    params = {"action": "query", "list": "recentchanges", "rcnamespace": "0",
-              "rcend": since, "rcprop": "title|loginfo", "rclimit": "500",
-              "rctype": "edit|new|log"}
+def _paged(lang: str, params: Dict[str, str], key: str) -> Iterator[dict]:
+    params = dict(params)
     while True:
         data = _api(lang, params)
-        for rc in data.get("query", {}).get("recentchanges", []):
-            titles.setdefault(rc["title"], None)
-            # a move's target is a page too (its source then reads as deleted
-            # or as a redirect, which the parser ignores)
-            target = (rc.get("logparams") or {}).get("target_title")
-            if target and (rc.get("logparams") or {}).get("target_ns", 0) == 0:
-                titles.setdefault(target, None)
+        yield from data.get("query", {}).get(key, [])
         cont = data.get("continue")
         if not cont:
-            break
+            return
         params.update(cont)
         time.sleep(1)
+
+
+def changed_titles(lang: str, since: str) -> List[str]:
+    """Main-namespace titles edited, created, moved or deleted since `since`."""
+    titles: Dict[str, None] = {}
+    for page in _paged(lang, {"action": "query", "list": "allrevisions",
+                              "arvnamespace": "0", "arvdir": "newer",
+                              "arvstart": since, "arvprop": "ids",
+                              "arvlimit": "500"}, "allrevisions"):
+        titles.setdefault(page["title"], None)
+    # Deleted pages have no live revision, and a move without a redirect leaves
+    # nothing at the old title: only the log knows about those.
+    for letype in ("delete", "move"):
+        for ev in _paged(lang, {"action": "query", "list": "logevents",
+                                "letype": letype, "lenamespace": "0",
+                                "ledir": "newer", "lestart": since,
+                                "leprop": "title|details",
+                                "lelimit": "500"}, "logevents"):
+            if "title" in ev:
+                titles.setdefault(ev["title"], None)
+            target = (ev.get("params") or {}).get("target_title")
+            if target and (ev.get("params") or {}).get("target_ns", 0) == 0:
+                titles.setdefault(target, None)
     return list(titles)
 
 
@@ -145,9 +158,6 @@ def main(argv: Iterable[str] | None = None) -> int:
                                ).replace(tzinfo=timezone.utc)
     since_dt = newest - SNAPSHOT_MARGIN
     since = since_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
-    if datetime.now(timezone.utc) - since_dt > RC_MAX_AGE:
-        raise SystemExit(f"Dump snapshot {since} is older than recentchanges' 90-day "
-                         "window — download a newer dump.")
     logging.info("Dump %s: fetching edits since %s (newest page %s, minus margin)", args.dump.name, since, newest.strftime("%Y-%m-%dT%H:%M:%SZ"))
 
     titles = changed_titles(args.lang, since)

@@ -1,5 +1,5 @@
 # IO→EO Conflicts (multiple EO terms per IO lemma)
-- Total conflicts: 3826
+- Total conflicts: 3831
 
 - Aachen: Aachen{wikidata_labels}, Akeno{ll,wiki,wikidata_labels}, Aĥeno{wikidata_labels}
 - Aalborg: Aalborg{ll,wiki,wikidata_labels}, Alborgo{wikidata_labels}
@@ -1560,6 +1560,7 @@
 - Pinio: Eŭropa migdalpino{wikidata_labels}, Pinio{ll,wiki,wikidata_labels}, Pinus pinea{wikidata_labels}
 - Pinyin-sistemo: Hanyu Pinyin{wikidata_labels}, Pin Jin{wikidata_labels}, Pinjina{wikidata_labels}, Pinjine{wikidata_labels}, Pinjino{ll,wiki,wikidata_labels}, Pinyin{wikidata_labels}
 - Piriko: Piriko{ll,wiki,wikidata_labels}, piriĥo{wikidata_labels}
+- Pitagoro: Pitagoro{ll,wiki,wikidata_labels,wikt_io}, Pythagoras{wikidata_labels}
 - Pitkern: Pitkarna Insularo{ll,wiki,wikidata_labels}, Pitkarno{wikidata_labels}, Pitkerno{wikidata_labels}
 - Pittsburgh: Picburgo{wikidata_labels}, Pittsburgh{ll,wiki,wikidata_labels}
 - Pituito: Mukaĵo{ll,wiki,wikidata_labels}, ekspektoraĵo{wikidata_labels}
@@ -1712,7 +1713,7 @@
 - Rozlauro: Nerio{wikidata_labels}, Oleandro{ll,wiki,wikidata_labels}
 - Ruanda: RW{wikidata_labels}, Respubliko Ruando{wikidata_labels}, Ruando{ll,wiki,wikidata_labels}, Rwando{wikt_io}
 - Runo-skribajo: Run-skribaĵo{wikidata_labels}, Runaj alfabetoj{ll,wiki,wikidata_labels}, Runoj{wikidata_labels}, runa alfabeto{wikidata_labels}
-- Rusia: Rusia Federacio{wikidata_labels}, Rusio{ll,wiki,wikidata_labels,wikt_io}, Ruslando{wikidata_labels,wikt_eo}, Rusujo{wikidata_labels,wikt_io}
+- Rusia: Rusia Federacio{wikidata_labels}, Rusio{ll,wiki,wikidata_labels,wikt_io}, Ruslando{wikidata_labels}, Rusujo{wikidata_labels,wikt_io}
 - Rusko: Pika rusko{ll,wiki,wikidata_labels}, Ruscus aculeatus{wikidata_labels}
 - Ruteni: Historiaj rutenoj{ll,wiki}, rutenoj{wikidata_labels}
 - Ruto: Rut{wikt_io}, Ruto{ll,wiki,wikidata_labels}
@@ -2290,7 +2291,8 @@
 - atlaso: atlaso{wikt_io}, maparo{en_wiktionary_via}
 - atleto: atleto{wikidata_labels,wikt_io}, sportisto{en_wiktionary_via,wikidata_labels}
 - audado: aŭdado{wikt_io}, aŭdo{fr_wiktionary_via}
-- augmentanta: kreskanta{bert_embeddings,morphological_expansion}, kreskiganta{morphological_expansion}, kultivanta{morphological_expansion}, kulturanta{morphological_expansion}
+- augmentanta: kreskanta{bert_embeddings,morphological_expansion}, kreskiganta{morphological_expansion}, kultivanta{morphological_expansion}, kulturanta{morphological_expansion}, pliiganta{morphological_expansion}
+- augmentar: kreski{en_wiktionary_via,wikt_io}, kreskigi{en_wiktionary_via}, kultivi{en_wiktionary_via}, kulturi{en_wiktionary_via}, pliigi{wikt_io}
 - autentika: aŭtenta{en_wiktionary_via,wikt_io}, aŭtentika{en_wiktionary_via,wikt_io}, vera{en_wiktionary_via}
 - autobiografio: aŭtobiografio{wikidata_labels,wikt_eo,wikt_io}, membiografia{wikidata_labels}, membiografio{wikidata_labels}
 - autobuso: aŭtobuso{wikidata_labels,wikt_io}, buso{wikidata_labels}, omnibuso{wikidata_labels}
@@ -2335,6 +2337,7 @@
 - beja: beĵa{en_wiktionary_via}, flavgriza{wikt_io}
 - bela: bela{wikt_io}, beleta{en_wiktionary_via}
 - beleso: belaĵo{wikt_io}, beleco{en_wiktionary_via,wikt_io}, belo{en_wiktionary_via}
+- beligar: beligi{en_wiktionary_via}, plibeligi{wikt_io}
 - benigna: benigna{wikt_io}, bona{en_wiktionary_via}
 - beredo: bereto{wikidata_labels,wikt_io}, bireto{en_wiktionary_via}
 - betravo: beto{en_wiktionary_via}, ruĝa beto{wikt_io}
@@ -3048,6 +3051,7 @@
 - kulo: fundo{wikt_io}, gluteo{en_wiktionary_via,wikt_io}, postaĵo{en_wiktionary_via}, pugo{en_wiktionary_via,wikt_eo,wikt_io}, sidvango{en_wiktionary_via}
 - kultivata: kultivata{bert_embeddings,morphological_expansion}, kulturata{morphological_expansion}
 - kunfrataro: frateco{wikt_io}, fratrio{wikidata_labels}
+- kunlaborar: kunagi{en_wiktionary_via}, kunlabori{wikt_io}
 - kupro: Cu{wikidata_labels}, kupro{wikidata_labels,wikt_io}
 - kuraso: karapaco{wikt_io}, kiraso{en_wiktionary_via,wikt_io}
 - kurso: kurso{wikt_io}, kurzo{en_wiktionary_via,wikt_io}
@@ -3544,7 +3548,8 @@
 - rukular: kveri{en_wiktionary_via,wikt_io}, rukuli{en_wiktionary_via,wikt_io}
 - ruptar: rompi{wikt_io}, rompiĝi{en_wiktionary_via}
 - ruro: kamparo{wikt_io}, rura areo{wikidata_labels}, ruro{wikidata_labels,wikt_io}
-- rusiana: Ruslando{wikt_eo}, ruso{wikt_io}
+- rusia: Ruslando{wikt_eo}, rusa{wikt_io}
+- rusiana: Ruslando{wikt_eo}, rusa{bert_embeddings,wikt_io}
 - sabato: sabato{wikt_io}, ŝabato{en_wiktionary_via}
 - sacerdoto: pastrino{en_wiktionary_via,wikidata_labels}, pastro{en_wiktionary_via,wikidata_labels}, sacerdoto{wikidata_labels,wikt_io}
 - saimo: porkgraso{wikt_io}, porkograso{en_wiktionary_via}, ŝmalco{en_wiktionary_via,wikidata_labels}

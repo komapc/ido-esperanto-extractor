@@ -4865,6 +4865,7 @@
     <e lm="Akko"><i>Akk</i><par n="o__n"/></e>
     <e lm="akko"><i>akk</i><par n="o__n"/></e>
     <e lm="aklamadar"><i>aklamad</i><par n="ar__vblex"/></e>
+    <e lm="aklamado"><i>aklamad</i><par n="o__n"/></e>
     <e lm="aklamar"><i>aklam</i><par n="ar__vblex"/></e>
     <e lm="aklamero"><i>aklamer</i><par n="o__n"/></e>
     <e lm="aklamo"><i>aklam</i><par n="o__n"/></e>
@@ -7401,8 +7402,6 @@
     <e lm="aplastita"><i>aplastit</i><par n="a__adj"/></e>
     <e lm="aplasto"><i>aplast</i><par n="o__n"/></e>
     <e lm="aplasturo"><i>aplastur</i><par n="o__n"/></e>
-    <e lm="aplaudado"><i>aplaudad</i><par n="o__n"/></e>
-    <e lm="aplaudanto"><i>aplaudant</i><par n="o__n"/></e>
     <e lm="aplaudar"><i>aplaud</i><par n="ar__vblex"/></e>
     <e lm="aplaudero"><i>aplauder</i><par n="o__n"/></e>
     <e lm="aplaudisto"><i>aplaudist</i><par n="o__n"/></e>
@@ -8967,6 +8966,7 @@
     <e lm="atencinda"><i>atencind</i><par n="a__adj"/></e>
     <e lm="atenciveso"><i>atencives</i><par n="o__n"/></e>
     <e lm="atenco"><i>atenc</i><par n="o__n"/></e>
+    <e lm="atencoza"><i>atencoz</i><par n="a__adj"/></e>
     <e lm="atencoze"><i>atencoz</i><par n="e__adv"/></e>
     <e lm="atendar"><i>atend</i><par n="ar__vblex"/></e>
     <e lm="atendo"><i>atend</i><par n="o__n"/></e>
@@ -12005,7 +12005,6 @@
     <e lm="blankulo"><i>blankul</i><par n="o__n"/></e>
     <e lm="blasey"><i>blasey</i><par n="o__n"/></e>
     <e lm="blasfema"><i>blasfem</i><par n="a__adj"/></e>
-    <e lm="blasfemala"><i>blasfemal</i><par n="a__adj"/></e>
     <e lm="blasfemar"><i>blasfem</i><par n="ar__vblex"/></e>
     <e lm="blasfemema"><i>blasfemem</i><par n="a__adj"/></e>
     <e lm="blasfemero"><i>blasfemer</i><par n="o__n"/></e>
@@ -22561,9 +22560,7 @@
     <e lm="ecentriko"><i>ecentrik</i><par n="o__n"/></e>
     <e lm="ecepta"><i>ecept</i><par n="a__adj"/></e>
     <e lm="eceptajo"><i>eceptaj</i><par n="o__n"/></e>
-    <e lm="eceptala"><i>eceptal</i><par n="a__adj"/></e>
     <e lm="eceptale"><i>eceptal</i><par n="e__adv"/></e>
-    <e lm="eceptaleso"><i>eceptales</i><par n="o__n"/></e>
     <e lm="eceptar"><i>ecept</i><par n="ar__vblex"/></e>
     <e lm="ecepte"><i>ecept</i><par n="e__adv"/></e>
     <e lm="ecepte ke"><i>ecepte ke</i><par n="o__n"/></e>
@@ -35856,9 +35853,7 @@
     <e lm="Hungariana Federuro pri Futbalo"><i>Hungariana Federuro pri Futbal</i><par n="o__n"/></e>
     <e lm="Hungariana invadi di Europa"><i>Hungariana invadi di Europa</i><par n="o__n"/></e>
     <e lm="Hungariana invadi di Europana"><i>Hungariana invadi di Europan</i><par n="a__adj"/></e>
-    <e lm="hungariane"><i>hungarian</i><par n="e__adv"/></e>
     <e lm="hungariani"><i>hungariani</i><par n="o__n"/></e>
-    <e lm="Hungariano"><i>Hungarian</i><par n="o__n"/></e>
     <e lm="hungariano"><i>hungarian</i><par n="o__n"/></e>
     <e lm="hungrar"><i>hungr</i><par n="ar__vblex"/></e>
     <e lm="hungregar"><i>hungreg</i><par n="ar__vblex"/></e>
@@ -44685,6 +44680,7 @@
     <e lm="konfuzeskar"><i>konfuzesk</i><par n="ar__vblex"/></e>
     <e lm="konfuziganta"><i>konfuzigant</i><par n="a__adj"/></e>
     <e lm="konfuzigar"><i>konfuzig</i><par n="ar__vblex"/></e>
+    <e lm="konfuzige"><i>konfuzig</i><par n="e__adv"/></e>
     <e lm="konfuzigo"><i>konfuzig</i><par n="o__n"/></e>
     <e lm="konfuzo"><i>konfuz</i><par n="o__n"/></e>
     <e lm="Kong Zi"><i>Kong Zi</i><par n="o__n"/></e>
@@ -55866,6 +55862,7 @@
     <e lm="Moiri"><i>Moiri</i><par n="o__n"/></e>
     <e lm="Mojsławice-Koloniana"><i>Mojsławice-Kolonian</i><par n="a__adj"/></e>
     <e lm="mok-insultar"><i>mok-insultar</i><par n="o__n"/></e>
+    <e lm="moka"><i>mok</i><par n="a__adj"/></e>
     <e lm="mokachar"><i>mokach</i><par n="ar__vblex"/></e>
     <e lm="mokadar"><i>mokad</i><par n="ar__vblex"/></e>
     <e lm="mokajo"><i>mokaj</i><par n="o__n"/></e>
@@ -67756,12 +67753,14 @@
     <e lm="posdinea"><i>posdine</i><par n="a__adj"/></e>
     <e lm="posdineo"><i>posdine</i><par n="o__n"/></e>
     <e lm="pose"><i>pos</i><par n="e__adv"/></e>
+    <e lm="posedado"><i>posedad</i><par n="o__n"/></e>
     <e lm="posedajo"><i>posedaj</i><par n="o__n"/></e>
     <e lm="posedalo"><i>posedal</i><par n="o__n"/></e>
     <e lm="posedar"><i>posed</i><par n="ar__vblex"/></e>
     <e lm="posedero"><i>poseder</i><par n="o__n"/></e>
     <e lm="posedeskar"><i>posedesk</i><par n="ar__vblex"/></e>
     <e lm="posedesko"><i>posedesk</i><par n="o__n"/></e>
+    <e lm="posedeso"><i>posedes</i><par n="o__n"/></e>
     <e lm="posedigar"><i>posedig</i><par n="ar__vblex"/></e>
     <e lm="posedo"><i>posed</i><par n="o__n"/></e>
     <e lm="Poseidon"><i>Poseidon</i><par n="np__np"/></e>
@@ -68651,7 +68650,9 @@
     <e lm="probabla"><i>probabl</i><par n="a__adj"/></e>
     <e lm="probablajo"><i>probablaj</i><par n="o__n"/></e>
     <e lm="probable"><i>probabl</i><par n="e__adv"/></e>
+    <e lm="probablesala"><i>probablesal</i><par n="a__adj"/></e>
     <e lm="Probablesala spaco"><i>Probablesala spac</i><par n="o__n"/></e>
+    <e lm="probableso"><i>probables</i><par n="o__n"/></e>
     <e lm="probablismo"><i>probablism</i><par n="o__n"/></e>
     <e lm="probablisto"><i>probablist</i><par n="o__n"/></e>
     <e lm="probala"><i>probal</i><par n="a__adj"/></e>
@@ -70221,6 +70222,7 @@
     <e lm="Pyotr Veniaminovich Svidler"><i>Pyotr Veniaminovich Svidler</i><par n="o__n"/></e>
     <e lm="Pyotr Wrangel"><i>Pyotr Wrangel</i><par n="o__n"/></e>
     <e lm="Pyrrhus"><i>Pyrrhus</i><par n="o__n"/></e>
+    <e lm="Pythagoras"><i>Pythagoras</i><par n="np__np"/></e>
     <e lm="pyu"><i>pyu</i><par n="o__n"/></e>
     <e lm="Páramo del Sil"><i>Páramo del Sil</i><par n="o__n"/></e>
     <e lm="Póvoa de Varzim"><i>Póvoa de Varzim</i><par n="o__n"/></e>
@@ -74894,12 +74896,12 @@
     <e lm="Rushville, Iowa"><i>Rushville, Iowa</i><par n="o__n"/></e>
     <e lm="Rushville, Iowana"><i>Rushville, Iowan</i><par n="a__adj"/></e>
     <e lm="Rusia"><i>Rusia</i><par n="np__np"/></e>
+    <e lm="rusia"><i>rusia</i><par n="o__n"/></e>
     <e lm="Rusian Imperio"><i>Rusian Imperi</i><par n="o__n"/></e>
     <e lm="Rusian-Ukrainana milito"><i>Rusian-Ukrainana milit</i><par n="o__n"/></e>
     <e lm="Rusiana"><i>Rusiana</i><par n="np__np"/></e>
     <e lm="rusiana"><i>rusian</i><par n="a__adj"/></e>
     <e lm="Rusiana Futbalala Uniono"><i>Rusiana Futbalala Union</i><par n="o__n"/></e>
-    <e lm="Rusiano"><i>Rusian</i><par n="o__n"/></e>
     <e lm="rusiano"><i>rusian</i><par n="o__n"/></e>
     <e lm="rusiec"><i>rusiec</i><par n="o__n"/></e>
     <e lm="ruska"><i>rusk</i><par n="a__adj"/></e>
@@ -79461,6 +79463,7 @@
     <e lm="speciganta"><i>specigant</i><par n="a__adj"/></e>
     <e lm="specigar"><i>specig</i><par n="ar__vblex"/></e>
     <e lm="specigiva"><i>specigiv</i><par n="a__adj"/></e>
+    <e lm="specigo"><i>specig</i><par n="o__n"/></e>
     <e lm="specimenaro"><i>specimenaro</i><par n="ar__vblex"/></e>
     <e lm="specimene"><i>specimen</i><par n="e__adv"/></e>
     <e lm="specimenigar"><i>specimenig</i><par n="ar__vblex"/></e>
@@ -85492,6 +85495,7 @@
     <e lm="tualetomoblo"><i>tualetomobl</i><par n="o__n"/></e>
     <e lm="tuba"><i>tub</i><par n="a__adj"/></e>
     <e lm="tubagar"><i>tubag</i><par n="ar__vblex"/></e>
+    <e lm="tubao"><i>tuba</i><par n="o__n"/></e>
     <e lm="tubaro"><i>tubaro</i><par n="ar__vblex"/></e>
     <e lm="tubatra"><i>tubatr</i><par n="a__adj"/></e>
     <e lm="tubatre"><i>tubatr</i><par n="e__adv"/></e>

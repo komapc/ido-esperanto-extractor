@@ -892,8 +892,14 @@ def pos_valid(cands, ido_tag: Optional[str], eo_generatable: Optional[set],
     if not want:
         return gen
     ok = set()
+    # Readings are keyed by the term as written: a name is analysed only in its
+    # own case, so the casefolded key alone would leave Ruslando unjudged and
+    # let it tie with rusa for Rusiana<adj>.
+    by_key = {t.casefold(): t for t, _ in cands}
     for k in gen:
         rs = readings.get(k)
+        if rs is None:
+            rs = readings.get(by_key[k])
         if rs is None or any(tags and tags[0] in want for _, tags in rs):
             ok.add(k)
     return ok or gen
