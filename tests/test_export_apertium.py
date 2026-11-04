@@ -844,3 +844,20 @@ def test_cognate_adjective_keeps_real_adjective_targets_and_titles():
     section = _adj_section(("materi", "materia", None), ("Dan", "Dano", None), ("us", "Usono", None))
     assert _cognate_adjective_rows(section, {"materia", "materiala", "Dana", "dana"}) == 0
     assert _ala_rows(section) == [("Dan", "Dano", None), ("materi", "materia", None), ("us", "Usono", None)]
+
+
+def test_resolve_eo_side_noun_names_and_siblings():
+    from export_apertium import resolve_eo_side
+    readings = {
+        'Nederlando': [('Nederlando', ['np', 'loc', 'sg', 'nom'])],
+        'Koreo': [('Koreo', ['n', 'm', 'sg', 'nom'])],
+        'Korea': [('Korea', ['adj', 'sg', 'nom'])],
+        'Hispana': [('Hispana', ['adj', 'sg', 'nom'])],
+        'Hispano': [('Hispano', ['n', 'sg', 'nom'])],
+        'Kanado': [('Kanado', ['np', 'loc', 'sg', 'nom'])],
+    }
+    assert resolve_eo_side('Nederlando', 'n', readings) == ('Nederlando', ['np', 'loc'])
+    assert resolve_eo_side('Koreo', 'adj', readings) == ('Korea', ['adj'])
+    assert resolve_eo_side('Hispana', 'n', readings) == ('Hispano', ['n'])
+    # No adjective of that root: stays as it was.
+    assert resolve_eo_side('Kanado', 'adj', readings) is None

@@ -828,6 +828,18 @@ def resolve_eo_side(epo: str, ido_tag: Optional[str], readings: Dict[str, list])
     same_pos = [r for r in rs if r[1] and r[1][0] == ido_tag]
     if ido_tag in _OPEN_POS and same_pos:
         return None
+    # A common noun in Ido can be a name in apertium-epo (Nederland<n> →
+    # Nederlando<np><loc>), and <n> never generates there.
+    if ido_tag == "n":
+        resolved = _resolve_np(rs, epo) or _resolve_sibling(epo, "a", "o", "n", readings)
+        if resolved:
+            return resolved
+    # Ido adjective with a noun as its EO word (Kore<adj> → Koreo): use the
+    # adjective of the same root when apertium-epo has it (Korea).
+    if ido_tag == "adj":
+        resolved = _resolve_sibling(epo, "o", "a", "adj", readings)
+        if resolved:
+            return resolved
     # apertium-epo splits verbs into vblex/vbtr/vbntr; one it knows only as
     # vbtr or vbntr (edzigi, aĝi) never generates from <vblex> (#aĝi), and its
     # analysis never reaches the <vblex> row backwards. Keep the class only:
@@ -1031,6 +1043,17 @@ def _resolve_np(rs, surface: str):
             if (tags and tags[0] == pos and "nom" in tags
                     and lemma.casefold() == surface.casefold()):
                 return lemma, [t for t in tags if t not in _INFLECTION_TAGS]
+    return None
+
+
+def _resolve_sibling(epo: str, ending: str, sibling_ending: str, pos: str,
+                     readings: Dict[str, list]):
+    """Same root with another part-of-speech ending, if apertium-epo has it."""
+    if not epo.endswith(ending):
+        return None
+    sibling = epo[:-len(ending)] + sibling_ending
+    if any(lemma == sibling and tags and tags[0] == pos for lemma, tags in readings.get(sibling, ())):
+        return sibling, [pos]
     return None
 
 
@@ -2355,6 +2378,13 @@ def build_bidix(entries, mono=None):
                 # ido→epo only: backwards it would claim every sentence-initial
                 # "Nordo" before the lowercase nordo<n> entry is tried.
                 if ido_tag == "np" and r_tags[:1] == ["n"]:
+                    en.set("r", "LR")
+                # Likewise a noun resolved to a name or to a sibling form:
+                # backwards Madon<n> would claim every Maria<np>, and
+                # hungarian<adj> → nula every determiner nula.
+                elif ido_tag == "n" and r_tags[:1] == ["np"]:
+                    en.set("r", "LR")
+                elif ido_tag in ("n", "adj") and r_tags == [ido_tag] and r_lemma != epo:
                     en.set("r", "LR")
                 logging.debug("EO-side resolved: %s<%s> → %s<%s>", epo, ido_tag,
                               r_lemma, "><".join(r_tags))
