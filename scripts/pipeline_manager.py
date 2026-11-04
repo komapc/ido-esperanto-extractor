@@ -541,6 +541,12 @@ def main(argv):
          "Report coverage statistics",
          None),
         
+        # Verb transitivity labels, read by apertium-ido-epo/dev/gen_verb_classes.py
+        ("verb_transitivity",
+         ["python3", "scripts/parse_verb_transitivity.py"],
+         "Collect verb transitivity labels",
+         None),
+
         # Stage 19: Export Apertium
         ("export_apertium",
          ["python3", "scripts/export_apertium.py"],
