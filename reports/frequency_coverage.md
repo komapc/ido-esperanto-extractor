@@ -2,7 +2,7 @@
 
 Top-N: 5000
 
-Coverage: 42.04% (2102/5000)
+Coverage: 42.10% (2105/5000)
 
 
 ## Missing Tokens
@@ -111,7 +111,6 @@ Coverage: 42.04% (2102/5000)
 - asteroidi
 - 34
 - 36
-- dal
 - 4ma
 - komencis
 - 40
@@ -120,7 +119,6 @@ Coverage: 42.04% (2102/5000)
 - povas
 - 6ma
 - 5ma
-- rusa
 - 37
 - 38
 - 2002
@@ -1831,7 +1829,6 @@ Coverage: 42.04% (2102/5000)
 - rumana
 - skopi
 - br
-- extremadura
 - filiini
 - félix
 - gustav
