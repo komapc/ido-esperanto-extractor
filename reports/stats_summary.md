@@ -11,7 +11,7 @@
 - wikidata_labels: 11239
 - morphological_expansion: 10073
 - en_wiktionary_via: 3990
-- fr_wiktionary_via: 276
+- fr_wiktionary_via: 277
 - eo_wiktionary: 198
 - closed_class_tables: 87
 - function_word_override: 12
@@ -25,7 +25,7 @@
 - fr_wiktionary_via: 18
 
 ## Wiktionary Translations
-- IO→EO: 8581
+- IO→EO: 8579
 - EO→IO: 202
 
 ## Wikipedia/Wikidata Additions
