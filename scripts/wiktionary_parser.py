@@ -265,6 +265,31 @@ def extract_morphology(section: str, title: str) -> Tuple[Optional[str], Optiona
 _POS_TEMPLATE_HINT_RE = re.compile(r"\{\{\s*(?:head|io-)", re.IGNORECASE)
 
 
+_SEMANTIKO_PAREN_RE = re.compile(r"^\s*\([^)]*\)")
+_SEMANTIKO_LINK_RE = re.compile(r"^\s*\[\[([^\]|]+)(?:\|[^\]]*)?\]\]")
+
+
+def _semantiko_leading_links(semantiko_line: str, n: int = 2) -> List[str]:
+    """Targets of the first n [[links]] of a lowercased "*semantiko: ..." line,
+    skipping leading domain/valency notes such as "([[tr.]])" or "(1)".
+    Two, because a modifier may precede the class word ("[[tempala]]
+    [[adverbo]]" for hodie)."""
+    rest = semantiko_line.split(":", 1)[1] if ":" in semantiko_line else semantiko_line
+    while True:
+        m = _SEMANTIKO_PAREN_RE.match(rest)
+        if not m:
+            break
+        rest = rest[m.end():]
+    links: List[str] = []
+    while len(links) < n:
+        m = _SEMANTIKO_LINK_RE.match(rest)
+        if not m:
+            break
+        links.append(m.group(1).strip())
+        rest = rest[m.end():]
+    return links
+
+
 def extract_pos(section: str) -> Optional[str]:
     text = section or ""
     # 0) Check section header for POS in parentheses (e.g., "==II {{io}} (prepoziciono)==")
@@ -412,8 +437,13 @@ def extract_pos(section: str) -> Optional[str]:
             # ever definition words (kalkular, kelka, kupro … all came out num)
             "partikulo": "ij",  # particles (kam, etc.) — closest to interjection
         }
+        # Only the leading links name the word class ("[[konjunciono]]
+        # [[questionala]]"); later links are the definition itself, and
+        # matching anywhere made redaktar a determiner because its
+        # definition mentions an [[artiklo]] of a newspaper.
+        lead = _semantiko_leading_links(semantiko_text)
         for keyword, pos_tag in SEMANTIKO_POS.items():
-            if keyword in semantiko_text:
+            if keyword in lead:
                 return pos_tag
 
     # 5) Fallback: use lemma ending heuristics where POS headings are absent
