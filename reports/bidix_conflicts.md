@@ -1,5 +1,5 @@
 # IO→EO Conflicts (multiple EO terms per IO lemma)
-- Total conflicts: 3831
+- Total conflicts: 3829
 
 - Aachen: Aachen{wikidata_labels}, Akeno{ll,wiki,wikidata_labels}, Aĥeno{wikidata_labels}
 - Aalborg: Aalborg{ll,wiki,wikidata_labels}, Alborgo{wikidata_labels}
@@ -151,7 +151,7 @@
 - Arniko: Arnica{wikidata_labels}, Arniko{ll,wiki}
 - Artemis: Artemis{wikidata_labels}, Artemisa{wikidata_labels}, Artemiso{ll,wiki,wikidata_labels}
 - Artemizio: Artemisia{wikidata_labels}, Artemizio{ll,wiki,wikidata_labels}
-- Artikopodo: Heksapodoj{ll,wiki,wikidata_labels}, Hexapoda{wikidata_labels}, Sespieduloj{wikidata_labels}
+- Artikopodo: Heksapodoj{ll,wiki,wikidata_labels}, Sespieduloj{wikidata_labels}
 - Arumo: Arumiano{wikidata_labels}, Arumo{ll,wiki,wikidata_labels}
 - Arvernia: Auvernia{wikidata_labels}, Aŭvernjo{wikt_io}
 - Arzamas: Arzamas{wikidata_labels}, Arzamaso{ll,wiki}
@@ -1464,7 +1464,7 @@
 - Orsha: Orŝa{ll,wiki,wikidata_labels}, Vorŝa{wikidata_labels}
 - Ortodoxismo: Ortodoksa kristanismo{ll,wiki,wikidata_labels}, ortodoksismo{wikidata_labels}
 - Ortolano: Emberiza hortulana{wikidata_labels}, Hortulano{ll,wiki,wikidata_labels}
-- Ortoptero: Orthoptera{wikidata_labels}, Orthopteroj{wikidata_labels}, Ortoptero{ll,wiki,wikidata_labels}
+- Ortoptero: Orthopteraj{wikidata_labels}, Orthopteroj{wikidata_labels}, Ortoptero{ll,wiki,wikidata_labels}
 - Osh: Oŝ{wikidata_labels}, Oŝo{en_wiktionary_via}
 - Osiris: Osiris{wikidata_labels}, Ozirico{wikidata_labels}, Oziriso{ll,wiki,wikidata_labels}
 - Osto: Osto{ll,wiki,wikidata_labels}, ostorgano{wikidata_labels}
@@ -1623,7 +1623,6 @@
 - Pseudocienco: Pseŭdoscienco{ll,wiki,wikidata_labels}, kvazaŭscienco{wikidata_labels}, ŝajnscienco{wikidata_labels}
 - Psikoanalizo: Freŭdismo{wikidata_labels}, Psikoanalizo{ll,wiki,wikidata_labels}, psikanalizo{wikidata_labels}, psiĥanalizo{wikidata_labels}, psiĥoanalizo{wikidata_labels}
 - Pudoro: Modesteco{wikidata_labels}, Pudoro{ll,wiki,wikidata_labels}
-- Pulco: Pulo{ll,wiki,wikidata_labels}, Siphonaptera{wikidata_labels}
 - Pulsaro: Pulsaro{ll,wiki,wikidata_labels}, pulsostelo{wikidata_labels}
 - Pultro: Kortbirdaro{wikidata_labels}, Kortbirdo{wikidata_labels}, Kortobirdaro{wikidata_labels}, Kortobirdo{ll,wiki,wikidata_labels}
 - Pulvero-konspiro: Gunpowder Plot{wikidata_labels}, Pulva konspiro{ll,wiki,wikidata_labels}
@@ -1927,7 +1926,6 @@
 - Tartaros: Inframondo{wikidata_labels}, Tartaro{ll,wiki,wikidata_labels}
 - Tartessos: Tartessos{ll,wiki,wikidata_labels}, Tartezo{wikidata_labels}, Tarŝiŝo{wikidata_labels}
 - Tarzan: Tarzan{wikidata_labels}, Tarzano{ll,wiki,wikidata_labels}
-- Tasmania: Tasmania{wikidata_labels}, Tasmanio{ll,wiki,wikidata_labels}
 - Taumas: Taŭmanto{wikidata_labels}, Taŭmaso{ll,wiki,wikidata_labels}, Thaŭmaso{wikidata_labels}
 - Tauono: Taŭono{ll,wiki,wikidata_labels}, taŭ-leptono{wikidata_labels}
 - Taximetro: Taksimetrilo{wikidata_labels}, Taksimetro{ll,wiki,wikidata_labels}
@@ -2684,6 +2682,7 @@
 - foso: fosaĵo{wikt_io}, foso{fr_wiktionary_via}
 - fotografar: foti{en_wiktionary_via,wikt_io}, fotografi{en_wiktionary_via,wikt_io}
 - fotokemio: fotokemio{wikidata_labels,wikt_io}, fotoĥemio{wikidata_labels}
+- fotono: fotono{wikidata_labels,wikt_io}, lumero{wikidata_labels}, lumkvantumo{wikidata_labels}
 - frajila: facilrompa{en_wiktionary_via}, fragila{en_wiktionary_via}, fraĝila{wikt_io}, rompiĝema{wikt_io}
 - framo: framo{wikt_io}, ĉasio{wikidata_labels}
 - france: france{bert_embeddings,morphological_expansion}, francine{morphological_expansion}
@@ -2853,7 +2852,6 @@
 - inklinar: inklini{wikt_io}, inklinigi{wikt_io}, klini{fr_wiktionary_via}
 - inkubo: inkubo{wikidata_labels}, koŝmaro{wikt_io}, premsonĝo{fr_wiktionary_via}
 - inquestar: demandi{wikt_io}, enketi{wikt_io}, esplori{fr_wiktionary_via,wikt_io}
-- insekto: Insecta{wikidata_labels}, insekto{wikidata_labels,wikt_io}
 - insigno: afiŝo{en_wiktionary_via}, elpendaĵo{wikt_io}, insigno{wikt_io}, signo{en_wiktionary_via}, ŝildo{en_wiktionary_via}
 - institucita: establita{bert_embeddings,morphological_expansion}, konstituita{morphological_expansion}
 - instruktar: instrui{wikt_io}, lernigi{en_wiktionary_via}
