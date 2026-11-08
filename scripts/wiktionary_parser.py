@@ -265,6 +265,8 @@ def extract_morphology(section: str, title: str) -> Tuple[Optional[str], Optiona
 _POS_TEMPLATE_HINT_RE = re.compile(r"\{\{\s*(?:head|io-)", re.IGNORECASE)
 
 
+# The noun ending link on the Morfologio line: "[[artikl]][[.o]]".
+_MORFOLOGIO_O_RE = re.compile(r"^\*\s*Morfologio\s*:.*\[\[\.o\]\]", re.IGNORECASE | re.MULTILINE)
 _SEMANTIKO_PAREN_RE = re.compile(r"^\s*\([^)]*\)")
 _SEMANTIKO_LINK_RE = re.compile(r"^\s*\[\[([^\]|]+)(?:\|[^\]]*)?\]\]")
 
@@ -420,6 +422,10 @@ def extract_pos(section: str) -> Optional[str]:
     # 4) Semantiko: line — scan for [[pos_keyword]] in the semantics line
     # e.g. "*Semantiko: [[konjunciono]] [[questionala]]" → cnjcoo
     # This is the idiomatic format for invariant function words on io.wiktionary.org
+    # An Ido word with the ending -o ("[[artikl]][[.o]]") is a noun or a
+    # pronoun (ulo, nulo); any other leading keyword is the genus of its
+    # definition: "Partikulo qua ..." made artiklo, iono, prefixo
+    # interjections and "verbo di pasiva formo" made deponento a verb.
     semantiko_m = re.search(r'\*\s*Semantiko\s*:[^\n]+', text, re.IGNORECASE)
     if semantiko_m:
         semantiko_text = semantiko_m.group(0).lower()
@@ -442,6 +448,8 @@ def extract_pos(section: str) -> Optional[str]:
         # matching anywhere made redaktar a determiner because its
         # definition mentions an [[artiklo]] of a newspaper.
         lead = _semantiko_leading_links(semantiko_text)
+        if _MORFOLOGIO_O_RE.search(text):
+            lead = [k for k in lead if k in ("substantivo", "pronomo")]
         for keyword, pos_tag in SEMANTIKO_POS.items():
             if keyword in lead:
                 return pos_tag

@@ -861,3 +861,15 @@ def test_resolve_eo_side_noun_names_and_siblings():
     assert resolve_eo_side('Hispana', 'n', readings) == ('Hispano', ['n'])
     # No adjective of that root: stays as it was.
     assert resolve_eo_side('Kanado', 'adj', readings) is None
+
+
+def test_pos_valid_judges_capitalized_names():
+    """Ruslando<np> must not tie with rusa<adj> for an Ido adjective."""
+    from export_apertium import pos_valid
+    readings = {"Ruslando": [("Ruslando", ["np", "loc", "sg", "nom"])],
+                "rusa": [("rusa", ["adj", "sg", "nom"])]}
+    cands = [("Ruslando", ["eo_wiktionary"]), ("rusa", ["io_wiktionary"])]
+    assert pos_valid(cands, "adj", {"ruslando", "rusa"}, readings) == {"rusa"}
+    # The name is still fine for a noun, and an unanalysed term is not judged.
+    assert "ruslando" in pos_valid(cands, "n", {"ruslando", "rusa"}, readings)
+    assert pos_valid([("nekonata", ["io_wiktionary"])], "adj", {"nekonata"}, readings) == {"nekonata"}

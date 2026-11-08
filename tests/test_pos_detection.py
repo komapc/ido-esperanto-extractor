@@ -52,3 +52,15 @@ def test_leading_pos_link_in_semantiko_still_counts():
     assert extract_pos(text) == "cnjcoo"
     text = "*Semantiko: (1) [[prepoziciono]] [[qua]] indikas loko\n*Morfologio: sur\n"
     assert extract_pos(text) == "pr"
+
+
+def test_genus_of_a_noun_definition_is_not_a_pos_label():
+    # io.wiktionary 'artiklo': "Partikulo qua ..." is the definition of a noun
+    text = ("*Semantiko: (1) ([[gram.]]) [[partikulo|Partikulo]] [[qua]], [[en]] [[ula]] "
+            "[[linguo|lingui]] [[nacionala]], [[juntesar|juntesas]] [[a]] [[substantivo]]\n"
+            "*Morfologio: [[artikl]][[.o]] [[Kategorio:Io AR]]\n")
+    assert extract_pos(text) is None
+    # an -o word can still be labelled a pronoun ('nulo')
+    text = ("*Semantiko: [[nedefinita]] [[pronomo]] [[pri]] [[senvivanto]].\n"
+            "*Morfologio: [[nul]][[.o]] [[Kategorio:Io NU]]\n")
+    assert extract_pos(text) is None or extract_pos(text) == "prn"

@@ -892,8 +892,14 @@ def pos_valid(cands, ido_tag: Optional[str], eo_generatable: Optional[set],
     if not want:
         return gen
     ok = set()
+    # Readings are keyed by the term as written: a name is analysed only in its
+    # own case, so the casefolded key alone would leave Ruslando unjudged and
+    # let it tie with rusa for Rusiana<adj>.
+    by_key = {t.casefold(): t for t, _ in cands}
     for k in gen:
         rs = readings.get(k)
+        if rs is None:
+            rs = readings.get(by_key[k])
         if rs is None or any(tags and tags[0] in want for _, tags in rs):
             ok.add(k)
     return ok or gen
@@ -1200,6 +1206,41 @@ def _add_short_adjectives(dictionary, section, freq: Dict[str, int], lower: Dict
         ET.SubElement(en, "i").text = stem
         ET.SubElement(en, "par", n=par_out).tail = ""
     return len(new)
+
+
+# Ido euphonic pairs: a/ad (pr), e/ed and o/od (cnjcoo). Generation always
+# emits the short form with an alarm (<a/>, "~" in the stream) and the pair's
+# post-ido.dix adds the "d" before a vowel; the long form is analysis-only.
+_EUPHONIC = {("a", "__pr"): "ad", ("e", "__cnjcoo"): "ed", ("o", "__cnjcoo"): "od"}
+_EUPHONIC_LONG = {(long, par) for (_short, par), long in _EUPHONIC.items()}
+
+
+def _emit_euphonic_short(section, lemma: str, par: str) -> None:
+    """lemma<tags> analysed plainly (LR) and generated as "~lemma" (RL)."""
+    lr = ET.SubElement(section, "e", lm=lemma, r="LR")
+    ET.SubElement(lr, "i").text = lemma
+    ET.SubElement(lr, "par", n=par).tail = ""
+    rl = ET.SubElement(section, "e", lm=lemma, r="RL")
+    p_elem = ET.SubElement(rl, "p")
+    l_elem = ET.SubElement(p_elem, "l")
+    ET.SubElement(l_elem, "a").tail = lemma
+    ET.SubElement(p_elem, "r").text = lemma
+    ET.SubElement(rl, "par", n=par).tail = ""
+
+
+def _euphonic_long_forms_lr(section) -> int:
+    """ad/ed/od become ido->epo only in the bidix: epo->ido must pick the short
+    form, which the generator marks for post-generation."""
+    n = 0
+    for e in section.iter("e"):
+        l_elem = e.find("p/l")
+        if l_elem is None or e.get("r") == "LR":
+            continue
+        tags = [x.get("n") for x in l_elem.findall("s")]
+        if tags and (l_elem.text or "", f"__{tags[0]}") in _EUPHONIC_LONG and len(tags) == 1:
+            e.set("r", "LR")
+            n += 1
+    return n
 
 
 def _generation_losers(items, freq: Dict[str, int]) -> set:
@@ -1518,8 +1559,11 @@ def build_monodix(entries, freq: Optional[Dict[str, int]] = None,
                 par_elem.tail = ""
             continue
 
+        if (clean_lm, par) in _EUPHONIC:
+            _emit_euphonic_short(section, clean_lm, par)
+            continue
         en = ET.SubElement(section, "e", lm=clean_lm)
-        if clean_lm in analysis_only:
+        if clean_lm in analysis_only or (clean_lm, par) in _EUPHONIC_LONG:
             en.set("r", "LR")
         i = ET.SubElement(en, "i")
         i.text = stem
@@ -2633,6 +2677,8 @@ def build_bidix(entries, mono=None):
     # once. RL-only, so they never compete with the per-pronoun LR entries above.
     _emit_prpers_rl_entries(section)
     rl_restricted = _restrict_rl_losers(section, rl_rows)
+    logging.info("Bidix: %d euphonic long forms (ad/ed/od) made ido->epo only",
+                 _euphonic_long_forms_lr(section))
     adj_twinned = _plain_adjective_twins(section, adj_twins)
     logging.info("Bidix: %d EO adjectives translated epo->ido by the plain Ido "
                  "adjective instead of a noun's -ala/-oza derivative.", adj_twinned)
