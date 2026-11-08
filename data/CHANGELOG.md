@@ -12,6 +12,7 @@
 - `merge_sources.py` now automatically assigns `np__np` paradigm to proper nouns from any source
 
 ### Fixed
+- io.wiktionary POS from the `Semantiko:` line now reads only its first two links; a POS word inside the definition no longer sets the class (`redaktar`, `recensar`, `revuo` were `det` because of "[[artiklo]]"; `atomo`, `flamo` were `ij` because of "[[partikulo]]"). 99 pages change, all to morphology-based POS.
 - Case sensitivity issue for proper nouns in translation pipeline
 - Missing paradigm definition for proper nouns (`np__np`)
 

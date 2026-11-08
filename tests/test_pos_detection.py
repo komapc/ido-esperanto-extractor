@@ -36,3 +36,19 @@ def test_numeral_category_of_a_later_sense_does_not_make_the_page_a_numeral():
 def test_single_section_page_is_left_to_extract_pos():
     text = "*Semantiko: ••••  [[Kategorio:Numeri]]\n*Morfologio: quar [[Kategorio:Io Q]]\n"
     assert extract_pos_by_section(text, "quar") is None
+
+
+def test_pos_word_inside_a_definition_is_not_a_pos_label():
+    # io.wiktionary 'redaktar': "artiklo" (of a newspaper) is a word of the
+    # gloss, not the word class; it used to make the verb a determiner.
+    text = ("*Semantiko: ([[tr.]]) [[kompozar|Kompozar]] [[segun]] [[la]] [[formo]] "
+            "[[qua]] [[konvenar|konvenas]] ([[libro]], [[artiklo]] [[di]] [[jurnalo]])\n"
+            "*Morfologio: [[redakt]][[.ar]] [[Kategorio:Io RED]]\n")
+    assert extract_pos(text) != "det"
+
+
+def test_leading_pos_link_in_semantiko_still_counts():
+    text = "*Semantiko: [[konjunciono|Konjunciono]] [[questionala]]\n*Morfologio: kad\n"
+    assert extract_pos(text) == "cnjcoo"
+    text = "*Semantiko: (1) [[prepoziciono]] [[qua]] indikas loko\n*Morfologio: sur\n"
+    assert extract_pos(text) == "pr"
