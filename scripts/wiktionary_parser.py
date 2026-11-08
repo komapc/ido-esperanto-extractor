@@ -116,6 +116,16 @@ TARGET_TRANSLATION_PATTERNS = {
         r"\{\{link\|fr\|([^}|]+)",
         r"\{\{m\|fr\|([^}|]+)",
     ],
+    # io.wiktionary gives Spanish as "*{{es}}: ..." (read for vortaro glosses only).
+    "es": [
+        r"\*[ \t]*\{\{es\}\}[ \t]*[:\.-][ \t]*\{\{t\+?\|es\|([^}|]+)",
+        r"\*[ \t]*\{\{es\}\}[ \t]*[:\.-][ \t]*([^\n{]+?)(?=\n|\|\}|\Z)",
+        r"\{\{t\+?\|es\|([^}|]+)",
+        r"\{\{trad\+?\|es\|([^}|]+)",
+        r"\{\{l\|es\|([^}|]+)",
+        r"\{\{link\|es\|([^}|]+)",
+        r"\{\{m\|es\|([^}|]+)",
+    ],
 }
 
 # OPTIMIZATION: Pre-compile all regex patterns (20-30% speedup)
@@ -640,7 +650,8 @@ CLEAN_WHITESPACE_RE = re.compile(r"\s+")                         # Normalize whi
 CLEAN_NUMBERED_REF_RE = re.compile(r"\s*\[[\d\s,–-]+\]\s*")      # Remove [1], [2], [1-3], [1, 2]
 CLEAN_NAV_ARROWS_RE = re.compile(r"[↓↑]")                        # Remove navigation arrows (io.wiktionary)
 CLEAN_PAREN_ANNOTATION_RE = re.compile(r"\s*\([^)0-9][^)]*\)\s*")  # Remove parenthetical annotations like (indikante aganton) but not (1), (2)
-NUMBERED_MEANING_RE = re.compile(r"\((\d+)\)\s*([^;()]+)")
+# "(1) x", and "(1, 2) x" / "(1-3) x" for a term shared by several senses.
+NUMBERED_MEANING_RE = re.compile(r"\((\d+(?:\s*[,–-]\s*\d+)*)\)\s*([^;()]+)")
 
 def detect_prep_art_base(section: str, title: str) -> Optional[str]:
     """Return X when an Ido page defines its title as the contraction of X + la.
@@ -1126,6 +1137,12 @@ def parse_wiktionary(
                     "gloss": None,
                     "translations": [{"lang": "eo", "term": t, "confidence": 0.6, "source": f"{cfg.source_code}_wiktionary"} for t in syns]
                 })
+        # Spanish glosses for vortaro only: kept outside "senses" so no
+        # bidix/pivot stage reads them as translations.
+        if cfg.source_code == "io":
+            es_lists = extract_translations(section, "es")
+            if es_lists:
+                entry["glosses"] = {"es": es_lists}
         entries.append(entry)
         if processed % prog_n == 0:
             logging.info("Processed %d pages...", processed)
