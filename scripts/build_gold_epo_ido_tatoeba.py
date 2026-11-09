@@ -7,9 +7,9 @@ set starts from real *Esperanto* sentences instead: Tatoeba pairs (human Ido
 translations) filtered to plain, checkable sentences, then a seeded random
 sample.
 
-The pairs come from the llm repo's held-out splits (llm/data/test.jsonl and
+The pairs come from the llm repo's held-out splits (llm/datasets/v1-io-eo/test.jsonl and
 val.jsonl; neither is trained on),
-and any sentence that also occurs in llm/data/train.jsonl is dropped, so the
+and any sentence that also occurs in llm/datasets/v1-io-eo/train.jsonl is dropped, so the
 same set can compare Apertium with the neural engine without the latter having
 seen the answers.
 
@@ -91,10 +91,10 @@ def main() -> int:
     here = Path(__file__).resolve().parent.parent
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--src", type=Path, nargs="+",
-                    default=[here.parent / "llm/data/test.jsonl",
-                             here.parent / "llm/data/val.jsonl"],
+                    default=[here.parent / "llm/datasets/v1-io-eo/test.jsonl",
+                             here.parent / "llm/datasets/v1-io-eo/val.jsonl"],
                     help="held-out pairs (default: the llm repo's test and val splits)")
-    ap.add_argument("--train", type=Path, default=here.parent / "llm/data/train.jsonl",
+    ap.add_argument("--train", type=Path, default=here.parent / "llm/datasets/v1-io-eo/train.jsonl",
                     help="sentences found here are excluded (missing file = no exclusion)")
     ap.add_argument("--existing", type=Path, default=here / "data/gold/epo_ido.tsv")
     ap.add_argument("--out", type=Path, default=here / "data/gold/epo_ido_tatoeba.tsv")
