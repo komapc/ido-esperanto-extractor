@@ -18,6 +18,7 @@ declare -a URLS=(
   "${BASE}/iowiktionary/latest/iowiktionary-latest-pages-articles.xml.bz2"
   "${BASE}/eowiktionary/latest/eowiktionary-latest-pages-articles.xml.bz2"
   "${BASE}/frwiktionary/latest/frwiktionary-latest-pages-articles.xml.bz2"
+  "${BASE}/eswiktionary/latest/eswiktionary-latest-pages-articles.xml.bz2"   # stage wiktionary_es_io (vortaro Spanish)
   "${BASE}/enwiktionary/latest/enwiktionary-latest-pages-articles.xml.bz2"   # stage wiktionary_en
   "${BASE}/iowiki/latest/iowiki-latest-pages-articles.xml.bz2"
   "${BASE}/iowiki/latest/iowiki-latest-langlinks.sql.gz"

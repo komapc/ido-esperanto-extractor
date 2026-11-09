@@ -37,3 +37,23 @@ def test_load_spanish_glosses(tmp_path):
     assert g["kato"] == ["gato", "gata"]
     assert not g.get("multe")
     assert "domo" not in g
+
+
+def test_es_wiktionary_ido_terms_from_spanish_section_only():
+    from scripts.parse_es_wiktionary_io import extract
+    text = ("== {{lengua|es}} ==\n==== Traducciones ====\n"
+            "{{t|io|a1=1|t1=urso|g1=m|a2=1|t2=ursino|g2=f}}\n"
+            "{{t|io|t1=avulo/avino}}\n"
+            "== {{lengua|it}} ==\n{{t|io|t1=ignorata}}\n")
+    out = extract([("oso", "0", text), ("x", "10", "{{t|io|t1=no}}")])
+    assert out["pairs"] == {"urso": ["oso"], "ursino": ["oso"]}
+    assert out["skipped"] == [{"page": "oso", "value": "avulo/avino"}]
+
+
+def test_merge_spanish_appends_es_wiktionary_after_io():
+    from scripts.export_vortaro import merge_spanish
+    spanish = {"kato": ["gato"]}
+    added = merge_spanish(spanish, {"kato": ["gato", "minino"], "Homino": ["mujer"], "nekonata": ["x"]},
+                          {"kato", "homino"})
+    assert spanish == {"kato": ["gato", "minino"], "homino": ["mujer"]}
+    assert added == 2
