@@ -583,6 +583,16 @@ def main(argv):
          "Build web index",
          None),
 
+        # Stage 25a: es.wiktionary {{t|io|…}} → Spanish words for vortaro
+        ("wiktionary_es_overlay",
+         ["python3", "scripts/fetch_wiktionary_overlay.py", "--lang", "es"],
+         "Fetch es.wiktionary edits newer than the dump (overlay)",
+         None),
+        ("wiktionary_es_io",
+         ["python3", "scripts/parse_es_wiktionary_io.py"],
+         "Ido translations from Spanish Wiktionary (vortaro Spanish words)",
+         None),
+
         # Stage 25: Export vortaro dictionary
         ("export_vortaro",
          ["python3", "scripts/export_vortaro.py"],

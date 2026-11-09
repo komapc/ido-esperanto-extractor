@@ -15,6 +15,7 @@ from lexicon_filters import is_junk_lemma  # shared junk filter (consolidated)
 from conflict_resolution import confidence_key  # source-rank ordering (== MT pick_best)
 
 ES_GLOSSES_PATH = 'work/io_wiktionary_filtered.json'
+ES_WIKT_PATH = 'work/es_wiktionary_io.json'
 
 _ES_LETTER_RE = re.compile(r"[a-záéíóúüñ]", re.IGNORECASE)
 _ES_GENDER_RE = re.compile(r"\s+[mf]\.?$")
@@ -56,9 +57,41 @@ def load_spanish_glosses(path: str) -> dict:
     return out
 
 
-def convert_to_vortaro_format(bidix_path: str, output_path: str, es_path: str = ES_GLOSSES_PATH):
+def load_es_wiktionary(path: str) -> dict:
+    """Ido word -> Spanish page titles from es.wiktionary {{t|io|…}}
+    (parse_es_wiktionary_io.py). Empty when the file is missing."""
+    p = Path(path)
+    if not p.exists():
+        print(f"⚠️  {path} not found, no es.wiktionary Spanish words")
+        return {}
+    with open(p, 'r', encoding='utf-8') as f:
+        return json.load(f).get('pairs', {})
+
+
+def merge_spanish(spanish: dict, es_wikt: dict, lemmas) -> int:
+    """Append es.wiktionary words after the io.wiktionary ones, for lemmas the
+    dictionary has (exact spelling, else lowercase). Returns words added."""
+    by_lower = {}
+    for lemma in lemmas:
+        by_lower.setdefault(lemma.lower(), lemma)
+    added = 0
+    for ido, titles in es_wikt.items():
+        lemma = ido if ido in lemmas else by_lower.get(ido.lower())
+        if lemma is None:
+            continue
+        words = spanish.setdefault(lemma, [])
+        for t in titles:
+            if t not in words:
+                words.append(t)
+                added += 1
+    return added
+
+
+def convert_to_vortaro_format(bidix_path: str, output_path: str, es_path: str = ES_GLOSSES_PATH,
+                              es_wikt_path: str = ES_WIKT_PATH):
     """Convert bidix_big.json to vortaro's dictionary.json format."""
     spanish = load_spanish_glosses(es_path)
+    es_wikt = load_es_wiktionary(es_wikt_path)
 
     print(f"Loading {bidix_path}...")
     with open(bidix_path, 'r', encoding='utf-8') as f:
@@ -135,10 +168,14 @@ def convert_to_vortaro_format(bidix_path: str, output_path: str, es_path: str = 
             "sources": sorted(list(sources)),
             "morfologio": morfologio
         }
-        if spanish.get(lemma):
-            vortaro[lemma]["spanish_words"] = spanish[lemma]
         for src in sources:
             source_counts[src] = source_counts.get(src, 0) + 1
+
+    # Spanish words: io.wiktionary {{es}} lines first, then es.wiktionary {{t|io}}
+    es_added = merge_spanish(spanish, es_wikt, {k for k in vortaro if k != 'metadata'})
+    for lemma, words in spanish.items():
+        if words and lemma in vortaro:
+            vortaro[lemma]["spanish_words"] = words
 
     # Merge capitalized common-noun entries into their lowercase twin. Wikipedia
     # -title-cased langlink/wikidata commons (Antropologio, Veterano) duplicate
@@ -174,6 +211,7 @@ def convert_to_vortaro_format(bidix_path: str, output_path: str, es_path: str = 
     vortaro["metadata"]["source_stats"] = dict(sorted(source_counts.items()))
     vortaro["metadata"]["junk_removed"] = junk_count
     vortaro["metadata"]["case_pairs_merged"] = merged_pairs
+    vortaro["metadata"]["spanish_from_es_wiktionary"] = es_added
     vortaro["metadata"]["entries_with_spanish"] = sum(
         1 for k, v in vortaro.items() if k != 'metadata' and v.get('spanish_words'))
 
