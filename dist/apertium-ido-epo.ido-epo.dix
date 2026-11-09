@@ -82251,7 +82251,7 @@
     <e><p><l>Teatrala spektakl<s n="n"/><s n="der_aro"/><s n="n"/></l><r>Spektaklaro<s n="n"/></r></p></e>
     <e><p><l>teatral<s n="adv"/></l><r>teatre<s n="adv"/></r></p></e>
     <e><p><l>teatr<s n="adv"/></l><r>teatre<s n="adv"/></r></p></e>
-    <e><p><l>teatrestr<s n="n"/></l><r>teatrejo<s n="n"/></r></p></e>
+    <e r="LR"><p><l>teatrestr<s n="n"/></l><r>teatrejo<s n="n"/></r></p></e>
     <e><p><l>teatrestr<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>teatreja<s n="adj"/></r></p></e>
     <e><p><l>teatrestr<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>teatreja<s n="adj"/></r></p></e>
     <e><p><l>teatrestr<s n="n"/><s n="der_aro"/><s n="n"/></l><r>teatrejaro<s n="n"/></r></p></e>
@@ -82259,7 +82259,7 @@
     <e><p><l>Teatrey<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Teatreja<s n="adj"/></r></p></e>
     <e><p><l>Teatrey<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Teatreja<s n="adj"/></r></p></e>
     <e><p><l>Teatrey<s n="n"/><s n="der_aro"/><s n="n"/></l><r>Teatrejaro<s n="n"/></r></p></e>
-    <e><p><l>teatrey<s n="n"/></l><r>teatrejo<s n="n"/></r></p></e>
+    <e r="LR"><p><l>teatrey<s n="n"/></l><r>teatrejo<s n="n"/></r></p></e>
     <e><p><l>teatrey<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>teatreja<s n="adj"/></r></p></e>
     <e><p><l>teatrey<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>teatreja<s n="adj"/></r></p></e>
     <e><p><l>teatrey<s n="n"/><s n="der_aro"/><s n="n"/></l><r>teatrejaro<s n="n"/></r></p></e>
@@ -82267,10 +82267,10 @@
     <e><p><l>Teatr<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>Teatra<s n="adj"/></r></p></e>
     <e><p><l>Teatr<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>Teatra<s n="adj"/></r></p></e>
     <e><p><l>Teatr<s n="n"/><s n="der_aro"/><s n="n"/></l><r>Teatraro<s n="n"/></r></p></e>
-    <e><p><l>teatr<s n="n"/></l><r>teatro<s n="n"/></r></p></e>
-    <e r="LR"><p><l>teatr<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>teatra<s n="adj"/></r></p></e>
-    <e r="LR"><p><l>teatr<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>teatra<s n="adj"/></r></p></e>
-    <e><p><l>teatr<s n="n"/><s n="der_aro"/><s n="n"/></l><r>teatraro<s n="n"/></r></p></e>
+    <e><p><l>teatr<s n="n"/></l><r>teatrejo<s n="n"/></r></p></e>
+    <e><p><l>teatr<s n="n"/><s n="der_ala"/><s n="adj"/></l><r>teatreja<s n="adj"/></r></p></e>
+    <e><p><l>teatr<s n="n"/><s n="der_oz"/><s n="adj"/></l><r>teatreja<s n="adj"/></r></p></e>
+    <e><p><l>teatr<s n="n"/><s n="der_aro"/><s n="n"/></l><r>teatrejaro<s n="n"/></r></p></e>
     <e><p><l>tedant<s n="adj"/></l><r>teda<s n="adj"/></r></p></e>
     <e><p><l>tedant<s n="adj"/><s n="der_qual"/><s n="n"/></l><r>tedeco<s n="n"/></r></p></e>
     <e><p><l>ted<s n="vblex"/></l><r>tedi<s n="vblex"/></r></p></e>
@@ -93179,6 +93179,7 @@
     <e r="RL"><p><l>susur<s n="vblex"/><s n="der_onta"/><s n="adj"/></l><r>flustri<s n="vblex"/><s n="pp2"/></r></p></e>
     <e r="RL"><p><l>susur<s n="vblex"/><s n="der_ante"/><s n="adv"/></l><r>flustri<s n="vblex"/><s n="ger"/></r></p></e>
     <e r="RL"><p><l>susur<s n="vblex"/><s n="der_inte"/><s n="adv"/></l><r>flustri<s n="vblex"/><s n="gerpast"/></r></p></e>
+    <e r="RL"><p><l>teatr<s n="n"/></l><r>teatro<s n="n"/></r></p></e>
     <e r="RL"><p><l>ted<s n="vblex"/></l><r>altrudiĝi<s n="vblex"/></r></p></e>
     <e r="RL"><p><l>ted<s n="vblex"/><s n="der_ppas"/><s n="adj"/></l><r>altrudiĝi<s n="vblex"/><s n="pp"/></r></p></e>
     <e r="RL"><p><l>ted<s n="vblex"/><s n="der_ppa"/><s n="adj"/></l><r>altrudiĝi<s n="vblex"/><s n="pp3"/></r></p></e>

@@ -5,6 +5,7 @@ Includes filtering of junk entries (numbers, corrupted data, etc).
 """
 
 import json
+import re
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -13,8 +14,51 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from lexicon_filters import is_junk_lemma  # shared junk filter (consolidated)
 from conflict_resolution import confidence_key  # source-rank ordering (== MT pick_best)
 
-def convert_to_vortaro_format(bidix_path: str, output_path: str):
+ES_GLOSSES_PATH = 'work/io_wiktionary_filtered.json'
+
+_ES_LETTER_RE = re.compile(r"[a-záéíóúüñ]", re.IGNORECASE)
+_ES_GENDER_RE = re.compile(r"\s+[mf]\.?$")
+
+
+def clean_spanish_term(term: str) -> str:
+    """Tidy one "*{{es}}:" term; "" when nothing usable is left. Many pages
+    carry an unfilled template ("*{{es}}: [["), and some an unclosed link
+    ("[[beatífico") or italics with a gender mark ("muerte ''f''")."""
+    t = term.replace("[[", "").replace("]]", "").replace("''", "").strip()
+    t = _ES_GENDER_RE.sub("", t).strip(" ,;:.")
+    if not t or not _ES_LETTER_RE.search(t) or any(c in t for c in "[]{}|=<>"):
+        return ""
+    return t
+
+
+def load_spanish_glosses(path: str) -> dict:
+    """Ido lemma -> Spanish words from the "*{{es}}:" lines of io.wiktionary,
+    in page order, deduplicated. Glosses only: the MT bidix never sees them."""
+    p = Path(path)
+    if not p.exists():
+        print(f"⚠️  {path} not found, no Spanish glosses")
+        return {}
+    with open(p, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    entries = data.get('entries', []) if isinstance(data, dict) else data
+    out: dict = {}
+    for e in entries:
+        lists = (e.get('glosses') or {}).get('es') or []
+        lemma = e.get('lemma')
+        if not lemma or not lists:
+            continue
+        words = out.setdefault(lemma, [])
+        for syns in lists:
+            for w in syns:
+                w = clean_spanish_term(w)
+                if w and w not in words:
+                    words.append(w)
+    return out
+
+
+def convert_to_vortaro_format(bidix_path: str, output_path: str, es_path: str = ES_GLOSSES_PATH):
     """Convert bidix_big.json to vortaro's dictionary.json format."""
+    spanish = load_spanish_glosses(es_path)
 
     print(f"Loading {bidix_path}...")
     with open(bidix_path, 'r', encoding='utf-8') as f:
@@ -91,6 +135,8 @@ def convert_to_vortaro_format(bidix_path: str, output_path: str):
             "sources": sorted(list(sources)),
             "morfologio": morfologio
         }
+        if spanish.get(lemma):
+            vortaro[lemma]["spanish_words"] = spanish[lemma]
         for src in sources:
             source_counts[src] = source_counts.get(src, 0) + 1
 
@@ -113,6 +159,10 @@ def convert_to_vortaro_format(bidix_path: str, output_path: str):
                 words.append(w)
         low_e['esperanto_words'] = words
         low_e['sources'] = sorted(set(low_e['sources']) | set(cap_e['sources']))
+        es_words = low_e.get('spanish_words', []) + [
+            w for w in cap_e.get('spanish_words', []) if w not in low_e.get('spanish_words', [])]
+        if es_words:
+            low_e['spanish_words'] = es_words
         if not low_e.get('morfologio') and cap_e.get('morfologio'):
             low_e['morfologio'] = cap_e['morfologio']
         del vortaro[cap]
@@ -124,6 +174,8 @@ def convert_to_vortaro_format(bidix_path: str, output_path: str):
     vortaro["metadata"]["source_stats"] = dict(sorted(source_counts.items()))
     vortaro["metadata"]["junk_removed"] = junk_count
     vortaro["metadata"]["case_pairs_merged"] = merged_pairs
+    vortaro["metadata"]["entries_with_spanish"] = sum(
+        1 for k, v in vortaro.items() if k != 'metadata' and v.get('spanish_words'))
 
     print(f"Writing {output_path}...")
     with open(output_path, 'w', encoding='utf-8') as f:

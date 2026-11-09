@@ -1,5 +1,5 @@
 # IO→EO Conflicts (multiple EO terms per IO lemma)
-- Total conflicts: 3829
+- Total conflicts: 3831
 
 - Aachen: Aachen{wikidata_labels}, Akeno{ll,wiki,wikidata_labels}, Aĥeno{wikidata_labels}
 - Aalborg: Aalborg{ll,wiki,wikidata_labels}, Alborgo{wikidata_labels}
@@ -2082,6 +2082,7 @@
 - Vitoria-Gasteiz: Vitoria-Gasteiz{ll,wiki}, Vitorio{wikidata_labels}
 - Vladimir: Vladimir{bert_embeddings,wikidata_labels}, Vladimiro{wikidata_labels}
 - Vladivostok: Vladivostok{wikidata_labels}, Vladivostoko{ll,wiki,wikidata_labels}
+- Vlogo: Video-blogo{ll,wiki,wikidata_labels}, vlogo{wikidata_labels}
 - Vltava: Vltava{wikidata_labels}, Vultavo{ll,wiki,wikidata_labels}
 - Voco: Voĉa ĵazo{wikidata_labels}, Voĉo{ll,wiki,wikidata_labels}
 - Vodevilo: Vodevil{wikidata_labels}, Vodevilo{ll,wiki,wikidata_labels}
@@ -3617,6 +3618,7 @@
 - softwaro: programaro{en_wiktionary_via,wikidata_labels}, softvaro{wikidata_labels}
 - soldar: luti{fr_wiktionary_via,wikt_io}, soldi{wikt_io}
 - solecismo: gramatika eraro{wikidata_labels}, solecismo{en_wiktionary_via}
+- somito: montopinto{wikidata_labels}, supro{wikt_io}
 - somnolar: dormeti{en_wiktionary_via}, esti dormema{wikt_io}
 - sonato: Sonatoformo{wikidata_labels}, sonata formo{wikidata_labels}, sonato{wikt_io}
 - soneto: Kanteto{wikidata_labels}, soneto{wikidata_labels,wikt_io}
@@ -3689,7 +3691,7 @@
 - tauro: taŭro{en_wiktionary_via,wikt_io}, virbovo{en_wiktionary_via,wikt_io}
 - taverno: drinkejo{en_wiktionary_via}, gastejo{en_wiktionary_via}, taverno{wikidata_labels,wikt_io}
 - taxio: kabo{en_wiktionary_via}, taksio{wikidata_labels,wikt_io}, taxi{wikidata_labels}
-- teatro: teatrarto{wikidata_labels}, teatro{wikidata_labels,wikt_io}
+- teatro: teatrarto{wikidata_labels}, teatrejo{wikt_io}, teatro{fr_wiktionary_via,wikidata_labels,wikt_io}
 - tedar: altrudiĝi{en_wiktionary_via}, tedi{wikt_io}, trudi{en_wiktionary_via}
 - tegulo: kahelo{en_wiktionary_via,wikidata_labels}, tegolo{en_wiktionary_via}
 - teismo: malateismo{wikidata_labels}, teismo{en_wiktionary_via,wikidata_labels}
