@@ -111,7 +111,7 @@ Two metrics gate changes to the lexicon — run them before deploying.
 | `dist/apertium-ido-epo.ido-epo.dix` | Ido–Esperanto bidix (lttoolbox XML) | ~103,600 entries |
 | `dist/ido_dictionary.json` | Ido monolingual dictionary (JSON) | — |
 | `dist/esperanto_dictionary.json` | Esperanto monolingual dictionary (JSON) | — |
-| `dist/vortaro_dictionary.json` | Vortaro web dictionary | ~36,600 entries |
+| `dist/vortaro_dictionary.json` | Vortaro web dictionary (Esperanto + `spanish_words` from io.wiktionary `{{es}}` lines) | ~37,900 entries, ~10,900 with Spanish |
 
 ## Deploy
 
