@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### CI
+- GitHub Actions runs `pytest` on every push to master and on pull requests (`.github/workflows/test.yml`).
+
 ### Added
 - Spanish glosses for vortaro: io.wiktionary `*{{es}}:` lines are kept as `glosses.es` on parsed Ido entries (outside `senses`, so no bidix stage reads them) and exported as `spanish_words` in `vortaro_dictionary.json`. Unfilled templates (`*{{es}}: [[`), unclosed links and gender marks are cleaned.
 - Added `np__np` paradigm to `pardefs.xml` for proper nouns
