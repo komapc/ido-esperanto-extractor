@@ -4,8 +4,14 @@
 data/gold/epo_ido.tsv is the ido->epo gold reversed, so it only holds Ido
 sentences that were already worth reviewing and tends to flatter epo->ido. This
 set starts from real *Esperanto* sentences instead: Tatoeba pairs (human Ido
-translations, built by llm/data/build_tatoeba_pairs.py) filtered to plain,
-checkable sentences, then a seeded random sample.
+translations) filtered to plain, checkable sentences, then a seeded random
+sample.
+
+The pairs come from the llm repo's held-out splits (llm/data/test.jsonl and
+val.jsonl; neither is trained on),
+and any sentence that also occurs in llm/data/train.jsonl is dropped, so the
+same set can compare Apertium with the neural engine without the latter having
+seen the answers.
 
 Caveats: Tatoeba's Ido side is often a free translation or contains slips, so
 chrF against one reference caps well below 100; read the trend, not the level.
@@ -14,7 +20,7 @@ Sentences already in epo_ido.tsv are excluded. Tatoeba text is CC BY 2.0 FR.
 Filters: 4-12 words, no digits, ends with . ? !, no '*' (unknown-word marks in
 the pair file). Deterministic for a given input and --seed.
 
-Usage: python3 scripts/build_gold_epo_ido_tatoeba.py [--src-lang epo|ido] [--src PATH] [--n 300] [--seed 1]
+Usage: python3 scripts/build_gold_epo_ido_tatoeba.py [--src-lang epo|ido] [--src PATH ...] [--train PATH] [--n 300] [--seed 1]
 """
 from __future__ import annotations
 
@@ -40,15 +46,40 @@ def usable(src: str, tgt: str, ido_side: str = "tgt") -> bool:
             and src[-1] in ".?!" and "*" not in ido)
 
 
-def build(src: Path, exclude: set[str], n: int, seed: int,
-          src_lang: str = "epo") -> list[tuple[str, str]]:
-    seen: dict[str, str] = {}
-    for line in src.read_text(encoding="utf-8").splitlines():
+def read_pairs(path: Path) -> list[dict]:
+    """Pair records; accepts both the llm dataset keys (input/output) and the
+    raw pair-file keys (src/tgt)."""
+    out = []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
         r = json.loads(line)
-        if r["src_lang"] != src_lang or not usable(
+        out.append({"src_lang": r["src_lang"],
+                    "src": r.get("src", r.get("input", "")).strip(),
+                    "tgt": r.get("tgt", r.get("output", "")).strip(),
+                    "provenance": r.get("provenance", "tatoeba")})
+    return out
+
+
+def train_sentences(path: Path | None) -> set[str]:
+    """Every sentence of the llm training split, either side."""
+    if path is None or not path.exists():
+        return set()
+    return {s for r in read_pairs(path) for s in (r["src"], r["tgt"])}
+
+
+def build(src: Path | list[Path], exclude: set[str], n: int, seed: int,
+          src_lang: str = "epo", train: set[str] | None = None) -> list[tuple[str, str]]:
+    train = train or set()
+    seen: dict[str, str] = {}
+    srcs = src if isinstance(src, list) else [src]
+    for r in (r for path in srcs for r in read_pairs(path)):
+        if r["src_lang"] != src_lang or r["provenance"] != "tatoeba" or not usable(
                 r["src"], r["tgt"], "tgt" if src_lang == "epo" else "src"):
             continue
         if r["src"] in exclude or r["src"] in seen:
+            continue
+        if r["src"] in train or r["tgt"] in train:
             continue
         seen[r["src"]] = r["tgt"]
     pool = sorted(seen.items())
@@ -59,8 +90,12 @@ def build(src: Path, exclude: set[str], n: int, seed: int,
 def main() -> int:
     here = Path(__file__).resolve().parent.parent
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--src", type=Path,
-                    default=here.parent / "llm/data/out/tatoeba_io_eo.jsonl")
+    ap.add_argument("--src", type=Path, nargs="+",
+                    default=[here.parent / "llm/data/test.jsonl",
+                             here.parent / "llm/data/val.jsonl"],
+                    help="held-out pairs (default: the llm repo's test and val splits)")
+    ap.add_argument("--train", type=Path, default=here.parent / "llm/data/train.jsonl",
+                    help="sentences found here are excluded (missing file = no exclusion)")
     ap.add_argument("--existing", type=Path, default=here / "data/gold/epo_ido.tsv")
     ap.add_argument("--out", type=Path, default=here / "data/gold/epo_ido_tatoeba.tsv")
     ap.add_argument("--src-lang", choices=["epo", "ido"], default="epo",
@@ -76,7 +111,10 @@ def main() -> int:
             args.existing = here / "data/gold/ido_epo.tsv"
     exclude = {l.split("\t")[0] for l in args.existing.read_text(encoding="utf-8").splitlines()
                if l.strip() and not l.startswith("#")}
-    rows = build(args.src, exclude, args.n, args.seed, args.src_lang)
+    train = train_sentences(args.train)
+    if not train:
+        print(f"WARNING: {args.train} not found; the set may overlap llm training data")
+    rows = build(args.src, exclude, args.n, args.seed, args.src_lang, train)
     header = HEADER
     if args.src_lang == "ido":
         header = (HEADER.replace("Esperanto -> Ido", "Ido -> Esperanto")

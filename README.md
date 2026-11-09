@@ -96,7 +96,12 @@ Two metrics gate changes to the lexicon — run them before deploying.
   precision@1 (top gloss vs a held-out `io_wiktionary` reference) + lemmatized recall over the
   top-5000 io.wiki tokens. The signal for any change to vocabulary generation.
 - **Translation quality** — `scripts/eval_translation.py` → `reports/quality_trend.md`: chrF + coverage
-  against the 130-sentence gold set (`data/gold/ido_epo.tsv`). Must stay flat-or-up on any bidix change.
+  against the curated gold set (`data/gold/ido_epo.tsv`; reverse: `epo_ido.tsv` → `quality_trend_epo_ido.md`).
+  Must stay flat-or-up on any bidix change. The curated sets are close to saturated, so the steering
+  numbers are the **real-text Tatoeba sets** (`data/gold/*_tatoeba.tsv`, run with `--report-tag tatoeba`
+  → `reports/quality_trend*_tatoeba.md`). They are built by `scripts/build_gold_epo_ido_tatoeba.py`
+  from the llm repo's held-out test/val splits with every training sentence excluded, so they also
+  serve as a fair Apertium-vs-neural comparison.
 - **Shared cleaning** — `scripts/lexicon_filters.py` (junk-lemma drop + case-variant dedup) runs inside
   `build_one_big_bidix_json.py`, so the monodix, bidix, and vortaro all benefit.
 - **Blast-radius diffs** — `scripts/conflict_winner_diff.py` (which MT winners would change) and

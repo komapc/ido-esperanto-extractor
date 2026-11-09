@@ -10,6 +10,7 @@
 - Proper noun support in `source_io_wikipedia.json` (already had `pos: "np"`, now gets paradigm automatically)
 
 ### Changed
+- Tatoeba benchmarks (`data/gold/*_tatoeba.tsv`) are rebuilt from the llm repo's held-out test/val splits with every `llm/data/train.jsonl` sentence excluded (290 of the old 300 ido→epo sources were training data). New baselines: ido→epo 210 sentences, chrF 83.6; epo→ido 239, chrF 77.4. The 2026-11-09 Tatoeba rows that had landed in `quality_trend.md`/`quality_trend_epo_ido.md` moved out; `eval_translation.py` no longer appends a row identical to the last one.
 - Removed `source_manual.json` - all dictionaries now regenerated from sources only
 - `merge_sources.py` now automatically assigns `np__np` paradigm to proper nouns from any source
 

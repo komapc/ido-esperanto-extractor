@@ -208,8 +208,12 @@ def main() -> int:
             "|------|-----------|-----------|-----------|\n",
             encoding="utf-8",
         )
-    with trend.open("a", encoding="utf-8") as f:
-        f.write(f"| {today} | {len(results)} | {coverage:.1f} | {mean_chrf:.1f} |\n")
+    row = f"| {today} | {len(results)} | {coverage:.1f} | {mean_chrf:.1f} |\n"
+    rows = [l for l in trend.read_text(encoding="utf-8").splitlines(keepends=True)
+            if l.startswith("| 2")]
+    if not rows or rows[-1] != row:  # a rerun on an unchanged pair adds nothing
+        with trend.open("a", encoding="utf-8") as f:
+            f.write(row)
 
     # --- per-run detail ---
     latest = args.reports_dir / f"quality_latest{suffix}.md"
