@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+### CI
+- GitHub Actions runs `pytest` on every push to master and on pull requests (`.github/workflows/test.yml`).
+
 ### Added
 - Spanish Wiktionary as a second source of vortaro Spanish words: `parse_es_wiktionary_io.py` reads `{{t|io|…}}` in the `{{lengua|es}}` section (dump + `fetch_wiktionary_overlay.py --lang es`), `export_vortaro.py` appends them after the io.wiktionary words for lemmas the dictionary has. Stages `wiktionary_es_overlay`, `wiktionary_es_io`; eswiktionary added to `download_dumps.sh`. +303 Spanish words, 10,962 entries with Spanish.
 - Spanish glosses for vortaro: io.wiktionary `*{{es}}:` lines are kept as `glosses.es` on parsed Ido entries (outside `senses`, so no bidix stage reads them) and exported as `spanish_words` in `vortaro_dictionary.json`. Unfilled templates (`*{{es}}: [[`), unclosed links and gender marks are cleaned.
