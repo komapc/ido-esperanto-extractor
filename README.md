@@ -185,3 +185,7 @@ See `.kiro/steering/DICTIONARY_MAINTENANCE_RULES.md`.
 - `docs/via-translations.md` — pivot (via) translation approach
 - `docs/wikipedia-classification.md` — Wikipedia article classification
 - `docs/markup-cleaning.md` — Wiktionary markup cleaning
+
+## License
+
+Code: MIT ([`LICENSE`](LICENSE)). The dictionaries it generates are derived from Wiktionary and Wikipedia and are therefore CC BY-SA 4.0 (Wikidata labels are CC0). The Tatoeba evaluation sets in `data/gold/*_tatoeba.tsv` are CC BY 2.0 FR (sentence authors are listed on tatoeba.org).
