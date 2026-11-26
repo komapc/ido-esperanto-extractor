@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from lexicon_filters import is_junk_lemma  # MediaWiki/numeric artifact predicate
 
 DUMP = "data/raw/iowiki-latest-pages-articles.xml.bz2"
-APERTIUM_DIR = "/home/mark/projects/apertium-dev/apertium-ido-epo"
+APERTIUM_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "apertium-ido-epo")
 PAIR = "ido-epo"
 N_ARTICLES = 100
 MIN_WORDS = 200   # skip stubs
